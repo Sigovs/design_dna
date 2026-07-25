@@ -286,6 +286,97 @@ console.log('\nmobile · WebKit · iPhone 13 · storage blocked');
   await pb.close();
 }
 
+/* ── token rejection clarity ──────────────────────────────────────────────
+   Each GitHub status maps onto a different human problem with a different fix.
+   "Save failed" for all of them leaves the user nothing to act on. */
+console.log('\nmobile · WebKit · iPhone 13 · token rejection messages');
+{
+  const CASES = [
+    { name: '401 bad credentials', status: 401, body: { message: 'Bad credentials' },
+      expect: [/401/i, /revoked|expired|malformed/i], hintHas: /fresh fine-grained token/i, reopens: true },
+    { name: '403 no permission', status: 403, body: { message: 'Resource not accessible by personal access token' },
+      headers: { 'x-ratelimit-remaining': '4999' },
+      expect: [/403/, /not allowed to write/i], hintHas: /Contents/i, reopens: true },
+    { name: '403 rate limited', status: 403, body: { message: 'API rate limit exceeded' },
+      // GitHub exposes these to JS via CORS; the mock must too, or the browser
+      // cannot read them and a rate limit is indistinguishable from a 403 denial.
+      headers: {
+        'x-ratelimit-remaining': '0',
+        'x-ratelimit-reset': String(Math.floor(Date.now() / 1000) + 900),
+        'access-control-expose-headers': 'x-ratelimit-remaining, x-ratelimit-reset',
+      },
+      expect: [/rate-limited/i, /resets/i], hintHas: /wait/i, reopens: false },
+    { name: '404 wrong repo selection', status: 404, body: { message: 'Not Found' },
+      expect: [/404/, /cannot see/i, /outside its selected list/i], hintHas: /Repository access/i, reopens: true },
+    { name: 'network failure', abort: true,
+      expect: [/could not reach api\.github\.com/i], hintHas: /connection/i, reopens: false },
+  ];
+
+  for (const c of CASES) {
+    const tb = await webkit.launch();
+    const tctx = await tb.newContext({ ...devices['iPhone 13'], acceptDownloads: true });
+    await tctx.addInitScript(() => {
+      localStorage.setItem('design-dna:vault:gh-token', '  github_pat_smoketest\n');   // padded on purpose
+    });
+    await tctx.route('https://api.github.com/**', (route) => {
+      if (c.abort) return route.abort('connectionfailed');
+      return route.fulfill({
+        status: c.status,
+        contentType: 'application/json',
+        headers: c.headers ?? {},
+        body: JSON.stringify(c.body),
+      });
+    });
+    const tp = await tctx.newPage();
+    await tp.goto(URL_BASE, { waitUntil: 'domcontentloaded', timeout: 25_000 });
+    await tp.waitForSelector('.card', { timeout: 12_000 });
+    await tp.waitForTimeout(600);
+
+    // Real path: edit an entry and submit, which routes through requestSave().
+    await tp.locator('.card').first().click();
+    await tp.waitForTimeout(700);
+    await tp.locator('#detail [data-field="dialectStatus"] input[value="in"]').check();
+    await tp.locator('#detail button[type="submit"]').click();
+    await tp.waitForTimeout(2500);
+
+    const msg = ((await tp.locator('#toast').textContent()) ?? '')
+      + ' ' + ((await tp.locator('#dirty-note').textContent()) ?? '')
+      + ' ' + ((await tp.locator('#token-error').isVisible())
+        ? (await tp.locator('#token-error').textContent()) : '');
+
+    const matched = c.expect.every((re) => re.test(msg));
+    check(`${c.name}: message states the specific reason`, matched,
+      matched ? '' : msg.replace(/\s+/g, ' ').slice(0, 150));
+    check(`${c.name}: message includes a fix hint`, c.hintHas.test(msg));
+    check(`${c.name}: ${c.reopens ? 'reopens the token panel' : 'does not demand a new token'}`,
+      (await tp.locator('#token').isVisible()) === c.reopens);
+    await tb.close();
+  }
+
+  // Padded token must reach the API cleaned.
+  const cb = await webkit.launch();
+  const cctx = await cb.newContext({ ...devices['iPhone 13'] });
+  await cctx.addInitScript(() => {
+    localStorage.setItem('design-dna:vault:gh-token', '\n  github_pat_padded \n');
+  });
+  let sentAuth = null;
+  await cctx.route('https://api.github.com/**', (route) => {
+    sentAuth = route.request().headers()['authorization'] ?? null;
+    return route.fulfill({ status: 401, contentType: 'application/json', body: '{"message":"Bad credentials"}' });
+  });
+  const cp = await cctx.newPage();
+  await cp.goto(URL_BASE, { waitUntil: 'domcontentloaded', timeout: 25_000 });
+  await cp.waitForSelector('.card', { timeout: 12_000 });
+  await cp.locator('.card').first().click();
+  await cp.waitForTimeout(700);
+  await cp.locator('#detail [data-field="dialectStatus"] input[value="in"]').check();
+  await cp.locator('#detail button[type="submit"]').click();
+  await cp.waitForTimeout(2000);
+  check('whitespace is stripped from the pasted token before use',
+    sentAuth === 'Bearer github_pat_padded', String(sentAuth));
+  await cb.close();
+}
+
 /* api.github.com unreachable must never block first paint. */
 console.log('\nmobile · WebKit · iPhone 13 · api.github.com hanging');
 {

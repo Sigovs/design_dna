@@ -181,6 +181,16 @@ button, input, textarea, select { font: inherit; color: inherit; }
 #toast .toast-close:hover { color: var(--ink); }
 @media (min-width: 48rem) { #toast { inset-inline: auto var(--space-6); inset-block-end: var(--space-6); } }
 
+.token-error {
+  border-inline-start: 2px solid oklch(.6 .13 25);
+  padding: var(--space-4) 0 var(--space-4) var(--space-5);
+  margin-block: var(--space-6) 0;
+}
+.token-error[hidden] { display: none; }
+.token-error > .label { display: block; color: oklch(.78 .11 25); margin-bottom: var(--space-3); }
+.token-error p { margin: 0; max-width: 56ch; color: var(--ink-70); line-height: 1.55; }
+.token-error p + p { margin-top: var(--space-3); color: var(--ink); }
+
 /* danger styling — tokens only, no new palette */
 .btn--danger { border-color: oklch(.55 .12 25); color: oklch(.78 .11 25); }
 .btn--danger:hover { border-color: oklch(.7 .15 25); color: oklch(.86 .13 25); }
@@ -383,6 +393,11 @@ button, input, textarea, select { font: inherit; color: inherit; }
     <div class="detail" style="grid-template-columns: minmax(0,1fr)">
       <div style="max-width: 40rem">
         <h2>How should this be <em>saved</em>?</h2>
+        <div class="token-error" id="token-error" hidden>
+          <span class="label">github rejected that token</span>
+          <p id="token-error-reason"></p>
+          <p id="token-error-hint"></p>
+        </div>
         <p class="lead" style="margin-top: var(--space-5); font-size: 1.0625rem">
           <span id="token-what">Your edits</span> exist only in this browser so far.
           Two ways to make them real:
@@ -1239,7 +1254,12 @@ function repoConfig() {
   return { owner: 'Sigovs', repo: 'design_dna', branch: 'master', path: 'vault/sites.json' };
 }
 
-const getToken = () => store.get(TOKEN_KEY);
+/* Mobile paste routinely adds a trailing newline, a leading space, or soft-wrap
+   whitespace. A PAT contains none, so strip every whitespace character — including
+   zero-width and non-breaking ones, which paste from a code block can carry. */
+const cleanToken = (raw) => (raw ?? '').replace(/[\s​-‍⁠﻿ ]/g, '');
+
+const getToken = () => cleanToken(store.get(TOKEN_KEY)) || null;
 
 function b64encode(str) {
   const bytes = new TextEncoder().encode(str);
@@ -1266,9 +1286,84 @@ async function gh(path, init = {}) {
     try { detail = (await res.json()).message ?? ''; } catch { /* no body */ }
     const err = new Error(`${res.status} ${detail || res.statusText}`);
     err.status = res.status;
+    err.apiMessage = detail;
+    // Needed to tell "no permission" apart from "rate limited" — both are 403.
+    err.rateRemaining = res.headers.get('x-ratelimit-remaining');
+    err.rateReset = res.headers.get('x-ratelimit-reset');
     throw err;
   }
   return res.json();
+}
+
+/* GitHub's status codes map onto distinct human problems with distinct fixes.
+   Collapsing them into "save failed" leaves the user with nothing to act on —
+   and 404 in particular is not "missing", it is "your token cannot see this
+   repo", which is the single most common fine-grained-token mistake. */
+function explainGhError(err, cfg) {
+  const repo = `${cfg.owner}/${cfg.repo}`;
+
+  if (err.status === undefined) {
+    return {
+      kind: 'network',
+      reason: 'Could not reach api.github.com — the request never completed.',
+      hint: 'Check the connection and tap save again; nothing was sent.',
+    };
+  }
+  if (err.status === 401) {
+    return {
+      kind: 'bad-token',
+      reason: 'GitHub rejected the token itself (401 Bad credentials) — it is malformed, revoked, or expired.',
+      hint: 'Generate a fresh fine-grained token and paste it again; check nothing was cut off when copying.',
+    };
+  }
+  if (err.status === 403) {
+    /* Header first, message second: x-ratelimit-remaining is not a CORS-safelisted
+       response header, so it is only readable because GitHub sends
+       Access-Control-Expose-Headers — a proxy that strips it would otherwise make
+       a rate limit look like a permissions problem. */
+    const rateByMessage = /rate limit/i.test(err.apiMessage ?? '');
+    if (err.rateRemaining === '0' || rateByMessage) {
+      const when = err.rateReset
+        ? new Date(Number(err.rateReset) * 1000).toLocaleTimeString()
+        : 'shortly';
+      return {
+        kind: 'rate-limit',
+        reason: `GitHub rate-limited this request (403). The limit resets around ${when}.`,
+        hint: 'Wait for the reset and save again, or download the file instead.',
+      };
+    }
+    return {
+      kind: 'no-permission',
+      reason: `The token reached GitHub but is not allowed to write here (403) — Contents: Read and write is missing, or an organisation policy is blocking it.`,
+      hint: `Edit the token's Repository permissions → Contents → Read and write.`,
+    };
+  }
+  if (err.status === 404) {
+    return {
+      kind: 'wrong-repo',
+      reason: `The token cannot see ${repo} (404). A fine-grained token returns 404 — not 403 — for a repository outside its selected list.`,
+      hint: `Edit the token's Repository access and select ${repo} explicitly.`,
+    };
+  }
+  if (err.status === 409 || err.status === 422) {
+    return {
+      kind: 'conflict',
+      reason: `The file changed in the repo while saving (${err.status}), and the retry did not settle it.`,
+      hint: 'Reload to pick up the newer file, then redo the edit.',
+    };
+  }
+  if (err.status >= 500) {
+    return {
+      kind: 'github-down',
+      reason: `GitHub returned a server error (${err.status}).`,
+      hint: 'Try again in a minute, or download the file instead.',
+    };
+  }
+  return {
+    kind: 'unknown',
+    reason: `GitHub refused the request (${err.status}${err.apiMessage ? `: ${err.apiMessage}` : ''}).`,
+    hint: 'Download the file instead, replace vault/sites.json and commit.',
+  };
 }
 
 const serialise = (list) => JSON.stringify(
@@ -1365,16 +1460,21 @@ async function saveToGitHub() {
       }
     }
   } catch (err) {
-    if (err.status === 401 || err.status === 403) {
-      status(`GitHub rejected the token (${err.status}). It may be expired, or missing Contents: Read and write. Downloading json instead.`, 'bad');
-      download();
+    const { kind, reason, hint } = explainGhError(err, cfg);
+
+    // A token problem sends you back to the panel with the reason attached; a
+    // transient one does not, because the token is fine and re-pasting it is noise.
+    const tokenProblem = ['bad-token', 'no-permission', 'wrong-repo'].includes(kind);
+    status(`${reason} ${hint}`, 'bad');
+    toast(`${reason}\n\nFix: ${hint}`, 'bad', 20000);
+
+    if (tokenProblem) {
+      showTokenError(reason, hint);
       openTokenPanel();
-    } else if (err.status === 404) {
-      status(`Repo or file not found (404) — check the token can see ${cfg.owner}/${cfg.repo}. Downloading json instead.`, 'bad');
-      download();
     } else {
-      status(`Save failed: ${err.message}. Downloading json instead — replace vault/sites.json and commit.`, 'bad');
+      // Nothing the user can fix by re-authenticating — hand them the file.
       download();
+      toast(`${reason}\n\nFix: ${hint}\n\nsites.json has been downloaded as a fallback — replace vault/sites.json and commit.`, 'bad', 20000);
     }
   } finally {
     btn.disabled = false;
@@ -1419,6 +1519,12 @@ function status(msg, kind = '') {
   status._t = setTimeout(() => { el.dataset.sticky = '0'; }, 30_000);
   // The toolbar line is invisible while a sheet is open, so mirror it into a toast.
   toast(msg, kind === 'ok' ? 'ok' : 'bad', kind === 'ok' ? 9000 : 14000);
+}
+
+function showTokenError(reason, hint) {
+  $('#token-error-reason').textContent = reason;
+  $('#token-error-hint').textContent = `Fix: ${hint}`;
+  $('#token-error').hidden = false;
 }
 
 function openTokenPanel() {
@@ -1599,6 +1705,7 @@ async function requestSave(what = 'your edits') {
 
 function offerSaveChoice(what) {
   $('#token-what').textContent = what;
+  $('#token-error').hidden = true;      // a fresh ask, not a rejection
   openTokenPanel();
   toast(`${what} is held in this browser — choose how to save it.`, 'warn', 9000);
 }
@@ -1653,11 +1760,16 @@ function wire() {
 
   $('#token-form').addEventListener('submit', guard('Save', async (ev) => {
     ev.preventDefault();
-    const value = $('#token-input').value.trim();
+    const raw = $('#token-input').value;
+    const value = cleanToken(raw);          // strips the newline mobile paste adds
     if (!value) { toast('Paste a token first, or choose "download the file instead".', 'bad'); return; }
-    if (!/^(github_pat_|ghp_)/.test(value)) {
-      toast('That does not look like a GitHub token (expected github_pat_… or ghp_…). Saving anyway.', 'warn');
+    if (raw !== raw.trim() || /\s/.test(raw)) {
+      toast('Trimmed whitespace from the pasted token.', 'warn', 4000);
     }
+    if (!/^(github_pat_|ghp_)/.test(value)) {
+      toast('That does not look like a GitHub token (expected github_pat_… or ghp_…). Trying it anyway.', 'warn');
+    }
+    $('#token-error').hidden = true;
     store.set(TOKEN_KEY, value);
     $('#token-input').value = '';
     closeToken();

@@ -1,6 +1,21 @@
 {
   "_comment": "Controlled vocabulary. THE single source of truth — vault/index.html and vault/capture.mjs both read this file. Add tags here; free additions made in the gallery land on entries but are not promoted into this list until you add them deliberately. Hues are low-chroma on purpose (see skills/color-taste): chips are data encoding, not decoration.",
+  "_compositionComment": "Positive merit tags only — see skills/academic-composition. A tag means the quality is PRESENT and human-approved. Never apply one to record that the quality is missing; compositional failures belong in the note, in prose, until a dedicated issue taxonomy exists.",
   "categories": {
+    "composition": {
+      "hue": 200,
+      "tags": [
+        "dominant-mass",
+        "active-negative-space",
+        "directed-eye",
+        "tonal-structure",
+        "rhythm-variation",
+        "intentional-crop",
+        "optical-balance",
+        "compositional-resolution",
+        "responsive-recomposition"
+      ]
+    },
     "typography": {
       "hue": 165,
       "tags": ["display-serif", "grotesque", "mono-details", "big-type", "editorial"]

@@ -40,6 +40,7 @@ clipped at 14,000px so an infinite-scroll site can't produce an unusable strip.
   "dialectStatus": "unreviewed",
   "dialects": [],
   "tags": {
+    "composition": ["dominant-mass", "directed-eye"],
     "typography": ["display-serif", "mono-details"],
     "layout": ["air", "bleed"],
     "motion": ["restraint"],
@@ -65,7 +66,16 @@ clipped at 14,000px so an infinite-scroll site can't produce an unusable strip.
 - `dialects` — which stored dialects it belongs to, from `vocab.json`'s `dialects`
   list. Empty is normal and correct for `unreviewed` and `out`.
 - `tags` — one array per category in `vocab.json`. Free additions allowed; promote
-  the ones you reuse into `vocab.json` deliberately.
+  the ones you reuse into `vocab.json` deliberately. Adding a category to
+  `vocab.json` is the only step needed — normalisation gives every entry the new
+  key on next load, and filters, forms, save, and export pick it up automatically.
+- `tags.composition` — **positive merit tags only**, from
+  [academic-composition](../skills/academic-composition/SKILL.md). A tag means the
+  quality is **present** and a human has confirmed it. **Never apply one to record
+  that a quality is missing.** Compositional *failures* stay in the `note`, in
+  prose — there is no issue taxonomy in this schema, and this is not the task to
+  invent one. Composition tags are also never inferred from a rating or a note:
+  they need human review or clear existing evidence.
 - `shots` — paths relative to `vault/`, or `null` when not yet captured.
 
 `out` is not a rejection. An `out` entry is the most valuable kind in the vault:

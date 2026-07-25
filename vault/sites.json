@@ -4,10 +4,11 @@
     "url": "https://www.rmsothebys.com/",
     "title": "RM Sotheby's",
     "added": "2026-07-24",
-    "rating": 2,
-    "dialectStatus": "unreviewed",
+    "rating": 1,
+    "dialectStatus": "out",
     "dialects": [],
     "tags": {
+      "composition": [],
       "typography": [
         "display-serif",
         "mono-details"
@@ -28,7 +29,7 @@
         "scrim-text"
       ]
     },
-    "note": "Captured as the working example for the auction-catalog register that skills/typography-taste borrows from. The hero is the right idea: full-bleed night photography, and the lot text sits in a translucent grey scrim block in the lower left rather than being centred over the image — the scrim is doing the legibility work, exactly the escalation ladder in skills/color-taste §5.\n\nThe title is set in a high-contrast serif with true typographic quotes ('The Pop Art F1'), the supporting lines drop to a neutral grotesque, and the date/venue line goes smallest — three registers in a four-line block, which is the whole editorial-contrast idea in miniature.\n\nWhere it falls short of a rating 3: the nav is a plain uppercase grotesque row with no tracking discipline, VIEW LOT is an underlined text link inside a scrim (a banned pattern — it reads as prose, not as an action), and the carousel arrows are large chrome overlays on the photograph. The lot plate below the fold is closer to a generic e-commerce grid than to a printed catalog page. Useful for the hero treatment; not a model for the rest.",
+    "note": "Captured as the working example for the auction-catalog register that skills/typography-taste borrows from. The hero is the right idea: full-bleed night photography, and the lot text sits in a translucent grey scrim block in the lower left rather than being centred over the image — the scrim is doing the legibility work, exactly the escalation ladder in skills/color-taste §5.\n\nThe title is set in a high-contrast serif with true typographic quotes ('The Pop Art F1'), the supporting lines drop to a neutral grotesque, and the date/venue line goes smallest — three registers in a four-line block, which is the whole editorial-contrast idea in miniature.\n\nWhere it falls short of a rating 3: the nav is a plain uppercase grotesque row with no tracking discipline, VIEW LOT is an underlined text link inside a scrim (a banned pattern — it reads as prose, not as an action), and the carousel arrows are large chrome overlays on the photograph. The lot plate below the fold is closer to a generic e-commerce grid than to a printed catalog page. Useful for the hero treatment; not a model for the rest.\n\nAnti-reference — exceptional automotive assets trapped inside a generic corporate-luxury CMS. The hero relies almost entirely on photography, while the rest of the page collapses into repetitive card grids, mechanical 50/50 bands, cosmetic luxury typography, weak micro-hierarchy, and arbitrary tonal alternation. There is no sustained dominant-subordinate-support relationship after the hero. Negative space acts as passive separation rather than an active compositional shape. Image directions fail to build a continuous eye path, tonal masses fragment between modules, and the repeated card cadence becomes metronomic. The grid measures correctly without composing meaningfully. Premium content alone does not create premium art direction.",
     "shots": {
       "full": "shots/rmsothebys-com/full.jpg",
       "hero": "shots/rmsothebys-com/hero.jpg",
@@ -44,6 +45,7 @@
     "dialectStatus": "unreviewed",
     "dialects": [],
     "tags": {
+      "composition": [],
       "typography": [
         "grotesque",
         "editorial",

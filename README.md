@@ -50,6 +50,7 @@ line resolves locally instead of over the network.
 design_dna/
 ├── TASTE.md                        # the manifest — agents read this first
 ├── skills/                         # each split INVARIANT / DIALECT
+│   ├── academic-composition/SKILL.md # cross-dialect · I: dominant/subordinate, tone, figure-ground, eye path, resolution
 │   ├── spacing-taste/SKILL.md      # I: hierarchy, tokens, internal<external · D: air-first, bottom-heavy
 │   ├── typography-taste/SKILL.md   # I: legible rank, optical correction · D: didone + grotesque + mono, spec plates
 │   ├── color-taste/SKILL.md        # I: AA, no hue-only meaning, scrims · D: neutral dark base, smoky accents
@@ -77,7 +78,15 @@ it's inconvenient — and every dialect rule additionally carries a `yields when
 because a rule with no stated exit gets broken silently instead.
 
 Invariants outrank everything. Inside the dialect tier the conflict order is
-anti-patterns → spacing → typography → color → motion.
+anti-patterns → composition → spacing → typography → color → motion.
+
+**`academic-composition` is the cross-dialect quality layer.** It is a method for
+judging visual relationships — masses, intervals, directions, tone, negative space
+— not a style, and it does not push work toward looking classical, editorial, or
+spacious. Its invariants bind in every dialect, including `brief-derived`. Its
+**composition pass runs inside the Design Read: after the dialect declaration,
+before typography, colour, effects, and motion** — because composition decided
+after styling is just whatever the styling left over.
 
 `auction-editorial` is **not a silent default.** Every Design Read has to choose:
 a stored dialect, a partial combination, or `brief-derived / no stored dialect`. An
@@ -91,6 +100,14 @@ underspecified brief does not become the house style by default.
 controlled tags, and a note on **why** it works. The note is the payload — the
 shots are proof. Full detail and the entry schema live in
 [vault/README.md](vault/README.md).
+
+Tags are grouped into six categories — **composition**, typography, layout, motion,
+color, imagery. The composition category carries **positive merit tags only**
+(`dominant-mass`, `active-negative-space`, `directed-eye`, `tonal-structure`,
+`rhythm-variation`, `intentional-crop`, `optical-balance`,
+`compositional-resolution`, `responsive-recomposition`): a tag means a human
+confirmed the quality is *present*. Compositional failures stay in the note, in
+prose.
 
 ```bash
 npm install                            # playwright + chromium, live-server
@@ -151,6 +168,14 @@ while it is honest.
    palette change; a complete static path for every animation; depth cues coherent
    with the spatial model they imply; and controlled irregularity that stays
    legible and intentional.
+   **Composition is the cross-dialect layer inside this tier** — a dominant with
+   subordinates and support, unity, tonal structure before colour, actively shaped
+   negative space, optically judged balance, a directed eye path, rhythm with felt
+   variation, mass relationships chosen as ratios, committed edges and crops,
+   tension with counterweight, sections that resolve, and a governing idea
+   re-established at every breakpoint. Its **pass runs after the dialect
+   declaration and before any surface styling**, and it judges relationships, not
+   compliance with a preferred look.
 3. **The house dialect is auction-editorial, and it is chosen, never assumed.**
    Its principles are compositional: subtract before adding, hierarchy from space
    and scale before ornament, metadata composed rather than appended, one committed

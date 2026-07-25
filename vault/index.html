@@ -387,12 +387,28 @@ const STATUS_FALLBACK = ['unreviewed', 'in', 'out', 'hybrid'];
 const statuses = () => (vocab.dialectStatus?.length ? vocab.dialectStatus : STATUS_FALLBACK);
 const dialectList = () => vocab.dialects ?? [];
 
-/* Entries written before the dialect migration, or added by hand, get defaults. */
+/* Entries written before a migration, or added by hand, get defaults. Runs on
+   every load, so adding a category to vocab.json is all it takes to roll one out:
+   every entry gains the key as an empty array and flows through filters, forms,
+   save, and export unchanged. */
 function normalise(entry) {
   if (!Array.isArray(entry.dialects)) entry.dialects = [];
   if (typeof entry.dialectStatus !== 'string' || !statuses().includes(entry.dialectStatus)) {
     entry.dialectStatus = 'unreviewed';
   }
+
+  // Every vocab category is present, in vocab order, as an array.
+  const tags = entry.tags ?? {};
+  const normalised = {};
+  for (const cat of Object.keys(vocab.categories)) {
+    normalised[cat] = Array.isArray(tags[cat]) ? tags[cat] : [];
+  }
+  // Keep tags for categories no longer in vocab rather than silently dropping data.
+  for (const [cat, list] of Object.entries(tags)) {
+    if (!(cat in normalised) && Array.isArray(list)) normalised[cat] = list;
+  }
+  entry.tags = normalised;
+
   return entry;
 }
 

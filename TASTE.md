@@ -44,6 +44,10 @@ The invariants, by domain — full text in the linked skills:
 
 | Invariant | Where |
 |---|---|
+| Composed visual relationships — dominant/subordinate/support, unity and subordination, figure-ground clarity, optical balance, directed eye movement | [composition](skills/academic-composition/SKILL.md#invariant) |
+| Tonal structure before colour — the major hierarchy survives grayscale, thumbnail, and squint | [composition](skills/academic-composition/SKILL.md#invariant) |
+| Rhythm with variation, mass proportion, intentional edges and crops, tension with counterweight, compositional resolution | [composition](skills/academic-composition/SKILL.md#invariant) |
+| Responsive recomposition — the governing idea re-established at every breakpoint, not merely the content | [composition](skills/academic-composition/SKILL.md#invariant) |
 | Intentional spatial hierarchy — grouping and separation are decided, never inherited | [spacing](skills/spacing-taste/SKILL.md#invariant) |
 | Rhythm and optical balance — repeated relationships, optically corrected at size | [spacing](skills/spacing-taste/SKILL.md#invariant), [typography](skills/typography-taste/SKILL.md#invariant) |
 | Token discipline — every value resolves to a documented scale; no magic numbers | [spacing](skills/spacing-taste/SKILL.md#invariant) |
@@ -106,6 +110,37 @@ brief. When the brief is thin, derive the dialect from what you *do* know
 lean on auction-editorial anyway, you must be able to name the compatibility
 you found; "nothing else was specified" is not one.
 
+### 2a. The Academic Composition Pass
+
+**After the dialect declaration and before typography, colour, effects, motion, or
+any other surface styling decision**, run the composition pass from
+[academic-composition](skills/academic-composition/SKILL.md#academic-composition-pass).
+
+Order matters: composition is decided in terms of masses, intervals, directions,
+tone, and negative space *before* anything is styled. Choosing a typeface or a
+palette first means the composition ends up being whatever the styling left over.
+
+**Required for:** any full-page design, any substantial section-level design, any
+visual critique.
+**Not required for:** atomic UI edits, minor copy changes, small token
+adjustments, isolated implementation fixes — apply only the relevant checks.
+
+```
+COMPOSITION PASS
+1. Dominant:      2. Subordinate:   3. Eye path:
+4. Tonal test:    5. Negative space:6. Edges/forces:
+7. Tension/rest:  8. Resolution:    9. Responsive:
+```
+
+**The pass evaluates relationships, not compliance with a preferred visual
+style.** It asks whether the visual forces are ranked, directed, balanced, and
+resolved — not whether the result looks classical, editorial, spacious, or
+asymmetric. A dense modular dashboard and a quiet catalogue page both pass or fail
+on the same questions and look nothing alike.
+
+Keep it compact — short clauses, one block. It is a thinking tool, not
+documentation. Filler answers ("balanced and clean") mean the answer is missing.
+
 **Rules for the read**
 - `<deliverable>` is the artefact, not the task ("landing hero", not "some HTML").
 - `<audience>` is who judges it, and it sets the tolerance for expressiveness.
@@ -130,16 +165,23 @@ its own `yields when:`.
 
 | Skill | Invariant core | Dialect position |
 |---|---|---|
+| [academic-composition](skills/academic-composition/SKILL.md) | **Cross-dialect.** Dominant/subordinate/support, unity, tonal structure before colour, figure-ground, optical balance, directed eye path, rhythm, mass proportion, intentional edges, tension with counterweight, resolution, responsive recomposition. | Composed asymmetry with counterweight, detail against quiet fields, mass above centre, downward exhale, one measured disruption. |
 | [spacing-taste](skills/spacing-taste/SKILL.md) | Spatial hierarchy is deliberate; spacing is tokenised; internal gaps < external gaps. | Air-first — generous space, bottom-heavy composition, whitespace as a status signal. |
 | [typography-taste](skills/typography-taste/SKILL.md) | Hierarchy is legible; roles are bounded; type is optically corrected at every size. | Editorial contrast — expressive display + quiet grotesque + mono, italic signature word, spec plates. |
 | [color-taste](skills/color-taste/SKILL.md) | AA verified every change; never meaning by hue alone; legibility fixed at the background layer. | Chromatic restraint — neutral dark base, smoky desaturated accents used as a setting. |
 | [motion-taste](skills/motion-taste/SKILL.md) | Reduced-motion path for everything; state changes perceivable with keyboard parity; no jank. | Calm and physical — crossfade over travel, subtle hover, motion never as identity. |
 | [anti-patterns](skills/anti-patterns/SKILL.md) | The five universal failure modes, plus controlled-irregularity legibility. | The trope bans — AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, template anonymity. |
 
+**`academic-composition` applies across all dialects**, including
+`brief-derived / no stored dialect`. It is not part of the house style and it does
+not push work toward any look — it is the quality layer under all of them. Its
+invariants bind whatever you selected in the dialect line, and its pass runs before
+any surface decision (§2a).
+
 **Conflict order.** Invariants beat everything. Inside the dialect tier:
-anti-patterns → spacing → typography → color → motion. Spacing beats type
-because a beautiful typeface in a cramped grid still reads cheap; motion is last
-because motion is seasoning.
+anti-patterns → composition → spacing → typography → color → motion. Composition
+sits above spacing because the shape of the masses and the eye path decide what the
+spacing is *for*; motion is last because motion is seasoning.
 
 ---
 
@@ -197,6 +239,7 @@ and it is the raw material for new dialects. When you are working
 End any visual work with:
 
 - **Design Read** — the two lines you committed to, dialect included.
+- **Composition pass** — the nine-line block (§2a), where one was required.
 - **Invariants applied** — which bound the work, and where they bit.
 - **Dialect yields** — every dialect rule you set aside, with the `yields when:`
   condition that justified it. A yield is a normal outcome; an unreported yield

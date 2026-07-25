@@ -83,6 +83,19 @@ because a rule with no stated exit gets broken silently instead.
 Invariants outrank everything. Inside the dialect tier the conflict order is
 anti-patterns → composition → spacing → typography → color → motion.
 
+**The Critique Panel** ([TASTE.md §2b](TASTE.md#2b-the-critique-panel)) runs twice —
+after a Design Read, to critique the *direction*, and after a build, to critique the
+*result*, before anything ships. Five critics in role, 3–6 lines each, **no consensus
+required**: composition, craft, user advocate, brief advocate, and a **contrarian
+whose dissent is mandatory** and who may not write "no objections". It ends in a
+**disposition table** — every point marked accept / reject-with-reason / defer, and
+**silence is not a disposition**.
+
+It earns its place. Run against this repo's own gallery it caught a mobile wall
+(the dominant mass sitting off-screen on the primary device), five interactive
+surfaces at 2.48:1 contrast, and a filter model that rendered 42 chips for 7
+entries — none of which the composition pass alone had surfaced.
+
 **`academic-composition` is the cross-dialect quality layer.** It is a method for
 judging visual relationships — masses, intervals, directions, tone, negative space
 — not a style, and it does not push work toward looking classical, editorial, or

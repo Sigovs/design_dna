@@ -8,10 +8,23 @@
 /* ─── tokens ──────────────────────────────────────────────────────────────
    Spacing on the 4px scale, durations on the 4-step scale, colour neutral-
    first with no identity accent. See skills/ in the repo root. */
+/* ═══ TOKEN LAYER ═══════════════════════════════════════════════════════════
+   The whole design system for this tool, in one place, with no build step —
+   which is why it survives being edited from a phone. Declared as the Phase A
+   contract; nothing outside this block introduces a raw value.
+
+   Dialect: brief-derived, swiss-utility with catalogue-grade metadata.
+   Borrowed: auction-editorial P3 (metadata composed, not appended) and
+   academic-composition C12 (substitute the dominance mechanism per breakpoint).
+   No didone. No accent identity. Intentionally plain. */
 :root {
   --space-1: .25rem;  --space-2: .5rem;   --space-3: .75rem;  --space-4: 1rem;
   --space-5: 1.5rem;  --space-6: 2rem;    --space-7: 3rem;    --space-8: 4rem;
   --space-9: 6rem;    --space-10: 8rem;   --space-11: 12rem;
+
+  /* NEW · density multiplier. One scale, two densities — the same author scans
+     on a phone and audits on a desktop. Set on :root by the toggle. */
+  --space-density: 1;
 
   --bg: #0e0f11;
   --bg-raised: #16181b;
@@ -22,16 +35,54 @@
   --rule: #f2f1ee1f;
   --rule-strong: #f2f1ee45;
 
-  --font-display: "Didot", "Playfair Display", "Iowan Old Style", Georgia, serif;
+  /* NEW · status + verdict hues. FUNCTIONAL colour, not decoration: every one is
+     always paired with a label or glyph (color-taste I2). Formalises values that
+     were hard-coded inline in six places. */
+  --status-in:      oklch(.68 .05 165);
+  --status-out:     oklch(.7 .05 70);
+  --status-hybrid:  oklch(.7 .045 300);
+  --status-pending: var(--ink-30);
+  --verdict-plus:   oklch(.72 .06 165);
+  --verdict-minus:  oklch(.72 .07 25);
+  --attention:      oklch(.75 .09 70);   /* dirty / queue / warn */
+  --danger:         oklch(.7 .12 25);    /* destructive + failed capture */
+
+  /* ONE FAMILY + MONO. "display" is a weight and a size of the body grotesque,
+     not a separate face — a deliberate consequence of no-didone for a tool, not
+     an oversight: a high-contrast face at label sizes on a phone would fail its
+     own legibility invariant. Three ROLES (display / prose / mono), two families.
+     Raised by the panel as CO4 and recorded here so it survives the session. */
+  --font-display: "Inter", -apple-system, "Segoe UI", system-ui, sans-serif;
   --font-body: "Inter", -apple-system, "Segoe UI", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, Consolas, monospace;
+
+  /* NEW · mono label type, chosen from a rendered specimen rather than asserted:
+     11px at .12em shreds hyphenated compounds, and weight 500 renders thin on a
+     dark field. 12.5px / .07em / 600 was the smallest that read effortlessly.
+     Tag chips get a READING register instead — looser case, tighter tracking —
+     because dozens of tracked uppercase words in rows is the least readable
+     block on the page. */
+  --text-xs: .78125rem;      /* 12.5px */
+  --track-label: .07em;      /* uppercase micro-labels: status, keys, buttons */
+  --track-tag: .03em;        /* as-authored tag chips */
+  --weight-label: 600;
+
+  /* NEW · the reasoning-prose role. ≥16px so iOS never zooms on focus. */
+  --text-read: clamp(1rem, .3vw + .95rem, 1.0625rem);
 
   --dur-1: .15s; --dur-2: .25s; --dur-3: .4s; --dur-4: 1.2s;
   --ease-out: cubic-bezier(.22,1,.36,1);
   --ease-in: cubic-bezier(.55,0,1,.45);
 
   --measure: 68ch;
+
+  /* NEW · coarse-pointer minimum, previously a literal in five places. */
+  --tap: 44px;
 }
+
+/* Compact density: the note clamp drops to 2 lines and chips collapse to counts.
+   Driven by one attribute so no component needs a second set of rules. */
+:root[data-density="compact"] { --space-density: .75; }
 
 *, *::before, *::after { box-sizing: border-box; }
 html, body { overflow-x: clip; }
@@ -51,29 +102,33 @@ button, input, textarea, select { font: inherit; color: inherit; }
 /* mono micro-label — the one label style in the whole page */
 .label, .eyebrow, .btn, .chip, dt, th, .dots-label {
   font-family: var(--font-mono);
-  font-size: .6875rem;
+  font-size: var(--text-xs);
   text-transform: uppercase;
-  letter-spacing: .12em;
-  font-weight: 500;
+  letter-spacing: var(--track-label);
+  font-weight: var(--weight-label);
   line-height: 1.2;
 }
 
-.display { font-family: var(--font-display); line-height: .95; letter-spacing: -.02em; }
+.display { font-family: var(--font-display); line-height: 1; letter-spacing: -.025em; font-weight: 600; }
 .display em { font-style: italic; font-weight: inherit; }
 
 .shell { padding-inline: clamp(var(--space-5), 5vw, var(--space-9)); }
 
 /* ─── masthead ─────────────────────────────────────────────────────────── */
-.masthead { padding-block: clamp(var(--space-8), 10vw, var(--space-10)) var(--space-7); }
+/* spacing D2: bottom exceeds top, ~1:1.5. This was inverted (top 64-128, bottom 48). */
+.masthead { padding-block: var(--space-6) clamp(var(--space-8), 8vw, var(--space-10)); }
+
 .masthead .eyebrow { color: var(--ink-50); display: block; margin-bottom: var(--space-3); }
 .masthead h1 {
+  /* A tool's title does not need to perform. Grotesque, tight, one step above
+     the interface — not an editorial display moment. */
   font-family: var(--font-display);
-  font-size: clamp(2.75rem, 7vw + 1rem, 6rem);
-  font-weight: 400;
-  line-height: .95;
-  letter-spacing: -.02em;
+  font-size: clamp(1.75rem, 2.4vw + 1rem, 2.75rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -.025em;
   margin: 0;
-  max-width: 26ch;
+  max-width: 30ch;
   text-wrap: balance;
 }
 .masthead .lead {
@@ -98,19 +153,52 @@ button, input, textarea, select { font: inherit; color: inherit; }
   font-family: var(--font-mono); font-size: .8125rem; letter-spacing: .04em;
   transition: border-color var(--dur-1) var(--ease-out);
 }
-.search::placeholder { color: var(--ink-30); text-transform: uppercase; letter-spacing: .12em; font-size: .6875rem; }
+.search::placeholder { color: var(--ink-50); text-transform: uppercase; letter-spacing: var(--track-label); font-size: var(--text-xs); }
 .search:focus { outline: none; border-bottom-color: var(--ink-70); }
 
+/* Filter model per the contrarian (CO2/CO3), superseding disclosure-everywhere:
+   the wall existed because 45 vocabulary chips were rendered for 7 entries. Only
+   tags an entry actually carries are rendered now, so desktop can stay expanded —
+   the disclosure applies ≤40rem only, where vertical space is genuinely scarce.
+   Active chips remain visible in the summary at every width. */
+.filter-disclosure { margin-top: var(--space-4); border-top: 0; }
+@media (min-width: 40.0625rem) {
+  /* Expanded, and the summary becomes a plain heading rather than a control. */
+  .filter-disclosure > summary { cursor: default; pointer-events: none; min-height: 0; }
+  .filter-disclosure > summary::before { content: none; }
+  .filter-disclosure[open] > summary { border-bottom: 0; }
+  .filter-disclosure > summary .filter-active { pointer-events: auto; }
+}
+.filter-disclosure > summary {
+  flex-wrap: wrap; gap: var(--space-3) var(--space-4);
+  padding-block: var(--space-3);
+}
+.filter-disclosure[open] > summary { border-bottom: 1px solid var(--rule); }
+#filter-count { color: var(--ink-50); }
+#filter-count[data-active="1"] { color: var(--ink); }
+.filter-active { display: inline-flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3); }
+.filter-active:empty { display: none; }
+.filter-active .chip { min-height: 0; }
+
 .filters { display: grid; gap: var(--space-3); }
-.filter-cat { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2) var(--space-3); }
-.filter-cat > .label { color: var(--ink-30); flex: 0 0 6.5rem; }
+/* Row gap larger than column gap: once a chip wraps onto several lines, an equal
+   gap lets consecutive rows touch — the "sticking" the review caught. */
+.filter-cat { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-4) var(--space-4); min-width: 0; }
+.filter-cat > .label { color: var(--ink-50); flex: 0 0 6.5rem; }
 
 .chip {
   --hue: 0;
-  display: inline-flex; align-items: center; gap: .4em;
+  display: inline-flex; align-items: baseline; gap: .4em;
   background: none; border: 0; padding: var(--space-1) 0;
   color: var(--ink-50); cursor: pointer;
   transition: color var(--dur-1) var(--ease-out);
+  /* A tag can be one unbreakable 90-character token — the smart-tag box accepts
+     whatever is typed, and a slugified sentence has no spaces to wrap at. Without
+     this it overflows its row, gets clipped by overflow-x: clip, and collides with
+     the line below. Break it and let it occupy the lines it needs. */
+  max-width: 100%; min-width: 0;
+  text-align: left; overflow-wrap: anywhere; word-break: break-word;
+  line-height: 1.45;
 }
 .chip::before {
   content: ""; inline-size: 5px; block-size: 5px; border-radius: 50%;
@@ -125,7 +213,7 @@ button, input, textarea, select { font: inherit; color: inherit; }
   display: flex; flex-wrap: wrap; gap: var(--space-5); align-items: baseline;
   margin-top: var(--space-5); color: var(--ink-50);
 }
-.count { font-family: var(--font-mono); font-size: .6875rem; letter-spacing: .12em; text-transform: uppercase; }
+.count { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--track-label); text-transform: uppercase; }
 
 .btn {
   background: none; border: 1px solid var(--rule-strong); color: var(--ink);
@@ -139,17 +227,17 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .btn--quiet:hover { color: var(--ink); }
 .btn[hidden] { display: none; }
 
-.dirty { color: oklch(.8 .06 70); }
-.ok { color: oklch(.82 .06 165); }
+.dirty { color: var(--attention); }
+.ok { color: var(--status-in); }
 
 .reconcile {
-  border-top: 1px solid oklch(.7 .06 70 / .5);
-  border-bottom: 1px solid oklch(.7 .06 70 / .5);
+  border-top: 1px solid color-mix(in oklab, var(--attention) 50%, transparent);
+  border-bottom: 1px solid color-mix(in oklab, var(--attention) 50%, transparent);
   padding-block: var(--space-5) var(--space-6);
   margin-block-start: var(--space-6);
 }
 .reconcile[hidden] { display: none; }
-.reconcile > .label { color: oklch(.82 .07 70); display: block; margin-bottom: var(--space-3); }
+.reconcile > .label { color: var(--attention); display: block; margin-bottom: var(--space-3); }
 .reconcile p { margin: 0; max-width: 68ch; color: var(--ink-70); line-height: 1.55; }
 .reconcile p strong { color: var(--ink); }
 .reconcile-actions { display: flex; flex-wrap: wrap; gap: var(--space-4); margin-top: var(--space-5); }
@@ -170,30 +258,30 @@ button, input, textarea, select { font: inherit; color: inherit; }
   animation: fade-in var(--dur-2) var(--ease-out);
 }
 #toast[hidden] { display: none; }
-#toast[data-kind="ok"]   { border-inline-start-color: oklch(.72 .07 165); }
-#toast[data-kind="bad"]  { border-inline-start-color: oklch(.65 .13 25); }
-#toast[data-kind="warn"] { border-inline-start-color: oklch(.75 .09 70); }
+#toast[data-kind="ok"]   { border-inline-start-color: var(--status-in); }
+#toast[data-kind="bad"]  { border-inline-start-color: var(--danger); }
+#toast[data-kind="warn"] { border-inline-start-color: var(--attention); }
 #toast .toast-close {
   background: none; border: 0; color: var(--ink-50); cursor: pointer;
   float: inline-end; margin-inline-start: var(--space-4); min-height: 24px;
-  font-family: var(--font-mono); font-size: .6875rem; letter-spacing: .12em; text-transform: uppercase;
+  font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--track-label); text-transform: uppercase;
 }
 #toast .toast-close:hover { color: var(--ink); }
 @media (min-width: 48rem) { #toast { inset-inline: auto var(--space-6); inset-block-end: var(--space-6); } }
 
 .token-error {
-  border-inline-start: 2px solid oklch(.6 .13 25);
+  border-inline-start: 2px solid var(--danger);
   padding: var(--space-4) 0 var(--space-4) var(--space-5);
   margin-block: var(--space-6) 0;
 }
 .token-error[hidden] { display: none; }
-.token-error > .label { display: block; color: oklch(.78 .11 25); margin-bottom: var(--space-3); }
+.token-error > .label { display: block; color: var(--danger); margin-bottom: var(--space-3); }
 .token-error p { margin: 0; max-width: 56ch; color: var(--ink-70); line-height: 1.55; }
 .token-error p + p { margin-top: var(--space-3); color: var(--ink); }
 
 /* danger styling — tokens only, no new palette */
-.btn--danger { border-color: oklch(.55 .12 25); color: oklch(.78 .11 25); }
-.btn--danger:hover { border-color: oklch(.7 .15 25); color: oklch(.86 .13 25); }
+.btn--danger { border-color: color-mix(in oklab, var(--danger) 75%, var(--bg)); color: var(--danger); }
+.btn--danger:hover { border-color: var(--danger); color: color-mix(in oklab, var(--danger) 80%, var(--ink)); }
 .danger-zone { border-top: 1px solid var(--rule); margin-top: var(--space-8); padding-top: var(--space-6); }
 .danger-zone > .label { display: block; color: var(--ink-30); margin-bottom: var(--space-3); }
 .danger-confirm { margin-top: var(--space-4); }
@@ -206,7 +294,7 @@ button, input, textarea, select { font: inherit; color: inherit; }
    width, so a touch laptop gets them too. */
 @media (pointer: coarse) {
   /* The pencil is visually small but must still be a 44px target. */
-  .note-edit { min-inline-size: 44px; min-block-size: 44px; display: grid; place-items: center; padding: 0; }
+  .note-edit { min-inline-size: var(--tap); min-block-size: var(--tap); display: grid; place-items: center; padding: 0; }
   .note-editor textarea { min-height: 9rem; font-size: 1rem; }   /* 16px: no iOS zoom-on-focus */
   /* Sticky, so Save stays reachable when the on-screen keyboard takes half the
      viewport — on a 568px-tall phone it otherwise sits below the fold. */
@@ -217,14 +305,14 @@ button, input, textarea, select { font: inherit; color: inherit; }
     border-top: 1px solid var(--rule);
   }
   .note-editor-actions .btn { width: 100%; justify-content: center; }
-  .btn { min-height: 44px; display: inline-flex; align-items: center; }
-  .btn--quiet { min-height: 44px; }
-  .chip { min-height: 44px; padding-block: 0; }
-  .check { min-height: 44px; padding-block: var(--space-2); }
+  .btn { min-height: var(--tap); display: inline-flex; align-items: center; }
+  .btn--quiet { min-height: var(--tap); }
+  .chip { min-height: var(--tap); padding-block: 0; }
+  .check { min-height: var(--tap); padding-block: var(--space-2); }
   .check input { inline-size: 14px; block-size: 14px; }
   .card { padding-block-end: var(--space-2); }
-  .search { min-height: 44px; }
-  .field input[type="text"], .field input[type="url"], .field input[type="password"] { min-height: 44px; }
+  .search { min-height: var(--tap); }
+  .field input[type="text"], .field input[type="url"], .field input[type="password"] { min-height: var(--tap); }
 }
 
 @media (max-width: 40rem) {
@@ -234,7 +322,26 @@ button, input, textarea, select { font: inherit; color: inherit; }
   .filter-cat .chip { margin-inline-end: var(--space-4); }
 
   /* Form controls go full width and stack; nothing sits side by side. */
+  /* Switching to column makes flex-basis apply to HEIGHT: the search field's
+     `flex: 1 1 18rem` became a 288px-tall block, eating half the first screen.
+     Reset the basis when the axis changes. */
   .toolbar-row { flex-direction: column; align-items: stretch; gap: var(--space-4); }
+  .toolbar-row .search { flex: 0 0 auto; }
+
+  /* MOBILE FIRST SCREEN. The panel found the dominant mass off-screen at 739px
+     against a 664px viewport: the wall had moved from the filters to the masthead
+     and the stacked button column. Phone is co-primary in the brief, so a
+     reference must be visible on arrival. */
+  /* spacing D2 still binds at every width: bottom exceeds top, ~1:1.5. Compressing
+     the mobile masthead is not licence to invert the rule. */
+  .masthead { padding-block: var(--space-4) var(--space-6); }
+  .masthead h1 { font-size: 1.25rem; }
+  .masthead .lead { display: none; }        /* identity, not a job — desktop keeps it */
+  .toolbar { padding-block: var(--space-3) var(--space-5); }
+  /* One row, not three stacked full-width blocks. */
+  .toolbar-meta { flex-direction: row; flex-wrap: wrap; align-items: center; gap: var(--space-3); }
+  .toolbar-meta .btn { width: auto; flex: 1 1 auto; justify-content: center; }
+  .toolbar-meta .count { flex: 1 0 100%; }
   .toolbar-row .btn--quiet { text-align: left; }
   .toolbar-meta { flex-direction: column; align-items: stretch; gap: var(--space-4); }
   .toolbar-meta .btn { width: 100%; justify-content: center; }
@@ -253,9 +360,11 @@ button, input, textarea, select { font: inherit; color: inherit; }
 /* ─── grid ─────────────────────────────────────────────────────────────── */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(22rem, 100%), 1fr));
-  gap: var(--space-8) var(--space-6);
-  padding-block: var(--space-7) var(--space-11);
+  /* Density changes the column floor as well as the gaps: compact fits more
+     columns, which is the point of auditing on a desktop. */
+  grid-template-columns: repeat(auto-fill, minmax(min(calc(22rem * var(--space-density)), 100%), 1fr));
+  gap: calc(var(--space-8) * var(--space-density)) calc(var(--space-6) * var(--space-density));
+  padding-block: var(--space-5) var(--space-7);
   border-top: 1px solid var(--rule);
 }
 .card {
@@ -281,13 +390,26 @@ button, input, textarea, select { font: inherit; color: inherit; }
   gap: var(--space-4); margin-top: var(--space-4);
 }
 .card h2 {
-  font-family: var(--font-display); font-weight: 400;
-  font-size: clamp(1.25rem, 1vw + 1rem, 1.5rem); line-height: 1.1;
+  font-family: var(--font-display); font-weight: 600; letter-spacing: -.02em;
+  font-size: clamp(1.0625rem, .5vw + .95rem, 1.1875rem); line-height: 1.2;
   margin: 0; text-wrap: balance;
 }
 .card-host { display: block; margin-top: var(--space-2); color: var(--ink-30); }
 .card-tags { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-3); margin-top: var(--space-3); }
-.tag { --hue: 0; font-family: var(--font-mono); font-size: .625rem; letter-spacing: .1em; text-transform: uppercase; color: oklch(.8 .05 var(--hue)); }
+.tag {
+  --hue: 0; font-family: var(--font-mono);
+  font-size: var(--text-xs); letter-spacing: var(--track-tag);
+  font-weight: var(--weight-label);
+  color: oklch(.86 .05 var(--hue));
+  padding-block: var(--space-1);
+}
+.tag--count { font-variant-numeric: tabular-nums; }
+.tag-toggle {
+  background: none; border: 0; padding: 0; cursor: pointer;
+  color: var(--ink-50); text-decoration: underline;
+  text-underline-offset: .2em; text-decoration-thickness: 1px;
+}
+.tag-toggle:hover { color: var(--ink); }
 /* Visual clamp, not a character count: four lines at any width, in any script,
    with any word lengths. This is what makes card heights predictable. */
 .card-note {
@@ -295,11 +417,13 @@ button, input, textarea, select { font: inherit; color: inherit; }
   display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4;
   line-clamp: 4; overflow: hidden;
 }
-.card-note--todo { color: var(--ink-30); font-style: italic; }
+/* Compact drops the reasoning preview to two lines. */
+:root[data-density="compact"] .card-note { -webkit-line-clamp: 2; line-clamp: 2; }
+.card-note--todo { color: var(--ink-50); font-style: italic; }
 .note-more {
   display: block; margin-top: var(--space-3);
   background: none; border: 0; padding: 0;
-  color: var(--ink-30); cursor: pointer; text-align: left;
+  color: var(--ink-50); cursor: pointer; text-align: left;
   transition: color var(--dur-1) var(--ease-out);
 }
 .note-more[hidden] { display: none; }
@@ -319,15 +443,22 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .card-note--todo ~ .note-edit, .note-row:has(.card-note--todo) .note-edit { color: var(--ink-50); }
 
 /* pending capture — a designed state, not a missing one */
+/* Pending and failed must never read as the same state: one is waiting, the
+   other needs a human. Distinguished by border, glyph, hue AND wording — never
+   by hue alone (color-taste I2). */
 .card-shot--pending {
   display: grid; place-content: center; justify-items: center;
   gap: var(--space-4); padding: var(--space-6); text-align: center;
+  border-bottom: 1px dashed var(--rule-strong);
 }
+.card-shot--pending .pending-status { color: var(--status-pending); }
+.card-shot--failed { border-bottom: 1px solid var(--danger); }
 .pending-mark { inline-size: 40px; block-size: 40px; display: grid; place-items: center; opacity: .8; }
 .pending-favicon { inline-size: 32px; block-size: 32px; object-fit: contain; }
 .pending-glyph { font-size: 1.75rem; color: var(--ink-30); line-height: 1; }
 .pending-domain {
-  font-family: var(--font-display); font-size: clamp(1.125rem, 2vw + .8rem, 1.5rem);
+  font-family: var(--font-display); font-weight: 600; letter-spacing: -.02em;
+  font-size: clamp(1rem, 1.4vw + .7rem, 1.25rem);
   line-height: 1.1; color: var(--ink-70); overflow-wrap: anywhere; max-width: 22ch;
 }
 .pending-status { color: var(--ink-30); }
@@ -339,10 +470,40 @@ button, input, textarea, select { font: inherit; color: inherit; }
 /* dialect review mark — only on reviewed entries; absence means "unreviewed" */
 .status-mark { display: inline-flex; align-items: center; gap: .4em; color: var(--ink-50); }
 .status-mark::before { content: "◆"; font-size: .5rem; line-height: 1; color: var(--ink-30); }
-.status-mark[data-status="in"]::before { color: oklch(.68 .05 165); }
-.status-mark[data-status="out"]::before { color: oklch(.7 .05 70); }
-.status-mark[data-status="hybrid"]::before { color: oklch(.7 .045 300); }
+.status-mark[data-status="in"]::before { color: var(--status-in); }
+.status-mark[data-status="out"]::before { color: var(--status-out); }
+.status-mark[data-status="hybrid"]::before { color: var(--status-hybrid); }
 .card-meta { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); margin-top: var(--space-2); }
+
+/* C11 · the overview ends rather than stopping. Its own quiet register. */
+.grid-end {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-4);
+  border-top: 1px solid var(--rule);
+  padding-block: var(--space-5) var(--space-11);
+  color: var(--ink-50);
+}
+.grid-end[hidden] { display: none; }
+#grid-end-debt { color: var(--attention); }
+#grid-end-debt:empty { display: none; }
+
+/* motion-taste D3 · shape-matched skeletons, opacity pulse only, no shimmer.
+   Paying the debt the Phase A audit found: there was no loading state at all. */
+.skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(22rem, 100%), 1fr));
+  gap: var(--space-8) var(--space-6);
+  padding-block: var(--space-7) var(--space-11);
+  border-top: 1px solid var(--rule);
+}
+.skeleton-grid[hidden] { display: none; }
+.sk-card > * { background: var(--bg-raised); animation: sk-pulse 1.6s var(--ease-out) infinite; }
+.sk-shot { aspect-ratio: 16 / 10; }
+.sk-line { height: 1em; margin-top: var(--space-4); }
+.sk-line--title { height: 1.4em; width: 62%; }
+.sk-line--meta { height: .7em; width: 38%; margin-top: var(--space-3); }
+.sk-line--note { height: .8em; width: 100%; margin-top: var(--space-3); }
+.sk-line--note-2 { width: 88%; }
+@keyframes sk-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
 
 .empty { padding-block: var(--space-10) var(--space-11); color: var(--ink-50); max-width: var(--measure); }
 .empty code { font-family: var(--font-mono); font-size: .8125rem; color: var(--ink); }
@@ -354,6 +515,11 @@ button, input, textarea, select { font: inherit; color: inherit; }
   animation: fade-in var(--dur-2) var(--ease-out);
 }
 .sheet[hidden] { display: none; }
+/* The token panel is a modal ON TOP of a modal: saving from the detail view or
+   the add sheet opens it. With equal z-index the later element in the DOM won and
+   the choice dialog opened BEHIND the detail sheet — visible to a test, invisible
+   and unclickable to a person, i.e. "Save does nothing" all over again. */
+#token { z-index: 20; }
 @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
 
 .sheet-bar {
@@ -377,8 +543,8 @@ button, input, textarea, select { font: inherit; color: inherit; }
   .detail { grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: var(--space-9) var(--space-8); align-items: start; }
 }
 .detail h2 {
-  font-family: var(--font-display); font-weight: 400;
-  font-size: clamp(2rem, 3vw + 1.2rem, 3.25rem); line-height: 1; letter-spacing: -.02em;
+  font-family: var(--font-display); font-weight: 600;
+  font-size: clamp(1.375rem, 1.6vw + 1rem, 1.875rem); line-height: 1.15; letter-spacing: -.025em;
   margin: 0; text-wrap: balance;
   /* A domain is one unbreakable word: "electrafilmworks.com" clipped at the
      viewport edge instead of wrapping. */
@@ -397,7 +563,7 @@ button, input, textarea, select { font: inherit; color: inherit; }
 /* spec plate — mono keys, hairline rules, no box */
 .plate { display: grid; grid-template-columns: minmax(6rem, 9rem) 1fr; column-gap: var(--space-5); margin: var(--space-6) 0 0; }
 .plate dt, .plate dd { padding-block: var(--space-3); border-top: 1px solid var(--rule); margin: 0; }
-.plate dt { color: var(--ink-30); }
+.plate dt { color: var(--ink-50); }
 .plate dd { font-variant-numeric: tabular-nums; word-break: break-word; }
 .plate dd a { color: var(--ink); text-decoration: underline; text-underline-offset: .2em; text-decoration-thickness: 1px; }
 @media (max-width: 40rem) {
@@ -437,7 +603,7 @@ button, input, textarea, select { font: inherit; color: inherit; }
   display: grid; place-content: center; justify-items: center; gap: var(--space-2);
   color: var(--ink-30); text-align: center; padding: var(--space-3);
 }
-.extra-state--failed { border-bottom-color: oklch(.55 .12 25); }
+.extra-state--failed { border-bottom-color: color-mix(in oklab, var(--danger) 75%, var(--bg)); }
 .extra-cap { margin-top: var(--space-3); display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
 .extra-label { color: var(--ink-50); cursor: pointer; }
 .extra-label--empty { color: var(--ink-30); font-style: italic; text-transform: none; letter-spacing: .04em; }
@@ -449,7 +615,7 @@ button, input, textarea, select { font: inherit; color: inherit; }
 }
 .extra-label-editor input:focus { outline: none; border-bottom-color: var(--ink-70); }
 .extra-label-actions { display: flex; gap: var(--space-3); margin-top: var(--space-3); }
-.extra-remove { font-size: .625rem; padding: var(--space-1) var(--space-3); }
+.extra-remove { font-size: var(--text-xs); padding: var(--space-1) var(--space-3); }
 .extras-panel { margin-top: var(--space-6); border-top: 1px solid var(--rule); padding-top: var(--space-5); }
 .extras-panel[hidden] { display: none; }
 .extras-panel input[type="file"] { width: 100%; color: var(--ink-70); font-size: .875rem; }
@@ -463,20 +629,20 @@ button, input, textarea, select { font: inherit; color: inherit; }
   display: grid; place-content: center; justify-items: center;
   gap: var(--space-3); padding: var(--space-6); text-align: center;
 }
-.card-shot--failed .pending-glyph { color: oklch(.7 .12 25); }
-.card-shot--failed .pending-status { color: oklch(.75 .1 25); }
+.card-shot--failed .pending-glyph { color: var(--danger); }
+.card-shot--failed .pending-status { color: var(--danger); }
 
 /* ─── verdict marks + smart tagging ──────────────────────────────────────── */
 .judge-mark { font-variant-numeric: tabular-nums; }
-.judge-mark--plus { color: oklch(.72 .06 165); }
-.judge-mark--minus { color: oklch(.72 .07 25); }
+.judge-mark--plus { color: var(--verdict-plus); }
+.judge-mark--minus { color: var(--verdict-minus); }
 
 .smart-tag { margin-bottom: var(--space-5); }
 .smart-tag-row { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: stretch; }
 .smart-tag-cat {
   background: var(--bg-raised); color: var(--ink); border: 1px solid var(--rule);
   padding: var(--space-2) var(--space-3);
-  font-family: var(--font-mono); font-size: .6875rem; letter-spacing: .1em; text-transform: uppercase;
+  font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--track-label); text-transform: uppercase;
 }
 .smart-tag-row input[type="text"] {
   flex: 1 1 12rem; min-width: 0;
@@ -495,33 +661,47 @@ button, input, textarea, select { font: inherit; color: inherit; }
   padding-block-end: 2px;
 }
 .smart-chip--pending { border-bottom-style: dashed; }
-.smart-chip-flag { color: var(--ink-30); font-size: .5625rem; }
+.smart-chip-flag { color: var(--ink-50); font-size: var(--text-xs); letter-spacing: var(--track-tag); }
 .smart-chip-x {
   background: none; border: 0; color: var(--ink-30); cursor: pointer;
   font-size: .875rem; line-height: 1; padding: 0 0 0 .2em;
 }
-.smart-chip-x:hover { color: oklch(.78 .11 25); }
+.smart-chip-x:hover { color: var(--danger); }
 
 .queues { display: grid; gap: var(--space-4); margin-top: var(--space-5); }
 .queue-bar {
-  border-inline-start: 2px solid oklch(.7 .08 70);
+  border-inline-start: 2px solid var(--attention);
   padding: var(--space-4) 0 var(--space-4) var(--space-5);
 }
-.queue-bar--vocab { border-inline-start-color: oklch(.68 .06 165); }
+.queue-bar--vocab { border-inline-start-color: var(--status-in); }
 .queue-bar > .label { display: block; color: var(--ink-50); margin-bottom: var(--space-3); }
 .queue-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); margin-bottom: var(--space-3); }
 .queue-row[hidden] { display: none; }
 .queue-tag { color: var(--ink); }
 .queue-acts { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-inline-start: auto; }
-.queue-acts .btn { padding: var(--space-1) var(--space-3); font-size: .625rem; }
+.queue-acts .btn { padding: var(--space-1) var(--space-3); font-size: var(--text-xs); }
 .queue-bar p.hint { margin: var(--space-3) 0 0; max-width: 54ch; }
 
 @media (pointer: coarse) {
-  .smart-tag-row input[type="text"], .smart-tag-cat, .smart-tag-row .btn { min-height: 44px; }
+  .smart-tag-row input[type="text"], .smart-tag-cat, .smart-tag-row .btn { min-height: var(--tap); }
   .smart-chip-x { min-inline-size: 32px; min-block-size: 32px; }
   .queue-acts { margin-inline-start: 0; width: 100%; }
-  .queue-acts .btn, .queue-acts .smart-tag-cat { min-height: 44px; flex: 1 1 auto; }
+  .queue-acts .btn, .queue-acts .smart-tag-cat { min-height: var(--tap); flex: 1 1 auto; }
 }
+
+/* The apparatus: present, reachable, and visually subordinate to the judgement. */
+.apparatus { margin-top: var(--space-7); border-top: 1px solid var(--rule); }
+.apparatus > summary {
+  cursor: pointer; padding-block: var(--space-4); color: var(--ink-50);
+  list-style: none; display: flex; align-items: center; gap: var(--space-3);
+  min-height: var(--tap);
+  transition: color var(--dur-1) var(--ease-out);
+}
+.apparatus > summary::-webkit-details-marker { display: none; }
+.apparatus > summary::before { content: "+"; font-size: .875rem; line-height: 1; }
+.apparatus[open] > summary::before { content: "−"; }
+.apparatus > summary:hover { color: var(--ink); }
+.apparatus .form { margin-top: 0; border-top: 0; padding-top: 0; }
 
 .note-block { margin-top: var(--space-7); }
 .note-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); }
@@ -529,7 +709,7 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .note-head .note-edit { padding: var(--space-2); }
 .note-read {
   margin: var(--space-4) 0 0; max-width: var(--measure); color: var(--ink-70);
-  line-height: 1.65; text-wrap: pretty; white-space: pre-wrap; cursor: text;
+  font-size: var(--text-read); line-height: 1.65; text-wrap: pretty; white-space: pre-wrap; cursor: text;
   border-radius: 2px; transition: color var(--dur-1) var(--ease-out);
 }
 .note-read:hover { color: var(--ink); }
@@ -564,24 +744,44 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .vocab { display: grid; gap: var(--space-4); }
 .vocab-cat > .label { display: block; color: var(--ink-30); margin-bottom: var(--space-2); }
 .vocab-tags { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); }
-.check { --hue: 0; display: inline-flex; align-items: center; gap: .45em; cursor: pointer; color: var(--ink-50); font-family: var(--font-mono); font-size: .6875rem; letter-spacing: .1em; text-transform: uppercase; transition: color var(--dur-1) var(--ease-out); }
+.check { --hue: 0; display: inline-flex; align-items: center; gap: .45em; cursor: pointer; color: var(--ink-70); font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--track-tag); transition: color var(--dur-1) var(--ease-out); }
 .check:hover { color: var(--ink); }
 .check input { appearance: none; margin: 0; inline-size: 9px; block-size: 9px; border: 1px solid var(--rule-strong); border-radius: 50%; transition: background var(--dur-1) var(--ease-out), border-color var(--dur-1) var(--ease-out); }
 .check input:checked { background: oklch(.7 .06 var(--hue)); border-color: oklch(.7 .06 var(--hue)); }
 .check:has(input:checked) { color: oklch(.84 .05 var(--hue)); }
 .free { margin-top: var(--space-2); }
-.free input { font-family: var(--font-mono); font-size: .6875rem; letter-spacing: .1em; }
+.free input { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--track-tag); }
 
 .rating-set { display: flex; gap: var(--space-5); }
 .form-actions { display: flex; flex-wrap: wrap; gap: var(--space-5); align-items: center; margin-top: var(--space-7); }
 .hint { color: var(--ink-30); font-size: .8125rem; max-width: 48ch; line-height: 1.5; }
 
+/* ─── reduced motion: a designed static scene, not a gutted page ───────────
+   The floor (kill animation) is the first block. Everything after it is the
+   design: the skeleton stops pulsing but still communicates by shape, hover
+   swaps its lift for a rule, and the toast — a message that would otherwise
+   fade — becomes persistent and dismiss-only, because a fading notice is a
+   motion-dependent message. Nothing is hidden and nothing is removed. */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: .01ms !important; animation-iteration-count: 1 !important;
     transition-duration: .01ms !important; scroll-behavior: auto !important;
   }
+
+  /* Hover: substitute a static cue for the 2px lift. */
   .card:hover { transform: none; }
+  .card:hover .card-shot { border-bottom-color: var(--ink-50); }
+
+  /* Skeleton: shape only. It still says "content of this shape is coming". */
+  .sk-card > * { animation: none; opacity: .82; }
+  .sk-shot { border: 1px solid var(--rule); background: transparent; }
+
+  /* A notice that fades is unreadable at this setting — keep it, and say so. */
+  #toast { border-inline-start-width: 3px; }
+  #toast .toast-close::after { content: " (stays until dismissed)"; letter-spacing: 0; text-transform: none; }
+
+  /* Pending capture is communicated by the glyph and label, never by the pulse. */
+  .card-shot--pending, .extra-state { outline: 1px dashed var(--rule); outline-offset: -1px; }
 }
 </style>
 </head>
@@ -652,10 +852,12 @@ button, input, textarea, select { font: inherit; color: inherit; }
 
 <main class="shell" id="app">
   <header class="masthead">
-    <span class="eyebrow">taste vault · design dna</span>
-    <h1>References with a <em>reason</em> attached</h1>
-    <p class="lead">Every entry carries a note on <em>why</em> it works. The note is the payload — the shots are
-      evidence. Read the reasoning, match the thinking, don't copy the pixels.</p>
+    <span class="eyebrow">design dna</span>
+    <!-- A tool states what it is. The italic signature word is an auction-editorial
+         move, and this is not that dialect: no accent identity, intentionally plain. -->
+    <h1>Taste vault</h1>
+    <p class="lead">Every entry carries reasoning: the note is the payload, the shots are evidence.
+      Match the thinking, don't copy the pixels.</p>
   </header>
 
   <!-- stale-edit reconcile bar: only ever shown when the served file is newer
@@ -674,10 +876,22 @@ button, input, textarea, select { font: inherit; color: inherit; }
       <input class="search" id="search" type="search" placeholder="search title, note, tag, url" autocomplete="off">
       <button class="btn btn--quiet" id="clear-filters" type="button">clear filters</button>
     </div>
-    <div class="filters" id="filters"></div>
-    <div class="filters" id="dialect-filters" style="margin-top: var(--space-4)"></div>
+    <!-- Six categories × ~45 chips formed a wall the eye had to enter through,
+         which is the same failure demoted in the detail view. Collapsed behind one
+         disclosure; ACTIVE chips stay in the summary so a persisted filter is
+         never hidden, and search stays outside it. -->
+    <details class="apparatus filter-disclosure" id="filter-disclosure">
+      <summary class="label">
+        <span id="filter-count">filters</span>
+        <span class="filter-active" id="filter-active"></span>
+      </summary>
+      <div class="filters" id="filters"></div>
+      <div class="filters" id="dialect-filters" style="margin-top: var(--space-4)"></div>
+    </details>
     <div class="toolbar-meta">
       <span class="count" id="count"></span>
+      <button class="btn" id="density" type="button" aria-pressed="false"
+              title="Comfortable / compact — remembered on this device">density</button>
       <button class="btn" id="open-add" type="button">+ add site</button>
       <button class="btn btn--primary" id="push" type="button" hidden>save to github</button>
       <button class="btn" id="download" type="button" hidden>download json</button>
@@ -685,7 +899,19 @@ button, input, textarea, select { font: inherit; color: inherit; }
     </div>
   </section>
 
+  <!-- Shown until the first render; shape-matched so the swap causes no shift. -->
+  <div class="skeleton-grid" id="skeleton" aria-hidden="true">
+    <div class="sk-card"><div class="sk-shot"></div><div class="sk-line sk-line--title"></div><div class="sk-line sk-line--meta"></div><div class="sk-line sk-line--note"></div><div class="sk-line sk-line--note sk-line--note-2"></div></div>
+    <div class="sk-card"><div class="sk-shot"></div><div class="sk-line sk-line--title"></div><div class="sk-line sk-line--meta"></div><div class="sk-line sk-line--note"></div><div class="sk-line sk-line--note sk-line--note-2"></div></div>
+    <div class="sk-card"><div class="sk-shot"></div><div class="sk-line sk-line--title"></div><div class="sk-line sk-line--meta"></div><div class="sk-line sk-line--note"></div><div class="sk-line sk-line--note sk-line--note-2"></div></div>
+  </div>
+
   <div class="grid" id="grid"></div>
+  <!-- C11: the grid resolves instead of stopping at the last card. -->
+  <footer class="grid-end" id="grid-end" hidden>
+    <span class="label" id="grid-end-count"></span>
+    <span class="label" id="grid-end-debt"></span>
+  </footer>
   <div class="empty" id="empty" hidden></div>
 </main>
 
@@ -972,7 +1198,29 @@ function classifyTag(tag) {
    not yet part of the vocabulary. */
 const isCanonicalTag = (cat, tag) => (vocab.categories[cat]?.tags ?? []).includes(tag);
 
+const DENSITY_KEY = 'design-dna:vault:density';
+const FILTERS_KEY = 'design-dna:vault:filters';
 const DECLINED_KEY = 'design-dna:vault:vocab-declined';
+
+/* The last filter set, so the tool reopens where it was left. */
+function saveFilterState() {
+  const payload = {
+    tags: Object.fromEntries([...filters].map(([c, s]) => [c, [...s]])),
+    status: [...statusFilter],
+    query,
+  };
+  store.set(FILTERS_KEY, JSON.stringify(payload));
+}
+function loadFilterState() {
+  try {
+    const p = JSON.parse(store.get(FILTERS_KEY) ?? '{}');
+    for (const [cat, list] of Object.entries(p.tags ?? {})) {
+      if (filters.has(cat)) (list ?? []).forEach((t) => filters.get(cat).add(t));
+    }
+    (p.status ?? []).forEach((s) => statusFilter.add(s));
+    if (typeof p.query === 'string') query = p.query;
+  } catch { /* nothing stored yet */ }
+}
 const declinedVocab = () => {
   try { return new Set(JSON.parse(store.get(DECLINED_KEY) ?? '[]')); } catch { return new Set(); }
 };
@@ -994,6 +1242,10 @@ const localDate = () => {
    pre-review edits for thegentlewoman-co-uk displayed rating 3 / unreviewed long
    after the human review had landed as rating 1 / out, and a Save would have
    pushed the stale values back over it. */
+/* What each entry looked like when this tab loaded it. The merge uses it to tell
+   an edit from a stale value — see mergeOnto(). */
+let baseline = new Map();
+
 let heldCopy = null;      // stale working copy set aside, awaiting a decision
 let fileStamp = null;     // when the served sites.json last actually changed
 
@@ -1072,6 +1324,7 @@ async function boot() {
     vocab = v;
     entries = s;
   } catch (err) {
+    $('#skeleton').hidden = true;      // never leave a skeleton pulsing over an error
     $('#grid').remove();
     $('#empty').hidden = false;
     $('#empty').innerHTML = `<p><strong>Could not load the vault.</strong> This page needs to be served over HTTP —
@@ -1083,6 +1336,7 @@ async function boot() {
 
   entries.forEach(normalise);
   const remoteEntries = entries.map((e) => ({ ...e }));
+  baseline = new Map(remoteEntries.map((e) => [e.id, structuredClone(e)]));
 
   /* A working copy from a previous session holds unsaved edits. Applied here from
      storage only — the staleness check needs the network and must never gate the
@@ -1107,12 +1361,15 @@ async function boot() {
   entries.forEach(normalise);
 
   Object.keys(vocab.categories).forEach((c) => filters.set(c, new Set()));
+  loadFilterState();
+  if (query) $('#search').value = query;
   renderFilters();
   renderDialectFilters();
   buildVocabForm($('#add-vocab'), {}, 'add');
   buildDialectForm($('#add-dialect'), { dialectStatus: 'unreviewed', dialects: [] }, 'add');
   buildRating($('#add-rating'), 2, 'add-rating');
   render();
+  $('#skeleton').hidden = true;        // hand off from skeleton to real content
   wire();
 
   if (!store.available) {
@@ -1160,9 +1417,22 @@ function renderFilters() {
   wrap.textContent = '';
   for (const [cat, def] of Object.entries(vocab.categories)) {
     const row = el('div', { className: 'filter-cat' }, el('span', { className: 'label', textContent: cat }));
-    const known = new Set(def.tags);
-    entries.forEach((e) => (e.tags?.[cat] ?? []).forEach((t) => known.add(t)));  // free additions show up too
-    [...known].forEach((tag) => {
+    /* CO2/CO3: render only tags at least one entry carries. A vocabulary chip
+       nobody has used is not a filter, it is furniture — and 45 of them for 7
+       entries is what built the wall. Active filters are always rendered, so a
+       persisted filter never vanishes because its last entry was removed. */
+    const inUse = new Set();
+    entries.forEach((e) => (e.tags?.[cat] ?? []).forEach((t) => inUse.add(t)));
+    filters.get(cat)?.forEach((t) => inUse.add(t));
+    const known = [...inUse].sort((a, b) => {
+      const ia = def.tags.indexOf(a), ib = def.tags.indexOf(b);
+      if (ia !== -1 && ib !== -1) return ia - ib;      // vocabulary order first
+      if (ia !== -1) return -1;
+      if (ib !== -1) return 1;
+      return a.localeCompare(b);                      // then free additions, a→z
+    });
+    if (!known.length) continue;                      // a category with no tags in use is not shown
+    known.forEach((tag) => {
       const b = el('button', { className: 'chip', type: 'button', textContent: tag, title: `${cat}: ${tag}` });
       b.style.setProperty('--hue', def.hue);
       b.setAttribute('aria-pressed', String(filters.get(cat)?.has(tag) ?? false));
@@ -1170,11 +1440,62 @@ function renderFilters() {
         const set = filters.get(cat);
         set.has(tag) ? set.delete(tag) : set.add(tag);
         b.setAttribute('aria-pressed', String(set.has(tag)));
+        saveFilterState();
         render();
       });
       row.append(b);
     });
     wrap.append(row);
+  }
+}
+
+/* The disclosure summary carries the whole filter state: how many are active, and
+   which ones — so collapsing the wall never hides a filter that is doing work.
+   Each active chip is removable in place, without opening the panel. */
+function renderFilterSummary() {
+  const active = [];
+  for (const [cat, set] of filters) for (const tag of set) active.push({ kind: 'tag', cat, tag });
+  for (const s of statusFilter) active.push({ kind: 'status', tag: s });
+
+  const count = $('#filter-count');
+  count.textContent = active.length ? `filters (${active.length} active)` : 'filters';
+  count.dataset.active = active.length ? '1' : '0';
+
+  /* Expanded on desktop, where there is room now that only used tags render;
+     collapsed ≤40rem, where vertical space is the scarce resource. Re-evaluated
+     on resize so a rotated phone behaves. */
+  const wide = matchMedia('(min-width: 40.0625rem)').matches;
+  const disclosure = $('#filter-disclosure');
+  if (disclosure) disclosure.open = wide ? true : disclosure.open;
+
+  /* A control that can do nothing should not occupy the first screen. */
+  const clear = $('#clear-filters');
+  if (clear) clear.hidden = active.length === 0 && !query;
+
+  const box = $('#filter-active');
+  box.textContent = '';
+  for (const a of active) {
+    const chip = el('button', {
+      className: 'chip', type: 'button',
+      textContent: a.kind === 'tag' ? a.tag : `${a.tag}`,
+      title: a.kind === 'tag' ? `${a.cat}: ${a.tag} — click to remove` : `dialect: ${a.tag} — click to remove`,
+    });
+    chip.setAttribute('aria-pressed', 'true');
+    chip.style.setProperty('--hue', a.kind === 'tag'
+      ? hueOf(a.cat)
+      : ({ in: 165, out: 70, hybrid: 300, unreviewed: 0 })[a.tag] ?? 0);
+    chip.addEventListener('click', (ev) => {
+      // Inside <summary>: a click would otherwise toggle the disclosure.
+      ev.preventDefault();
+      ev.stopPropagation();
+      if (a.kind === 'tag') filters.get(a.cat)?.delete(a.tag);
+      else statusFilter.delete(a.tag);
+      saveFilterState();
+      renderFilters();
+      renderDialectFilters();
+      render();
+    });
+    box.append(chip);
   }
 }
 
@@ -1197,6 +1518,7 @@ function renderDialectFilters() {
     b.addEventListener('click', () => {
       statusFilter.has(status) ? statusFilter.delete(status) : statusFilter.add(status);
       b.setAttribute('aria-pressed', String(statusFilter.has(status)));
+      saveFilterState();
       render();
     });
     row.append(b);
@@ -1246,6 +1568,23 @@ function render() {
       more.hidden = !clipped;
     }
   });
+
+  renderFilterSummary();
+
+  /* C11 · the overview ends. The debt half is deliberate pressure: an entry with
+     no reasoning is a capture that has not become knowledge yet. */
+  const gridEnd = $('#grid-end');
+  const debt = entries.filter((e) => {
+    const has = (v) => (v ?? '').trim() && (v ?? '').trim() !== 'TODO';
+    return !has(e.note) && !has(e.works) && !has(e.weaknesses);
+  }).length;
+  gridEnd.hidden = shown.length === 0;
+  $('#grid-end-count').textContent = shown.length === total
+    ? `end · ${total} entr${total === 1 ? 'y' : 'ies'}`
+    : `end · ${shown.length} shown of ${total}`;
+  $('#grid-end-debt').textContent = debt
+    ? `${debt} unusable — no reasoning recorded`
+    : '';
 
   const empty = $('#empty');
   if (!total) {
@@ -1377,15 +1716,47 @@ function card(entry) {
   if (minus) meta.append(el('span', { className: 'judge-mark judge-mark--minus label', textContent: `−${minus}`, title: `${minus} recorded weakness${minus === 1 ? '' : 'es'}` }));
   node.append(meta);
 
+  /* Pass A.2 found tag chips out-massing the preview they belong to — one entry
+     carries 19. Above the threshold they collapse to per-category counts, with
+     the full set one tap away. auction-editorial P3: metadata composed, not dumped. */
+  const CHIP_LIMIT = 8;
+  const flat = Object.entries(entry.tags ?? {})
+    .flatMap(([cat, list]) => (list ?? []).map((t) => [cat, t]));
   const tags = el('div', { className: 'card-tags' });
-  for (const [cat, list] of Object.entries(entry.tags ?? {})) {
-    (list ?? []).forEach((t) => {
+
+  const paintFull = () => {
+    tags.textContent = '';
+    for (const [cat, t] of flat) {
       const s = el('span', { className: 'tag', textContent: t, title: `${cat}: ${t}` });
       s.style.setProperty('--hue', hueOf(cat));
       tags.append(s);
+    }
+    if (flat.length > CHIP_LIMIT) tags.append(collapseBtn('fewer'));
+  };
+  const paintCounts = () => {
+    tags.textContent = '';
+    const per = {};
+    for (const [cat] of flat) per[cat] = (per[cat] ?? 0) + 1;
+    for (const [cat, n] of Object.entries(per)) {
+      const s = el('span', { className: 'tag tag--count', textContent: `${cat} +${n}`, title: (entry.tags[cat] ?? []).join(', ') });
+      s.style.setProperty('--hue', hueOf(cat));
+      tags.append(s);
+    }
+    tags.append(collapseBtn(`all ${flat.length}`));
+  };
+  function collapseBtn(text) {
+    const b = el('button', { className: 'tag-toggle label', type: 'button', textContent: text });
+    b.addEventListener('click', (ev) => {
+      ev.stopPropagation();
+      (text === 'fewer' ? paintCounts : paintFull)();
     });
+    return b;
   }
-  if (tags.children.length) node.append(tags);
+
+  if (flat.length) {
+    (flat.length > CHIP_LIMIT ? paintCounts : paintFull)();
+    node.append(tags);
+  }
 
   /* The note is the payload, so editing it is one tap from the card. */
   const note = (entry.note ?? '').trim();
@@ -1430,7 +1801,16 @@ function card(entry) {
 }
 
 /* ── detail ────────────────────────────────────────────────────────────── */
-function openDetail(id, { editNote = false, showNote = false } = {}) {
+/* Pass B.8: a save re-renders the detail view, which used to throw the reader
+   back to the top mid-sentence. The section resolved; the reading did not. */
+function reopenDetail(id, opts = {}) {
+  const sheet = $('#detail');
+  const y = sheet ? sheet.scrollTop : 0;
+  const apparatusOpen = $('#apparatus')?.open ?? false;
+  openDetail(id, { ...opts, restoreScroll: y, restoreApparatus: apparatusOpen });
+}
+
+function openDetail(id, { editNote = false, showNote = false, restoreScroll = null, restoreApparatus = false } = {}) {
   const entry = entries.find((e) => e.id === id);
   if (!entry) return;
   openId = id;
@@ -1473,16 +1853,27 @@ function openDetail(id, { editNote = false, showNote = false } = {}) {
   rows.forEach(([k, v]) => { plate.append(el('dt', { className: 'label', textContent: k }), el('dd', {}, v)); });
   right.append(plate);
 
+  /* Pass B.2 found the editing apparatus out-massing the reference. Order is now
+     reference → metadata → JUDGEMENT → apparatus → consequence, and the
+     apparatus is collapsed by default so the judgement owns the column. */
   right.append(judgementBlocks(entry));
 
-  right.append(editForm(entry));
+  const apparatus = el('details', { className: 'apparatus', id: 'apparatus' });
+  apparatus.append(el('summary', { className: 'label', textContent: 'edit metadata — rating, dialect, tags' }));
+  apparatus.append(editForm(entry));
+  right.append(apparatus);
   right.append(dangerZone(entry));
 
   body.append(left, right);
   $('#detail').hidden = false;
   document.body.style.overflow = 'hidden';
 
-  if (editNote) {
+  if (restoreApparatus) { const a = $('#apparatus'); if (a) a.open = true; }
+
+  if (restoreScroll !== null) {
+    // Restore before paint, so the reader never sees the jump.
+    $('#detail').scrollTop = restoreScroll;
+  } else if (editNote) {
     // Arrived via the note pencil: straight into the field, scrolled to it.
     const block = $('#note-block');
     block?.scrollIntoView({ block: 'center' });
@@ -1549,7 +1940,7 @@ function editForm(entry) {
     renderFilters();
     renderDialectFilters();
     render();
-    openDetail(entry.id);   // re-render with saved values
+    reopenDetail(entry.id);   // re-render, keeping reading position
     await requestSave(`Changes to "${entry.title}"`);
   }));
 
@@ -1626,7 +2017,7 @@ function extrasBlock(entry) {
     readUrl();
     persist();
     render();
-    openDetail(entry.id);
+    reopenDetail(entry.id);
     await requestSave(`A queued capture for "${entry.title}"`);
   }));
 
@@ -1726,7 +2117,7 @@ function extraFigure(entry, extra, index) {
     if (next === (extra.label ?? '')) { close(); return; }
     extra.label = next;
     persist();
-    openDetail(entry.id);
+    reopenDetail(entry.id);
     await requestSave(`The label for extra ${index + 1}`);
   }));
 
@@ -1766,7 +2157,7 @@ async function removeExtra(entry, index) {
     entry.extras = remainingExtras;
     persist();
     render();
-    openDetail(entry.id);
+    reopenDetail(entry.id);
     download();
     toast('Removed the extra and downloaded sites.json. Replace the file and commit; '
       + 'its image is cleared by "npm run prune".', 'warn', 14000);
@@ -1784,7 +2175,7 @@ async function removeExtra(entry, index) {
     dirty = false;
     store.remove(LS_KEY);
     render();
-    openDetail(entry.id);
+    reopenDetail(entry.id);
     toast(`Removed the extra in ${commit.sha.slice(0, 7)} — the file stays in git history.`, 'ok', 10000);
   } catch (err) {
     const { reason, hint } = explainGhError(err, cfg);
@@ -1896,7 +2287,7 @@ function textBlock(entry, field) {
     entry[field] = next;                                // only this field
     persist();
     render();
-    openDetail(entry.id);                               // re-render with the new value
+    reopenDetail(entry.id);                          // re-render, keeping reading position
     await requestSave(`${spec.label.split(' —')[0]} for "${entry.title}"`);
   }));
 
@@ -2285,7 +2676,7 @@ async function promoteToVocab(cat, tag, entry) {
   store.remove(LS_KEY);
   renderFilters();
   render();
-  openDetail(entry.id);
+  reopenDetail(entry.id);
   toast(`'${tag}' is now part of the ${cat} vocabulary (${commit.sha.slice(0, 7)}).`, 'ok', 10000);
 }
 
@@ -2490,16 +2881,36 @@ const serialise = (list) => JSON.stringify(
    only present remotely survive (another device may have added them); shots
    written by the Action are never clobbered, because a local entry with no shots
    inherits the remote ones. */
+/* Apply the browser's EDITS on top of remote — not the browser's whole copy.
+   The difference is data loss: this tab loaded sites.json at some point, and any
+   field it did not touch is stale. Letting the whole local object win means
+   saving a note from a phone silently reverts works/weaknesses written from a
+   desktop minutes earlier. So each entry contributes only the fields that
+   actually differ from the snapshot it was loaded with. */
 function mergeOnto(remote, local) {
   const out = new Map(remote.map((e) => [e.id, e]));
   for (const mine of local) {
     const theirs = out.get(mine.id);
     if (!theirs) { out.set(mine.id, mine); continue; }
-    const shots = { ...(mine.shots ?? {}) };
+
+    const base = baseline.get(mine.id);
+    const merged = { ...theirs };
+
+    for (const key of Object.keys(mine)) {
+      if (key === 'shots') continue;                       // handled below
+      const changedLocally = !base
+        || JSON.stringify(mine[key]) !== JSON.stringify(base[key]);
+      if (changedLocally) merged[key] = mine[key];
+    }
+
+    // Shots are machine-written: never let a local null erase a remote path.
+    const shots = { ...(theirs.shots ?? {}), ...(mine.shots ?? {}) };
     for (const k of ['full', 'hero', 'mobile']) {
       if (!shots[k] && theirs.shots?.[k]) shots[k] = theirs.shots[k];
     }
-    out.set(mine.id, { ...theirs, ...mine, shots });
+    merged.shots = shots;
+
+    out.set(mine.id, merged);
   }
   return [...out.values()];
 }
@@ -2559,6 +2970,7 @@ async function saveToGitHub() {
       try {
         const res = await putSites(cfg, serialise(merged), sha, 'vault: edit from gallery');
         entries = merged.map(normalise);
+        baseline = new Map(entries.map((e) => [e.id, structuredClone(e)]));
         dirty = false;
         store.remove(LS_KEY);
         renderFilters(); renderDialectFilters(); render();
@@ -2610,7 +3022,10 @@ function toast(msg, kind = '', ms = 6000) {
   el.appendChild(el.ownerDocument.createTextNode(msg));
   el.hidden = false;
   clearTimeout(toast._t);
-  if (ms) toast._t = setTimeout(() => { el.hidden = true; }, ms);
+  /* A message that fades is motion-dependent. Under reduced motion it stays
+     until dismissed — the static path for feedback, not a degraded one. */
+  const stays = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (ms && !stays) toast._t = setTimeout(() => { el.hidden = true; }, ms);
   return el;
 }
 
@@ -2803,7 +3218,7 @@ async function uploadExtras(entry, files, { asHero = false } = {}) {
   dirty = false;
   store.remove(LS_KEY);
   render();
-  openDetail(entry.id);
+  reopenDetail(entry.id);
   toast(`Uploaded ${saved} image${saved === 1 ? '' : 's'} in ${commit.sha.slice(0, 7)}.`, 'ok', 10000);
   return true;
 }
@@ -2861,7 +3276,10 @@ function download() {
   document.body.append(a);
   a.click();
   a.remove();
-  URL.revokeObjectURL(url);
+  /* Revoke LATER. A blob download starts asynchronously, and revoking in the same
+     tick can abort it before it begins — which is a silent "nothing happened" on
+     the one path that exists precisely for when saving failed. */
+  setTimeout(() => URL.revokeObjectURL(url), 30_000);
 }
 
 /* ── add ───────────────────────────────────────────────────────────────── */
@@ -2953,15 +3371,32 @@ function offerSaveChoice(what) {
 
 /* ── wiring ────────────────────────────────────────────────────────────── */
 function wire() {
-  $('#search').addEventListener('input', (e) => { query = e.target.value.trim().toLowerCase(); render(); });
+  $('#search').addEventListener('input', (e) => { query = e.target.value.trim().toLowerCase(); saveFilterState(); render(); });
 
   $('#clear-filters').addEventListener('click', () => {
     filters.forEach((set) => set.clear());
     statusFilter.clear();
     query = '';
+    store.remove(FILTERS_KEY);
     $('#search').value = '';
     renderFilters();
     renderDialectFilters();
+    render();
+  });
+
+  /* Density and the last filter set persist per device: a daily instrument should
+     reopen where the author left it. Guarded storage, so private mode is fine. */
+  const densityBtn = $('#density');
+  const applyDensity = (mode) => {
+    document.documentElement.dataset.density = mode;
+    densityBtn.setAttribute('aria-pressed', String(mode === 'compact'));
+    densityBtn.textContent = mode === 'compact' ? 'compact' : 'comfortable';
+  };
+  applyDensity(store.get(DENSITY_KEY) === 'compact' ? 'compact' : 'comfortable');
+  densityBtn.addEventListener('click', () => {
+    const next = document.documentElement.dataset.density === 'compact' ? 'comfortable' : 'compact';
+    store.set(DENSITY_KEY, next);
+    applyDensity(next);
     render();
   });
 
@@ -3033,6 +3468,9 @@ function wire() {
     document.body.style.overflow = '';
   });
   $('#add-form').addEventListener('submit', guard('Add site', submitAdd));
+
+  // A rotation or resize crosses the breakpoint: re-apply the filter default.
+  matchMedia('(min-width: 40.0625rem)').addEventListener('change', () => renderFilterSummary());
 
   document.addEventListener('keydown', (ev) => {
     if (ev.key !== 'Escape') return;

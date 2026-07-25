@@ -141,6 +141,37 @@ on the same questions and look nothing alike.
 Keep it compact — short clauses, one block. It is a thinking tool, not
 documentation. Filler answers ("balanced and clean") mean the answer is missing.
 
+### 2b. The Critique Panel
+
+Five critics, each in role, **3–6 lines each**. **No consensus is required** — the
+panel's value is disagreement that survives contact with the work.
+
+**It runs at two moments:**
+- **after a Design Read** — critiquing the *direction*, before anything is built;
+- **after a build** — critiquing the *result*, against what was declared.
+
+Each role reads the skills it needs; none restates a rule. If a critic wants to
+cite a limit, they cite it (`spacing I1`, `C10`, `color-taste I1`) rather than
+paraphrasing it.
+
+| Critic | Reads | Does |
+|---|---|---|
+| **1 · Composition critic** | [academic-composition](skills/academic-composition/SKILL.md) | Spot-checks the pass. Mass, eye path, resolution, edge failures — where the composition claims something the artefact does not deliver. |
+| **2 · Craft critic** | the INVARIANT sections of every skill | Invariants sweep: measured contrast ratios, token discipline, legibility of hierarchy, reduced-motion path, tap targets. Numbers, not impressions. |
+| **3 · User advocate** | the brief | Walks the **top 3 jobs** step by step. Counts taps. Names friction. States plainly *what will annoy on the 50th use.* |
+| **4 · Brief advocate** | the brief | Drift check: does this still serve the stated jobs and audience, or has form begun to lead function? **Quotes the brief line** served or violated. |
+| **5 · Contrarian** | everything above | **Mandatory dissent.** Must argue the strongest case *against* the result even while agreeing with it, and propose the one alternative most worth considering. **May not write "no objections".** |
+
+**Output ends with a DISPOSITION table.** Every point raised gets exactly one of
+**accept** · **reject-with-reason** · **defer**, filled in by the agent and
+reviewed by the human. **Silence is not a disposition** — a point left off the
+table is an unreported yield, which
+[§7](#7-report-format) already treats as the failure mode.
+
+A rejection must carry its reason in the same row. A deferral must say what it is
+waiting on. "Accept" without a corresponding change in the work is a lie the next
+run will inherit.
+
 **Rules for the read**
 - `<deliverable>` is the artefact, not the task ("landing hero", not "some HTML").
 - `<audience>` is who judges it, and it sets the tolerance for expressiveness.
@@ -337,6 +368,7 @@ End any visual work with:
 
 - **Design Read** — the two lines you committed to, dialect included.
 - **Composition pass** — the nine-line block (§2a), where one was required.
+- **Critique panel + disposition table** — where §2b ran. Every point disposed of.
 - **Invariants applied** — which bound the work, and where they bit.
 - **Dialect yields** — every dialect rule you set aside, with the `yields when:`
   condition that justified it. A yield is a normal outcome; an unreported yield

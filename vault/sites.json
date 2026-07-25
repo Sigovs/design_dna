@@ -1,5 +1,28 @@
 [
   {
+    "id": "electrafilmworks-com",
+    "url": "https://electrafilmworks.com/",
+    "title": "electrafilmworks.com",
+    "added": "2026-07-25",
+    "rating": 2,
+    "dialectStatus": "unreviewed",
+    "dialects": [],
+    "tags": {
+      "composition": [],
+      "typography": [],
+      "layout": [],
+      "motion": [],
+      "color": [],
+      "imagery": []
+    },
+    "note": "TODO",
+    "shots": {
+      "full": null,
+      "hero": null,
+      "mobile": null
+    }
+  },
+  {
     "id": "thenewmobileworkforce-imm-g-prod-com-back-at-hq",
     "url": "https://thenewmobileworkforce.imm-g-prod.com/back-at-hq",
     "title": "Large Screens, Transitions, PNG/Cutout use",

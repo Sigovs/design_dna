@@ -170,9 +170,9 @@
     },
     "note": "TODO",
     "shots": {
-      "full": null,
-      "hero": null,
-      "mobile": null
+      "full": "shots/i-pinimg-com-736x-46-d9-d5-46d9d54b7cc97b5687cbfd24a1410d34-/full.jpg",
+      "hero": "shots/i-pinimg-com-736x-46-d9-d5-46d9d54b7cc97b5687cbfd24a1410d34-/hero.jpg",
+      "mobile": "shots/i-pinimg-com-736x-46-d9-d5-46d9d54b7cc97b5687cbfd24a1410d34-/mobile.jpg"
     },
     "kind": "site",
     "source": "",

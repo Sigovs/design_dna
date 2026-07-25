@@ -153,6 +153,42 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .reconcile p { margin: 0; max-width: 68ch; color: var(--ink-70); line-height: 1.55; }
 .reconcile p strong { color: var(--ink); }
 .reconcile-actions { display: flex; flex-wrap: wrap; gap: var(--space-4); margin-top: var(--space-5); }
+
+/* ─── toast ──────────────────────────────────────────────────────────────
+   Above every sheet, so no action can fail silently — the toolbar status line
+   is invisible when a sheet is open, which on a phone meant a tap that did
+   nothing at all. */
+#toast {
+  position: fixed; z-index: 40;
+  inset-inline: var(--space-4); inset-block-end: var(--space-4);
+  margin-inline: auto; max-width: 34rem;
+  background: var(--bg-raised);
+  border: 1px solid var(--rule-strong);
+  border-inline-start: 2px solid var(--ink-50);
+  padding: var(--space-4) var(--space-5);
+  font-size: .9375rem; line-height: 1.45;
+  animation: fade-in var(--dur-2) var(--ease-out);
+}
+#toast[hidden] { display: none; }
+#toast[data-kind="ok"]   { border-inline-start-color: oklch(.72 .07 165); }
+#toast[data-kind="bad"]  { border-inline-start-color: oklch(.65 .13 25); }
+#toast[data-kind="warn"] { border-inline-start-color: oklch(.75 .09 70); }
+#toast .toast-close {
+  background: none; border: 0; color: var(--ink-50); cursor: pointer;
+  float: inline-end; margin-inline-start: var(--space-4); min-height: 24px;
+  font-family: var(--font-mono); font-size: .6875rem; letter-spacing: .12em; text-transform: uppercase;
+}
+#toast .toast-close:hover { color: var(--ink); }
+@media (min-width: 48rem) { #toast { inset-inline: auto var(--space-6); inset-block-end: var(--space-6); } }
+
+/* danger styling — tokens only, no new palette */
+.btn--danger { border-color: oklch(.55 .12 25); color: oklch(.78 .11 25); }
+.btn--danger:hover { border-color: oklch(.7 .15 25); color: oklch(.86 .13 25); }
+.danger-zone { border-top: 1px solid var(--rule); margin-top: var(--space-8); padding-top: var(--space-6); }
+.danger-zone > .label { display: block; color: var(--ink-30); margin-bottom: var(--space-3); }
+.danger-confirm { margin-top: var(--space-4); }
+.danger-confirm p { margin: 0 0 var(--space-4); color: var(--ink-70); max-width: 52ch; line-height: 1.55; }
+.danger-confirm-actions { display: flex; flex-wrap: wrap; gap: var(--space-4); }
 .hint.dirty, .hint.ok { max-width: 52ch; }
 
 /* ─── touch / small-screen pass ──────────────────────────────────────────
@@ -335,6 +371,8 @@ button, input, textarea, select { font: inherit; color: inherit; }
 </head>
 <body>
 
+<div id="toast" hidden role="status" aria-live="polite"></div>
+
 <!-- token panel: shown on first save, never on load -->
 <section class="sheet" id="token" hidden aria-label="Connect to GitHub">
   <div class="shell">
@@ -344,17 +382,25 @@ button, input, textarea, select { font: inherit; color: inherit; }
     </div>
     <div class="detail" style="grid-template-columns: minmax(0,1fr)">
       <div style="max-width: 40rem">
-        <h2>Saving needs a <em>token</em></h2>
-        <p class="hint" style="margin-top: var(--space-5)">
-          The gallery writes straight to the repo through the GitHub API. There is no
-          server and no public endpoint — the token stays in this browser and is sent
-          only to api.github.com.
+        <h2>How should this be <em>saved</em>?</h2>
+        <p class="lead" style="margin-top: var(--space-5); font-size: 1.0625rem">
+          <span id="token-what">Your edits</span> exist only in this browser so far.
+          Two ways to make them real:
         </p>
+        <div class="form-actions" style="margin-top: var(--space-6)">
+          <button class="btn" id="token-download" type="button">download the file instead</button>
+          <span class="hint">Saves <code>sites.json</code> to your device — you replace it in the repo and commit. Works with no token.</span>
+        </div>
         <form class="form" id="token-form">
+          <h3 class="label">or paste a github token to save online</h3>
           <div class="field">
             <label class="label" for="token-input">fine-grained personal access token</label>
-            <input type="password" id="token-input" autocomplete="off" spellcheck="false"
-                   placeholder="github_pat_…" required>
+            <input type="text" id="token-input" autocomplete="off" spellcheck="false"
+                   autocapitalize="none" autocorrect="off" inputmode="text"
+                   enterkeyhint="go" placeholder="github_pat_…" required>
+            <p class="hint" style="margin-top: var(--space-3)">
+              Long-press to paste. Shown as plain text so you can check it pasted whole.
+            </p>
           </div>
           <div class="field">
             <span class="label">how to make one</span>
@@ -367,10 +413,11 @@ button, input, textarea, select { font: inherit; color: inherit; }
             </ol>
           </div>
           <div class="form-actions">
-            <button class="btn btn--primary" type="submit">save token &amp; continue</button>
+            <button class="btn btn--primary" type="submit">save token &amp; save online</button>
             <span class="hint">
               <strong>Token saved locally in this browser only — revoke anytime on GitHub.</strong>
               Nothing is sent anywhere except api.github.com.
+              <span id="token-storage-note"></span>
             </span>
           </div>
         </form>
@@ -444,10 +491,16 @@ button, input, textarea, select { font: inherit; color: inherit; }
         <h2>A reference, <em>reasoned</em></h2>
         <p class="hint" style="margin-top: var(--space-5)">Shots arrive later — save the entry, then run
           <code>npm run capture-missing</code> from the repo root. This is the path for URLs you add from your phone.</p>
-        <form class="form" id="add-form">
+        <!-- novalidate on purpose: native constraint validation silently refused to
+             submit "example.com" and showed a bubble that is effectively invisible on
+             a phone, so the Save tap appeared to do nothing. parseUrlLenient() decides,
+             and every rejection produces a toast. -->
+        <form class="form" id="add-form" novalidate>
           <div class="field">
             <label class="label" for="add-url">url</label>
-            <input type="url" id="add-url" required placeholder="https://…">
+            <input type="text" id="add-url" inputmode="url" autocapitalize="none"
+                   autocorrect="off" spellcheck="false" enterkeyhint="go"
+                   placeholder="example.com or https://example.com">
           </div>
           <div class="field">
             <label class="label" for="add-title">title <span style="letter-spacing:.04em; text-transform:none">(optional — capture fills it from &lt;title&gt;)</span></label>
@@ -520,6 +573,39 @@ function normalise(entry) {
   return entry;
 }
 
+/* ── storage ───────────────────────────────────────────────────────────────
+   Safari private browsing throws SecurityError on any localStorage access, and
+   an unguarded read in boot() took the whole page down — a blank gallery with a
+   console error nobody sees on a phone. Every access goes through here, and the
+   session falls back to memory rather than failing. */
+const memStore = new Map();
+let storageWorks = null;                       // null = untested
+const store = {
+  get available() {
+    if (storageWorks === null) {
+      try {
+        const k = '__dd_probe__';
+        localStorage.setItem(k, '1');
+        localStorage.removeItem(k);
+        storageWorks = true;
+      } catch { storageWorks = false; }
+    }
+    return storageWorks;
+  },
+  get(key) {
+    try { return this.available ? localStorage.getItem(key) : (memStore.get(key) ?? null); }
+    catch { return memStore.get(key) ?? null; }
+  },
+  set(key, value) {
+    memStore.set(key, value);
+    try { if (this.available) localStorage.setItem(key, value); } catch { /* memory only */ }
+  },
+  remove(key) {
+    memStore.delete(key);
+    try { if (this.available) localStorage.removeItem(key); } catch { /* memory only */ }
+  },
+};
+
 const $ = (sel, root = document) => root.querySelector(sel);
 const el = (tag, props = {}, ...kids) => {
   const { dataset, ...rest } = props;
@@ -541,16 +627,22 @@ const host = (url) => { try { return new URL(url).hostname.replace(/^www\./, '')
 let heldCopy = null;      // stale working copy set aside, awaiting a decision
 let fileStamp = null;     // when the served sites.json last actually changed
 
-async function loadFileStamp(res) {
-  // The file's last commit date is authoritative. Public repo, so no token needed.
+/* Hard timeout. A hanging api.github.com request used to block first render
+   entirely — a phone on a slow or captive network got a permanently blank page,
+   because this was awaited before anything was drawn. It is now both bounded and
+   off the critical path. */
+async function loadFileStamp(res, timeoutMs = 4000) {
   const cfg = repoConfig();
   try {
+    const ctl = new AbortController();
+    const t = setTimeout(() => ctl.abort(), timeoutMs);
     const url = `https://api.github.com/repos/${cfg.owner}/${cfg.repo}/commits`
       + `?path=${encodeURIComponent(cfg.path)}&sha=${encodeURIComponent(cfg.branch)}&per_page=1`;
-    const commits = await fetch(url).then((r) => (r.ok ? r.json() : null));
+    const commits = await fetch(url, { signal: ctl.signal }).then((r) => (r.ok ? r.json() : null));
+    clearTimeout(t);
     const d = commits?.[0]?.commit?.committer?.date;
     if (d) return new Date(d);
-  } catch { /* offline or rate-limited — fall back to the header */ }
+  } catch { /* offline, rate-limited, or timed out — fall back to the header */ }
   const lm = res?.headers?.get('Last-Modified');
   return lm ? new Date(lm) : null;
 }
@@ -621,31 +713,25 @@ async function boot() {
 
   entries.forEach(normalise);
   const remoteEntries = entries.map((e) => ({ ...e }));
-  fileStamp = await loadFileStamp(sitesRes);
 
-  /* A working copy from a previous session holds unsaved edits — but it only wins
-     if the file has NOT moved since those edits were made. If the file is newer,
-     the canonical version is displayed and the local copy waits for a decision. */
-  const saved = localStorage.getItem(LS_KEY);
+  /* A working copy from a previous session holds unsaved edits. Applied here from
+     storage only — the staleness check needs the network and must never gate the
+     first paint, so it runs after render(). */
+  let savedCopy = null;
+  const saved = store.get(LS_KEY);
   if (saved) {
     try {
       const parsed = JSON.parse(saved);
       if (Array.isArray(parsed.entries) && parsed.entries.length) {
-        const editedAt = parsed.at ? new Date(parsed.at) : null;
-        const stale = fileStamp && editedAt && fileStamp > editedAt;
-        if (stale) {
-          heldCopy = parsed;                                  // display remote
-          showReconcile(conflictsWith(parsed.entries.map(normalise), remoteEntries), editedAt);
-        } else {
-          /* Shots are machine-generated by the capture Action, never a human edit.
-             A working copy must never override them: a browser that loaded while an
-             entry was mid-capture holds shots: null, and without this backfill it
-             would keep showing "no shots yet" long after the Action committed them. */
-          entries = backfillShots(parsed.entries, remoteEntries);
-          dirty = true;
-        }
+        savedCopy = parsed;
+        /* Shots are machine-generated by the capture Action, never a human edit.
+           A working copy must never override them: a browser that loaded while an
+           entry was mid-capture holds shots: null, and without this backfill it
+           would keep showing "no shots yet" long after the Action committed them. */
+        entries = backfillShots(parsed.entries, remoteEntries);
+        dirty = true;
       }
-    } catch { localStorage.removeItem(LS_KEY); }
+    } catch { store.remove(LS_KEY); }
   }
 
   entries.forEach(normalise);
@@ -658,11 +744,31 @@ async function boot() {
   buildRating($('#add-rating'), 2, 'add-rating');
   render();
   wire();
+
+  if (!store.available) {
+    toast('Private browsing: edits and your token stay in memory for this session only.', 'warn', 8000);
+  }
+
+  /* Deferred, and allowed to fail: the page is already usable. If the file turns
+     out to be newer than the held edits, reconcile then. */
+  if (savedCopy) {
+    loadFileStamp(sitesRes).then((stamp) => {
+      fileStamp = stamp;
+      const editedAt = savedCopy.at ? new Date(savedCopy.at) : null;
+      if (!(fileStamp && editedAt && fileStamp > editedAt)) return;
+      heldCopy = savedCopy;
+      entries = remoteEntries.map(normalise);                 // canonical wins the screen
+      renderFilters(); renderDialectFilters(); render();
+      showReconcile(conflictsWith(savedCopy.entries.map(normalise), remoteEntries), editedAt);
+    }).catch(() => { /* never blocks or breaks the page */ });
+  } else {
+    loadFileStamp(sitesRes).then((s) => { fileStamp = s; }).catch(() => {});
+  }
 }
 
 function persist() {
   dirty = true;
-  localStorage.setItem(LS_KEY, JSON.stringify({ entries, at: new Date().toISOString() }));
+  store.set(LS_KEY, JSON.stringify({ entries, at: new Date().toISOString() }));
   renderDirty();
 }
 
@@ -873,6 +979,7 @@ function openDetail(id) {
   right.append(el('p', { className: 'note-read', textContent: note && note !== 'TODO' ? note : 'No note yet. This is the field that matters — say what works and what is worth stealing.' }));
 
   right.append(editForm(entry));
+  right.append(dangerZone(entry));
 
   body.append(left, right);
   $('#detail').hidden = false;
@@ -923,10 +1030,10 @@ function editForm(entry) {
 
   const actions = el('div', { className: 'form-actions' });
   actions.append(el('button', { className: 'btn btn--primary', type: 'submit', textContent: 'save' }));
-  actions.append(el('span', { className: 'hint', textContent: 'Save updates this page, then downloads sites.json. Replace the file in the repo and commit.' }));
+  actions.append(el('span', { className: 'hint', textContent: 'Saves to GitHub. Without a stored token you get the choice of pasting one or downloading the file.' }));
   form.append(actions);
 
-  form.addEventListener('submit', (ev) => {
+  form.addEventListener('submit', guard('Save', async (ev) => {
     ev.preventDefault();
     entry.title = $(`#${CSS.escape(titleId)}`, form).value.trim() || entry.title;
     entry.rating = Number(new FormData(form).get(`rate-${entry.id}`) ?? entry.rating);
@@ -937,11 +1044,48 @@ function editForm(entry) {
     renderFilters();
     renderDialectFilters();
     render();
-    download();
     openDetail(entry.id);   // re-render with saved values
-  });
+    await requestSave(`Changes to "${entry.title}"`);
+  }));
 
   return form;
+}
+
+/* Two taps, never one. The confirm step names the entry and says plainly where
+   the shots go, because "delete" that silently loses images is unforgivable. */
+function dangerZone(entry) {
+  const zone = el('div', { className: 'danger-zone' },
+    el('span', { className: 'label', textContent: 'danger zone' }));
+
+  const start = el('button', { className: 'btn btn--danger', type: 'button', textContent: 'remove from vault' });
+  const confirm = el('div', { className: 'danger-confirm', hidden: true });
+  confirm.append(el('p', {},
+    el('strong', { textContent: `Remove ${entry.title || entry.id}?` }),
+    document.createTextNode(' Shots remain in git history.')));
+
+  const actions = el('div', { className: 'danger-confirm-actions' });
+  const yes = el('button', { className: 'btn btn--danger', type: 'button', textContent: 'yes, remove it' });
+  const no = el('button', { className: 'btn', type: 'button', textContent: 'cancel' });
+  actions.append(yes, no);
+  confirm.append(actions);
+
+  start.addEventListener('click', () => {
+    confirm.hidden = false;
+    start.hidden = true;
+    yes.focus();
+  });
+  no.addEventListener('click', () => {
+    confirm.hidden = true;
+    start.hidden = false;
+  });
+  yes.addEventListener('click', guard('Remove', async () => {
+    yes.disabled = true;
+    yes.textContent = 'removing…';
+    await removeEntry(entry.id);
+  }));
+
+  zone.append(start, confirm);
+  return zone;
 }
 
 /* ── shared form builders ──────────────────────────────────────────────── */
@@ -1085,7 +1229,7 @@ const REPO_KEY = 'design-dna:vault:gh-repo';
 /* Derive the repo from the Pages URL when served from github.io, so a fork just
    works. Falls back to the canonical repo when served locally. */
 function repoConfig() {
-  const stored = localStorage.getItem(REPO_KEY);
+  const stored = store.get(REPO_KEY);
   if (stored) { try { return JSON.parse(stored); } catch { /* fall through */ } }
   const m = location.hostname.match(/^([\w-]+)\.github\.io$/i);
   if (m) {
@@ -1095,7 +1239,7 @@ function repoConfig() {
   return { owner: 'Sigovs', repo: 'design_dna', branch: 'master', path: 'vault/sites.json' };
 }
 
-const getToken = () => localStorage.getItem(TOKEN_KEY);
+const getToken = () => store.get(TOKEN_KEY);
 
 function b64encode(str) {
   const bytes = new TextEncoder().encode(str);
@@ -1183,7 +1327,7 @@ async function saveToGitHub() {
       /* Same guard as on load: if the file moved after these edits were made and
          the two disagree about an entry, stop and ask. Never silently overwrite. */
       const editedAt = (() => {
-        try { return new Date(JSON.parse(localStorage.getItem(LS_KEY) ?? '{}').at); }
+        try { return new Date(JSON.parse(store.get(LS_KEY) ?? '{}').at); }
         catch { return null; }
       })();
       const remoteDate = await loadFileStamp(null);
@@ -1206,7 +1350,7 @@ async function saveToGitHub() {
         const res = await putSites(cfg, serialise(merged), sha, 'vault: edit from gallery');
         entries = merged.map(normalise);
         dirty = false;
-        localStorage.removeItem(LS_KEY);
+        store.remove(LS_KEY);
         renderFilters(); renderDialectFilters(); render();
         const short = res.commit?.sha?.slice(0, 7) ?? '';
         status(`saved as ${short} — shots are being captured by the Action, ~2 min. Reload after it finishes.`, 'ok');
@@ -1238,6 +1382,33 @@ async function saveToGitHub() {
   }
 }
 
+/* Every user-visible outcome goes through here. Never console-only. */
+function toast(msg, kind = '', ms = 6000) {
+  const el = $('#toast');
+  el.dataset.kind = kind || 'info';
+  el.textContent = '';
+  const close = el.appendChild(el.ownerDocument.createElement('button'));
+  close.className = 'toast-close';
+  close.type = 'button';
+  close.textContent = 'dismiss';
+  close.addEventListener('click', () => { el.hidden = true; });
+  el.appendChild(el.ownerDocument.createTextNode(msg));
+  el.hidden = false;
+  clearTimeout(toast._t);
+  if (ms) toast._t = setTimeout(() => { el.hidden = true; }, ms);
+  return el;
+}
+
+/* Any handler that a user taps is wrapped: an uncaught exception becomes a
+   visible error, never a tap that appears to do nothing. */
+const guard = (label, fn) => async (...args) => {
+  try { return await fn(...args); }
+  catch (err) {
+    console.error(label, err);
+    toast(`${label} failed: ${err?.message ?? err}. Nothing was saved.`, 'bad', 12000);
+  }
+};
+
 function status(msg, kind = '') {
   const el = $('#dirty-note');
   el.hidden = false;
@@ -1246,12 +1417,91 @@ function status(msg, kind = '') {
   el.dataset.sticky = '1';                       // survives the next renderDirty()
   clearTimeout(status._t);
   status._t = setTimeout(() => { el.dataset.sticky = '0'; }, 30_000);
+  // The toolbar line is invisible while a sheet is open, so mirror it into a toast.
+  toast(msg, kind === 'ok' ? 'ok' : 'bad', kind === 'ok' ? 9000 : 14000);
 }
 
 function openTokenPanel() {
   $('#token').hidden = false;
   document.body.style.overflow = 'hidden';
-  $('#token-input').focus();
+  $('#token-storage-note').textContent = store.available
+    ? ''
+    : ' Private browsing detected — the token will be kept in memory for this session only.';
+  // Don't autofocus on touch: the keyboard would cover the choice above it.
+  if (!matchMedia('(pointer: coarse)').matches) $('#token-input').focus();
+}
+
+/* ── remove an entry ───────────────────────────────────────────────────────
+   Removal is a commit; recovery is a revert. The entry leaves sites.json and its
+   shots directory leaves the working tree in the SAME commit — which needs the
+   Git Data API, because the Contents API can only delete one file per commit.
+   Nothing is ever lost: every shot stays in history. */
+async function removeViaGitApi(cfg, entry, remaining) {
+  const ref = await gh(`/repos/${cfg.owner}/${cfg.repo}/git/ref/heads/${encodeURIComponent(cfg.branch)}`);
+  const parent = ref.object.sha;
+  const head = await gh(`/repos/${cfg.owner}/${cfg.repo}/git/commits/${parent}`);
+
+  const tree = [{ path: cfg.path, mode: '100644', type: 'blob', content: serialise(remaining) }];
+  for (const rel of Object.values(entry.shots ?? {})) {
+    if (rel) tree.push({ path: `vault/${rel}`, mode: '100644', type: 'blob', sha: null });
+  }
+
+  const newTree = await gh(`/repos/${cfg.owner}/${cfg.repo}/git/trees`, {
+    method: 'POST',
+    body: JSON.stringify({ base_tree: head.tree.sha, tree }),
+  });
+  const commit = await gh(`/repos/${cfg.owner}/${cfg.repo}/git/commits`, {
+    method: 'POST',
+    body: JSON.stringify({ message: `vault: remove ${entry.id}`, tree: newTree.sha, parents: [parent] }),
+  });
+  await gh(`/repos/${cfg.owner}/${cfg.repo}/git/refs/heads/${encodeURIComponent(cfg.branch)}`, {
+    method: 'PATCH',
+    body: JSON.stringify({ sha: commit.sha }),
+  });
+  return commit;
+}
+
+async function removeEntry(id) {
+  const entry = entries.find((e) => e.id === id);
+  if (!entry) { toast('That entry is already gone.', 'warn'); return; }
+
+  const remaining = entries.filter((e) => e.id !== id);
+
+  if (!getToken()) {
+    entries = remaining;
+    persist();
+    closeDetail();
+    renderFilters(); renderDialectFilters(); render();
+    download();
+    toast(`Removed "${entry.title}" from this browser and downloaded sites.json. Replace the file and commit. Its shots directory is cleaned up by "npm run prune".`, 'warn', 14000);
+    return;
+  }
+
+  const cfg = repoConfig();
+  toast(`Removing "${entry.title}"…`, 'info', 20000);
+  try {
+    const commit = await removeViaGitApi(cfg, entry, remaining);
+    entries = remaining;
+    dirty = false;
+    store.remove(LS_KEY);
+    closeDetail();
+    renderFilters(); renderDialectFilters(); render();
+    toast(`Removed "${entry.title}" in ${commit.sha.slice(0, 7)} — entry and shots gone from the tree, still in git history.`, 'ok', 12000);
+  } catch (err) {
+    // Fall back to the entry only; prune cleans the shots directory later.
+    try {
+      const { sha } = await fetchRemote(cfg);
+      await putSites(cfg, serialise(remaining), sha, `vault: remove ${entry.id}`);
+      entries = remaining;
+      dirty = false;
+      store.remove(LS_KEY);
+      closeDetail();
+      renderFilters(); renderDialectFilters(); render();
+      toast(`Removed "${entry.title}" from sites.json. Its shots directory could not be deleted in the same commit (${err.message}) — run "npm run prune" to clear it.`, 'warn', 14000);
+    } catch (err2) {
+      toast(`Could not remove "${entry.title}": ${err2.message}. Nothing was changed.`, 'bad', 14000);
+    }
+  }
 }
 
 /* ── download ──────────────────────────────────────────────────────────── */
@@ -1278,16 +1528,33 @@ function slugify(url) {
   return `${base}-${n}`;
 }
 
-function submitAdd(ev) {
-  ev.preventDefault();
-  const url = $('#add-url').value.trim();
+/* Accepts what people actually type on a phone: "example.com/page" with no scheme,
+   stray whitespace, a pasted "www." prefix. The old version called new URL() and
+   returned silently on throw — the exact dead path that swallowed a Save tap. */
+function parseUrlLenient(raw) {
+  const cleaned = (raw ?? '').trim().replace(/\s+/g, '');
+  if (!cleaned) return { error: 'Enter a URL first.' };
+  const withScheme = /^[a-z][a-z0-9+.-]*:\/\//i.test(cleaned) ? cleaned : `https://${cleaned}`;
   let parsed;
-  try { parsed = new URL(url); } catch { return; }
+  try { parsed = new URL(withScheme); }
+  catch { return { error: `"${raw}" is not a URL that can be opened.` }; }
+  if (!/^https?:$/.test(parsed.protocol)) return { error: 'Only http and https URLs can be captured.' };
+  if (!parsed.hostname.includes('.')) return { error: `"${parsed.hostname}" has no domain — did you mean ${parsed.hostname}.com?` };
+  return { url: parsed };
+}
+
+async function submitAdd(ev) {
+  ev.preventDefault();
+  const raw = $('#add-url').value;
+  const { url: parsed, error } = parseUrlLenient(raw);
+  if (error) { toast(error, 'bad'); $('#add-url').focus(); return; }
+  $('#add-url').value = parsed.href;
 
   const existing = entries.find((e) => e.url === parsed.href);
   if (existing) {
     $('#add').hidden = true;
     document.body.style.overflow = '';
+    toast(`Already in the vault as "${existing.title}" — opening it.`, 'warn');
     openDetail(existing.id);
     return;
   }
@@ -1311,7 +1578,6 @@ function submitAdd(ev) {
   renderFilters();
   renderDialectFilters();
   render();
-  download();
 
   $('#add-form').reset();
   buildVocabForm($('#add-vocab'), {}, 'add');
@@ -1319,6 +1585,22 @@ function submitAdd(ev) {
   buildRating($('#add-rating'), 2, 'add-rating');
   $('#add').hidden = true;
   document.body.style.overflow = '';
+
+  // The add form used to only download a file. Saving is what the button says.
+  await requestSave(`added ${parsed.hostname.replace(/^www\./, '')}`);
+}
+
+/* The single entry point for "make this real". Guarantees a visible outcome:
+   a save result, an error, or the choice dialog — never silence. */
+async function requestSave(what = 'your edits') {
+  if (!getToken()) { offerSaveChoice(what); return; }
+  await saveToGitHub();
+}
+
+function offerSaveChoice(what) {
+  $('#token-what').textContent = what;
+  openTokenPanel();
+  toast(`${what} is held in this browser — choose how to save it.`, 'warn', 9000);
 }
 
 /* ── wiring ────────────────────────────────────────────────────────────── */
@@ -1335,8 +1617,11 @@ function wire() {
     render();
   });
 
-  $('#download').addEventListener('click', download);
-  $('#push').addEventListener('click', saveToGitHub);
+  $('#download').addEventListener('click', guard('Download', () => {
+    download();
+    toast('sites.json downloaded — replace vault/sites.json in the repo and commit.', 'ok');
+  }));
+  $('#push').addEventListener('click', guard('Save', () => requestSave('Your edits')));
 
   /* Reconcile: an explicit choice, and the only way out of the bar. */
   $('#keep-mine').addEventListener('click', () => {
@@ -1349,7 +1634,7 @@ function wire() {
     status('Kept your edits over the remote version. Save to github to write them.', 'ok');
   });
   $('#take-remote').addEventListener('click', () => {
-    localStorage.removeItem(LS_KEY);
+    store.remove(LS_KEY);
     hideReconcile();
     dirty = false;
     renderFilters(); renderDialectFilters(); render();
@@ -1359,17 +1644,28 @@ function wire() {
 
   const closeToken = () => { $('#token').hidden = true; document.body.style.overflow = ''; };
   $('#token-close').addEventListener('click', closeToken);
-  $('#token-form').addEventListener('submit', (ev) => {
+
+  $('#token-download').addEventListener('click', guard('Download', () => {
+    download();
+    closeToken();
+    toast('sites.json downloaded — replace vault/sites.json in the repo and commit.', 'ok', 10000);
+  }));
+
+  $('#token-form').addEventListener('submit', guard('Save', async (ev) => {
     ev.preventDefault();
     const value = $('#token-input').value.trim();
-    if (!value) return;
-    localStorage.setItem(TOKEN_KEY, value);
+    if (!value) { toast('Paste a token first, or choose "download the file instead".', 'bad'); return; }
+    if (!/^(github_pat_|ghp_)/.test(value)) {
+      toast('That does not look like a GitHub token (expected github_pat_… or ghp_…). Saving anyway.', 'warn');
+    }
+    store.set(TOKEN_KEY, value);
     $('#token-input').value = '';
     closeToken();
-    saveToGitHub();
-  });
+    if (!store.available) toast('Token kept in memory for this session only (private browsing).', 'warn', 8000);
+    await saveToGitHub();
+  }));
   $('#token-forget').addEventListener('click', () => {
-    localStorage.removeItem(TOKEN_KEY);
+    store.remove(TOKEN_KEY);
     status('stored token removed from this browser.', 'ok');
     closeToken();
   });
@@ -1383,7 +1679,7 @@ function wire() {
     $('#add').hidden = true;
     document.body.style.overflow = '';
   });
-  $('#add-form').addEventListener('submit', submitAdd);
+  $('#add-form').addEventListener('submit', guard('Add site', submitAdd));
 
   document.addEventListener('keydown', (ev) => {
     if (ev.key !== 'Escape') return;

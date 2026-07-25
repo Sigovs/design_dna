@@ -11,7 +11,7 @@
  * Pass a directory as the first argument to also write screenshots there.
  */
 
-import { chromium } from 'playwright';
+import { chromium, webkit, devices } from 'playwright';
 import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
@@ -60,8 +60,16 @@ console.log('\nshots invariant');
   const orphanDirs = shotDirs.filter((dir) =>
     !sites.some((e) => Object.values(e.shots ?? {}).some((v) => v?.startsWith(`shots/${dir}/`)))
     && !sites.some((e) => e.id === dir));
-  check('no orphaned shot directories', orphanDirs.length === 0,
-    orphanDirs.length ? orphanDirs.join(', ') : `${shotDirs.length} dirs, ${referenced.size} files referenced`);
+  /* A leftover directory is the expected residue of removing an entry through the
+     download-json fallback, so it is a warning pointing at prune — not a failure. */
+  if (orphanDirs.length) {
+    console.log(`  ! ${orphanDirs.length} orphaned shot director${orphanDirs.length === 1 ? 'y' : 'ies'}`
+      + ` (left by a removed entry) — clear with: npm run prune -- --yes`);
+    orphanDirs.forEach((d) => console.log(`      vault/shots/${d}`));
+  } else {
+    check('no orphaned shot directories', true,
+      `${shotDirs.length} dirs, ${referenced.size} files referenced`);
+  }
 
   // 3. Anything added before today has had time to be captured. Missing shots
   //    there means the Action failed or the paths were lost — flag, don't pass.
@@ -173,16 +181,127 @@ check('add sheet opens', await page.locator('#add').isVisible());
 await shot(page, 'gallery-add');
 await page.keyboard.press('Escape');
 
-console.log('\nmobile · 390w');
-const m = await browser.newContext({ viewport: { width: 390, height: 900 } });
-const mp = await m.newPage();
-await mp.goto(URL_BASE, { waitUntil: 'networkidle' });
-await mp.waitForTimeout(900);
-const overflow = await mp.evaluate(() =>
-  document.documentElement.scrollWidth > window.innerWidth + 1);
-check('no horizontal page scroll', !overflow);
-check('cards render on mobile', (await mp.locator('.card').count()) > 0);
-await shot(mp, 'gallery-mobile', { fullPage: true });
+/* ── real mobile matrix ───────────────────────────────────────────────────
+   Not a narrow desktop viewport: actual device descriptors on both engines.
+   WebKit is the one that matters — a desktop-Chromium-only pass hid a
+   SecurityError on localStorage that blanked the page in Safari private mode. */
+const MOBILE_MATRIX = [
+  { name: 'WebKit · iPhone 13', engine: webkit, device: 'iPhone 13' },
+  { name: 'WebKit · iPhone SE', engine: webkit, device: 'iPhone SE' },
+  { name: 'Chrome · Pixel 5', engine: chromium, device: 'Pixel 5' },
+];
+
+for (const profile of MOBILE_MATRIX) {
+  console.log(`\nmobile · ${profile.name}`);
+  const mb = await profile.engine.launch();
+  const mctx = await mb.newContext({ ...devices[profile.device] });
+  const mp = await mctx.newPage();
+  const mErrs = [];
+  mp.on('pageerror', (e) => mErrs.push(String(e.message || e)));
+  mp.on('console', (m) => { if (m.type() === 'error') mErrs.push(m.text()); });
+
+  try {
+    await mp.goto(URL_BASE, { waitUntil: 'domcontentloaded', timeout: 25_000 });
+    await mp.waitForSelector('.card', { timeout: 12_000 });
+  } catch { /* asserted below */ }
+  await mp.waitForTimeout(900);
+
+  const cards = await mp.locator('.card').count();
+  check(`${profile.name}: page loads and renders cards`, cards > 0, `${cards} cards`);
+  check(`${profile.name}: no horizontal overflow`,
+    !(await mp.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1)));
+
+  // Single column: every card shares the same left edge.
+  const lefts = await mp.locator('.card').evaluateAll((els) =>
+    [...new Set(els.map((e) => Math.round(e.getBoundingClientRect().left)))]);
+  check(`${profile.name}: cards are a single column`, lefts.length <= 1, `${lefts.length} distinct left edges`);
+
+  // Chips wrap onto multiple rows rather than overflowing their row.
+  const chipRows = await mp.locator('#filters .chip').evaluateAll((els) =>
+    [...new Set(els.map((e) => Math.round(e.getBoundingClientRect().top)))].length);
+  check(`${profile.name}: filter chips wrap`, chipRows > 1, `${chipRows} rows`);
+
+  const tooSmall = await mp.evaluate(() => {
+    const out = [];
+    for (const el of document.querySelectorAll('.btn, .chip, .search')) {
+      const r = el.getBoundingClientRect();
+      if (r.height > 0 && r.height < 44) out.push(`${el.className}:${Math.round(r.height)}`);
+    }
+    return out;
+  });
+  check(`${profile.name}: tap targets ≥44px`, tooSmall.length === 0, tooSmall.slice(0, 3).join(' ') || 'all pass');
+
+  // Detail view has to be usable, not just present.
+  await mp.locator('.card').first().click();
+  await mp.waitForTimeout(800);
+  check(`${profile.name}: detail view opens`, await mp.locator('#detail').isVisible());
+  check(`${profile.name}: detail has no horizontal overflow`,
+    !(await mp.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1)));
+  check(`${profile.name}: remove-from-vault reachable`,
+    (await mp.locator('#detail .btn--danger').count()) >= 1);
+  await mp.keyboard.press('Escape');
+  await mp.waitForTimeout(300);
+
+  /* The exact user reproduction: type a URL, tap Save, with no stored token.
+     This used to do nothing at all. */
+  await mp.click('#open-add');
+  await mp.waitForTimeout(500);
+  await mp.fill('#add-url', 'example.com/mobile-smoke');
+  await mp.locator('#add-form button[type="submit"]').click();
+  await mp.waitForTimeout(1000);
+  check(`${profile.name}: Save with no token shows the choice dialog`,
+    await mp.locator('#token').isVisible());
+  check(`${profile.name}: the choice offers download as well as token`,
+    (await mp.locator('#token-download').isVisible())
+    && (await mp.locator('#token-input').isVisible()));
+  check(`${profile.name}: Save produced a visible message`, await mp.locator('#toast').isVisible());
+
+  check(`${profile.name}: no page errors`, mErrs.length === 0, mErrs.slice(0, 2).join(' | ') || 'clean');
+  if (profile.device === 'iPhone 13') await shot(mp, 'gallery-mobile', { fullPage: true });
+  await mb.close();
+}
+
+/* Storage blocked, as in Safari private browsing: the page must still work. */
+console.log('\nmobile · WebKit · iPhone 13 · storage blocked');
+{
+  const pb = await webkit.launch();
+  const pctx = await pb.newContext({ ...devices['iPhone 13'] });
+  await pctx.addInitScript(() => {
+    const boom = () => { throw new DOMException('The operation is insecure.', 'SecurityError'); };
+    Object.defineProperty(window, 'localStorage', {
+      configurable: true,
+      get() { return { getItem: boom, setItem: boom, removeItem: boom, clear: boom }; },
+    });
+  });
+  const pp = await pctx.newPage();
+  const pErrs = [];
+  pp.on('pageerror', (e) => pErrs.push(String(e.message || e)));
+  try {
+    await pp.goto(URL_BASE, { waitUntil: 'domcontentloaded', timeout: 25_000 });
+    await pp.waitForSelector('.card', { timeout: 12_000 });
+  } catch { /* asserted below */ }
+  await pp.waitForTimeout(700);
+  check('private browsing: page still renders cards', (await pp.locator('.card').count()) > 0);
+  check('private browsing: no uncaught SecurityError', pErrs.length === 0, pErrs.slice(0, 2).join(' | ') || 'clean');
+  await pb.close();
+}
+
+/* api.github.com unreachable must never block first paint. */
+console.log('\nmobile · WebKit · iPhone 13 · api.github.com hanging');
+{
+  const hb = await webkit.launch();
+  const hctx = await hb.newContext({ ...devices['iPhone 13'] });
+  await hctx.route('https://api.github.com/**', async () => {
+    await new Promise((r) => setTimeout(r, 60_000));      // never resolves in time
+  });
+  const hp = await hctx.newPage();
+  try {
+    await hp.goto(URL_BASE, { waitUntil: 'domcontentloaded', timeout: 25_000 });
+    await hp.waitForSelector('.card', { timeout: 12_000 });
+  } catch { /* asserted below */ }
+  check('hanging GitHub API does not block first paint', (await hp.locator('.card').count()) > 0);
+  await hb.close();
+}
 
 console.log('\nconsole / network');
 check('no console or network errors', errors.length === 0, errors.length ? errors.join(' | ') : 'clean');

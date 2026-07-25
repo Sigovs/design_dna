@@ -141,6 +141,17 @@ Served by GitHub Pages from `master`. No install, no terminal, works on a phone.
 
 You never touch a terminal. `download json` stays as a fallback if the API call fails.
 
+**Every Save produces a visible outcome** — a result, an error, or a choice. With no
+stored token you get the choice explicitly: *paste a GitHub token to save online* or
+*download the file instead*. In private browsing the token and edits are kept in
+memory for the session and the page says so. Silence is treated as a bug.
+
+**Removing an entry.** Detail view → **remove from vault** → confirm. With a token
+it is one commit deleting the entry and its shots together; without one, `sites.json`
+downloads without the entry and `npm run prune` clears the leftover shots directory.
+**Removal is a commit; recovery is a revert** — see
+[vault/README.md](vault/README.md#removing-an-entry).
+
 **Stale-edit guard.** A browser holding unsaved edits does not silently win over a
 newer file. If `vault/sites.json` changed after those edits were made, the gallery
 shows the **remote** version, holds your copy, and asks — *keep my edits* or *take
@@ -154,7 +165,8 @@ npm run vault                          # gallery at http://localhost:5177
 npm run add -- <url>                   # shoot 3 images + create a stub entry
 npm run capture-missing                # shoot every entry whose images are missing
 npm run recapture -- <id>              # reshoot after a redesign
-npm run smoke                          # check the gallery still works
+npm run prune                          # list orphaned shot dirs (--yes to delete)
+npm run smoke                          # check the gallery, incl. the mobile matrix
 ```
 
 Add `-- --insecure` to any capture command for hosts with a broken TLS cert (off by

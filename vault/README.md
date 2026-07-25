@@ -19,7 +19,8 @@ different brief.
 | `vocab.json` | The controlled tag vocabulary. **Single source of truth** — `index.html` and `capture.mjs` both read it. Add tags here. |
 | `capture.mjs` | Playwright capture tool. Three shots per entry. |
 | `index.html` | The gallery. Browse, search, filter, edit, add. No backend. |
-| `smoke.mjs` | `npm run smoke` — checks the gallery still works. No build step means nothing else catches a boot-time throw, and one throw kills every listener on the page. |
+| `smoke.mjs` | `npm run smoke` — checks the gallery still works, including a real mobile matrix (WebKit iPhone 13 / iPhone SE, Chrome Pixel 5) plus blocked-storage and hanging-API scenarios. No build step means nothing else catches a boot-time throw, and one throw kills every listener on the page. |
+| `prune.mjs` | `npm run prune` — deletes shot directories no entry points at any more. |
 | `shots/<id>/` | `full.jpg` (1440w full page), `hero.jpg` (1440×900 crop, 2x), `mobile.jpg` (390w full page). **Committed.** |
 
 Shots are JPEG, and only the hero is 2x. PNG at 2x measured ~33MB per entry,
@@ -102,6 +103,30 @@ npm run vault                          # open the gallery, fill in tags + note
    whose shots are missing or absent from disk.
 
 **Reshoot** when a site redesigns: `npm run recapture -- <id>`.
+
+## Removing an entry
+
+Detail view → **remove from vault** → confirm (*"Remove &lt;title&gt;? Shots remain in
+git history."*). Two taps, never one.
+
+> **Removal is a commit; recovery is a revert.**
+
+Nothing is destroyed. The entry leaves `sites.json` and its shots leave the working
+tree, but every image stays in history — `git revert <sha>` brings the whole entry
+back, shots included.
+
+| Path | What happens |
+|---|---|
+| **Save to GitHub** (token stored) | One commit, `vault: remove <id>`, deleting the entry *and* its shots directory together. Uses the Git Data API, because the Contents API can only delete one file per commit. |
+| **Download fallback** (no token) | `sites.json` downloads without the entry; you replace and commit. The shots directory stays behind until you run **`npm run prune`**. |
+
+```bash
+npm run prune              # list orphaned shot directories, change nothing
+npm run prune -- --yes     # delete them, then commit
+```
+
+An orphaned directory is normal residue, not a fault — `npm run smoke` reports it as
+a warning pointing at `prune`, and does not fail.
 
 > The gallery has no backend on purpose. **Save to github** writes
 > `vault/sites.json` through the Contents API using your own fine-grained PAT, held

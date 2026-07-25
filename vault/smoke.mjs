@@ -167,6 +167,34 @@ check('edit form has a dialects multi-pick',
 check('edit form has tag checkboxes', (await page.locator('#detail .check input[type=checkbox]').count()) > 0);
 check('edit form has a composition tag group',
   (await page.locator('#detail [data-cat="composition"] input[type=checkbox]').count()) >= 9);
+check('extras strip renders the standard shots', (await page.locator('#extras-strip .extra').count()) >= 1);
+check('"+ add photos" exists and is enabled without a token',
+  (await page.locator('#extras-add').isVisible()) && (await page.locator('#extras-add').isEnabled()));
+check('"+ add photos" opens the panel with all three paths', await (async () => {
+  await page.click('#extras-add');
+  await page.waitForTimeout(300);
+  const ok = (await page.locator('#extras-panel').isVisible())
+    && (await page.locator('#extra-url').isVisible())
+    && (await page.locator('#extra-files').count()) === 1;
+  return ok;
+})());
+check('upload is disabled with an explanation when there is no token',
+  (await page.locator('#extra-files').isDisabled())
+  && (await page.locator('#extra-upload-hint').textContent()).includes('needs the online path'));
+check('url field says how it was understood — image', await (async () => {
+  await page.fill('#extra-url', 'example.com/shot.jpg');
+  await page.waitForTimeout(200);
+  return (await page.locator('#extra-url-read').textContent()).includes('fetch the image');
+})());
+check('url field says how it was understood — page', await (async () => {
+  await page.fill('#extra-url', 'example.com/checkout');
+  await page.waitForTimeout(200);
+  return (await page.locator('#extra-url-read').textContent()).includes('capture the page');
+})());
+await page.fill('#extra-url', '');
+await page.click('#extras-add');   // close again
+await page.waitForTimeout(200);
+
 check('note has an inline editor', (await page.locator('#detail #note-inline').count()) === 1);
 check('note editor starts closed', !(await page.locator('#detail #note-editor').isVisible()));
 check('note has an edit pencil', (await page.locator('#detail #note-edit svg').count()) === 1);
@@ -339,6 +367,33 @@ for (const profile of MOBILE_MATRIX) {
     !(await mp.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1)));
   check(`${profile.name}: remove-from-vault reachable`,
     (await mp.locator('#detail .btn--danger').count()) >= 1);
+
+  /* "+ add photos" must be FULLY on the first screen — vertically and
+     horizontally. It was once at x=350 on a 320px viewport, hidden by
+     overflow-x: clip, which is how a control becomes impossible to find. */
+  const addBox = await mp.evaluate(() => {
+    const r = document.querySelector('#extras-add')?.getBoundingClientRect();
+    if (!r) return null;
+    return {
+      x: r.x, right: r.right, y: r.y, bottom: r.bottom,
+      vw: window.innerWidth, vh: window.innerHeight,
+      headRight: document.querySelector('.extras-head').getBoundingClientRect().right,
+      h2Right: document.querySelector('#detail-body h2').getBoundingClientRect().right,
+    };
+  });
+  check(`${profile.name}: "+ add photos" fully on the first screen`,
+    addBox && addBox.x >= 0 && addBox.right <= addBox.vw
+      && addBox.y >= 0 && addBox.bottom <= addBox.vh,
+    addBox ? `x=${Math.round(addBox.x)} right=${Math.round(addBox.right)}/${addBox.vw} y=${Math.round(addBox.y)} bottom=${Math.round(addBox.bottom)}/${addBox.vh}` : 'missing');
+  check(`${profile.name}: detail content is not wider than the viewport`,
+    addBox && addBox.headRight <= addBox.vw + 1 && addBox.h2Right <= addBox.vw + 1,
+    addBox ? `head=${Math.round(addBox.headRight)} h2=${Math.round(addBox.h2Right)} vw=${addBox.vw}` : 'missing');
+  check(`${profile.name}: extras strip scrolls inside itself, not the page`,
+    await mp.evaluate(() => {
+      const s = document.querySelector('#extras-strip');
+      return s.scrollWidth > s.clientWidth
+        && document.documentElement.scrollWidth <= window.innerWidth + 1;
+    }));
 
   // Note editing has to be usable at phone width, keyboard and all.
   await mp.locator('#note-edit').click();

@@ -243,7 +243,9 @@ button, input, textarea, select { font: inherit; color: inherit; }
   .vocab-tags { gap: var(--space-2) var(--space-4); }
   .rating-set { flex-wrap: wrap; gap: var(--space-4); }
   .sheet-bar { gap: var(--space-3); }
-  .shot-full, .shot-mobile { max-height: 60vh; }
+  /* The full shot scrolls inside its own window, so a shorter window costs
+     nothing — and it keeps the extras strip and "+ add photos" on the first
+     screen of the detail view even on a 568px-tall phone. */
   /* Long ids and urls must wrap rather than push the page wide. */
   .plate dd, .label, .status-mark { overflow-wrap: anywhere; }
 }
@@ -347,7 +349,15 @@ button, input, textarea, select { font: inherit; color: inherit; }
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--rule);
 }
-.detail { display: grid; gap: var(--space-8); padding-block: var(--space-7) var(--space-11); }
+.detail {
+  display: grid; grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-8); padding-block: var(--space-7) var(--space-11);
+}
+/* Without min-width:0 a grid item is sized by its widest child's min-content —
+   the extras strip's grid-auto-columns then stretched the whole column to 464px
+   on a 320px phone and pushed "+ add photos" off-screen, where overflow-x: clip
+   hid it silently. Every scrolling strip needs its parent pinned to zero. */
+.detail > * { min-width: 0; }
 @media (min-width: 64rem) {
   .detail { grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: var(--space-9) var(--space-8); align-items: start; }
 }
@@ -355,6 +365,9 @@ button, input, textarea, select { font: inherit; color: inherit; }
   font-family: var(--font-display); font-weight: 400;
   font-size: clamp(2rem, 3vw + 1.2rem, 3.25rem); line-height: 1; letter-spacing: -.02em;
   margin: 0; text-wrap: balance;
+  /* A domain is one unbreakable word: "electrafilmworks.com" clipped at the
+     viewport edge instead of wrapping. */
+  overflow-wrap: anywhere;
 }
 .shot-full {
   max-height: 78vh; overflow-y: auto; overflow-x: hidden;
@@ -375,7 +388,68 @@ button, input, textarea, select { font: inherit; color: inherit; }
 @media (max-width: 40rem) {
   .plate { grid-template-columns: 1fr; }
   .plate dd { border-top: 0; padding-block-start: 0; }
+  /* These must live AFTER the base .detail and .shot-full rules to win — same
+     specificity, so source order decides. Measured on a 568px iPhone SE: without
+     them "+ add photos" lands at y=595 in a 568px viewport, i.e. just off-screen,
+     which is exactly how a control becomes impossible to find. */
+  .detail { gap: var(--space-6); }
+  .shot-full, .shot-mobile { max-height: 38vh; }
 }
+
+/* ─── extras ─────────────────────────────────────────────────────────────── */
+.extras-block { margin-top: var(--space-6); border-top: 1px solid var(--rule); padding-top: var(--space-5); }
+.extras-head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--space-4); flex-wrap: wrap;
+}
+.extras-head > .label { color: var(--ink-30); }
+.extras-strip {
+  display: grid; grid-auto-flow: column; grid-auto-columns: minmax(9rem, 12rem);
+  gap: var(--space-4); margin-top: var(--space-5);
+  max-width: 100%; min-width: 0;
+  overflow-x: auto; overscroll-behavior-x: contain;
+  padding-bottom: var(--space-3);           /* room for the scrollbar, not the page */
+  scroll-snap-type: x proximity;
+}
+.extra { margin: 0; scroll-snap-align: start; min-width: 0; }
+.extra img {
+  width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: top center;
+  background: var(--bg-raised); border-bottom: 1px solid var(--rule);
+}
+.extra-state {
+  aspect-ratio: 4 / 3; background: var(--bg-raised);
+  border-bottom: 1px solid var(--rule);
+  display: grid; place-content: center; justify-items: center; gap: var(--space-2);
+  color: var(--ink-30); text-align: center; padding: var(--space-3);
+}
+.extra-state--failed { border-bottom-color: oklch(.55 .12 25); }
+.extra-cap { margin-top: var(--space-3); display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
+.extra-label { color: var(--ink-50); cursor: pointer; }
+.extra-label--empty { color: var(--ink-30); font-style: italic; text-transform: none; letter-spacing: .04em; }
+.extra-label-editor { flex: 1 1 100%; }
+.extra-label-editor[hidden] { display: none; }
+.extra-label-editor input {
+  width: 100%; background: none; color: var(--ink); border: 0;
+  border-bottom: 1px solid var(--rule); padding: var(--space-2) 0; font: inherit;
+}
+.extra-label-editor input:focus { outline: none; border-bottom-color: var(--ink-70); }
+.extra-label-actions { display: flex; gap: var(--space-3); margin-top: var(--space-3); }
+.extra-remove { font-size: .625rem; padding: var(--space-1) var(--space-3); }
+.extras-panel { margin-top: var(--space-6); border-top: 1px solid var(--rule); padding-top: var(--space-5); }
+.extras-panel[hidden] { display: none; }
+.extras-panel input[type="file"] { width: 100%; color: var(--ink-70); font-size: .875rem; }
+.extras-panel input[type="text"] {
+  width: 100%; background: none; color: var(--ink); border: 0;
+  border-bottom: 1px solid var(--rule); padding: var(--space-2) 0; font: inherit;
+}
+.extras-panel input[type="text"]:focus { outline: none; border-bottom-color: var(--ink-70); }
+.extras-panel input:disabled { opacity: .5; cursor: not-allowed; }
+.card-shot--failed {
+  display: grid; place-content: center; justify-items: center;
+  gap: var(--space-3); padding: var(--space-6); text-align: center;
+}
+.card-shot--failed .pending-glyph { color: oklch(.7 .12 25); }
+.card-shot--failed .pending-status { color: oklch(.75 .1 25); }
 
 .note-block { margin-top: var(--space-7); }
 .note-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); }
@@ -627,8 +701,24 @@ const dialectList = () => vocab.dialects ?? [];
    every load, so adding a category to vocab.json is all it takes to roll one out:
    every entry gains the key as an empty array and flows through filters, forms,
    save, and export unchanged. */
+const KINDS = ['site', 'upload', 'image-url'];
+
 function normalise(entry) {
   if (!Array.isArray(entry.dialects)) entry.dialects = [];
+  /* A reference does not have to be a page anyone can visit. */
+  if (!KINDS.includes(entry.kind)) entry.kind = entry.url ? 'site' : 'upload';
+  if (typeof entry.source !== 'string') entry.source = '';
+  if (typeof entry.url !== 'string') entry.url = '';
+  if (!Array.isArray(entry.extras)) entry.extras = [];
+  entry.extras = entry.extras.map((x) => ({
+    file: x.file ?? null,
+    label: typeof x.label === 'string' ? x.label : '',
+    kind: x.kind === 'uploaded' ? 'uploaded' : 'captured',
+    url: x.url ?? null,
+    added: x.added ?? entry.added ?? '',
+    error: x.error ?? null,
+  }));
+  if (typeof entry.captureError !== 'string') entry.captureError = entry.captureError ?? null;
   if (typeof entry.dialectStatus !== 'string' || !statuses().includes(entry.dialectStatus)) {
     entry.dialectStatus = 'unreviewed';
   }
@@ -691,6 +781,21 @@ const el = (tag, props = {}, ...kids) => {
 };
 const hueOf = (cat) => vocab.categories[cat]?.hue ?? 0;
 const host = (url) => { try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return url; } };
+
+/* What identifies an entry on a card: the domain if there is one to visit,
+   otherwise where it actually came from. */
+const originLine = (entry) =>
+  entry.url ? host(entry.url) : (entry.source || 'no source recorded');
+
+const IMAGE_EXT = /\.(jpe?g|png|webp|avif|gif|bmp|tiff?)(\?|#|$)/i;
+/* Extension only, in the browser: a HEAD request to an arbitrary host is blocked
+   by CORS, so the content-type fallback happens in the Action at capture time. */
+const looksLikeImageUrl = (url) => IMAGE_EXT.test(url ?? '');
+
+const localDate = () => {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+};
 
 /* ── load ──────────────────────────────────────────────────────────────── */
 /* ── stale-edit guard ──────────────────────────────────────────────────────
@@ -981,6 +1086,29 @@ function pencil(size = 14) {
 /* An entry awaiting the capture Action is not broken, so it should not look it:
    favicon, domain, and an honest status line instead of a bare "no shots". */
 function pendingPlaceholder(entry) {
+  /* A failed fetch is not the same as a pending one, and must not look like it. */
+  if (entry.captureError) {
+    const box = el('div', { className: 'card-shot card-shot--failed' });
+    box.append(el('span', { className: 'pending-glyph', textContent: '⚠' }));
+    box.append(el('span', { className: 'pending-domain', textContent: originLine(entry) }));
+    box.append(el('span', {
+      className: 'pending-status label',
+      textContent: entry.kind === 'image-url'
+        ? 'fetch failed — upload manually or fix the URL'
+        : 'capture failed',
+    }));
+    return box;
+  }
+
+  /* Upload-kind entries are never pending: with no image, they are simply empty. */
+  if (entry.kind === 'upload') {
+    const box = el('div', { className: 'card-shot card-shot--pending' });
+    box.append(el('span', { className: 'pending-glyph', textContent: '◍' }));
+    box.append(el('span', { className: 'pending-domain', textContent: entry.title || 'Untitled' }));
+    box.append(el('span', { className: 'pending-status label', textContent: 'no image uploaded' }));
+    return box;
+  }
+
   const site = host(entry.url);
   const box = el('div', { className: 'card-shot card-shot--pending' });
 
@@ -1098,18 +1226,21 @@ function openDetail(id, { editNote = false } = {}) {
   const right = el('div');
   right.append(el('h2', {}, entry.title || host(entry.url)));
 
-  right.append(entry.shots?.mobile
-    ? el('div', { className: 'shot-mobile', style: 'margin-top: var(--space-6)' },
-        el('img', { src: entry.shots.mobile, alt: `${entry.title} — mobile`, width: 390 }))
-    : el('div', { className: 'shot-mobile shot-none', style: 'margin-top: var(--space-6)' },
-        el('span', { className: 'label', textContent: 'capture pending' })));
-  right.append(el('span', { className: 'shot-caption label', textContent: 'mobile · 390w' }));
+  /* The extras strip carries the mobile shot along with everything else, so it
+     goes here rather than repeating it in its own block — and it keeps
+     "+ add photos" near the top of the column instead of ~1400px down. */
+  right.append(extrasBlock(entry));
 
   const plate = el('dl', { className: 'plate' });
   const statusCell = el('span', { className: 'status-mark label', textContent: entry.dialectStatus });
   statusCell.dataset.status = entry.dialectStatus;
+  /* No url means nothing to visit — show where it came from instead. */
   const rows = [
-    ['url', el('a', { href: entry.url, target: '_blank', rel: 'noreferrer noopener', textContent: host(entry.url) })],
+    entry.url
+      ? ['url', el('a', { href: entry.url, target: '_blank', rel: 'noreferrer noopener', textContent: host(entry.url) })]
+      : ['source', entry.source || '—'],
+    ...(entry.url && entry.source ? [['source', entry.source]] : []),
+    ['kind', entry.kind],
     ['added', entry.added ?? '—'],
     ['rating', `${entry.rating ?? 0} of 3`],
     ['dialect', entry.dialects?.length ? entry.dialects.join(', ') : '—'],
@@ -1195,6 +1326,242 @@ function editForm(entry) {
   }));
 
   return form;
+}
+
+/* ── extras ────────────────────────────────────────────────────────────────
+   The three standard shots are what the Action can take on its own. Extras are
+   everything else worth keeping: an inner page, a hover state, a photo of a
+   printed spread. The control is ALWAYS rendered — with no token, the upload path
+   shows a disabled state that says why, rather than vanishing. */
+function extrasBlock(entry) {
+  const wrap = el('section', { className: 'extras-block', id: 'extras-block' });
+  const head = el('div', { className: 'extras-head' },
+    el('span', { className: 'label', textContent: `extra photos · ${entry.extras.length}` }));
+  const addBtn = el('button', {
+    className: 'btn', type: 'button', id: 'extras-add', textContent: '+ add photos',
+  });
+  head.append(addBtn);
+  wrap.append(head);
+
+  /* Strip: standard shots first, then extras in order, each with its label. */
+  const strip = el('div', { className: 'extras-strip', id: 'extras-strip' });
+  const standard = [
+    ['full', 'full page'], ['hero', 'hero'], ['mobile', 'mobile'],
+  ].filter(([k]) => entry.shots?.[k]);
+  for (const [k, caption] of standard) {
+    const fig = el('figure', { className: 'extra' });
+    fig.append(el('img', { src: entry.shots[k], alt: `${entry.title} — ${caption}`, loading: 'lazy' }));
+    fig.append(el('figcaption', { className: 'label', textContent: caption }));
+    strip.append(fig);
+  }
+  entry.extras.forEach((x, i) => strip.append(extraFigure(entry, x, i)));
+  if (!strip.children.length) {
+    strip.append(el('p', { className: 'hint', textContent: 'No images yet.' }));
+  }
+  wrap.append(strip);
+
+  /* The three ways in. */
+  const panel = el('div', { className: 'extras-panel', id: 'extras-panel', hidden: true });
+
+  const urlRow = el('div', { className: 'field' });
+  urlRow.append(el('label', { className: 'label', htmlFor: 'extra-url', textContent: 'capture a url — an inner page, or a direct image url' }));
+  const urlInput = el('input', {
+    type: 'text', id: 'extra-url', inputMode: 'url', autocapitalize: 'none',
+    autocorrect: 'off', spellcheck: false, enterKeyHint: 'go',
+    placeholder: 'example.com/checkout  ·  example.com/shot.jpg',
+  });
+  urlRow.append(urlInput);
+  const urlRead = el('p', { className: 'hint', id: 'extra-url-read' });
+  urlRow.append(urlRead);
+  const urlBtn = el('button', { className: 'btn btn--primary', type: 'button', textContent: 'queue capture' });
+  urlRow.append(el('div', { className: 'form-actions' }, urlBtn,
+    el('span', { className: 'hint', textContent: 'The Action shoots it and commits the image, about 2 minutes.' })));
+  panel.append(urlRow);
+
+  /* No-silence rule: say how the URL was understood, as it is typed. */
+  const readUrl = () => {
+    const v = urlInput.value.trim();
+    urlRead.textContent = !v ? ''
+      : looksLikeImageUrl(v) ? 'Understood as: will fetch the image directly.'
+      : 'Understood as: will capture the page (checked again server-side).';
+  };
+  urlInput.addEventListener('input', readUrl);
+
+  urlBtn.addEventListener('click', guard('Queue capture', async () => {
+    const { url, error } = parseUrlLenient(urlInput.value);
+    if (error) { toast(error, 'bad'); urlInput.focus(); return; }
+    entry.extras.push({
+      file: null, label: '', kind: 'captured', url: url.href,
+      added: localDate(), error: null,
+    });
+    urlInput.value = '';
+    readUrl();
+    persist();
+    render();
+    openDetail(entry.id);
+    await requestSave(`A queued capture for "${entry.title}"`);
+  }));
+
+  const upRow = el('div', { className: 'field' });
+  upRow.append(el('span', { className: 'label', textContent: 'upload images' }));
+  const fileInput = el('input', {
+    type: 'file', id: 'extra-files', accept: 'image/*', multiple: true,
+  });
+  upRow.append(fileInput);
+  const upHint = el('p', { className: 'hint', id: 'extra-upload-hint' });
+  upRow.append(upHint);
+
+  const hasToken = Boolean(getToken());
+  if (!hasToken) {
+    // Disabled, with the reason — never simply absent.
+    fileInput.disabled = true;
+    upHint.textContent = 'Uploading needs the online path: the download fallback cannot carry image '
+      + 'files. Paste a GitHub token and this enables itself.';
+    const tokenBtn = el('button', { className: 'btn', type: 'button', textContent: 'paste a token' });
+    tokenBtn.addEventListener('click', () => offerSaveChoice('Your images'));
+    upRow.append(el('div', { className: 'form-actions' }, tokenBtn));
+  } else {
+    upHint.textContent = 'Downscaled to 2000px / JPEG q85 in this browser before upload, '
+      + 'then committed with the entry in one commit. On a phone this opens the photo picker.';
+    fileInput.addEventListener('change', guard('Upload', async () => {
+      const files = [...(fileInput.files ?? [])];
+      if (!files.length) return;
+      fileInput.disabled = true;
+      try {
+        await uploadExtras(entry, files, { asHero: !entry.shots?.hero });
+      } finally {
+        fileInput.disabled = false;
+        fileInput.value = '';
+      }
+    }));
+  }
+  panel.append(upRow);
+  wrap.append(panel);
+
+  addBtn.addEventListener('click', () => {
+    panel.hidden = !panel.hidden;
+    addBtn.textContent = panel.hidden ? '+ add photos' : 'close';
+    if (!panel.hidden) {
+      panel.scrollIntoView({ block: 'nearest' });
+      if (!matchMedia('(pointer: coarse)').matches) urlInput.focus();
+    }
+  });
+
+  return wrap;
+}
+
+function extraFigure(entry, extra, index) {
+  const fig = el('figure', { className: 'extra' });
+
+  if (extra.file) {
+    fig.append(el('img', { src: extra.file, alt: extra.label || `extra ${index + 1}`, loading: 'lazy' }));
+  } else if (extra.error) {
+    fig.append(el('div', { className: 'extra-state extra-state--failed' },
+      el('span', { className: 'pending-glyph', textContent: '⚠' }),
+      el('span', { className: 'label', textContent: 'fetch failed' })));
+  } else {
+    fig.append(el('div', { className: 'extra-state' },
+      el('span', { className: 'pending-glyph', textContent: '◍' }),
+      el('span', { className: 'label', textContent: 'capture pending' })));
+  }
+
+  /* Label: same inline-edit pattern as the note. */
+  const cap = el('figcaption', { className: 'extra-cap' });
+  const text = el('span', {
+    className: 'label extra-label' + (extra.label ? '' : ' extra-label--empty'),
+    textContent: extra.label || 'add a label',
+    role: 'button', tabIndex: 0, title: 'Edit the label',
+  });
+  const labelEdit = el('button', {
+    className: 'note-edit', type: 'button', title: 'Edit the label',
+    ariaLabel: `Edit the label for extra ${index + 1}`,
+  }, pencil(12));
+  const editor = el('div', { className: 'extra-label-editor', hidden: true });
+  const input = el('input', {
+    type: 'text', value: extra.label ?? '',
+    placeholder: 'checkout page · hover state · mobile menu',
+  });
+  const ok = el('button', { className: 'btn btn--primary', type: 'button', textContent: 'save' });
+  const no = el('button', { className: 'btn', type: 'button', textContent: 'cancel' });
+  editor.append(input, el('div', { className: 'extra-label-actions' }, ok, no));
+
+  const open = () => { editor.hidden = false; text.hidden = true; labelEdit.hidden = true; input.focus(); };
+  const close = () => { editor.hidden = true; text.hidden = false; labelEdit.hidden = false; };
+  labelEdit.addEventListener('click', open);
+  text.addEventListener('click', open);
+  text.addEventListener('keydown', (ev) => {
+    if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); open(); }
+  });
+  no.addEventListener('click', () => { input.value = extra.label ?? ''; close(); });
+  ok.addEventListener('click', guard('Save label', async () => {
+    const next = input.value.trim();
+    if (next === (extra.label ?? '')) { close(); return; }
+    extra.label = next;
+    persist();
+    openDetail(entry.id);
+    await requestSave(`The label for extra ${index + 1}`);
+  }));
+
+  cap.append(text, labelEdit, editor);
+
+  /* Remove one extra: same two-tap confirm as removing an entry. */
+  const del = el('button', {
+    className: 'btn btn--danger extra-remove', type: 'button', textContent: 'remove',
+  });
+  const confirm = el('div', { className: 'danger-confirm', hidden: true });
+  confirm.append(el('p', {}, el('strong', { textContent: `Remove extra ${index + 1}?` }),
+    document.createTextNode(' The file stays in git history.')));
+  const yes = el('button', { className: 'btn btn--danger', type: 'button', textContent: 'yes, remove' });
+  const cancel = el('button', { className: 'btn', type: 'button', textContent: 'cancel' });
+  confirm.append(el('div', { className: 'danger-confirm-actions' }, yes, cancel));
+  del.addEventListener('click', () => { confirm.hidden = false; del.hidden = true; });
+  cancel.addEventListener('click', () => { confirm.hidden = true; del.hidden = false; });
+  yes.addEventListener('click', guard('Remove extra', async () => {
+    yes.disabled = true;
+    yes.textContent = 'removing…';
+    await removeExtra(entry, index);
+  }));
+
+  cap.append(del, confirm);
+  fig.append(cap);
+  return fig;
+}
+
+async function removeExtra(entry, index) {
+  const extra = entry.extras[index];
+  if (!extra) { toast('That extra is already gone.', 'warn'); return; }
+  const remainingExtras = entry.extras.filter((_, i) => i !== index);
+  const updated = { ...entry, extras: remainingExtras };
+  const all = entries.map((e) => (e.id === entry.id ? updated : e));
+
+  if (!getToken()) {
+    entry.extras = remainingExtras;
+    persist();
+    render();
+    openDetail(entry.id);
+    download();
+    toast('Removed the extra and downloaded sites.json. Replace the file and commit; '
+      + 'its image is cleared by "npm run prune".', 'warn', 14000);
+    return;
+  }
+
+  const cfg = repoConfig();
+  try {
+    const commit = await commitTree(cfg, {
+      message: `vault: remove extra from ${entry.id}`,
+      texts: [{ path: cfg.path, content: serialise(all) }],
+      deletions: extra.file ? [`vault/${extra.file}`] : [],
+    });
+    entries = all.map(normalise);
+    dirty = false;
+    store.remove(LS_KEY);
+    render();
+    openDetail(entry.id);
+    toast(`Removed the extra in ${commit.sha.slice(0, 7)} — the file stays in git history.`, 'ok', 10000);
+  } catch (err) {
+    const { reason, hint } = explainGhError(err, cfg);
+    toast(`Could not remove the extra. ${reason} Fix: ${hint}`, 'bad', 14000);
+  }
 }
 
 /* The note in the detail view, editable in place. Saving touches the note and
@@ -1759,14 +2126,28 @@ function openTokenPanel() {
    shots directory leaves the working tree in the SAME commit — which needs the
    Git Data API, because the Contents API can only delete one file per commit.
    Nothing is ever lost: every shot stays in history. */
-async function removeViaGitApi(cfg, entry, remaining) {
+/* One commit, any mix of text files, binary files, and deletions. The Contents
+   API can only touch one path per commit, so anything that changes sites.json
+   *and* images together has to go through the Git Data API. */
+async function commitTree(cfg, { message, texts = [], binaries = [], deletions = [] }) {
   const ref = await gh(`/repos/${cfg.owner}/${cfg.repo}/git/ref/heads/${encodeURIComponent(cfg.branch)}`);
   const parent = ref.object.sha;
   const head = await gh(`/repos/${cfg.owner}/${cfg.repo}/git/commits/${parent}`);
 
-  const tree = [{ path: cfg.path, mode: '100644', type: 'blob', content: serialise(remaining) }];
-  for (const rel of Object.values(entry.shots ?? {})) {
-    if (rel) tree.push({ path: `vault/${rel}`, mode: '100644', type: 'blob', sha: null });
+  const tree = [];
+  for (const { path, content } of texts) {
+    tree.push({ path, mode: '100644', type: 'blob', content });
+  }
+  // Binary content cannot go inline in a tree — it needs a base64 blob first.
+  for (const { path, base64 } of binaries) {
+    const blob = await gh(`/repos/${cfg.owner}/${cfg.repo}/git/blobs`, {
+      method: 'POST',
+      body: JSON.stringify({ content: base64, encoding: 'base64' }),
+    });
+    tree.push({ path, mode: '100644', type: 'blob', sha: blob.sha });
+  }
+  for (const path of deletions) {
+    tree.push({ path, mode: '100644', type: 'blob', sha: null });
   }
 
   const newTree = await gh(`/repos/${cfg.owner}/${cfg.repo}/git/trees`, {
@@ -1775,13 +2156,125 @@ async function removeViaGitApi(cfg, entry, remaining) {
   });
   const commit = await gh(`/repos/${cfg.owner}/${cfg.repo}/git/commits`, {
     method: 'POST',
-    body: JSON.stringify({ message: `vault: remove ${entry.id}`, tree: newTree.sha, parents: [parent] }),
+    body: JSON.stringify({ message, tree: newTree.sha, parents: [parent] }),
   });
   await gh(`/repos/${cfg.owner}/${cfg.repo}/git/refs/heads/${encodeURIComponent(cfg.branch)}`, {
     method: 'PATCH',
     body: JSON.stringify({ sha: commit.sha }),
   });
   return commit;
+}
+
+async function removeViaGitApi(cfg, entry, remaining) {
+  const deletions = [];
+  for (const rel of Object.values(entry.shots ?? {})) if (rel) deletions.push(`vault/${rel}`);
+  for (const x of entry.extras ?? []) if (x.file) deletions.push(`vault/${x.file}`);
+  return commitTree(cfg, {
+    message: `vault: remove ${entry.id}`,
+    texts: [{ path: cfg.path, content: serialise(remaining) }],
+    deletions: [...new Set(deletions)],
+  });
+}
+
+/* ── uploads ───────────────────────────────────────────────────────────────
+   Downscaled in the browser before it ever reaches the repo: a phone photo is
+   4-6MB and a reference library has to stay clonable. */
+async function downscaleToJpeg(file, max = 2000, quality = 0.85) {
+  let bitmap;
+  try {
+    bitmap = await createImageBitmap(file);
+  } catch {
+    // Older WebKit: go through an <img> instead.
+    const url = URL.createObjectURL(file);
+    try {
+      const img = new Image();
+      await new Promise((res, rej) => { img.onload = res; img.onerror = () => rej(new Error('could not decode the image')); img.src = url; });
+      bitmap = img;
+    } finally { URL.revokeObjectURL(url); }
+  }
+  const w0 = bitmap.width ?? bitmap.naturalWidth;
+  const h0 = bitmap.height ?? bitmap.naturalHeight;
+  if (!w0 || !h0) throw new Error('could not read the image dimensions');
+
+  const scale = Math.min(1, max / Math.max(w0, h0));
+  const w = Math.max(1, Math.round(w0 * scale));
+  const h = Math.max(1, Math.round(h0 * scale));
+  const canvas = document.createElement('canvas');
+  canvas.width = w; canvas.height = h;
+  canvas.getContext('2d').drawImage(bitmap, 0, 0, w, h);
+  bitmap.close?.();
+
+  const blob = await new Promise((res) => canvas.toBlob(res, 'image/jpeg', quality));
+  if (!blob) throw new Error('could not re-encode the image');
+  const base64 = await new Promise((res, rej) => {
+    const fr = new FileReader();
+    fr.onload = () => res(String(fr.result).split(',')[1]);
+    fr.onerror = () => rej(new Error('could not read the re-encoded image'));
+    fr.readAsDataURL(blob);
+  });
+  return { base64, width: w, height: h, bytes: blob.size };
+}
+
+/* Next free extra-N.jpg for an entry, so two uploads never collide. */
+function nextExtraIndex(entry) {
+  const used = new Set((entry.extras ?? [])
+    .map((x) => Number(/extra-(\d+)\.jpg$/.exec(x.file ?? '')?.[1]))
+    .filter((n) => Number.isFinite(n)));
+  let n = 1;
+  while (used.has(n)) n += 1;
+  return n;
+}
+
+async function uploadExtras(entry, files, { asHero = false } = {}) {
+  if (!getToken()) {
+    toast('Uploading images needs the online path — paste a GitHub token first. '
+      + 'The download fallback cannot carry image files.', 'bad', 14000);
+    offerSaveChoice('Your images');
+    return false;
+  }
+  const cfg = repoConfig();
+  const binaries = [];
+  let n = nextExtraIndex(entry);
+  let saved = 0;
+
+  toast(`Preparing ${files.length} image${files.length === 1 ? '' : 's'}…`, 'info', 20000);
+  for (const file of files) {
+    if (!file.type.startsWith('image/')) {
+      toast(`Skipped "${file.name}" — not an image.`, 'warn');
+      continue;
+    }
+    const { base64, width, height, bytes } = await downscaleToJpeg(file);
+    const rel = asHero && saved === 0 && !entry.shots?.hero
+      ? `shots/${entry.id}/hero.jpg`
+      : `shots/${entry.id}/extra-${n++}.jpg`;
+    binaries.push({ path: `vault/${rel}`, base64 });
+    if (rel.endsWith('hero.jpg')) {
+      // First upload on an image-less entry becomes the hero, and the full view.
+      entry.shots = { ...entry.shots, full: rel, hero: rel };
+    } else {
+      entry.extras.push({
+        file: rel, label: '', kind: 'uploaded', url: null,
+        added: localDate(), error: null,
+      });
+    }
+    saved += 1;
+    console.info(`upload ${rel}: ${width}x${height}, ${Math.round(bytes / 1024)}KB`);
+  }
+  if (!saved) { toast('Nothing to upload.', 'warn'); return false; }
+
+  const remaining = entries.map((e) => (e.id === entry.id ? entry : e));
+  const commit = await commitTree(cfg, {
+    message: `vault: add ${saved} image${saved === 1 ? '' : 's'} to ${entry.id}`,
+    texts: [{ path: cfg.path, content: serialise(remaining) }],
+    binaries,
+  });
+  entries = remaining.map(normalise);
+  dirty = false;
+  store.remove(LS_KEY);
+  render();
+  openDetail(entry.id);
+  toast(`Uploaded ${saved} image${saved === 1 ? '' : 's'} in ${commit.sha.slice(0, 7)}.`, 'ok', 10000);
+  return true;
 }
 
 async function removeEntry(id) {

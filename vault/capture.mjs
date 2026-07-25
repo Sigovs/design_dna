@@ -234,11 +234,95 @@ async function shoot(browser, entry) {
   };
 }
 
+/* What "complete" means depends on how the entry was born.
+   site      — needs all three page shots.
+   image-url — needs its hero fetched from the image URL; no page to visit.
+   upload    — complete as soon as it has an image. Never captured, never pending. */
+function kindOf(entry) {
+  return entry.kind || 'site';
+}
+
 function shotsMissing(entry) {
+  const kind = kindOf(entry);
   const s = entry.shots || {};
-  return ['full', 'hero', 'mobile'].some(
-    (k) => !s[k] || !existsSync(join(VAULT, s[k]))
+  const have = (k) => Boolean(s[k]) && existsSync(join(VAULT, s[k]));
+
+  if (kind === 'upload') return false;
+  if (kind === 'image-url') return !have('hero');
+  return ['full', 'hero', 'mobile'].some((k) => !have(k));
+}
+
+/* Captured extras that have not been shot yet. Uploaded extras are never pending. */
+function pendingExtras(entry) {
+  return (entry.extras ?? []).filter(
+    (x) => (x.kind ?? 'captured') === 'captured' && x.url
+      && (!x.file || !existsSync(join(VAULT, x.file)))
   );
+}
+
+function needsWork(entry) {
+  return shotsMissing(entry) || pendingExtras(entry).length > 0;
+}
+
+/* ------------------------------------------------- image URLs and extras */
+
+const IMAGE_EXT = /\.(jpe?g|png|webp|avif|gif|bmp|tiff?)(\?|#|$)/i;
+
+/* Extension first, content-type second: plenty of image URLs carry no extension. */
+async function looksLikeImage(url) {
+  if (IMAGE_EXT.test(url)) return true;
+  try {
+    const res = await fetch(url, { method: 'HEAD', redirect: 'follow' });
+    return (res.headers.get('content-type') ?? '').startsWith('image/');
+  } catch { return false; }
+}
+
+/* Fetch bytes in Node (no CORS), then re-encode through a canvas in the browser
+   we already have. Keeps the repo lean without adding an image dependency. */
+async function fetchAndDownscaleImage(browser, url, outPath, max = 2000, quality = 0.85) {
+  const res = await fetch(url, {
+    redirect: 'follow',
+    headers: {
+      // Some hosts refuse a bare fetch; a normal UA and referer is not evasion,
+      // it is asking the way a browser would.
+      'user-agent': 'Mozilla/5.0 (compatible; design-dna-vault/1.0; +https://github.com/Sigovs/design_dna)',
+      accept: 'image/avif,image/webp,image/png,image/jpeg,*/*',
+    },
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status} fetching the image`);
+  const type = res.headers.get('content-type') ?? '';
+  if (!type.startsWith('image/')) throw new Error(`not an image (content-type: ${type || 'unknown'})`);
+
+  const bytes = Buffer.from(await res.arrayBuffer());
+  if (!bytes.length) throw new Error('the image was empty');
+  const dataUrl = `data:${type.split(';')[0]};base64,${bytes.toString('base64')}`;
+
+  const ctx = await browser.newContext();
+  const page = await ctx.newPage();
+  try {
+    const out = await page.evaluate(async ({ src, max: m, q }) => {
+      const img = new Image();
+      img.decoding = 'sync';
+      await new Promise((resolve, reject) => {
+        img.onload = resolve;
+        img.onerror = () => reject(new Error('the browser could not decode the image'));
+        img.src = src;
+      });
+      const scale = Math.min(1, m / Math.max(img.naturalWidth, img.naturalHeight));
+      const w = Math.max(1, Math.round(img.naturalWidth * scale));
+      const h = Math.max(1, Math.round(img.naturalHeight * scale));
+      const canvas = document.createElement('canvas');
+      canvas.width = w; canvas.height = h;
+      canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+      return { data: canvas.toDataURL('image/jpeg', q), w, h };
+    }, { src: dataUrl, max, q: quality });
+
+    await mkdir(dirname(outPath), { recursive: true });
+    await writeFile(outPath, Buffer.from(out.data.split(',')[1], 'base64'));
+    return { width: out.w, height: out.h };
+  } finally {
+    await ctx.close();
+  }
 }
 
 /* --------------------------------------------------------------- commands */
@@ -260,9 +344,12 @@ async function cmdAdd(url) {
     return cmdRecapture(existing.id);
   }
 
+  const isImage = await looksLikeImage(parsed.href);
   const entry = {
     id: uniqueId(slugify(parsed.href), entries),
+    kind: isImage ? 'image-url' : 'site',
     url: parsed.href,
+    source: isImage ? parsed.hostname.replace(/^www\./, '') : '',
     title: parsed.hostname.replace(/^www\./, ''),
     added: isoDate(),
     rating: 2,
@@ -272,14 +359,23 @@ async function cmdAdd(url) {
     tags: await emptyVocabTags(),
     note: 'TODO',
     shots: { full: null, hero: null, mobile: null },
+    extras: [],
+    captureError: null,
   };
 
-  log(`\nadding ${entry.id}`);
+  log(`\nadding ${entry.id} — understood as ${isImage ? 'a direct image URL' : 'a page to capture'}`);
   const browser = await chromium.launch();
   try {
-    const { title, shots } = await shoot(browser, entry);
-    entry.title = title || entry.title;
-    entry.shots = shots;
+    if (isImage) {
+      const rel = `shots/${entry.id}/hero.jpg`;
+      const { width, height } = await fetchAndDownscaleImage(browser, entry.url, join(VAULT, rel));
+      entry.shots = { full: rel, hero: rel, mobile: null };
+      log(`  · hero.jpg (${width}x${height})`);
+    } else {
+      const { title, shots } = await shoot(browser, entry);
+      entry.title = title || entry.title;
+      entry.shots = shots;
+    }
   } finally {
     await browser.close();
   }
@@ -317,34 +413,97 @@ async function cmdRecapture(id) {
 
 async function cmdCaptureMissing() {
   const entries = await readSites();
-  const todo = entries.filter(shotsMissing);
+  const todo = entries.filter(needsWork);
+  const skipped = entries.filter((e) => kindOf(e) === 'upload');
+
+  if (skipped.length) {
+    log(`${skipped.length} upload-only entr${skipped.length === 1 ? 'y' : 'ies'} skipped — nothing to capture:`);
+    skipped.forEach((e) => log(`  · ${e.id}`));
+    log('');
+  }
 
   if (!todo.length) {
-    log('every entry has all three shots on disk. Nothing to do.');
+    log('nothing pending. Every entry has what its kind requires.');
     return;
   }
 
-  log(`\n${todo.length} entr${todo.length === 1 ? 'y' : 'ies'} missing shots:`);
-  todo.forEach((e) => log(`  · ${e.id}`));
+  log(`${todo.length} entr${todo.length === 1 ? 'y' : 'ies'} pending:`);
+  todo.forEach((e) => {
+    const bits = [];
+    if (shotsMissing(e)) bits.push(kindOf(e) === 'image-url' ? 'hero from image URL' : 'page shots');
+    const px = pendingExtras(e).length;
+    if (px) bits.push(`${px} extra${px === 1 ? '' : 's'}`);
+    log(`  · ${e.id} (${bits.join(' + ')})`);
+  });
 
   const browser = await chromium.launch();
   const failed = [];
   try {
     for (const entry of todo) {
       log(`\n${entry.id}`);
-      try {
-        const { title, shots } = await shoot(browser, entry);
-        entry.shots = shots;
-        if (!entry.title || entry.title === new URL(entry.url).hostname.replace(/^www\./, '')) {
-          entry.title = title || entry.title;
+
+      /* Main shots */
+      if (shotsMissing(entry)) {
+        try {
+          if (kindOf(entry) === 'image-url') {
+            const rel = `shots/${entry.id}/hero.jpg`;
+            log(`  fetching image ${entry.url}`);
+            const { width, height } = await fetchAndDownscaleImage(browser, entry.url, join(VAULT, rel));
+            // A single image is the whole reference: it is the hero and the full view.
+            entry.shots = { full: rel, hero: rel, mobile: null };
+            entry.captureError = null;
+            log(`  · hero.jpg (${width}x${height})`);
+          } else {
+            const { title, shots } = await shoot(browser, entry);
+            entry.shots = shots;
+            entry.captureError = null;
+            const host = (() => { try { return new URL(entry.url).hostname.replace(/^www\./, ''); } catch { return ''; } })();
+            if (!entry.title || entry.title === host) entry.title = title || entry.title;
+          }
+          await writeSites(entries);   // write after each, so a later crash keeps progress
+        } catch (err) {
+          const msg = err.message.split('\n')[0];
+          warn(`${entry.id} failed: ${msg}`);
+          if (/ERR_CERT|SSL|TLS/i.test(err.message) && !INSECURE) {
+            warn('  certificate problem — retry with: npm run capture-missing -- --insecure');
+          }
+          /* Recorded on the entry, not just in the log: a dead or hotlink-protected
+             URL must be visible in the gallery, never a silently empty card. */
+          entry.captureError = kindOf(entry) === 'image-url'
+            ? `fetch failed — upload manually or fix the URL (${msg})`
+            : `capture failed — ${msg}`;
+          await writeSites(entries);
+          failed.push(entry.id);
         }
-        await writeSites(entries); // write after each, so a later crash keeps progress
-      } catch (err) {
-        warn(`${entry.id} failed: ${err.message.split('\n')[0]}`);
-        if (/ERR_CERT|SSL|TLS/i.test(err.message) && !INSECURE) {
-          warn('  certificate problem — retry with: npm run capture-missing -- --insecure');
+      }
+
+      /* Extras: one full-page desktop shot each, nothing else. */
+      for (const extra of pendingExtras(entry)) {
+        const n = (entry.extras.indexOf(extra)) + 1;
+        const rel = `shots/${entry.id}/extra-${n}.jpg`;
+        try {
+          log(`  extra ${n}: ${extra.url}`);
+          if (await looksLikeImage(extra.url)) {
+            await fetchAndDownscaleImage(browser, extra.url, join(VAULT, rel));
+          } else {
+            const ctx = await browser.newContext({ viewport: DESKTOP, deviceScaleFactor: 1, ignoreHTTPSErrors: INSECURE });
+            const page = await ctx.newPage();
+            try {
+              await settle(page, extra.url);
+              await fullPageShot(page, join(VAULT, rel), QUALITY.full, DESKTOP.width);
+            } finally { await ctx.close(); }
+          }
+          extra.file = rel;
+          extra.error = null;
+          log(`  · extra-${n}.jpg`);
+          await writeSites(entries);
+        } catch (err) {
+          const msg = err.message.split('\n')[0];
+          warn(`extra ${n} failed: ${msg}`);
+          extra.error = `fetch failed — upload manually or fix the URL (${msg})`;
+          await writeSites(entries);
+          failed.push(`${entry.id}#extra-${n}`);
         }
-        failed.push(entry.id);
       }
     }
   } finally {
@@ -352,8 +511,12 @@ async function cmdCaptureMissing() {
   }
 
   await writeSites(entries);
-  log(`\n✓ captured ${todo.length - failed.length}/${todo.length}`);
-  if (failed.length) log(`  failed (retry with npm run recapture -- <id>): ${failed.join(', ')}`);
+  const done = todo.length - new Set(failed.map((f) => f.split('#')[0])).size;
+  log(`\n✓ completed ${done}/${todo.length}`);
+  if (failed.length) {
+    log(`  failed: ${failed.join(', ')}`);
+    log('  each failure is recorded on the entry and shown in the gallery.');
+  }
 }
 
 /* ------------------------------------------------------------------- main */

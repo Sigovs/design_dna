@@ -102,6 +102,11 @@ npm run vault                          # open the gallery, fill in tags + note
 3. On a machine with the repo: `npm run capture-missing` — shoots every entry
    whose shots are missing or absent from disk.
 
+**Shots are static — if an entry earns its place through motion, transitions, or
+interaction, the note must describe *what* moves and *how*.** That is the part the
+capture cannot hold, and an entry whose whole value is a transition is worthless in
+the vault unless the note carries it.
+
 **Reshoot** when a site redesigns: `npm run recapture -- <id>`.
 
 ## Removing an entry

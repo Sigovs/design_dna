@@ -167,12 +167,102 @@ check('edit form has a dialects multi-pick',
 check('edit form has tag checkboxes', (await page.locator('#detail .check input[type=checkbox]').count()) > 0);
 check('edit form has a composition tag group',
   (await page.locator('#detail [data-cat="composition"] input[type=checkbox]').count()) >= 9);
-check('edit form has a note field', (await page.locator('#detail textarea').count()) === 1);
+check('note has an inline editor', (await page.locator('#detail #note-inline').count()) === 1);
+check('note editor starts closed', !(await page.locator('#detail #note-editor').isVisible()));
+check('note has an edit pencil', (await page.locator('#detail #note-edit svg').count()) === 1);
 check('edit form has a title field', (await page.locator('#detail input[type=text]').count()) >= 1);
 await shot(page, 'gallery-detail');
 await page.keyboard.press('Escape');
 await page.waitForTimeout(300);
 check('esc closes detail', !(await page.locator('#detail').isVisible()));
+
+console.log('\nnote editing');
+{
+  // Pencil on the card jumps straight into the note field.
+  await page.locator('.card').first().locator('.note-edit').click();
+  await page.waitForTimeout(800);
+  check('card pencil opens detail with the note editor active',
+    (await page.locator('#detail').isVisible()) && (await page.locator('#note-editor').isVisible()));
+  check('the textarea is focused',
+    await page.evaluate(() => document.activeElement?.id === 'note-inline'));
+  check('Save and Cancel are both present',
+    (await page.locator('#note-editor .btn--primary').isVisible())
+    && (await page.locator('#note-editor .btn:not(.btn--primary)').isVisible()));
+  check('motion guidance hint is shown under the textarea',
+    (await page.locator('#note-editor .note-motion-hint').textContent())
+      .includes("describe WHAT moves and HOW"));
+
+  // Cancel restores without changing anything.
+  const original = await page.locator('#note-inline').inputValue();
+  await page.fill('#note-inline', 'scratch text that must not persist');
+  await page.locator('#note-editor .btn:not(.btn--primary)').click();
+  await page.waitForTimeout(400);
+  check('cancel closes the editor and discards the change',
+    !(await page.locator('#note-editor').isVisible())
+    && (await page.locator('#note-inline').inputValue()) === original);
+
+  // Saving changes ONLY the note.
+  const beforeEntry = await page.evaluate(() => {
+    const id = document.querySelector('#detail-id').textContent.trim();
+    return JSON.parse(JSON.stringify(window.__vaultEntries?.find?.((e) => e.id === id) ?? null));
+  }).catch(() => null);
+  await page.locator('#note-edit').click();
+  await page.waitForTimeout(300);
+  await page.fill('#note-inline', 'smoke-note-' + original.slice(0, 12));
+  await page.locator('#note-editor .btn--primary').click();
+  await page.waitForTimeout(1200);
+  check('saving the note surfaces the save choice (no token stored)',
+    (await page.locator('#token').isVisible()) || (await page.locator('#toast').isVisible()));
+  if (!(await page.locator('#token').isVisible())) { /* nothing to close */ }
+  else await page.keyboard.press('Escape');
+  await page.waitForTimeout(300);
+  await page.keyboard.press('Escape');
+  await page.waitForTimeout(300);
+  void beforeEntry;
+}
+
+console.log('\npending-capture placeholder');
+{
+  const pc = await browser.newContext();
+  const pp = await pc.newPage();
+  await pp.goto(URL_BASE, { waitUntil: 'domcontentloaded' });
+  await pp.waitForSelector('.card');
+  // A shotless entry, held only in this browser.
+  await pp.evaluate(async () => {
+    const live = await fetch('sites.json').then((r) => r.json());
+    live.push({
+      id: 'pending-smoke', url: 'https://example.com/pending', title: 'Pending Smoke',
+      added: new Date().toISOString().slice(0, 10), rating: 2,
+      dialectStatus: 'unreviewed', dialects: [],
+      tags: {}, note: 'TODO', shots: { full: null, hero: null, mobile: null },
+    });
+    localStorage.setItem('design-dna:vault:working-copy',
+      JSON.stringify({ entries: live, at: new Date(Date.now() + 600000).toISOString() }));
+  });
+  await pp.reload({ waitUntil: 'domcontentloaded' });
+  await pp.waitForSelector('.card');
+  await pp.waitForTimeout(900);
+  const pcard = pp.locator('.card').filter({ hasText: 'Pending Smoke' });
+  check('shotless entry renders the pending placeholder',
+    (await pcard.locator('.card-shot--pending').count()) === 1);
+  check('placeholder shows the domain in display type',
+    (await pcard.locator('.pending-domain').textContent()) === 'example.com');
+  check('placeholder shows the "capture pending" line',
+    (await pcard.locator('.pending-status').textContent()) === 'capture pending');
+  check('placeholder has a favicon or its glyph fallback',
+    (await pcard.locator('.pending-favicon, .pending-glyph:not([hidden])').count()) >= 1);
+  // Scoped to the cards: body.textContent would include the inline module source.
+  check('no bare "no shots yet" text remains in the grid',
+    !(await pp.locator('#grid').textContent()).includes('no shots yet'));
+  check('TODO note reads as a call to action',
+    (await pcard.locator('.card-note--todo').textContent()).includes('tap to write why this is here'));
+  const realShots = JSON.parse(readFileSync(join(VAULT, 'sites.json'), 'utf8'))
+    .filter((e) => e.shots?.hero).length;
+  check('entries with shots still render real previews',
+    (await pp.locator('.card-shot img:not(.pending-favicon)').count()) === realShots,
+    `${realShots} expected`);
+  await pc.close();
+}
 
 console.log('\nadd');
 await page.click('#open-add');
@@ -197,8 +287,18 @@ for (const profile of MOBILE_MATRIX) {
   const mctx = await mb.newContext({ ...devices[profile.device] });
   const mp = await mctx.newPage();
   const mErrs = [];
+  /* The pending placeholder probes s2 → /favicon.ico → glyph on purpose, so a
+     404 on a favicon URL is the fallback chain working, not a page error. */
+  const isFaviconProbe = (t) => /favicon|s2\/favicons/i.test(t ?? '');
   mp.on('pageerror', (e) => mErrs.push(String(e.message || e)));
-  mp.on('console', (m) => { if (m.type() === 'error') mErrs.push(m.text()); });
+  mp.on('console', (m) => {
+    if (m.type() !== 'error') return;
+    // Chromium's text for a failed subresource omits the URL, so check the
+    // message location too — that is where the favicon URL actually appears.
+    if (isFaviconProbe(m.text()) || isFaviconProbe(m.location()?.url)) return;
+    mErrs.push(m.text());
+  });
+  mp.on('requestfailed', (r) => { if (!isFaviconProbe(r.url())) mErrs.push(`requestfailed ${r.url()}`); });
 
   try {
     await mp.goto(URL_BASE, { waitUntil: 'domcontentloaded', timeout: 25_000 });
@@ -239,6 +339,26 @@ for (const profile of MOBILE_MATRIX) {
     !(await mp.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1)));
   check(`${profile.name}: remove-from-vault reachable`,
     (await mp.locator('#detail .btn--danger').count()) >= 1);
+
+  // Note editing has to be usable at phone width, keyboard and all.
+  await mp.locator('#note-edit').click();
+  await mp.waitForTimeout(600);
+  check(`${profile.name}: note editor opens on tap`, await mp.locator('#note-editor').isVisible());
+  const areaBox = await mp.locator('#note-inline').boundingBox();
+  check(`${profile.name}: textarea fits the viewport width`,
+    areaBox && areaBox.width <= (await mp.evaluate(() => window.innerWidth)),
+    areaBox ? `${Math.round(areaBox.width)}px` : 'no box');
+  check(`${profile.name}: textarea is ≥16px so iOS does not zoom`,
+    (await mp.locator('#note-inline').evaluate((el) => parseFloat(getComputedStyle(el).fontSize))) >= 16);
+  const saveBox = await mp.locator('#note-editor .btn--primary').boundingBox();
+  check(`${profile.name}: note Save is on-screen, not under the keyboard`,
+    saveBox && saveBox.y >= 0 && saveBox.y < (await mp.evaluate(() => window.innerHeight)),
+    saveBox ? `y=${Math.round(saveBox.y)} vh=${await mp.evaluate(() => window.innerHeight)}` : 'no box');
+  check(`${profile.name}: note Save is a 44px target`, saveBox && saveBox.height >= 44,
+    saveBox ? `${Math.round(saveBox.height)}px` : 'no box');
+  await mp.locator('#note-editor .btn:not(.btn--primary)').click();
+  await mp.waitForTimeout(300);
+
   await mp.keyboard.press('Escape');
   await mp.waitForTimeout(300);
 

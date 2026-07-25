@@ -205,6 +205,18 @@ button, input, textarea, select { font: inherit; color: inherit; }
    Coarse pointers get 44px minimum targets. Applied by input type, not by
    width, so a touch laptop gets them too. */
 @media (pointer: coarse) {
+  /* The pencil is visually small but must still be a 44px target. */
+  .note-edit { min-inline-size: 44px; min-block-size: 44px; display: grid; place-items: center; padding: 0; }
+  .note-editor textarea { min-height: 9rem; font-size: 1rem; }   /* 16px: no iOS zoom-on-focus */
+  /* Sticky, so Save stays reachable when the on-screen keyboard takes half the
+     viewport — on a 568px-tall phone it otherwise sits below the fold. */
+  .note-editor-actions {
+    flex-direction: column; align-items: stretch;
+    position: sticky; inset-block-end: 0; z-index: 1;
+    background: var(--bg); padding-block: var(--space-4);
+    border-top: 1px solid var(--rule);
+  }
+  .note-editor-actions .btn { width: 100%; justify-content: center; }
   .btn { min-height: 44px; display: inline-flex; align-items: center; }
   .btn--quiet { min-height: 44px; }
   .chip { min-height: 44px; padding-block: 0; }
@@ -274,7 +286,34 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .card-host { display: block; margin-top: var(--space-2); color: var(--ink-30); }
 .card-tags { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-3); margin-top: var(--space-3); }
 .tag { --hue: 0; font-family: var(--font-mono); font-size: .625rem; letter-spacing: .1em; text-transform: uppercase; color: oklch(.8 .05 var(--hue)); }
-.card-note { margin: var(--space-3) 0 0; color: var(--ink-50); font-size: .875rem; line-height: 1.5; }
+.card-note { margin: 0; color: var(--ink-50); font-size: .875rem; line-height: 1.5; }
+.card-note--todo { color: var(--ink-30); font-style: italic; }
+
+/* note + its edit affordance. The pencil is the only icon in the page. */
+.note-row { display: flex; align-items: flex-start; gap: var(--space-3); margin-top: var(--space-3); }
+.note-row .card-note { flex: 1 1 auto; min-width: 0; }
+.note-edit {
+  flex: none; background: none; border: 0; padding: var(--space-1);
+  color: var(--ink-30); cursor: pointer; line-height: 0;
+  transition: color var(--dur-1) var(--ease-out);
+}
+.note-edit:hover { color: var(--ink); }
+.card:hover .note-edit { color: var(--ink-50); }
+.card-note--todo ~ .note-edit, .note-row:has(.card-note--todo) .note-edit { color: var(--ink-50); }
+
+/* pending capture — a designed state, not a missing one */
+.card-shot--pending {
+  display: grid; place-content: center; justify-items: center;
+  gap: var(--space-4); padding: var(--space-6); text-align: center;
+}
+.pending-mark { inline-size: 40px; block-size: 40px; display: grid; place-items: center; opacity: .8; }
+.pending-favicon { inline-size: 32px; block-size: 32px; object-fit: contain; }
+.pending-glyph { font-size: 1.75rem; color: var(--ink-30); line-height: 1; }
+.pending-domain {
+  font-family: var(--font-display); font-size: clamp(1.125rem, 2vw + .8rem, 1.5rem);
+  line-height: 1.1; color: var(--ink-70); overflow-wrap: anywhere; max-width: 22ch;
+}
+.pending-status { color: var(--ink-30); }
 
 .dots { display: inline-flex; gap: 3px; flex: none; }
 .dot { inline-size: 5px; block-size: 5px; border-radius: 50%; background: var(--ink-30); }
@@ -338,7 +377,28 @@ button, input, textarea, select { font: inherit; color: inherit; }
   .plate dd { border-top: 0; padding-block-start: 0; }
 }
 
-.note-read { margin: var(--space-6) 0 0; max-width: var(--measure); color: var(--ink-70); line-height: 1.65; text-wrap: pretty; white-space: pre-wrap; }
+.note-block { margin-top: var(--space-7); }
+.note-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); }
+.note-head > .label { color: var(--ink-30); }
+.note-head .note-edit { padding: var(--space-2); }
+.note-read {
+  margin: var(--space-4) 0 0; max-width: var(--measure); color: var(--ink-70);
+  line-height: 1.65; text-wrap: pretty; white-space: pre-wrap; cursor: text;
+  border-radius: 2px; transition: color var(--dur-1) var(--ease-out);
+}
+.note-read:hover { color: var(--ink); }
+.note-read--todo { color: var(--ink-30); font-style: italic; cursor: pointer; }
+.note-editor { margin-top: var(--space-4); }
+.note-editor[hidden] { display: none; }
+.note-editor textarea {
+  width: 100%; min-height: 11rem; resize: vertical;
+  background: none; color: var(--ink); border: 0; border-bottom: 1px solid var(--rule);
+  padding: var(--space-2) 0; line-height: 1.6; font: inherit;
+  transition: border-color var(--dur-1) var(--ease-out);
+}
+.note-editor textarea:focus { outline: none; border-bottom-color: var(--ink-70); }
+.note-editor-actions { display: flex; flex-wrap: wrap; gap: var(--space-4); margin-top: var(--space-5); }
+.note-motion-hint { margin: var(--space-4) 0 0; max-width: 60ch; }
 
 /* ─── forms ────────────────────────────────────────────────────────────── */
 .form { margin-top: var(--space-8); border-top: 1px solid var(--rule); padding-top: var(--space-6); }
@@ -899,15 +959,65 @@ function dots(rating) {
   return wrap;
 }
 
+/* Pencil, inline so there is no icon dependency and it inherits currentColor. */
+function pencil(size = 14) {
+  const ns = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(ns, 'svg');
+  svg.setAttribute('viewBox', '0 0 16 16');
+  svg.setAttribute('width', String(size));
+  svg.setAttribute('height', String(size));
+  svg.setAttribute('aria-hidden', 'true');
+  svg.setAttribute('focusable', 'false');
+  const path = document.createElementNS(ns, 'path');
+  path.setAttribute('d', 'M11.4 1.6a1.4 1.4 0 0 1 2 2L5.6 11.4l-3 1 1-3 7.8-7.8Z');
+  path.setAttribute('fill', 'none');
+  path.setAttribute('stroke', 'currentColor');
+  path.setAttribute('stroke-width', '1.3');
+  path.setAttribute('stroke-linejoin', 'round');
+  svg.append(path);
+  return svg;
+}
+
+/* An entry awaiting the capture Action is not broken, so it should not look it:
+   favicon, domain, and an honest status line instead of a bare "no shots". */
+function pendingPlaceholder(entry) {
+  const site = host(entry.url);
+  const box = el('div', { className: 'card-shot card-shot--pending' });
+
+  const mark = el('div', { className: 'pending-mark' });
+  const glyph = el('span', { className: 'pending-glyph', textContent: '◍', hidden: true });
+  const img = el('img', {
+    className: 'pending-favicon',
+    alt: '',
+    loading: 'lazy',
+    referrerPolicy: 'no-referrer',
+    src: `https://www.google.com/s2/favicons?domain=${encodeURIComponent(site)}&sz=64`,
+  });
+  // s2 → the site's own favicon → a generic glyph. Never a broken image icon.
+  let stage = 0;
+  img.addEventListener('error', () => {
+    stage += 1;
+    if (stage === 1) { img.src = `https://${site}/favicon.ico`; return; }
+    img.remove();
+    glyph.hidden = false;
+  });
+  mark.append(img, glyph);
+
+  box.append(mark);
+  box.append(el('span', { className: 'pending-domain', textContent: site }));
+  box.append(el('span', { className: 'pending-status label', textContent: 'capture pending' }));
+  return box;
+}
+
 function card(entry) {
-  const node = el('button', { className: 'card', type: 'button' });
+  /* A div, not a button: the note's edit pencil is a real button and nesting one
+     button inside another is invalid. Keyboard parity is wired below. */
+  const node = el('div', { className: 'card', role: 'button', tabIndex: 0 });
   const hero = entry.shots?.hero;
 
   node.append(hero
     ? el('div', { className: 'card-shot' }, el('img', { src: hero, alt: `${entry.title} — hero`, loading: 'lazy' }))
-    : el('div', { className: 'card-shot card-shot--empty' },
-        el('span', { className: 'label', textContent: 'no shots yet' }),
-      ));
+    : pendingPlaceholder(entry));
 
   node.append(el('div', { className: 'card-head' },
     el('h2', { textContent: entry.title || host(entry.url) }),
@@ -939,18 +1049,37 @@ function card(entry) {
   }
   if (tags.children.length) node.append(tags);
 
+  /* The note is the payload, so editing it is one tap from the card. */
   const note = (entry.note ?? '').trim();
-  node.append(el('p', {
-    className: 'card-note',
-    textContent: note === 'TODO' || !note ? 'note: TODO' : note.length > 190 ? note.slice(0, 190).trimEnd() + '…' : note,
+  const empty = note === 'TODO' || !note;
+  const row = el('div', { className: 'note-row' });
+  row.append(el('p', {
+    className: 'card-note' + (empty ? ' card-note--todo' : ''),
+    textContent: empty
+      ? 'note: TODO — tap to write why this is here'
+      : note.length > 190 ? note.slice(0, 190).trimEnd() + '…' : note,
   }));
+  const editBtn = el('button', {
+    className: 'note-edit', type: 'button',
+    title: empty ? 'Write the note' : 'Edit the note',
+    ariaLabel: empty ? `Write the note for ${entry.title}` : `Edit the note for ${entry.title}`,
+  }, pencil(14));
+  editBtn.addEventListener('click', (ev) => {
+    ev.stopPropagation();                       // don't also open the plain detail view
+    openDetail(entry.id, { editNote: true });
+  });
+  row.append(editBtn);
+  node.append(row);
 
   node.addEventListener('click', () => openDetail(entry.id));
+  node.addEventListener('keydown', (ev) => {
+    if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); openDetail(entry.id); }
+  });
   return node;
 }
 
 /* ── detail ────────────────────────────────────────────────────────────── */
-function openDetail(id) {
+function openDetail(id, { editNote = false } = {}) {
   const entry = entries.find((e) => e.id === id);
   if (!entry) return;
   openId = id;
@@ -962,7 +1091,7 @@ function openDetail(id) {
   const left = el('div');
   left.append(entry.shots?.full
     ? el('div', { className: 'shot-full' }, el('img', { src: entry.shots.full, alt: `${entry.title} — full page` }))
-    : el('div', { className: 'shot-full shot-none' }, el('span', { className: 'label', textContent: 'no full shot — run npm run capture-missing' })));
+    : el('div', { className: 'shot-full shot-none' }, el('span', { className: 'label', textContent: 'capture pending' })));
   left.append(el('span', { className: 'shot-caption label', textContent: 'full page · 1440w' }));
 
   /* right: title, mobile, plate, note, edit form */
@@ -973,7 +1102,7 @@ function openDetail(id) {
     ? el('div', { className: 'shot-mobile', style: 'margin-top: var(--space-6)' },
         el('img', { src: entry.shots.mobile, alt: `${entry.title} — mobile`, width: 390 }))
     : el('div', { className: 'shot-mobile shot-none', style: 'margin-top: var(--space-6)' },
-        el('span', { className: 'label', textContent: 'no mobile shot yet' })));
+        el('span', { className: 'label', textContent: 'capture pending' })));
   right.append(el('span', { className: 'shot-caption label', textContent: 'mobile · 390w' }));
 
   const plate = el('dl', { className: 'plate' });
@@ -990,8 +1119,7 @@ function openDetail(id) {
   rows.forEach(([k, v]) => { plate.append(el('dt', { className: 'label', textContent: k }), el('dd', {}, v)); });
   right.append(plate);
 
-  const note = (entry.note ?? '').trim();
-  right.append(el('p', { className: 'note-read', textContent: note && note !== 'TODO' ? note : 'No note yet. This is the field that matters — say what works and what is worth stealing.' }));
+  right.append(noteBlock(entry));
 
   right.append(editForm(entry));
   right.append(dangerZone(entry));
@@ -999,7 +1127,15 @@ function openDetail(id) {
   body.append(left, right);
   $('#detail').hidden = false;
   document.body.style.overflow = 'hidden';
-  $('#detail-close').focus();
+
+  if (editNote) {
+    // Arrived via the note pencil: straight into the field, scrolled to it.
+    const block = $('#note-block');
+    block?.scrollIntoView({ block: 'center' });
+    block?.openEditor?.();
+  } else {
+    $('#detail-close').focus();
+  }
 }
 
 function closeDetail() {
@@ -1037,11 +1173,7 @@ function editForm(entry) {
   tagField.append(vocabWrap);
   form.append(tagField);
 
-  const noteField = el('div', { className: 'field' });
-  const noteId = `note-${entry.id}`;
-  noteField.append(el('label', { className: 'label', htmlFor: noteId, textContent: 'note — what you liked and why' }));
-  noteField.append(el('textarea', { id: noteId, value: entry.note === 'TODO' ? '' : (entry.note ?? '') }));
-  form.append(noteField);
+  // The note lives in its own inline editor above (noteBlock) — one field, one owner.
 
   const actions = el('div', { className: 'form-actions' });
   actions.append(el('button', { className: 'btn btn--primary', type: 'submit', textContent: 'save' }));
@@ -1054,7 +1186,6 @@ function editForm(entry) {
     entry.rating = Number(new FormData(form).get(`rate-${entry.id}`) ?? entry.rating);
     Object.assign(entry, readDialectForm(dialectWrap));
     entry.tags = readVocabForm(vocabWrap);
-    entry.note = $(`#${CSS.escape(noteId)}`, form).value.trim() || 'TODO';
     persist();
     renderFilters();
     renderDialectFilters();
@@ -1064,6 +1195,92 @@ function editForm(entry) {
   }));
 
   return form;
+}
+
+/* The note in the detail view, editable in place. Saving touches the note and
+   nothing else on the entry, then goes through the standard save flow. */
+function noteBlock(entry) {
+  const wrap = el('section', { className: 'note-block', id: 'note-block' });
+  const note = (entry.note ?? '').trim();
+  const empty = !note || note === 'TODO';
+
+  const head = el('div', { className: 'note-head' },
+    el('span', { className: 'label', textContent: 'note — what you liked and why' }));
+  const editBtn = el('button', {
+    className: 'note-edit', type: 'button', id: 'note-edit',
+    title: empty ? 'Write the note' : 'Edit the note',
+    ariaLabel: empty ? 'Write the note' : 'Edit the note',
+  }, pencil(15));
+  head.append(editBtn);
+  wrap.append(head);
+
+  const read = el('p', {
+    className: 'note-read' + (empty ? ' note-read--todo' : ''),
+    id: 'note-read',
+    tabIndex: 0,
+    role: 'button',
+    title: 'Tap to edit',
+    textContent: empty
+      ? 'note: TODO — tap to write why this is here'
+      : note,
+  });
+  wrap.append(read);
+
+  const editor = el('div', { className: 'note-editor', id: 'note-editor', hidden: true });
+  const area = el('textarea', {
+    id: 'note-inline', value: empty ? '' : note,
+    placeholder: 'What specifically works, and what is worth stealing.',
+  });
+  /* The shots cannot hold motion, so the note has to. */
+  const motionHint = el('p', {
+    className: 'hint note-motion-hint',
+    textContent: 'Shots are static. If this site earns its place through motion, transitions, '
+      + "or interaction — describe WHAT moves and HOW, that's the part the capture can't hold.",
+  });
+
+  const actions = el('div', { className: 'note-editor-actions' });
+  const save = el('button', { className: 'btn btn--primary', type: 'button', textContent: 'save note' });
+  const cancel = el('button', { className: 'btn', type: 'button', textContent: 'cancel' });
+  actions.append(save, cancel);
+  editor.append(area, motionHint, actions);
+  wrap.append(editor);
+
+  const open = () => {
+    editor.hidden = false;
+    read.hidden = true;
+    editBtn.hidden = true;
+    area.focus();
+    // Instant, not smooth: a smooth scroll leaves Save off-screen for ~300ms,
+    // which on a short viewport reads as a missing button.
+    wrap.scrollIntoView({ block: 'start' });
+  };
+  const close = () => {
+    editor.hidden = true;
+    read.hidden = false;
+    editBtn.hidden = false;
+  };
+
+  editBtn.addEventListener('click', open);
+  read.addEventListener('click', open);
+  read.addEventListener('keydown', (ev) => {
+    if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); open(); }
+  });
+  cancel.addEventListener('click', () => { area.value = empty ? '' : note; close(); });
+
+  save.addEventListener('click', guard('Save note', async () => {
+    const next = area.value.trim() || 'TODO';
+    if (next === (entry.note ?? '').trim()) { close(); toast('Note unchanged.', 'warn', 3000); return; }
+    save.disabled = true;
+    save.textContent = 'saving…';
+    entry.note = next;                                  // only the note
+    persist();
+    render();
+    openDetail(entry.id);                               // re-render with the new note
+    await requestSave(`The note for "${entry.title}"`);
+  }));
+
+  wrap.openEditor = open;
+  return wrap;
 }
 
 /* Two taps, never one. The confirm step names the entry and says plainly where

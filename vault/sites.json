@@ -33,14 +33,30 @@
     "added": "2026-07-25",
     "rating": 3,
     "dialectStatus": "in",
-    "dialects": [],
+    "dialects": [
+      "auction-editorial"
+    ],
     "tags": {
-      "composition": [],
-      "typography": [],
-      "layout": [],
-      "motion": [],
-      "color": [],
-      "imagery": []
+      "composition": [
+        "visual-silence",
+        "repeated-composition-risk"
+      ],
+      "typography": [
+        "serif-sans-tension"
+      ],
+      "layout": [
+        "structured-information",
+        "overlay-interference"
+      ],
+      "motion": [
+        "restrained-motion"
+      ],
+      "color": [
+        "controlled-palette"
+      ],
+      "imagery": [
+        "real-world-evidence"
+      ]
     },
     "note": "IN — A disciplined enterprise website that avoids the familiar visual language of AI startups. Large editorial serif typography, restrained sans-serif metadata, deep navy fields, warm neutral surfaces, numbered structures, and fine horizontal rules turn a technically complex platform into a calm and credible system. The strongest decision is its control of hierarchy: major statements receive generous spatial authority, supporting explanations remain compact, and real-world customer imagery provides evidence without overwhelming the interface. Motion and cursor effects stay subordinate to the reading sequence. However, the repeated headline-and-explanation compositions eventually become predictable, some secondary text approaches low contrast, and the persistent cookie and chat overlays weaken an otherwise carefully controlled frame. A strong reference for editorial authority, enterprise clarity, and structured information — not for immersive spectacle. Первый экран сильный, но он уже показывает характер сайта: не «AI-tech cliché», а строгая смесь enterprise clarity и editorial typography крупная editorial serif-типографика сразу создаёт характер;\nпочти монохромная палитра с глубоким navy и тёплым cream;\nсложная тема объясняется через очень простую визуальную иерархию;\nexcellent visual rhythm: statement → structured explanation → platform → proof;\nnumbered lines, таблицы и тонкие rules превращают техническую информацию в оформленную систему;\nреальные enterprise-фотографии сильнее обычных AI-рендеров и абстрактных 3D-форм;\nsticky navigation сохраняет ясность, не забирая внимание;\nrestrained motion поддерживает чтение вместо отдельного spectacle;\nдизайн выглядит современно, но не зависит от модного UI-эффекта крупная editorial serif-типографика сразу создаёт характер;\nпочти монохромная палитра с глубоким navy и тёплым cream;\nсложная тема объясняется через очень простую визуальную иерархию;\nexcellent visual rhythm: statement → structured explanation → platform → proof;\nnumbered lines, таблицы и тонкие rules превращают техническую информацию в оформленную систему;\nреальные enterprise-фотографии сильнее обычных AI-рендеров и абстрактных 3D-форм;\nsticky navigation сохраняет ясность, не забирая внимание;\nrestrained motion поддерживает чтение вместо отдельного spectacle;\nдизайн выглядит современно, но не зависит от модного UI-эффекта",
     "shots": {

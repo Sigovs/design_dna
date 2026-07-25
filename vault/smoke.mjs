@@ -811,6 +811,31 @@ console.log('\none-box smart tagging');
   check('comma batch is parsed and each tag routed individually',
     batch.includes('color +1') && batch.includes('layout +1') && batch.includes('motion +1'), batch);
 
+  /* A tag is a term, not a sentence. A 123-character slugified phrase once reached
+     the vocabulary and broke the filter row. */
+  await tp.fill('#smart-tag-input', 'vertical narrative dominant character mass layered overlap asymmetric balance');
+  await tp.click('#smart-tag-add');
+  await tp.waitForTimeout(500);
+  /* The words land wherever the classifier puts them — some in categories, some in
+     the unsorted queue. What matters is that they arrived as SEPARATE terms. */
+  check('a space-separated phrase is split into separate tags, not one monster',
+    await tp.evaluate(() => {
+      const all = [
+        ...[...document.querySelectorAll('.smart-chip .label')].map((e) => e.textContent.trim()),
+        ...[...document.querySelectorAll('#queues .queue-tag')].map((e) => e.textContent.trim()),
+      ];
+      const fromPhrase = ['vertical', 'narrative', 'dominant', 'layered', 'asymmetric'];
+      return fromPhrase.filter((w) => all.includes(w)).length >= 3
+        && !all.some((c) => c.length > 36);
+    }));
+  await tp.fill('#smart-tag-input', 'a'.repeat(80));
+  await tp.click('#smart-tag-add');
+  await tp.waitForTimeout(500);
+  check('an unbreakable over-long token is refused with a reason',
+    /sentence, not a tag/.test(await tp.locator('#toast').textContent())
+    && !(await tp.evaluate(() => [...document.querySelectorAll('.smart-chip .label')]
+      .some((e) => e.textContent.trim().length > 36))));
+
   // 3. nonsense goes to unsorted and the proposal bar appears
   await tp.fill('#smart-tag-input', 'zorbaflux');
   await tp.click('#smart-tag-add');

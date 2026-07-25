@@ -2489,12 +2489,44 @@ function smartTagBox(entry) {
     });
   };
 
+  /* A tag is a term, not a sentence. Without this the box happily accepted
+     "vertical narrative dominant character mass layered overlap …" as ONE
+     123-character tag, which then went into the vocabulary and broke the filter
+     row. Split on commas AND on runs of whitespace-turned-hyphens beyond a
+     sensible length, and say what happened. */
+  const TAG_MAX = 36;
+
   const commit = () => {
     const forced = select.value;
-    const raw = input.value.split(',').map(slugTag).filter(Boolean);
+    const pieces = input.value.split(',').map((s) => s.trim()).filter(Boolean);
+    const raw = [];
+    let autoSplit = 0;
+    let refused = 0;
+    for (const piece of pieces) {
+      const slug = slugTag(piece);
+      if (slug.length <= TAG_MAX) { if (slug) raw.push(slug); continue; }
+      /* Too long to be one term. If the author typed spaces, those are the seams:
+         split there. If they typed one unbroken monster, refuse it rather than
+         guess where the words are. */
+      const words = piece.trim().split(/\s+/).filter(Boolean);
+      if (words.length > 1) {
+        words.map(slugTag).filter(Boolean).forEach((w) => raw.push(w));
+        autoSplit += 1;
+      } else {
+        refused += 1;
+        toast(`"${slug.slice(0, 28)}…" is ${slug.length} characters — that is a sentence, not a tag. `
+          + `Separate the terms with commas or spaces.`, 'bad', 12000);
+      }
+    }
     const seen = new Set();
     const batch = raw.filter((t) => (seen.has(t) ? false : seen.add(t)));
-    if (!batch.length) { toast('Type a tag first — commas separate several.', 'warn', 4000); input.focus(); return; }
+    if (!batch.length) {
+      // Don't replace a refusal reason with a misleading "type something".
+      if (!refused) toast('Type a tag first — commas separate several.', 'warn', 4000);
+      input.focus();
+      return;
+    }
+    if (autoSplit) toast(`Split ${autoSplit} over-long entr${autoSplit === 1 ? 'y' : 'ies'} at the spaces.`, 'warn', 6000);
 
     const landed = {};
     const unsortedNow = [];

@@ -39,9 +39,9 @@
     },
     "note": "TODO",
     "shots": {
-      "full": null,
-      "hero": null,
-      "mobile": null
+      "full": "shots/thenewmobileworkforce-imm-g-prod-com-back-at-hq/full.jpg",
+      "hero": "shots/thenewmobileworkforce-imm-g-prod-com-back-at-hq/hero.jpg",
+      "mobile": "shots/thenewmobileworkforce-imm-g-prod-com-back-at-hq/mobile.jpg"
     }
   },
   {

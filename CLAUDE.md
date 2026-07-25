@@ -11,6 +11,17 @@ credentials, a remote that doesn't exist yet). Stop and state exactly what the
 user must do — the specific action, not a general problem description. Everything
 that is a taste or implementation decision is yours to make.
 
+## Git hygiene
+
+**Never blind `git add -A` — stage explicitly or review `git status` before
+staging.** A sweep-everything stage will commit files you did not write and have
+not read: exports dropped into the tree by another session, scratch files, local
+config. This has already happened once in this repo (`vault/shots/f1_redbull.json`
+was committed blind, then had to be recovered and untracked).
+
+Stage the paths you actually changed. If you do use `-A`, run `git status` first
+and account for every line.
+
 ## Consistency
 
 **Every change to `skills/`, `dialects/`, or `TASTE.md` must keep the five-line

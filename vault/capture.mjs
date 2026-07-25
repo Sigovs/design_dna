@@ -7,6 +7,10 @@
  *   npm run capture-missing       shoot every entry with missing shots
  *                                 (for URLs added by hand from the phone)
  *
+ * Add --insecure to any command to accept TLS errors (misconfigured certs on
+ * agency/CDN hosts are common). Off by default and logged loudly when used — we
+ * are only taking screenshots, but an unverified host is still unverified.
+ *
  * Three shots per entry, into vault/shots/<id>/ :
  *   full.jpg    1440w full-page desktop
  *   hero.jpg    1440x900 viewport crop — what you see before scrolling
@@ -181,7 +185,7 @@ async function shoot(browser, entry) {
   log(`  shooting ${entry.url}`);
 
   // Desktop hero: 2x, because this is the shot you actually look at.
-  const heroCtx = await browser.newContext({ viewport: DESKTOP, deviceScaleFactor: 2 });
+  const heroCtx = await browser.newContext({ viewport: DESKTOP, deviceScaleFactor: 2, ignoreHTTPSErrors: INSECURE });
   const heroPage = await heroCtx.newPage();
   let title = entry.title || '';
   try {
@@ -194,7 +198,7 @@ async function shoot(browser, entry) {
   }
 
   // Desktop full page: 1x — a 1440x12000 strip at 2x is unclonable.
-  const fullCtx = await browser.newContext({ viewport: DESKTOP, deviceScaleFactor: 1 });
+  const fullCtx = await browser.newContext({ viewport: DESKTOP, deviceScaleFactor: 1, ignoreHTTPSErrors: INSECURE });
   const fullPage_ = await fullCtx.newPage();
   try {
     await settle(fullPage_, entry.url);
@@ -209,6 +213,7 @@ async function shoot(browser, entry) {
     ...devices['iPhone 13'],
     viewport: MOBILE,
     deviceScaleFactor: 1,
+    ignoreHTTPSErrors: INSECURE,
   });
   const mpage = await mobileCtx.newPage();
   try {
@@ -335,7 +340,10 @@ async function cmdCaptureMissing() {
         }
         await writeSites(entries); // write after each, so a later crash keeps progress
       } catch (err) {
-        warn(`${entry.id} failed: ${err.message}`);
+        warn(`${entry.id} failed: ${err.message.split('\n')[0]}`);
+        if (/ERR_CERT|SSL|TLS/i.test(err.message) && !INSECURE) {
+          warn('  certificate problem — retry with: npm run capture-missing -- --insecure');
+        }
         failed.push(entry.id);
       }
     }
@@ -355,7 +363,11 @@ function fail(msg) {
   process.exit(1);
 }
 
-const [cmd, ...rest] = process.argv.slice(2);
+const argv = process.argv.slice(2);
+const INSECURE = argv.includes('--insecure');
+const [cmd, ...rest] = argv.filter((a) => a !== '--insecure');
+
+if (INSECURE) warn('--insecure: TLS certificate errors will be ignored for this run');
 
 const commands = {
   add: () => cmdAdd(rest[0]),

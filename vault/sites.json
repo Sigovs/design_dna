@@ -30,6 +30,40 @@
     "unsorted": []
   },
   {
+    "id": "beings-co",
+    "url": "https://beings.co/",
+    "title": "beings.co",
+    "added": "2026-07-25",
+    "rating": 3,
+    "dialectStatus": "in",
+    "dialects": [
+      "auction-editorial"
+    ],
+    "tags": {
+      "composition": [
+        "brief-derived-cultural-directory"
+      ],
+      "typography": [],
+      "layout": [],
+      "motion": [],
+      "color": [],
+      "imagery": []
+    },
+    "note": "TODO",
+    "shots": {
+      "full": null,
+      "hero": null,
+      "mobile": null
+    },
+    "kind": "site",
+    "source": "",
+    "extras": [],
+    "captureError": null,
+    "works": "",
+    "weaknesses": "",
+    "unsorted": []
+  },
+  {
     "id": "ciridae-com",
     "url": "https://www.ciridae.com/?ref=siteinspire",
     "title": "Large Screen",

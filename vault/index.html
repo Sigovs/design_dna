@@ -169,11 +169,10 @@ button, input, textarea, select { font: inherit; color: inherit; }
    Active chips remain visible in the summary at every width. */
 .filter-disclosure { margin-top: var(--space-4); border-top: 0; }
 @media (min-width: 40.0625rem) {
-  /* Expanded, and the summary becomes a plain heading rather than a control. */
-  .filter-disclosure > summary { cursor: default; pointer-events: none; min-height: 0; }
-  .filter-disclosure > summary::before { content: none; }
+  /* Expanded BY DEFAULT on desktop, but still a control. Making it a
+     non-interactive heading meant a 6-row filter block could never be collapsed —
+     it opened and stayed open. Default ≠ permanent. */
   .filter-disclosure[open] > summary { border-bottom: 0; }
-  .filter-disclosure > summary .filter-active { pointer-events: auto; }
 }
 .filter-disclosure > summary {
   flex-wrap: wrap; gap: var(--space-3) var(--space-4);
@@ -1209,6 +1208,7 @@ function classifyTag(tag) {
 const isCanonicalTag = (cat, tag) => (vocab.categories[cat]?.tags ?? []).includes(tag);
 
 const DENSITY_KEY = 'design-dna:vault:density';
+const FILTERS_OPEN_KEY = 'design-dna:vault:filters-open';
 const FILTERS_KEY = 'design-dna:vault:filters';
 const DECLINED_KEY = 'design-dna:vault:vocab-declined';
 
@@ -1471,12 +1471,9 @@ function renderFilterSummary() {
   count.textContent = active.length ? `filters (${active.length} active)` : 'filters';
   count.dataset.active = active.length ? '1' : '0';
 
-  /* Expanded on desktop, where there is room now that only used tags render;
-     collapsed ≤40rem, where vertical space is the scarce resource. Re-evaluated
-     on resize so a rotated phone behaves. */
-  const wide = matchMedia('(min-width: 40.0625rem)').matches;
-  const disclosure = $('#filter-disclosure');
-  if (disclosure) disclosure.open = wide ? true : disclosure.open;
+  /* Deliberately does NOT touch .open. Forcing it open on every render fought the
+     user: the panel reopened itself and could never be dismissed. The default is
+     set once at boot and then remembered — see applyFilterDisclosure(). */
 
   /* A control that can do nothing should not occupy the first screen. */
   const clear = $('#clear-filters');
@@ -3426,6 +3423,20 @@ function wire() {
     render();
   });
 
+  /* Open state: desktop expanded, mobile collapsed — but only as a DEFAULT. Once
+     the author opens or closes it, that choice is remembered, like the density and
+     the filter set. A daily instrument should not re-litigate this every load. */
+  const disclosure = $('#filter-disclosure');
+  if (disclosure) {
+    const stored = store.get(FILTERS_OPEN_KEY);
+    disclosure.open = stored === null
+      ? matchMedia('(min-width: 40.0625rem)').matches
+      : stored === '1';
+    disclosure.addEventListener('toggle', () => {
+      store.set(FILTERS_OPEN_KEY, disclosure.open ? '1' : '0');
+    });
+  }
+
   /* Density and the last filter set persist per device: a daily instrument should
      reopen where the author left it. Guarded storage, so private mode is fine. */
   const densityBtn = $('#density');
@@ -3511,7 +3522,7 @@ function wire() {
   });
   $('#add-form').addEventListener('submit', guard('Add site', submitAdd));
 
-  // A rotation or resize crosses the breakpoint: re-apply the filter default.
+  // Resizing must not override a choice the author has made about the panel.
   matchMedia('(min-width: 40.0625rem)').addEventListener('change', () => renderFilterSummary());
 
   document.addEventListener('keydown', (ev) => {

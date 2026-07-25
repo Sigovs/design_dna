@@ -179,8 +179,30 @@ console.log('\nfilter wall collapsed behind one disclosure');
 
   /* CO2/CO3 model: only tags in use are rendered, so desktop stays EXPANDED and
      the disclosure applies ≤40rem only. Width-aware by design. */
-  check('desktop renders filters expanded',
+  check('desktop renders filters expanded by default',
     await fp.locator('#filter-disclosure').evaluate((e) => e.open));
+
+  /* A default is not a permanent state. Desktop once had pointer-events: none on
+     the summary, so a 6-row filter block opened and could never be closed. */
+  await fp.locator('#filter-disclosure > summary').click();
+  await fp.waitForTimeout(300);
+  check('the summary closes the panel after it is open',
+    !(await fp.locator('#filter-disclosure').evaluate((e) => e.open)));
+  await fp.locator('#filter-disclosure > summary').click();
+  await fp.waitForTimeout(300);
+  check('the summary reopens it — a real toggle, not one-way',
+    await fp.locator('#filter-disclosure').evaluate((e) => e.open));
+
+  // The choice is remembered rather than re-litigated on every load.
+  await fp.locator('#filter-disclosure > summary').click();   // close
+  await fp.waitForTimeout(300);
+  await fp.reload({ waitUntil: 'domcontentloaded' });
+  await fp.waitForSelector('.card');
+  await fp.waitForTimeout(800);
+  check('the open/closed choice survives a reload',
+    !(await fp.locator('#filter-disclosure').evaluate((e) => e.open)));
+  await fp.locator('#filter-disclosure > summary').click();   // back to open
+  await fp.waitForTimeout(300);
   check('search stays visible outside the disclosure',
     await fp.locator('#search').isVisible());
   check('the summary reads "filters" when nothing is active',
@@ -251,6 +273,8 @@ console.log('\nfilter wall collapsed behind one disclosure');
   check('mobile: a set filter stays visible when the panel is closed',
     !(await mfp.locator('#filter-disclosure').evaluate((e) => e.open))
     && (await mfp.locator('#filter-active .chip').first().isVisible()), mTag);
+  check('mobile: the panel closes again after opening',
+    !(await mfp.locator('#filter-disclosure').evaluate((e) => e.open)));
   await mfp.reload({ waitUntil: 'domcontentloaded' });
   await mfp.waitForSelector('.card');
   await mfp.waitForTimeout(800);

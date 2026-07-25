@@ -164,10 +164,12 @@
     ],
     "tags": {
       "composition": [
-        "vertical-narrative-dominant-character-mass-layered-overlap-asymmetric-balance-directed-visual-silence-figure-ground-tension",
-        "ambiguous-reading-order-mobile-recomposition-risk-decorative-information-legibility-risk"
+        "dominant-character-mass",
+        "vertical-narrative-dominant-character-mass-layered-overlap-asymmetric-balance-directed-visual-silence-figure-ground-tension"
       ],
-      "typography": [],
+      "typography": [
+        "editorial-type-hierarchy-scale-contrast-microtype-risk"
+      ],
       "layout": [],
       "motion": [],
       "color": [
@@ -189,7 +191,9 @@
     "captureError": null,
     "works": "",
     "weaknesses": "",
-    "unsorted": []
+    "unsorted": [
+      "vertical-narrative"
+    ]
   },
   {
     "id": "thenewmobileworkforce-imm-g-prod-com-back-at-hq",

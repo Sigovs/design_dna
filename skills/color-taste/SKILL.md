@@ -1,149 +1,23 @@
 ---
 name: color-taste
-description: Alex's colour rules — chromatic restraint, neutral dark or light bases, smoky desaturated accents used as a setting rather than an identity, banned AI-default palettes, near-white or ink only for text over photography, and WCAG AA verified on every palette change. Use before defining any palette, colour token, accent, gradient, background, or text-over-image treatment.
+description: Colour rules in two tiers — INVARIANT (WCAG AA verified on every palette change, never meaning by hue alone, visible focus states, legibility over imagery fixed at the background layer against worst-case regions) and DIALECT (auction-editorial's neutral dark-first base, smoky desaturated tones, accent as a setting, banned overused palettes, near-white/ink over photography, each with a yields-when). Use before defining any palette, colour token, accent, gradient, background, or text-over-image treatment.
 ---
 
 # Colour Taste
 
-**Position: premium is chromatic restraint.** Cheap design announces itself with
-colour. Expensive design establishes a neutral world and then admits one colour
-into it, quietly. The accent is a **setting**, not an identity.
+Two tiers. The **invariants** are accessibility and legibility contracts — they
+never yield to a brief. The **dialect** section is the house palette philosophy,
+active when a Design Read selects
+[auction-editorial](../../dialects/auction-editorial.md), and every rule in it
+states when it yields.
 
 ---
 
-## 1. Neutral base, dark first, colour second
+## INVARIANT
 
-Build the palette in this order, and do not skip ahead:
+### I1 — WCAG AA is a contract, verified on every palette change
 
-1. **Base** — a neutral, either dark or light. Dark first: if the brief doesn't
-   demand light, start dark and see whether light is genuinely better.
-2. **Ink** — the text colour and its opacity ladder.
-3. **Rules and surfaces** — hairlines, and at most one raised surface.
-4. **Accent** — last, and only if the design still needs something.
-
-```css
-:root { /* dark base */
-  --bg:        #0e0f11;  /* near-black, slightly warm-neutral — never #000 */
-  --bg-raised: #16181b;  /* one step only; not a card stack */
-  --ink:       #f2f1ee;  /* near-white, slightly warm — never #fff */
-  --ink-70:    #f2f1eeb3;
-  --ink-50:    #f2f1ee80;
-  --rule:      #f2f1ee1f;  /* hairlines live here */
-  --accent:    #6e7f76;    /* smoky sage — a setting, not a shout */
-}
-```
-
-**Rationale.** Pure `#000` and `#fff` are not neutral, they are *absent* —
-they flatten shadow detail, buzz against each other, and are the default of
-anything unconsidered. A slightly warm off-black/off-white reads as printed
-paper or exposed film. Dark-first because a dark base makes desaturated colour
-look expensive and forces restraint (loud colour on dark instantly looks
-neon/gaming), whereas a light base is forgiving of colour and therefore tempts
-you into more of it.
-
----
-
-## 2. Smoky and desaturated over saturated
-
-Any colour that enters the palette gets its chroma pulled down and, usually, a
-little of the base mixed into it.
-
-- Target roughly **8–25% saturation** in HSL terms, or `oklch` chroma ≈
-  `0.02–0.08`. Above that, justify it in the report.
-- Prefer colours that read as a *material or condition* — slate, sage, oxblood,
-  ash-blue, tobacco, bone — over colours that read as a *hue name*.
-- Tint the neutrals toward the accent's hue rather than adding more colours.
-  That is how a palette becomes coherent instead of assembled.
-
-```css
-/* good: one hue, chroma held low, expressed as a range */
---accent-dim:  oklch(0.55 0.03 165);
---accent:      oklch(0.64 0.05 165);
---accent-lift: oklch(0.74 0.06 165);
-```
-
-**Rationale.** Saturated colour dominates whatever it touches, so a saturated
-accent becomes the design's entire identity — and identities built on a hue age
-badly and read as branding-by-default. Desaturated colour sits *inside* the
-neutral world, which lets typography and spacing carry the design while colour
-sets mood. Physically it's also more truthful: pigment, dye, and film rarely hit
-digital saturation, so muted tones read as real materials.
-
----
-
-## 3. Accent is a setting, not an identity
-
-Budget for accent colour: **under ~5% of visible pixels**, and it appears in a
-small number of named roles you decide up front (e.g. *primary action + active
-state + one editorial mark*). Everything else is neutral.
-
-Never: accent-coloured body text, accent headings, accent section backgrounds,
-accent borders everywhere, accent icons throughout, accent-on-accent.
-
-**Rationale.** Accent works by scarcity — its only job is to mark where meaning
-concentrates. Spread across many roles it stops signalling anything and becomes
-decoration, and the eye loses the one reliable cue for where to act. Constraining
-accent also means a rebrand or a theme swap is a token change, not a redesign.
-
----
-
-## 4. Banned palettes — the AI-default looks
-
-These are hard bans. They are banned because they are the statistical default of
-generated design, so they read as "made by a machine" regardless of execution
-quality:
-
-- **Cream + terracotta** (`#faf6f0` + `#c4693d` and neighbours) — the whole warm
-  earthy-startup family.
-- **Black + acid green** (`#000` + `#c8ff00`/`#39ff14`) and its acid siblings.
-- **Purple-to-blue gradient** as the identity (the SaaS default).
-- **Teal + coral**, **navy + gold "luxury"**, **beige + sage wellness** as a
-  literal pairing rather than a considered desaturated palette.
-- Neon-on-dark "cyber" palettes, and any glow/bloom effect standing in for depth.
-
-If a brief seems to call for one of these, deliver the adjacent
-*considered* version: keep the temperature, drop the saturation, change the
-ratio, and make the neutral do the work.
-
-**Rationale.** Taste is partly negative knowledge. These combinations are not
-ugly in isolation — they are exhausted, and an exhausted palette makes original
-work look derivative. Avoiding them is the cheapest available differentiation.
-
----
-
-## 5. Text on photography: near-white or ink only
-
-Over any image or video: text is **near-white** (`--ink`) or **near-black**
-(`--ink-inverse`). Never an accent colour. Never a hue borrowed from the photo.
-
-If contrast fails, **fix the image, not the text**:
-
-```css
-.media-block { position: relative; isolation: isolate; }
-.media-block::after {          /* scrim: directional, tuned to where the text sits */
-  content: "";
-  position: absolute; inset: 0; z-index: -1;
-  background: linear-gradient(to top, #0e0f11e6 0%, #0e0f1199 45%, #0e0f1100 85%);
-}
-```
-
-Escalation ladder, in order: reposition the text into a quiet region → directional
-scrim → global darkening (max ~40%) → a small, deliberate blur behind the text
-block → recrop or replace the image. Blanket 60% black over a photograph means
-the photograph was the wrong choice.
-
-**Rationale.** Coloured text over photography fails twice: photographic
-backgrounds are multi-hued so a hue-on-hue relationship is unstable across the
-frame, and accent colour over imagery reads as a caption sticker rather than a
-statement. Near-white/ink is the only pair that holds legibility across an
-arbitrary background. Scrimming is honest — it treats legibility as an
-image-composition problem, which is what it is.
-
----
-
-## 6. WCAG AA is a contract, not a preference
-
-**Verify ratios on every palette change.** Not once at the end — every change.
+Not once at the end. **Every change.**
 
 | Content | Minimum |
 |---|---|
@@ -152,32 +26,201 @@ image-composition problem, which is what it is.
 | UI boundaries, icons, focus rings, form borders | **3:1** |
 | Disabled text | exempt, but never below 2.5:1 in practice |
 
-Rules that follow from the contract:
-- Dimmed ink (`--ink-50` and friends) is for micro-labels and decoration only —
-  check it, and if body copy uses it, it must still clear 4.5:1.
-- Accent-as-background needs its *paired text colour* checked, both directions.
-- Focus states are always visible: a ≥2px ring at ≥3:1 against both the element
-  and the page. Never `outline: none` without a stronger replacement.
-- Text over images: check against the *lightest* pixel region the text overlaps,
-  not the average.
-- Never encode meaning in hue alone — pair colour with a label, icon, or weight.
+- Dimmed ink ladders (`--ink-50` and friends) are for micro-labels and decoration
+  only — check them, and if body copy uses one it still clears 4.5:1.
+- Accent-as-background requires its paired text colour checked, both directions.
+- **Report the measured ratios for every text/background pair you introduce.**
 
-Report the measured ratios for every text/background pair you introduce.
+*Why:* a contract, because failing it is a defect rather than a stylistic
+difference. Practically it's also a quality floor — contrast failures are the most
+common reason a beautiful mock falls apart on a real screen in real light.
 
-**Rationale.** A contract, because failing it is a defect rather than a
-stylistic difference — and because a desaturated palette makes it easy to drift
-into pretty-but-illegible territory without noticing. Practically, AA is also a
-quality floor: contrast failures are the most common reason a beautiful mock
-falls apart on a real screen in real light.
+### I2 — Never encode meaning in hue alone
+
+Anything colour communicates — status, category, validity, selection, severity —
+is also carried by a label, icon, shape, position, or weight.
+
+*Why:* roughly 1 in 12 men has a colour vision deficiency, and hue is also the
+first thing lost to bad screens, glare, greyscale printing, and dark-mode
+inversion. A hue-only signal is an unreadable signal for a predictable share of
+your audience.
+
+### I3 — Focus states are always visible
+
+A ≥2px ring at ≥3:1 against both the element and the page. Never `outline: none`
+without a stronger replacement.
+
+*Why:* keyboard users navigate by focus. Removing the indicator doesn't simplify
+the design; it removes the ability to use it.
+
+### I4 — Legibility over imagery is fixed at the background layer
+
+Text over a photograph or video must meet I1 **against the lightest (or darkest)
+region it actually overlaps** — not against the image's average.
+
+When it fails, fix the background, not the text. Escalate in order: reposition the
+text into a quiet region → directional scrim → global darkening → a small
+deliberate blur behind the text block → recrop or replace the image.
+
+```css
+.media-block { position: relative; isolation: isolate; }
+.media-block::after {
+  content: "";
+  position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(to top, #0e0f11e6 0%, #0e0f1199 45%, #0e0f1100 85%);
+}
+```
+
+*Why:* photographic backgrounds are multi-hued and vary across the frame, so an
+average-case check passes while the real overlap fails. Scrimming treats
+legibility as an image-composition problem, which is what it is. Degrading the
+text instead — adding shadows, outlines, or heavier weights — trades one defect
+for another.
+
+---
+
+## DIALECT — auction-editorial
+
+Premium as chromatic restraint. Strong defaults, not laws.
+
+### D1 — Neutral base, dark first, colour second
+
+Build in this order and don't skip ahead: **base → ink → rules and surfaces →
+accent.** Dark first: if the brief doesn't demand light, start dark and check
+whether light is genuinely better.
+
+```css
+:root { /* dark base */
+  --bg:        #0e0f11;  /* near-black, slightly warm — never #000 */
+  --bg-raised: #16181b;  /* one step only; not a card stack */
+  --ink:       #f2f1ee;  /* near-white, slightly warm — never #fff */
+  --ink-70:    #f2f1eeb3;
+  --ink-50:    #f2f1ee80;
+  --rule:      #f2f1ee1f;
+  --accent:    #6e7f76;  /* smoky sage — a setting, not a shout */
+}
+```
+
+*Why:* pure `#000` and `#fff` are not neutral, they are *absent* — they flatten
+shadow detail, buzz against each other, and are the default of anything
+unconsidered. A slightly warm off-black/off-white reads as printed paper or
+exposed film. Dark-first because a dark base makes desaturated colour look
+expensive and enforces restraint, whereas a light base is forgiving of colour and
+therefore tempts you into more of it.
+
+`yields when:` the brand palette is established; the content needs a light reading
+surface (long-form reading, print-parity documents, medical or educational
+material); the sector has strong light-mode norms (healthcare, government,
+education, finance); or ambient use conditions favour light (bright environments,
+outdoor, projected). The off-black/off-white rule outlives the direction — avoid
+pure black and pure white in either mode.
+
+### D2 — Smoky and desaturated over saturated
+
+Pull chroma down and mix a little of the base into anything entering the palette.
+
+- Target ~8–25% HSL saturation, or `oklch` chroma ≈ `0.02–0.08`.
+- Prefer colours reading as a *material or condition* — slate, sage, oxblood, ash,
+  tobacco, bone — over colours reading as a *hue name*.
+- Tint the neutrals toward the accent's hue rather than adding more colours.
+
+```css
+--accent-dim:  oklch(0.55 0.03 165);
+--accent:      oklch(0.64 0.05 165);
+--accent-lift: oklch(0.74 0.06 165);
+```
+
+*Why:* saturated colour dominates whatever it touches, so a saturated accent
+becomes the design's whole identity — and identities built on a hue age badly.
+Desaturated colour sits *inside* the neutral world, letting typography and spacing
+carry the design. It's also more truthful: pigment, dye, and film rarely reach
+digital saturation, so muted tones read as real materials. Dialect principle
+[P7](../../dialects/auction-editorial.md#p7--materials-over-hues).
+
+`yields when:` the brand is colour-led; the audience is young or the register is
+playful, expressive, cultural, or experimental; colour must differentiate at a
+glance (wayfinding, categorical data, status systems); or the medium eats chroma
+(projection, print on uncoated stock, low-quality screens) and needs headroom.
+
+> **Vault counter-evidence:** `vault/thegentlewoman-co-uk` uses a bright saturated
+> turquoise *as* its identity and is excellent, because it is the only colour in
+> an otherwise monochrome world. Worth reading before applying D2 or D3 —
+> restraint may live in the palette's *size* rather than in its chroma.
+
+### D3 — Accent is a setting, not an identity
+
+Budget: **under ~5% of visible pixels**, in a small number of named roles decided
+up front (e.g. primary action + active state + one editorial mark). Everything
+else neutral. Never accent body text, accent headings, accent section
+backgrounds, accent borders everywhere, or accent-on-accent.
+
+*Why:* accent works by scarcity — its job is to mark where meaning concentrates.
+Spread across many roles it signals nothing and the eye loses the one reliable cue
+for where to act. Constraining it also makes a theme swap a token change rather
+than a redesign. Dialect principle
+[P6](../../dialects/auction-editorial.md#p6--colour-is-a-setting-not-an-identity).
+
+`yields when:` identity is genuinely colour-led; colour carries meaning at scale
+(status, categories, data visualisation, wayfinding); or the palette is one
+saturated colour against an otherwise monochrome world, where the restraint is
+structural rather than chromatic (see the vault note above).
+
+### D4 — The banned palettes
+
+Avoid these as *pairings*. They are the statistical default of generated design,
+so they read as machine-made regardless of execution quality:
+
+- **Cream + terracotta** (`#faf6f0` + `#c4693d`) and the warm earthy-startup family
+- **Black + acid green** (`#000` + `#c8ff00`/`#39ff14`) and its acid siblings
+- **Purple→blue gradient** as an identity (the SaaS default)
+- **Teal + coral**, **navy + gold "luxury"**, **beige + sage wellness** as literal
+  pairings rather than considered desaturated palettes
+- Neon-on-dark "cyber" palettes; glow/bloom standing in for depth
+
+Where a brief seems to call for one, deliver the adjacent *considered* version:
+keep the temperature, drop the saturation, change the ratio, let the neutral work.
+
+*Why:* taste is partly negative knowledge. These aren't ugly in isolation — they
+are exhausted, and an exhausted palette makes original work look derivative.
+Avoiding them is the cheapest available differentiation.
+
+`yields when:` the palette is brand-mandated (then execute it with a structural
+difference instead — layout, type, and space do the differentiating); the sector
+genuinely owns the pairing and the audience reads it as competence rather than as
+cliché; or the reference is deliberate and legible as such (period work, pastiche,
+homage). A trope executed with a real structural idea is no longer the trope.
+
+### D5 — Text over photography is near-white or ink
+
+Over any image or video, text is `--ink` (near-white) or `--ink-inverse`
+(near-black). Not an accent colour, not a hue borrowed from the photo.
+
+*Why:* coloured text over photography fails twice — photographic backgrounds are
+multi-hued so hue-on-hue is unstable across the frame, and accent over imagery
+reads as a caption sticker rather than a statement. Near-white/ink is the only
+pair holding legibility over an arbitrary background.
+
+`yields when:` the brand mandates a colour there and the art direction supports it
+(a controlled, flat-toned or duotone image, not an arbitrary photograph); or the
+type layer is itself the art direction — deliberate editorial colour-on-image,
+where the image has been chosen or graded for it. **I4 still binds:** whatever the
+colour, it meets AA against the worst-case region it overlaps, and the fix stays
+at the background layer.
 
 ---
 
 ## Checklist
 
-- [ ] Base is a neutral off-black or off-white; no `#000`, no `#fff`.
-- [ ] Palette was built base → ink → rules → accent, in that order.
-- [ ] Accent is desaturated (chroma ≤ ~0.08) and under ~5% of pixels.
-- [ ] Zero banned AI-default combinations.
-- [ ] All text over media is near-white or ink, with a scrim if needed.
+**Invariant — every deliverable**
 - [ ] Every text/background pair measured; ratios stated in the report.
-- [ ] Focus rings visible at ≥3:1; no meaning carried by hue alone.
+- [ ] No meaning carried by hue alone.
+- [ ] Focus rings visible at ≥3:1 against element and page.
+- [ ] Text over media checked against worst-case overlap; fixed with a scrim.
+
+**Dialect — when auction-editorial is active**
+- [ ] Base is off-black or off-white; no `#000`, no `#fff`.
+- [ ] Built base → ink → rules → accent, in order.
+- [ ] Accent desaturated (chroma ≤ ~0.08) and under ~5% of pixels.
+- [ ] No banned pairing, or a named structural differentiation.
+- [ ] Text over media is near-white or ink.
+- [ ] Any yield above is named in the report with its condition.

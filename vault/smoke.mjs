@@ -49,6 +49,12 @@ check('filter chips render', (await page.locator('.chip').count()) > 0);
 check('count is populated', (await page.locator('#count').textContent()).trim().length > 0);
 await shot(page, 'gallery-grid', { fullPage: true });
 
+console.log('\ndialect fields');
+check('dialect status filter row renders',
+  (await page.locator('#dialect-filters .chip').count()) >= 4);
+const marks = await page.locator('.card .status-mark').count();
+console.log(`  · ${marks} reviewed entries carry a status mark (0 is correct when all are unreviewed)`);
+
 console.log('\nfiltering');
 const firstChip = page.locator('.chip').first();
 const chipName = (await firstChip.textContent()).trim();
@@ -70,7 +76,14 @@ console.log('\ndetail');
 await page.locator('.card').first().click();
 await page.waitForTimeout(700);
 check('detail opens', await page.locator('#detail').isVisible());
-check('spec plate has rows', (await page.locator('#detail .plate dt').count()) >= 4);
+check('spec plate has rows', (await page.locator('#detail .plate dt').count()) >= 6);
+check('plate shows dialect + review rows',
+  (await page.locator('#detail .plate dt').allTextContents())
+    .map((t) => t.trim().toLowerCase()).includes('review'));
+check('edit form has a dialectStatus selector',
+  (await page.locator('#detail [data-field="dialectStatus"] input[type=radio]').count()) >= 4);
+check('edit form has a dialects multi-pick',
+  (await page.locator('#detail [data-field="dialects"] input[type=checkbox]').count()) >= 1);
 check('edit form has tag checkboxes', (await page.locator('#detail .check input[type=checkbox]').count()) > 0);
 check('edit form has a note field', (await page.locator('#detail textarea').count()) === 1);
 check('edit form has a title field', (await page.locator('#detail input[type=text]').count()) >= 1);

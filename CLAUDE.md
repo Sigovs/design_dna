@@ -13,11 +13,16 @@ that is a taste or implementation decision is yours to make.
 
 ## Consistency
 
-**Every change to `skills/` or `TASTE.md` must keep the five-line taste summary
-in `README.md` in sync.** That summary is the human's drift-detection surface —
-if it stops describing what the skills actually say, the whole system silently
-decays. Treat it as part of the same edit, not a follow-up.
+**Every change to `skills/`, `dialects/`, or `TASTE.md` must keep the five-line
+taste summary in `README.md` in sync.** That summary is the human's
+drift-detection surface — if it stops describing what the rules actually say, the
+whole system silently decays. Treat it as part of the same edit, not a follow-up.
 
-Related: `TASTE.md`'s skill-index one-liners must also match the skills they
-point at, and the working-style clause in `TASTE.md` §4 mirrors the autonomy
-rules above — change one, change both.
+Related: `TASTE.md`'s skill-index and dialect-index one-liners must match the
+files they point at, and the working-style clause in `TASTE.md` §5 mirrors the
+autonomy rules above — change one, change both.
+
+**Tier discipline.** Every rule in `skills/` sits under `## INVARIANT` or
+`## DIALECT`. A new dialect rule without a `yields when:` is incomplete. Never
+move a rule between tiers as a side effect of another edit — a tier change is its
+own decision and needs its own argument in the commit.

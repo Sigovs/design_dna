@@ -5,6 +5,8 @@
     "title": "RM Sotheby's",
     "added": "2026-07-24",
     "rating": 2,
+    "dialectStatus": "unreviewed",
+    "dialects": [],
     "tags": {
       "typography": [
         "display-serif",
@@ -39,6 +41,8 @@
     "title": "The Gentlewoman",
     "added": "2026-07-24",
     "rating": 3,
+    "dialectStatus": "unreviewed",
+    "dialects": [],
     "tags": {
       "typography": [
         "grotesque",

@@ -1,5 +1,5 @@
 {
-  "_comment": "Controlled tag vocabulary. THE single source of truth — vault/index.html and vault/capture.mjs both read this file. Add tags here; free additions made in the gallery land on entries but are not promoted into this list until you add them deliberately. Hues are low-chroma on purpose (see skills/color-taste): chips are data encoding, not decoration.",
+  "_comment": "Controlled vocabulary. THE single source of truth — vault/index.html and vault/capture.mjs both read this file. Add tags here; free additions made in the gallery land on entries but are not promoted into this list until you add them deliberately. Hues are low-chroma on purpose (see skills/color-taste): chips are data encoding, not decoration.",
   "categories": {
     "typography": {
       "hue": 165,
@@ -21,5 +21,9 @@
       "hue": 300,
       "tags": ["photography", "art-direction", "scrim-text", "product", "illustration"]
     }
-  }
+  },
+  "_dialectsComment": "Stored dialects, matching files in dialects/. A new one may only be created through the distillation evidence rule in vault/README.md — 3+ human-approved out-of-dialect references sharing decision logic, and Alex approves.",
+  "dialects": ["auction-editorial"],
+  "_dialectStatusComment": "unreviewed = not yet judged by a human. in = belongs to a stored dialect. out = good work outside every stored dialect (the raw material for new ones). hybrid = shares decision logic with a stored dialect but diverges in expression.",
+  "dialectStatus": ["unreviewed", "in", "out", "hybrid"]
 }

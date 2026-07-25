@@ -1,217 +1,321 @@
 ---
 name: anti-patterns
-description: Alex's hard bans for visual work — AI-default palettes and layouts, gradient buttons, decorative shadows, boxes where open air and thin rules would work, underlined nav links, repeated primary CTAs, imagery hidden on mobile, horizontal page scroll, magic numbers instead of tokens, and template-looking output. Use as a final gate before shipping any visual work, and whenever choosing between a container and open air.
+description: Failure modes in two tiers — INVARIANT universal failures (weak hierarchy, inaccessible contrast, gratuitous motion, arbitrary spacing, inconsistent tokens, horizontal page scroll, content parity across viewports, and controlled irregularity that stops being legible or intentional) and DIALECT trope bans (AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, underlined nav, repeated primary CTAs, imagery hidden on mobile, template anonymity — each with a yields-when). Use as the final gate before shipping any visual work, and whenever choosing between a container and open air.
 ---
 
-# Anti-Patterns — Hard Bans
+# Anti-Patterns
 
-These are **bans**, not preferences. They outrank every other skill in this
-repo. If a ban and a brief conflict, solve the brief a different way; if a ban
-and your own instinct conflict, the ban wins.
+Two tiers, and the distinction matters more here than anywhere else in this repo.
 
-Run this file as a gate before declaring visual work finished. Any violation
-that survives must be named explicitly in the report under *Known compromises*,
-with the external constraint that forced it. Silent violations are the failure
-mode this file exists to prevent.
+**INVARIANT failures are defects.** They make work worse for everyone, in every
+aesthetic. They never yield to a brief; a brief that requires one has specified a
+bug.
+
+**DIALECT bans are aesthetic positions** — personal dislikes and overused tropes.
+They are strong defaults inside
+[auction-editorial](../../dialects/auction-editorial.md), each with a stated
+`yields when:`. A dialect ban set aside for its stated condition is correct
+practice. Set aside silently, it is drift.
+
+Run this file as the final gate. Any invariant violation that survives must be
+named in the report under *Known compromises* with the external constraint that
+forced it. Any dialect yield must be named under *Dialect yields* with its
+condition.
 
 ---
 
-## 1. AI-default looks
+## INVARIANT — universal failures
 
-**Banned:** cream + terracotta; black + acid green; purple→blue SaaS gradient
+### U1 — Weak hierarchy
+
+Rank is ambiguous: nothing is clearly first, or several things claim to be. The
+symptoms — everything centred, every section the same visual weight, ranks
+separated by 2px, emphasis applied so widely it stops being emphasis.
+
+*Why it's universal:* hierarchy is the interface to content. When it's ambiguous
+readers serialise — reading everything to find out what matters — which is the most
+expensive failure a layout can cause, and it happens before anyone forms an
+aesthetic opinion.
+
+**Includes: emphasis must encode ranking truthfully.** If three things carry
+identical primary emphasis, the design is claiming three firsts. Either they
+genuinely are peers (then the emphasis is honest — see D6) or the ranking is
+broken.
+
+### U2 — Inaccessible contrast
+
+Any text, control boundary, focus ring, or meaningful graphic below the AA ratios
+in [color §I1](../color-taste/SKILL.md#invariant). Also: meaning carried by hue
+alone, and invisible focus states.
+
+*Why it's universal:* it makes the work unusable for a predictable share of the
+audience, and marginal for everyone else in bright light or on a bad screen. It is
+measurable, so it is never a matter of opinion.
+
+### U3 — Gratuitous motion
+
+Animation with no communicative job: decorative loops, movement in the periphery
+of reading content, entrance animations on everything, motion that delays input.
+Plus the hard failures — animating layout properties, non-interruptible
+animations, and any animation with no reduced-motion path.
+
+*Why it's universal:* movement is involuntarily attention-capturing. Motion that
+communicates nothing spends the user's attention and returns nothing, and for
+motion-sensitive users it causes physical symptoms.
+
+### U4 — Arbitrary spacing
+
+Gaps chosen by nudging rather than by decision: uniform gaps where grouping is
+needed, internal gaps equal to or larger than external gaps, spacing that
+collapses to zero at small widths, text running to the viewport edge.
+
+*Why it's universal:* proximity encodes grouping pre-attentively. Arbitrary gaps
+don't just look unconsidered — they actively assert wrong relationships.
+
+### U5 — Inconsistent tokens
+
+Raw values in components: `margin-top: 37px`, `#3a3a3a`, `transition: 0.3s`,
+`font-size: 19px`. Two scales in one system. A token defined and then bypassed.
+
+*Why it's universal:* untokenised values destroy the rhythm that carries any
+aesthetic, and make global change impossible — so the design decays as soon as
+anyone else edits it. A one-off value is also a symptom: it means a layout is being
+nudged instead of composed. Exceptions: `1px` hairlines, `0`, and
+`100%`/`100vh`-class values.
+
+### U6 — Horizontal page scroll
+
+Any horizontal overflow on the document at any viewport width, including 320px.
+
+```css
+html, body { overflow-x: clip; }        /* safety net, not the fix */
+img, svg, video { max-width: 100%; height: auto; }
+.wide-content { overflow-x: auto; }     /* deliberate, scoped, inside its container */
+```
+
+Intentional horizontal scrolling *inside* a bounded container — a table, a code
+block, a filmstrip — is fine as long as the page itself never moves.
+
+*Why it's universal:* content becomes unreachable and the page reads as broken,
+undoing every other quality signal. It is unambiguously a bug.
+
+### U7 — Content parity across viewports
+
+No content-bearing element is removed to avoid re-composing the layout. Not
+imagery that carries information, not data columns, not context. Re-compose
+instead: recrop, reorder, restructure a table into stacked records.
+
+Purely decorative elements may be dropped — but if it can be dropped, ask whether
+it should exist at all (U1).
+
+*Why it's universal:* mobile is usually the majority of real traffic, so removing
+content there means most people never see the design — they see a reduction of it.
+Hiding rather than re-composing is a layout that was designed at one width and
+never finished.
+
+### U8 — Controlled irregularity must remain legible and intentional
+
+Irregularity — broken grids, unexpected scale jumps, asymmetry, deliberate
+misalignment, overlap, rule-breaking composition — is legitimate and often
+excellent. It has exactly two obligations:
+
+- **Legible.** The reading order, grouping, and rank still survive it. A reader
+  can tell what to read first and what belongs with what.
+- **Intentional.** It reads as a decision, not as an accident or a bug. The
+  distinction is usually consistency of the break: an irregularity that recurs
+  with its own logic reads as designed; a single unexplained misalignment reads as
+  a mistake.
+
+*Why it's universal:* this is the floor that makes expressive work possible rather
+than the ceiling that prevents it. It bans neither disruption nor density nor
+novelty — only illegibility and accident. Any aesthetic can meet it.
+
+> **The related preference is a dialect rule, not an invariant.** *Prefer one
+> measured compositional disruption over continuous novelty* lives in
+> [auction-editorial P4](../../dialects/auction-editorial.md#p4--one-committed-gesture-beats-several-safe-ones)
+> and yields when an expressive, experimental, cultural, or youth-oriented brand
+> benefits from a more continuously disruptive visual language. A continuously
+> disruptive design is fully permitted by U8 — it just has to stay legible and
+> deliberate.
+
+---
+
+## DIALECT — auction-editorial trope bans
+
+Personal aesthetic positions. Strong defaults with stated exits.
+
+### D1 — AI-default looks
+
+**Avoided:** cream + terracotta; black + acid green; purple→blue SaaS gradient
 identity; teal + coral; navy + gold "luxury"; beige + sage wellness; neon-on-dark
-cyber; glow/bloom standing in for depth. Also the structural defaults: the
-three-icon feature triptych, the centred hero with a subtitle and two buttons,
-the full-bleed stock photo with centred white text, the emoji-as-icon system.
+cyber; glow/bloom as depth. Plus the structural defaults — the three-icon feature
+triptych, the centred hero with subtitle and two buttons, the full-bleed stock
+photo with centred white text, emoji-as-icon-system.
 
-**Why:** these are the statistical centre of generated design. Executing one well
-still reads as "machine-made", which is the one impression this whole DNA exists
-to avoid. See [color-taste](../color-taste/SKILL.md) §4 for the considered
-alternatives.
+*Why:* these are the statistical centre of generated design. Executing one well
+still reads as machine-made, which is the impression this DNA exists to avoid.
 
-**Instead:** keep the temperature, drop the saturation, break the symmetry, and
-let type and space carry the identity.
+`yields when:` the palette or archetype is brand-mandated; the sector genuinely
+owns it and the audience reads it as competence rather than cliché; the reference
+is deliberate and legible as such (period work, homage, pastiche); or the archetype
+is the most usable answer for the audience — a centred hero with one clear action
+is a good landing page for a low-context audience. **Then differentiate
+structurally instead**: keep the archetype, change the grid, the type, or the space.
 
----
+### D2 — Gradient buttons
 
-## 2. Gradient buttons
+**Avoided:** gradient fills on interactive controls; gradient text; gradient
+borders; gradient icon fills; animated gradient backgrounds.
 
-**Banned:** any gradient fill on an interactive control. Also gradient text,
-gradient borders, gradient icon fills, and animated gradient backgrounds.
+*Why:* a gradient button is the most reliable date-stamp on a design (2014 iOS,
+2021 SaaS), and it fights legibility — the label's contrast varies across its own
+background. Controls need a flat, verifiable surface. Preferred instead: solid
+accent fill, or ink-on-transparent with a 1px rule. One primary, one secondary, one
+ghost.
 
-**Why:** a gradient button is the single most reliable date-stamp on a design
-(2014 iOS, 2021 SaaS) and it fights legibility, since the label's contrast ratio
-varies across its own background. Buttons need a *flat, verifiable* surface.
+`yields when:` the brand identity is genuinely gradient-led, or the control is part
+of a deliberately expressive surface where flatness would read as broken.
+**Invariant floor:** the label must clear AA against the *worst* point of its own
+background (U2) — a gradient control that only passes at its lightest stop is a
+defect, not a yield.
 
-**Instead:** solid accent fill, or ink-on-transparent with a 1px rule. One
-primary style, one secondary, one ghost. That is the whole system. A single large
-gradient may exist as an atmospheric background *behind* content — never on it,
-and never as the brand's identity.
+A single large gradient as atmosphere *behind* content was never banned.
 
----
+### D3 — Decorative shadows
 
-## 3. Decorative shadows
+**Avoided:** `box-shadow` for prettiness — soft glows under cards, ambient drops on
+static blocks, layered "elevation" on things that never rise, `text-shadow` on
+headings, coloured shadows.
 
-**Banned:** `box-shadow` used for prettiness — soft glows under cards, ambient
-drop shadows on static blocks, layered "elevation" on things that never rise,
-`text-shadow` on headings, coloured shadows.
+*Why:* a shadow is a claim about physical elevation. When nothing is above
+anything, the shadow is a claim the eye detects as mush, and it's the fastest way to
+make a crisp layout look like a slide template. Preferred instead: hierarchy from
+space, scale, and hairlines. Shadow is fine on genuinely floating, temporary layers
+— dropdown, popover, modal, drag preview — kept tight and neutral:
+`0 8px 24px -8px rgb(0 0 0 / 0.4)`.
 
-**Why:** a shadow is a claim about physical elevation. When nothing is actually
-above anything, the shadow is a lie the eye detects as mush, and it's the
-fastest way to make a crisp layout look like a slide template.
+`yields when:` the design language is explicitly material/elevation-based (Material
+Design and its descendants), the brand uses depth as a signature, or a platform
+convention expects it (native-feeling mobile surfaces). Then keep depth cues
+*truthful* — shadow depth should still correspond to actual layer order, because
+inconsistent depth cues read as noise in any language.
 
-**Instead:** hierarchy from space, scale, and hairline rules. Shadow is permitted
-only on genuinely floating, temporary layers — dropdown, popover, modal, drag
-preview — where it must be tight and neutral:
-`0 8px 24px -8px rgb(0 0 0 / 0.4)`. For text over images, use a scrim
-([color-taste](../color-taste/SKILL.md) §5), never a text shadow.
+For text over images, use a scrim ([color §I4](../color-taste/SKILL.md#invariant)),
+never a text shadow — that one is an invariant, not a preference.
 
----
+### D4 — Boxes where open air and thin rules work
 
-## 4. Boxes where open air + thin rules work
-
-**Banned as the default:** wrapping content in a bordered/filled card because it
+**Avoided as the default:** wrapping content in a bordered or filled card because it
 "needs structure". Nested boxes, boxed spec tables, boxed testimonials, boxed
 stats, boxed form sections, panel-in-panel.
 
-**Why:** a box is a heavy, permanent separator used to fix a problem that is
-almost always insufficient spacing. Boxes also multiply — one card invites a grid
-of cards, and a grid of cards is the template look. Editorial layouts group with
-proximity and separate with a hairline, which is lighter and more precise.
+*Why:* a box is a heavy, permanent separator applied to a problem that is usually
+insufficient spacing. Boxes also multiply — one card invites a grid of cards, and a
+grid of cards is the template look. Preferred order: (1) whitespace alone;
+(2) a 1px hairline; (3) a subtle background shift with no border; (4) an actual
+bordered card.
 
-**Instead:** ranked by preference — (1) whitespace alone, per
-[spacing-taste](../spacing-taste/SKILL.md); (2) a 1px hairline rule; (3) a
-subtle background shift with **no** border; (4) an actual bordered card, only
-when the element is independently interactive or genuinely reorderable. Prove
-step 1 fails before moving down.
+`yields when:` the information environment is dense and boundaries aid scanning
+(dashboards, admin, comparison tables); the element is independently interactive,
+selectable, draggable, or reorderable — then a container communicates its edges
+honestly; accessibility calls for explicit region boundaries; or the content is
+user-generated and unpredictable, where a container prevents collisions air can't.
 
----
+### D5 — Underlined nav links
 
-## 5. Underlined nav links
+**Avoided:** `text-decoration: underline` on navigation, buttons, tabs, logos, or
+card titles; underline-on-hover as a nav's only affordance.
 
-**Banned:** `text-decoration: underline` on navigation, buttons, tabs, logos, or
-card titles. Also underline-on-hover as a nav's only affordance.
+*Why:* the underline means "inline link inside prose". On nav it dilutes that
+meaning and adds noise to a row the eye should scan as a set. Nav items are already
+understood as links by position. Preferred instead: ink opacity (dimmed → full), a
+short rule offset below the active item, or a mono uppercase treatment.
 
-**Why:** the underline means "inline link inside prose". Applying it to nav
-dilutes that meaning and adds visual noise to a row of items that the eye should
-scan as a set. Nav items are already understood as links by position.
+`yields when:` the audience or standard requires maximum affordance clarity —
+public-sector and government systems (GOV.UK style), low-vision-first design, or
+any context where users may not recognise position-as-affordance. Then underline
+everything clickable and accept the noise.
 
-**Instead:** nav state via ink opacity (dimmed → full), a short rule *offset*
-below the active item, or a mono uppercase treatment
-([typography-taste](../typography-taste/SKILL.md) §3). **Inline links inside body
-copy must stay underlined** — use `text-underline-offset: 0.2em` and
-`text-decoration-thickness: 1px`. Removing those is the opposite bug.
+**Not covered by this ban, and invariant:** inline links inside body copy stay
+underlined, and are distinguishable by more than colour (U2). Use
+`text-underline-offset: 0.2em` and `text-decoration-thickness: 1px`. Removing
+those is the opposite bug.
 
----
+### D6 — More than one primary CTA, repeated in a grid
 
-## 6. More than one primary CTA, repeated in a grid
+**Avoided:** the same filled primary button on every card in a grid, or several
+times down a page; two primary buttons side by side.
 
-**Banned:** the same filled primary button appearing on every card in a grid or
-several times down a page. Also two primary buttons side by side.
+*Why:* repetition converts a decision point into wallpaper and the eye stops seeing
+it. It usually also indicates the page has no single intended next action.
+Preferred instead: one primary action per view; repeated items get a text link, a
+whole-card click target, or a chevron.
 
-**Why:** "primary" is a ranking, and a ranking with N winners has no winner —
-repetition converts a decision point into wallpaper, and the eye stops seeing
-it. It also usually indicates the page has no single intended next action, which
-is a content problem wearing a visual costume.
+`yields when:` the choices are genuinely parallel and the user must pick one —
+pricing tiers, plan selection, account types, language pickers. There, identical
+emphasis is *honest*, and demoting all but one would misrepresent the choice.
+**Invariant floor:** emphasis must encode ranking truthfully (U1). Parallel
+choices with parallel emphasis satisfies that; a grid of unrelated items all
+shouting does not.
 
-**Instead:** one primary action per view. Repeated items get a text link, a
-whole-card click target, or a chevron. Decide the page's one action; everything
-else is secondary or ghost.
+### D7 — Hiding imagery on mobile
 
----
+**Avoided:** `display: none` on photography, illustration, charts, or diagrams at
+small widths, even when decorative.
 
-## 7. Hiding imagery on mobile
+*Why:* it signals a layout designed at desktop width and never re-composed, and it
+usually strips the art direction that carried the design's character. Preferred
+instead: recrop to portrait or square, move above the text, go edge-to-edge, reduce
+resolution.
 
-**Banned:** `display: none` on photography, illustration, charts, or diagrams at
-small widths. Same for hiding data columns rather than restructuring them.
+`yields when:` the element is genuinely decorative *and* its weight costs real
+performance on mobile connections, or the small-viewport composition is stronger
+without it. **Invariant floor:** content parity (U7) — anything carrying
+information gets re-composed, never dropped.
 
-**Why:** mobile is usually the majority of real traffic, so hiding the imagery
-means most people never see the design — they see a wireframe of it. It also
-signals the layout was designed at desktop width and never re-composed.
+### D8 — Template-looking anything
 
-**Instead:** re-compose. Recrop to a portrait or square aspect, move the image
-above the text, go edge-to-edge, or reduce resolution. Tables become spec plates
-([typography-taste](../typography-taste/SKILL.md) §4). Purely decorative
-flourishes may be dropped — but if it can be dropped on mobile, ask whether it
-should exist at all.
+**Avoided:** output that could be swapped into an unrelated product without anyone
+noticing. Symptoms: every section the same height and rhythm; icons for concepts
+that don't need icons; equal-weight column grids repeated down the page; generic
+copy standing in for content ("Powerful features", "Built for teams"); one radius
+on everything; header → hero → features → testimonials → CTA → footer with nothing
+else.
 
----
+*Why:* template design isn't badly executed, it's *anonymous* — and anonymity is
+the failure. Every prior in a generative model points at the average, so avoiding
+the average takes deliberate effort on every deliverable. Preferred instead: make
+at least one structural decision specific to *this* content, and be able to name it
+in one line.
 
-## 8. Horizontal page scroll
-
-**Banned:** any horizontal overflow on the document at any viewport width,
-including the 320px case. Usually caused by a `100vw` element inside a padded
-parent, an unconstrained image, a wide table, or a long unbroken string.
-
-**Why:** it is unambiguously a bug — content becomes unreachable and the page
-feels broken and untrustworthy, undoing every other quality signal.
-
-**Instead:**
-
-```css
-html, body { overflow-x: clip; }        /* the safety net, not the fix */
-img, svg, video { max-width: 100%; height: auto; }
-.wide-content { overflow-x: auto; }     /* deliberate, scoped, inside its own container */
-```
-
-Intentional horizontal scrolling is fine *inside* a bounded container (a table,
-a code block, a filmstrip) as long as the page itself never moves. Verify at
-320px before shipping.
-
----
-
-## 9. Magic numbers instead of tokens
-
-**Banned:** any raw spacing, size, duration, colour, or radius value in a
-component. `margin-top: 37px`, `#3a3a3a`, `transition: 0.3s`, `font-size: 19px`.
-
-**Why:** untokenised values destroy the rhythm that carries the taste
-([spacing-taste](../spacing-taste/SKILL.md) §2), and they make a global change
-impossible — which guarantees the design decays as soon as anyone else edits it.
-A one-off value is also usually a symptom: it means a layout is being nudged
-instead of composed.
-
-**Instead:** every value resolves to a token. If the token you need doesn't
-exist, either you're wrong about the value or the scale needs a documented
-addition — pick one and say which in the report. Exceptions: `1px` hairlines,
-`0`, and `100%`/`100vh`-class values.
-
----
-
-## 10. Template-looking anything
-
-The catch-all, and the one that requires judgment. **Banned:** output that could
-be swapped into an unrelated product without noticing. Symptoms: everything
-centred; every section the same height and rhythm; icons for concepts that don't
-need icons; equal-weight 3- or 4-column grids repeated down the page; generic
-copy in the layout ("Powerful features", "Built for teams"); rounded corners on
-everything at the same radius; a header, hero, features, testimonials,
-CTA, footer sequence with nothing else.
-
-**Why:** template design isn't badly executed, it's *anonymous* — and anonymity
-is the actual failure. Every prior in a generative model points at the average,
-so avoiding the average requires deliberate effort on every deliverable.
-
-**Instead:** make at least one structural decision that is specific to this
-content — asymmetric grid, an oversized number, a full-bleed image against a
-narrow text column, one section that breaks the established rhythm on purpose,
-type at a size the template wouldn't dare. One committed move beats ten safe
-ones. If you can't name what makes the output specific to *this* project, it
-isn't finished.
+`yields when:` familiarity is the product's value — internal tooling, admin
+consoles, government and public services, medical and safety-critical interfaces,
+anything where convention lowers cognitive load and novelty costs comprehension.
+Recognisability there is a feature, and distinctiveness should move to the parts
+that don't affect learnability (type, space, colour restraint) rather than to
+structure.
 
 ---
 
 ## The gate
 
-Before shipping, confirm all ten:
-
-- [ ] No banned palette or default layout archetype.
-- [ ] No gradient on any interactive control; no gradient text.
-- [ ] No decorative shadows; shadows only on truly floating layers.
-- [ ] Every box justified — whitespace and hairlines were tried first.
-- [ ] No underlined nav; inline prose links *are* underlined.
-- [ ] Exactly one primary CTA per view.
-- [ ] All imagery present and re-composed on mobile.
+**Invariant — must all pass**
+- [ ] Hierarchy unambiguous; emphasis encodes ranking truthfully.
+- [ ] All contrast meets AA; no hue-only meaning; focus visible.
+- [ ] No motion without a job; reduced-motion path everywhere; no layout animation.
+- [ ] Spacing deliberate; internal gaps < external; gutters never zero.
+- [ ] Zero magic numbers; one scale per dimension.
 - [ ] Zero horizontal page scroll at 320px.
-- [ ] Zero magic numbers; every value is a token.
-- [ ] At least one structural decision specific to this content, nameable in one line.
+- [ ] Content parity across viewports.
+- [ ] Any irregularity is legible and reads as intentional.
+
+**Dialect — when auction-editorial is active**
+- [ ] No AI-default palette or archetype (or a named structural differentiation).
+- [ ] No gradient on controls; no gradient text.
+- [ ] No decorative shadows; shadows only on truly floating layers.
+- [ ] Every box justified — whitespace and hairlines tried first.
+- [ ] No underlined nav; inline prose links *are* underlined.
+- [ ] One primary CTA per view.
+- [ ] Imagery present and re-composed on mobile.
+- [ ] One structural decision specific to this content, nameable in one line.
+- [ ] Every yield named in the report with its condition.

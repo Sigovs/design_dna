@@ -185,6 +185,14 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .dot { inline-size: 5px; block-size: 5px; border-radius: 50%; background: var(--ink-30); }
 .dot--on { background: var(--ink); }
 
+/* dialect review mark — only on reviewed entries; absence means "unreviewed" */
+.status-mark { display: inline-flex; align-items: center; gap: .4em; color: var(--ink-50); }
+.status-mark::before { content: "◆"; font-size: .5rem; line-height: 1; color: var(--ink-30); }
+.status-mark[data-status="in"]::before { color: oklch(.68 .05 165); }
+.status-mark[data-status="out"]::before { color: oklch(.7 .05 70); }
+.status-mark[data-status="hybrid"]::before { color: oklch(.7 .045 300); }
+.card-meta { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); margin-top: var(--space-2); }
+
 .empty { padding-block: var(--space-10) var(--space-11); color: var(--ink-50); max-width: var(--measure); }
 .empty code { font-family: var(--font-mono); font-size: .8125rem; color: var(--ink); }
 
@@ -292,6 +300,7 @@ button, input, textarea, select { font: inherit; color: inherit; }
       <button class="btn btn--quiet" id="clear-filters" type="button">clear filters</button>
     </div>
     <div class="filters" id="filters"></div>
+    <div class="filters" id="dialect-filters" style="margin-top: var(--space-4)"></div>
     <div class="toolbar-meta">
       <span class="count" id="count"></span>
       <button class="btn" id="open-add" type="button">+ add site</button>
@@ -341,6 +350,10 @@ button, input, textarea, select { font: inherit; color: inherit; }
             <div class="rating-set" id="add-rating"></div>
           </div>
           <div class="field">
+            <span class="label">dialect</span>
+            <div class="vocab" id="add-dialect"></div>
+          </div>
+          <div class="field">
             <span class="label">tags</span>
             <div class="vocab" id="add-vocab"></div>
           </div>
@@ -362,12 +375,26 @@ button, input, textarea, select { font: inherit; color: inherit; }
 /* ── state ─────────────────────────────────────────────────────────────── */
 const LS_KEY = 'design-dna:vault:working-copy';
 
-let vocab = { categories: {} };
+let vocab = { categories: {}, dialects: [], dialectStatus: [] };
 let entries = [];
 let dirty = false;
-const filters = new Map();   // category -> Set(tag)
+const filters = new Map();          // category -> Set(tag)
+const statusFilter = new Set();     // dialectStatus values
 let query = '';
 let openId = null;
+
+const STATUS_FALLBACK = ['unreviewed', 'in', 'out', 'hybrid'];
+const statuses = () => (vocab.dialectStatus?.length ? vocab.dialectStatus : STATUS_FALLBACK);
+const dialectList = () => vocab.dialects ?? [];
+
+/* Entries written before the dialect migration, or added by hand, get defaults. */
+function normalise(entry) {
+  if (!Array.isArray(entry.dialects)) entry.dialects = [];
+  if (typeof entry.dialectStatus !== 'string' || !statuses().includes(entry.dialectStatus)) {
+    entry.dialectStatus = 'unreviewed';
+  }
+  return entry;
+}
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const el = (tag, props = {}, ...kids) => {
@@ -411,9 +438,13 @@ async function boot() {
     } catch { localStorage.removeItem(LS_KEY); }
   }
 
+  entries.forEach(normalise);
+
   Object.keys(vocab.categories).forEach((c) => filters.set(c, new Set()));
   renderFilters();
+  renderDialectFilters();
   buildVocabForm($('#add-vocab'), {}, 'add');
+  buildDialectForm($('#add-dialect'), { dialectStatus: 'unreviewed', dialects: [] }, 'add');
   buildRating($('#add-rating'), 2, 'add-rating');
   render();
   wire();
@@ -456,8 +487,35 @@ function renderFilters() {
   }
 }
 
+/* Dialect review status — its own filter row, because the distillation ritual
+   needs "show me the human-approved out-of-dialect entries". */
+function renderDialectFilters() {
+  const wrap = $('#dialect-filters');
+  wrap.textContent = '';
+  const row = el('div', { className: 'filter-cat' }, el('span', { className: 'label', textContent: 'dialect' }));
+  statuses().forEach((status) => {
+    const n = entries.filter((e) => e.dialectStatus === status).length;
+    const b = el('button', {
+      className: 'chip', type: 'button',
+      textContent: `${status} (${n})`,
+      title: `dialect review status: ${status}`,
+    });
+    b.dataset.status = status;
+    b.style.setProperty('--hue', { in: 165, out: 70, hybrid: 300, unreviewed: 0 }[status] ?? 0);
+    b.setAttribute('aria-pressed', String(statusFilter.has(status)));
+    b.addEventListener('click', () => {
+      statusFilter.has(status) ? statusFilter.delete(status) : statusFilter.add(status);
+      b.setAttribute('aria-pressed', String(statusFilter.has(status)));
+      render();
+    });
+    row.append(b);
+  });
+  wrap.append(row);
+}
+
 /* OR within a category, AND across categories — the semantic that's actually useful. */
 function matches(entry) {
+  if (statusFilter.size && !statusFilter.has(entry.dialectStatus)) return false;
   for (const [cat, set] of filters) {
     if (!set.size) continue;
     const have = entry.tags?.[cat] ?? [];
@@ -465,7 +523,8 @@ function matches(entry) {
   }
   if (!query) return true;
   const hay = [
-    entry.title, entry.url, entry.note, entry.id,
+    entry.title, entry.url, entry.note, entry.id, entry.dialectStatus,
+    ...(entry.dialects ?? []),
     ...Object.values(entry.tags ?? {}).flat(),
   ].join(' ').toLowerCase();
   return query.split(/\s+/).filter(Boolean).every((w) => hay.includes(w));
@@ -518,7 +577,21 @@ function card(entry) {
     el('h2', { textContent: entry.title || host(entry.url) }),
     dots(entry.rating ?? 0),
   ));
-  node.append(el('span', { className: 'card-host label', textContent: host(entry.url) }));
+  /* Reviewed entries carry a status mark. No mark means nobody has judged it yet. */
+  const meta = el('div', { className: 'card-meta' },
+    el('span', { className: 'label', style: 'color: var(--ink-30)', textContent: host(entry.url) }));
+  if (entry.dialectStatus && entry.dialectStatus !== 'unreviewed') {
+    const mark = el('span', {
+      className: 'status-mark label',
+      textContent: entry.dialects?.length
+        ? `${entry.dialectStatus} · ${entry.dialects.join(', ')}`
+        : entry.dialectStatus,
+      title: `dialect review: ${entry.dialectStatus}`,
+    });
+    mark.dataset.status = entry.dialectStatus;
+    meta.append(mark);
+  }
+  node.append(meta);
 
   const tags = el('div', { className: 'card-tags' });
   for (const [cat, list] of Object.entries(entry.tags ?? {})) {
@@ -568,10 +641,14 @@ function openDetail(id) {
   right.append(el('span', { className: 'shot-caption label', textContent: 'mobile · 390w' }));
 
   const plate = el('dl', { className: 'plate' });
+  const statusCell = el('span', { className: 'status-mark label', textContent: entry.dialectStatus });
+  statusCell.dataset.status = entry.dialectStatus;
   const rows = [
     ['url', el('a', { href: entry.url, target: '_blank', rel: 'noreferrer noopener', textContent: host(entry.url) })],
     ['added', entry.added ?? '—'],
     ['rating', `${entry.rating ?? 0} of 3`],
+    ['dialect', entry.dialects?.length ? entry.dialects.join(', ') : '—'],
+    ['review', statusCell],
     ['id', entry.id],
   ];
   rows.forEach(([k, v]) => { plate.append(el('dt', { className: 'label', textContent: k }), el('dd', {}, v)); });
@@ -611,6 +688,12 @@ function editForm(entry) {
   ratingField.append(ratingSet);
   form.append(ratingField);
 
+  const dialectField = el('div', { className: 'field' }, el('span', { className: 'label', textContent: 'dialect' }));
+  const dialectWrap = el('div', { className: 'vocab' });
+  buildDialectForm(dialectWrap, entry, entry.id);
+  dialectField.append(dialectWrap);
+  form.append(dialectField);
+
   const tagField = el('div', { className: 'field' }, el('span', { className: 'label', textContent: 'tags' }));
   const vocabWrap = el('div', { className: 'vocab' });
   buildVocabForm(vocabWrap, entry.tags ?? {}, entry.id);
@@ -632,10 +715,12 @@ function editForm(entry) {
     ev.preventDefault();
     entry.title = $(`#${CSS.escape(titleId)}`, form).value.trim() || entry.title;
     entry.rating = Number(new FormData(form).get(`rate-${entry.id}`) ?? entry.rating);
+    Object.assign(entry, readDialectForm(dialectWrap));
     entry.tags = readVocabForm(vocabWrap);
     entry.note = $(`#${CSS.escape(noteId)}`, form).value.trim() || 'TODO';
     persist();
     renderFilters();
+    renderDialectFilters();
     render();
     download();
     openDetail(entry.id);   // re-render with saved values
@@ -654,6 +739,65 @@ function buildRating(wrap, current, name) {
     label.append(input, document.createTextNode(['keep', 'good', 'reference'][n - 1]));
     wrap.append(label);
   });
+}
+
+/* dialectStatus is a single choice; dialects is a multi-pick. Both are human
+   judgements — nothing here is ever set automatically. */
+function buildDialectForm(wrap, current, scope) {
+  wrap.textContent = '';
+
+  const statusBox = el('div', { className: 'vocab-cat', dataset: { field: 'dialectStatus' } });
+  statusBox.append(el('span', { className: 'label', textContent: 'review status' }));
+  const statusTags = el('div', { className: 'vocab-tags' });
+  const HUE = { in: 165, out: 70, hybrid: 300, unreviewed: 0 };
+  statuses().forEach((status) => {
+    const label = el('label', { className: 'check', title: `dialect review status: ${status}` });
+    label.style.setProperty('--hue', HUE[status] ?? 0);
+    const input = el('input', { type: 'radio', name: `status-${scope}`, value: status });
+    input.checked = (current?.dialectStatus ?? 'unreviewed') === status;
+    label.append(input, document.createTextNode(status));
+    statusTags.append(label);
+  });
+  statusBox.append(statusTags);
+  wrap.append(statusBox);
+
+  const have = new Set(current?.dialects ?? []);
+  const box = el('div', { className: 'vocab-cat', dataset: { field: 'dialects' } });
+  box.append(el('span', { className: 'label', textContent: 'dialects' }));
+  const tags = el('div', { className: 'vocab-tags' });
+  const known = [...new Set([...dialectList(), ...have])];
+  if (!known.length) {
+    tags.append(el('span', { className: 'hint', textContent: 'no stored dialects yet' }));
+  }
+  known.forEach((d) => {
+    const label = el('label', { className: 'check', title: `dialect: ${d}` });
+    label.style.setProperty('--hue', 165);
+    const input = el('input', { type: 'checkbox', value: d });
+    input.checked = have.has(d);
+    label.append(input, document.createTextNode(d));
+    tags.append(label);
+  });
+  box.append(tags);
+  box.append(el('p', {
+    className: 'hint',
+    style: 'margin: var(--space-3) 0 0',
+    textContent: 'A new dialect is not invented here — it needs 3+ approved out-of-dialect entries sharing decision logic, and Alex’s approval. See vault/README.md.',
+  }));
+  wrap.append(box);
+}
+
+function readDialectForm(wrap) {
+  const statusBox = wrap.querySelector('[data-field="dialectStatus"]');
+  const dialectBox = wrap.querySelector('[data-field="dialects"]');
+  const picked = statusBox
+    ? [...statusBox.querySelectorAll('input[type=radio]')].find((i) => i.checked)?.value
+    : null;
+  return {
+    dialectStatus: picked ?? 'unreviewed',
+    dialects: dialectBox
+      ? [...dialectBox.querySelectorAll('input[type=checkbox]')].filter((i) => i.checked).map((i) => i.value)
+      : [],
+  };
 }
 
 function buildVocabForm(wrap, current, scope) {
@@ -753,24 +897,30 @@ function submitAdd(ev) {
     return;
   }
 
-  entries.push({
+  const now = new Date();
+  const localDate = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+
+  entries.push(normalise({
     id: slugify(parsed.href),
     url: parsed.href,
     title: $('#add-title').value.trim() || parsed.hostname.replace(/^www\./, ''),
-    added: new Date().toISOString().slice(0, 10),
+    added: localDate,
     rating: Number(new FormData($('#add-form')).get('add-rating') ?? 2),
+    ...readDialectForm($('#add-dialect')),
     tags: readVocabForm($('#add-vocab')),
     note: $('#add-note').value.trim() || 'TODO',
     shots: { full: null, hero: null, mobile: null },
-  });
+  }));
 
   persist();
   renderFilters();
+  renderDialectFilters();
   render();
   download();
 
   $('#add-form').reset();
   buildVocabForm($('#add-vocab'), {}, 'add');
+  buildDialectForm($('#add-dialect'), { dialectStatus: 'unreviewed', dialects: [] }, 'add');
   buildRating($('#add-rating'), 2, 'add-rating');
   $('#add').hidden = true;
   document.body.style.overflow = '';
@@ -782,9 +932,11 @@ function wire() {
 
   $('#clear-filters').addEventListener('click', () => {
     filters.forEach((set) => set.clear());
+    statusFilter.clear();
     query = '';
     $('#search').value = '';
     renderFilters();
+    renderDialectFilters();
     render();
   });
 

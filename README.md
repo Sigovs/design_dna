@@ -5,8 +5,16 @@ A personal, reusable taste system for doing design work with AI agents.
 Agents are competent and tasteless by default — they converge on the statistical
 average of everything they've seen, which is why generated design all looks the
 same. This repo is the correction: a portable set of opinions, hard numbers, and
-hard bans that any agent reads before touching anything visual, so the output
-comes out looking like Alex's work instead of like a template.
+hard bans that any agent reads before touching anything visual.
+
+> **This DNA governs the QUALITY of decisions, not the sameness of outcomes.
+> Invariants always apply; the dialect yields to the brief.**
+
+That's the design of the system, and it's why it isn't a template. Rules sit in
+one of **two tiers**: **invariants** are universal quality laws that never yield,
+and **dialects** are aesthetic positions — strong defaults, each carrying a stated
+`yields when:` condition. A brief that needs a different look gets one; a brief
+never gets worse hierarchy, worse contrast, or arbitrary spacing.
 
 It is deliberately **not** a component library. No code to install, no framework
 to adopt. It is taste as instructions, so it works in any stack, any project, and
@@ -25,9 +33,9 @@ if present).
 ```
 
 That's the whole integration. `TASTE.md` is the entry point — it carries the
-operating rules, the Design Read procedure, the skill index, the working-style
-clause, and the vault hook, and it points the agent at whichever skills the task
-actually needs.
+operating rules, the two-tier model, the Design Read procedure, the skill and
+dialect indexes, the working-style clause, and the vault hook, and it points the
+agent at whichever skills the task actually needs.
 
 The local-clone fallback matters: a clone next to the project is faster, works
 offline, and lets you edit the taste and see the effect immediately. Clone this
@@ -41,12 +49,14 @@ line resolves locally instead of over the network.
 ```
 design_dna/
 ├── TASTE.md                        # the manifest — agents read this first
-├── skills/
-│   ├── spacing-taste/SKILL.md      # air as default, 4px token scale, bottom-heavy sections, stack gap ladder
-│   ├── typography-taste/SKILL.md   # display + grotesque + mono, italic accent word, mono micro-labels, spec plates
-│   ├── color-taste/SKILL.md        # neutral base, smoky accents, banned palettes, text-on-photo, WCAG AA
-│   ├── motion-taste/SKILL.md       # crossfade, subtle hover, 4 durations, skeletons, reduced-motion
-│   └── anti-patterns/SKILL.md      # the hard bans — final gate before shipping
+├── skills/                         # each split INVARIANT / DIALECT
+│   ├── spacing-taste/SKILL.md      # I: hierarchy, tokens, internal<external · D: air-first, bottom-heavy
+│   ├── typography-taste/SKILL.md   # I: legible rank, optical correction · D: didone + grotesque + mono, spec plates
+│   ├── color-taste/SKILL.md        # I: AA, no hue-only meaning, scrims · D: neutral dark base, smoky accents
+│   ├── motion-taste/SKILL.md       # I: reduced-motion, keyboard parity, no jank · D: crossfade, subtle hover
+│   └── anti-patterns/SKILL.md      # I: the universal failures · D: the trope bans
+├── dialects/
+│   └── auction-editorial.md        # the house dialect — PRINCIPLES + optional EXPRESSIONS
 ├── vault/                          # the taste vault — visual reference library
 │   ├── sites.json                  # the library (entry schema in vault/README.md)
 │   ├── vocab.json                  # controlled tag vocabulary — single source of truth
@@ -60,12 +70,18 @@ design_dna/
 ```
 
 Each `SKILL.md` follows the standard skill format: frontmatter (`name`,
-`description`) so an agent can decide when to load it, then opinionated rules —
-every one with its rationale, because a rule without a reason gets
-context-collapsed into a vague vibe and ignored the moment it's inconvenient.
+`description`) so an agent can decide when to load it, then an **INVARIANT**
+section and a **DIALECT** section. Every rule carries its rationale, because a rule
+without a reason gets context-collapsed into a vague vibe and ignored the moment
+it's inconvenient — and every dialect rule additionally carries a `yields when:`,
+because a rule with no stated exit gets broken silently instead.
 
-`anti-patterns` outranks the rest. Conflict order inside the positive skills:
-spacing → typography → color → motion.
+Invariants outrank everything. Inside the dialect tier the conflict order is
+anti-patterns → spacing → typography → color → motion.
+
+`auction-editorial` is **not a silent default.** Every Design Read has to choose:
+a stored dialect, a partial combination, or `brief-derived / no stored dialect`. An
+underspecified brief does not become the house style by default.
 
 ---
 
@@ -103,37 +119,50 @@ and **propose skill amendments as a diff. The human approves.** Nothing lands in
 vault quietly averaging your taste back toward the mean.
 
 The most valuable section of that output is *contradictions*: references you admire
-that break a current rule and work anyway. That's where the rules get sharper
-instead of just longer. Log each run at the bottom of `vault/README.md` so the
-next one knows where to start.
+that break a current rule and work anyway. With two tiers, a contradiction now
+splits — breaking a dialect rule usually means widening its `yields when:`, while
+breaking an invariant means being sceptical of the reference, not the invariant.
+Log each run at the bottom of `vault/README.md` so the next one knows where to start.
+
+Entries also carry `dialectStatus` (`unreviewed` · `in` · `out` · `hybrid`). `out`
+is not a rejection — it's the most valuable classification in the vault, because a
+**new dialect may only be proposed from ≥3 human-approved `out` references that
+share meaningful decision logic** (not similar colours, fonts, or surface styling),
+and Alex approves before it exists. The full rule is in
+[vault/README.md](vault/README.md#creating-a-new-dialect).
 
 ---
 
 ## The taste in five lines
 
-The canonical summary of what the skills add up to. **If a change to `TASTE.md`
-or `skills/` makes a line below untrue, update it in the same commit** — this is
-the surface Alex reads to catch drift, so it is only useful while it is honest.
+The canonical summary of what the two tiers add up to. **If a change to
+`TASTE.md`, `skills/`, or `dialects/` makes a line below untrue, update it in the
+same commit** — this is the surface Alex reads to catch drift, so it is only useful
+while it is honest.
 
-1. **Space is the primary quality signal.** Generous, tokenised on a 4px scale,
-   bottom-heavy sections, tuned gap ladders in text stacks — and whitespace is
-   never filled to feel productive.
-2. **Type carries the personality, in three voices.** Didone-energy display for
-   emotion, invisible grotesque for reading, mono for anything factual; one
-   true-italic word as the signature; data always as auction-catalog spec plates
-   with hairlines, never boxes.
-3. **Colour is restraint, not identity.** Off-black/off-white neutral first,
-   smoky desaturated accent last and under ~5% of pixels; near-white or ink over
-   photography with the image scrimmed to fix contrast; AA measured on every
-   change.
-4. **Motion seasons, it doesn't perform.** Crossfade over travel, 2px hover lift,
-   four durations with ease-out in / ease-in exit, shape-matched skeletons, and a
-   fully designed static path for reduced motion.
-5. **The bans outrank everything, and anonymity is the real failure.** No
-   AI-default palettes or layout archetypes, no gradient buttons, no decorative
-   shadows, no boxes where air works, one primary CTA, no hidden mobile imagery,
-   no horizontal scroll, no magic numbers — and every deliverable needs one
-   structural move specific to *this* content.
+1. **Two tiers, and the tier decides everything.** Invariants are universal
+   quality laws and never yield; dialect rules are aesthetic positions, each with a
+   stated `yields when:`. Yielding for a stated reason is correct practice —
+   yielding silently is the only real failure.
+2. **The invariants are about organisation, not appearance.** Intentional spatial
+   hierarchy with internal gaps smaller than external; rhythm and optical balance;
+   legible rank; every value from a documented token scale; WCAG AA verified on
+   every palette change; a complete static path for every animation; and controlled
+   irregularity that stays legible and intentional.
+3. **The house dialect is auction-editorial, and it is chosen, never assumed.**
+   Its principles are compositional: subtract before adding, hierarchy from space
+   and scale before ornament, metadata composed rather than appended, one committed
+   gesture over continuous novelty, mass above centre with a deeper field below,
+   colour as a setting, materials over hues, motion as seasoning.
+4. **Its expressions are optional, not a checklist.** Didone display + quiet
+   grotesque + mono, one true-italic signature word, uppercase mono micro-labels,
+   spec plates, smoky neutrals, hairlines instead of boxes, crossfades, a 2px hover
+   lift. A design can belong to the dialect using few of them; using all of them
+   without the principles is pastiche.
+5. **Amount is a dialect question; intent never is.** How much air, how dark, how
+   quiet, how irregular — all respond to the brief, audience, and density needs.
+   That the spacing is deliberate, the contrast passes, the ranking is truthful, and
+   the tokens are consistent does not.
 
 ---
 

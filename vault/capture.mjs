@@ -261,6 +261,9 @@ async function cmdAdd(url) {
     title: parsed.hostname.replace(/^www\./, ''),
     added: isoDate(),
     rating: 2,
+    // Dialect classification is a human judgement — a stub is never pre-classified.
+    dialectStatus: 'unreviewed',
+    dialects: [],
     tags: await emptyVocabTags(),
     note: 'TODO',
     shots: { full: null, hero: null, mobile: null },

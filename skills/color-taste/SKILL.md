@@ -144,10 +144,9 @@ playful, expressive, cultural, or experimental; colour must differentiate at a
 glance (wayfinding, categorical data, status systems); or the medium eats chroma
 (projection, print on uncoated stock, low-quality screens) and needs headroom.
 
-> **Vault counter-evidence:** `vault/thegentlewoman-co-uk` uses a bright saturated
-> turquoise *as* its identity and is excellent, because it is the only colour in
-> an otherwise monochrome world. Worth reading before applying D2 or D3 —
-> restraint may live in the palette's *size* rather than in its chroma.
+> **Counter-evidence (Gentlewoman) reviewed and dismissed** — the example fails as
+> a whole; an attribute observed inside a failed composition does not amend a rule.
+> Logged 2026-07-25.
 
 ### D3 — Accent is a setting, not an identity
 
@@ -165,7 +164,7 @@ than a redesign. Dialect principle
 `yields when:` identity is genuinely colour-led; colour carries meaning at scale
 (status, categories, data visualisation, wayfinding); or the palette is one
 saturated colour against an otherwise monochrome world, where the restraint is
-structural rather than chromatic (see the vault note above).
+structural rather than chromatic.
 
 ### D4 — The banned palettes
 

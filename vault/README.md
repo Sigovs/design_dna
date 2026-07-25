@@ -236,4 +236,33 @@ run of superficially similar pages.
 
 | Run date | Entries considered | Outcome |
 |---|---|---|
-| — | — | Phase 2 shipped; no distillation run yet. |
+| 2026-07-25 | `thegentlewoman-co-uk` | **First resolved case — rule upheld.** Counter-evidence dismissed; `color-taste` D2/D3 chroma rules stand unamended. See below. |
+| — | — | Phase 2 shipped; no full distillation run yet. |
+
+#### First resolved case — the loop, end to end
+
+Worth keeping as the worked example of how a contradiction is supposed to die.
+
+1. **Capture.** `thegentlewoman-co-uk` entered the vault with a note written partly
+   from memory, claiming the site had "no accent colour anywhere".
+2. **Evidence contradicted the note.** The captured shots showed a bright saturated
+   turquoise used throughout. The note was corrected against the shots.
+3. **Contradiction logged.** The corrected note argued the site broke
+   [color-taste](../skills/color-taste/SKILL.md) D2 and D3 — high chroma, used *as*
+   the identity — and worked anyway because it was the only colour in a monochrome
+   world. Suggested the rules' real mechanism might be "one colour, ruthlessly"
+   rather than "low chroma". Parked inline in `color-taste` for review; **not
+   applied.**
+4. **Human review.** Rated **1**, `dialectStatus` **out**: the cover composition is
+   sound, the website is not — ugly desktop navigation, unresolved footer, an
+   initial idea that never develops.
+5. **Rule upheld.** The counter-evidence is withdrawn. **An attribute observed
+   inside a failed composition does not amend a rule** — a single admired detail is
+   not evidence when the whole fails. `color-taste` D2/D3 stand unamended; the
+   inline note is replaced by a one-line dismissal record.
+
+The transferable lesson: *isolate the attribute from the artefact's overall
+quality before letting it change anything.* A rule may only be amended by
+evidence that succeeds as a whole. This is also why `out` entries are kept rather
+than deleted — the entry is now a useful anti-reference, and the dismissal is part
+of the record.

@@ -1,5 +1,50 @@
 [
   {
+    "id": "thenewmobileworkforce-imm-g-prod-com-back-at-hq",
+    "url": "https://thenewmobileworkforce.imm-g-prod.com/back-at-hq",
+    "title": "Large Screens, Transitions, PNG/Cutout use",
+    "added": "2026-07-25",
+    "rating": 2,
+    "dialectStatus": "unreviewed",
+    "dialects": [],
+    "tags": {
+      "composition": [
+        "active-negative-space",
+        "directed-eye",
+        "intentional-crop",
+        "optical-balance",
+        "compositional-resolution"
+      ],
+      "typography": [],
+      "layout": [
+        "air",
+        "grid-break",
+        "bleed",
+        "asymmetry"
+      ],
+      "motion": [
+        "crossfade",
+        "scroll-reveal",
+        "parallax"
+      ],
+      "color": [
+        "bold-accent",
+        "dark"
+      ],
+      "imagery": [
+        "photography",
+        "art-direction",
+        "illustration"
+      ]
+    },
+    "note": "TODO",
+    "shots": {
+      "full": null,
+      "hero": null,
+      "mobile": null
+    }
+  },
+  {
     "id": "rmsothebys-com",
     "url": "https://www.rmsothebys.com/",
     "title": "RM Sotheby's",
@@ -41,8 +86,8 @@
     "url": "https://thegentlewoman.co.uk/",
     "title": "The Gentlewoman",
     "added": "2026-07-24",
-    "rating": 1,
-    "dialectStatus": "out",
+    "rating": 3,
+    "dialectStatus": "unreviewed",
     "dialects": [],
     "tags": {
       "composition": [],
@@ -66,7 +111,7 @@
         "art-direction"
       ]
     },
-    "note": "The reference case for air as status: the landing page is one viewport tall and roughly three-quarters empty — a single magazine cover centred in white, nav above, one caption line below. Nothing competes, so the cover reads as an object rather than as content.\n\nWorth stealing: (1) the footer caption is the only sentence on the page and it carries the entire editorial message, sitting on a hairline rule with the pagination at the far right — metadata as composition; (2) the photography is black-and-white, which is what lets a single saturated accent work without the page becoming about colour.\n\nCONTRADICTION worth keeping: this breaks skills/color-taste on two counts — the accent is a bright saturated turquoise, well above the chroma ceiling, and it IS the identity rather than a setting (nav, logo, rules, caption, all of it). It works because the accent is the *only* colour in an otherwise monochrome world, so the restraint has moved from the hue to the palette size. Evidence that the rule's real mechanism is \"one colour, ruthlessly\" rather than \"low chroma\" — flag for the next distillation run.\n\nAlso note the display face is a rounded geometric grotesque, not a serif. Editorial authority here comes from scale and space, not from a didone.\n\nOUT — The cover image has the right to exist as a standalone editorial composition. As a website, the project fails. The desktop navigation is ugly, the footer is unresolved, and the initial visual idea never develops into a coherent web experience. One decent cover does not make this a design reference.",
+    "note": "The reference case for air as status: the landing page is one viewport tall and roughly three-quarters empty — a single magazine cover centred in white, nav above, one caption line below. Nothing competes, so the cover reads as an object rather than as content.\n\nWorth stealing: (1) the footer caption is the only sentence on the page and it carries the entire editorial message, sitting on a hairline rule with the pagination at the far right — metadata as composition; (2) the photography is black-and-white, which is what lets a single saturated accent work without the page becoming about colour.\n\nCONTRADICTION worth keeping: this breaks skills/color-taste on two counts — the accent is a bright saturated turquoise, well above the chroma ceiling, and it IS the identity rather than a setting (nav, logo, rules, caption, all of it). It works because the accent is the *only* colour in an otherwise monochrome world, so the restraint has moved from the hue to the palette size. Evidence that the rule's real mechanism is \"one colour, ruthlessly\" rather than \"low chroma\" — flag for the next distillation run.\n\nAlso note the display face is a rounded geometric grotesque, not a serif. Editorial authority here comes from scale and space, not from a didone.",
     "shots": {
       "full": "shots/thegentlewoman-co-uk/full.jpg",
       "hero": "shots/thegentlewoman-co-uk/hero.jpg",

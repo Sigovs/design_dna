@@ -40,7 +40,7 @@
       "color": [],
       "imagery": []
     },
-    "note": "TODO",
+    "note": "IN — A disciplined film-led portfolio in which moving imagery becomes the primary interface rather than content placed inside a conventional layout. Navigation, project metadata, restrained typography, and the compact orange identity mark remain visually subordinate to the cinematic material, creating a clear hierarchy between the governing film event and its supporting interface. The system accommodates radically different footage without losing its identity, while the minimal overlays and controlled transitions preserve atmosphere and visual silence. However, the experience depends heavily on the strength of the underlying films, repeats essentially the same compositional mechanism across projects, and occasionally sacrifices interface contrast and clarity. The live site also currently risks trapping the visitor behind an unresolved preloader, preventing it from qualifying as a complete 3/3 reference.",
     "shots": {
       "full": "shots/electrafilmworks-com/full.jpg",
       "hero": "shots/electrafilmworks-com/hero.jpg",

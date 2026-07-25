@@ -32,7 +32,7 @@
   {
     "id": "beings-co",
     "url": "https://beings.co/",
-    "title": "beings.co",
+    "title": "Beings",
     "added": "2026-07-25",
     "rating": 3,
     "dialectStatus": "in",
@@ -51,9 +51,9 @@
     },
     "note": "TODO",
     "shots": {
-      "full": null,
-      "hero": null,
-      "mobile": null
+      "full": "shots/beings-co/full.jpg",
+      "hero": "shots/beings-co/hero.jpg",
+      "mobile": "shots/beings-co/mobile.jpg"
     },
     "kind": "site",
     "source": "",

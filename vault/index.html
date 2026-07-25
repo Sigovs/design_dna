@@ -1,0 +1,815 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taste Vault — design dna</title>
+<style>
+/* ─── tokens ──────────────────────────────────────────────────────────────
+   Spacing on the 4px scale, durations on the 4-step scale, colour neutral-
+   first with no identity accent. See skills/ in the repo root. */
+:root {
+  --space-1: .25rem;  --space-2: .5rem;   --space-3: .75rem;  --space-4: 1rem;
+  --space-5: 1.5rem;  --space-6: 2rem;    --space-7: 3rem;    --space-8: 4rem;
+  --space-9: 6rem;    --space-10: 8rem;   --space-11: 12rem;
+
+  --bg: #0e0f11;
+  --bg-raised: #16181b;
+  --ink: #f2f1ee;
+  --ink-70: #f2f1eeb3;
+  --ink-50: #f2f1ee80;
+  --ink-30: #f2f1ee4d;
+  --rule: #f2f1ee1f;
+  --rule-strong: #f2f1ee45;
+
+  --font-display: "Didot", "Playfair Display", "Iowan Old Style", Georgia, serif;
+  --font-body: "Inter", -apple-system, "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, Consolas, monospace;
+
+  --dur-1: .15s; --dur-2: .25s; --dur-3: .4s; --dur-4: 1.2s;
+  --ease-out: cubic-bezier(.22,1,.36,1);
+  --ease-in: cubic-bezier(.55,0,1,.45);
+
+  --measure: 68ch;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: clip; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: clamp(1rem, .35vw + .95rem, 1.0625rem);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img, svg { max-width: 100%; display: block; }
+button, input, textarea, select { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--ink-70); outline-offset: 3px; }
+
+/* mono micro-label — the one label style in the whole page */
+.label, .eyebrow, .btn, .chip, dt, th, .dots-label {
+  font-family: var(--font-mono);
+  font-size: .6875rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.display { font-family: var(--font-display); line-height: .95; letter-spacing: -.02em; }
+.display em { font-style: italic; font-weight: inherit; }
+
+.shell { padding-inline: clamp(var(--space-5), 5vw, var(--space-9)); }
+
+/* ─── masthead ─────────────────────────────────────────────────────────── */
+.masthead { padding-block: clamp(var(--space-8), 10vw, var(--space-10)) var(--space-7); }
+.masthead .eyebrow { color: var(--ink-50); display: block; margin-bottom: var(--space-3); }
+.masthead h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 7vw + 1rem, 6rem);
+  font-weight: 400;
+  line-height: .95;
+  letter-spacing: -.02em;
+  margin: 0;
+  max-width: 26ch;
+  text-wrap: balance;
+}
+.masthead .lead {
+  margin: var(--space-5) 0 0;
+  max-width: 56ch;
+  color: var(--ink-70);
+  font-size: clamp(1.0625rem, .9vw + .95rem, 1.25rem);
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+/* ─── toolbar ──────────────────────────────────────────────────────────── */
+.toolbar { border-top: 1px solid var(--rule); padding-block: var(--space-5) var(--space-6); }
+.toolbar-row {
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  gap: var(--space-5); margin-bottom: var(--space-5);
+}
+.search {
+  flex: 1 1 18rem; min-width: 0;
+  background: none; border: 0; border-bottom: 1px solid var(--rule);
+  padding: var(--space-2) 0;
+  font-family: var(--font-mono); font-size: .8125rem; letter-spacing: .04em;
+  transition: border-color var(--dur-1) var(--ease-out);
+}
+.search::placeholder { color: var(--ink-30); text-transform: uppercase; letter-spacing: .12em; font-size: .6875rem; }
+.search:focus { outline: none; border-bottom-color: var(--ink-70); }
+
+.filters { display: grid; gap: var(--space-3); }
+.filter-cat { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2) var(--space-3); }
+.filter-cat > .label { color: var(--ink-30); flex: 0 0 6.5rem; }
+
+.chip {
+  --hue: 0;
+  display: inline-flex; align-items: center; gap: .4em;
+  background: none; border: 0; padding: var(--space-1) 0;
+  color: var(--ink-50); cursor: pointer;
+  transition: color var(--dur-1) var(--ease-out);
+}
+.chip::before {
+  content: ""; inline-size: 5px; block-size: 5px; border-radius: 50%;
+  background: oklch(.62 .055 var(--hue)); opacity: .45;
+  transition: opacity var(--dur-1) var(--ease-out);
+}
+.chip:hover { color: var(--ink); }
+.chip[aria-pressed="true"] { color: oklch(.84 .055 var(--hue)); }
+.chip[aria-pressed="true"]::before { opacity: 1; }
+
+.toolbar-meta {
+  display: flex; flex-wrap: wrap; gap: var(--space-5); align-items: baseline;
+  margin-top: var(--space-5); color: var(--ink-50);
+}
+.count { font-family: var(--font-mono); font-size: .6875rem; letter-spacing: .12em; text-transform: uppercase; }
+
+.btn {
+  background: none; border: 1px solid var(--rule-strong); color: var(--ink);
+  padding: var(--space-3) var(--space-5); cursor: pointer;
+  transition: border-color var(--dur-1) var(--ease-out), color var(--dur-1) var(--ease-out);
+}
+.btn:hover { border-color: var(--ink); }
+.btn--primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.btn--primary:hover { background: var(--ink-70); border-color: transparent; }
+.btn--quiet { border: 0; padding-inline: 0; color: var(--ink-50); text-decoration: none; }
+.btn--quiet:hover { color: var(--ink); }
+.btn[hidden] { display: none; }
+
+.dirty { color: oklch(.8 .06 70); }
+
+/* ─── grid ─────────────────────────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(22rem, 100%), 1fr));
+  gap: var(--space-8) var(--space-6);
+  padding-block: var(--space-7) var(--space-11);
+  border-top: 1px solid var(--rule);
+}
+.card {
+  display: block; text-align: left; width: 100%;
+  background: none; border: 0; padding: 0; cursor: pointer;
+  transition: transform var(--dur-1) var(--ease-out);
+}
+.card:hover { transform: translateY(-2px); }
+.card-shot {
+  aspect-ratio: 16 / 10; overflow: hidden;
+  background: var(--bg-raised);
+  border-bottom: 1px solid var(--rule);
+  transition: border-color var(--dur-1) var(--ease-out);
+}
+.card:hover .card-shot { border-bottom-color: var(--rule-strong); }
+.card-shot img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.card-shot--empty {
+  display: grid; place-items: center; padding: var(--space-5);
+  color: var(--ink-30); text-align: center;
+}
+.card-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: var(--space-4); margin-top: var(--space-4);
+}
+.card h2 {
+  font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(1.25rem, 1vw + 1rem, 1.5rem); line-height: 1.1;
+  margin: 0; text-wrap: balance;
+}
+.card-host { display: block; margin-top: var(--space-2); color: var(--ink-30); }
+.card-tags { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-3); margin-top: var(--space-3); }
+.tag { --hue: 0; font-family: var(--font-mono); font-size: .625rem; letter-spacing: .1em; text-transform: uppercase; color: oklch(.8 .05 var(--hue)); }
+.card-note { margin: var(--space-3) 0 0; color: var(--ink-50); font-size: .875rem; line-height: 1.5; }
+
+.dots { display: inline-flex; gap: 3px; flex: none; }
+.dot { inline-size: 5px; block-size: 5px; border-radius: 50%; background: var(--ink-30); }
+.dot--on { background: var(--ink); }
+
+.empty { padding-block: var(--space-10) var(--space-11); color: var(--ink-50); max-width: var(--measure); }
+.empty code { font-family: var(--font-mono); font-size: .8125rem; color: var(--ink); }
+
+/* ─── detail / dialogs ─────────────────────────────────────────────────── */
+.sheet {
+  position: fixed; inset: 0; z-index: 10;
+  background: var(--bg); overflow-y: auto;
+  animation: fade-in var(--dur-2) var(--ease-out);
+}
+.sheet[hidden] { display: none; }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+.sheet-bar {
+  position: sticky; top: 0; z-index: 2;
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-5);
+  padding-block: var(--space-4);
+  background: color-mix(in oklab, var(--bg) 92%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rule);
+}
+.detail { display: grid; gap: var(--space-8); padding-block: var(--space-7) var(--space-11); }
+@media (min-width: 64rem) {
+  .detail { grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: var(--space-9) var(--space-8); align-items: start; }
+}
+.detail h2 {
+  font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(2rem, 3vw + 1.2rem, 3.25rem); line-height: 1; letter-spacing: -.02em;
+  margin: 0; text-wrap: balance;
+}
+.shot-full {
+  max-height: 78vh; overflow-y: auto; overflow-x: hidden;
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+  background: var(--bg-raised);
+}
+.shot-mobile { border-top: 1px solid var(--rule); background: var(--bg-raised); max-height: 60vh; overflow-y: auto; }
+.shot-mobile img { margin-inline: auto; }
+.shot-caption { color: var(--ink-30); margin-top: var(--space-3); display: block; }
+.shot-none { padding: var(--space-6); color: var(--ink-30); }
+
+/* spec plate — mono keys, hairline rules, no box */
+.plate { display: grid; grid-template-columns: minmax(6rem, 9rem) 1fr; column-gap: var(--space-5); margin: var(--space-6) 0 0; }
+.plate dt, .plate dd { padding-block: var(--space-3); border-top: 1px solid var(--rule); margin: 0; }
+.plate dt { color: var(--ink-30); }
+.plate dd { font-variant-numeric: tabular-nums; word-break: break-word; }
+.plate dd a { color: var(--ink); text-decoration: underline; text-underline-offset: .2em; text-decoration-thickness: 1px; }
+@media (max-width: 40rem) {
+  .plate { grid-template-columns: 1fr; }
+  .plate dd { border-top: 0; padding-block-start: 0; }
+}
+
+.note-read { margin: var(--space-6) 0 0; max-width: var(--measure); color: var(--ink-70); line-height: 1.65; text-wrap: pretty; white-space: pre-wrap; }
+
+/* ─── forms ────────────────────────────────────────────────────────────── */
+.form { margin-top: var(--space-8); border-top: 1px solid var(--rule); padding-top: var(--space-6); }
+.form h3 { margin: 0 0 var(--space-5); color: var(--ink-50); font: inherit; }
+.form h3.label { color: var(--ink-50); }
+.field { margin-bottom: var(--space-6); }
+.field > .label { display: block; color: var(--ink-30); margin-bottom: var(--space-3); }
+.field textarea, .field input[type="text"], .field input[type="url"] {
+  width: 100%; background: none; color: var(--ink);
+  border: 0; border-bottom: 1px solid var(--rule);
+  padding: var(--space-2) 0; line-height: 1.6;
+  transition: border-color var(--dur-1) var(--ease-out);
+}
+.field textarea { resize: vertical; min-height: 8rem; }
+.field textarea:focus, .field input:focus { outline: none; border-bottom-color: var(--ink-70); }
+
+.vocab { display: grid; gap: var(--space-4); }
+.vocab-cat > .label { display: block; color: var(--ink-30); margin-bottom: var(--space-2); }
+.vocab-tags { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); }
+.check { --hue: 0; display: inline-flex; align-items: center; gap: .45em; cursor: pointer; color: var(--ink-50); font-family: var(--font-mono); font-size: .6875rem; letter-spacing: .1em; text-transform: uppercase; transition: color var(--dur-1) var(--ease-out); }
+.check:hover { color: var(--ink); }
+.check input { appearance: none; margin: 0; inline-size: 9px; block-size: 9px; border: 1px solid var(--rule-strong); border-radius: 50%; transition: background var(--dur-1) var(--ease-out), border-color var(--dur-1) var(--ease-out); }
+.check input:checked { background: oklch(.7 .06 var(--hue)); border-color: oklch(.7 .06 var(--hue)); }
+.check:has(input:checked) { color: oklch(.84 .05 var(--hue)); }
+.free { margin-top: var(--space-2); }
+.free input { font-family: var(--font-mono); font-size: .6875rem; letter-spacing: .1em; }
+
+.rating-set { display: flex; gap: var(--space-5); }
+.form-actions { display: flex; flex-wrap: wrap; gap: var(--space-5); align-items: center; margin-top: var(--space-7); }
+.hint { color: var(--ink-30); font-size: .8125rem; max-width: 48ch; line-height: 1.5; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important; animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important; scroll-behavior: auto !important;
+  }
+  .card:hover { transform: none; }
+}
+</style>
+</head>
+<body>
+
+<main class="shell" id="app">
+  <header class="masthead">
+    <span class="eyebrow">taste vault · design dna</span>
+    <h1>References with a <em>reason</em> attached</h1>
+    <p class="lead">Every entry carries a note on <em>why</em> it works. The note is the payload — the shots are
+      evidence. Read the reasoning, match the thinking, don't copy the pixels.</p>
+  </header>
+
+  <section class="toolbar" aria-label="Search and filter">
+    <div class="toolbar-row">
+      <input class="search" id="search" type="search" placeholder="search title, note, tag, url" autocomplete="off">
+      <button class="btn btn--quiet" id="clear-filters" type="button">clear filters</button>
+    </div>
+    <div class="filters" id="filters"></div>
+    <div class="toolbar-meta">
+      <span class="count" id="count"></span>
+      <button class="btn" id="open-add" type="button">+ add site</button>
+      <button class="btn btn--primary" id="download" type="button" hidden>download sites.json</button>
+      <span class="hint dirty" id="dirty-note" hidden></span>
+    </div>
+  </section>
+
+  <div class="grid" id="grid"></div>
+  <div class="empty" id="empty" hidden></div>
+</main>
+
+<!-- detail ------------------------------------------------------------- -->
+<section class="sheet" id="detail" hidden aria-label="Entry detail">
+  <div class="shell">
+    <div class="sheet-bar">
+      <span class="label" id="detail-id"></span>
+      <button class="btn btn--quiet" id="detail-close" type="button">close · esc</button>
+    </div>
+    <div class="detail" id="detail-body"></div>
+  </div>
+</section>
+
+<!-- add --------------------------------------------------------------- -->
+<section class="sheet" id="add" hidden aria-label="Add a site">
+  <div class="shell">
+    <div class="sheet-bar">
+      <span class="label">add site</span>
+      <button class="btn btn--quiet" id="add-close" type="button">close · esc</button>
+    </div>
+    <div class="detail" style="grid-template-columns: minmax(0,1fr)">
+      <div style="max-width: 44rem">
+        <h2>A reference, <em>reasoned</em></h2>
+        <p class="hint" style="margin-top: var(--space-5)">Shots arrive later — save the entry, then run
+          <code>npm run capture-missing</code> from the repo root. This is the path for URLs you add from your phone.</p>
+        <form class="form" id="add-form">
+          <div class="field">
+            <label class="label" for="add-url">url</label>
+            <input type="url" id="add-url" required placeholder="https://…">
+          </div>
+          <div class="field">
+            <label class="label" for="add-title">title <span style="letter-spacing:.04em; text-transform:none">(optional — capture fills it from &lt;title&gt;)</span></label>
+            <input type="text" id="add-title" placeholder="">
+          </div>
+          <div class="field">
+            <span class="label">rating</span>
+            <div class="rating-set" id="add-rating"></div>
+          </div>
+          <div class="field">
+            <span class="label">tags</span>
+            <div class="vocab" id="add-vocab"></div>
+          </div>
+          <div class="field">
+            <label class="label" for="add-note">note — what you liked and why</label>
+            <textarea id="add-note" placeholder="What specifically works, and what is worth stealing."></textarea>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn--primary" type="submit">save entry</button>
+            <span class="hint">Saves into this page's working copy. Download <code>sites.json</code> and commit it.</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="module">
+/* ── state ─────────────────────────────────────────────────────────────── */
+const LS_KEY = 'design-dna:vault:working-copy';
+
+let vocab = { categories: {} };
+let entries = [];
+let dirty = false;
+const filters = new Map();   // category -> Set(tag)
+let query = '';
+let openId = null;
+
+const $ = (sel, root = document) => root.querySelector(sel);
+const el = (tag, props = {}, ...kids) => {
+  const { dataset, ...rest } = props;
+  const n = Object.assign(document.createElement(tag), rest);
+  if (dataset) Object.assign(n.dataset, dataset);   // dataset is a getter — can't be assigned through
+  kids.flat().forEach((k) => k != null && n.append(k));
+  return n;
+};
+const hueOf = (cat) => vocab.categories[cat]?.hue ?? 0;
+const host = (url) => { try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return url; } };
+
+/* ── load ──────────────────────────────────────────────────────────────── */
+async function boot() {
+  try {
+    const [v, s] = await Promise.all([
+      fetch('vocab.json').then((r) => r.json()),
+      fetch('sites.json').then((r) => r.json()),
+    ]);
+    vocab = v;
+    entries = s;
+  } catch (err) {
+    $('#grid').remove();
+    $('#empty').hidden = false;
+    $('#empty').innerHTML = `<p><strong>Could not load the vault.</strong> This page needs to be served over HTTP —
+      opening <code>index.html</code> straight off the filesystem blocks <code>fetch</code>.</p>
+      <p>Run <code>npm run vault</code> from the repo root.</p>
+      <p class="hint">${String(err.message ?? err)}</p>`;
+    return;
+  }
+
+  // A working copy from a previous session wins — it holds unsaved edits.
+  const saved = localStorage.getItem(LS_KEY);
+  if (saved) {
+    try {
+      const parsed = JSON.parse(saved);
+      if (Array.isArray(parsed.entries) && parsed.entries.length) {
+        entries = parsed.entries;
+        dirty = true;
+      }
+    } catch { localStorage.removeItem(LS_KEY); }
+  }
+
+  Object.keys(vocab.categories).forEach((c) => filters.set(c, new Set()));
+  renderFilters();
+  buildVocabForm($('#add-vocab'), {}, 'add');
+  buildRating($('#add-rating'), 2, 'add-rating');
+  render();
+  wire();
+}
+
+function persist() {
+  dirty = true;
+  localStorage.setItem(LS_KEY, JSON.stringify({ entries, at: new Date().toISOString() }));
+  renderDirty();
+}
+
+function renderDirty() {
+  $('#download').hidden = !dirty;
+  const note = $('#dirty-note');
+  note.hidden = !dirty;
+  note.textContent = dirty ? 'unsaved edits held in this browser — download and commit to make them real' : '';
+}
+
+/* ── filters ───────────────────────────────────────────────────────────── */
+function renderFilters() {
+  const wrap = $('#filters');
+  wrap.textContent = '';
+  for (const [cat, def] of Object.entries(vocab.categories)) {
+    const row = el('div', { className: 'filter-cat' }, el('span', { className: 'label', textContent: cat }));
+    const known = new Set(def.tags);
+    entries.forEach((e) => (e.tags?.[cat] ?? []).forEach((t) => known.add(t)));  // free additions show up too
+    [...known].forEach((tag) => {
+      const b = el('button', { className: 'chip', type: 'button', textContent: tag, title: `${cat}: ${tag}` });
+      b.style.setProperty('--hue', def.hue);
+      b.setAttribute('aria-pressed', String(filters.get(cat)?.has(tag) ?? false));
+      b.addEventListener('click', () => {
+        const set = filters.get(cat);
+        set.has(tag) ? set.delete(tag) : set.add(tag);
+        b.setAttribute('aria-pressed', String(set.has(tag)));
+        render();
+      });
+      row.append(b);
+    });
+    wrap.append(row);
+  }
+}
+
+/* OR within a category, AND across categories — the semantic that's actually useful. */
+function matches(entry) {
+  for (const [cat, set] of filters) {
+    if (!set.size) continue;
+    const have = entry.tags?.[cat] ?? [];
+    if (![...set].some((t) => have.includes(t))) return false;
+  }
+  if (!query) return true;
+  const hay = [
+    entry.title, entry.url, entry.note, entry.id,
+    ...Object.values(entry.tags ?? {}).flat(),
+  ].join(' ').toLowerCase();
+  return query.split(/\s+/).filter(Boolean).every((w) => hay.includes(w));
+}
+
+/* ── grid ──────────────────────────────────────────────────────────────── */
+function render() {
+  const grid = $('#grid');
+  const shown = entries.filter(matches);
+  grid.textContent = '';
+
+  shown.forEach((entry) => grid.append(card(entry)));
+
+  const total = entries.length;
+  $('#count').textContent = shown.length === total
+    ? `${total} entr${total === 1 ? 'y' : 'ies'}`
+    : `${shown.length} of ${total}`;
+
+  const empty = $('#empty');
+  if (!total) {
+    empty.hidden = false;
+    empty.innerHTML = `<p>The vault is empty.</p><p>Add your first reference: <code>npm run add -- &lt;url&gt;</code></p>`;
+  } else if (!shown.length) {
+    empty.hidden = false;
+    empty.innerHTML = `<p>Nothing matches that combination.</p>`;
+  } else {
+    empty.hidden = true;
+  }
+  renderDirty();
+}
+
+function dots(rating) {
+  const wrap = el('span', { className: 'dots', title: `rating ${rating} of 3` });
+  wrap.setAttribute('aria-label', `rating ${rating} of 3`);
+  for (let i = 1; i <= 3; i++) wrap.append(el('span', { className: `dot${i <= rating ? ' dot--on' : ''}` }));
+  return wrap;
+}
+
+function card(entry) {
+  const node = el('button', { className: 'card', type: 'button' });
+  const hero = entry.shots?.hero;
+
+  node.append(hero
+    ? el('div', { className: 'card-shot' }, el('img', { src: hero, alt: `${entry.title} — hero`, loading: 'lazy' }))
+    : el('div', { className: 'card-shot card-shot--empty' },
+        el('span', { className: 'label', textContent: 'no shots yet' }),
+      ));
+
+  node.append(el('div', { className: 'card-head' },
+    el('h2', { textContent: entry.title || host(entry.url) }),
+    dots(entry.rating ?? 0),
+  ));
+  node.append(el('span', { className: 'card-host label', textContent: host(entry.url) }));
+
+  const tags = el('div', { className: 'card-tags' });
+  for (const [cat, list] of Object.entries(entry.tags ?? {})) {
+    (list ?? []).forEach((t) => {
+      const s = el('span', { className: 'tag', textContent: t, title: `${cat}: ${t}` });
+      s.style.setProperty('--hue', hueOf(cat));
+      tags.append(s);
+    });
+  }
+  if (tags.children.length) node.append(tags);
+
+  const note = (entry.note ?? '').trim();
+  node.append(el('p', {
+    className: 'card-note',
+    textContent: note === 'TODO' || !note ? 'note: TODO' : note.length > 190 ? note.slice(0, 190).trimEnd() + '…' : note,
+  }));
+
+  node.addEventListener('click', () => openDetail(entry.id));
+  return node;
+}
+
+/* ── detail ────────────────────────────────────────────────────────────── */
+function openDetail(id) {
+  const entry = entries.find((e) => e.id === id);
+  if (!entry) return;
+  openId = id;
+  $('#detail-id').textContent = entry.id;
+  const body = $('#detail-body');
+  body.textContent = '';
+
+  /* left: full shot */
+  const left = el('div');
+  left.append(entry.shots?.full
+    ? el('div', { className: 'shot-full' }, el('img', { src: entry.shots.full, alt: `${entry.title} — full page` }))
+    : el('div', { className: 'shot-full shot-none' }, el('span', { className: 'label', textContent: 'no full shot — run npm run capture-missing' })));
+  left.append(el('span', { className: 'shot-caption label', textContent: 'full page · 1440w' }));
+
+  /* right: title, mobile, plate, note, edit form */
+  const right = el('div');
+  right.append(el('h2', {}, entry.title || host(entry.url)));
+
+  right.append(entry.shots?.mobile
+    ? el('div', { className: 'shot-mobile', style: 'margin-top: var(--space-6)' },
+        el('img', { src: entry.shots.mobile, alt: `${entry.title} — mobile`, width: 390 }))
+    : el('div', { className: 'shot-mobile shot-none', style: 'margin-top: var(--space-6)' },
+        el('span', { className: 'label', textContent: 'no mobile shot yet' })));
+  right.append(el('span', { className: 'shot-caption label', textContent: 'mobile · 390w' }));
+
+  const plate = el('dl', { className: 'plate' });
+  const rows = [
+    ['url', el('a', { href: entry.url, target: '_blank', rel: 'noreferrer noopener', textContent: host(entry.url) })],
+    ['added', entry.added ?? '—'],
+    ['rating', `${entry.rating ?? 0} of 3`],
+    ['id', entry.id],
+  ];
+  rows.forEach(([k, v]) => { plate.append(el('dt', { className: 'label', textContent: k }), el('dd', {}, v)); });
+  right.append(plate);
+
+  const note = (entry.note ?? '').trim();
+  right.append(el('p', { className: 'note-read', textContent: note && note !== 'TODO' ? note : 'No note yet. This is the field that matters — say what works and what is worth stealing.' }));
+
+  right.append(editForm(entry));
+
+  body.append(left, right);
+  $('#detail').hidden = false;
+  document.body.style.overflow = 'hidden';
+  $('#detail-close').focus();
+}
+
+function closeDetail() {
+  $('#detail').hidden = true;
+  document.body.style.overflow = '';
+  openId = null;
+}
+
+function editForm(entry) {
+  const form = el('form', { className: 'form' });
+  form.append(el('h3', { className: 'label', textContent: 'edit' }));
+
+  /* Titles come from <title> and are often SEO junk — always editable. */
+  const titleId = `title-${entry.id}`;
+  const titleField = el('div', { className: 'field' });
+  titleField.append(el('label', { className: 'label', htmlFor: titleId, textContent: 'title' }));
+  titleField.append(el('input', { type: 'text', id: titleId, value: entry.title ?? '' }));
+  form.append(titleField);
+
+  const ratingField = el('div', { className: 'field' }, el('span', { className: 'label', textContent: 'rating' }));
+  const ratingSet = el('div', { className: 'rating-set' });
+  buildRating(ratingSet, entry.rating ?? 2, `rate-${entry.id}`);
+  ratingField.append(ratingSet);
+  form.append(ratingField);
+
+  const tagField = el('div', { className: 'field' }, el('span', { className: 'label', textContent: 'tags' }));
+  const vocabWrap = el('div', { className: 'vocab' });
+  buildVocabForm(vocabWrap, entry.tags ?? {}, entry.id);
+  tagField.append(vocabWrap);
+  form.append(tagField);
+
+  const noteField = el('div', { className: 'field' });
+  const noteId = `note-${entry.id}`;
+  noteField.append(el('label', { className: 'label', htmlFor: noteId, textContent: 'note — what you liked and why' }));
+  noteField.append(el('textarea', { id: noteId, value: entry.note === 'TODO' ? '' : (entry.note ?? '') }));
+  form.append(noteField);
+
+  const actions = el('div', { className: 'form-actions' });
+  actions.append(el('button', { className: 'btn btn--primary', type: 'submit', textContent: 'save' }));
+  actions.append(el('span', { className: 'hint', textContent: 'Save updates this page, then downloads sites.json. Replace the file in the repo and commit.' }));
+  form.append(actions);
+
+  form.addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    entry.title = $(`#${CSS.escape(titleId)}`, form).value.trim() || entry.title;
+    entry.rating = Number(new FormData(form).get(`rate-${entry.id}`) ?? entry.rating);
+    entry.tags = readVocabForm(vocabWrap);
+    entry.note = $(`#${CSS.escape(noteId)}`, form).value.trim() || 'TODO';
+    persist();
+    renderFilters();
+    render();
+    download();
+    openDetail(entry.id);   // re-render with saved values
+  });
+
+  return form;
+}
+
+/* ── shared form builders ──────────────────────────────────────────────── */
+function buildRating(wrap, current, name) {
+  wrap.textContent = '';
+  [1, 2, 3].forEach((n) => {
+    const label = el('label', { className: 'check' });
+    const input = el('input', { type: 'radio', name, value: String(n) });
+    input.checked = Number(current) === n;
+    label.append(input, document.createTextNode(['keep', 'good', 'reference'][n - 1]));
+    wrap.append(label);
+  });
+}
+
+function buildVocabForm(wrap, current, scope) {
+  wrap.textContent = '';
+  for (const [cat, def] of Object.entries(vocab.categories)) {
+    const have = new Set(current?.[cat] ?? []);
+    const known = new Set(def.tags);
+    const extra = [...have].filter((t) => !known.has(t));   // free additions already on the entry
+
+    const box = el('div', { className: 'vocab-cat', dataset: { cat } });
+    box.append(el('span', { className: 'label', textContent: cat }));
+    const tags = el('div', { className: 'vocab-tags' });
+    [...def.tags, ...extra].forEach((tag) => {
+      const label = el('label', { className: 'check', title: `${cat}: ${tag}` });
+      label.style.setProperty('--hue', def.hue);
+      const input = el('input', { type: 'checkbox', value: tag });
+      input.checked = have.has(tag);
+      label.append(input, document.createTextNode(tag));
+      tags.append(label);
+    });
+    box.append(tags);
+
+    const free = el('div', { className: 'free' });
+    free.append(el('input', {
+      type: 'text', className: 'free-input', placeholder: `+ add ${cat} tag`,
+      id: `free-${scope}-${cat}`, autocomplete: 'off',
+    }));
+    box.append(free);
+    wrap.append(box);
+  }
+
+  /* Enter in a free field promotes the tag to a checked box instead of submitting. */
+  wrap.addEventListener('keydown', (ev) => {
+    if (ev.key !== 'Enter' || !ev.target.classList.contains('free-input')) return;
+    ev.preventDefault();
+    const value = ev.target.value.trim().toLowerCase().replace(/\s+/g, '-');
+    if (!value) return;
+    const box = ev.target.closest('.vocab-cat');
+    const tags = $('.vocab-tags', box);
+    if (![...tags.querySelectorAll('input')].some((i) => i.value === value)) {
+      const label = el('label', { className: 'check' });
+      label.style.setProperty('--hue', hueOf(box.dataset.cat));
+      const input = el('input', { type: 'checkbox', value, checked: true });
+      label.append(input, document.createTextNode(value));
+      tags.append(label);
+    } else {
+      [...tags.querySelectorAll('input')].find((i) => i.value === value).checked = true;
+    }
+    ev.target.value = '';
+  });
+}
+
+function readVocabForm(wrap) {
+  const out = {};
+  wrap.querySelectorAll('.vocab-cat').forEach((box) => {
+    out[box.dataset.cat] = [...box.querySelectorAll('input[type=checkbox]')]
+      .filter((i) => i.checked).map((i) => i.value);
+  });
+  return out;
+}
+
+/* ── download ──────────────────────────────────────────────────────────── */
+function download() {
+  const sorted = [...entries].sort((a, b) =>
+    a.added === b.added ? a.id.localeCompare(b.id) : String(b.added).localeCompare(String(a.added)));
+  const blob = new Blob([JSON.stringify(sorted, null, 2) + '\n'], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = el('a', { href: url, download: 'sites.json' });
+  document.body.append(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+/* ── add ───────────────────────────────────────────────────────────────── */
+function slugify(url) {
+  const u = new URL(url);
+  const base = [u.hostname.replace(/^www\./, ''), u.pathname.replace(/\/+$/, '').replace(/^\//, '')]
+    .filter(Boolean).join('-').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60);
+  if (!entries.some((e) => e.id === base)) return base;
+  let n = 2;
+  while (entries.some((e) => e.id === `${base}-${n}`)) n++;
+  return `${base}-${n}`;
+}
+
+function submitAdd(ev) {
+  ev.preventDefault();
+  const url = $('#add-url').value.trim();
+  let parsed;
+  try { parsed = new URL(url); } catch { return; }
+
+  const existing = entries.find((e) => e.url === parsed.href);
+  if (existing) {
+    $('#add').hidden = true;
+    document.body.style.overflow = '';
+    openDetail(existing.id);
+    return;
+  }
+
+  entries.push({
+    id: slugify(parsed.href),
+    url: parsed.href,
+    title: $('#add-title').value.trim() || parsed.hostname.replace(/^www\./, ''),
+    added: new Date().toISOString().slice(0, 10),
+    rating: Number(new FormData($('#add-form')).get('add-rating') ?? 2),
+    tags: readVocabForm($('#add-vocab')),
+    note: $('#add-note').value.trim() || 'TODO',
+    shots: { full: null, hero: null, mobile: null },
+  });
+
+  persist();
+  renderFilters();
+  render();
+  download();
+
+  $('#add-form').reset();
+  buildVocabForm($('#add-vocab'), {}, 'add');
+  buildRating($('#add-rating'), 2, 'add-rating');
+  $('#add').hidden = true;
+  document.body.style.overflow = '';
+}
+
+/* ── wiring ────────────────────────────────────────────────────────────── */
+function wire() {
+  $('#search').addEventListener('input', (e) => { query = e.target.value.trim().toLowerCase(); render(); });
+
+  $('#clear-filters').addEventListener('click', () => {
+    filters.forEach((set) => set.clear());
+    query = '';
+    $('#search').value = '';
+    renderFilters();
+    render();
+  });
+
+  $('#download').addEventListener('click', download);
+  $('#detail-close').addEventListener('click', closeDetail);
+
+  $('#open-add').addEventListener('click', () => {
+    $('#add').hidden = false;
+    document.body.style.overflow = 'hidden';
+    $('#add-url').focus();
+  });
+  $('#add-close').addEventListener('click', () => {
+    $('#add').hidden = true;
+    document.body.style.overflow = '';
+  });
+  $('#add-form').addEventListener('submit', submitAdd);
+
+  document.addEventListener('keydown', (ev) => {
+    if (ev.key !== 'Escape') return;
+    if (!$('#add').hidden) { $('#add').hidden = true; document.body.style.overflow = ''; }
+    else if (openId) closeDetail();
+  });
+}
+
+boot();
+</script>
+</body>
+</html>

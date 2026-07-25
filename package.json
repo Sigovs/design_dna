@@ -1,0 +1,19 @@
+{
+  "name": "design-dna",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Alex's design DNA — a reusable taste system for design work with AI agents, plus the taste vault (visual reference library).",
+  "scripts": {
+    "add": "node vault/capture.mjs add",
+    "recapture": "node vault/capture.mjs recapture",
+    "capture-missing": "node vault/capture.mjs capture-missing",
+    "vault": "live-server vault --port=5177 --entry-file=index.html",
+    "smoke": "node vault/smoke.mjs",
+    "postinstall": "playwright install chromium"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "playwright": "^1.49.0"
+  }
+}

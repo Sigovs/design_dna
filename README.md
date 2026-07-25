@@ -47,9 +47,15 @@ design_dna/
 │   ├── color-taste/SKILL.md        # neutral base, smoky accents, banned palettes, text-on-photo, WCAG AA
 │   ├── motion-taste/SKILL.md       # crossfade, subtle hover, 4 durations, skeletons, reduced-motion
 │   └── anti-patterns/SKILL.md      # the hard bans — final gate before shipping
-├── vault/                          # visual reference library (phase 2)
-│   └── README.md
+├── vault/                          # the taste vault — visual reference library
+│   ├── sites.json                  # the library (entry schema in vault/README.md)
+│   ├── vocab.json                  # controlled tag vocabulary — single source of truth
+│   ├── capture.mjs                 # Playwright capture: full / hero / mobile
+│   ├── index.html                  # the gallery — browse, filter, edit, add
+│   ├── shots/<id>/                 # committed screenshots (the evidence)
+│   └── README.md                   # workflow + the distillation prompt
 ├── CLAUDE.md                       # working-style rules for editing this repo
+├── package.json
 └── README.md
 ```
 
@@ -60,6 +66,46 @@ context-collapsed into a vague vibe and ignored the moment it's inconvenient.
 
 `anti-patterns` outranks the rest. Conflict order inside the positive skills:
 spacing → typography → color → motion.
+
+---
+
+## The taste vault
+
+`vault/` is the evidence base: sites worth learning from, three screenshots each,
+controlled tags, and a note on **why** it works. The note is the payload — the
+shots are proof. Full detail and the entry schema live in
+[vault/README.md](vault/README.md).
+
+```bash
+npm install                            # playwright + chromium, live-server
+npm run vault                          # gallery at http://localhost:5177
+```
+
+**Three ways in, one way out.**
+
+| | |
+|---|---|
+| **Add via command** | `npm run add -- <url>` — shoots full / hero / mobile, creates a stub entry with empty tags and `note: "TODO"`. Then open the gallery and write the note. |
+| **Add via page** | `+ add site` in the gallery, or edit `sites.json` by hand from your phone. Shots arrive later: `npm run capture-missing` shoots every entry whose images are missing. |
+| **Reshoot** | `npm run recapture -- <id>` when a site redesigns. |
+
+The gallery has no backend by design. Saving downloads an updated `sites.json` —
+**replace the file in `vault/` and commit it.** Edits survive a reload via
+`localStorage`, but they aren't real until they're committed.
+
+### The weekly distillation ritual
+
+Once a week, turn references into rules. Run the distillation prompt — the full
+text is in [vault/README.md](vault/README.md#the-distillation-prompt) — which
+tells an agent to read entries added since the last run, weight them by rating,
+and **propose skill amendments as a diff. The human approves.** Nothing lands in
+`skills/` without a person reading the diff; that's the safeguard against the
+vault quietly averaging your taste back toward the mean.
+
+The most valuable section of that output is *contradictions*: references you admire
+that break a current rule and work anyway. That's where the rules get sharper
+instead of just longer. Log each run at the bottom of `vault/README.md` so the
+next one knows where to start.
 
 ---
 

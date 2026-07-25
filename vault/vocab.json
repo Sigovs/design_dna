@@ -1,0 +1,25 @@
+{
+  "_comment": "Controlled tag vocabulary. THE single source of truth — vault/index.html and vault/capture.mjs both read this file. Add tags here; free additions made in the gallery land on entries but are not promoted into this list until you add them deliberately. Hues are low-chroma on purpose (see skills/color-taste): chips are data encoding, not decoration.",
+  "categories": {
+    "typography": {
+      "hue": 165,
+      "tags": ["display-serif", "grotesque", "mono-details", "big-type", "editorial"]
+    },
+    "layout": {
+      "hue": 240,
+      "tags": ["air", "grid-break", "bleed", "asymmetry", "dense-done-right"]
+    },
+    "motion": {
+      "hue": 70,
+      "tags": ["crossfade", "scroll-reveal", "hover-craft", "parallax", "restraint"]
+    },
+    "color": {
+      "hue": 20,
+      "tags": ["neutral", "smoky", "monochrome", "bold-accent", "dark"]
+    },
+    "imagery": {
+      "hue": 300,
+      "tags": ["photography", "art-direction", "scrim-text", "product", "illustration"]
+    }
+  }
+}

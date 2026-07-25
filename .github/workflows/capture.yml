@@ -1,0 +1,98 @@
+name: capture vault shots
+
+# Fires when the vault gains or changes entries — including entries added from the
+# gallery on a phone, which arrive with shots: null. The runner has a real browser,
+# so it takes the screenshots the phone can't and commits them back.
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'vault/sites.json'
+  workflow_dispatch:
+    inputs:
+      insecure:
+        description: 'Accept TLS certificate errors (for hosts with a bad cert)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+# Queue, don't clash: two quick edits from the gallery must not race each other
+# into conflicting commits. cancel-in-progress stays false so no capture is lost.
+concurrency:
+  group: vault-capture
+  cancel-in-progress: false
+
+jobs:
+  capture:
+    # Belt-and-braces loop guard. GitHub already skips [skip ci] pushes, but the
+    # bot's own commit touches vault/sites.json, so this must never self-trigger.
+    if: >-
+      !contains(github.event.head_commit.message, '[skip ci]') &&
+      github.event.head_commit.author.name != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Capture missing shots
+        run: |
+          if [ "${{ github.event.inputs.insecure }}" = "true" ]; then
+            node vault/capture.mjs capture-missing --insecure
+          else
+            node vault/capture.mjs capture-missing
+          fi
+
+      - name: Commit new shots
+        run: |
+          if git diff --quiet -- vault/; then
+            echo "no new shots — nothing to commit"
+            exit 0
+          fi
+
+          git config user.name  'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add vault/
+          git commit -m 'shots: auto-capture [skip ci]'
+
+          # Another gallery save may have landed while Chromium was working.
+          for attempt in 1 2 3; do
+            if git push; then
+              echo "pushed on attempt $attempt"
+              exit 0
+            fi
+            echo "push rejected, rebasing and retrying"
+            git pull --rebase --autostash origin master
+          done
+          echo "could not push after 3 attempts"
+          exit 1
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo '### Vault capture'
+            echo ''
+            echo '```'
+            node -e "
+              const s = require('./vault/sites.json');
+              for (const e of s) {
+                const have = e.shots && e.shots.full ? 'shots' : 'NO SHOTS';
+                console.log(String(have).padEnd(9) + e.id);
+              }
+            "
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

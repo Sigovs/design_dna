@@ -58,6 +58,7 @@ design_dna/
 │   └── anti-patterns/SKILL.md      # I: the universal failures · D: the trope bans
 ├── dialects/
 │   └── auction-editorial.md        # the house dialect — PRINCIPLES + optional EXPRESSIONS
+├── .github/workflows/capture.yml   # auto-captures shots when sites.json changes
 ├── vault/                          # the taste vault — visual reference library
 │   ├── sites.json                  # the library (entry schema in vault/README.md)
 │   ├── vocab.json                  # controlled tag vocabulary — single source of truth
@@ -109,22 +110,46 @@ color, imagery. The composition category carries **positive merit tags only**
 confirmed the quality is *present*. Compositional failures stay in the note, in
 prose.
 
+### 🔗 Live gallery — https://sigovs.github.io/design_dna/vault/
+
+Served by GitHub Pages from `master`. No install, no terminal, works on a phone.
+
+## Adding sites
+
+### Online path (default)
+
+1. Open the [live gallery](https://sigovs.github.io/design_dna/vault/) → **+ add site**,
+   or open any entry and edit it.
+2. **Save to github.** First time it asks for a **fine-grained PAT** (Contents:
+   Read and write, this repo only). The token is stored in that browser's
+   `localStorage` and sent only to `api.github.com` — *there is no server and no
+   public endpoint anywhere in this design.* Revoke it on GitHub whenever you like.
+3. Saving commits `vault/sites.json` as **`vault: edit from gallery`**.
+4. That push triggers [`.github/workflows/capture.yml`](.github/workflows/capture.yml),
+   which has a real browser, shoots any entry missing shots, and commits them back
+   as **`shots: auto-capture [skip ci]`**. **~2 minutes**, then reload.
+
+You never touch a terminal. `download json` stays as a fallback if the API call fails.
+
+**Stale-edit guard.** A browser holding unsaved edits does not silently win over a
+newer file. If `vault/sites.json` changed after those edits were made, the gallery
+shows the **remote** version, holds your copy, and asks — *keep my edits* or *take
+remote*. Nothing is written or discarded without that choice.
+
+### Offline path (terminal)
+
 ```bash
 npm install                            # playwright + chromium, live-server
 npm run vault                          # gallery at http://localhost:5177
+npm run add -- <url>                   # shoot 3 images + create a stub entry
+npm run capture-missing                # shoot every entry whose images are missing
+npm run recapture -- <id>              # reshoot after a redesign
+npm run smoke                          # check the gallery still works
 ```
 
-**Three ways in, one way out.**
-
-| | |
-|---|---|
-| **Add via command** | `npm run add -- <url>` — shoots full / hero / mobile, creates a stub entry with empty tags and `note: "TODO"`. Then open the gallery and write the note. |
-| **Add via page** | `+ add site` in the gallery, or edit `sites.json` by hand from your phone. Shots arrive later: `npm run capture-missing` shoots every entry whose images are missing. |
-| **Reshoot** | `npm run recapture -- <id>` when a site redesigns. |
-
-The gallery has no backend by design. Saving downloads an updated `sites.json` —
-**replace the file in `vault/` and commit it.** Edits survive a reload via
-`localStorage`, but they aren't real until they're committed.
+Add `-- --insecure` to any capture command for hosts with a broken TLS cert (off by
+default, logged when used). Saving from a locally served gallery works the same way —
+it still writes to GitHub through the API.
 
 ### The weekly distillation ritual
 

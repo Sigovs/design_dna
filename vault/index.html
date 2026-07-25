@@ -140,6 +140,55 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .btn[hidden] { display: none; }
 
 .dirty { color: oklch(.8 .06 70); }
+.ok { color: oklch(.82 .06 165); }
+
+.reconcile {
+  border-top: 1px solid oklch(.7 .06 70 / .5);
+  border-bottom: 1px solid oklch(.7 .06 70 / .5);
+  padding-block: var(--space-5) var(--space-6);
+  margin-block-start: var(--space-6);
+}
+.reconcile[hidden] { display: none; }
+.reconcile > .label { color: oklch(.82 .07 70); display: block; margin-bottom: var(--space-3); }
+.reconcile p { margin: 0; max-width: 68ch; color: var(--ink-70); line-height: 1.55; }
+.reconcile p strong { color: var(--ink); }
+.reconcile-actions { display: flex; flex-wrap: wrap; gap: var(--space-4); margin-top: var(--space-5); }
+.hint.dirty, .hint.ok { max-width: 52ch; }
+
+/* ─── touch / small-screen pass ──────────────────────────────────────────
+   Coarse pointers get 44px minimum targets. Applied by input type, not by
+   width, so a touch laptop gets them too. */
+@media (pointer: coarse) {
+  .btn { min-height: 44px; display: inline-flex; align-items: center; }
+  .btn--quiet { min-height: 44px; }
+  .chip { min-height: 44px; padding-block: 0; }
+  .check { min-height: 44px; padding-block: var(--space-2); }
+  .check input { inline-size: 14px; block-size: 14px; }
+  .card { padding-block-end: var(--space-2); }
+  .search { min-height: 44px; }
+  .field input[type="text"], .field input[type="url"], .field input[type="password"] { min-height: 44px; }
+}
+
+@media (max-width: 40rem) {
+  /* Filter rows stop trying to be two columns and stack label over chips. */
+  .filter-cat { display: block; }
+  .filter-cat > .label { display: block; flex: none; margin-bottom: var(--space-2); }
+  .filter-cat .chip { margin-inline-end: var(--space-4); }
+
+  /* Form controls go full width and stack; nothing sits side by side. */
+  .toolbar-row { flex-direction: column; align-items: stretch; gap: var(--space-4); }
+  .toolbar-row .btn--quiet { text-align: left; }
+  .toolbar-meta { flex-direction: column; align-items: stretch; gap: var(--space-4); }
+  .toolbar-meta .btn { width: 100%; justify-content: center; }
+  .form-actions { flex-direction: column; align-items: stretch; }
+  .form-actions .btn { width: 100%; justify-content: center; }
+  .vocab-tags { gap: var(--space-2) var(--space-4); }
+  .rating-set { flex-wrap: wrap; gap: var(--space-4); }
+  .sheet-bar { gap: var(--space-3); }
+  .shot-full, .shot-mobile { max-height: 60vh; }
+  /* Long ids and urls must wrap rather than push the page wide. */
+  .plate dd, .label, .status-mark { overflow-wrap: anywhere; }
+}
 
 /* ─── grid ─────────────────────────────────────────────────────────────── */
 .grid {
@@ -286,6 +335,53 @@ button, input, textarea, select { font: inherit; color: inherit; }
 </head>
 <body>
 
+<!-- token panel: shown on first save, never on load -->
+<section class="sheet" id="token" hidden aria-label="Connect to GitHub">
+  <div class="shell">
+    <div class="sheet-bar">
+      <span class="label">connect to github</span>
+      <button class="btn btn--quiet" id="token-close" type="button">close · esc</button>
+    </div>
+    <div class="detail" style="grid-template-columns: minmax(0,1fr)">
+      <div style="max-width: 40rem">
+        <h2>Saving needs a <em>token</em></h2>
+        <p class="hint" style="margin-top: var(--space-5)">
+          The gallery writes straight to the repo through the GitHub API. There is no
+          server and no public endpoint — the token stays in this browser and is sent
+          only to api.github.com.
+        </p>
+        <form class="form" id="token-form">
+          <div class="field">
+            <label class="label" for="token-input">fine-grained personal access token</label>
+            <input type="password" id="token-input" autocomplete="off" spellcheck="false"
+                   placeholder="github_pat_…" required>
+          </div>
+          <div class="field">
+            <span class="label">how to make one</span>
+            <ol class="hint" style="max-width: 46ch; padding-left: 1.2em; line-height: 1.7">
+              <li>GitHub → Settings → Developer settings → Personal access tokens →
+                  <strong>Fine-grained tokens</strong> → Generate new token</li>
+              <li>Repository access: <strong>Only select repositories</strong> → this repo</li>
+              <li>Permissions → Repository permissions → <strong>Contents: Read and write</strong></li>
+              <li>Generate, copy, paste above</li>
+            </ol>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn--primary" type="submit">save token &amp; continue</button>
+            <span class="hint">
+              <strong>Token saved locally in this browser only — revoke anytime on GitHub.</strong>
+              Nothing is sent anywhere except api.github.com.
+            </span>
+          </div>
+        </form>
+        <p class="hint" style="margin-top: var(--space-6)">
+          <button class="btn btn--quiet" id="token-forget" type="button">forget stored token</button>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <main class="shell" id="app">
   <header class="masthead">
     <span class="eyebrow">taste vault · design dna</span>
@@ -293,6 +389,17 @@ button, input, textarea, select { font: inherit; color: inherit; }
     <p class="lead">Every entry carries a note on <em>why</em> it works. The note is the payload — the shots are
       evidence. Read the reasoning, match the thinking, don't copy the pixels.</p>
   </header>
+
+  <!-- stale-edit reconcile bar: only ever shown when the served file is newer
+       than the edits this browser is holding. Never resolves itself. -->
+  <section class="reconcile" id="reconcile" hidden aria-live="polite">
+    <span class="label">remote is newer</span>
+    <p id="reconcile-body"></p>
+    <div class="reconcile-actions">
+      <button class="btn" id="keep-mine" type="button">keep my edits</button>
+      <button class="btn btn--primary" id="take-remote" type="button">take remote</button>
+    </div>
+  </section>
 
   <section class="toolbar" aria-label="Search and filter">
     <div class="toolbar-row">
@@ -304,7 +411,8 @@ button, input, textarea, select { font: inherit; color: inherit; }
     <div class="toolbar-meta">
       <span class="count" id="count"></span>
       <button class="btn" id="open-add" type="button">+ add site</button>
-      <button class="btn btn--primary" id="download" type="button" hidden>download sites.json</button>
+      <button class="btn btn--primary" id="push" type="button" hidden>save to github</button>
+      <button class="btn" id="download" type="button" hidden>download json</button>
       <span class="hint dirty" id="dirty-note" hidden></span>
     </div>
   </section>
@@ -424,11 +532,65 @@ const hueOf = (cat) => vocab.categories[cat]?.hue ?? 0;
 const host = (url) => { try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return url; } };
 
 /* ── load ──────────────────────────────────────────────────────────────── */
+/* ── stale-edit guard ──────────────────────────────────────────────────────
+   A working copy in localStorage must never silently mask or overwrite a newer
+   canonical file. This is a real incident, not a hypothetical: a browser holding
+   pre-review edits for thegentlewoman-co-uk displayed rating 3 / unreviewed long
+   after the human review had landed as rating 1 / out, and a Save would have
+   pushed the stale values back over it. */
+let heldCopy = null;      // stale working copy set aside, awaiting a decision
+let fileStamp = null;     // when the served sites.json last actually changed
+
+async function loadFileStamp(res) {
+  // The file's last commit date is authoritative. Public repo, so no token needed.
+  const cfg = repoConfig();
+  try {
+    const url = `https://api.github.com/repos/${cfg.owner}/${cfg.repo}/commits`
+      + `?path=${encodeURIComponent(cfg.path)}&sha=${encodeURIComponent(cfg.branch)}&per_page=1`;
+    const commits = await fetch(url).then((r) => (r.ok ? r.json() : null));
+    const d = commits?.[0]?.commit?.committer?.date;
+    if (d) return new Date(d);
+  } catch { /* offline or rate-limited — fall back to the header */ }
+  const lm = res?.headers?.get('Last-Modified');
+  return lm ? new Date(lm) : null;
+}
+
+/* Which entries does the held copy actually disagree with the file about? */
+function conflictsWith(localEntries, remoteEntries) {
+  const remoteById = new Map(remoteEntries.map((e) => [e.id, e]));
+  const out = [];
+  for (const mine of localEntries) {
+    const theirs = remoteById.get(mine.id);
+    if (!theirs) continue;                            // new local entry: no conflict
+    if (JSON.stringify(normalise({ ...mine })) !== JSON.stringify(normalise({ ...theirs }))) {
+      out.push({ id: mine.id, mine, theirs });
+    }
+  }
+  return out;
+}
+
+function showReconcile(conflicts, when) {
+  const lines = conflicts.map((c) =>
+    `${c.id}: yours rating ${c.mine.rating}/${c.mine.dialectStatus}, remote rating ${c.theirs.rating}/${c.theirs.dialectStatus}`);
+  $('#reconcile-body').innerHTML =
+    `<strong>The file in the repo changed after these browser edits were made.</strong> `
+    + `Showing the remote version. Your unsaved edits are held, not discarded, and nothing will be `
+    + `written until you choose.<br><br>`
+    + (when ? `Your edits: ${when.toLocaleString()}. File changed: ${fileStamp?.toLocaleString() ?? 'unknown'}.<br><br>` : '')
+    + (lines.length
+        ? `Differs on ${lines.length} entr${lines.length === 1 ? 'y' : 'ies'}:<br>${lines.map((l) => '· ' + l).join('<br>')}`
+        : 'No entry-level differences — your copy is simply older.');
+  $('#reconcile').hidden = false;
+}
+
+function hideReconcile() { $('#reconcile').hidden = true; heldCopy = null; }
+
 async function boot() {
+  let sitesRes;
   try {
     const [v, s] = await Promise.all([
       fetch('vocab.json').then((r) => r.json()),
-      fetch('sites.json').then((r) => r.json()),
+      fetch('sites.json', { cache: 'no-store' }).then((r) => { sitesRes = r; return r.json(); }),
     ]);
     vocab = v;
     entries = s;
@@ -442,14 +604,27 @@ async function boot() {
     return;
   }
 
-  // A working copy from a previous session wins — it holds unsaved edits.
+  entries.forEach(normalise);
+  const remoteEntries = entries.map((e) => ({ ...e }));
+  fileStamp = await loadFileStamp(sitesRes);
+
+  /* A working copy from a previous session holds unsaved edits — but it only wins
+     if the file has NOT moved since those edits were made. If the file is newer,
+     the canonical version is displayed and the local copy waits for a decision. */
   const saved = localStorage.getItem(LS_KEY);
   if (saved) {
     try {
       const parsed = JSON.parse(saved);
       if (Array.isArray(parsed.entries) && parsed.entries.length) {
-        entries = parsed.entries;
-        dirty = true;
+        const editedAt = parsed.at ? new Date(parsed.at) : null;
+        const stale = fileStamp && editedAt && fileStamp > editedAt;
+        if (stale) {
+          heldCopy = parsed;                                  // display remote
+          showReconcile(conflictsWith(parsed.entries.map(normalise), remoteEntries), editedAt);
+        } else {
+          entries = parsed.entries;
+          dirty = true;
+        }
       }
     } catch { localStorage.removeItem(LS_KEY); }
   }
@@ -473,10 +648,15 @@ function persist() {
 }
 
 function renderDirty() {
+  $('#push').hidden = !dirty;
   $('#download').hidden = !dirty;
   const note = $('#dirty-note');
-  note.hidden = !dirty;
-  note.textContent = dirty ? 'unsaved edits held in this browser — download and commit to make them real' : '';
+  if (!dirty) { note.hidden = true; note.textContent = ''; return; }
+  // Don't stomp a save result message with the generic prompt.
+  if (note.dataset.sticky === '1') return;
+  note.hidden = false;
+  note.className = 'hint dirty';
+  note.textContent = 'unsaved edits held in this browser — save to github to make them real';
 }
 
 /* ── filters ───────────────────────────────────────────────────────────── */
@@ -875,6 +1055,186 @@ function readVocabForm(wrap) {
   return out;
 }
 
+/* ── save to github ────────────────────────────────────────────────────────
+   No backend exists. The page talks to the Contents API directly with the
+   user's own fine-grained PAT, held in this browser. Shots are not uploaded
+   here — a push to vault/sites.json triggers .github/workflows/capture.yml,
+   which has a real browser and commits the screenshots back (~2 min). */
+const TOKEN_KEY = 'design-dna:vault:gh-token';
+const REPO_KEY = 'design-dna:vault:gh-repo';
+
+/* Derive the repo from the Pages URL when served from github.io, so a fork just
+   works. Falls back to the canonical repo when served locally. */
+function repoConfig() {
+  const stored = localStorage.getItem(REPO_KEY);
+  if (stored) { try { return JSON.parse(stored); } catch { /* fall through */ } }
+  const m = location.hostname.match(/^([\w-]+)\.github\.io$/i);
+  if (m) {
+    const seg = location.pathname.split('/').filter(Boolean);
+    if (seg.length) return { owner: m[1], repo: seg[0], branch: 'master', path: 'vault/sites.json' };
+  }
+  return { owner: 'Sigovs', repo: 'design_dna', branch: 'master', path: 'vault/sites.json' };
+}
+
+const getToken = () => localStorage.getItem(TOKEN_KEY);
+
+function b64encode(str) {
+  const bytes = new TextEncoder().encode(str);
+  let bin = '';
+  bytes.forEach((b) => { bin += String.fromCharCode(b); });
+  return btoa(bin);
+}
+const b64decode = (b64) =>
+  new TextDecoder().decode(Uint8Array.from(atob(b64.replace(/\s/g, '')), (c) => c.charCodeAt(0)));
+
+async function gh(path, init = {}) {
+  const res = await fetch(`https://api.github.com${path}`, {
+    ...init,
+    headers: {
+      Accept: 'application/vnd.github+json',
+      Authorization: `Bearer ${getToken()}`,
+      'X-GitHub-Api-Version': '2022-11-28',
+      ...(init.body ? { 'Content-Type': 'application/json' } : {}),
+      ...init.headers,
+    },
+  });
+  if (!res.ok) {
+    let detail = '';
+    try { detail = (await res.json()).message ?? ''; } catch { /* no body */ }
+    const err = new Error(`${res.status} ${detail || res.statusText}`);
+    err.status = res.status;
+    throw err;
+  }
+  return res.json();
+}
+
+const serialise = (list) => JSON.stringify(
+  [...list].sort((a, b) => (a.added === b.added
+    ? a.id.localeCompare(b.id)
+    : String(b.added).localeCompare(String(a.added)))), null, 2) + '\n';
+
+/* Remote is the base; this browser's entries are layered on top by id. Entries
+   only present remotely survive (another device may have added them); shots
+   written by the Action are never clobbered, because a local entry with no shots
+   inherits the remote ones. */
+function mergeOnto(remote, local) {
+  const out = new Map(remote.map((e) => [e.id, e]));
+  for (const mine of local) {
+    const theirs = out.get(mine.id);
+    if (!theirs) { out.set(mine.id, mine); continue; }
+    const shots = { ...(mine.shots ?? {}) };
+    for (const k of ['full', 'hero', 'mobile']) {
+      if (!shots[k] && theirs.shots?.[k]) shots[k] = theirs.shots[k];
+    }
+    out.set(mine.id, { ...theirs, ...mine, shots });
+  }
+  return [...out.values()];
+}
+
+async function fetchRemote(cfg) {
+  const data = await gh(
+    `/repos/${cfg.owner}/${cfg.repo}/contents/${cfg.path}?ref=${encodeURIComponent(cfg.branch)}`,
+    { cache: 'no-store' });
+  return { sha: data.sha, entries: JSON.parse(b64decode(data.content)).map(normalise) };
+}
+
+async function putSites(cfg, content, sha, message) {
+  return gh(`/repos/${cfg.owner}/${cfg.repo}/contents/${cfg.path}`, {
+    method: 'PUT',
+    body: JSON.stringify({ message, content: b64encode(content), sha, branch: cfg.branch }),
+  });
+}
+
+async function saveToGitHub() {
+  if (!getToken()) { openTokenPanel(); return; }
+
+  const cfg = repoConfig();
+  const btn = $('#push');
+  const label = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'saving…';
+  status('reading current sites.json…');
+
+  try {
+    let attempt = 0;
+    for (;;) {
+      attempt++;
+      const { sha, entries: remote } = await fetchRemote(cfg);
+
+      /* Same guard as on load: if the file moved after these edits were made and
+         the two disagree about an entry, stop and ask. Never silently overwrite. */
+      const editedAt = (() => {
+        try { return new Date(JSON.parse(localStorage.getItem(LS_KEY) ?? '{}').at); }
+        catch { return null; }
+      })();
+      const remoteDate = await loadFileStamp(null);
+      if (remoteDate) fileStamp = remoteDate;
+      if (fileStamp && editedAt && !isNaN(editedAt) && fileStamp > editedAt) {
+        const conflicts = conflictsWith(entries, remote);
+        if (conflicts.length) {
+          heldCopy = { entries: entries.map((e) => ({ ...e })), at: editedAt.toISOString() };
+          entries = remote.map(normalise);
+          renderFilters(); renderDialectFilters(); render();
+          showReconcile(conflicts, editedAt);
+          status('Save stopped — the repo changed after your edits. Choose keep or take remote above.', 'bad');
+          $('#reconcile').scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return;
+        }
+      }
+
+      const merged = mergeOnto(remote, entries);
+      try {
+        const res = await putSites(cfg, serialise(merged), sha, 'vault: edit from gallery');
+        entries = merged.map(normalise);
+        dirty = false;
+        localStorage.removeItem(LS_KEY);
+        renderFilters(); renderDialectFilters(); render();
+        const short = res.commit?.sha?.slice(0, 7) ?? '';
+        status(`saved as ${short} — shots are being captured by the Action, ~2 min. Reload after it finishes.`, 'ok');
+        return;
+      } catch (err) {
+        // 409/422 = someone else moved the file. Refetch, reapply, retry once.
+        if ((err.status === 409 || err.status === 422) && attempt < 2) {
+          status('the file changed underneath — refetching and retrying…');
+          continue;
+        }
+        throw err;
+      }
+    }
+  } catch (err) {
+    if (err.status === 401 || err.status === 403) {
+      status(`GitHub rejected the token (${err.status}). It may be expired, or missing Contents: Read and write. Downloading json instead.`, 'bad');
+      download();
+      openTokenPanel();
+    } else if (err.status === 404) {
+      status(`Repo or file not found (404) — check the token can see ${cfg.owner}/${cfg.repo}. Downloading json instead.`, 'bad');
+      download();
+    } else {
+      status(`Save failed: ${err.message}. Downloading json instead — replace vault/sites.json and commit.`, 'bad');
+      download();
+    }
+  } finally {
+    btn.disabled = false;
+    btn.textContent = label;
+  }
+}
+
+function status(msg, kind = '') {
+  const el = $('#dirty-note');
+  el.hidden = false;
+  el.textContent = msg;
+  el.className = 'hint ' + (kind === 'ok' ? 'ok' : 'dirty');
+  el.dataset.sticky = '1';                       // survives the next renderDirty()
+  clearTimeout(status._t);
+  status._t = setTimeout(() => { el.dataset.sticky = '0'; }, 30_000);
+}
+
+function openTokenPanel() {
+  $('#token').hidden = false;
+  document.body.style.overflow = 'hidden';
+  $('#token-input').focus();
+}
+
 /* ── download ──────────────────────────────────────────────────────────── */
 function download() {
   const sorted = [...entries].sort((a, b) =>
@@ -957,7 +1317,42 @@ function wire() {
   });
 
   $('#download').addEventListener('click', download);
+  $('#push').addEventListener('click', saveToGitHub);
+
+  /* Reconcile: an explicit choice, and the only way out of the bar. */
+  $('#keep-mine').addEventListener('click', () => {
+    if (!heldCopy) return hideReconcile();
+    entries = mergeOnto(entries, heldCopy.entries.map(normalise)).map(normalise);
+    hideReconcile();
+    persist();                                   // re-stamps, so it is no longer stale
+    renderFilters(); renderDialectFilters(); render();
+    status('Kept your edits over the remote version. Save to github to write them.', 'ok');
+  });
+  $('#take-remote').addEventListener('click', () => {
+    localStorage.removeItem(LS_KEY);
+    hideReconcile();
+    dirty = false;
+    renderFilters(); renderDialectFilters(); render();
+    status('Discarded the browser copy — showing the version in the repo.', 'ok');
+  });
   $('#detail-close').addEventListener('click', closeDetail);
+
+  const closeToken = () => { $('#token').hidden = true; document.body.style.overflow = ''; };
+  $('#token-close').addEventListener('click', closeToken);
+  $('#token-form').addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    const value = $('#token-input').value.trim();
+    if (!value) return;
+    localStorage.setItem(TOKEN_KEY, value);
+    $('#token-input').value = '';
+    closeToken();
+    saveToGitHub();
+  });
+  $('#token-forget').addEventListener('click', () => {
+    localStorage.removeItem(TOKEN_KEY);
+    status('stored token removed from this browser.', 'ok');
+    closeToken();
+  });
 
   $('#open-add').addEventListener('click', () => {
     $('#add').hidden = false;
@@ -972,7 +1367,8 @@ function wire() {
 
   document.addEventListener('keydown', (ev) => {
     if (ev.key !== 'Escape') return;
-    if (!$('#add').hidden) { $('#add').hidden = true; document.body.style.overflow = ''; }
+    if (!$('#token').hidden) { $('#token').hidden = true; document.body.style.overflow = ''; }
+    else if (!$('#add').hidden) { $('#add').hidden = true; document.body.style.overflow = ''; }
     else if (openId) closeDetail();
   });
 }

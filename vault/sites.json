@@ -159,14 +159,23 @@
     "added": "2026-07-25",
     "rating": 2,
     "dialectStatus": "unreviewed",
-    "dialects": [],
+    "dialects": [
+      "auction-editorial"
+    ],
     "tags": {
-      "composition": [],
+      "composition": [
+        "vertical-narrative-dominant-character-mass-layered-overlap-asymmetric-balance-directed-visual-silence-figure-ground-tension",
+        "ambiguous-reading-order-mobile-recomposition-risk-decorative-information-legibility-risk"
+      ],
       "typography": [],
       "layout": [],
       "motion": [],
-      "color": [],
-      "imagery": []
+      "color": [
+        "monochrome-red-accent-controlled-accent-system"
+      ],
+      "imagery": [
+        "character-as-artifact-cutout-layering-content-quality-dependence"
+      ]
     },
     "note": "IN — A highly composed fantasy character showcase that transforms ranking, attributes, skills, and historical information into a continuous editorial narrative. Oversized character renders act as dominant masses, while torn black surfaces, generous white intervals, compact typography, and recurring red information panels create a controlled vertical rhythm. The strongest decision is the integration of imagery and metadata: content does not sit inside a conventional grid but overlaps and interrupts the composition to build hierarchy, tension, and progression. However, extreme microtype, ambiguous reading order, and heavy dependence on pre-existing character artwork limit its value as a complete usability reference. A strong auction-editorial reference for layered composition, collectible authority, and visual pacing.",
     "shots": {

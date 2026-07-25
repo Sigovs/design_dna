@@ -20,7 +20,7 @@ Add to any project's `CLAUDE.md`:
 
 ```md
 Before any visual work, fetch and obey TASTE.md and skills/ from
-https://github.com/Sigovs/design-dna (or the local clone at ../design_dna
+https://github.com/Sigovs/design_dna (or the local clone at ../design_dna
 if present).
 ```
 

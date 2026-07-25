@@ -1,0 +1,31 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# phase 2: vault capture output (screenshots stay local until the gallery lands)
+shots/
+vault/shots/
+vault/**/*.png
+vault/**/*.jpg
+vault/**/*.jpeg
+vault/**/*.webp
+vault/**/*.mp4
+
+# build / tooling
+dist/
+build/
+.cache/
+*.log
+
+# env
+.env
+.env.*
+
+# os / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# local agent config (not part of the taste system)
+.claude/

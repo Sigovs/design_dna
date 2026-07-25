@@ -29,14 +29,18 @@
     "added": "2026-07-25",
     "rating": 3,
     "dialectStatus": "in",
-    "dialects": [],
+    "dialects": [
+      "immersive-authored-world"
+    ],
     "tags": {
       "composition": [
+        "dominant-mass",
         "active-negative-space",
         "directed-eye",
         "intentional-crop",
         "optical-balance",
-        "compositional-resolution"
+        "compositional-resolution",
+        "responsive-recomposition"
       ],
       "typography": [],
       "layout": [

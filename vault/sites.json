@@ -153,39 +153,9 @@
     "unsorted": []
   },
   {
-    "id": "i-pinimg-com-736x-46-d9-d5-46d9d54b7cc97b5687cbfd24a1410d34-",
-    "url": "https://i.pinimg.com/736x/46/d9/d5/46d9d54b7cc97b5687cbfd24a1410d34.jpg",
-    "title": "46d9d54b7cc97b5687cbfd24a1410d34.jpg (736×1308)",
-    "added": "2026-07-25",
-    "rating": 2,
-    "dialectStatus": "unreviewed",
-    "dialects": [],
-    "tags": {
-      "composition": [],
-      "typography": [],
-      "layout": [],
-      "motion": [],
-      "color": [],
-      "imagery": []
-    },
-    "note": "TODO",
-    "shots": {
-      "full": "shots/i-pinimg-com-736x-46-d9-d5-46d9d54b7cc97b5687cbfd24a1410d34-/full.jpg",
-      "hero": "shots/i-pinimg-com-736x-46-d9-d5-46d9d54b7cc97b5687cbfd24a1410d34-/hero.jpg",
-      "mobile": "shots/i-pinimg-com-736x-46-d9-d5-46d9d54b7cc97b5687cbfd24a1410d34-/mobile.jpg"
-    },
-    "kind": "site",
-    "source": "",
-    "extras": [],
-    "captureError": null,
-    "works": "",
-    "weaknesses": "",
-    "unsorted": []
-  },
-  {
     "id": "thenewmobileworkforce-imm-g-prod-com-back-at-hq",
     "url": "https://thenewmobileworkforce.imm-g-prod.com/back-at-hq",
-    "title": "Large Screens",
+    "title": "Large Screens, Transitions, PNG/Cutout use",
     "added": "2026-07-25",
     "rating": 2,
     "dialectStatus": "in",
@@ -194,12 +164,12 @@
     ],
     "tags": {
       "composition": [
-        "active-negative-space",
-        "compositional-resolution",
-        "directed-eye",
         "dominant-mass",
+        "active-negative-space",
+        "directed-eye",
         "intentional-crop",
         "optical-balance",
+        "compositional-resolution",
         "responsive-recomposition"
       ],
       "typography": [],

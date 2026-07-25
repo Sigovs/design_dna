@@ -288,8 +288,23 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .card-host { display: block; margin-top: var(--space-2); color: var(--ink-30); }
 .card-tags { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-3); margin-top: var(--space-3); }
 .tag { --hue: 0; font-family: var(--font-mono); font-size: .625rem; letter-spacing: .1em; text-transform: uppercase; color: oklch(.8 .05 var(--hue)); }
-.card-note { margin: 0; color: var(--ink-50); font-size: .875rem; line-height: 1.5; }
+/* Visual clamp, not a character count: four lines at any width, in any script,
+   with any word lengths. This is what makes card heights predictable. */
+.card-note {
+  margin: 0; color: var(--ink-50); font-size: .875rem; line-height: 1.5;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4;
+  line-clamp: 4; overflow: hidden;
+}
 .card-note--todo { color: var(--ink-30); font-style: italic; }
+.note-more {
+  display: block; margin-top: var(--space-3);
+  background: none; border: 0; padding: 0;
+  color: var(--ink-30); cursor: pointer; text-align: left;
+  transition: color var(--dur-1) var(--ease-out);
+}
+.note-more[hidden] { display: none; }
+.note-more:hover { color: var(--ink); }
+.card:hover .note-more { color: var(--ink-50); }
 
 /* note + its edit affordance. The pencil is the only icon in the page. */
 .note-row { display: flex; align-items: flex-start; gap: var(--space-3); margin-top: var(--space-3); }
@@ -1044,6 +1059,19 @@ function render() {
     ? `${total} entr${total === 1 ? 'y' : 'ies'}`
     : `${shown.length} of ${total}`;
 
+  /* After layout: a clamped note is one whose content exceeds its clamped box.
+     Measured, not guessed, so the affordance never lies in either direction. */
+  requestAnimationFrame(() => {
+    for (const card of grid.querySelectorAll('.card')) {
+      const note = card.querySelector('.card-note');
+      const more = card.querySelector('.note-more');
+      if (!note || !more) continue;
+      const clipped = note.scrollHeight > note.clientHeight + 1
+        && !note.classList.contains('card-note--todo');
+      more.hidden = !clipped;
+    }
+  });
+
   const empty = $('#empty');
   if (!total) {
     empty.hidden = false;
@@ -1181,11 +1209,12 @@ function card(entry) {
   const note = (entry.note ?? '').trim();
   const empty = note === 'TODO' || !note;
   const row = el('div', { className: 'note-row' });
+  /* Full text, clamped visually by CSS. Slicing by character count was
+     width- and script-blind: the same 190 characters rendered 4 lines at 1440px
+     and 7 at 320px, and unevenly between cards. */
   row.append(el('p', {
     className: 'card-note' + (empty ? ' card-note--todo' : ''),
-    textContent: empty
-      ? 'note: TODO — tap to write why this is here'
-      : note.length > 190 ? note.slice(0, 190).trimEnd() + '…' : note,
+    textContent: empty ? 'note: TODO — tap to write why this is here' : note,
   }));
   const editBtn = el('button', {
     className: 'note-edit', type: 'button',
@@ -1199,6 +1228,18 @@ function card(entry) {
   row.append(editBtn);
   node.append(row);
 
+  /* Revealed by the post-render clamp pass only when the note is actually cut off. */
+  const more = el('button', {
+    className: 'note-more label', type: 'button', hidden: true,
+    textContent: 'read more →',
+    ariaLabel: `Read the full note for ${entry.title}`,
+  });
+  more.addEventListener('click', (ev) => {
+    ev.stopPropagation();
+    openDetail(entry.id, { showNote: true });
+  });
+  node.append(more);
+
   node.addEventListener('click', () => openDetail(entry.id));
   node.addEventListener('keydown', (ev) => {
     if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); openDetail(entry.id); }
@@ -1207,7 +1248,7 @@ function card(entry) {
 }
 
 /* ── detail ────────────────────────────────────────────────────────────── */
-function openDetail(id, { editNote = false } = {}) {
+function openDetail(id, { editNote = false, showNote = false } = {}) {
   const entry = entries.find((e) => e.id === id);
   if (!entry) return;
   openId = id;
@@ -1264,6 +1305,10 @@ function openDetail(id, { editNote = false } = {}) {
     const block = $('#note-block');
     block?.scrollIntoView({ block: 'center' });
     block?.openEditor?.();
+  } else if (showNote) {
+    // Arrived via "read more": the full note, in reading position, not editing.
+    $('#note-block')?.scrollIntoView({ block: 'start' });
+    $('#note-read')?.focus?.();
   } else {
     $('#detail-close').focus();
   }

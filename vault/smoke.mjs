@@ -249,6 +249,110 @@ console.log('\nnote editing');
   void beforeEntry;
 }
 
+/* ── note clamp ───────────────────────────────────────────────────────────
+   Truncating by character count was width- and script-blind: the same 190
+   characters rendered 4 lines at 1440px and 7 at 320px, unevenly between cards.
+   The clamp is now visual, so this asserts lines, not characters. */
+console.log('\nnote clamp — 1500+ char mixed-script note');
+{
+  const LONG = (
+    'Аналитическая заметка: композиция держится на одном доминирующем объекте, а вся '
+    + 'остальная плоскость работает как активное негативное пространство. The tonal '
+    + 'structure survives a squint test because there are only two masses — один светлый '
+    + 'текстовый блок против почти однородного тёмного поля. Ритм задаётся интервалами, '
+    + 'а не количеством элементов: 12px eyebrow→heading, 24px heading→lead, 48px до CTA. '
+    + 'Обратите внимание, что акцентный цвет занимает меньше одного процента пикселей и '
+    + 'появляется только там, где нужно действие. Motion changes narrative state rather '
+    + 'than merely revealing content, что делает страницу похожей на поставленную сцену, '
+    + 'а не на документ. Полностью воспроизводить артефакт нельзя — нужно взять решение: '
+    + 'где масса, куда ведёт взгляд, что вычтено. This sentence exists to push the note '
+    + 'comfortably past fifteen hundred characters so that the clamp is exercised against '
+    + 'real length and a genuinely mixed script, including '
+    + 'длинныесловабезпробеловкоторыенеразрываютсяникогда and Latin tokens interleaved '
+    + 'throughout the body of the paragraph. Дополнительно проверяем, что деталь '
+    + 'показывает весь текст без обрезки, с комфортной мерой строки и межстрочным '
+    + 'интервалом, потому что именно деталь теперь основная поверхность для чтения '
+    + 'глубокого анализа, а карточка — только превью на четыре строки. Ещё один абзац '
+    + 'нужен для того, чтобы заметка уверенно превысила полторы тысячи символов и '
+    + 'проверяла зажим на реальной длине: composition, tonal structure, spacing '
+    + 'relationships — три вещи, которые агент обязан описать, открыв изображение, '
+    + 'прежде чем применять решения, а не воспроизводить артефакт. Инварианты всегда '
+    + 'важнее референса, и при конфликте выигрывают именно они.'
+  );
+  check('the test note is over 1500 characters and mixed-script',
+    LONG.length > 1500 && /[Ѐ-ӿ]/.test(LONG) && /[A-Za-z]/.test(LONG),
+    `${LONG.length} chars`);
+
+  const cc = await browser.newContext();
+  const cp = await cc.newPage();
+  await cp.goto(URL_BASE, { waitUntil: 'domcontentloaded' });
+  await cp.waitForSelector('.card');
+  await cp.evaluate(async (note) => {
+    const live = await fetch('sites.json').then((r) => r.json());
+    live[0] = { ...live[0], note };
+    localStorage.setItem('design-dna:vault:working-copy',
+      JSON.stringify({ entries: live, at: new Date(Date.now() + 600000).toISOString() }));
+  }, LONG);
+  await cp.reload({ waitUntil: 'domcontentloaded' });
+  await cp.waitForSelector('.card');
+  await cp.waitForTimeout(1200);
+
+  const m = await cp.evaluate(() => {
+    const rows = [...document.querySelectorAll('.card')].map((c) => {
+      const n = c.querySelector('.card-note');
+      const lh = parseFloat(getComputedStyle(n).lineHeight);
+      return {
+        lines: Math.round(n.getBoundingClientRect().height / lh),
+        clipped: n.scrollHeight > n.clientHeight + 1,
+        moreShown: !c.querySelector('.note-more').hidden,
+        noteBoxH: Math.round(n.getBoundingClientRect().height),
+      };
+    });
+    return {
+      maxLines: Math.max(...rows.map((r) => r.lines)),
+      clippedAllFour: rows.filter((r) => r.clipped).every((r) => r.lines === 4),
+      moreMatches: rows.every((r) => r.moreShown === r.clipped),
+      anyClipped: rows.some((r) => r.clipped),
+      // Only clipped notes should be identical; a short note is legitimately shorter.
+      clippedSpread: (() => {
+        const hs = rows.filter((r) => r.clipped).map((r) => r.noteBoxH);
+        return hs.length ? Math.max(...hs) - Math.min(...hs) : 0;
+      })(),
+      clippedCount: rows.filter((r) => r.clipped).length,
+    };
+  });
+  check('no card note exceeds 4 lines', m.maxLines <= 4, `max ${m.maxLines}`);
+  check('every clipped note is exactly 4 lines', m.clippedAllFour && m.anyClipped);
+  check('"read more" appears exactly when the note is clipped', m.moreMatches);
+
+  // Card rhythm: note boxes must be uniform among clipped cards, so the only
+  // remaining height variance comes from images and tag rows.
+  check('all clamped note boxes are the same height', m.clippedSpread <= 1,
+    `${m.clippedCount} clipped, spread ${m.clippedSpread}px`);
+
+  // The detail view is the reading surface: full text, no clamp, comfortable.
+  await cp.locator('.card').first().locator('.note-more').click();
+  await cp.waitForTimeout(900);
+  const d = await cp.evaluate(() => {
+    const nr = document.querySelector('#note-read');
+    const cs = getComputedStyle(nr);
+    return {
+      len: nr.textContent.length,
+      clamp: cs.webkitLineClamp,
+      lineHeightRatio: parseFloat(cs.lineHeight) / parseFloat(cs.fontSize),
+      overflow: cs.overflow,
+      measureCh: nr.getBoundingClientRect().width / (parseFloat(cs.fontSize) * 0.5),
+    };
+  });
+  check('detail shows the whole note', d.len >= 1500, `${d.len} chars`);
+  check('detail note is not clamped', d.clamp === 'none' || d.clamp === '');
+  check('detail note is not hidden by overflow', d.overflow === 'visible');
+  check('detail note line-height is comfortable (1.5–1.8)',
+    d.lineHeightRatio >= 1.5 && d.lineHeightRatio <= 1.8, d.lineHeightRatio.toFixed(2));
+  check('detail note measure is readable (≤80ch)', d.measureCh <= 80, `${Math.round(d.measureCh)}ch`);
+  await cc.close();
+}
+
 console.log('\npending-capture placeholder');
 {
   const pc = await browser.newContext();

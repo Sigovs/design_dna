@@ -260,6 +260,80 @@ console.log('\nfilter wall collapsed behind one disclosure');
   await mb.close();
 }
 
+/* A disclosure's revealed content must not land flush against its summary: the
+   summary's padding sits inside its own box, so the measured gap was 0px on every
+   surface. Asserted per surface, in pixels, not by inspection. */
+console.log('\ndisclosure breathing room');
+{
+  const MIN = 16;   // --space-4 floor; the token is --space-disclosure (24px)
+  const db = await browser.newContext();
+  const dp = await db.newPage();
+  await dp.goto(URL_BASE, { waitUntil: 'domcontentloaded' });
+  await dp.waitForSelector('.card');
+  await dp.waitForTimeout(900);
+
+  const measure = (p, sumSel, contentSel) => p.evaluate(([s, c]) => {
+    const su = document.querySelector(s), co = document.querySelector(c);
+    if (!su || !co) return null;
+    const sr = su.getBoundingClientRect(), cr = co.getBoundingClientRect();
+    return { gap: Math.round(cr.top - sr.bottom), summaryH: Math.round(sr.height) };
+  }, [sumSel, contentSel]);
+
+  const f = await measure(dp, '#filter-disclosure > summary', '#filters');
+  check(`filters: revealed content clears the summary by ≥${MIN}px`,
+    f && f.gap >= MIN, f ? `${f.gap}px` : 'not found');
+
+  await dp.locator('.card').first().click();
+  await dp.waitForTimeout(800);
+  await openApparatus(dp);
+  const a = await measure(dp, '#apparatus > summary', '#apparatus .form');
+  check(`detail apparatus: revealed content clears the summary by ≥${MIN}px`,
+    a && a.gap >= MIN, a ? `${a.gap}px` : 'not found');
+  await dp.keyboard.press('Escape');
+  await dp.waitForTimeout(300);
+
+  /* The internal-gap < external-gap rule, on the two card stacks that were equal. */
+  const stacks = await dp.evaluate(() => {
+    const g = (sel, prop) => {
+      const e = document.querySelector(sel);
+      if (!e) return null;
+      const cs = getComputedStyle(e);
+      return { external: Math.round(parseFloat(cs.marginTop)), internal: Math.round(parseFloat(cs.rowGap || cs.gap || '0')) };
+    };
+    return { tags: g('.card-tags'), note: g('.note-row') };
+  });
+  check('card tag row: gap to neighbour exceeds its internal gap',
+    stacks.tags && stacks.tags.external > stacks.tags.internal,
+    stacks.tags ? `external ${stacks.tags.external} > internal ${stacks.tags.internal}` : 'n/a');
+  check('card note row: gap to neighbour exceeds its internal gap',
+    stacks.note && stacks.note.external > stacks.note.internal,
+    stacks.note ? `external ${stacks.note.external} > internal ${stacks.note.internal}` : 'n/a');
+  await db.close();
+
+  /* Mobile: the same gap, plus the summary row must be a real tap target and the
+     +/− glyph must sit a consistent step from its label. */
+  const mb2 = await webkit.launch();
+  const mp2 = await (await mb2.newContext({ ...devices['iPhone 13'] })).newPage();
+  await mp2.goto(URL_BASE, { waitUntil: 'domcontentloaded' });
+  await mp2.waitForSelector('.card');
+  await mp2.waitForTimeout(900);
+  await mp2.locator('#filter-disclosure > summary').click();
+  await mp2.waitForTimeout(500);
+  const mf = await measure(mp2, '#filter-disclosure > summary', '#filters');
+  check(`mobile filters: revealed content clears the summary by ≥${MIN}px`,
+    mf && mf.gap >= MIN, mf ? `${mf.gap}px` : 'not found');
+  check('mobile: the summary row is a full tap target',
+    mf && mf.summaryH >= 44, mf ? `${mf.summaryH}px` : 'n/a');
+  check('the +/− glyph keeps a consistent gap from its label',
+    await mp2.evaluate(() => {
+      const gaps = [...document.querySelectorAll('.apparatus > summary')]
+        .map((s) => getComputedStyle(s).columnGap || getComputedStyle(s).gap);
+      return gaps.length > 0 && new Set(gaps).size === 1;
+    }),
+    await mp2.evaluate(() => getComputedStyle(document.querySelector('.apparatus > summary')).columnGap));
+  await mb2.close();
+}
+
 console.log('\nloading skeleton (motion-taste D3)');
 {
   const sk = await browser.newContext();
@@ -396,6 +470,8 @@ console.log('\nmeasured contrast on functional text (color-taste I1)');
       ['.btn', 'button label'],
       ['.apparatus > summary', 'apparatus summary'],
       ['.filter-cat > .label', 'filter category label'],
+      ['.field > .label', 'form field label'],
+      ['.extra-cap .extra-label', 'extra label'],
     ];
     const out = {};
     for (const [sel, name] of targets) {

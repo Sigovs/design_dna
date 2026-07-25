@@ -5,40 +5,79 @@
     "composition": {
       "hue": 200,
       "tags": [
-        "dominant-mass",
         "active-negative-space",
+        "compositional-resolution",
         "directed-eye",
-        "tonal-structure",
-        "rhythm-variation",
+        "dominant-mass",
         "intentional-crop",
         "optical-balance",
-        "compositional-resolution",
-        "responsive-recomposition"
+        "responsive-recomposition",
+        "rhythm-variation",
+        "tonal-structure",
+        "visual-silence"
       ]
     },
     "typography": {
       "hue": 165,
-      "tags": ["display-serif", "grotesque", "mono-details", "big-type", "editorial"]
+      "tags": [
+        "display-serif",
+        "grotesque",
+        "mono-details",
+        "big-type",
+        "editorial"
+      ]
     },
     "layout": {
       "hue": 240,
-      "tags": ["air", "grid-break", "bleed", "asymmetry", "dense-done-right"]
+      "tags": [
+        "air",
+        "grid-break",
+        "bleed",
+        "asymmetry",
+        "dense-done-right"
+      ]
     },
     "motion": {
       "hue": 70,
-      "tags": ["crossfade", "scroll-reveal", "hover-craft", "parallax", "restraint"]
+      "tags": [
+        "crossfade",
+        "scroll-reveal",
+        "hover-craft",
+        "parallax",
+        "restraint"
+      ]
     },
     "color": {
       "hue": 20,
-      "tags": ["neutral", "smoky", "monochrome", "bold-accent", "dark"]
+      "tags": [
+        "neutral",
+        "smoky",
+        "monochrome",
+        "bold-accent",
+        "dark"
+      ]
     },
     "imagery": {
       "hue": 300,
-      "tags": ["photography", "art-direction", "scrim-text", "product", "illustration"]
+      "tags": [
+        "photography",
+        "art-direction",
+        "scrim-text",
+        "product",
+        "illustration"
+      ]
     }
   },
   "_dialectsComment": "Stored dialects, matching files in dialects/. The normal route to a new one is the distillation evidence rule in vault/README.md — 3+ human-approved out-of-dialect references sharing decision logic, and Alex approves. immersive-authored-world is PROVISIONAL: author-created ahead of evidence, and confirmed only once 3+ human-reviewed entries carry it with dialectStatus 'in'. It is listed here so those human review decisions can be recorded; never assign it automatically. Status is tracked in dialects/README.md.",
-  "dialects": ["auction-editorial", "immersive-authored-world"],
+  "dialects": [
+    "auction-editorial",
+    "immersive-authored-world"
+  ],
   "_dialectStatusComment": "unreviewed = not yet judged by a human. in = belongs to a stored dialect. out = good work outside every stored dialect (the raw material for new ones). hybrid = shares decision logic with a stored dialect but diverges in expression.",
-  "dialectStatus": ["unreviewed", "in", "out", "hybrid"]
+  "dialectStatus": [
+    "unreviewed",
+    "in",
+    "out",
+    "hybrid"
+  ]
 }

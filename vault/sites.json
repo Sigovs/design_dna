@@ -70,7 +70,7 @@
   {
     "id": "trionn-com",
     "url": "https://trionn.com/",
-    "title": "trionn.com",
+    "title": "TRIONN",
     "added": "2026-07-25",
     "rating": 2,
     "dialectStatus": "unreviewed",
@@ -85,9 +85,9 @@
     },
     "note": "TODO",
     "shots": {
-      "full": null,
-      "hero": null,
-      "mobile": null
+      "full": "shots/trionn-com/full.jpg",
+      "hero": "shots/trionn-com/hero.jpg",
+      "mobile": "shots/trionn-com/mobile.jpg"
     }
   },
   {

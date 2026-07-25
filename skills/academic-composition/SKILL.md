@@ -347,16 +347,15 @@ feel.
 
 ### D4 — Visual mass slightly above the geometric centre
 
-The weight of a composition sits a little above the optical middle.
+Stated in [auction-editorial P5](../../dialects/auction-editorial.md#p5--visual-mass-slightly-above-centre-deeper-field-of-space-below) — the single source of truth for this preference.
 
 ### D5 — Deeper negative space below the primary content than above; sections exhale downward
 
-The lower field is the deeper one, and a section releases downward into the next.
+Stated in [auction-editorial P5](../../dialects/auction-editorial.md#p5--visual-mass-slightly-above-centre-deeper-field-of-space-below) — the single source of truth for this preference.
 
 ### D6 — One measured compositional disruption over continuous novelty
 
-A single committed structural gesture per deliverable, with everything else quiet
-enough that it registers.
+Stated in [auction-editorial P4](../../dialects/auction-editorial.md#p4--one-committed-gesture-beats-several-safe-ones) — the single source of truth for this preference.
 
 ---
 
@@ -389,13 +388,6 @@ When any of these applies, the **invariants C1–C12 still bind.** A symmetrical
 modular, dense, or playful composition still needs a dominant, a directed eye
 path, active negative space, optical balance, and resolution. Yielding changes the
 compositional *system*, never the requirement that the relationships be composed.
-
-> **Overlap with the dialect file, noted rather than resolved:** D4, D5, and D6
-> restate [auction-editorial P5 and P4](../../dialects/auction-editorial.md) at
-> the compositional altitude. They were added here on instruction and the existing
-> P4/P5 were left untouched. Flagged for human review — see the report for this
-> change. If they are consolidated later, the dialect file should stay the single
-> statement and this section should point at it.
 
 ---
 

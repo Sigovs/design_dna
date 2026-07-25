@@ -210,16 +210,17 @@
     "rating": 2,
     "dialectStatus": "in",
     "dialects": [
+      "auction-editorial",
       "immersive-authored-world"
     ],
     "tags": {
       "composition": [
-        "dominant-mass",
         "active-negative-space",
+        "compositional-resolution",
         "directed-eye",
+        "dominant-mass",
         "intentional-crop",
         "optical-balance",
-        "compositional-resolution",
         "responsive-recomposition"
       ],
       "typography": [],

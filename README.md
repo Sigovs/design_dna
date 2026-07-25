@@ -16,20 +16,23 @@ with any agent that can read files.
 
 ## Wire it into any project
 
-Add one line to that project's `CLAUDE.md`:
+Add to any project's `CLAUDE.md`:
 
 ```md
-Read and obey TASTE.md from this repo before any visual work:
-c:\____WORK\______GDBURO\design_dna\TASTE.md
+Before any visual work, fetch and obey TASTE.md and skills/ from
+https://github.com/Sigovs/design-dna (or the local clone at ../design_dna
+if present).
 ```
 
 That's the whole integration. `TASTE.md` is the entry point — it carries the
-operating rules, the Design Read procedure, the skill index, and the vault hook,
-and it points the agent at whichever skills the task actually needs.
+operating rules, the Design Read procedure, the skill index, the working-style
+clause, and the vault hook, and it points the agent at whichever skills the task
+actually needs.
 
-For a project that lives elsewhere or gets shared, clone this repo alongside it
-and use a relative path, or symlink `design-dna/` into the project root. Same
-line, same behaviour.
+The local-clone fallback matters: a clone next to the project is faster, works
+offline, and lets you edit the taste and see the effect immediately. Clone this
+repo alongside the project (or symlink `design_dna/` into its root) and the same
+line resolves locally instead of over the network.
 
 ---
 
@@ -46,6 +49,7 @@ design_dna/
 │   └── anti-patterns/SKILL.md      # the hard bans — final gate before shipping
 ├── vault/                          # visual reference library (phase 2)
 │   └── README.md
+├── CLAUDE.md                       # working-style rules for editing this repo
 └── README.md
 ```
 
@@ -59,13 +63,48 @@ spacing → typography → color → motion.
 
 ---
 
+## The taste in five lines
+
+The canonical summary of what the skills add up to. **If a change to `TASTE.md`
+or `skills/` makes a line below untrue, update it in the same commit** — this is
+the surface Alex reads to catch drift, so it is only useful while it is honest.
+
+1. **Space is the primary quality signal.** Generous, tokenised on a 4px scale,
+   bottom-heavy sections, tuned gap ladders in text stacks — and whitespace is
+   never filled to feel productive.
+2. **Type carries the personality, in three voices.** Didone-energy display for
+   emotion, invisible grotesque for reading, mono for anything factual; one
+   true-italic word as the signature; data always as auction-catalog spec plates
+   with hairlines, never boxes.
+3. **Colour is restraint, not identity.** Off-black/off-white neutral first,
+   smoky desaturated accent last and under ~5% of pixels; near-white or ink over
+   photography with the image scrimmed to fix contrast; AA measured on every
+   change.
+4. **Motion seasons, it doesn't perform.** Crossfade over travel, 2px hover lift,
+   four durations with ease-out in / ease-in exit, shape-matched skeletons, and a
+   fully designed static path for reduced motion.
+5. **The bans outrank everything, and anonymity is the real failure.** No
+   AI-default palettes or layout archetypes, no gradient buttons, no decorative
+   shadows, no boxes where air works, one primary CTA, no hidden mobile imagery,
+   no horizontal scroll, no magic numbers — and every deliverable needs one
+   structural move specific to *this* content.
+
+---
+
 ## Working style
 
 Agents using this system make senior decisions and don't ask yes/no questions to
-resolve taste. Close calls get flagged in the final report under *Judgment
-calls*, one line each — that's the review surface, not a stream of questions
-mid-task. Anything that violates the DNA because of a real external constraint
-gets named under *Known compromises*. Silent violations are the failure mode.
+resolve taste, and don't pause for permission between steps. Close calls get
+flagged in the final report under *Judgment calls*, one line each — that's the
+review surface, not a stream of questions mid-task. Anything that violates the
+DNA because of a real external constraint gets named under *Known compromises*.
+Silent violations are the failure mode. The one thing worth stopping for is an
+external blocker — auth, missing credentials, a locked file — and then the report
+says exactly what Alex must do.
+
+This travels with the DNA: it's encoded in [TASTE.md](TASTE.md) §4, so any
+project that wires in the manifest gets the working style too.
+[CLAUDE.md](CLAUDE.md) holds the same rules for agents editing *this* repo.
 
 ---
 

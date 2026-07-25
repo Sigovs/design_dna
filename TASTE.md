@@ -92,7 +92,21 @@ a capture target.
 
 ---
 
-## 4. Report format
+## 4. Working style — travels with this DNA
+
+Adopting this file means adopting how the work gets done, not only how it looks:
+
+- **No yes/no or confirmation questions.** Don't pause for permission between
+  steps. The only thing worth stopping for is an external blocker (auth, missing
+  credentials, a locked file) — and then state exactly what Alex must do.
+- **Senior decisions, flagged afterwards.** Decide, build, then surface the close
+  calls in the report under *Judgment calls*. Taste questions are answered in the
+  work, reviewed in the report.
+- **Air-first when the spec is silent.** Any gap this DNA doesn't cover resolves
+  toward more space, less colour, less motion, fewer elements. The quiet option is
+  the default, always.
+
+## 5. Report format
 
 End any visual work with:
 

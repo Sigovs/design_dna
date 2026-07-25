@@ -41,26 +41,13 @@
     ],
     "tags": {
       "composition": [
-        "active-negative-space",
-        "brief-derived-cultural-directory",
-        "rhythm-variation",
-        "auction-editorial-partial-composition",
-        "dominant-wordmark-split-screen-tension-human-centered-hierarchy-directed-cropping"
+        "brief-derived-cultural-directory"
       ],
-      "typography": [
-        "auction-editorial-partial",
-        "oversized-display-type-typographic-authority-display-utility-tension"
-      ],
-      "layout": [
-        "editorial-directory-dense-talent-grid-structured-profile-data-responsive-recomposition"
-      ],
+      "typography": [],
+      "layout": [],
       "motion": [],
-      "color": [
-        "controlled-two-tone-palette-warm-neutral-contrast"
-      ],
-      "imagery": [
-        "portrait-as-evidence-high-contrast-portraiture-real-human-presenc"
-      ]
+      "color": [],
+      "imagery": []
     },
     "note": "TODO",
     "shots": {
@@ -73,7 +60,7 @@
     "extras": [],
     "captureError": null,
     "works": "огромный wordmark становится dominant mass, но не мешает основной задаче;\nвыразительные чёрно-белые портреты — не декор, а сам контент и доказательство миссии;\nsplit-screen hero создаёт напряжение между человеком и сообщением;\nочень ограниченная brown/cream/white palette формирует узнаваемый мир;\ntalent grid плотный, прямой и профессиональный — без лишнего card UI;\nпрофиль отделяет фотографию от структурированных данных и сохраняет ясную иерархию;\nshortlist встроен как настоящий рабочий инструмент для кастинга;\nmobile не просто уменьшается: портрет, branding, текст и navigation получают отдельную последовательность;\nвизуальный язык честно выражает идею платформы: видимость людей, а не технологию каталога.",
-    "weaknesses": "",
+    "weaknesses": "oversized branding периодически занимает больше пространства, чем функциональная информация;\nнекоторые navigation labels требуют знакомства с локальным языком и контекстом;\nдлинная регистрационная форма остаётся довольно тяжёлой, особенно на mobile;\nдвухцветная система прекрасно работает здесь, но легко станет монотонной при слепом копировании;\nчасть интерактивной выразительности зависит от исключительно сильных портретов.",
     "unsorted": []
   },
   {

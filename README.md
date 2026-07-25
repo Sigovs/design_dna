@@ -57,7 +57,9 @@ design_dna/
 │   ├── motion-taste/SKILL.md       # I: reduced-motion, keyboard parity, no jank · D: crossfade, subtle hover
 │   └── anti-patterns/SKILL.md      # I: the universal failures · D: the trope bans
 ├── dialects/
-│   └── auction-editorial.md        # the house dialect — PRINCIPLES + optional EXPRESSIONS
+│   ├── README.md                   # dialect index + confirmed/provisional status
+│   ├── auction-editorial.md        # the house dialect — PRINCIPLES + optional EXPRESSIONS
+│   └── immersive-authored-world.md # PROVISIONAL — the page as a staged spatial experience
 ├── .github/workflows/capture.yml   # auto-captures shots when sites.json changes
 ├── vault/                          # the taste vault — visual reference library
 │   ├── sites.json                  # the library (entry schema in vault/README.md)
@@ -89,9 +91,17 @@ spacious. Its invariants bind in every dialect, including `brief-derived`. Its
 before typography, colour, effects, and motion** — because composition decided
 after styling is just whatever the styling left over.
 
-`auction-editorial` is **not a silent default.** Every Design Read has to choose:
-a stored dialect, a partial combination, or `brief-derived / no stored dialect`. An
+**No dialect is a silent default.** Every Design Read has to choose: a stored
+dialect, a partial combination, or `brief-derived / no stored dialect`. An
 underspecified brief does not become the house style by default.
+
+Two dialects exist — see [dialects/README.md](dialects/README.md) for the index and
+status. [auction-editorial](dialects/auction-editorial.md) is **confirmed** (the
+house dialect). [immersive-authored-world](dialects/immersive-authored-world.md) is
+**provisional**: the page as a staged spatial experience, author-created ahead of
+Vault evidence and confirmed only once ≥3 human-reviewed entries carry it with
+`dialectStatus: "in"`. Selection is always a human decision; a provisional dialect
+is never inferred or recommended.
 
 ---
 
@@ -201,7 +211,11 @@ while it is honest.
    re-established at every breakpoint. Its **pass runs after the dialect
    declaration and before any surface styling**, and it judges relationships, not
    compliance with a preferred look.
-3. **The house dialect is auction-editorial, and it is chosen, never assumed.**
+3. **Dialects are chosen, never assumed — and the house one is auction-editorial.**
+   A second, **provisional** dialect exists
+   ([immersive-authored-world](dialects/immersive-authored-world.md): the page as a
+   staged spatial experience), author-created ahead of Vault evidence and usable
+   only when explicitly selected.
    Its principles are compositional: subtract before adding, hierarchy from space
    and scale before ornament, metadata composed rather than appended, one committed
    gesture over continuous novelty, mass above centre with a deeper field below,

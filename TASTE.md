@@ -187,15 +187,26 @@ spacing is *for*; motion is last because motion is seasoning.
 
 ## 4. Dialect index
 
-| Dialect | What it is |
-|---|---|
-| [auction-editorial](dialects/auction-editorial.md) | The house dialect. Split into **PRINCIPLES** (compositional logic and decision tendencies) and **EXPRESSIONS** (optional visual manifestations). The expressions are not a checklist — a design can belong to this dialect while using few of them. |
+Index and status live in [dialects/README.md](dialects/README.md). Complete rules
+live only in the dialect files.
 
-New dialects are not invented casually. One may only be proposed out of the
-vault, under the evidence rule in [vault/README.md](vault/README.md#creating-a-new-dialect):
-**≥3 human-approved out-of-dialect references sharing meaningful decision logic** —
-not merely similar colours, fonts, or surface styling — and Alex approves before
-it exists.
+| Dialect | Status | What it is |
+|---|---|---|
+| [auction-editorial](dialects/auction-editorial.md) | confirmed | The house dialect. Split into **PRINCIPLES** (compositional logic and decision tendencies) and **EXPRESSIONS** (optional visual manifestations). The expressions are not a checklist — a design can belong to this dialect while using few of them. |
+| [immersive-authored-world](dialects/immersive-authored-world.md) | **provisional** | The page as a staged spatial experience rather than a document: one symbolic central event, layered depth, typography and interface belonging to the world, motion that changes narrative state, spectacle separated by silence. Carries a strict effect hierarchy and an INVARIANT COMPLIANCE section. |
+
+**Neither is a default, and neither is ever inferred.** `immersive-authored-world`
+is additionally **provisional** — author-created ahead of Vault evidence, confirmed
+only once ≥3 human-reviewed entries carry it with `dialectStatus: "in"`. Select it
+only when Alex names it; never recommend it because a brief sounds creative.
+
+New dialects are not invented casually. The evidence route is the norm — one may be
+proposed out of the vault under the rule in
+[vault/README.md](vault/README.md#creating-a-new-dialect): **≥3 human-approved
+out-of-dialect references sharing meaningful decision logic**, not merely similar
+colours, fonts, or surface styling, and Alex approves before it exists. An
+author-created dialect skips that evidence and is therefore marked provisional
+until it earns it.
 
 ---
 

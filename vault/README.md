@@ -224,6 +224,12 @@ where to start.
 whose `dialectStatus` a human has set to `out`** share **meaningful decision
 logic** — and **Alex approves before the dialect exists.**
 
+> This is the rule for dialects *distilled from the vault*, which is the norm. Alex
+> may also author one directly ahead of evidence; that one is marked **provisional**
+> and earns confirmation the other way round — ≥3 human-reviewed entries carrying it
+> with `dialectStatus: "in"`. See [dialects/README.md](../dialects/README.md#status-confirmed-vs-provisional).
+> An agent still may not create either kind.
+
 "Meaningful decision logic" means shared *compositional reasoning*: how they rank
 information, where they place mass, what they subtract, how they handle metadata,
 what they let carry the hierarchy. **Similar colours, similar typefaces, or

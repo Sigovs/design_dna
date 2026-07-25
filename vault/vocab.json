@@ -37,8 +37,8 @@
       "tags": ["photography", "art-direction", "scrim-text", "product", "illustration"]
     }
   },
-  "_dialectsComment": "Stored dialects, matching files in dialects/. A new one may only be created through the distillation evidence rule in vault/README.md — 3+ human-approved out-of-dialect references sharing decision logic, and Alex approves.",
-  "dialects": ["auction-editorial"],
+  "_dialectsComment": "Stored dialects, matching files in dialects/. The normal route to a new one is the distillation evidence rule in vault/README.md — 3+ human-approved out-of-dialect references sharing decision logic, and Alex approves. immersive-authored-world is PROVISIONAL: author-created ahead of evidence, and confirmed only once 3+ human-reviewed entries carry it with dialectStatus 'in'. It is listed here so those human review decisions can be recorded; never assign it automatically. Status is tracked in dialects/README.md.",
+  "dialects": ["auction-editorial", "immersive-authored-world"],
   "_dialectStatusComment": "unreviewed = not yet judged by a human. in = belongs to a stored dialect. out = good work outside every stored dialect (the raw material for new ones). hybrid = shares decision logic with a stored dialect but diverges in expression.",
   "dialectStatus": ["unreviewed", "in", "out", "hybrid"]
 }

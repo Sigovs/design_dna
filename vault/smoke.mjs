@@ -12,7 +12,11 @@
  */
 
 import { chromium } from 'playwright';
+import { readFileSync, existsSync, readdirSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
 
+const VAULT = dirname(fileURLToPath(import.meta.url));
 const URL_BASE = process.env.VAULT_URL || 'http://localhost:5177/';
 const OUT = process.argv[2] || null;
 const shot = async (page, name, opts = {}) =>
@@ -23,6 +27,53 @@ const check = (label, ok, detail = '') => {
   console.log(`${ok ? '  ✓' : '  ✗'} ${label}${detail ? ` — ${detail}` : ''}`);
   if (!ok) problems.push(label);
 };
+
+/* ── shots invariant ──────────────────────────────────────────────────────
+   Runs before the browser, because it is the cheapest check in the file and it
+   catches the failure that is hardest to notice: an entry quietly losing its
+   screenshots. Shot-loss looks like a normal "no shots yet" card, so nothing
+   else would flag it. */
+console.log('\nshots invariant');
+{
+  const sites = JSON.parse(readFileSync(join(VAULT, 'sites.json'), 'utf8'));
+  const today = (() => {
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  })();
+
+  // 1. Every recorded path must resolve to a file on disk.
+  const dangling = [];
+  for (const e of sites) {
+    for (const [kind, rel] of Object.entries(e.shots ?? {})) {
+      if (rel && !existsSync(join(VAULT, rel))) dangling.push(`${e.id}/${kind} -> ${rel}`);
+    }
+  }
+  check('every recorded shots path resolves to a file', dangling.length === 0,
+    dangling.length ? dangling.join(', ') : `${sites.length} entries checked`);
+
+  // 2. Orphaned files: shots on disk that no entry points at any more.
+  const referenced = new Set(sites.flatMap((e) => Object.values(e.shots ?? {}).filter(Boolean)));
+  const shotDirs = existsSync(join(VAULT, 'shots'))
+    ? readdirSync(join(VAULT, 'shots'), { withFileTypes: true })
+        .filter((d) => d.isDirectory()).map((d) => d.name)
+    : [];
+  const orphanDirs = shotDirs.filter((dir) =>
+    !sites.some((e) => Object.values(e.shots ?? {}).some((v) => v?.startsWith(`shots/${dir}/`)))
+    && !sites.some((e) => e.id === dir));
+  check('no orphaned shot directories', orphanDirs.length === 0,
+    orphanDirs.length ? orphanDirs.join(', ') : `${shotDirs.length} dirs, ${referenced.size} files referenced`);
+
+  // 3. Anything added before today has had time to be captured. Missing shots
+  //    there means the Action failed or the paths were lost — flag, don't pass.
+  const stale = sites.filter((e) => e.added < today && !(e.shots?.full && e.shots?.hero && e.shots?.mobile));
+  check('every entry older than today has all three shots', stale.length === 0,
+    stale.length ? stale.map((e) => `${e.id} (added ${e.added})`).join(', ') : 'none pending');
+
+  const awaiting = sites.filter((e) => e.added >= today && !e.shots?.full);
+  if (awaiting.length) {
+    console.log(`  · ${awaiting.length} added today still awaiting capture (not a failure): ${awaiting.map((e) => e.id).join(', ')}`);
+  }
+}
 
 const browser = await chromium.launch();
 const ctx = await browser.newContext({ viewport: { width: 1440, height: 1100 } });
@@ -47,6 +98,19 @@ const cards = await page.locator('.card').count();
 check('cards render', cards > 0, `${cards} cards`);
 check('filter chips render', (await page.locator('.chip').count()) > 0);
 check('count is populated', (await page.locator('#count').textContent()).trim().length > 0);
+
+// Every card that should have a preview actually renders a loaded image.
+const withShots = JSON.parse(readFileSync(join(VAULT, 'sites.json'), 'utf8'))
+  .filter((e) => e.shots?.hero).length;
+check('every entry with a hero shot renders a preview',
+  (await page.locator('.card-shot img').count()) === withShots,
+  `${await page.locator('.card-shot img').count()} previews / ${withShots} expected`);
+check('every preview image actually loaded',
+  await page.locator('.card-shot img').evaluateAll((imgs) =>
+    imgs.length > 0 && imgs.every((i) => i.complete && i.naturalWidth > 0)));
+check('no card shows "no shots yet" for an entry that has them',
+  (await page.locator('.card-shot--empty').count()) ===
+    (JSON.parse(readFileSync(join(VAULT, 'sites.json'), 'utf8')).length - withShots));
 await shot(page, 'gallery-grid', { fullPage: true });
 
 console.log('\ncomposition category');

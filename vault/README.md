@@ -163,6 +163,69 @@ distillation log below for the review itself.
 
 ---
 
+## Worked example — a Design Read that uses the vault
+
+The loop in [TASTE.md §6](../TASTE.md#6-vault-hook--the-vaultdesign-loop), run for a
+hypothetical brief. This is the shape every agent's output should take.
+
+**Brief:** *a landing page for a small architectural photography studio, aimed at
+developers and architects commissioning shoots.*
+
+```
+Reading this as a studio landing page for professional commissioners,
+leaning quiet-luxury.
+Dialect: auction-editorial — the audience buys on evidence of craft, and the
+work is photographic, which is what this dialect is built to frame.
+
+Vault: queried imagery:*, composition:dominant-mass, layout:air, typography:editorial.
+4 relevant references, 1 unusable for missing notes.
+  · thegentlewoman-co-uk  (rating 1 / out) — anti-reference
+  · rmsothebys-com        (rating 1 / out) — anti-reference
+  · <studio-a>            (rating 3 / in)
+  · <studio-b>            (rating 2 / in)
+  · <studio-c>            — tags only, note is TODO
+
+COMPOSITION PASS
+1. Dominant:      one full-bleed interior shot, held at 7/12 width against air
+2. Subordinate:   studio name + one line; the lot-style credits plate below
+3. Eye path:      image's receding corridor leads down-right into the credits
+4. Tonal test:    survives grayscale — image mass vs. one light text field
+5. Negative space:the 5/12 column is a shape, not a gap; it carries the eyebrow
+6. Edges/forces:  image bleeds left and bottom, commits; text column clears fully
+7. Tension/rest:  the crop's compression released by the deep field below
+8. Resolution:    section exhales into the project index, tone steps down
+9. Responsive:    at 390px the corridor recrops to portrait; dominance moves
+                  from isolation to scale
+```
+
+**How two notes produced two decisions**
+
+1. **`rmsothebys-com` (anti-reference).** Its note records that the hero works —
+   full-bleed night photography with the lot text in a translucent scrim, legibility
+   fixed at the image layer — but that everything below collapses into repetitive
+   card grids and metronomic cadence, with no sustained dominant-subordinate
+   relationship after the hero.
+   → **Decision:** take the scrim-over-photography treatment for the hero, and
+   *reject* the card grid for the project index below it. The index becomes a
+   hairline-ruled list with one oversized lead project, so the page keeps a dominant
+   past the fold. The note supplied both halves: what to steal and what to avoid.
+
+2. **`thegentlewoman-co-uk` (anti-reference).** Its note records genuine strength —
+   a landing page three-quarters empty, where a single object reads as an object
+   because nothing competes — alongside the verdict that the site fails as a whole:
+   unresolved footer, an idea that never develops.
+   → **Decision:** adopt the near-empty first viewport with one photograph as the
+   sole object, and explicitly *plan the second and third sections* so the idea
+   develops instead of stopping. The anti-reference set the requirement that the
+   page must resolve, not just open well.
+
+**Note the shape of it:** both usable references were rated **1 / out**. Anti-
+references are not dead weight — a well-written note on a failed site is often more
+actionable than praise, because it isolates the mechanism. And the one entry with a
+`TODO` note contributed nothing but tags, which is exactly what §6(f) requires.
+
+---
+
 ## The weekly distillation ritual
 
 Once a week, turn accumulated references into rules. Point an agent at the repo

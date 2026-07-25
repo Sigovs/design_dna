@@ -227,21 +227,96 @@ Adopting this file means adopting how the work gets done, not only how it looks:
 
 ---
 
-## 6. Vault hook
+## 6. Vault hook — the vault→design loop
 
-`vault/` is the visual reference library — captured shots plus the notes on *why*
-each one works. It is live.
+`vault/` is the visual reference library: captured shots, uploaded images, and the
+notes on *why* each one works. It is live, and querying it is **not optional** —
+it is the step that makes this DNA evidence-based rather than a set of assertions.
 
-**Procedure: before designing X, query `vault/` for entries tagged X.** Read the
-notes before the images; match the reasoning, not the pixels. Cite the entries you
-leaned on in your report (`vault/<id>`), so the reference chain stays visible and
-Alex can correct the taste at the source.
+**Run this before any visual work, in this order.**
 
-Each entry also carries `dialectStatus` (`unreviewed` · `in` · `out` · `hybrid`)
-and `dialects`. **Use it:** an entry marked `out` is not a counter-example to be
-explained away — it is evidence that good work exists outside the house dialect,
-and it is the raw material for new dialects. When you are working
-`brief-derived`, the `out` and `hybrid` entries are the more relevant references.
+### (a) Load the library
+
+```
+local clone:  vault/sites.json        (and vault/shots/… for the images)
+fallback:     https://raw.githubusercontent.com/Sigovs/design_dna/master/vault/sites.json
+              https://raw.githubusercontent.com/Sigovs/design_dna/master/vault/shots/<id>/<file>
+```
+
+Try the local path first — it is faster and always current with the working tree.
+Use the raw URL when there is no clone. If neither is reachable, say so in the
+Design Read and proceed without references rather than inventing them.
+
+### (b) Filter
+
+By **tags** relevant to the task — the six categories are `composition`,
+`typography`, `layout`, `motion`, `color`, `imagery` — and by **`dialectStatus`**.
+Designing a dense data view? Filter `layout:dense-done-right`, `composition:*`.
+Art-directing a hero? `imagery:*`, `composition:dominant-mass`,
+`layout:bleed`.
+
+### (c) Read the notes as reasoning
+
+**The note is the payload. Read the notes before the images.** A note states a
+claim about why something works; the shots are the evidence for that claim.
+
+> **Match the thinking, don't copy the pixels.**
+
+Take the *decision* — what was ranked, what was subtracted, where the mass sits,
+what carries the hierarchy — and apply it to this brief. Never transplant the
+artefact.
+
+### (d) Read the images, for entries whose value is visual
+
+For `upload` and `image-url` entries, and for any `extras` whose labels point at
+something specific, **actually open and analyse the image.** Do not treat a
+filename or a label as a substitute for looking.
+
+In the Design Read, say what design decisions each relevant image demonstrates —
+in these terms: **composition** (dominant/subordinate, eye path, figure-ground),
+**tonal structure** (what survives grayscale, where the masses sit),
+**spacing relationships** (proportions between masses, active negative space).
+Extras' labels tell you what to look at — *"hover state"*, *"checkout page"*,
+*"mobile menu"* — so look at that thing, not the whole frame.
+
+Then **apply the decisions, never reproduce the artefact.** And where a reference's
+decision conflicts with an invariant, **the invariant wins** — the reference is
+evidence about taste, never a licence to break a quality law.
+
+### (e) Weight by rating and status
+
+| Entry | How to use it |
+|---|---|
+| rating **3** | Reference. Let it shape decisions. |
+| rating **2** | Supporting evidence. |
+| rating **1** or `dialectStatus: out` | **Anti-reference — what to avoid.** Read it for the failure mode it documents, and check your work is not repeating it. |
+| `dialectStatus: in` | Belongs to a stored dialect; strongest when you selected that dialect. |
+| `hybrid` / `unreviewed` | Usable, but unclassified — say so. |
+
+### (f) Ignore notes that do not exist
+
+An entry whose note is empty or `TODO` **contributes its tags and nothing more.**
+Do not infer reasoning from its title, its rating, or its screenshots' surface.
+It is an unlabelled specimen.
+
+**State the tally in your Design Read:**
+
+```
+Vault: N relevant references, M unusable for missing notes.
+```
+
+That line is deliberate pressure: an entry with no note is a capture that has not
+become knowledge yet, and the count makes the debt visible every time the vault is
+queried.
+
+### Report
+
+Cite the entries you leaned on by id (`vault/<id>`) so the reference chain stays
+visible and Alex can correct the taste at its source.
+
+**Worked example:** a full mock Design Read, including the query and how two notes
+drive two concrete decisions, is in
+[vault/README.md](vault/README.md#worked-example--a-design-read-that-uses-the-vault).
 
 ---
 

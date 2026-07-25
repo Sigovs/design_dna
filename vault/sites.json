@@ -24,7 +24,10 @@
     "kind": "site",
     "source": "",
     "extras": [],
-    "captureError": null
+    "captureError": null,
+    "works": "",
+    "weaknesses": "",
+    "unsorted": []
   },
   {
     "id": "ciridae-com",
@@ -67,7 +70,10 @@
     "kind": "site",
     "source": "",
     "extras": [],
-    "captureError": null
+    "captureError": null,
+    "works": "",
+    "weaknesses": "несколько секций используют почти одинаковую схему «большой serif headline + пояснение»;\nместами визуальный ритм слишком разреженный для объёма продуктовой информации;\nсветло-серый текст иногда слабоват по контрасту;\nкарточки customer stories уже выглядят более стандартно;\ncookie panel и floating chat одновременно перекрывают значительную часть страницы;\nнеобычный светящийся cursor добавляет характер, но функциональной роли почти не имеет;\nсайт убедительно формирует образ компании, однако детали продукта приходится искать.",
+    "unsorted": []
   },
   {
     "id": "electrafilmworks-com",
@@ -96,7 +102,10 @@
     "kind": "site",
     "source": "",
     "extras": [],
-    "captureError": null
+    "captureError": null,
+    "works": "",
+    "weaknesses": "",
+    "unsorted": []
   },
   {
     "id": "thenewmobileworkforce-imm-g-prod-com-back-at-hq",
@@ -149,7 +158,10 @@
     "kind": "site",
     "source": "",
     "extras": [],
-    "captureError": null
+    "captureError": null,
+    "works": "",
+    "weaknesses": "",
+    "unsorted": []
   },
   {
     "id": "trionn-com",
@@ -176,7 +188,10 @@
     "kind": "site",
     "source": "",
     "extras": [],
-    "captureError": null
+    "captureError": null,
+    "works": "",
+    "weaknesses": "",
+    "unsorted": []
   },
   {
     "id": "rmsothebys-com",
@@ -217,7 +232,10 @@
     "kind": "site",
     "source": "",
     "extras": [],
-    "captureError": null
+    "captureError": null,
+    "works": "",
+    "weaknesses": "",
+    "unsorted": []
   },
   {
     "id": "thegentlewoman-co-uk",
@@ -258,6 +276,9 @@
     "kind": "site",
     "source": "",
     "extras": [],
-    "captureError": null
+    "captureError": null,
+    "works": "",
+    "weaknesses": "",
+    "unsorted": []
   }
 ]

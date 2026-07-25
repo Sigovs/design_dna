@@ -1,5 +1,42 @@
 [
   {
+    "id": "augen-pro",
+    "url": "https://augen.pro/",
+    "title": "последовательный clinical-futuristic art direction; blur используется как пространственный и narrative-мотив; центральный объект/человек формирует dominant event; курсор, навигация, типографика и продуктовые рендеры принадлежат одному миру; переходы white → black → electric blue создают настоящие смены состояния; много visual silence — эффекты не работают одновременно; продуктовые страницы продолжают язык homepage, а не превращаются в обычный каталог.  Что мешает 3/3:  слишком многое намеренно скрыто blur и низким контрастом; некоторые экраны выглядят почти пустыми без движения; thin microtype и серый текст местами близки к нечитабельности; navigation очень understated и требует исследования; временами атмосфера важнее объяснения продукта; investment/UI-часть уже сложнее соединить с настолько абстрактной подачей.  Note для Vault:  IN — A highly controlled immersive product world built through clinical whitespace, selective blur, restrained typography, floating navigation, and precise shifts between white, black, and electric blue. The interface, cursor behavior, product imagery, and transitions belong to the same fictional system rather than appearing as separate decorative layers. Strong visual silence allows each central object or narrative event to hold attention, while the product pages successfully extend the homepage language into a larger authored experience. However, the extreme softness, thin microtype, low-contrast information, and discovery-dependent navigation sometimes suppress product clarity too aggressively. A strong immersive-authored-world reference, but not a complete usability reference.",
+    "added": "2026-07-25",
+    "rating": 3,
+    "dialectStatus": "in",
+    "dialects": [
+      "immersive-authored-world"
+    ],
+    "tags": {
+      "composition": [
+        "dominant-mass",
+        "active-negative-space",
+        "responsive-recomposition"
+      ],
+      "typography": [],
+      "layout": [],
+      "motion": [
+        "scroll-reveal"
+      ],
+      "color": [
+        "neutral",
+        "bold-accent"
+      ],
+      "imagery": [
+        "photography",
+        "art-direction"
+      ]
+    },
+    "note": "immersive-authored-world\ndirected-visual-silence\nstate-transition\ncentral-symbolic-object\ninterface-as-world\ncontrolled-blur\neffect-hierarchy\nlow-contrast-risk\n\nИменно IN, но важная оговорк",
+    "shots": {
+      "full": null,
+      "hero": null,
+      "mobile": null
+    }
+  },
+  {
     "id": "electrafilmworks-com",
     "url": "https://electrafilmworks.com/",
     "title": "electrafilmworks.com",

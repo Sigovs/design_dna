@@ -43,11 +43,22 @@
       "composition": [
         "brief-derived-cultural-directory"
       ],
-      "typography": [],
-      "layout": [],
+      "typography": [
+        "editorial"
+      ],
+      "layout": [
+        "air",
+        "bleed"
+      ],
       "motion": [],
-      "color": [],
-      "imagery": []
+      "color": [
+        "neutral",
+        "monochrome"
+      ],
+      "imagery": [
+        "photography",
+        "art-direction"
+      ]
     },
     "note": "TODO",
     "shots": {

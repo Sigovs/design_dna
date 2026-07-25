@@ -185,7 +185,7 @@
   {
     "id": "thenewmobileworkforce-imm-g-prod-com-back-at-hq",
     "url": "https://thenewmobileworkforce.imm-g-prod.com/back-at-hq",
-    "title": "Large Screens, Transitions, PNG/Cutout use",
+    "title": "Large Screens",
     "added": "2026-07-25",
     "rating": 2,
     "dialectStatus": "in",
@@ -194,12 +194,12 @@
     ],
     "tags": {
       "composition": [
-        "dominant-mass",
         "active-negative-space",
+        "compositional-resolution",
         "directed-eye",
+        "dominant-mass",
         "intentional-crop",
         "optical-balance",
-        "compositional-resolution",
         "responsive-recomposition"
       ],
       "typography": [],

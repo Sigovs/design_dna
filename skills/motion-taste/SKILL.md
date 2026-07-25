@@ -106,7 +106,9 @@ communicative motion is tasteful is a dialect question (D4).
 
 ---
 
-## DIALECT — auction-editorial
+## DIALECT
+
+*auction-editorial — strong defaults, each with a stated exit.*
 
 Calm and physical. Strong defaults, not laws.
 

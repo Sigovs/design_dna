@@ -108,7 +108,9 @@ sees a layout with no structure — a wireframe of the design rather than the de
 
 ---
 
-## DIALECT — auction-editorial
+## DIALECT
+
+*auction-editorial — strong defaults, each with a stated exit.*
 
 Air-first. These are strong defaults, not laws.
 

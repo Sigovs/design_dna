@@ -146,9 +146,11 @@ while it is honest.
    yielding silently is the only real failure.
 2. **The invariants are about organisation, not appearance.** Intentional spatial
    hierarchy with internal gaps smaller than external; rhythm and optical balance;
-   legible rank; every value from a documented token scale; WCAG AA verified on
-   every palette change; a complete static path for every animation; and controlled
-   irregularity that stays legible and intentional.
+   legible rank; body-length text built for sustained reading; line breaks that read
+   as chosen; every value from a documented token scale; WCAG AA verified on every
+   palette change; a complete static path for every animation; depth cues coherent
+   with the spatial model they imply; and controlled irregularity that stays
+   legible and intentional.
 3. **The house dialect is auction-editorial, and it is chosen, never assumed.**
    Its principles are compositional: subtract before adding, hierarchy from space
    and scale before ornament, metadata composed rather than appended, one committed

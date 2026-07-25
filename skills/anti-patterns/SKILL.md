@@ -1,6 +1,6 @@
 ---
 name: anti-patterns
-description: Failure modes in two tiers — INVARIANT universal failures (weak hierarchy, inaccessible contrast, gratuitous motion, arbitrary spacing, inconsistent tokens, horizontal page scroll, content parity across viewports, and controlled irregularity that stops being legible or intentional) and DIALECT trope bans (AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, underlined nav, repeated primary CTAs, imagery hidden on mobile, template anonymity — each with a yields-when). Use as the final gate before shipping any visual work, and whenever choosing between a container and open air.
+description: Failure modes in two tiers — INVARIANT universal failures (weak hierarchy, inaccessible contrast, gratuitous motion, arbitrary spacing, inconsistent tokens, horizontal page scroll, content parity across viewports, controlled irregularity that stops being legible or intentional, and depth cues incoherent with the spatial model they imply) and DIALECT trope bans (AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, underlined nav, repeated primary CTAs, imagery hidden on mobile, template anonymity — each with a yields-when). Use as the final gate before shipping any visual work, and whenever choosing between a container and open air.
 ---
 
 # Anti-Patterns
@@ -24,7 +24,9 @@ condition.
 
 ---
 
-## INVARIANT — universal failures
+## INVARIANT
+
+*Universal failures — defects in every aesthetic.*
 
 ### U1 — Weak hierarchy
 
@@ -138,9 +140,44 @@ novelty — only illegibility and accident. Any aesthetic can meet it.
 > disruptive design is fully permitted by U8 — it just has to stay legible and
 > deliberate.
 
+### U9 — Depth cues are coherent with the spatial model they imply
+
+**Visual depth cues must be coherent with the spatial model they imply. Interface
+elevation cues must correspond to actual interface layering; atmospheric,
+illustrative, or volumetric depth may be non-literal when clearly intentional and
+not misleading.**
+
+So: a shadow, an overlap, or a blur that claims one element sits above another
+must be telling the truth about the layer order — a modal casts a shadow because it
+*is* above the page, and two elements at the same level don't cast shadows on each
+other. Inconsistent elevation across a system (a card at rest reading as higher
+than an open dropdown) is the failure this catches.
+
+Atmospheric and illustrative depth is exempt from literalism: a gradient sky, a
+depth-of-field photograph, a volumetric illustration, a 3D scene, or a hero with
+receding haze may imply space that has no counterpart in the interface's layer
+stack. What they may not do is mislead — depth that reads as an interactive
+elevation cue, or that obscures which element is actually on top, is a defect
+regardless of how decorative its intent was.
+
+*Why it's universal:* depth is a spatial claim, and the eye resolves it
+pre-attentively to work out what is on top, what is reachable, and what is
+currently active. When the claim contradicts the real structure, users
+mis-target and mis-read state — a cost paid in interaction errors, not in taste.
+The exemption exists because pictorial and atmospheric depth is a different
+language, understood as imagery rather than as structure.
+
+> **Taste is separate and lives in the dialect.** Whether decorative shadows are
+> used at all — and how restrained they should be — is
+> [D3](#d3--decorative-shadows), with its own yields-when. **This invariant governs
+> spatial coherence; the dialect governs taste.** A Material-Design surface full of
+> elevation is fine under U9 as long as its elevations are truthful.
+
 ---
 
-## DIALECT — auction-editorial trope bans
+## DIALECT
+
+*auction-editorial trope bans — aesthetic positions with stated exits.*
 
 Personal aesthetic positions. Strong defaults with stated exits.
 
@@ -196,9 +233,9 @@ space, scale, and hairlines. Shadow is fine on genuinely floating, temporary lay
 
 `yields when:` the design language is explicitly material/elevation-based (Material
 Design and its descendants), the brand uses depth as a signature, or a platform
-convention expects it (native-feeling mobile surfaces). Then keep depth cues
-*truthful* — shadow depth should still correspond to actual layer order, because
-inconsistent depth cues read as noise in any language.
+convention expects it (native-feeling mobile surfaces). Yielding here changes how
+much shadow is tasteful, not whether it may lie: [U9](#u9--depth-cues-are-coherent-with-the-spatial-model-they-imply)
+still binds, so elevation must correspond to actual layering.
 
 For text over images, use a scrim ([color §I4](../color-taste/SKILL.md#invariant)),
 never a text shadow — that one is an invariant, not a preference.
@@ -308,6 +345,7 @@ structure.
 - [ ] Zero horizontal page scroll at 320px.
 - [ ] Content parity across viewports.
 - [ ] Any irregularity is legible and reads as intentional.
+- [ ] Depth cues coherent with the spatial model; elevation matches real layering.
 
 **Dialect — when auction-editorial is active**
 - [ ] No AI-default palette or archetype (or a named structural differentiation).

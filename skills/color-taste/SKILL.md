@@ -79,7 +79,9 @@ for another.
 
 ---
 
-## DIALECT — auction-editorial
+## DIALECT
+
+*auction-editorial — strong defaults, each with a stated exit.*
 
 Premium as chromatic restraint. Strong defaults, not laws.
 

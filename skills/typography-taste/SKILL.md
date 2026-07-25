@@ -1,6 +1,6 @@
 ---
 name: typography-taste
-description: Typography rules in two tiers — INVARIANT (legible hierarchy, bounded type roles, body faces built for reading, optical correction at every size, tabular figures for aligned data, tracked and short uppercase, no orphans) and DIALECT (auction-editorial's didone display + quiet grotesque + mono, italic signature word, mono micro-labels, spec plates, each with a yields-when). Use before choosing typefaces, setting type scales, writing headings, or laying out any data, label, or caption.
+description: Typography rules in two tiers — INVARIANT (legible hierarchy, bounded type roles, body-length text built for sustained reading, optical correction at every size, tabular figures for aligned data, tracked and short uppercase, intentional line breaks) and DIALECT (auction-editorial's didone display + quiet grotesque + mono, italic signature word, mono micro-labels, spec plates, each with a yields-when). Use before choosing typefaces, setting type scales, writing headings, or laying out any data, label, or caption.
 ---
 
 # Typography Taste
@@ -30,19 +30,29 @@ serialise — they read everything in order to find out what matters — which i
 most expensive possible failure mode and it happens before any aesthetic
 judgement is made.
 
-### I2 — Type roles are defined, bounded, and respected
+### I2 — Type roles are defined and bounded; body-length text is built for reading
 
 Define the roles your system has (display, body, label, data — or fewer) and which
 face and size serves each. Then don't use a face outside its role.
 
-**Body copy is set in a face designed for extended reading.** A high-contrast
-display face, a condensed face, or a decorative face at paragraph sizes is a
-defect in every aesthetic — thin strokes disappear and the reader's eye works
-harder for every line.
+**Body-length text must be set in a face, size, spacing, and measure built for
+sustained reading.** All four, not just the face — a good reading face at 13px, at
+1.2 line-height, or across a 120-character measure fails just as surely as a
+didone at paragraph size. Thin strokes disappear, lines lose their return path,
+and the reader's eye works harder for every line.
 
-*Why:* bounded roles are the type equivalent of token discipline. Unbounded
-faces produce a page that reads as assembled by several people, and readers lose
-the ability to use typographic cues at all.
+**The boundary:** this rule governs *body-length* text — passages a reader is
+expected to read continuously. A short expressive passage set at display scale is
+**display use**, not body text, and is governed by the U-tier legibility laws
+([U8](../anti-patterns/SKILL.md#invariant), and I1 above) rather than by this rule.
+A pull quote in the display face is legitimate; three paragraphs in it are not.
+Judge by reading length and role, not by tag name.
+
+*Why:* bounded roles are the type equivalent of token discipline — unbounded faces
+produce a page that reads as assembled by several people, and readers lose the
+ability to use typographic cues at all. And sustained reading is a measurable
+task: the four variables above set how fast the eye can find the next line, which
+is why all four are in the law rather than just the typeface.
 
 The *number* of families and *which* families is a dialect choice. That the roles
 are defined and enforced is not.
@@ -99,23 +109,42 @@ Any column of numbers — prices, dimensions, dates, measurements, stats — use
 defeats the only reason to put them in a column. Comparison is the task; misaligned
 digits break it.
 
-### I6 — No orphans; display lines are balanced
+### I6 — Line breaks are intentional and compositionally resolved
+
+**Line breaks must be intentional and compositionally resolved. Avoid accidental
+widows, orphans, and weak display-line breaks.**
+
+A weak break is one that fights the sentence: a single word stranded on the last
+line, a break splitting a name or a number from its unit, a headline breaking
+after an article or preposition, a rag that collides with a neighbouring element.
+
+`text-wrap` is **an implementation technique, not the invariant** — a common way to
+satisfy it, not the definition of satisfying it:
 
 ```css
 h1, h2, .display, .lead { text-wrap: balance; }   /* short, multi-line blocks */
 p, li                   { text-wrap: pretty; }    /* long blocks: last line only */
 ```
 
-Bind the final two words with `&nbsp;` where `balance` isn't supported.
+Other legitimate techniques: `&nbsp;` binding the final two words, `<wbr>` and
+explicit `<br>` at chosen points, `max-inline-size` set so the break lands where
+you want it, or hand-set breaks on a headline that matters.
 
-*Why:* a single word alone on the last line of a headline reads as broken rather
-than as a line break — it is the most visible typographic error a page can make.
-`balance` gives the block a deliberate shape; `pretty` fixes only the ragged
-ending of long copy, which is all long copy needs.
+**Evenly balanced lines are not required.** An expressive rag, a deliberately
+asymmetric block, a stepped or staggered headline, or compositional tension between
+line lengths all satisfy this invariant — as long as the break pattern reads as a
+decision. What this rule forbids is the break nobody chose.
+
+*Why:* a stranded word or a headline broken after "the" reads as broken rather than
+as a line break — it is the most visible typographic error a page can make, and it
+signals that no one looked. The obligation is authorship of the breaks, not
+uniformity of the lines.
 
 ---
 
-## DIALECT — auction-editorial
+## DIALECT
+
+*auction-editorial — strong defaults, each with a stated exit.*
 
 Editorial contrast: three voices, each with one job.
 
@@ -254,11 +283,13 @@ enough that scanning needs row banding. Tabular figures (I5) hold either way.
 
 **Invariant — every deliverable**
 - [ ] Ranks are unambiguous; no two ranks near-identical.
-- [ ] Type roles defined and respected; body face built for reading.
+- [ ] Type roles defined and respected; body-length text has a reading face, size,
+      spacing, and measure.
 - [ ] Sizes fluid; large type optically tightened.
 - [ ] Any uppercase is tracked ≥0.08em and short.
 - [ ] Numeric columns use tabular figures and align.
-- [ ] Display lines balanced; zero orphans at any width.
+- [ ] Every line break reads as chosen; no accidental widows, orphans, or weak
+      display breaks at any width.
 
 **Dialect — when auction-editorial is active**
 - [ ] Three families, each in its lane.

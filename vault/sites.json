@@ -1,5 +1,28 @@
 [
   {
+    "id": "augen-pro",
+    "url": "https://augen.pro/",
+    "title": "augen.pro",
+    "added": "2026-07-25",
+    "rating": 2,
+    "dialectStatus": "unreviewed",
+    "dialects": [],
+    "tags": {
+      "composition": [],
+      "typography": [],
+      "layout": [],
+      "motion": [],
+      "color": [],
+      "imagery": []
+    },
+    "note": "TODO",
+    "shots": {
+      "full": null,
+      "hero": null,
+      "mobile": null
+    }
+  },
+  {
     "id": "electrafilmworks-com",
     "url": "https://electrafilmworks.com/",
     "title": "electrafilmworks.com",

@@ -32,7 +32,7 @@
   {
     "id": "beings-co",
     "url": "https://beings.co/",
-    "title": "Beings",
+    "title": "beings.co",
     "added": "2026-07-25",
     "rating": 3,
     "dialectStatus": "in",
@@ -41,13 +41,24 @@
     ],
     "tags": {
       "composition": [
-        "brief-derived-cultural-directory"
+        "brief-derived-cultural-directory",
+        "auction-editorial-partial-composition",
+        "dominant-wordmark-split-screen-tension-human-centered-hierarchy-directed-cropping"
       ],
-      "typography": [],
-      "layout": [],
+      "typography": [
+        "auction-editorial-partial",
+        "oversized-display-type-typographic-authority-display-utility-tension"
+      ],
+      "layout": [
+        "editorial-directory-dense-talent-grid-structured-profile-data-responsive-recomposition"
+      ],
       "motion": [],
-      "color": [],
-      "imagery": []
+      "color": [
+        "controlled-two-tone-palette-warm-neutral-contrast"
+      ],
+      "imagery": [
+        "portrait-as-evidence-high-contrast-portraiture-real-human-presenc"
+      ]
     },
     "note": "TODO",
     "shots": {

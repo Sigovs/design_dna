@@ -255,16 +255,26 @@ Designing a dense data view? Filter `layout:dense-done-right`, `composition:*`.
 Art-directing a hero? `imagery:*`, `composition:dominant-mass`,
 `layout:bleed`.
 
-### (c) Read the notes as reasoning
+### (c) Read all three judgement fields as reasoning
 
-**The note is the payload. Read the notes before the images.** A note states a
-claim about why something works; the shots are the evidence for that claim.
+**Read them before the images.** Each entry carries up to three:
+
+| Field | What it is | How to use it |
+|---|---|---|
+| `note` | The general reasoning — the claim about why this works | The payload. Take the *decision*, not the artefact. |
+| `works` | What is strong, itemised | **Decisions to learn.** These are candidates to apply. |
+| `weaknesses` | What fails, or nearly does | **What to avoid even in a reference you like.** |
 
 > **Match the thinking, don't copy the pixels.**
 
 Take the *decision* — what was ranked, what was subtracted, where the mass sits,
 what carries the hierarchy — and apply it to this brief. Never transplant the
 artefact.
+
+**`weaknesses` is not a footnote.** A liked reference with a recorded weakness is
+telling you exactly which part not to copy, which is more actionable than the
+praise. **For an entry marked `out`, the weaknesses ARE the payload** — that is the
+whole reason it was kept.
 
 ### (d) Read the images, for entries whose value is visual
 
@@ -293,9 +303,10 @@ evidence about taste, never a licence to break a quality law.
 | `dialectStatus: in` | Belongs to a stored dialect; strongest when you selected that dialect. |
 | `hybrid` / `unreviewed` | Usable, but unclassified — say so. |
 
-### (f) Ignore notes that do not exist
+### (f) Ignore judgements that do not exist
 
-An entry whose note is empty or `TODO` **contributes its tags and nothing more.**
+An entry whose `note`, `works`, and `weaknesses` are all empty or `TODO`
+**contributes its tags and nothing more.**
 Do not infer reasoning from its title, its rating, or its screenshots' surface.
 It is an unlabelled specimen.
 

@@ -253,6 +253,194 @@ console.log('\nnote editing');
    Truncating by character count was width- and script-blind: the same 190
    characters rendered 4 lines at 1440px and 7 at 320px, unevenly between cards.
    The clamp is now visual, so this asserts lines, not characters. */
+console.log('\nworks / doesn\'t blocks');
+{
+  // The previous section closed the sheet with Esc; reopen it.
+  await page.locator('.card').first().click();
+  await page.waitForTimeout(700);
+  for (const f of ['note', 'works', 'weaknesses']) {
+    check(`${f}: block, pencil, read surface and editor all present`,
+      (await page.locator(`#${f}-block`).count()) === 1
+      && (await page.locator(`#${f}-edit`).count()) === 1
+      && (await page.locator(`#${f}-read`).count()) === 1
+      && (await page.locator(`#${f}-inline`).count()) === 1);
+  }
+  check('motion hint only on the note field',
+    (await page.locator('#note-editor .note-motion-hint').count()) === 1
+    && (await page.locator('#works-editor .note-motion-hint').count()) === 0);
+  // Editing works must not disturb note or weaknesses.
+  await page.locator('#works-edit').click();
+  await page.waitForTimeout(300);
+  check('works editor opens independently',
+    (await page.locator('#works-editor').isVisible())
+    && !(await page.locator('#note-editor').isVisible()));
+  await page.locator('#works-editor .btn:not(.btn--primary)').click();
+  await page.waitForTimeout(200);
+  // Leave the sheet closed: later sections click toolbar controls behind it.
+  await page.keyboard.press('Escape');
+  await page.waitForTimeout(300);
+}
+
+console.log('\ncard ±N verdict marks');
+{
+  const vc = await browser.newContext();
+  const vp = await vc.newPage();
+  await vp.goto(URL_BASE, { waitUntil: 'domcontentloaded' });
+  await vp.waitForSelector('.card');
+  await vp.evaluate(async () => {
+    const live = await fetch('sites.json').then((r) => r.json());
+    live[0] = { ...live[0], works: 'one\ntwo\nthree', weaknesses: 'only one' };
+    localStorage.setItem('design-dna:vault:working-copy',
+      JSON.stringify({ entries: live, at: new Date(Date.now() + 600000).toISOString() }));
+  });
+  await vp.reload({ waitUntil: 'domcontentloaded' });
+  await vp.waitForSelector('.card');
+  await vp.waitForTimeout(900);
+  const first = vp.locator('.card').first();
+  check('card shows +N for recorded strengths',
+    (await first.locator('.judge-mark--plus').textContent()) === '+3');
+  check('card shows −N for recorded weaknesses',
+    (await first.locator('.judge-mark--minus').textContent()) === '−1');
+  check('cards without a verdict show no marks',
+    (await vp.locator('.card').nth(1).locator('.judge-mark').count()) === 0);
+  check('the card still shows only the clamped note, not works/weaknesses text',
+    !(await first.locator('.card-note').textContent()).includes('one\ntwo'));
+  await vc.close();
+}
+
+console.log('\none-box smart tagging');
+{
+  const tc = await browser.newContext();
+  const tp = await tc.newPage();
+  const tErrs = [];
+  tp.on('pageerror', (e) => tErrs.push(String(e.message || e)));
+  await tp.goto(URL_BASE, { waitUntil: 'domcontentloaded' });
+  await tp.waitForSelector('.card');
+  await tp.waitForTimeout(800);
+  await tp.locator('.card').first().click();
+  await tp.waitForTimeout(900);
+
+  check('one box, ADD button and AUTO selector all present',
+    (await tp.locator('#smart-tag-input').count()) === 1
+    && (await tp.locator('#smart-tag-add').count()) === 1
+    && (await tp.locator('#smart-cat').inputValue()) === '');
+
+  // 1. known tag sorts instantly by exact vocabulary match
+  await tp.fill('#smart-tag-input', 'air');
+  await tp.click('#smart-tag-add');
+  await tp.waitForTimeout(400);
+  check('known tag sorts instantly to its vocabulary category',
+    (await tp.locator('#smart-tag-result').textContent()).includes('layout +1'));
+
+  // 2. invented tags land via the stem map, as a comma batch
+  await tp.fill('#smart-tag-input', 'controlled-accent, thin-rules, scroll-reveal-stagger');
+  await tp.click('#smart-tag-add');
+  await tp.waitForTimeout(500);
+  const batch = await tp.locator('#smart-tag-result').textContent();
+  check('comma batch is parsed and each tag routed individually',
+    batch.includes('color +1') && batch.includes('layout +1') && batch.includes('motion +1'), batch);
+
+  // 3. nonsense goes to unsorted and the proposal bar appears
+  await tp.fill('#smart-tag-input', 'zorbaflux');
+  await tp.click('#smart-tag-add');
+  await tp.waitForTimeout(500);
+  check('unclassifiable tag goes to the unsorted queue',
+    (await tp.locator('#smart-tag-result').textContent()).includes('1 unsorted'));
+  check('unsorted bar appears with actions',
+    (await tp.locator('#queues .queue-bar').first().isVisible())
+    && (await tp.locator('#queues .queue-row .smart-tag-cat').count()) >= 1);
+  check('vocabulary proposals bar appears for non-canonical tags',
+    (await tp.locator('.queue-bar--vocab').count()) === 1);
+  check('pending-vocab chips are marked as such',
+    (await tp.locator('.smart-chip--pending').count()) >= 3);
+
+  // 4. field clears, refocuses, selector resets
+  check('field clears after add', (await tp.locator('#smart-tag-input').inputValue()) === '');
+  check('field refocuses after add',
+    await tp.evaluate(() => document.activeElement?.id === 'smart-tag-input'));
+  check('selector resets to AUTO', (await tp.locator('#smart-cat').inputValue()) === '');
+
+  // 5. category-targeted add bypasses classification
+  await tp.selectOption('#smart-cat', 'imagery');
+  await tp.fill('#smart-tag-input', 'zorbaflux-two');
+  await tp.click('#smart-tag-add');
+  await tp.waitForTimeout(400);
+  check('category-targeted add bypasses classification',
+    (await tp.locator('#smart-tag-result').textContent()).includes('imagery +1'));
+
+  // 6. chips removable
+  const before = await tp.locator('.smart-chip').count();
+  await tp.locator('.smart-chip').last().locator('.smart-chip-x').click();
+  await tp.waitForTimeout(300);
+  check('chips are individually removable',
+    (await tp.locator('.smart-chip').count()) === before - 1);
+
+  // 7. accepting an unsorted proposal moves it into a real category
+  await tp.fill('#smart-tag-input', 'zorbaflux');
+  await tp.click('#smart-tag-add');
+  await tp.waitForTimeout(400);
+  await tp.locator('#queues .queue-row .smart-tag-cat').first().selectOption('color');
+  await tp.waitForTimeout(400);
+  check('picking a home clears the tag from unsorted',
+    (await tp.locator('#smart-tag-result').textContent()).includes('picked'));
+
+  check('no page errors during tagging', tErrs.length === 0, tErrs.slice(0, 2).join(' | ') || 'clean');
+  await tc.close();
+}
+
+console.log('\nvocab growth survives a save round-trip');
+{
+  const gc = await browser.newContext();
+  await gc.addInitScript(() => {
+    localStorage.setItem('design-dna:vault:gh-token', 'github_pat_smoketest');
+  });
+  /* Mock the Git Data API so the whole promote flow runs: ref → commit → blobs →
+     tree → commit → ref. Capture what would be committed. */
+  let committedVocab = null;
+  let commitMessage = null;
+  await gc.route('https://api.github.com/**', async (route) => {
+    const url = route.request().url();
+    const method = route.request().method();
+    const json = (body) => route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(body) });
+    if (/\/git\/ref\/heads\//.test(url)) return json({ object: { sha: 'parentsha' } });
+    if (/\/git\/commits\/parentsha/.test(url)) return json({ tree: { sha: 'treesha' } });
+    if (/\/git\/trees$/.test(url) && method === 'POST') {
+      const body = JSON.parse(route.request().postData() ?? '{}');
+      const v = (body.tree ?? []).find((t) => t.path === 'vault/vocab.json');
+      if (v) committedVocab = JSON.parse(v.content);
+      return json({ sha: 'newtree' });
+    }
+    if (/\/git\/commits$/.test(url) && method === 'POST') {
+      commitMessage = JSON.parse(route.request().postData() ?? '{}').message;
+      return json({ sha: 'abcdef1234567890' });
+    }
+    if (/\/git\/refs\/heads\//.test(url) && method === 'PATCH') return json({ ok: true });
+    if (/\/commits\?path=/.test(url)) return json([]);
+    return json({});
+  });
+  const gp = await gc.newPage();
+  await gp.goto(URL_BASE, { waitUntil: 'domcontentloaded' });
+  await gp.waitForSelector('.card');
+  await gp.waitForTimeout(800);
+  await gp.locator('.card').first().click();
+  await gp.waitForTimeout(900);
+  await gp.fill('#smart-tag-input', 'controlled-accent');
+  await gp.click('#smart-tag-add');
+  await gp.waitForTimeout(500);
+  check('a new tag is proposed for the vocabulary, not silently added',
+    (await gp.locator('.queue-bar--vocab').count()) === 1
+    && !(await gp.evaluate(() => window.__vocabHasTag ?? false)));
+  await gp.locator('.queue-bar--vocab .btn--primary').first().click();
+  await gp.waitForTimeout(1200);
+  check('confirming writes vocab.json in the same commit as sites.json',
+    committedVocab !== null
+    && committedVocab.categories.color.tags.includes('controlled-accent'),
+    commitMessage ?? 'no commit');
+  check('the commit message names the vocabulary change',
+    /vocabulary/.test(commitMessage ?? ''), commitMessage ?? '');
+  await gc.close();
+}
+
 console.log('\nnote clamp — 1500+ char mixed-script note');
 {
   const LONG = (

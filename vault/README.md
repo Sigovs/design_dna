@@ -70,6 +70,15 @@ clipped at 14,000px so an infinite-scroll site can't produce an unusable strip.
   the ones you reuse into `vocab.json` deliberately. Adding a category to
   `vocab.json` is the only step needed — normalisation gives every entry the new
   key on next load, and filters, forms, save, and export pick it up automatically.
+- `works` / `weaknesses` — optional. `note` stays the general reasoning; these two
+  split the verdict. **Nothing is auto-split** — move text yourself if you want to.
+  For an `out` entry the weaknesses are the reason it is kept. The card shows the
+  clamped note plus small `+N` / `−N` marks when these exist.
+- `unsorted` — tags the classifier could not place confidently. Visible in the
+  editor with proposed homes, never silently binned. **No new categories are
+  created here:** the six are deliberate, and a new one is a human decision made by
+  editing `vocab.json`. Leaving a tag queued is better than forcing it somewhere
+  wrong.
 - `tags.composition` — **positive merit tags only**, from
   [academic-composition](../skills/academic-composition/SKILL.md). A tag means the
   quality is **present** and a human has confirmed it. **Never apply one to record
@@ -138,6 +147,32 @@ a warning pointing at `prune`, and does not fail.
 > in that browser; `download json` remains the fallback. Either way git is the
 > source of truth — edits held in `localStorage` are not real until they are in a
 > commit.
+
+### Tagging: one box, transparent sorting
+
+The editor has a single tag field above the category checkboxes — both work. It
+takes a comma-separated batch, an **ADD** button as well as Enter, and a category
+selector defaulting to **AUTO**. Set the selector to a category and the tags go
+straight there, bypassing classification — that is also how you correct a wrong
+guess. It resets to AUTO after every add, and the field clears and refocuses so
+several rounds flow without extra taps.
+
+Sorting order, all of it visible in `vault/index.html`:
+
+1. exact match in `vocab.json` → that category, instantly;
+2. a stored dialect name → `dialects`, not tags;
+3. already used as a free addition elsewhere → follow that precedent;
+4. otherwise a **keyword/stem map shipped in the page** (`STEM_MAP`) scores each
+   category; weights break real ambiguities, so `monochrome` goes to color rather
+   than typography despite containing `mono`;
+5. a tie or no match → `unsorted`, for a human.
+
+**Vocabulary discipline.** A new tag lands on the **entry** immediately and is
+marked *pending vocab* on its chip. It enters `vocab.json` only when a human
+confirms it in the proposals bar — an auto-guess never silently becomes canon.
+Unconfirmed tags still filter and display: they are real on their entries, just not
+canonical yet. Confirming writes `vocab.json` alongside `sites.json` in one commit,
+so it needs the online path.
 
 ### Stale-edit guard
 
@@ -242,10 +277,26 @@ law, never yields) or DIALECT (aesthetic position with a stated yields-when).
 
 Then read vault/sites.json and look at the shots for every entry added since
 <DATE OF LAST RUN> (use the `added` field). Weight rating-3 entries heavily,
-rating-2 lightly, and ignore rating-1 except as counter-evidence. Read the notes
-before the images — the note is the claim, the shots are the evidence for it.
-Note each entry's dialectStatus; treat `unreviewed` entries as unclassified
-evidence, not as in-dialect.
+rating-2 lightly, and ignore rating-1 except as counter-evidence. Read the
+judgement fields before the images — they are the claim, the shots are the
+evidence for it. Note each entry's dialectStatus; treat `unreviewed` entries as
+unclassified evidence, not as in-dialect.
+
+Each entry carries up to three judgement fields, and all three are FIRST-CLASS
+evidence — do not treat works/weaknesses as a footnote to note:
+
+- `note`     — general reasoning.
+- `works`    — itemised strengths. These are your PRINCIPLE CANDIDATES: a
+               strength recurring across entries is what a new dialect principle
+               or a sharpened rule is made of.
+- `weaknesses` — itemised failures and near-failures. For an entry whose
+               dialectStatus is `out`, THE WEAKNESSES ARE THE PAYLOAD — that is
+               why the entry was kept at all. For an `in` entry, weaknesses are
+               YIELDS-WHEN CANDIDATES: a rule that an admired reference had to
+               break, or nearly broke, is a rule whose exit condition is
+               probably too narrow.
+
+Cite which field each pattern came from, so the evidence chain stays legible.
 
 Produce, in this order:
 

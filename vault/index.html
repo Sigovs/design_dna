@@ -466,6 +466,63 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .card-shot--failed .pending-glyph { color: oklch(.7 .12 25); }
 .card-shot--failed .pending-status { color: oklch(.75 .1 25); }
 
+/* ─── verdict marks + smart tagging ──────────────────────────────────────── */
+.judge-mark { font-variant-numeric: tabular-nums; }
+.judge-mark--plus { color: oklch(.72 .06 165); }
+.judge-mark--minus { color: oklch(.72 .07 25); }
+
+.smart-tag { margin-bottom: var(--space-5); }
+.smart-tag-row { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: stretch; }
+.smart-tag-cat {
+  background: var(--bg-raised); color: var(--ink); border: 1px solid var(--rule);
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-mono); font-size: .6875rem; letter-spacing: .1em; text-transform: uppercase;
+}
+.smart-tag-row input[type="text"] {
+  flex: 1 1 12rem; min-width: 0;
+  background: none; color: var(--ink); border: 0; border-bottom: 1px solid var(--rule);
+  padding: var(--space-2) 0; font: inherit;
+}
+.smart-tag-row input[type="text"]:focus { outline: none; border-bottom-color: var(--ink-70); }
+.smart-tag-result { margin: var(--space-3) 0 0; min-height: 1.2em; color: var(--ink-50); }
+
+.smart-chips { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3); margin-top: var(--space-4); }
+.smart-chip {
+  --hue: 0;
+  display: inline-flex; align-items: center; gap: .4em;
+  color: oklch(.8 .05 var(--hue));
+  border-bottom: 1px solid oklch(.6 .05 var(--hue) / .45);
+  padding-block-end: 2px;
+}
+.smart-chip--pending { border-bottom-style: dashed; }
+.smart-chip-flag { color: var(--ink-30); font-size: .5625rem; }
+.smart-chip-x {
+  background: none; border: 0; color: var(--ink-30); cursor: pointer;
+  font-size: .875rem; line-height: 1; padding: 0 0 0 .2em;
+}
+.smart-chip-x:hover { color: oklch(.78 .11 25); }
+
+.queues { display: grid; gap: var(--space-4); margin-top: var(--space-5); }
+.queue-bar {
+  border-inline-start: 2px solid oklch(.7 .08 70);
+  padding: var(--space-4) 0 var(--space-4) var(--space-5);
+}
+.queue-bar--vocab { border-inline-start-color: oklch(.68 .06 165); }
+.queue-bar > .label { display: block; color: var(--ink-50); margin-bottom: var(--space-3); }
+.queue-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); margin-bottom: var(--space-3); }
+.queue-row[hidden] { display: none; }
+.queue-tag { color: var(--ink); }
+.queue-acts { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-inline-start: auto; }
+.queue-acts .btn { padding: var(--space-1) var(--space-3); font-size: .625rem; }
+.queue-bar p.hint { margin: var(--space-3) 0 0; max-width: 54ch; }
+
+@media (pointer: coarse) {
+  .smart-tag-row input[type="text"], .smart-tag-cat, .smart-tag-row .btn { min-height: 44px; }
+  .smart-chip-x { min-inline-size: 32px; min-block-size: 32px; }
+  .queue-acts { margin-inline-start: 0; width: 100%; }
+  .queue-acts .btn, .queue-acts .smart-tag-cat { min-height: 44px; flex: 1 1 auto; }
+}
+
 .note-block { margin-top: var(--space-7); }
 .note-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); }
 .note-head > .label { color: var(--ink-30); }
@@ -734,6 +791,13 @@ function normalise(entry) {
     error: x.error ?? null,
   }));
   if (typeof entry.captureError !== 'string') entry.captureError = entry.captureError ?? null;
+  /* note stays the general reasoning field; these two split the judgement.
+     Never auto-populated from note — a human moves text if they want to. */
+  if (typeof entry.works !== 'string') entry.works = '';
+  if (typeof entry.weaknesses !== 'string') entry.weaknesses = '';
+  /* Tags that could not be classified confidently. Visible, never silently binned. */
+  if (!Array.isArray(entry.unsorted)) entry.unsorted = [];
+  entry.unsorted = entry.unsorted.map((t) => String(t).trim()).filter(Boolean);
   if (typeof entry.dialectStatus !== 'string' || !statuses().includes(entry.dialectStatus)) {
     entry.dialectStatus = 'unreviewed';
   }
@@ -806,6 +870,117 @@ const IMAGE_EXT = /\.(jpe?g|png|webp|avif|gif|bmp|tiff?)(\?|#|$)/i;
 /* Extension only, in the browser: a HEAD request to an arbitrary host is blocked
    by CORS, so the content-type fallback happens in the Action at capture time. */
 const looksLikeImageUrl = (url) => IMAGE_EXT.test(url ?? '');
+
+/* ── tag classifier ────────────────────────────────────────────────────────
+   A keyword/stem map, shipped in the page and meant to be edited. No API call,
+   nothing hidden: you can read exactly why a tag landed where it did. Weights
+   break the genuine ambiguities — "monochrome" contains "mono" (typography) but
+   "monochrom" (color) scores higher, and "tonal-structure" beats "tone". */
+const STEM_MAP = {
+  composition: [
+    ['compos', 3], ['dominant', 3], ['subordinat', 3], ['figure-ground', 3], ['negative-space', 3],
+    ['tonal', 2], ['hierarch', 2], ['counterweight', 2], ['eye', 2], ['gaze', 2], ['squint', 2],
+    ['mass', 2], ['balance', 2], ['proportion', 2], ['rhythm', 2], ['crop', 2], ['tangen', 2],
+    ['resolution', 2], ['recompos', 2], ['thumbnail', 2], ['tension', 1], ['edge', 1], ['path', 1],
+  ],
+  typography: [
+    ['typograph', 3], ['typeface', 3], ['grotesque', 3], ['didone', 3], ['serif', 3],
+    ['tracking', 3], ['kerning', 3], ['leading', 3], ['uppercase', 3], ['lowercase', 3],
+    ['italic', 3], ['ligature', 3], ['orphan', 3], ['widow', 3], ['numeral', 3], ['wordmark', 3],
+    ['font', 2], ['caps', 2], ['letter', 2], ['measure', 2], ['baseline', 2], ['lockup', 2],
+    ['mono', 1], ['type', 1], ['editorial', 1],
+  ],
+  layout: [
+    ['layout', 3], ['grid', 3], ['gutter', 3], ['column', 3], ['bleed', 3], ['asymmetr', 3],
+    ['symmetr', 3], ['whitespace', 3], ['modular', 3], ['breakpoint', 3], ['density', 3],
+    ['dense', 3], ['margin', 2], ['padding', 2], ['spacing', 2], ['stack', 2], ['air', 2],
+    ['fold', 2], ['band', 2], ['split', 2], ['space', 1], ['rule', 1], ['thin-rule', 3],
+  ],
+  motion: [
+    ['motion', 3], ['animat', 3], ['transition', 3], ['parallax', 3], ['crossfade', 3],
+    ['ease', 3], ['duration', 3], ['stagger', 3], ['choreograph', 3], ['kinetic', 3],
+    ['marquee', 3], ['spring', 3], ['reveal', 2], ['scroll', 2], ['hover', 2], ['loop', 2],
+    ['fade', 2], ['delay', 2], ['restraint', 1],
+  ],
+  color: [
+    ['colour', 3], ['color', 3], ['monochrom', 3], ['chroma', 3], ['palette', 3], ['accent', 3],
+    ['saturat', 3], ['desaturat', 3], ['gradient', 3], ['duotone', 3], ['pastel', 3], ['neon', 3],
+    ['smoky', 3], ['oxblood', 3], ['hue', 2], ['tint', 2], ['shade', 2], ['ink', 2],
+    ['contrast', 2], ['dark', 2], ['light', 2], ['tone', 1], ['warm', 1], ['cool', 1],
+  ],
+  imagery: [
+    ['imagery', 3], ['photograph', 3], ['illustrat', 3], ['render', 3], ['texture', 3],
+    ['grain', 3], ['collage', 3], ['scrim', 3], ['cutout', 3], ['duotone', 2], ['portrait', 3],
+    ['art-direction', 3], ['product-shot', 3], ['image', 2], ['photo', 2], ['film', 2],
+    ['video', 2], ['still', 2], ['mask', 2], ['3d', 2], ['bloom', 2], ['particle', 2],
+  ],
+};
+
+const slugTag = (raw) => String(raw ?? '')
+  .trim().toLowerCase()
+  .replace(/[\s_]+/g, '-')
+  .replace(/[^a-z0-9Ѐ-ӿ-]/g, '')
+  .replace(/^-+|-+$/g, '');
+
+/* Returns { category, why, score } — or category null when it should go unsorted. */
+function classifyTag(tag) {
+  const t = slugTag(tag);
+  if (!t) return { category: null, why: 'empty', score: 0 };
+
+  // 1. Exact match against the controlled vocabulary wins instantly.
+  for (const [cat, def] of Object.entries(vocab.categories)) {
+    if ((def.tags ?? []).includes(t)) {
+      return { category: cat, why: `exact match in ${cat} vocabulary`, score: 99, canonical: true };
+    }
+  }
+  // 2. A dialect name is a dialect, not a tag.
+  if (dialectList().includes(t)) {
+    return { category: '__dialect__', why: 'matches a stored dialect name', score: 99 };
+  }
+  // 3. Already used as a free addition on another entry? Follow that precedent.
+  for (const e of entries) {
+    for (const [cat, list] of Object.entries(e.tags ?? {})) {
+      if ((list ?? []).includes(t)) {
+        return { category: cat, why: `already used in ${cat} on ${e.id}`, score: 50 };
+      }
+    }
+  }
+  // 4. Stem scoring.
+  const scores = {};
+  const hits = {};
+  for (const [cat, stems] of Object.entries(STEM_MAP)) {
+    if (!(cat in vocab.categories)) continue;
+    for (const [stem, weight] of stems) {
+      if (t.includes(stem)) {
+        scores[cat] = (scores[cat] ?? 0) + weight;
+        (hits[cat] ??= []).push(stem);
+      }
+    }
+  }
+  const ranked = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+  if (!ranked.length) return { category: null, why: 'no keyword matched', score: 0 };
+  const [best, bestScore] = ranked[0];
+  const runnerUp = ranked[1]?.[1] ?? 0;
+  // Ambiguous when the top two are level: let a human decide rather than guess.
+  if (bestScore === runnerUp) {
+    return { category: null, why: `ambiguous between ${ranked[0][0]} and ${ranked[1][0]}`, score: bestScore };
+  }
+  return { category: best, why: `matched ${hits[best].join(', ')}`, score: bestScore };
+}
+
+/* Canonical = present in vocab.json. Everything else is real on its entry but
+   not yet part of the vocabulary. */
+const isCanonicalTag = (cat, tag) => (vocab.categories[cat]?.tags ?? []).includes(tag);
+
+const DECLINED_KEY = 'design-dna:vault:vocab-declined';
+const declinedVocab = () => {
+  try { return new Set(JSON.parse(store.get(DECLINED_KEY) ?? '[]')); } catch { return new Set(); }
+};
+const declineVocab = (cat, tag) => {
+  const s = declinedVocab();
+  s.add(`${cat}/${tag}`);
+  store.set(DECLINED_KEY, JSON.stringify([...s]));
+};
 
 const localDate = () => {
   const d = new Date();
@@ -1193,6 +1368,13 @@ function card(entry) {
     mark.dataset.status = entry.dialectStatus;
     meta.append(mark);
   }
+  /* +N / −N: how many strengths and weaknesses are recorded. The card still shows
+     only the clamped note; these say there is a verdict worth opening. */
+  const countItems = (s) => (s ?? '').split('\n').map((l) => l.trim()).filter(Boolean).length;
+  const plus = countItems(entry.works);
+  const minus = countItems(entry.weaknesses);
+  if (plus) meta.append(el('span', { className: 'judge-mark judge-mark--plus label', textContent: `+${plus}`, title: `${plus} recorded strength${plus === 1 ? '' : 's'}` }));
+  if (minus) meta.append(el('span', { className: 'judge-mark judge-mark--minus label', textContent: `−${minus}`, title: `${minus} recorded weakness${minus === 1 ? '' : 'es'}` }));
   node.append(meta);
 
   const tags = el('div', { className: 'card-tags' });
@@ -1291,7 +1473,7 @@ function openDetail(id, { editNote = false, showNote = false } = {}) {
   rows.forEach(([k, v]) => { plate.append(el('dt', { className: 'label', textContent: k }), el('dd', {}, v)); });
   right.append(plate);
 
-  right.append(noteBlock(entry));
+  right.append(judgementBlocks(entry));
 
   right.append(editForm(entry));
   right.append(dangerZone(entry));
@@ -1344,6 +1526,7 @@ function editForm(entry) {
   form.append(dialectField);
 
   const tagField = el('div', { className: 'field' }, el('span', { className: 'label', textContent: 'tags' }));
+  tagField.append(smartTagBox(entry));          // one box on top; checkboxes below
   const vocabWrap = el('div', { className: 'vocab' });
   buildVocabForm(vocabWrap, entry.tags ?? {}, entry.id);
   tagField.append(vocabWrap);
@@ -1609,52 +1792,77 @@ async function removeExtra(entry, index) {
   }
 }
 
-/* The note in the detail view, editable in place. Saving touches the note and
-   nothing else on the entry, then goes through the standard save flow. */
-function noteBlock(entry) {
-  const wrap = el('section', { className: 'note-block', id: 'note-block' });
-  const note = (entry.note ?? '').trim();
-  const empty = !note || note === 'TODO';
+/* Three judgement fields — note, works, weaknesses — each editable in place.
+   Saving touches only its own field, then goes through the standard save flow.
+   note stays the general reasoning; the other two split the verdict. */
+const FIELD_SPECS = {
+  note: {
+    label: 'note — what you liked and why',
+    todo: 'note: TODO — tap to write why this is here',
+    placeholder: 'What specifically works, and what is worth stealing.',
+    emptyIsTodo: true, motionHint: true,
+  },
+  works: {
+    label: 'works — what is strong',
+    todo: 'nothing recorded yet — tap to list what works',
+    placeholder: 'One decision per line: what this gets right, and why it lands.',
+    emptyIsTodo: false, motionHint: false,
+  },
+  weaknesses: {
+    label: 'doesn’t — what fails, or nearly does',
+    todo: 'nothing recorded yet — tap to list what fails',
+    placeholder: 'One per line: what breaks, what almost breaks, what you would not repeat.',
+    emptyIsTodo: false, motionHint: false,
+  },
+};
+
+function textBlock(entry, field) {
+  const spec = FIELD_SPECS[field];
+  const wrap = el('section', { className: 'note-block', id: `${field}-block` });
+  const raw = (entry[field] ?? '').trim();
+  const note = spec.emptyIsTodo && raw === 'TODO' ? '' : raw;
+  const empty = !note;
 
   const head = el('div', { className: 'note-head' },
-    el('span', { className: 'label', textContent: 'note — what you liked and why' }));
+    el('span', { className: 'label', textContent: spec.label }));
   const editBtn = el('button', {
-    className: 'note-edit', type: 'button', id: 'note-edit',
-    title: empty ? 'Write the note' : 'Edit the note',
-    ariaLabel: empty ? 'Write the note' : 'Edit the note',
+    className: 'note-edit', type: 'button', id: `${field}-edit`,
+    title: empty ? `Write ${field}` : `Edit ${field}`,
+    ariaLabel: empty ? `Write ${field}` : `Edit ${field}`,
   }, pencil(15));
   head.append(editBtn);
   wrap.append(head);
 
   const read = el('p', {
     className: 'note-read' + (empty ? ' note-read--todo' : ''),
-    id: 'note-read',
+    id: `${field}-read`,
     tabIndex: 0,
     role: 'button',
     title: 'Tap to edit',
-    textContent: empty
-      ? 'note: TODO — tap to write why this is here'
-      : note,
+    textContent: empty ? spec.todo : note,
   });
   wrap.append(read);
 
-  const editor = el('div', { className: 'note-editor', id: 'note-editor', hidden: true });
+  const editor = el('div', { className: 'note-editor', id: `${field}-editor`, hidden: true });
   const area = el('textarea', {
-    id: 'note-inline', value: empty ? '' : note,
-    placeholder: 'What specifically works, and what is worth stealing.',
-  });
-  /* The shots cannot hold motion, so the note has to. */
-  const motionHint = el('p', {
-    className: 'hint note-motion-hint',
-    textContent: 'Shots are static. If this site earns its place through motion, transitions, '
-      + "or interaction — describe WHAT moves and HOW, that's the part the capture can't hold.",
+    id: `${field}-inline`, value: note,
+    placeholder: spec.placeholder,
   });
 
   const actions = el('div', { className: 'note-editor-actions' });
-  const save = el('button', { className: 'btn btn--primary', type: 'button', textContent: 'save note' });
+  const save = el('button', { className: 'btn btn--primary', type: 'button', textContent: `save ${field === 'weaknesses' ? 'weaknesses' : field}` });
   const cancel = el('button', { className: 'btn', type: 'button', textContent: 'cancel' });
   actions.append(save, cancel);
-  editor.append(area, motionHint, actions);
+  editor.append(area);
+  if (spec.motionHint) {
+    /* The shots cannot hold motion, so the note has to. */
+    editor.append(el('p', {
+      className: 'hint note-motion-hint',
+      textContent: 'Shots are static. If this site earns its place through motion, transitions, '
+        + "or interaction — describe WHAT moves and HOW, that's the part the capture can't hold.",
+    }));
+  }
+  editor.append(actions);
   wrap.append(editor);
 
   const open = () => {
@@ -1677,22 +1885,32 @@ function noteBlock(entry) {
   read.addEventListener('keydown', (ev) => {
     if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); open(); }
   });
-  cancel.addEventListener('click', () => { area.value = empty ? '' : note; close(); });
+  cancel.addEventListener('click', () => { area.value = note; close(); });
 
-  save.addEventListener('click', guard('Save note', async () => {
-    const next = area.value.trim() || 'TODO';
-    if (next === (entry.note ?? '').trim()) { close(); toast('Note unchanged.', 'warn', 3000); return; }
+  save.addEventListener('click', guard(`Save ${field}`, async () => {
+    const typed = area.value.trim();
+    const next = typed || (spec.emptyIsTodo ? 'TODO' : '');
+    if (next === (entry[field] ?? '').trim()) { close(); toast(`${field} unchanged.`, 'warn', 3000); return; }
     save.disabled = true;
     save.textContent = 'saving…';
-    entry.note = next;                                  // only the note
+    entry[field] = next;                                // only this field
     persist();
     render();
-    openDetail(entry.id);                               // re-render with the new note
-    await requestSave(`The note for "${entry.title}"`);
+    openDetail(entry.id);                               // re-render with the new value
+    await requestSave(`${spec.label.split(' —')[0]} for "${entry.title}"`);
   }));
 
   wrap.openEditor = open;
   return wrap;
+}
+
+/* note first — it is the payload — then the split verdict. */
+function judgementBlocks(entry) {
+  const frag = document.createDocumentFragment();
+  frag.append(textBlock(entry, 'note'));
+  frag.append(textBlock(entry, 'works'));
+  frag.append(textBlock(entry, 'weaknesses'));
+  return frag;
 }
 
 /* Two taps, never one. The confirm step names the entry and says plainly where
@@ -1801,6 +2019,274 @@ function readDialectForm(wrap) {
       ? [...dialectBox.querySelectorAll('input[type=checkbox]')].filter((i) => i.checked).map((i) => i.value)
       : [],
   };
+}
+
+/* ── one-box smart tagging ─────────────────────────────────────────────────
+   One field on top of the existing checkboxes. Accepts a comma-separated batch,
+   routes each tag through classifyTag(), and reports where everything landed.
+   A category selector overrides the classifier — that is also how a wrong guess
+   gets corrected. */
+function smartTagBox(entry) {
+  const wrap = el('div', { className: 'smart-tag' });
+
+  const row = el('div', { className: 'smart-tag-row' });
+  const select = el('select', { className: 'smart-tag-cat', id: 'smart-cat', title: 'AUTO classifies; a category places tags directly' });
+  select.append(el('option', { value: '', textContent: 'AUTO' }));
+  for (const cat of Object.keys(vocab.categories)) {
+    select.append(el('option', { value: cat, textContent: cat }));
+  }
+  const input = el('input', {
+    type: 'text', id: 'smart-tag-input',
+    placeholder: 'controlled-accent, thin-rules, scroll-reveal',
+    autocapitalize: 'none', autocorrect: 'off', spellcheck: false, enterKeyHint: 'done',
+  });
+  const addBtn = el('button', { className: 'btn', type: 'button', id: 'smart-tag-add', textContent: 'add' });
+  row.append(select, input, addBtn);
+  wrap.append(row);
+
+  const result = el('p', { className: 'hint smart-tag-result', id: 'smart-tag-result' });
+  wrap.append(result);
+
+  /* Chips: every tag currently on the entry, removable, marked when not canonical. */
+  const chips = el('div', { className: 'smart-chips', id: 'smart-chips' });
+  const paintChips = () => {
+    chips.textContent = '';
+    for (const [cat, list] of Object.entries(entry.tags ?? {})) {
+      for (const tag of list ?? []) {
+        const pending = !isCanonicalTag(cat, tag);
+        const chip = el('span', {
+          className: 'smart-chip' + (pending ? ' smart-chip--pending' : ''),
+          title: pending ? `${cat} · pending vocab — not in vocab.json yet` : `${cat} · canonical`,
+        });
+        chip.style.setProperty('--hue', hueOf(cat));
+        chip.append(el('span', { className: 'label', textContent: tag }));
+        if (pending) chip.append(el('span', { className: 'smart-chip-flag label', textContent: 'pending vocab' }));
+        const x = el('button', { className: 'smart-chip-x', type: 'button', textContent: '×', ariaLabel: `Remove ${tag}` });
+        x.addEventListener('click', () => {
+          entry.tags[cat] = entry.tags[cat].filter((t) => t !== tag);
+          paintChips();
+          syncCheckboxes();
+          result.textContent = `removed ${tag} from ${cat}`;
+        });
+        chip.append(x);
+        chips.append(chip);
+      }
+    }
+    if (!chips.children.length) chips.append(el('span', { className: 'hint', textContent: 'No tags yet.' }));
+  };
+  wrap.append(chips);
+
+  /* Keep the checkbox grid below in step with chip edits. */
+  const syncCheckboxes = () => {
+    const box = $('#detail .vocab');
+    if (!box) return;
+    box.querySelectorAll('.vocab-cat').forEach((catBox) => {
+      const cat = catBox.dataset.cat;
+      const have = new Set(entry.tags?.[cat] ?? []);
+      catBox.querySelectorAll('input[type=checkbox]').forEach((cb) => { cb.checked = have.has(cb.value); });
+      // A tag added via the box may not have a checkbox yet.
+      for (const tag of have) {
+        const tags = $('.vocab-tags', catBox);
+        if (![...tags.querySelectorAll('input')].some((i) => i.value === tag)) {
+          const label = el('label', { className: 'check', title: `${cat}: ${tag}` });
+          label.style.setProperty('--hue', hueOf(cat));
+          const cb = el('input', { type: 'checkbox', value: tag, checked: true });
+          label.append(cb, document.createTextNode(tag));
+          tags.append(label);
+        }
+      }
+    });
+  };
+
+  const commit = () => {
+    const forced = select.value;
+    const raw = input.value.split(',').map(slugTag).filter(Boolean);
+    const seen = new Set();
+    const batch = raw.filter((t) => (seen.has(t) ? false : seen.add(t)));
+    if (!batch.length) { toast('Type a tag first — commas separate several.', 'warn', 4000); input.focus(); return; }
+
+    const landed = {};
+    const unsortedNow = [];
+    const dialectsNow = [];
+    for (const tag of batch) {
+      if (forced) {
+        entry.tags[forced] ??= [];
+        if (!entry.tags[forced].includes(tag)) entry.tags[forced].push(tag);
+        landed[forced] = (landed[forced] ?? 0) + 1;
+        continue;
+      }
+      const { category } = classifyTag(tag);
+      if (category === '__dialect__') {
+        if (!entry.dialects.includes(tag)) entry.dialects.push(tag);
+        dialectsNow.push(tag);
+      } else if (category) {
+        entry.tags[category] ??= [];
+        if (!entry.tags[category].includes(tag)) entry.tags[category].push(tag);
+        landed[category] = (landed[category] ?? 0) + 1;
+      } else {
+        if (!entry.unsorted.includes(tag)) entry.unsorted.push(tag);
+        unsortedNow.push(tag);
+      }
+    }
+
+    const parts = Object.entries(landed).map(([c, n]) => `${c} +${n}`);
+    if (dialectsNow.length) parts.push(`${dialectsNow.length} dialect`);
+    if (unsortedNow.length) parts.push(`${unsortedNow.length} unsorted`);
+    result.textContent = parts.join(' · ') || 'nothing added';
+    if (forced) result.textContent += ` (placed directly, no classification)`;
+
+    persist();
+    paintChips();
+    syncCheckboxes();
+    renderFilters();
+    render();
+    paintQueues();
+
+    input.value = '';
+    select.value = '';                 // back to AUTO after every add
+    input.focus();                     // several rounds without extra taps
+  };
+
+  addBtn.addEventListener('click', commit);
+  input.addEventListener('keydown', (ev) => {
+    if (ev.key === 'Enter') { ev.preventDefault(); commit(); }
+    // A typed comma commits what is there, so batches can be built incrementally.
+    if (ev.key === ',' && input.value.trim()) { ev.preventDefault(); commit(); }
+  });
+
+  /* Unsorted queue and vocab proposals, both shown on every editor open. */
+  const queues = el('div', { className: 'queues', id: 'queues' });
+  wrap.append(queues);
+
+  function paintQueues() {
+    queues.textContent = '';
+
+    if (entry.unsorted.length) {
+      const bar = el('div', { className: 'queue-bar' });
+      bar.append(el('span', { className: 'label', textContent: `unsorted · ${entry.unsorted.length}` }));
+      for (const tag of [...entry.unsorted]) {
+        const { category, why } = classifyTag(tag);
+        const rowEl = el('div', { className: 'queue-row' });
+        rowEl.append(el('span', { className: 'queue-tag label', textContent: tag }));
+        const target = category && category !== '__dialect__' ? category : null;
+        rowEl.append(el('span', {
+          className: 'hint',
+          textContent: target ? `→ ${target}? (${why})` : `no confident home (${why})`,
+        }));
+        const acts = el('div', { className: 'queue-acts' });
+        if (target) {
+          const accept = el('button', { className: 'btn', type: 'button', textContent: 'accept' });
+          accept.addEventListener('click', guard('Sort tag', async () => {
+            entry.tags[target] ??= [];
+            if (!entry.tags[target].includes(tag)) entry.tags[target].push(tag);
+            entry.unsorted = entry.unsorted.filter((t) => t !== tag);
+            persist(); paintChips(); syncCheckboxes(); renderFilters(); render(); paintQueues();
+            result.textContent = `${tag} → ${target}`;
+          }));
+          acts.append(accept);
+        }
+        const pick = el('select', { className: 'smart-tag-cat' });
+        pick.append(el('option', { value: '', textContent: 'pick…' }));
+        for (const cat of Object.keys(vocab.categories)) pick.append(el('option', { value: cat, textContent: cat }));
+        pick.addEventListener('change', () => {
+          if (!pick.value) return;
+          const cat = pick.value;
+          entry.tags[cat] ??= [];
+          if (!entry.tags[cat].includes(tag)) entry.tags[cat].push(tag);
+          entry.unsorted = entry.unsorted.filter((t) => t !== tag);
+          persist(); paintChips(); syncCheckboxes(); renderFilters(); render(); paintQueues();
+          result.textContent = `${tag} → ${cat} (picked)`;
+        });
+        acts.append(pick);
+        const leave = el('button', { className: 'btn btn--quiet', type: 'button', textContent: 'leave' });
+        leave.addEventListener('click', () => { rowEl.hidden = true; });
+        acts.append(leave);
+        rowEl.append(acts);
+        bar.append(rowEl);
+      }
+      bar.append(el('p', {
+        className: 'hint',
+        textContent: 'No new categories are created here — the six are deliberate. '
+          + 'Leave a tag queued rather than forcing it somewhere wrong.',
+      }));
+      queues.append(bar);
+    }
+
+    /* Vocab proposals: a tag is real on its entry immediately, canonical only
+       when a human says so. */
+    const declined = declinedVocab();
+    const proposals = [];
+    for (const [cat, list] of Object.entries(entry.tags ?? {})) {
+      for (const tag of list ?? []) {
+        if (!isCanonicalTag(cat, tag) && !declined.has(`${cat}/${tag}`)) proposals.push([cat, tag]);
+      }
+    }
+    if (proposals.length) {
+      const bar = el('div', { className: 'queue-bar queue-bar--vocab' });
+      bar.append(el('span', { className: 'label', textContent: `vocabulary proposals · ${proposals.length}` }));
+      for (const [cat, tag] of proposals) {
+        const rowEl = el('div', { className: 'queue-row' });
+        rowEl.append(el('span', { className: 'hint' },
+          document.createTextNode('add '),
+          el('strong', { textContent: `'${tag}'` }),
+          document.createTextNode(` to ${cat} vocabulary?`)));
+        const acts = el('div', { className: 'queue-acts' });
+        const yes = el('button', { className: 'btn btn--primary', type: 'button', textContent: 'yes' });
+        yes.addEventListener('click', guard('Add to vocabulary', async () => {
+          await promoteToVocab(cat, tag, entry);
+        }));
+        const no = el('button', { className: 'btn', type: 'button', textContent: 'no' });
+        no.addEventListener('click', () => {
+          declineVocab(cat, tag);
+          paintQueues();
+          result.textContent = `'${tag}' stays on this entry but out of the vocabulary`;
+        });
+        acts.append(yes, no);
+        rowEl.append(acts);
+        bar.append(rowEl);
+      }
+      bar.append(el('p', {
+        className: 'hint',
+        textContent: 'Unconfirmed tags still filter and display — they are real on their entries, '
+          + 'just not canonical yet.',
+      }));
+      queues.append(bar);
+    }
+  }
+
+  paintChips();
+  paintQueues();
+  return wrap;
+}
+
+/* Canonical vocabulary growth is an explicit act, committed alongside the entry. */
+async function promoteToVocab(cat, tag, entry) {
+  if (!vocab.categories[cat]) { toast(`Unknown category ${cat}.`, 'bad'); return; }
+  if (!getToken()) {
+    toast('Growing the vocabulary writes vocab.json, which needs the online path. '
+      + 'The tag stays on this entry either way.', 'bad', 12000);
+    offerSaveChoice('The vocabulary change');
+    return;
+  }
+  const cfg = repoConfig();
+  const next = structuredClone(vocab);
+  if (!next.categories[cat].tags.includes(tag)) next.categories[cat].tags.push(tag);
+  next.categories[cat].tags.sort();
+
+  const commit = await commitTree(cfg, {
+    message: `vault: add '${tag}' to ${cat} vocabulary`,
+    texts: [
+      { path: cfg.path, content: serialise(entries) },
+      { path: 'vault/vocab.json', content: JSON.stringify(next, null, 2) + '\n' },
+    ],
+  });
+  vocab = next;
+  dirty = false;
+  store.remove(LS_KEY);
+  renderFilters();
+  render();
+  openDetail(entry.id);
+  toast(`'${tag}' is now part of the ${cat} vocabulary (${commit.sha.slice(0, 7)}).`, 'ok', 10000);
 }
 
 function buildVocabForm(wrap, current, scope) {

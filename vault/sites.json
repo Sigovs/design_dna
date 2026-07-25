@@ -31,9 +31,9 @@
     },
     "note": "immersive-authored-world\ndirected-visual-silence\nstate-transition\ncentral-symbolic-object\ninterface-as-world\ncontrolled-blur\neffect-hierarchy\nlow-contrast-risk\n\nИменно IN, но важная оговорк",
     "shots": {
-      "full": null,
-      "hero": null,
-      "mobile": null
+      "full": "shots/augen-pro/full.jpg",
+      "hero": "shots/augen-pro/hero.jpg",
+      "mobile": "shots/augen-pro/mobile.jpg"
     }
   },
   {

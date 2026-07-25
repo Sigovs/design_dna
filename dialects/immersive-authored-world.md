@@ -146,10 +146,13 @@ hierarchy has collapsed and the scene is noise.
   hierarchy above.
 - **Generic glassmorphism as a substitute for composition** — frosted panels
   standing in for figure-ground decisions. The panel is not the composition.
-- **Illegible HUD microtext** — in-world text that cannot actually be read. This is
-  not a separate rule: it is **[color-taste I1](../skills/color-taste/SKILL.md#invariant)
-  (WCAG AA) applying to in-world text exactly as it applies to everything else.**
-  Atmosphere is not an exemption, and diegetic framing does not lower the ratio.
+- **Illegible HUD microtext** — **functional** HUD elements that cannot actually be
+  read: labels, readouts, and controls the user needs. This is not a separate rule —
+  it references [color-taste I1](../skills/color-taste/SKILL.md#invariant) rather
+  than restating it, and diegetic framing does not lower the ratio for anything
+  functional. Microtext that is pure atmosphere is not covered here; see the
+  functional/decorative distinction in
+  [INVARIANT COMPLIANCE](#invariant-compliance).
 - **Decorative 3D objects with no symbolic role** — geometry present because it
   renders. Fails P1 and [C1](../skills/academic-composition/SKILL.md#invariant).
 - **Continuous motion without stillness or resolution** — no silence, no landing.
@@ -195,12 +198,34 @@ Not optional, not negotiable, and not modified by anything above.
   ([motion I4](../skills/motion-taste/SKILL.md#invariant)). Atmospheric ambition
   does not license animating layout properties or shifting content under the
   reader.
-- **WCAG AA applies to all in-world text**
-  ([color-taste I1](../skills/color-taste/SKILL.md#invariant)) — labels, HUD
-  microtext, captions, diegetic markings, type composited into the scene. Measure
-  against the worst-case region the text overlaps
-  ([color-taste I4](../skills/color-taste/SKILL.md#invariant)) and fix it at the
+- **The contrast law applies to FUNCTIONAL text only** — navigation, controls, and
+  any content the user must read in order to act. That text must remain legible per
+  [color-taste I1](../skills/color-taste/SKILL.md#invariant), measured against the
+  worst-case region it overlaps
+  ([color-taste I4](../skills/color-taste/SKILL.md#invariant)) and fixed at the
   background layer, since a moving scene makes the worst case move too.
+
+  **Decorative, atmospheric, and in-scene texture text is exempt by design.**
+  Signage inside a rendered street, serial numbers etched on a prop, scrolling
+  telemetry that exists to feel like telemetry, type used as pattern or grain — this
+  is imagery that happens to be lettershaped, and holding it to a reading ratio
+  would forbid the dialect's entire register.
+
+  **Marking the distinction is required, not optional.** For every piece of text in
+  a scene, state which side it is on. The test is one question: *does the user need
+  to read this to understand or to act?* If yes, it is functional and the invariant
+  binds. If no, it is texture and exempt.
+
+  Two limits keep the exemption from becoming a loophole:
+  - **Exempt text carries no information.** The moment texture text conveys
+    something — a price, a status, a name, an instruction — it is functional, whatever
+    it looks like, and the invariant binds.
+  - **Exempt text is not exposed as content.** Mark it `aria-hidden`, or make it a
+    real image, so assistive technology is not asked to read decoration. If the same
+    information exists anywhere, it exists somewhere legible too.
+
+  This mirrors WCAG's own carve-out for purely decorative and incidental text; it is
+  not a local weakening of the invariant.
 
 Additionally, and following from the invariants rather than from this dialect:
 audio never autoplays, spectacle never blocks input, and every effect tier

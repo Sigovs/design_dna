@@ -103,9 +103,33 @@ npm run vault                          # open the gallery, fill in tags + note
 
 **Reshoot** when a site redesigns: `npm run recapture -- <id>`.
 
-> The gallery has no backend on purpose. Saving downloads `sites.json`; you
-> **replace the file and commit**. Edits are held in `localStorage` until then, so
-> a reload won't lose them — but they aren't real until they're in a commit.
+> The gallery has no backend on purpose. **Save to github** writes
+> `vault/sites.json` through the Contents API using your own fine-grained PAT, held
+> in that browser; `download json` remains the fallback. Either way git is the
+> source of truth — edits held in `localStorage` are not real until they are in a
+> commit.
+
+### Stale-edit guard
+
+A working copy in `localStorage` **never silently wins over a newer file.** On load
+and again before every save, the gallery compares when the browser's edits were made
+against when `vault/sites.json` last actually changed (the file's latest commit date,
+falling back to `Last-Modified`). If the file is newer *and* the two disagree about
+any entry, the gallery:
+
+1. displays the **remote** version — canonical data wins the screen;
+2. holds the browser copy rather than discarding it;
+3. shows a bar naming the conflicting entries and both sets of values, with
+   **keep my edits** / **take remote**.
+
+Nothing is written or dropped without that choice, and a save in that state is
+refused rather than merged.
+
+**Why this exists.** A browser holding pre-review edits for `thegentlewoman-co-uk`
+displayed `rating 3 / unreviewed` for some time after the human review had landed in
+git as `rating 1 / out` — and a Save from that tab would have pushed the stale values
+back over the reviewed ones. Git was never wrong; the browser was, silently. See the
+distillation log below for the review itself.
 
 ---
 

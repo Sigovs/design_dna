@@ -1,5 +1,35 @@
 [
   {
+    "id": "ruadh-com",
+    "url": "https://www.ruadh.com/?ref=siteinspire",
+    "title": "e-com",
+    "added": "2026-07-27",
+    "rating": 2,
+    "dialectStatus": "unreviewed",
+    "dialects": [],
+    "tags": {
+      "composition": [],
+      "typography": [],
+      "layout": [],
+      "motion": [],
+      "color": [],
+      "imagery": []
+    },
+    "note": "TODO",
+    "shots": {
+      "full": null,
+      "hero": null,
+      "mobile": null
+    },
+    "kind": "site",
+    "source": "",
+    "extras": [],
+    "captureError": null,
+    "works": "",
+    "weaknesses": "",
+    "unsorted": []
+  },
+  {
     "id": "augen-pro",
     "url": "https://augen.pro/",
     "title": "augen.pro",

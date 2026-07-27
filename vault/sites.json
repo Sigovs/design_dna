@@ -17,9 +17,9 @@
     },
     "note": "TODO",
     "shots": {
-      "full": null,
-      "hero": null,
-      "mobile": null
+      "full": "shots/ruadh-com/full.jpg",
+      "hero": "shots/ruadh-com/hero.jpg",
+      "mobile": "shots/ruadh-com/mobile.jpg"
     },
     "kind": "site",
     "source": "",

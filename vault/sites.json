@@ -180,23 +180,65 @@
     ],
     "tags": {
       "composition": [
-        "brief-derived-cultural-directory"
+        "brief-derived-cultural-directory",
+        "human-system-tension",
+        "portrait-led-composition",
+        "split-screen-casting",
+        "subject-overlap",
+        "controlled-confrontation",
+        "identity-first-hierarchy",
+        "mission-led-art-direction",
+        "brand-utility-integration"
       ],
       "typography": [
-        "editorial"
+        "editorial",
+        "monumental-wordmark",
+        "oversized-grotesk",
+        "typography-as-structure",
+        "direct-activist-copy",
+        "bilingual-typography",
+        "face-type-overlap",
+        "typography-competition-risk"
       ],
       "layout": [
         "air",
-        "bleed"
+        "bleed",
+        "directory-grid",
+        "split-viewport-opening",
+        "persistent-shortlist",
+        "functional-profile-system",
+        "minimal-navigation",
+        "content-first-interface",
+        "brand-to-utility-transition"
       ],
-      "motion": [],
+      "motion": [
+        "portrait-transition",
+        "subject-led-reveal",
+        "image-type-interaction",
+        "restrained-interface-motion",
+        "casting-sequence",
+        "desktop-motion-advantage"
+      ],
       "color": [
         "neutral",
-        "monochrome"
+        "monochrome",
+        "dark-brown-type",
+        "warm-peach-field",
+        "two-color-identity",
+        "human-warmth-palette",
+        "high-contrast-branding",
+        "palette-repetition-risk"
       ],
       "imagery": [
         "photography",
-        "art-direction"
+        "art-direction",
+        "high-contrast-portraiture",
+        "lived-experience-visibility",
+        "diverse-talent-imagery",
+        "personality-led-cropping",
+        "direct-gaze",
+        "real-human-subjects",
+        "portrait-quality-dependence"
       ],
       "risks": []
     },

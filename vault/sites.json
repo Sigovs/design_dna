@@ -395,10 +395,7 @@
     "added": "2026-07-25",
     "rating": 2,
     "dialectStatus": "in",
-    "dialects": [
-      "auction-editorial",
-      "immersive-authored-world"
-    ],
+    "dialects": [],
     "tags": {
       "composition": [
         "active-negative-space",
@@ -429,8 +426,7 @@
         "photography",
         "art-direction",
         "illustration"
-      ],
-      "risks": []
+      ]
     },
     "note": "IN — A landmark interactive branded experience that translates the operational relationship between Citrix and Red Bull Racing into the spatial and temporal behavior of the interface itself. WebGL environments, telemetry-inspired graphics, F1-style navigation, cinematic racing imagery, sound design, depth transitions and velocity-based blur connect the track, garage, factory and distributed workforce as parts of one continuous high-performance system. Its strongest quality is semantic motion: speed, connectivity and data are not merely described but experienced through navigation. Heavy technological dependence, delayed comprehension, motion-led accessibility issues and limited scalability beyond a campaign format reduce its utility as a conventional commercial framework, but it remains an exceptional reference for subject-derived interaction language and interface-as-environment.",
     "shots": {

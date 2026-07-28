@@ -23,8 +23,8 @@ decide *identically*.
    they contain hard numbers and hard bans.
 4. **Invariants are not negotiable. Dialect rules are.** Know which is which
    before you break anything.
-5. **State your Design Read first** (§2), including which dialect you are in.
-   It takes two lines and prevents most drift.
+5. **State your Design Read first** (§2) — reading, mandate, dialect,
+   dimensionality. It takes four lines and prevents most drift.
 
 ---
 
@@ -103,10 +103,11 @@ buys you.
 
 ## 2. The Design Read
 
-Before generating anything visual, output exactly three lines:
+Before generating anything visual, output exactly four lines:
 
 ```
 Reading this as <deliverable> for <audience>, leaning <aesthetic family>.
+Mandate: <REBRAND | REDESIGN | REFRESH> — <what is fixed, what is in scope>.
 Dialect: <stored dialect | partial: X + brief-derived | brief-derived / no stored dialect>.
 Dimensionality: <MAIN | SUPPORT | ABSENT> — <why, in one clause>.
 ```
@@ -115,17 +116,50 @@ Examples:
 
 ```
 Reading this as a landing hero for first-time enterprise buyers, leaning editorial-technical.
+Mandate: REDESIGN — wordmark, navy/cream palette and the serif display face carry through; layout and hierarchy in scope.
 Dialect: auction-editorial.
 Dimensionality: SUPPORT — one lit object carries emphasis; the page stands without it.
 
 Reading this as an operations console for warehouse staff on shared terminals, leaning swiss-utility.
+Mandate: REFRESH — identity and IA both fixed; only type scale, contrast and spacing in scope.
 Dialect: brief-derived / no stored dialect — density and glanceability outrank restraint here.
 Dimensionality: ABSENT — depth is carried by tone and overlap; a scene would cost the scan.
 
 Reading this as a festival lineup page for an 18–25 audience, leaning expressive-poster.
+Mandate: REBRAND — new festival, no prior identity; invention expected.
 Dialect: partial: auction-editorial principles (metadata as composition) + brief-derived colour and motion.
 Dimensionality: MAIN — the staged scene is the composition; DM1–DM10 bind at full weight.
 ```
+
+**The mandate line is required, and the work cannot start without it.** It answers
+one question — *how much of this brand am I allowed to replace?* — and it is
+declared **before** the dialect, because the dialect is a way of executing an
+identity, never a substitute for one.
+
+| Mandate | Identity | What is in scope |
+|---|---|---|
+| **REBRAND** | In scope. **Invention expected.** | Everything: name-level expression, palette, type, voice, structure, surface. |
+| **REDESIGN** | **Fixed.** | Execution. Layout, hierarchy, composition, structure, surface craft — while the brand stays itself. |
+| **REFRESH** | **Fixed.** Structure fixed too. | Surface craft only: type scale, spacing, contrast, states, polish. |
+
+**Under REDESIGN, list what carries through untouched BEFORE designing anything.**
+Name the specific carriers — wordmark, palette, display face, photographic
+treatment, voice, signature layout move — as a list, not as a promise. A carrier
+you did not name is a carrier you will quietly replace. **The result must remain
+recognisable as the same brand**, and §7 closes on exactly that question.
+
+**Default when the brief does not say: REDESIGN.** An unstated mandate is never
+read as licence to invent. If you believe the brief actually wants a REBRAND, say
+so and name the evidence in the brief that says so; absence of a brand description
+is not that evidence.
+
+> **Why this step exists.** Across five briefs the agent substituted an invented
+> identity for the client's existing one, because nothing in the procedure
+> distinguished *fixing* a brand from *replacing* it. With no brand anchor
+> declared, the agent falls back on the house dialect — which is how four different
+> clients came out looking like the same studio. The mandate is the anchor:
+> declared first, it makes "invent an identity" an explicit choice rather than a
+> default that nobody noticed being made.
 
 **The dialect line is a required choice, and it has three legal answers:**
 
@@ -420,7 +454,8 @@ drive two concrete decisions, is in
 
 End any visual work with:
 
-- **Design Read** — the two lines you committed to, dialect included.
+- **Design Read** — the four lines you committed to: reading, mandate, dialect,
+  dimensionality.
 - **Composition pass** — the nine-line block (§2a), where one was required.
 - **Critique panel + disposition table** — where §2b ran. Every point disposed of.
 - **Invariants applied** — which bound the work, and where they bit.
@@ -432,3 +467,14 @@ End any visual work with:
 - **Vault entries cited** — ids, if any informed the work.
 - **Known compromises** — anything that violates an invariant because of a real
   external constraint, named explicitly. Silent violations are the failure mode.
+
+**Under REDESIGN, close the report with this question, answered:**
+
+> **Would a regular visitor recognise this as the same brand?**
+
+Answer it with the **specific carried elements as evidence** — the wordmark in its
+original lockup, the palette's two anchor colours, the display face, the
+photographic treatment, the one signature layout move — not with an assertion that
+it feels consistent. If the honest answer is no, say no: that means the work became
+a REBRAND without one being declared, and the mandate has to be renegotiated rather
+than quietly widened.

@@ -38,12 +38,18 @@ autonomy rules above — change one, change both.
 move a rule between tiers as a side effect of another edit — a tier change is its
 own decision and needs its own argument in the commit.
 
-**Declarations before techniques.** The Design Read outputs three lines —
-deliverable/audience/family, **dialect**, and **dimensionality role**
-(MAIN / SUPPORT / ABSENT). The role is declared *before* any technique is chosen and
-*before* the composition pass, because it decides what the composition is made of.
-Promoting SUPPORT → MAIN mid-project requires re-running the Design Read; demotion
-never does.
+**Declarations before techniques.** The Design Read outputs four lines —
+deliverable/audience/family, **mandate** (REBRAND / REDESIGN / REFRESH), **dialect**,
+and **dimensionality role** (MAIN / SUPPORT / ABSENT). Each is declared before the
+thing it governs: the mandate before the dialect, because a dialect executes an
+identity and never substitutes for one; the role before any technique and before
+the composition pass, because it decides what the composition is made of.
+
+**An unstated mandate defaults to REDESIGN, never to invention.** Under REDESIGN,
+list what carries through untouched before designing anything, and close the report
+with "would a regular visitor recognise this as the same brand?" answered with the
+named carriers as evidence. Promoting SUPPORT → MAIN mid-project requires re-running
+the Design Read; demotion never does.
 
 **Rule identifiers are namespaced when they would collide.** `D#` already means a
 DIALECT rule in every skill, so `dimensionality` uses `DM1`–`DM10` for its

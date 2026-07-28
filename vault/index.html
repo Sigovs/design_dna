@@ -34,6 +34,10 @@
   --ink-30: #f2f1ee4d;
   --rule: #f2f1ee1f;
   --rule-strong: #f2f1ee45;
+  /* The one cast shadow in the file: an overlay has to sit off the page, and a
+     hairline alone cannot say that on a dark ground. Tokenised so it stays the
+     only one. */
+  --shadow-overlay: 0 18px 48px #00000090;
 
   /* NEW · status + verdict hues. FUNCTIONAL colour, not decoration: every one is
      always paired with a label or glyph (color-taste I2). Formalises values that
@@ -62,9 +66,20 @@
      Tag chips get a READING register instead — looser case, tighter tracking —
      because dozens of tracked uppercase words in rows is the least readable
      block on the page. */
-  --text-xs: .78125rem;      /* 12.5px */
+  /* TYPE FLOOR — 14px, and NOTHING in this file may be smaller.
+     Measured before: --text-xs was 12.5px, tags and meta ran 13–14px, and one
+     decorative glyph ran 8px. The ramp below is re-derived FROM the floor rather
+     than nudged toward it: floor 14 · body 16 · lead 18 · everything else grows
+     from there. A tool read at arm's length on a phone has no business setting
+     working text smaller than a phone's own system minimum.
+     Where a size below the floor seemed necessary, the element was not type —
+     the ◆ status glyph is now a drawn shape, which is what it always was. */
+  --text-floor: .875rem;     /* 14px — labels, tags, meta, captions, hints */
+  --text-xs: var(--text-floor);   /* legacy name, so no rule silently keeps 12.5 */
+  --text-body: 1rem;         /* 16px */
+  --text-lead: 1.125rem;     /* 18px */
   --track-label: .07em;      /* uppercase micro-labels: status, keys, buttons */
-  --track-tag: .03em;        /* as-authored tag chips */
+  --track-tag: .02em;        /* as-authored tag pills — tightened at 14px */
   --weight-label: 600;
 
   /* NEW · the reasoning-prose role. ≥16px so iOS never zooms on focus. */
@@ -143,13 +158,78 @@ button, input, textarea, select { font: inherit; color: inherit; }
   margin: var(--space-5) 0 0;
   max-width: 56ch;
   color: var(--ink-70);
-  font-size: clamp(1.0625rem, .9vw + .95rem, 1.25rem);
+  font-size: clamp(var(--text-lead), .9vw + .95rem, 1.25rem);
   line-height: 1.45;
   text-wrap: pretty;
 }
 
+/* ─── state of the collection ─────────────────────────────────────────────
+   The register, stated: DENSE, not airy — this is the operator's instrument
+   panel and air here would be an editorial gesture on a working surface. Rows,
+   not cards: a card implies a thing to browse, a row implies a line item to
+   clear. Numbers lead, because the number is the question. Restraint is what
+   makes urgency mean anything, so exactly one state — urgent — is allowed to
+   raise its contrast, and everything else stays at label weight. */
+.state {
+  display: grid; gap: 1px;
+  background: var(--rule);
+  border-block: 1px solid var(--rule);
+  margin-top: var(--space-5);
+}
+@media (min-width: 46rem) { .state { grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); } }
+.state:empty { display: none; }
+.state-item {
+  display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap;
+  background: var(--bg);
+  border: 0; padding: var(--space-4) var(--space-4);
+  color: var(--ink-70); text-align: left; cursor: pointer; min-width: 0;
+  transition: background var(--dur-1) var(--ease-out), color var(--dur-1) var(--ease-out);
+}
+.state-item--note { cursor: default; }
+/* The way out reads as the way out: it is the one item with a ground of its own. */
+.state-item--all { background: var(--bg-raised); color: var(--ink); }
+.state-item--all:hover { background: var(--rule); }
+.state-item:hover { background: var(--bg-raised); color: var(--ink); }
+.state-item--note:hover { background: var(--bg); color: var(--ink-70); }
+.state-item[aria-pressed="true"] { background: var(--bg-raised); color: var(--ink); box-shadow: inset 3px 0 0 var(--ink); }
+.state-count {
+  font-family: var(--font-mono); font-size: 1.375rem; font-weight: 600;
+  font-variant-numeric: tabular-nums; line-height: 1; color: var(--ink);
+}
+.state-item[data-urgent="1"] .state-count { color: var(--attention); }
+.state-label { color: var(--ink-70); }
+.state-detail { flex: 1 1 100%; color: var(--ink-50); font-size: var(--text-floor); line-height: 1.4; }
+.state-item .btn { margin-left: auto; }
+
+/* MEASURED, then paid for: at 390×664 the panel pushed the first reference to
+   y=866 — an instrument panel that hides the collection is a worse instrument.
+   Below 46rem the states become one horizontally-scrolled row of counts: the
+   number and its name survive, the explanatory line is dropped, and the row is
+   ~92px instead of ~430px. The panel still says what needs judgment; it stops
+   claiming the whole first screen to say it. */
+@media (max-width: 45.99rem) {
+  .state {
+    grid-auto-flow: column; grid-auto-columns: minmax(9.5rem, auto);
+    overflow-x: auto; overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+  }
+  .state-item { flex-wrap: nowrap; align-items: baseline; padding: var(--space-3) var(--space-4); scroll-snap-align: start; }
+  .state-detail { display: none; }
+  .state-count { font-size: 1.125rem; }
+  .state-item .btn { margin-left: var(--space-3); }
+}
+
+/* A sticky bar must not land on the thing it scrolled you to. */
+.card, .state-item, #grid-end { scroll-margin-block-start: 7rem; }
+
 /* ─── toolbar ──────────────────────────────────────────────────────────── */
-.toolbar { border-top: 1px solid var(--rule); padding-block: var(--space-5) var(--space-6); }
+/* Sticky: the filter and the search must be reachable from anywhere in the
+   grid, and on a long grid they were 40 screens up. */
+.toolbar {
+  position: sticky; top: 0; z-index: 30;
+  background: var(--bg);
+  border-top: 1px solid var(--rule); padding-block: var(--space-5) var(--space-6);
+}
 .toolbar-row {
   display: flex; flex-wrap: wrap; align-items: baseline;
   gap: var(--space-5); margin-bottom: var(--space-5);
@@ -158,7 +238,7 @@ button, input, textarea, select { font: inherit; color: inherit; }
   flex: 1 1 18rem; min-width: 0;
   background: none; border: 0; border-bottom: 1px solid var(--rule);
   padding: var(--space-2) 0;
-  font-family: var(--font-mono); font-size: .8125rem; letter-spacing: .04em;
+  font-family: var(--font-mono); font-size: var(--text-floor); letter-spacing: .04em;
   transition: border-color var(--dur-1) var(--ease-out);
 }
 .search::placeholder { color: var(--ink-50); text-transform: uppercase; letter-spacing: var(--track-label); font-size: var(--text-xs); }
@@ -169,29 +249,104 @@ button, input, textarea, select { font: inherit; color: inherit; }
    tags an entry actually carries are rendered now, so desktop can stay expanded —
    the disclosure applies ≤40rem only, where vertical space is genuinely scarce.
    Active chips remain visible in the summary at every width. */
-.filter-disclosure { margin-top: var(--space-4); border-top: 0; }
-@media (min-width: 40.0625rem) {
-  /* Expanded BY DEFAULT on desktop, but still a control. Making it a
-     non-interactive heading meant a 6-row filter block could never be collapsed —
-     it opened and stayed open. Default ≠ permanent. */
-  .filter-disclosure[open] > summary { border-bottom: 0; }
-}
-.filter-disclosure > summary {
-  flex-wrap: wrap; gap: var(--space-3) var(--space-4);
-  padding-block: var(--space-3);
-}
-.filter-disclosure[open] > summary { border-bottom: 1px solid var(--rule); }
 #filter-count { color: var(--ink-50); }
 #filter-count[data-active="1"] { color: var(--ink); }
 .filter-active { display: inline-flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3); }
 .filter-active:empty { display: none; }
 .filter-active .chip { min-height: 0; }
 
+/* ─── popover ─────────────────────────────────────────────────────────────
+   The second overlay primitive, and the light one: a popover is for choosing,
+   a dialog is for a task. Anchored under its trigger where anchor positioning
+   exists, centred near the top where it does not — either way it floats over
+   the grid and closes on Escape or on a click outside, which the popover API
+   gives us without a listener. */
+.filter-bar { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-3) var(--space-4); margin-top: var(--space-4); }
+#filter-trigger[aria-expanded="true"] { border-color: var(--ink); }
+.popover {
+  margin: 0; border: 1px solid var(--rule-strong); padding: 0;
+  background: var(--bg-raised); color: var(--ink);
+  inline-size: min(52rem, calc(100vw - 2 * var(--space-5)));
+  max-block-size: min(70vh, 40rem); overflow: auto;
+  box-shadow: var(--shadow-overlay);
+}
+.popover::backdrop { background: transparent; }
+@supports (anchor-name: --a) {
+  #filter-trigger { anchor-name: --filter-trigger; }
+  #filter-pop { position-anchor: --filter-trigger; inset: auto; position-area: bottom span-right; margin-top: var(--space-3); }
+}
+.popover-head {
+  position: sticky; top: 0; z-index: 1;
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  background: var(--bg-raised); border-bottom: 1px solid var(--rule);
+}
+.popover-head .label { color: var(--ink-50); }
+.popover-body { padding: var(--space-5); }
+.popover-search {
+  width: 100%; background: var(--bg); color: var(--ink);
+  border: 1px solid var(--rule); padding: var(--space-3) var(--space-4);
+  font-family: var(--font-mono); font-size: var(--text-floor); letter-spacing: .04em;
+}
+.popover-search:focus { outline: none; border-color: var(--ink-70); }
+.popover-empty { color: var(--ink-50); font-size: var(--text-floor); margin: var(--space-5) 0 0; }
+
 .filters { display: grid; gap: var(--space-3); }
 /* Row gap larger than column gap: once a chip wraps onto several lines, an equal
    gap lets consecutive rows touch — the "sticking" the review caught. */
 .filter-cat { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-4) var(--space-4); min-width: 0; }
 .filter-cat > .label { color: var(--ink-50); flex: 0 0 6.5rem; }
+
+/* ─── the pill — ONE tag primitive ────────────────────────────────────────
+   There were two: `.chip` (a filter, coloured text with no ground) and `.tag`
+   (a card tag, coloured text with no ground). Neither read as an object you
+   could aim at, and a tag IS an object: it is clicked, toggled, removed.
+   One primitive now, used on cards, in the detail view, in the filter popover
+   and in both forms — so a tag looks the same everywhere it appears and a hit
+   area exists everywhere it is clickable.
+
+   CATEGORY IS CARRIED BY TEXT, not by hue. Each pill can name its category in a
+   quieter mono span, and hue is a second, redundant signal on a 2px inset edge —
+   [color-taste I2](../skills/color-taste/SKILL.md#invariant) forbids meaning in
+   hue alone, and six tag categories in six hues at 14px is exactly that failure.
+   That is also why the pill is not rounded to a capsule: a capsule reads as a
+   generic UI badge, and this register is hairline-and-mono, not chat-app. */
+.pill {
+  --hue: 0;
+  display: inline-flex; align-items: center; gap: .5em;
+  min-height: 2rem;                       /* 32px aimable target on a mouse */
+  padding: var(--space-2) var(--space-4);
+  background: var(--bg-raised);
+  border: 1px solid var(--rule);
+  box-shadow: inset 2px 0 0 oklch(.68 .06 var(--hue));
+  color: var(--ink-70);
+  font-family: var(--font-mono); font-size: var(--text-floor);
+  letter-spacing: var(--track-tag); font-weight: var(--weight-label);
+  line-height: 1.2; text-transform: none; text-align: left;
+  cursor: pointer; min-width: 0;
+  overflow-wrap: anywhere;
+  transition: background var(--dur-1) var(--ease-out),
+              border-color var(--dur-1) var(--ease-out),
+              color var(--dur-1) var(--ease-out);
+}
+.pill:hover { border-color: var(--rule-strong); color: var(--ink); }
+.pill[aria-pressed="true"], .pill--on {
+  background: var(--ink); color: var(--bg); border-color: var(--ink);
+  box-shadow: inset 2px 0 0 oklch(.45 .09 var(--hue));
+}
+.pill[aria-pressed="true"]:hover, .pill--on:hover { background: var(--ink-70); color: var(--bg); }
+.pill:focus-visible { outline: 2px solid var(--ink-70); outline-offset: 2px; }
+.pill:disabled { opacity: .5; cursor: not-allowed; }
+/* A pill that is only a statement — a tag on a card — keeps the object shape and
+   drops the affordance, so nothing invites a click that does nothing. */
+.pill--static { cursor: default; }
+.pill--static:hover { border-color: var(--rule); color: var(--ink-70); }
+/* The category prefix. Text is what carries the category; the hue only agrees. */
+.pill__cat { color: var(--ink-50); font-weight: 400; }
+.pill--on .pill__cat, .pill[aria-pressed="true"] .pill__cat { color: color-mix(in oklab, var(--bg) 65%, var(--ink)); }
+.pill__count { font-variant-numeric: tabular-nums; color: var(--ink-50); }
+.pill--on .pill__count, .pill[aria-pressed="true"] .pill__count { color: color-mix(in oklab, var(--bg) 65%, var(--ink)); }
+@media (pointer: coarse) { .pill { min-height: var(--tap); } }
 
 .chip {
   --hue: 0;
@@ -430,7 +585,7 @@ button, input, textarea, select { font: inherit; color: inherit; }
 /* Visual clamp, not a character count: four lines at any width, in any script,
    with any word lengths. This is what makes card heights predictable. */
 .card-note {
-  margin: 0; color: var(--ink-50); font-size: .875rem; line-height: 1.5;
+  margin: 0; color: var(--ink-50); font-size: var(--text-floor); line-height: 1.5;
   display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4;
   line-clamp: 4; overflow: hidden;
 }
@@ -486,10 +641,15 @@ button, input, textarea, select { font: inherit; color: inherit; }
 
 /* dialect review mark — only on reviewed entries; absence means "unreviewed" */
 .status-mark { display: inline-flex; align-items: center; gap: .4em; color: var(--ink-50); }
-.status-mark::before { content: "◆"; font-size: .5rem; line-height: 1; color: var(--ink-30); }
-.status-mark[data-status="in"]::before { color: var(--status-in); }
-.status-mark[data-status="out"]::before { color: var(--status-out); }
-.status-mark[data-status="hybrid"]::before { color: var(--status-hybrid); }
+.status-mark::before {
+  /* Was an 8px ◆ character. It is a mark, not type — drawn as a rotated square so
+     the type floor has no exception to explain away. */
+  content: ""; inline-size: 7px; block-size: 7px; rotate: 45deg;
+  background: var(--ink-30); flex: none;
+}
+.status-mark[data-status="in"]::before { background: var(--status-in); }
+.status-mark[data-status="out"]::before { background: var(--status-out); }
+.status-mark[data-status="hybrid"]::before { background: var(--status-hybrid); }
 .card-meta { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); margin-top: var(--space-2); }
 
 /* C11 · the overview ends rather than stopping. Its own quiet register. */
@@ -523,15 +683,23 @@ button, input, textarea, select { font: inherit; color: inherit; }
 @keyframes sk-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
 
 .empty { padding-block: var(--space-10) var(--space-11); color: var(--ink-50); max-width: var(--measure); }
-.empty code { font-family: var(--font-mono); font-size: .8125rem; color: var(--ink); }
+.empty code { font-family: var(--font-mono); font-size: var(--text-floor); color: var(--ink); }
 
 /* ─── detail / dialogs ─────────────────────────────────────────────────── */
+/* Native <dialog>: the browser owns the top layer, the inert background, Escape
+   and the focus trap. What is left to us is the register — full-bleed, dark, no
+   floating card, because a working sheet is a place you go, not a widget that
+   hovers. The UA's own border/padding/max-size are cleared deliberately. */
 .sheet {
-  position: fixed; inset: 0; z-index: 10;
-  background: var(--bg); overflow-y: auto;
+  position: fixed; inset: 0;
+  width: 100%; max-width: 100%; height: 100%; max-height: 100%;
+  margin: 0; padding: 0; border: 0;
+  background: var(--bg); color: var(--ink); overflow-y: auto;
   animation: fade-in var(--dur-2) var(--ease-out);
 }
-.sheet[hidden] { display: none; }
+.sheet:not([open]) { display: none; }
+.sheet::backdrop { background: #000000b8; }
+@media (prefers-reduced-motion: reduce) { .sheet { animation: none; } }
 /* The token panel is a modal ON TOP of a modal: saving from the detail view or
    the add sheet opens it. With equal z-index the later element in the DOM won and
    the choice dialog opened BEHIND the detail sheet — visible to a test, invisible
@@ -673,7 +841,7 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .extra-remove { font-size: var(--text-xs); padding: var(--space-1) var(--space-3); }
 .extras-panel { margin-top: var(--space-6); border-top: 1px solid var(--rule); padding-top: var(--space-5); }
 .extras-panel[hidden] { display: none; }
-.extras-panel input[type="file"] { width: 100%; color: var(--ink-70); font-size: .875rem; }
+.extras-panel input[type="file"] { width: 100%; color: var(--ink-70); font-size: var(--text-floor); }
 .extras-panel input[type="text"] {
   width: 100%; background: none; color: var(--ink); border: 0;
   border-bottom: 1px solid var(--rule); padding: var(--space-2) 0; font: inherit;
@@ -813,7 +981,7 @@ button, input, textarea, select { font: inherit; color: inherit; }
 
 .rating-set { display: flex; gap: var(--space-5); }
 .form-actions { display: flex; flex-wrap: wrap; gap: var(--space-5); align-items: center; margin-top: var(--space-7); }
-.hint { color: var(--ink-30); font-size: .8125rem; max-width: 48ch; line-height: 1.5; }
+.hint { color: var(--ink-50); font-size: var(--text-floor); max-width: 48ch; line-height: 1.5; }
 
 /* ─── reduced motion: a designed static scene, not a gutted page ───────────
    The floor (kill animation) is the first block. Everything after it is the
@@ -849,7 +1017,7 @@ button, input, textarea, select { font: inherit; color: inherit; }
 <div id="toast" hidden role="status" aria-live="polite"></div>
 
 <!-- token panel: shown on first save, never on load -->
-<section class="sheet" id="token" hidden aria-label="Connect to GitHub">
+<dialog class="sheet" id="token" aria-label="Connect to GitHub">
   <div class="shell">
     <div class="sheet-bar">
       <span class="label">connect to github</span>
@@ -907,7 +1075,7 @@ button, input, textarea, select { font: inherit; color: inherit; }
       </div>
     </div>
   </div>
-</section>
+</dialog>
 
 <main class="shell" id="app">
   <header class="masthead">
@@ -930,6 +1098,10 @@ button, input, textarea, select { font: inherit; color: inherit; }
     </div>
   </section>
 
+  <!-- state of the collection: what needs judgment, what is near a threshold,
+       what is stale. Always visible, because it is the reason to open the tool. -->
+  <section class="state" id="state" aria-label="State of the collection"></section>
+
   <section class="toolbar" aria-label="Search and filter">
     <div class="toolbar-row">
       <input class="search" id="search" type="search" placeholder="search title, note, tag, url" autocomplete="off">
@@ -939,14 +1111,27 @@ button, input, textarea, select { font: inherit; color: inherit; }
          which is the same failure demoted in the detail view. Collapsed behind one
          disclosure; ACTIVE chips stay in the summary so a persisted filter is
          never hidden, and search stays outside it. -->
-    <details class="apparatus filter-disclosure" id="filter-disclosure">
-      <summary class="label">
+    <!-- The filter panel OVERLAYS instead of pushing the grid down: expanding it
+         in flow moved every card the moment you tried to aim at one. Active
+         filters stay outside the popover, so a filter that is doing work is
+         never hidden behind a closed panel. -->
+    <div class="filter-bar">
+      <button class="btn" id="filter-trigger" type="button"
+              popovertarget="filter-pop" aria-expanded="false" aria-controls="filter-pop">
         <span id="filter-count">filters</span>
-        <span class="filter-active" id="filter-active"></span>
-      </summary>
-      <div class="filters" id="filters"></div>
-      <div class="filters" id="dialect-filters" style="margin-top: var(--space-4)"></div>
-    </details>
+      </button>
+      <span class="filter-active" id="filter-active"></span>
+    </div>
+    <div class="popover" id="filter-pop" popover>
+      <div class="popover-head">
+        <span class="label">filter by tag and review status</span>
+        <button class="btn btn--quiet" type="button" popovertarget="filter-pop" popovertargetaction="hide">close · esc</button>
+      </div>
+      <div class="popover-body">
+        <div class="filters" id="filters"></div>
+        <div class="filters" id="dialect-filters" style="margin-top: var(--space-5)"></div>
+      </div>
+    </div>
     <div class="toolbar-meta">
       <span class="count" id="count"></span>
       <button class="btn" id="density" type="button" aria-pressed="false"
@@ -975,7 +1160,7 @@ button, input, textarea, select { font: inherit; color: inherit; }
 </main>
 
 <!-- detail ------------------------------------------------------------- -->
-<section class="sheet" id="detail" hidden aria-label="Entry detail">
+<dialog class="sheet" id="detail" aria-label="Entry detail">
   <div class="shell">
     <div class="sheet-bar">
       <span class="label" id="detail-id"></span>
@@ -983,10 +1168,10 @@ button, input, textarea, select { font: inherit; color: inherit; }
     </div>
     <div class="detail" id="detail-body"></div>
   </div>
-</section>
+</dialog>
 
 <!-- add --------------------------------------------------------------- -->
-<section class="sheet" id="add" hidden aria-label="Add a site">
+<dialog class="sheet" id="add" aria-label="Add a site">
   <div class="shell">
     <div class="sheet-bar">
       <span class="label">add site</span>
@@ -1036,7 +1221,7 @@ button, input, textarea, select { font: inherit; color: inherit; }
       </div>
     </div>
   </div>
-</section>
+</dialog>
 
 <script type="module">
 /* ── state ─────────────────────────────────────────────────────────────── */
@@ -1048,6 +1233,9 @@ let dirty = false;
 const filters = new Map();          // category -> Set(tag)
 const statusFilter = new Set();     // dialectStatus values
 let query = '';
+/* One queue at a time — these are questions about what needs judgment, and
+   asking two at once answers neither. */
+let queueFilter = null;
 let openId = null;
 
 /* Shot fields are no longer all strings: `strip` and `stripMobile` are arrays of
@@ -1159,6 +1347,40 @@ const store = {
 };
 
 const $ = (sel, root = document) => root.querySelector(sel);
+
+/* ── overlays ──────────────────────────────────────────────────────────────
+   Everything used to expand in flow: opening the detail, the add form or the
+   token panel pushed the page around under the reader's hands and left the
+   gallery's scroll position to chance. These are real modal layers now —
+   native <dialog>, so the browser supplies the top layer, the inert background,
+   the Escape key and the focus trap instead of four hand-rolled versions of
+   each. Focus returns to whatever opened the overlay, which is the part
+   hand-rolled overlays always lose. */
+let lastTrigger = null;
+
+function openOverlay(sel, { trigger = null, focus = null } = {}) {
+  const dlg = $(sel);
+  if (!dlg) return null;
+  lastTrigger = trigger ?? document.activeElement;
+  if (trigger) trigger.setAttribute('aria-expanded', 'true');
+  if (!dlg.open) dlg.showModal();
+  /* showModal() focuses the first tabbable node, which in a long sheet is the
+     close button. Anything with a better first stop says so. */
+  if (focus) requestAnimationFrame(() => $(focus, dlg)?.focus());
+  return dlg;
+}
+
+function closeOverlay(sel, { restoreFocus = true } = {}) {
+  const dlg = $(sel);
+  if (!dlg) return;
+  if (dlg.open) dlg.close();
+  document.querySelectorAll(`[aria-controls="${dlg.id}"]`)
+    .forEach((b) => b.setAttribute('aria-expanded', 'false'));
+  if (restoreFocus && lastTrigger?.isConnected) lastTrigger.focus();
+  lastTrigger = null;
+}
+
+const overlayOpen = (sel) => Boolean($(sel)?.open);
 const el = (tag, props = {}, ...kids) => {
   const { dataset, ...rest } = props;
   const n = Object.assign(document.createElement(tag), rest);
@@ -1292,12 +1514,16 @@ const DENSITY_KEY = 'design-dna:vault:density';
 const FILTERS_OPEN_KEY = 'design-dna:vault:filters-open';
 const FILTERS_KEY = 'design-dna:vault:filters';
 const DECLINED_KEY = 'design-dna:vault:vocab-declined';
+/* Browser-local, and labelled as such wherever it is shown: the repo keeps no
+   record of when the distillation ritual last ran. */
+const DISTILL_KEY = 'design-dna:vault:distilled-at';
 
 /* The last filter set, so the tool reopens where it was left. */
 function saveFilterState() {
   const payload = {
     tags: Object.fromEntries([...filters].map(([c, s]) => [c, [...s]])),
     status: [...statusFilter],
+    queue: queueFilter,
     query,
   };
   store.set(FILTERS_KEY, JSON.stringify(payload));
@@ -1310,6 +1536,7 @@ function loadFilterState() {
     }
     (p.status ?? []).forEach((s) => statusFilter.add(s));
     if (typeof p.query === 'string') query = p.query;
+    if (p.queue && QUEUES[p.queue]) queueFilter = p.queue;
   } catch { /* nothing stored yet */ }
 }
 const declinedVocab = () => {
@@ -1528,7 +1755,8 @@ function renderFilters() {
     });
     if (!known.length) continue;                      // a category with no tags in use is not shown
     known.forEach((tag) => {
-      const b = el('button', { className: 'chip', type: 'button', textContent: tag, title: `${cat}: ${tag}` });
+      const b = el('button', { className: 'pill', type: 'button', title: `${cat}: ${tag}` });
+      b.append(el('span', { textContent: tag }), el('span', { className: 'pill__count', textContent: String(entries.filter((e) => (e.tags?.[cat] ?? []).includes(tag)).length) }));
       b.style.setProperty('--hue', def.hue);
       b.setAttribute('aria-pressed', String(filters.get(cat)?.has(tag) ?? false));
       b.addEventListener('click', () => {
@@ -1568,7 +1796,7 @@ function renderFilterSummary() {
   box.textContent = '';
   for (const a of active) {
     const chip = el('button', {
-      className: 'chip', type: 'button',
+      className: 'pill pill--on', type: 'button',
       textContent: a.kind === 'tag' ? a.tag : `${a.tag}`,
       title: a.kind === 'tag' ? `${a.cat}: ${a.tag} — click to remove` : `dialect: ${a.tag} — click to remove`,
     });
@@ -1600,10 +1828,10 @@ function renderDialectFilters() {
   statuses().forEach((status) => {
     const n = entries.filter((e) => e.dialectStatus === status).length;
     const b = el('button', {
-      className: 'chip', type: 'button',
-      textContent: `${status} (${n})`,
+      className: 'pill', type: 'button',
       title: `dialect review status: ${status}`,
     });
+    b.append(el('span', { textContent: status }), el('span', { className: 'pill__count', textContent: String(n) }));
     b.dataset.status = status;
     b.style.setProperty('--hue', { in: 165, out: 70, hybrid: 300, unreviewed: 0 }[status] ?? 0);
     b.setAttribute('aria-pressed', String(statusFilter.has(status)));
@@ -1619,7 +1847,196 @@ function renderDialectFilters() {
 }
 
 /* OR within a category, AND across categories — the semantic that's actually useful. */
+/* ── the state of the collection ───────────────────────────────────────────
+   THE PROBLEM THIS SOLVES: the vault could not show its own state. Four entries
+   sat unreviewed for a week, a dialect stood one confirmation short of leaving
+   PROVISIONAL, the distillation ritual had never run — and every one of those
+   facts was invisible, because the grid renders entries and none of these are
+   entries. A collection that cannot report its own state cannot ask for anything.
+
+   Everything here is DERIVED from the frozen schema. Nothing new is stored on an
+   entry. Where the honest answer is "this is not recorded anywhere", the surface
+   says so rather than inventing a number — see hasBeenCited below. */
+
+/* One confirmation short of what? A stored dialect leaves PROVISIONAL when three
+   entries have been judged into it by a human. Three is the smallest number that
+   is a pattern rather than a coincidence, and it is stated here so the threshold
+   can be argued with instead of felt. */
+const DIALECT_THRESHOLD = 3;
+/* A judgement that has waited a week has been avoided, not postponed. */
+const STALE_DAYS = 7;
+
+const said = (v) => Boolean((v ?? '').trim()) && (v ?? '').trim().toUpperCase() !== 'TODO';
+const daysSince = (iso) => {
+  if (!iso) return null;
+  const then = Date.parse(`${iso}T00:00:00`);
+  if (Number.isNaN(then)) return null;
+  return Math.floor((Date.now() - then) / 86_400_000);
+};
+
+/* NOT RECORDED, AND SAID SO. Whether an entry has ever influenced a decision is
+   not in this schema and cannot be derived from it — a Design Read cites
+   `vault/<id>` in a report that never comes back here. What CAN be answered is
+   the necessary condition: an entry with no reasoning cannot be cited by anyone,
+   because there is nothing to cite. That is the proxy, and it is labelled as one
+   in the UI rather than dressed up as citation tracking. */
+const citable = (e) => said(e.note) || said(e.works) || said(e.weaknesses);
+
+function collectionState() {
+  const unreviewed = entries.filter((e) => e.dialectStatus === 'unreviewed');
+  const oldestWait = unreviewed
+    .map((e) => daysSince(e.added))
+    .filter((d) => d != null)
+    .reduce((a, b) => Math.max(a, b), 0);
+
+  const dialectProgress = dialectList().map((name) => {
+    const confirmed = entries.filter((e) => (e.dialects ?? []).includes(name)
+      && (e.dialectStatus === 'in' || e.dialectStatus === 'hybrid')).length;
+    return { name, confirmed, short: Math.max(0, DIALECT_THRESHOLD - confirmed) };
+  });
+
+  const lastRun = store.get(DISTILL_KEY);
+  return {
+    unreviewed,
+    oldestWait,
+    noVerdict: entries.filter((e) => !said(e.works) && !said(e.weaknesses)),
+    uncitable: entries.filter((e) => !citable(e)),
+    stale: unreviewed.filter((e) => (daysSince(e.added) ?? 0) >= STALE_DAYS),
+    dialectProgress,
+    newestEntry: entries.map((e) => e.added).filter(Boolean).sort().at(-1) ?? null,
+    lastDistillation: lastRun || null,
+    sinceDistillation: lastRun ? daysSince(lastRun) : null,
+  };
+}
+
+/* Queue filters answer "what needs me", which no tag can express. One at a time:
+   these are questions, and asking two at once answers neither. */
+const QUEUES = {
+  unreviewed: { label: 'needs judgment', test: (e) => e.dialectStatus === 'unreviewed' },
+  'no-verdict': { label: 'no verdict', test: (e) => !said(e.works) && !said(e.weaknesses) },
+  uncitable: { label: 'cannot be cited', test: (e) => !citable(e) },
+  stale: {
+    label: 'waiting a week or more',
+    test: (e) => e.dialectStatus === 'unreviewed' && (daysSince(e.added) ?? 0) >= STALE_DAYS,
+  },
+};
+
+function setQueue(name) {
+  queueFilter = queueFilter === name ? null : name;
+  saveFilterState();
+  renderState();
+  render();
+}
+
+function renderState() {
+  const wrap = $('#state');
+  if (!wrap) return;
+  const s = collectionState();
+  wrap.textContent = '';
+
+  const item = (key, count, detail, { urgent = false } = {}) => {
+    const b = el('button', {
+      className: 'state-item', type: 'button',
+      'aria-pressed': String(queueFilter === key),
+    });
+    b.dataset.urgent = urgent ? '1' : '0';
+    b.append(
+      el('span', { className: 'state-count', textContent: String(count) }),
+      el('span', { className: 'state-label label', textContent: QUEUES[key].label }),
+      el('span', { className: 'state-detail', textContent: detail }),
+    );
+    b.addEventListener('click', () => setQueue(key));
+    return b;
+  };
+
+  if (s.unreviewed.length) {
+    wrap.append(item('unreviewed', s.unreviewed.length,
+      s.oldestWait >= STALE_DAYS ? `oldest waiting ${s.oldestWait} days` : 'awaiting a dialect call',
+      { urgent: s.oldestWait >= STALE_DAYS }));
+  }
+  if (s.noVerdict.length) {
+    wrap.append(item('no-verdict', s.noVerdict.length, 'no works / weaknesses recorded'));
+  }
+  if (s.uncitable.length) {
+    /* Named honestly: this is not "never cited", it is "could not be cited". */
+    wrap.append(item('uncitable', s.uncitable.length, 'no reasoning — nothing to cite'));
+  }
+  if (s.stale.length) {
+    wrap.append(item('stale', s.stale.length, `unjudged for ${STALE_DAYS}+ days`, { urgent: true }));
+  }
+
+  /* Thresholds: a provisional dialect that is one confirmation short is the most
+     actionable fact in the vault, and nothing said it before. */
+  for (const d of s.dialectProgress) {
+    if (!d.short || d.short > 2) continue;
+    const box = el('div', { className: 'state-item state-item--note' });
+    box.dataset.urgent = d.short === 1 ? '1' : '0';
+    box.append(
+      el('span', { className: 'state-count', textContent: `${d.confirmed}/${DIALECT_THRESHOLD}` }),
+      el('span', { className: 'state-label label', textContent: d.name }),
+      el('span', {
+        className: 'state-detail',
+        textContent: d.short === 1
+          ? 'one confirmation short of leaving provisional'
+          : `${d.short} confirmations short`,
+      }),
+    );
+    wrap.append(box);
+  }
+
+  /* The ritual has no record of itself in the repo, so this is browser-local and
+     says so. A local answer beats no answer; pretending it is repo state would
+     be worse than both. */
+  const ritual = el('div', { className: 'state-item state-item--note' });
+  const never = !s.lastDistillation;
+  ritual.dataset.urgent = never ? '1' : '0';
+  ritual.append(
+    el('span', { className: 'state-count', textContent: never ? '—' : String(s.sinceDistillation ?? 0) }),
+    el('span', { className: 'state-label label', textContent: 'distillation' }),
+    el('span', {
+      className: 'state-detail',
+      textContent: never ? 'never run on this device' : `${s.sinceDistillation} days since the last run`,
+    }),
+  );
+  const mark = el('button', { className: 'btn btn--quiet', type: 'button', textContent: 'mark run today' });
+  /* Every narrowing surface needs its own way out, in the same place it was
+     entered. Without this the only exit from a queue was to find and re-click
+     the item that started it — a filter you cannot see is a filter you cannot
+     lift. Shown only when something is actually narrowed. */
+  const narrowed = queueFilter || query
+    || statusFilter.size || [...filters.values()].some((s) => s.size);
+  if (narrowed) {
+    const all = el('button', { className: 'state-item state-item--all', type: 'button' });
+    all.append(
+      el('span', { className: 'state-count', textContent: String(entries.length) }),
+      el('span', { className: 'state-label label', textContent: 'show all' }),
+      el('span', { className: 'state-detail', textContent: 'clear every filter and the queue' }),
+    );
+    all.addEventListener('click', () => {
+      queueFilter = null;
+      statusFilter.clear();
+      filters.forEach((s) => s.clear());
+      query = '';
+      const search = $('#search');
+      if (search) search.value = '';
+      saveFilterState();
+      renderFilters();
+      renderDialectFilters();
+      render();
+    });
+    wrap.append(all);
+  }
+  mark.addEventListener('click', () => {
+    store.set(DISTILL_KEY, localDate());
+    renderState();
+    toast('Distillation recorded for today — on this device only.', 'ok');
+  });
+  ritual.append(mark);
+  wrap.append(ritual);
+}
+
 function matches(entry) {
+  if (queueFilter && !QUEUES[queueFilter].test(entry)) return false;
   if (statusFilter.size && !statusFilter.has(entry.dialectStatus)) return false;
   for (const [cat, set] of filters) {
     if (!set.size) continue;
@@ -1662,6 +2079,10 @@ function render() {
   });
 
   renderFilterSummary();
+  /* Every mutation lands here, so the state panel is recomputed from the same
+     data in the same pass — a stale "4 need judgment" beside a judged entry is
+     worse than no panel at all. */
+  renderState();
 
   /* C11 · the overview ends. The debt half is deliberate pressure: an entry with
      no reasoning is a capture that has not become knowledge yet. */
@@ -1821,7 +2242,10 @@ function card(entry) {
   const paintFull = () => {
     tags.textContent = '';
     for (const [cat, t] of flat) {
-      const s = el('span', { className: 'tag', textContent: t, title: `${cat}: ${t}` });
+      /* A tag on a card is a statement, not a control — same pill object, no
+         affordance. Category as text, hue only agreeing with it. */
+      const s = el('span', { className: 'pill pill--static', title: `${cat}: ${t}` });
+      s.append(el('span', { className: 'pill__cat', textContent: cat }), el('span', { textContent: t }));
       s.style.setProperty('--hue', hueOf(cat));
       tags.append(s);
     }
@@ -1832,7 +2256,9 @@ function card(entry) {
     const per = {};
     for (const [cat] of flat) per[cat] = (per[cat] ?? 0) + 1;
     for (const [cat, n] of Object.entries(per)) {
-      const s = el('span', { className: 'tag tag--count', textContent: `${cat} +${n}`, title: (entry.tags[cat] ?? []).join(', ') });
+      const s = el('span', { className: 'pill pill--static', title: (entry.tags[cat] ?? []).join(', ') });
+      s.append(el('span', { className: 'pill__cat', textContent: cat }),
+        el('span', { className: 'pill__count', textContent: `+${n}` }));
       s.style.setProperty('--hue', hueOf(cat));
       tags.append(s);
     }
@@ -1965,8 +2391,7 @@ function openDetail(id, { editNote = false, showNote = false, restoreScroll = nu
   right.append(dangerZone(entry));
 
   body.append(left, right);
-  $('#detail').hidden = false;
-  document.body.style.overflow = 'hidden';
+  openOverlay('#detail');
 
   if (restoreApparatus) { const a = $('#apparatus'); if (a) a.open = true; }
 
@@ -1988,8 +2413,7 @@ function openDetail(id, { editNote = false, showNote = false, restoreScroll = nu
 }
 
 function closeDetail() {
-  $('#detail').hidden = true;
-  document.body.style.overflow = '';
+  closeOverlay('#detail');
   openId = null;
 }
 
@@ -3328,7 +3752,7 @@ async function saveToGitHub() {
         /* Every object in `entries` is new, so an open detail sheet is still bound
            to the previous ones. Rebind it, keeping reading position, or the next
            field the user edits writes into an orphan. */
-        if (openId && !$('#detail').hidden) reopenDetail(openId);
+        if (openId && overlayOpen('#detail')) reopenDetail(openId);
         const short = res.commit?.sha?.slice(0, 7) ?? '';
         status(`saved as ${short} — shots are being captured by the Action, ~2 min. Reload after it finishes.`, 'ok');
         return;
@@ -3413,8 +3837,7 @@ function showTokenError(reason, hint) {
 }
 
 function openTokenPanel() {
-  $('#token').hidden = false;
-  document.body.style.overflow = 'hidden';
+  openOverlay('#token', { focus: '#token-input' });
   $('#token-storage-note').textContent = store.available
     ? ''
     : ' Private browsing detected — the token will be kept in memory for this session only.';
@@ -3692,8 +4115,7 @@ async function submitAdd(ev) {
 
   const existing = entries.find((e) => e.url === parsed.href);
   if (existing) {
-    $('#add').hidden = true;
-    document.body.style.overflow = '';
+    closeOverlay('#add');
     toast(`Already in the vault as "${existing.title}" — opening it.`, 'warn');
     openDetail(existing.id);
     return;
@@ -3723,8 +4145,7 @@ async function submitAdd(ev) {
   buildVocabForm($('#add-vocab'), {}, 'add');
   buildDialectForm($('#add-dialect'), { dialectStatus: 'unreviewed', dialects: [] }, 'add');
   buildRating($('#add-rating'), 2, 'add-rating');
-  $('#add').hidden = true;
-  document.body.style.overflow = '';
+  closeOverlay('#add');
 
   // The add form used to only download a file. Saving is what the button says.
   await requestSave(`added ${parsed.hostname.replace(/^www\./, '')}`);
@@ -3762,16 +4183,17 @@ function wire() {
   /* Open state: desktop expanded, mobile collapsed — but only as a DEFAULT. Once
      the author opens or closes it, that choice is remembered, like the density and
      the filter set. A daily instrument should not re-litigate this every load. */
-  const disclosure = $('#filter-disclosure');
-  if (disclosure) {
-    /* READ-first default: collapsed at every width. Measured 83 controls standing
-       between the page and its first reference, for 10 entries — the filter block
-       is an apparatus, and reading is the daily job. Opening is one click, the
-       choice is remembered, and active filters stay visible in the summary. */
-    const stored = store.get(FILTERS_OPEN_KEY);
-    disclosure.open = stored === '1';
-    disclosure.addEventListener('toggle', () => {
-      store.set(FILTERS_OPEN_KEY, disclosure.open ? '1' : '0');
+  /* The filter panel is a popover now, so there is no open state to remember —
+     it is never the thing standing between the page and its first reference.
+     What IS remembered is the filter set itself, which is the part that was ever
+     worth persisting. aria-expanded is kept truthful here rather than trusted to
+     the popover attribute, because assistive tech reads the trigger, not us. */
+  const filterPop = $('#filter-pop');
+  const filterTrigger = $('#filter-trigger');
+  if (filterPop && filterTrigger) {
+    filterPop.addEventListener('toggle', (ev) => {
+      filterTrigger.setAttribute('aria-expanded', String(ev.newState === 'open'));
+      if (ev.newState === 'closed') filterTrigger.focus();
     });
   }
 
@@ -3816,7 +4238,7 @@ function wire() {
   });
   $('#detail-close').addEventListener('click', closeDetail);
 
-  const closeToken = () => { $('#token').hidden = true; document.body.style.overflow = ''; };
+  const closeToken = () => closeOverlay('#token');
   $('#token-close').addEventListener('click', closeToken);
 
   $('#token-download').addEventListener('click', guard('Download', () => {
@@ -3850,13 +4272,11 @@ function wire() {
   });
 
   $('#open-add').addEventListener('click', () => {
-    $('#add').hidden = false;
-    document.body.style.overflow = 'hidden';
+    openOverlay('#add', { trigger: $('#open-add'), focus: '#add-url' });
     $('#add-url').focus();
   });
   $('#add-close').addEventListener('click', () => {
-    $('#add').hidden = true;
-    document.body.style.overflow = '';
+    closeOverlay('#add');
   });
   $('#add-form').addEventListener('submit', guard('Add site', submitAdd));
 
@@ -3865,8 +4285,10 @@ function wire() {
 
   document.addEventListener('keydown', (ev) => {
     if (ev.key !== 'Escape') return;
-    if (!$('#token').hidden) { $('#token').hidden = true; document.body.style.overflow = ''; }
-    else if (!$('#add').hidden) { $('#add').hidden = true; document.body.style.overflow = ''; }
+    /* <dialog> closes itself on Escape; this only keeps the bookkeeping honest
+       (aria-expanded, focus return, openId) for whichever layer was on top. */
+    if (overlayOpen('#token')) closeOverlay('#token');
+    else if (overlayOpen('#add')) closeOverlay('#add');
     else if (openId) closeDetail();
   });
 }

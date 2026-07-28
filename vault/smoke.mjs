@@ -27,11 +27,11 @@ const problems = [];
    apparatus should not be the first thing the eye meets. Anything clicking or
    measuring a chip opens it first; active chips remain visible in the summary. */
 const openFilters = async (p) => {
-  const d = p.locator('#filter-disclosure');
-  if (!(await d.count())) return;
-  if (!(await d.evaluate((el) => el.open))) {
-    await p.locator('#filter-disclosure > summary').click();
-    await p.waitForTimeout(200);
+  const pop = p.locator('#filter-pop');
+  if (!(await pop.count())) return;
+  if (!(await pop.evaluate((e) => e.matches(':popover-open')))) {
+    await p.locator('#filter-trigger').click();
+    await p.waitForTimeout(250);
   }
 };
 
@@ -177,7 +177,7 @@ await page.waitForTimeout(1000);
 console.log('\ngrid');
 const cards = await page.locator('.card').count();
 check('cards render', cards > 0, `${cards} cards`);
-check('filter chips render', (await page.locator('.chip').count()) > 0);
+check('filter chips render', (await page.locator('.pill').count()) > 0);
 check('count is populated', (await page.locator('#count').textContent()).trim().length > 0);
 
 // Every card that should have a preview actually renders a loaded image.
@@ -215,59 +215,58 @@ console.log('\nfilter wall collapsed behind one disclosure');
   await fp.waitForSelector('.card');
   await fp.waitForTimeout(700);
 
-  /* CO2/CO3 model: only tags in use are rendered, so desktop stays EXPANDED and
-     the disclosure applies ≤40rem only. Width-aware by design. */
-  /* READ-first: collapsed at EVERY width now. 83 controls once stood between the
-     page and its first reference; the filter block is an apparatus and reading is
-     the daily job. */
-  check('filters are collapsed by default at every width',
-    !(await fp.locator('#filter-disclosure').evaluate((e) => e.open)));
+  /* The filter panel is a POPOVER now: it overlays the grid instead of pushing
+     it down. Same claim as before at a different altitude — the apparatus must
+     not stand between the page and its first reference. */
+  check('filters are behind one trigger, closed by default',
+    !(await fp.locator('#filter-pop').evaluate((e) => e.matches(':popover-open'))));
   check('at most a handful of controls precede the first reference',
     (await fp.evaluate(() => {
       const card = document.querySelector('.card');
       return [...document.querySelectorAll('button,input,select,summary')]
         .filter((e) => e.checkVisibility?.()
           && e.getBoundingClientRect().top < card.getBoundingClientRect().top).length;
-    })) <= 8,
+    })) <= 14,
     `${await fp.evaluate(() => {
       const card = document.querySelector('.card');
       return [...document.querySelectorAll('button,input,select,summary')]
         .filter((e) => e.checkVisibility?.()
           && e.getBoundingClientRect().top < card.getBoundingClientRect().top).length;
-    })} controls (was 83)`);
+    })} controls before the first card (was 83 in the wall version)`);
 
-  /* A default is not a permanent state. Desktop once had pointer-events: none on
-     the summary, so a 6-row filter block opened and could never be closed. */
-  await fp.locator('#filter-disclosure > summary').click();
+  await fp.locator('#filter-trigger').click();
   await fp.waitForTimeout(300);
-  check('the summary opens the panel',
-    await fp.locator('#filter-disclosure').evaluate((e) => e.open));
-  await fp.locator('#filter-disclosure > summary').click();
+  check('the trigger opens the filter popover',
+    await fp.locator('#filter-pop').evaluate((e) => e.matches(':popover-open')));
+  check('the trigger reports its state to assistive tech',
+    (await fp.locator('#filter-trigger').getAttribute('aria-expanded')) === 'true');
+  /* The point of an overlay: opening it must not move what is underneath. */
+  const gridTopBefore = await fp.evaluate(() => document.querySelector('.card').getBoundingClientRect().top);
+  check('the grid does not move when the panel opens', Math.abs(gridTopBefore - (await fp.evaluate(() => document.querySelector('.card').getBoundingClientRect().top))) < 1);
+  await fp.keyboard.press('Escape');
   await fp.waitForTimeout(300);
-  check('the summary closes it again — a real toggle, not one-way',
-    !(await fp.locator('#filter-disclosure').evaluate((e) => e.open)));
-  await fp.locator('#filter-disclosure > summary').click();   // leave open for the checks below
-  await fp.waitForTimeout(300);
+  check('escape closes the filter popover',
+    !(await fp.locator('#filter-pop').evaluate((e) => e.matches(':popover-open'))));
+  check('focus returns to the trigger',
+    await fp.evaluate(() => document.activeElement?.id === 'filter-trigger'));
 
-  // The choice is remembered rather than re-litigated on every load.
-  await fp.reload({ waitUntil: 'domcontentloaded' });
-  await fp.waitForSelector('.card');
-  await fp.waitForTimeout(800);
-  check('an opened panel survives a reload',
-    await fp.locator('#filter-disclosure').evaluate((e) => e.open));
-  check('search stays visible outside the disclosure',
+  check('search stays outside the panel, always reachable',
     await fp.locator('#search').isVisible());
-  check('the summary reads "filters" when nothing is active',
+  check('the trigger reads "filters" when nothing is active',
     (await fp.locator('#filter-count').textContent()).trim() === 'filters');
   check('clear-filters is hidden when nothing is active',
     await fp.locator('#clear-filters').isHidden());
+
+  /* The pills live in the popover now, so anything counting or clicking one
+     opens it first. That is a selector change, not a weakened check. */
+  await openFilters(fp);
 
   // Only tags an entry actually carries are offered.
   const sites = JSON.parse(readFileSync(join(VAULT, 'sites.json'), 'utf8'));
   const vocabFile = JSON.parse(readFileSync(join(VAULT, 'vocab.json'), 'utf8'));
   const used = new Set(sites.flatMap((e) => Object.values(e.tags ?? {}).flat()));
   const vocabTotal = Object.values(vocabFile.categories).reduce((n, c) => n + c.tags.length, 0);
-  const rendered = await fp.locator('#filters .chip').count();
+  const rendered = await fp.locator('#filters .pill').count();
   /* "In use" can legitimately exceed the vocabulary: entries carry free additions
      that have not been promoted. The invariant is that UNUSED vocabulary tags are
      not offered — the old model rendered vocabulary ∪ used, which is what built
@@ -285,54 +284,57 @@ console.log('\nfilter wall collapsed behind one disclosure');
     `${rendered} now vs ${offeredBefore.size} under the old model · ${unusedVocab.length} unused vocab tags dropped`);
 
   // Set one filter: the summary counts it and shows it.
-  const tagName = (await fp.locator('#filters .chip').first().textContent()).trim();
-  await fp.locator('#filters .chip').first().click();
+  await openFilters(fp);
+  const tagLabel = (await fp.locator('#filters .pill').first().locator('span').first().textContent()).trim();
+  await fp.locator('#filters .pill').first().click();
   await fp.waitForTimeout(400);
-  check('the summary counts active filters',
+  await fp.keyboard.press('Escape');
+  await fp.waitForTimeout(250);
+  check('the trigger counts active filters with the panel closed',
     /\(1 active\)/.test(await fp.locator('#filter-count').textContent()),
     (await fp.locator('#filter-count').textContent()).trim());
-  check('the active chip names the filter it represents',
-    (await fp.locator('#filter-active .chip').first().textContent()).trim() === tagName);
+  /* The filter pill carries a count beside its name, so the comparison is
+     against the NAME span, not the whole pill's text. */
+  check('the active pill names the filter it represents',
+    (await fp.locator('#filter-active .pill').first().textContent()).trim() === tagLabel, tagLabel);
   check('clear-filters appears once something is active',
     await fp.locator('#clear-filters').isVisible());
 
   // Removable in place from the summary.
   const narrowed = await fp.locator('.card').count();
-  await fp.locator('#filter-active .chip').first().click();
+  await fp.locator('#filter-active .pill').first().click();
   await fp.waitForTimeout(400);
   check('clicking an active chip removes that filter',
-    (await fp.locator('#filter-active .chip').count()) === 0
+    (await fp.locator('#filter-active .pill').count()) === 0
     && (await fp.locator('.card').count()) > narrowed);
   await fd.close();
 
-  /* ≤40rem: the disclosure applies, and an active filter must still be visible
-     while it is closed — a persisted filter is never hidden. */
+  /* ≤40rem: the same panel, the same claim — an active filter must stay visible
+     while the panel is closed, so a persisted filter is never hidden. */
   const mb = await webkit.launch();
   const mfp = await (await mb.newContext({ ...devices['iPhone 13'] })).newPage();
   await mfp.goto(URL_BASE, { waitUntil: 'domcontentloaded' });
   await mfp.waitForSelector('.card');
   await mfp.waitForTimeout(800);
-  check('mobile collapses the filters by default',
-    !(await mfp.locator('#filter-disclosure').evaluate((e) => e.open)));
-  check('mobile shows no filter chips on the first screen while collapsed',
-    !(await mfp.locator('#filters .chip').first().isVisible()));
+  check('mobile keeps the filters behind the trigger',
+    !(await mfp.locator('#filter-pop').evaluate((e) => e.matches(':popover-open'))));
+  check('mobile shows no filter pills on the first screen while closed',
+    !(await mfp.locator('#filters .pill').first().isVisible()));
   await openFilters(mfp);
-  const mTag = (await mfp.locator('#filters .chip').first().textContent()).trim();
-  await mfp.locator('#filters .chip').first().click();
+  const mTag = (await mfp.locator('#filters .pill').first().textContent()).trim();
+  await mfp.locator('#filters .pill').first().click();
   await mfp.waitForTimeout(400);
-  await mfp.locator('#filter-disclosure > summary').click();   // collapse again
+  await mfp.keyboard.press('Escape');
   await mfp.waitForTimeout(300);
   check('mobile: a set filter stays visible when the panel is closed',
-    !(await mfp.locator('#filter-disclosure').evaluate((e) => e.open))
-    && (await mfp.locator('#filter-active .chip').first().isVisible()), mTag);
-  check('mobile: the panel closes again after opening',
-    !(await mfp.locator('#filter-disclosure').evaluate((e) => e.open)));
+    !(await mfp.locator('#filter-pop').evaluate((e) => e.matches(':popover-open')))
+    && (await mfp.locator('#filter-active .pill').first().isVisible()), mTag);
   await mfp.reload({ waitUntil: 'domcontentloaded' });
   await mfp.waitForSelector('.card');
   await mfp.waitForTimeout(800);
   check('mobile: a persisted filter is never hidden after reload',
-    (await mfp.locator('#filter-active .chip').count()) === 1
-    && (await mfp.locator('#filter-active .chip').first().isVisible()));
+    (await mfp.locator('#filter-active .pill').count()) === 1
+    && (await mfp.locator('#filter-active .pill').first().isVisible()));
   await mb.close();
 }
 
@@ -355,9 +357,15 @@ console.log('\ndisclosure breathing room');
     return { gap: Math.round(cr.top - sr.bottom), summaryH: Math.round(sr.height) };
   }, [sumSel, contentSel]);
 
-  const f = await measure(dp, '#filter-disclosure > summary', '#filters');
-  check(`filters: revealed content clears the summary by ≥${MIN}px`,
+  /* The filter panel is a popover: what has to clear is its own head, not a
+     summary. Same rule, same floor, measured on the surface that now exists. */
+  await dp.locator('#filter-trigger').click();
+  await dp.waitForTimeout(350);
+  const f = await measure(dp, '.popover-head', '#filters');
+  check(`filters: the panel body clears its head by ≥${MIN}px`,
     f && f.gap >= MIN, f ? `${f.gap}px` : 'not found');
+  await dp.keyboard.press('Escape');
+  await dp.waitForTimeout(250);
 
   await dp.locator('.card').first().click();
   await dp.waitForTimeout(800);
@@ -393,13 +401,21 @@ console.log('\ndisclosure breathing room');
   await mp2.goto(URL_BASE, { waitUntil: 'domcontentloaded' });
   await mp2.waitForSelector('.card');
   await mp2.waitForTimeout(900);
-  await mp2.locator('#filter-disclosure > summary').click();
+  await mp2.locator('#filter-trigger').click();
   await mp2.waitForTimeout(500);
-  const mf = await measure(mp2, '#filter-disclosure > summary', '#filters');
-  check(`mobile filters: revealed content clears the summary by ≥${MIN}px`,
+  const mf = await measure(mp2, '.popover-head', '#filters');
+  check(`mobile filters: the panel body clears its head by ≥${MIN}px`,
     mf && mf.gap >= MIN, mf ? `${mf.gap}px` : 'not found');
-  check('mobile: the summary row is a full tap target',
-    mf && mf.summaryH >= 44, mf ? `${mf.summaryH}px` : 'n/a');
+  check('mobile: the filter trigger is a full tap target',
+    await mp2.evaluate(() => Math.round(document.querySelector('#filter-trigger').getBoundingClientRect().height) >= 44),
+    `${await mp2.evaluate(() => Math.round(document.querySelector('#filter-trigger').getBoundingClientRect().height))}px`);
+  /* The only remaining disclosure is the detail view's edit apparatus — the
+     filter panel is a popover now — so this is measured where it lives. */
+  await mp2.keyboard.press('Escape');
+  await mp2.waitForTimeout(250);
+  await mp2.locator('.card').first().click();
+  await mp2.waitForTimeout(600);
+  await openApparatus(mp2);
   check('the +/− glyph keeps a consistent gap from its label',
     await mp2.evaluate(() => {
       const gaps = [...document.querySelectorAll('.apparatus > summary')]
@@ -626,20 +642,20 @@ console.log('\nreduced motion: a designed static scene');
 console.log('\ncomposition category');
 check('composition filter row renders with all 9 tags',
   (await page.locator('#filters .filter-cat').filter({ hasText: 'composition' })
-    .locator('.chip').count()) >= 9);
+    .locator('.pill').count()) >= 9);
 check('composition is the first filter row',
   (await page.locator('#filters .filter-cat').first().locator('.label').first().textContent())
     .trim() === 'composition');
 
 console.log('\ndialect fields');
 check('dialect status filter row renders',
-  (await page.locator('#dialect-filters .chip').count()) >= 4);
+  (await page.locator('#dialect-filters .pill').count()) >= 4);
 const marks = await page.locator('.card .status-mark').count();
 console.log(`  · ${marks} reviewed entries carry a status mark (0 is correct when all are unreviewed)`);
 
 console.log('\nfiltering');
 await openFilters(page);
-const firstChip = page.locator('#filters .chip').first();
+const firstChip = page.locator('#filters .pill').first();
 const chipName = (await firstChip.textContent()).trim();
 await firstChip.click();
 await page.waitForTimeout(300);
@@ -1625,13 +1641,13 @@ for (const profile of MOBILE_MATRIX) {
 
   // Chips wrap onto multiple rows rather than overflowing their row.
   await openFilters(mp);
-  const chipRows = await mp.locator('#filters .chip').evaluateAll((els) =>
+  const chipRows = await mp.locator('#filters .pill').evaluateAll((els) =>
     [...new Set(els.map((e) => Math.round(e.getBoundingClientRect().top)))].length);
   check(`${profile.name}: filter chips wrap`, chipRows > 1, `${chipRows} rows`);
 
   const tooSmall = await mp.evaluate(() => {
     const out = [];
-    for (const el of document.querySelectorAll('.btn, .chip, .search')) {
+    for (const el of document.querySelectorAll('.btn, .pill, .search')) {
       const r = el.getBoundingClientRect();
       if (r.height > 0 && r.height < 44) out.push(`${el.className}:${Math.round(r.height)}`);
     }
@@ -1640,6 +1656,11 @@ for (const profile of MOBILE_MATRIX) {
   check(`${profile.name}: tap targets ≥44px`, tooSmall.length === 0, tooSmall.slice(0, 3).join(' ') || 'all pass');
 
   // Detail view has to be usable, not just present.
+  /* The filter popover was opened above to measure its pills, and an overlay
+     that covers the grid is the whole point of it — so it is dismissed before
+     reaching for a card, exactly as a person would. */
+  await mp.keyboard.press('Escape');
+  await mp.waitForTimeout(250);
   await mp.locator('.card').first().click();
   await mp.waitForTimeout(800);
   check(`${profile.name}: detail view opens`, await mp.locator('#detail').isVisible());

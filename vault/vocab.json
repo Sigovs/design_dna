@@ -56,10 +56,11 @@
       "hue": 70,
       "tags": [
         "crossfade",
-        "scroll-reveal",
         "hover-craft",
         "parallax",
-        "restraint"
+        "restraint",
+        "scroll-reveal",
+        "state-transition"
       ]
     },
     "color": {

@@ -1,6 +1,6 @@
 ---
 name: academic-composition
-description: Classical academic composition translated into digital art direction, interface design, responsive design, and visual critique — in two tiers. INVARIANT (dominant/subordinate/support hierarchy, unity and subordination, tonal structure before colour, figure-ground clarity, optical over mathematical balance, directed eye movement, rhythm with variation, proportion relationships, intentional edges and crops, tension with counterweight, compositional resolution, responsive recomposition) and DIALECT (auction-editorial's composed asymmetry and downward exhale, with yields-when). Contains the ACADEMIC COMPOSITION PASS that runs after dialect selection and before any surface styling. Use before laying out any full page or substantial section, when art-directing imagery, and when critiquing a design.
+description: Classical academic composition translated into digital art direction, interface design, responsive design, and visual critique — in two tiers. INVARIANT (dominant/subordinate/support hierarchy, unity and subordination, tonal structure before colour, figure-ground clarity, optical over mathematical balance, directed eye movement, rhythm with variation, proportion relationships, intentional edges and crops, tension with counterweight, compositional resolution, responsive recomposition, the dominant being the subject rather than the device presenting it, and the means of the visitor's task surviving the composition) and DIALECT (auction-editorial's composed asymmetry and downward exhale, with yields-when). Contains the ACADEMIC COMPOSITION PASS that runs after dialect selection and before any surface styling. Use before laying out any full page or substantial section, when art-directing imagery, and when critiquing a design.
 ---
 
 # Academic Composition
@@ -286,6 +286,63 @@ design.
 *dropping* content to avoid re-composing. C12 requires *actively recomposing*
 what remains. U7 is the floor; C12 is the work.
 
+### C13 — The dominant is the subject
+
+**The dominant mass of a composition must be the subject itself, never the device
+used to present it.** A signature mechanism serves the subject; it never occupies
+the subject's place. When the mechanism is the largest thing on screen, the subject
+has been demoted to an illustration of a technique.
+
+**Corollary — literal metaphor.** When a concept is drawn from a metaphor ("the
+vehicle as a documented record"), **the metaphor governs treatment, not content.**
+If the document becomes the subject and the vehicle becomes evidence of the
+document, the metaphor has eaten the work.
+
+*Why it's universal:* a viewer arrives for the thing, not for the idea about the
+thing. Ranking the device first inverts the only hierarchy the page exists to
+express, and no amount of craft in the device repairs it — the page is now about
+its own cleverness. This is [C1](#invariant) applied to the specific case the
+author keeps losing: C1 asks whether *a* dominant exists, C13 asks whether it is
+the *right* one.
+
+> **Evidence.** "A dealer homepage selling a Ferrari 575 Maranello led its first
+> screen with the chassis number set in mono at 10rem, with the car present as a
+> 26rem plate — smaller than a card image in the grid below. The register below it
+> carried the comment 'photography withheld' and desaturated the vehicle
+> thumbnails. The mechanism was unmistakable and the product was suppressed twice.
+> Logged 2026-07-28."
+
+**INVARIANT, not dialect: it holds under every dialect.** A brutalist, a Swiss, and
+an immersive treatment of the same subject all fail the same way when the device
+outranks the thing. Restraint is not a defence — suppressing the subject is the
+failure, whatever the register doing the suppressing.
+
+### C14 — The means of the task survive the composition
+
+**Every full-page deliverable serves a visitor who arrived to do something. No
+compositional decision may remove the means by which they do it.**
+
+Consolidating sections for rhythm, inverting a grid for asymmetry, and suppressing
+a control for silence are all legitimate moves — they become defects the moment
+they delete a means.
+
+*Why it's universal:* **composition is what removes these things, so composition is
+where the constraint belongs.** Calling it a UX concern puts the rule in a
+document nobody consults while cutting a section for rhythm, which is precisely
+when it is needed. A page that presents an offer and withholds the means of
+accepting it is not restrained; it is broken.
+
+> **Evidence.** "Across five consecutive full-page runs for the same client, the
+> make/model inventory search was specified, then absent from the output five times
+> — lost each time to a legitimate-sounding compositional move: section
+> consolidation, rhythm breaking, concept purity. Prices appeared on a page with no
+> way to respond to them. Logged 2026-07-28."
+
+*How to satisfy it:* name the task in plain words and list the means before
+composing, then check each one is still present and reachable afterwards. The
+response contract carries `TASK:` and `MEANS:` for exactly this reason — a means
+you never named is a means you will lose to the next good compositional argument.
+
 ---
 
 ## ACADEMIC COMPOSITION PASS
@@ -406,6 +463,8 @@ compositional *system*, never the requirement that the relationships be composed
 - [ ] Tension has counterweight; the page is neither uniformly tense nor inert.
 - [ ] Every section resolves, transitions, or stays open on purpose.
 - [ ] Each breakpoint re-establishes the governing idea, not just the content.
+- [ ] The dominant is the SUBJECT, not the device presenting it (C13).
+- [ ] The task is named in plain words, and every means serving it survives (C14).
 
 **Dialect — when auction-editorial is active**
 - [ ] Asymmetry, if used, has a stable counterweight.

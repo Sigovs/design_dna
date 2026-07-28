@@ -48,6 +48,8 @@ The invariants, by domain — full text in the linked skills:
 | Tonal structure before colour — the major hierarchy survives grayscale, thumbnail, and squint | [composition](skills/academic-composition/SKILL.md#invariant) |
 | Rhythm with variation, mass proportion, intentional edges and crops, tension with counterweight, compositional resolution | [composition](skills/academic-composition/SKILL.md#invariant) |
 | Responsive recomposition — the governing idea re-established at every breakpoint, not merely the content | [composition](skills/academic-composition/SKILL.md#invariant) |
+| **The dominant is the subject, not the device presenting it** — a signature mechanism serves the subject, never occupies its place | [composition](skills/academic-composition/SKILL.md#invariant) |
+| **The means of the visitor's task survive the composition** — no compositional move may delete the means of doing what they came to do | [composition](skills/academic-composition/SKILL.md#invariant) |
 | Intentional spatial hierarchy — grouping and separation are decided, never inherited | [spacing](skills/spacing-taste/SKILL.md#invariant) |
 | Rhythm and optical balance — repeated relationships, optically corrected at size | [spacing](skills/spacing-taste/SKILL.md#invariant), [typography](skills/typography-taste/SKILL.md#invariant) |
 | Token discipline — every value resolves to a documented scale; no magic numbers | [spacing](skills/spacing-taste/SKILL.md#invariant) |
@@ -281,7 +283,7 @@ its own `yields when:`.
 
 | Skill | Invariant core | Dialect position |
 |---|---|---|
-| [academic-composition](skills/academic-composition/SKILL.md) | **Cross-dialect.** Dominant/subordinate/support, unity, tonal structure before colour, figure-ground, optical balance, directed eye path, rhythm, mass proportion, intentional edges, tension with counterweight, resolution, responsive recomposition. | Composed asymmetry with counterweight, detail against quiet fields, mass above centre, downward exhale, one measured disruption. |
+| [academic-composition](skills/academic-composition/SKILL.md) | **Cross-dialect.** Dominant/subordinate/support, unity, tonal structure before colour, figure-ground, optical balance, directed eye path, rhythm, mass proportion, intentional edges, tension with counterweight, resolution, responsive recomposition, the dominant being the subject rather than the device, the means of the task surviving. | Composed asymmetry with counterweight, detail against quiet fields, mass above centre, downward exhale, one measured disruption. |
 | [dimensionality](skills/dimensionality/SKILL.md) | **Role-gated.** Content survives removal at SUPPORT; no scene gates the first read; declared frame/payload budget; authored reduced-motion fallback; AA per frame; one depth idea per view; input honesty; choreography has a subject; no ambient motion in reading zones; mobile authored separately. | auction-editorial defaults to ABSENT/SUPPORT — material and light over geometry, patient camera. immersive-authored-world permits MAIN. |
 | [spacing-taste](skills/spacing-taste/SKILL.md) | Spatial hierarchy is deliberate; spacing is tokenised; internal gaps < external gaps. | Air-first — generous space, bottom-heavy composition, whitespace as a status signal. |
 | [typography-taste](skills/typography-taste/SKILL.md) | Hierarchy is legible; roles are bounded; type is optically corrected at every size. | Editorial contrast — expressive display + quiet grotesque + mono, italic signature word, spec plates. |

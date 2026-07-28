@@ -66,3 +66,40 @@ never an aesthetic family name** — that rule lives in the Design Read procedur
 `TASTE.md` §2, not in `anti-patterns`, because it is a process error rather than an
 aesthetic trope. The tool notes in `skills/dimensionality` are explicitly
 non-normative; never cite them as a reason.
+
+## Response contract
+
+**Every response ends with a DECISIONS block. No exceptions.** It opens with four
+required fields:
+
+```
+MANDATE: REBRAND | REDESIGN | REFRESH
+CARRIED: <named elements, or n/a for REBRAND>
+TASK:    <what the visitor arrived to do — plain words>
+MEANS:   <the specific means serving it, and where each one is>
+
+DECISIONS
+- decided: <what you chose> | rejected: <what you didn't> | why: <one line>
+- ...
+BLOCKERS: none | <the exact action the user must take>
+```
+
+**A response missing any of the four fields is incomplete.** `MANDATE` and
+`CARRIED` mirror the Design Read declaration in `TASTE.md` §2. `TASK` and `MEANS`
+make [C14](skills/academic-composition/SKILL.md#invariant) checkable without
+re-reading the page: a means you never named is a means you will lose to the next
+good compositional argument.
+
+For work with no visitor-facing surface — a refactor, a rule change, a data
+migration — `TASK` and `MEANS` describe the operator and the controls the change
+touches, and `MANDATE`/`CARRIED` describe what of the existing system is fixed.
+The fields are never omitted; they are answered at the altitude of the work.
+
+**A question to the user is only valid inside `BLOCKERS`**, and only for external
+blockers — auth, missing credentials, absent files. Everything else is a decision
+you make and log above.
+
+> **Why the contract carries these and not only the procedure.** Procedures fade
+> over a long session: the composition pass and the critique panel both went unrun
+> for a week, while the report contract held from the first run. Rules that must
+> survive belong in the contract, not only in the procedure.

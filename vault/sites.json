@@ -65,10 +65,20 @@
       "hero": "shots/carvana-com/hero.jpg",
       "mobile": "shots/carvana-com/mobile.jpg"
     },
-    "extras": [],
+    "extras": [
+      {
+        "file": null,
+        "label": "",
+        "kind": "captured",
+        "url": "https://www.carvana.com/",
+        "added": "2026-07-28",
+        "error": null
+      }
+    ],
     "captureError": null,
     "works": "Сайт сразу разделяет основные намерения: купить машину, продать свою, получить financing terms или продолжить сохранённый процесс.\nInventory воспринимается не как дилерский склад, а как полноценный e-commerce catalogue.\nПоиск строится вокруг реальных покупательских критериев: бюджет, ежемесячный платёж, кузов, марка, пробег, доставка.\nЦена автомобиля соединена с персональным финансированием. Пользователь видит не абстрактную стоимость, а собственные условия.\nSaved vehicles, financing и история действий сохраняют continuity между визитами. Это особенно важно для покупки, которая редко совершается за одну сессию.\nВесь путь собран внутри одной системы: поиск, trade-in, financing, документы, договор и scheduling delivery/pickup. Carvana действительно позволяет провести практически всю транзакцию онлайн.\nКарточки машин сравнительно плотные, но информация расположена в правильном порядке: изображение → автомобиль → цена/платёж → ключевые условия.\nГолубой, белый и жёлтый делают финансово сложный продукт дружелюбным и менее похожим на традиционный автомобильный dealership.\n7-Day Money Back Guarantee, доставка и Vending Machine превращены в понятные consumer benefits, а не спрятаны в юридическом тексте.\nСистема масштабируется на десятки тысяч автомобилей и множество состояний пользователя. По данным Figma, над её согласованностью работала отдельная крупная design-systems команда.",
-    "weaknesses": "Homepage и supporting content собраны довольно предсказуемо: hero search, benefit blocks, карточки, steps, testimonials, FAQ.\nОсновная сетка inventory функциональна, но мало отличается от большого retail marketplace.\nБелые карточки, мягкие тени, rounded controls и дружелюбные иллюстрации выглядят безопасно и немного безлично.\nBlue/yellow branding узнаваемый, но композиционно редко создаёт настоящее напряжение или неожиданность.\nАвтомобили снимаются последовательно и понятно, однако стандартизация убирает индивидуальный характер конкретной машины.\nTypography выполняет интерфейсную работу, но практически не участвует в арт-дирекшене.\nСтраница вынуждена одновременно показывать цену, financing, delivery, badges, mileage и guarantees — поэтому визуальная иерархия местами становится шумной.\nВнешний вид оптимизирован под доверие широкой аудитории, а не под желание, luxury или automotive emotion.\nMotion, насколько можно подтвердить по доступным материалам, в основном функциональный: состояния, loading, filtering, progression. Это правильно для продукта, но не даёт сильного expressive reference.\nЕсли использовать Carvana как визуальный reference, почти наверняка получится обычный blue dealership template."
+    "weaknesses": "Homepage и supporting content собраны довольно предсказуемо: hero search, benefit blocks, карточки, steps, testimonials, FAQ.\nОсновная сетка inventory функциональна, но мало отличается от большого retail marketplace.\nБелые карточки, мягкие тени, rounded controls и дружелюбные иллюстрации выглядят безопасно и немного безлично.\nBlue/yellow branding узнаваемый, но композиционно редко создаёт настоящее напряжение или неожиданность.\nАвтомобили снимаются последовательно и понятно, однако стандартизация убирает индивидуальный характер конкретной машины.\nTypography выполняет интерфейсную работу, но практически не участвует в арт-дирекшене.\nСтраница вынуждена одновременно показывать цену, financing, delivery, badges, mileage и guarantees — поэтому визуальная иерархия местами становится шумной.\nВнешний вид оптимизирован под доверие широкой аудитории, а не под желание, luxury или automotive emotion.\nMotion, насколько можно подтвердить по доступным материалам, в основном функциональный: состояния, loading, filtering, progression. Это правильно для продукта, но не даёт сильного expressive reference.\nЕсли использовать Carvana как визуальный reference, почти наверняка получится обычный blue dealership template.",
+    "unsorted": []
   },
   {
     "id": "kinncollective-co-uk",
@@ -87,6 +97,7 @@
         "displaced-content",
         "curated-sequencing"
       ],
+      "risks": [],
       "typography": [
         "single-serif-system",
         "editorial-field",
@@ -136,6 +147,7 @@
         "tonal-structure",
         "visual-silence"
       ],
+      "risks": [],
       "typography": [
         "commerce-editorial-alternation",
         "editorial"
@@ -151,8 +163,7 @@
       "imagery": [
         "photography",
         "art-direction"
-      ],
-      "risks": []
+      ]
     },
     "note": "IN — A disciplined fashion-commerce homepage built from a strict four-column product grid repeatedly interrupted by paired, full-bleed editorial imagery. Its identity comes less from interface invention than from confident image sequencing, unusual object-based styling, controlled crops, oversized branding, and generous visual silence. Alternating model photography with isolated garments gives a conventional product catalogue deliberate rhythm, while the split hero and recurring two-image compositions keep commerce connected to a coherent art-directed world. However, microtype, understated calls to action, limited product storytelling, and heavy dependence on exceptional photography prevent it from becoming a complete commerce reference.",
     "shots": {
@@ -190,6 +201,7 @@
         "interface-as-environment",
         "atmosphere-first-storytelling"
       ],
+      "risks": [],
       "typography": [
         "big-type",
         "editorial",
@@ -222,8 +234,7 @@
         "isolated-product-render",
         "neuro-futurism",
         "wearable-technology"
-      ],
-      "risks": []
+      ]
     },
     "note": "IN — A highly controlled immersive product world built through clinical whitespace, selective blur, restrained typography, floating navigation, and precise shifts between white, black, and electric blue. The interface, cursor behavior, product imagery, and transitions belong to the same fictional system rather than appearing as separate decorative layers. Strong visual silence allows each central object or narrative event to hold attention, while the product pages successfully extend the homepage language into a larger authored experience. However, the extreme softness, thin microtype, low-contrast information, and discovery-dependent navigation sometimes suppress product clarity too aggressively. A strong immersive-authored-world reference, but not a complete usability reference. последовательный clinical-futuristic art direction;\nblur используется как пространственный и narrative-мотив;\nцентральный объект/человек формирует dominant event;\nкурсор, навигация, типографика и продуктовые рендеры принадлежат одному миру;\nпереходы white → black → electric blue создают настоящие смены состояния;\nмного visual silence — эффекты не работают одновременно;\nпродуктовые страницы продолжают язык homepage, а не превращаются в обычный каталог.",
     "shots": {
@@ -261,6 +272,7 @@
         "mission-led-art-direction",
         "brand-utility-integration"
       ],
+      "risks": [],
       "typography": [
         "editorial",
         "oversized-grotesk",
@@ -340,6 +352,9 @@
       "composition": [
         "visual-silence"
       ],
+      "risks": [
+        "repeated-composition-risk"
+      ],
       "typography": [
         "serif-sans-tension"
       ],
@@ -355,9 +370,6 @@
       ],
       "imagery": [
         "real-world-evidence"
-      ],
-      "risks": [
-        "repeated-composition-risk"
       ]
     },
     "note": "IN — A disciplined enterprise website that avoids the familiar visual language of AI startups. Large editorial serif typography, restrained sans-serif metadata, deep navy fields, warm neutral surfaces, numbered structures, and fine horizontal rules turn a technically complex platform into a calm and credible system. The strongest decision is its control of hierarchy: major statements receive generous spatial authority, supporting explanations remain compact, and real-world customer imagery provides evidence without overwhelming the interface. Motion and cursor effects stay subordinate to the reading sequence. However, the repeated headline-and-explanation compositions eventually become predictable, some secondary text approaches low contrast, and the persistent cookie and chat overlays weaken an otherwise carefully controlled frame. A strong reference for editorial authority, enterprise clarity, and structured information — not for immersive spectacle. Первый экран сильный, но он уже показывает характер сайта: не «AI-tech cliché», а строгая смесь enterprise clarity и editorial typography",
@@ -386,12 +398,12 @@
     ],
     "tags": {
       "composition": [],
+      "risks": [],
       "typography": [],
       "layout": [],
       "motion": [],
       "color": [],
-      "imagery": [],
-      "risks": []
+      "imagery": []
     },
     "note": "IN — A disciplined film-led portfolio in which moving imagery becomes the primary interface rather than content placed inside a conventional layout.",
     "shots": {
@@ -426,6 +438,11 @@
         "visual-silence",
         "figure-ground-tension"
       ],
+      "risks": [
+        "ambiguous-reading-order",
+        "mobile-recomposition-risk",
+        "decorative-information-legibility-risk"
+      ],
       "typography": [],
       "layout": [],
       "motion": [],
@@ -438,11 +455,6 @@
         "character-as-artifact",
         "cutout-layering",
         "content-quality-dependence"
-      ],
-      "risks": [
-        "ambiguous-reading-order",
-        "mobile-recomposition-risk",
-        "decorative-information-legibility-risk"
       ]
     },
     "note": "IN — A highly composed fantasy character showcase that transforms ranking, attributes, skills, and historical information into a continuous editorial narrative. A strong auction-editorial reference for layered composition, collectible authority, and visual pacing.",
@@ -477,6 +489,7 @@
         "optical-balance",
         "responsive-recomposition"
       ],
+      "risks": [],
       "typography": [],
       "layout": [
         "air",
@@ -523,6 +536,7 @@
     "dialects": [],
     "tags": {
       "composition": [],
+      "risks": [],
       "typography": [],
       "layout": [],
       "motion": [],
@@ -553,6 +567,7 @@
     "dialects": [],
     "tags": {
       "composition": [],
+      "risks": [],
       "typography": [
         "display-serif",
         "mono-details"
@@ -571,8 +586,7 @@
         "photography",
         "art-direction",
         "scrim-text"
-      ],
-      "risks": []
+      ]
     },
     "note": "Captured as the working example for the auction-catalog register that skills/typography-taste borrows from.\n\nAnti-reference — exceptional automotive assets trapped inside a generic corporate-luxury CMS. Premium content alone does not create premium art direction.",
     "shots": {
@@ -598,6 +612,7 @@
     "dialects": [],
     "tags": {
       "composition": [],
+      "risks": [],
       "typography": [
         "grotesque",
         "editorial",
@@ -616,8 +631,7 @@
       "imagery": [
         "photography",
         "art-direction"
-      ],
-      "risks": []
+      ]
     },
     "note": "The reference case for air as status: the landing page is one viewport tall and roughly three-quarters empty — a single magazine cover centred in white, nav above, one caption line below. Nothing competes, so the cover reads as an object rather than as content.\n\nCONTRADICTION worth keeping: this breaks skills/color-taste on two counts — the accent is a bright saturated turquoise, well above the chroma ceiling, and it IS the identity rather than a setting (nav, logo, rules, caption, all of it). It works because the accent is the *only* colour in an otherwise monochrome world, so the restraint has moved from the hue to the palette size. Evidence that the rule's real mechanism is \"one colour, ruthlessly\" rather than \"low chroma\" — flag for the next distillation run.\n\nAlso note the display face is a rounded geometric grotesque, not a serif. Editorial authority here comes from scale and space, not from a didone.\n\nOUT — The cover image has the right to exist as a standalone editorial composition.",
     "shots": {

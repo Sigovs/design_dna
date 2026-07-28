@@ -154,6 +154,23 @@ button, input, textarea, select { font: inherit; color: inherit; }
   max-width: 30ch;
   text-wrap: balance;
 }
+/* The maxim sits inside the title, one step below the name — a second line of the
+   same mass, not a strapline floating under it. Bold as asked, and set to the
+   same tight measure so the title reads as one block against the air below.
+   It is a figure-ground statement, so it is given ground: the name states what
+   the tool is, the maxim states how it is read. */
+.masthead .maxim {
+  display: block;
+  margin-top: var(--space-3);
+  font-size: clamp(1.125rem, 1.1vw + .9rem, 1.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -.015em;
+  color: var(--ink-70);
+  max-width: 26ch;
+  text-wrap: balance;
+}
+
 .masthead .lead {
   margin: var(--space-5) 0 0;
   max-width: 56ch;
@@ -500,6 +517,7 @@ button, input, textarea, select { font: inherit; color: inherit; }
   .toolbar-row { flex-direction: column; align-items: stretch; gap: var(--space-4); }
   .toolbar-row .search { flex: 0 0 auto; }
 
+
   /* MOBILE FIRST SCREEN. The panel found the dominant mass off-screen at 739px
      against a 664px viewport: the wall had moved from the filters to the masthead
      and the stacked button column. Phone is co-primary in the brief, so a
@@ -508,15 +526,28 @@ button, input, textarea, select { font: inherit; color: inherit; }
      the mobile masthead is not licence to invert the rule. */
   .masthead { padding-block: var(--space-4) var(--space-6); }
   .masthead h1 { font-size: 1.25rem; }
+  /* Kept on mobile — it is part of the title, not the lead. Stepped down so the
+     first reference still clears the fold at 664px. */
+  .masthead .maxim { font-size: 1rem; margin-top: var(--space-2); max-width: 24ch; }
   .masthead .lead { display: none; }        /* identity, not a job — desktop keeps it */
   .toolbar { padding-block: var(--space-3) var(--space-5); }
-  /* One row, not three stacked full-width blocks. */
-  .toolbar-meta { flex-direction: row; flex-wrap: wrap; align-items: center; gap: var(--space-3); }
-  .toolbar-meta .btn { width: auto; flex: 1 1 auto; justify-content: center; }
-  .toolbar-meta .count { flex: 1 0 100%; }
+  /* MEASURED on iPhone SE (320×568): this block was 150px — five full-width
+     buttons stacked — and the toolbar as a whole out-massed the masthead and the
+     state panel together, putting the first reference at y=622 in a 568px
+     viewport. There were also TWO contradictory .toolbar-meta rules here, so the
+     stacked one silently won whatever the earlier one intended. One rule now: a
+     single horizontally scrolled row. The apparatus gives up the space, not the
+     title and not the collection — reaching a reference on arrival is the job,
+     and a control you scroll to sideways is still a control at full tap size. */
+  .toolbar-meta {
+    flex-direction: row; flex-wrap: nowrap; align-items: center;
+    gap: var(--space-3);
+    overflow-x: auto; overscroll-behavior-x: contain;
+    padding-bottom: var(--space-2);
+  }
+  .toolbar-meta > * { flex: 0 0 auto; }
+  .toolbar-meta .btn { width: auto; justify-content: center; }
   .toolbar-row .btn--quiet { text-align: left; }
-  .toolbar-meta { flex-direction: column; align-items: stretch; gap: var(--space-4); }
-  .toolbar-meta .btn { width: 100%; justify-content: center; }
   .form-actions { flex-direction: column; align-items: stretch; }
   .form-actions .btn { width: 100%; justify-content: center; }
   .vocab-tags { gap: var(--space-2) var(--space-4); }
@@ -1082,7 +1113,7 @@ button, input, textarea, select { font: inherit; color: inherit; }
     <span class="eyebrow">design dna</span>
     <!-- A tool states what it is. The italic signature word is an auction-editorial
          move, and this is not that dialect: no accent identity, intentionally plain. -->
-    <h1>Taste vault</h1>
+    <h1>Taste vault<b class="maxim">The silence is the figure; the sound is the ground.</b></h1>
     <p class="lead">Every entry carries reasoning: the note is the payload, the shots are evidence.
       Match the thinking, don't copy the pixels.</p>
   </header>

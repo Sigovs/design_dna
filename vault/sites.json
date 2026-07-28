@@ -18,6 +18,7 @@
         "tonal-structure",
         "visual-silence"
       ],
+      "risks": [],
       "typography": [
         "commerce-editorial-alternation",
         "editorial"
@@ -71,6 +72,7 @@
         "interface-as-environment",
         "atmosphere-first-storytelling"
       ],
+      "risks": [],
       "typography": [
         "big-type",
         "editorial",
@@ -133,6 +135,7 @@
       "composition": [
         "brief-derived-cultural-directory"
       ],
+      "risks": [],
       "typography": [
         "editorial"
       ],
@@ -176,7 +179,9 @@
     ],
     "tags": {
       "composition": [
-        "visual-silence",
+        "visual-silence"
+      ],
+      "risks": [
         "repeated-composition-risk"
       ],
       "typography": [
@@ -196,7 +201,7 @@
         "real-world-evidence"
       ]
     },
-    "note": "IN — A disciplined enterprise website that avoids the familiar visual language of AI startups. Large editorial serif typography, restrained sans-serif metadata, deep navy fields, warm neutral surfaces, numbered structures, and fine horizontal rules turn a technically complex platform into a calm and credible system. The strongest decision is its control of hierarchy: major statements receive generous spatial authority, supporting explanations remain compact, and real-world customer imagery provides evidence without overwhelming the interface. Motion and cursor effects stay subordinate to the reading sequence. However, the repeated headline-and-explanation compositions eventually become predictable, some secondary text approaches low contrast, and the persistent cookie and chat overlays weaken an otherwise carefully controlled frame. A strong reference for editorial authority, enterprise clarity, and structured information — not for immersive spectacle. Первый экран сильный, но он уже показывает характер сайта: не «AI-tech cliché», а строгая смесь enterprise clarity и editorial typography крупная editorial serif-типографика сразу создаёт характер;\nпочти монохромная палитра с глубоким navy и тёплым cream;\nсложная тема объясняется через очень простую визуальную иерархию;\nexcellent visual rhythm: statement → structured explanation → platform → proof;\nnumbered lines, таблицы и тонкие rules превращают техническую информацию в оформленную систему;\nреальные enterprise-фотографии сильнее обычных AI-рендеров и абстрактных 3D-форм;\nsticky navigation сохраняет ясность, не забирая внимание;\nrestrained motion поддерживает чтение вместо отдельного spectacle;\nдизайн выглядит современно, но не зависит от модного UI-эффекта крупная editorial serif-типографика сразу создаёт характер;\nпочти монохромная палитра с глубоким navy и тёплым cream;\nсложная тема объясняется через очень простую визуальную иерархию;\nexcellent visual rhythm: statement → structured explanation → platform → proof;\nnumbered lines, таблицы и тонкие rules превращают техническую информацию в оформленную систему;\nреальные enterprise-фотографии сильнее обычных AI-рендеров и абстрактных 3D-форм;\nsticky navigation сохраняет ясность, не забирая внимание;\nrestrained motion поддерживает чтение вместо отдельного spectacle;\nдизайн выглядит современно, но не зависит от модного UI-эффекта",
+    "note": "IN — A disciplined enterprise website that avoids the familiar visual language of AI startups. Large editorial serif typography, restrained sans-serif metadata, deep navy fields, warm neutral surfaces, numbered structures, and fine horizontal rules turn a technically complex platform into a calm and credible system. The strongest decision is its control of hierarchy: major statements receive generous spatial authority, supporting explanations remain compact, and real-world customer imagery provides evidence without overwhelming the interface. Motion and cursor effects stay subordinate to the reading sequence. However, the repeated headline-and-explanation compositions eventually become predictable, some secondary text approaches low contrast, and the persistent cookie and chat overlays weaken an otherwise carefully controlled frame. A strong reference for editorial authority, enterprise clarity, and structured information — not for immersive spectacle. Первый экран сильный, но он уже показывает характер сайта: не «AI-tech cliché», а строгая смесь enterprise clarity и editorial typography",
     "shots": {
       "full": "shots/ciridae-com/full.jpg",
       "hero": "shots/ciridae-com/hero.jpg",
@@ -206,7 +211,7 @@
     "source": "",
     "extras": [],
     "captureError": null,
-    "works": "",
+    "works": "крупная editorial serif-типографика сразу создаёт характер;\nпочти монохромная палитра с глубоким navy и тёплым cream;\nсложная тема объясняется через очень простую визуальную иерархию;\nexcellent visual rhythm: statement → structured explanation → platform → proof;\nnumbered lines, таблицы и тонкие rules превращают техническую информацию в оформленную систему;\nреальные enterprise-фотографии сильнее обычных AI-рендеров и абстрактных 3D-форм;\nsticky navigation сохраняет ясность, не забирая внимание;\nrestrained motion поддерживает чтение вместо отдельного spectacle;\nдизайн выглядит современно, но не зависит от модного UI-эффекта",
     "weaknesses": "несколько секций используют почти одинаковую схему «большой serif headline + пояснение»;\nместами визуальный ритм слишком разреженный для объёма продуктовой информации;\nсветло-серый текст иногда слабоват по контрасту;\nкарточки customer stories уже выглядят более стандартно;\ncookie panel и floating chat одновременно перекрывают значительную часть страницы;\nнеобычный светящийся cursor добавляет характер, но функциональной роли почти не имеет;\nсайт убедительно формирует образ компании, однако детали продукта приходится искать.",
     "unsorted": []
   },
@@ -222,13 +227,14 @@
     ],
     "tags": {
       "composition": [],
+      "risks": [],
       "typography": [],
       "layout": [],
       "motion": [],
       "color": [],
       "imagery": []
     },
-    "note": "IN — A disciplined film-led portfolio in which moving imagery becomes the primary interface rather than content placed inside a conventional layout. Navigation, project metadata, restrained typography, and the compact orange identity mark remain visually subordinate to the cinematic material, creating a clear hierarchy between the governing film event and its supporting interface. The system accommodates radically different footage without losing its identity, while the minimal overlays and controlled transitions preserve atmosphere and visual silence. However, the experience depends heavily on the strength of the underlying films, repeats essentially the same compositional mechanism across projects, and occasionally sacrifices interface contrast and clarity. The live site also currently risks trapping the visitor behind an unresolved preloader, preventing it from qualifying as a complete 3/3 reference.",
+    "note": "IN — A disciplined film-led portfolio in which moving imagery becomes the primary interface rather than content placed inside a conventional layout.",
     "shots": {
       "full": "shots/electrafilmworks-com/full.jpg",
       "hero": "shots/electrafilmworks-com/hero.jpg",
@@ -238,8 +244,8 @@
     "source": "",
     "extras": [],
     "captureError": null,
-    "works": "",
-    "weaknesses": "",
+    "works": "Navigation, project metadata, restrained typography, and the compact orange identity mark remain visually subordinate to the cinematic material, creating a clear hierarchy between the governing film event and its supporting interface. The system accommodates radically different footage without losing its identity, while the minimal overlays and controlled transitions preserve atmosphere and visual silence.",
+    "weaknesses": "However, the experience depends heavily on the strength of the underlying films, repeats essentially the same compositional mechanism across projects, and occasionally sacrifices interface contrast and clarity. The live site also currently risks trapping the visitor behind an unresolved preloader, preventing it from qualifying as a complete 3/3 reference.",
     "unsorted": []
   },
   {
@@ -254,15 +260,17 @@
     ],
     "tags": {
       "composition": [
-        "ambiguous-reading-order",
-        "mobile-recomposition-risk",
-        "decorative-information-legibility-risk",
         "vertical-narrative",
         "dominant-mass",
         "layered-overlap",
         "asymmetric-balance",
         "visual-silence",
         "figure-ground-tension"
+      ],
+      "risks": [
+        "ambiguous-reading-order",
+        "mobile-recomposition-risk",
+        "decorative-information-legibility-risk"
       ],
       "typography": [],
       "layout": [],
@@ -278,7 +286,7 @@
         "content-quality-dependence"
       ]
     },
-    "note": "IN — A highly composed fantasy character showcase that transforms ranking, attributes, skills, and historical information into a continuous editorial narrative. Oversized character renders act as dominant masses, while torn black surfaces, generous white intervals, compact typography, and recurring red information panels create a controlled vertical rhythm. The strongest decision is the integration of imagery and metadata: content does not sit inside a conventional grid but overlaps and interrupts the composition to build hierarchy, tension, and progression. However, extreme microtype, ambiguous reading order, and heavy dependence on pre-existing character artwork limit its value as a complete usability reference. A strong auction-editorial reference for layered composition, collectible authority, and visual pacing.",
+    "note": "IN — A highly composed fantasy character showcase that transforms ranking, attributes, skills, and historical information into a continuous editorial narrative. A strong auction-editorial reference for layered composition, collectible authority, and visual pacing.",
     "shots": {
       "full": "shots/i-pinimg-com-736x-46-d9-d5-46d9d54b7cc97b5687cbfd24a1410d34-/hero.jpg",
       "hero": "shots/i-pinimg-com-736x-46-d9-d5-46d9d54b7cc97b5687cbfd24a1410d34-/hero.jpg",
@@ -288,8 +296,8 @@
     "source": "",
     "extras": [],
     "captureError": null,
-    "works": "",
-    "weaknesses": "",
+    "works": "Oversized character renders act as dominant masses, while torn black surfaces, generous white intervals, compact typography, and recurring red information panels create a controlled vertical rhythm. The strongest decision is the integration of imagery and metadata: content does not sit inside a conventional grid but overlaps and interrupts the composition to build hierarchy, tension, and progression.",
+    "weaknesses": "However, extreme microtype, ambiguous reading order, and heavy dependence on pre-existing character artwork limit its value as a complete usability reference.",
     "unsorted": []
   },
   {
@@ -313,6 +321,7 @@
         "optical-balance",
         "responsive-recomposition"
       ],
+      "risks": [],
       "typography": [],
       "layout": [
         "air",
@@ -335,7 +344,7 @@
         "illustration"
       ]
     },
-    "note": "IN — A strong reference for staged, immersive web composition. The oversized human figure becomes the dominant mass, while the subject’s gaze activates the dark negative space and directs attention across the frame. Intentional cropping, restrained HUD-like controls, branded uniform details, and the deep photographic background make the interface feel embedded in the Red Bull/Citrix world rather than placed on top of it. Desktop uses asymmetry and scale especially well; mobile genuinely recomposes the scene around the face instead of merely shrinking it. Strong art direction and spatial storytelling, although the microtype, low-contrast controls, and discovery-dependent navigation prevent it from becoming a complete 3/3 reference.",
+    "note": "IN — A strong reference for staged, immersive web composition.",
     "shots": {
       "full": "shots/thenewmobileworkforce-imm-g-prod-com-back-at-hq/full.jpg",
       "hero": "shots/thenewmobileworkforce-imm-g-prod-com-back-at-hq/hero.jpg",
@@ -345,8 +354,8 @@
     "source": "",
     "extras": [],
     "captureError": null,
-    "works": "",
-    "weaknesses": "",
+    "works": "The oversized human figure becomes the dominant mass, while the subject’s gaze activates the dark negative space and directs attention across the frame. Intentional cropping, restrained HUD-like controls, branded uniform details, and the deep photographic background make the interface feel embedded in the Red Bull/Citrix world rather than placed on top of it. Desktop uses asymmetry and scale especially well; mobile genuinely recomposes the scene around the face instead of merely shrinking it.",
+    "weaknesses": "Strong art direction and spatial storytelling, although the microtype, low-contrast controls, and discovery-dependent navigation prevent it from becoming a complete 3/3 reference.",
     "unsorted": []
   },
   {
@@ -359,6 +368,7 @@
     "dialects": [],
     "tags": {
       "composition": [],
+      "risks": [],
       "typography": [],
       "layout": [],
       "motion": [],
@@ -389,6 +399,7 @@
     "dialects": [],
     "tags": {
       "composition": [],
+      "risks": [],
       "typography": [
         "display-serif",
         "mono-details"
@@ -409,7 +420,7 @@
         "scrim-text"
       ]
     },
-    "note": "Captured as the working example for the auction-catalog register that skills/typography-taste borrows from. The hero is the right idea: full-bleed night photography, and the lot text sits in a translucent grey scrim block in the lower left rather than being centred over the image — the scrim is doing the legibility work, exactly the escalation ladder in skills/color-taste §5.\n\nThe title is set in a high-contrast serif with true typographic quotes ('The Pop Art F1'), the supporting lines drop to a neutral grotesque, and the date/venue line goes smallest — three registers in a four-line block, which is the whole editorial-contrast idea in miniature.\n\nWhere it falls short of a rating 3: the nav is a plain uppercase grotesque row with no tracking discipline, VIEW LOT is an underlined text link inside a scrim (a banned pattern — it reads as prose, not as an action), and the carousel arrows are large chrome overlays on the photograph. The lot plate below the fold is closer to a generic e-commerce grid than to a printed catalog page. Useful for the hero treatment; not a model for the rest.\n\nAnti-reference — exceptional automotive assets trapped inside a generic corporate-luxury CMS. The hero relies almost entirely on photography, while the rest of the page collapses into repetitive card grids, mechanical 50/50 bands, cosmetic luxury typography, weak micro-hierarchy, and arbitrary tonal alternation. There is no sustained dominant-subordinate-support relationship after the hero. Negative space acts as passive separation rather than an active compositional shape. Image directions fail to build a continuous eye path, tonal masses fragment between modules, and the repeated card cadence becomes metronomic. The grid measures correctly without composing meaningfully. Premium content alone does not create premium art direction.",
+    "note": "Captured as the working example for the auction-catalog register that skills/typography-taste borrows from.\n\nAnti-reference — exceptional automotive assets trapped inside a generic corporate-luxury CMS. Premium content alone does not create premium art direction.",
     "shots": {
       "full": "shots/rmsothebys-com/full.jpg",
       "hero": "shots/rmsothebys-com/hero.jpg",
@@ -419,8 +430,8 @@
     "source": "",
     "extras": [],
     "captureError": null,
-    "works": "",
-    "weaknesses": "",
+    "works": "The hero is the right idea: full-bleed night photography, and the lot text sits in a translucent grey scrim block in the lower left rather than being centred over the image — the scrim is doing the legibility work, exactly the escalation ladder in skills/color-taste §5.\n\nThe title is set in a high-contrast serif with true typographic quotes ('The Pop Art F1'), the supporting lines drop to a neutral grotesque, and the date/venue line goes smallest — three registers in a four-line block, which is the whole editorial-contrast idea in miniature.",
+    "weaknesses": "Where it falls short of a rating 3: the nav is a plain uppercase grotesque row with no tracking discipline, VIEW LOT is an underlined text link inside a scrim (a banned pattern — it reads as prose, not as an action), and the carousel arrows are large chrome overlays on the photograph. The lot plate below the fold is closer to a generic e-commerce grid than to a printed catalog page. Useful for the hero treatment; not a model for the rest.\n\nThe hero relies almost entirely on photography, while the rest of the page collapses into repetitive card grids, mechanical 50/50 bands, cosmetic luxury typography, weak micro-hierarchy, and arbitrary tonal alternation. There is no sustained dominant-subordinate-support relationship after the hero. Negative space acts as passive separation rather than an active compositional shape. Image directions fail to build a continuous eye path, tonal masses fragment between modules, and the repeated card cadence becomes metronomic. The grid measures correctly without composing meaningfully.",
     "unsorted": []
   },
   {
@@ -433,6 +444,7 @@
     "dialects": [],
     "tags": {
       "composition": [],
+      "risks": [],
       "typography": [
         "grotesque",
         "editorial",
@@ -453,7 +465,7 @@
         "art-direction"
       ]
     },
-    "note": "The reference case for air as status: the landing page is one viewport tall and roughly three-quarters empty — a single magazine cover centred in white, nav above, one caption line below. Nothing competes, so the cover reads as an object rather than as content.\n\nWorth stealing: (1) the footer caption is the only sentence on the page and it carries the entire editorial message, sitting on a hairline rule with the pagination at the far right — metadata as composition; (2) the photography is black-and-white, which is what lets a single saturated accent work without the page becoming about colour.\n\nCONTRADICTION worth keeping: this breaks skills/color-taste on two counts — the accent is a bright saturated turquoise, well above the chroma ceiling, and it IS the identity rather than a setting (nav, logo, rules, caption, all of it). It works because the accent is the *only* colour in an otherwise monochrome world, so the restraint has moved from the hue to the palette size. Evidence that the rule's real mechanism is \"one colour, ruthlessly\" rather than \"low chroma\" — flag for the next distillation run.\n\nAlso note the display face is a rounded geometric grotesque, not a serif. Editorial authority here comes from scale and space, not from a didone.\n\nOUT — The cover image has the right to exist as a standalone editorial composition. As a website, the project fails. The desktop navigation is ugly, the footer is unresolved, and the initial visual idea never develops into a coherent web experience. One decent cover does not make this a design reference.",
+    "note": "The reference case for air as status: the landing page is one viewport tall and roughly three-quarters empty — a single magazine cover centred in white, nav above, one caption line below. Nothing competes, so the cover reads as an object rather than as content.\n\nCONTRADICTION worth keeping: this breaks skills/color-taste on two counts — the accent is a bright saturated turquoise, well above the chroma ceiling, and it IS the identity rather than a setting (nav, logo, rules, caption, all of it). It works because the accent is the *only* colour in an otherwise monochrome world, so the restraint has moved from the hue to the palette size. Evidence that the rule's real mechanism is \"one colour, ruthlessly\" rather than \"low chroma\" — flag for the next distillation run.\n\nAlso note the display face is a rounded geometric grotesque, not a serif. Editorial authority here comes from scale and space, not from a didone.\n\nOUT — The cover image has the right to exist as a standalone editorial composition.",
     "shots": {
       "full": "shots/thegentlewoman-co-uk/full.jpg",
       "hero": "shots/thegentlewoman-co-uk/hero.jpg",
@@ -463,8 +475,8 @@
     "source": "",
     "extras": [],
     "captureError": null,
-    "works": "",
-    "weaknesses": "",
+    "works": "Worth stealing: (1) the footer caption is the only sentence on the page and it carries the entire editorial message, sitting on a hairline rule with the pagination at the far right — metadata as composition; (2) the photography is black-and-white, which is what lets a single saturated accent work without the page becoming about colour.",
+    "weaknesses": "As a website, the project fails. The desktop navigation is ugly, the footer is unresolved, and the initial visual idea never develops into a coherent web experience. One decent cover does not make this a design reference.",
     "unsorted": []
   }
 ]

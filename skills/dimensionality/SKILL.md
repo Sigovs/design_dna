@@ -1,6 +1,6 @@
 ---
 name: dimensionality
-description: Constructed depth and choreographed time — 3D scenes, camera, material and light, scroll-linked and timeline motion — in two tiers. Declares a ROLE (MAIN / SUPPORT / ABSENT) once per brief before any technique is chosen, then binds ten invariants (D1–D10) covering removability, first read, frame budget, reduced-motion fallback, per-frame contrast, one depth idea, input honesty, choreography subject, reading-zone stillness, and separately authored mobile. Tool-agnostic. Use before proposing a 3D scene, a camera move, a scroll-linked timeline, or any material/light treatment.
+description: Constructed depth and choreographed time — 3D scenes, camera, material and light, scroll-linked and timeline motion — in two tiers. Declares a ROLE (MAIN / SUPPORT / ABSENT) once per brief before any technique is chosen, then binds ten invariants (DM1–DM10) covering removability, first read, frame budget, reduced-motion fallback, per-frame contrast, one depth idea, input honesty, choreography subject, reading-zone stillness, and separately authored mobile. Tool-agnostic. Use before proposing a 3D scene, a camera move, a scroll-linked timeline, or any material/light treatment.
 ---
 
 # Dimensionality
@@ -41,7 +41,7 @@ A brief with no role line has not been read.
 *Universal — they hold at every role, in every dialect, with every tool. The role
 changes how much they cost, never whether they apply.*
 
-### D1 — Content survives removal at SUPPORT
+### DM1 — Content survives removal at SUPPORT
 
 At SUPPORT and ABSENT, **every piece of content and every action must remain
 present, reachable, and legible with the scene removed.** Not degraded — present.
@@ -52,7 +52,7 @@ the role was mis-declared and the honest answer was MAIN — which carries oblig
 D2–D10 at full weight. This is also what makes a scene safe to drop on a slow
 device, a failed load, or a reduced-motion request.
 
-### D2 — No scene gates the first read
+### DM2 — No scene gates the first read
 
 The primary content must be readable **before** the scene loads, initialises, or
 finishes its entrance. No preloader holding the page hostage, no first paint that
@@ -63,7 +63,7 @@ Gating the first read behind it converts a slow asset into a broken product — 
 failure mode the vault has already recorded in a rating-2 entry whose preloader can
 trap the visitor.
 
-### D3 — Frame and payload budget declared up front
+### DM3 — Frame and payload budget declared up front
 
 State the budget **before building**: target frame rate on the worst device you
 intend to support, and a hard ceiling on scene payload. Measure against it, and
@@ -73,7 +73,7 @@ when you exceed it, cut scope — not the budget.
 scene grows until something else breaks. A budget written down before the first
 asset is the only version anyone honours.
 
-### D4 — prefers-reduced-motion gets an authored fallback
+### DM4 — prefers-reduced-motion gets an authored fallback
 
 Not a disabled scene — an **authored** one. Choose the frame, compose it, and let
 it carry the same idea. A still that is obviously "the animation, stopped" is a
@@ -84,7 +84,7 @@ deliverable with its own composition. This extends
 [motion I1](../motion-taste/SKILL.md#invariant) into constructed depth: the same
 obligation, applied to a scene rather than a transition.
 
-### D5 — AA holds over moving layers, per frame
+### DM5 — AA holds over moving layers, per frame
 
 Text over a moving or rendered layer must meet
 [color-taste I1](../color-taste/SKILL.md#invariant) **at every frame it is
@@ -95,7 +95,7 @@ background moves, the worst case moves with it.
 region behind the text for the whole duration, or fix legibility at the layer
 between text and scene — never by weighting the type.
 
-### D6 — One depth idea per view
+### DM6 — One depth idea per view
 
 A view gets **one** spatial concept: one camera behaviour, one parallax logic, one
 layering model. Two competing depth systems in the same view read as an accident,
@@ -106,7 +106,7 @@ resolves the contradiction as noise. This is
 [U9](../anti-patterns/SKILL.md#invariant) (depth cues coherent with the spatial
 model) taken forward: U9 forbids lying about the model, D6 forbids running two.
 
-### D7 — Input honesty
+### DM7 — Input honesty
 
 Anything that looks draggable, orbitable, hoverable or scrubable **must be**. The
 inverse also binds: if a scene responds to input, that must be discoverable without
@@ -117,7 +117,7 @@ interactivity behind an undiscoverable affordance.
 affordance costs the user an attempt and the design its credibility — and on touch
 it steals the gesture the page needed for scrolling.
 
-### D8 — Choreography has a subject
+### DM8 — Choreography has a subject
 
 Every timeline answers "what is this about?" in one sentence. Sequenced motion must
 move a **subject** through a **change** — a state, a reveal, a consequence. Motion
@@ -127,7 +127,7 @@ that exists because a timeline exists is decoration on a schedule.
 the user has to sit through, and the second viewing is where that is felt. Extends
 [motion I5](../motion-taste/SKILL.md#invariant) from single transitions to sequences.
 
-### D9 — No perpetual ambient motion in reading zones
+### DM9 — No perpetual ambient motion in reading zones
 
 Nothing loops indefinitely behind, beside, or within a block of body copy.
 Ambient motion belongs where nobody is reading, or it stops.
@@ -136,7 +136,7 @@ Ambient motion belongs where nobody is reading, or it stops.
 reading measurably harder and cannot be ignored on request. A reader should not have
 to scroll a paragraph away from an animation to finish a sentence.
 
-### D10 — Mobile is authored separately
+### DM10 — Mobile is authored separately
 
 The mobile scene is a **separate authored composition**, not the desktop scene at a
 smaller size with a lighter mesh. Re-decide the camera, the crop, the subject scale,
@@ -174,7 +174,7 @@ reasoning, not by containing a lit object.
 `yields when:` the brief is genuinely about a made thing whose form is the
 argument — a product, a material, a physical mechanism — and showing it in space
 communicates faster than describing it; or the audience expects spatial
-demonstration as evidence of capability. Then MAIN is defensible, and D1–D10 tighten
+demonstration as evidence of capability. Then MAIN is defensible, and DM1–DM10 tighten
 accordingly.
 
 ### immersive-authored-world — MAIN permitted
@@ -223,19 +223,19 @@ implementation note in the report — never the direction.
 **Before any technique is chosen**
 - [ ] Role declared: MAIN / SUPPORT / ABSENT, and logged in the Design Read.
 - [ ] If ABSENT: what carries depth instead is stated.
-- [ ] Frame rate target and payload ceiling written down (D3).
+- [ ] Frame rate target and payload ceiling written down (DM3).
 
 **Invariant — every deliverable that uses constructed depth or time**
-- [ ] Content complete with the scene removed, at SUPPORT and ABSENT (D1).
-- [ ] First read never waits on the scene (D2).
-- [ ] Measured against the declared budget; scope cut, not budget raised (D3).
-- [ ] Reduced-motion fallback is an authored still, not a stopped animation (D4).
-- [ ] Contrast verified per frame over moving layers (D5).
-- [ ] Exactly one depth idea in the view (D6).
-- [ ] Every apparent affordance is real; every real one is discoverable (D7).
-- [ ] Each timeline's subject nameable in one sentence (D8).
-- [ ] No perpetual motion in any reading zone (D9).
-- [ ] Mobile scene authored separately, including the option of not existing (D10).
+- [ ] Content complete with the scene removed, at SUPPORT and ABSENT (DM1).
+- [ ] First read never waits on the scene (DM2).
+- [ ] Measured against the declared budget; scope cut, not budget raised (DM3).
+- [ ] Reduced-motion fallback is an authored still, not a stopped animation (DM4).
+- [ ] Contrast verified per frame over moving layers (DM5).
+- [ ] Exactly one depth idea in the view (DM6).
+- [ ] Every apparent affordance is real; every real one is discoverable (DM7).
+- [ ] Each timeline's subject nameable in one sentence (DM8).
+- [ ] No perpetual motion in any reading zone (DM9).
+- [ ] Mobile scene authored separately, including the option of not existing (DM10).
 
 **Dialect**
 - [ ] auction-editorial: ABSENT or SUPPORT unless the yields-when is named.

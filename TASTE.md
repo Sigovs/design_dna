@@ -70,6 +70,35 @@ violation. Yielding silently is the failure.
 
 Stored dialects live in `dialects/`.
 
+### The floor mechanism — a repo convention
+
+Some dialect rules are the *taste-tier statement* of something an invariant already
+requires more narrowly. **Any dialect rule with an invariant core must name its floor
+by identifier, and its `yields when:` may never breach that floor.**
+
+```
+`yields when:` <the condition>.
+**Invariant floor:** <IDENTIFIER> still binds — <what remains true regardless>.
+```
+
+The identifier is required — `spacing I1`, `U7`, `color-taste I1`,
+`dimensionality DM9` — because "still respect accessibility" is not checkable and
+an unnamed floor is not a floor.
+
+**Reference example.** [anti-patterns D9](skills/anti-patterns/SKILL.md#dialect)
+dislikes ambient motion competing with content *anywhere*; it yields when the motion
+is what the text describes. Its floor is
+[dimensionality DM9](skills/dimensionality/SKILL.md#invariant), which forbids
+perpetual motion inside a reading zone outright. So the yield can relax the dialect's
+breadth and can never reach into the reading zone. Same shape elsewhere: D2's yield
+cannot drop a control's label below AA, D6's cannot make emphasis lie about ranking,
+D7's cannot drop content-bearing imagery.
+
+Why the convention: a dialect rule and its invariant are easy to confuse precisely
+because they say similar things at different strengths. Naming the floor makes the
+difference operational — you can see, in the rule itself, exactly how much the exit
+buys you.
+
 ---
 
 ## 2. The Design Read
@@ -95,7 +124,7 @@ Dimensionality: ABSENT — depth is carried by tone and overlap; a scene would c
 
 Reading this as a festival lineup page for an 18–25 audience, leaning expressive-poster.
 Dialect: partial: auction-editorial principles (metadata as composition) + brief-derived colour and motion.
-Dimensionality: MAIN — the staged scene is the composition; D1–D10 bind at full weight.
+Dimensionality: MAIN — the staged scene is the composition; DM1–DM10 bind at full weight.
 ```
 
 **The dialect line is a required choice, and it has three legal answers:**
@@ -191,6 +220,12 @@ run will inherit.
 **Rules for the read**
 - `<deliverable>` is the artefact, not the task ("landing hero", not "some HTML").
 - `<audience>` is who judges it, and it sets the tolerance for expressiveness.
+- **A library name is never an aesthetic family name.** "A Three.js site", "something
+  Spline-y", "a GSAP page", "a Framer look" — these name a tool, not a direction, and
+  the family must come **from the brief**. The tool is chosen last, to serve the
+  read, and appears in the report beside the build. Tool characteristics are
+  reference only:
+  [dimensionality → tool notes](skills/dimensionality/SKILL.md#tool-notes-non-normative).
 - `<aesthetic family>` must be nameable and specific: *editorial-technical*,
   *auction-catalog*, *quiet-luxury*, *swiss-utility*, *archival-print*,
   *expressive-poster*. "Modern", "clean", and "minimal" are not families — they

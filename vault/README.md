@@ -79,6 +79,13 @@ clipped at 14,000px so an infinite-scroll site can't produce an unusable strip.
   created here:** the six are deliberate, and a new one is a human decision made by
   editing `vocab.json`. Leaving a tag queued is better than forcing it somewhere
   wrong.
+- `tags.risks` — **the only category that records something wrong.** Named failure
+  modes and near-failures: `ambiguous-reading-order`,
+  `decorative-information-legibility-risk`, `mobile-recomposition-risk`,
+  `repeated-composition-risk`. It exists so the merit categories stay merit-only —
+  a query for `composition:*` should never return a warning. A risk tag is a
+  *label* for a failure the note or `weaknesses` describes; it does not replace
+  writing it down.
 - `tags.composition` — **positive merit tags only**, from
   [academic-composition](../skills/academic-composition/SKILL.md). A tag means the
   quality is **present** and a human has confirmed it. **Never apply one to record

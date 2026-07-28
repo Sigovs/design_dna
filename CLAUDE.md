@@ -45,7 +45,18 @@ deliverable/audience/family, **dialect**, and **dimensionality role**
 Promoting SUPPORT → MAIN mid-project requires re-running the Design Read; demotion
 never does.
 
+**Rule identifiers are namespaced when they would collide.** `D#` already means a
+DIALECT rule in every skill, so `dimensionality` uses `DM1`–`DM10` for its
+invariants. A new skill whose natural prefix already means something else picks a
+distinct one rather than overloading it.
+
+**Any dialect rule with an invariant core names its floor by identifier**, and its
+`yields when:` may never breach that floor. The convention and its reference example
+are in `TASTE.md` §1.
+
 **A tool is never a direction.** Three.js, Spline, GSAP and their kin are
-implementation notes, recorded beside the build in the report. Naming a direction
-after a library is an anti-pattern (`anti-patterns` D8), and the tool notes in
-`skills/dimensionality` are explicitly non-normative — never cite them as a reason.
+implementation notes, recorded beside the build in the report. **A library name is
+never an aesthetic family name** — that rule lives in the Design Read procedure in
+`TASTE.md` §2, not in `anti-patterns`, because it is a process error rather than an
+aesthetic trope. The tool notes in `skills/dimensionality` are explicitly
+non-normative; never cite them as a reason.

@@ -126,8 +126,11 @@ controlled tags, and a note on **why** it works. The note is the payload — the
 shots are proof. Full detail and the entry schema live in
 [vault/README.md](vault/README.md).
 
-Tags are grouped into six categories — **composition**, typography, layout, motion,
-color, imagery. The composition category carries **positive merit tags only**
+Tags are grouped into seven categories — **composition**, **risks**, typography,
+layout, motion, color, imagery. `risks` is the only one that records something
+wrong (`ambiguous-reading-order`, `mobile-recomposition-risk` and friends), which is
+exactly what keeps the others merit-only. The composition category carries
+**positive merit tags only**
 (`dominant-mass`, `active-negative-space`, `directed-eye`, `tonal-structure`,
 `rhythm-variation`, `intentional-crop`, `optical-balance`,
 `compositional-resolution`, `responsive-recomposition`): a tag means a human

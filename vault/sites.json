@@ -5,8 +5,10 @@
     "title": "e-com",
     "added": "2026-07-27",
     "rating": 2,
-    "dialectStatus": "unreviewed",
-    "dialects": [],
+    "dialectStatus": "in",
+    "dialects": [
+      "immersive-authored-world"
+    ],
     "tags": {
       "composition": [],
       "typography": [],

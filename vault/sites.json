@@ -192,8 +192,8 @@
       ],
       "typography": [
         "editorial",
-        "monumental-wordmark",
         "oversized-grotesk",
+        "monumental-wordmark",
         "typography-as-structure",
         "direct-activist-copy",
         "bilingual-typography",
@@ -239,8 +239,7 @@
         "direct-gaze",
         "real-human-subjects",
         "portrait-quality-dependence"
-      ],
-      "risks": []
+      ]
     },
     "note": "IN — A bold but highly functional casting directory that places individual human presence in productive tension with a rigid typographic and directory-based interface. Oversized identity typography, high-contrast portrait staging, split-screen casting compositions, a tightly controlled brown-and-peach palette, direct activist copy, bilingual cultural framing, profile grids and persistent shortlist functionality turn representation into both the subject and behavior of the platform. Its strongest achievement is the integration of brand expression and utility: people repeatedly interrupt and reorganize the system visually, while search, discovery and selection remain understandable. Heavy dependence on exceptional portraiture, occasional competition between faces and monumental typography, delayed directory clarity and some accessibility concerns limit universality, but the site remains an excellent reference for mission-led art direction embedded within a real digital product.",
     "shots": {

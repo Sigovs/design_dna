@@ -236,17 +236,23 @@ Vault: queried imagery:*, composition:dominant-mass, layout:air, typography:edit
   · <studio-b>            (rating 2 / in)
   · <studio-c>            — tags only, note is TODO
 
-COMPOSITION PASS
-1. Dominant:      one full-bleed interior shot, held at 7/12 width against air
-2. Subordinate:   studio name + one line; the lot-style credits plate below
-3. Eye path:      image's receding corridor leads down-right into the credits
-4. Tonal test:    survives grayscale — image mass vs. one light text field
-5. Negative space:the 5/12 column is a shape, not a gap; it carries the eyebrow
-6. Edges/forces:  image bleeds left and bottom, commits; text column clears fully
-7. Tension/rest:  the crop's compression released by the deep field below
-8. Resolution:    section exhales into the project index, tone steps down
-9. Responsive:    at 390px the corridor recrops to portrait; dominance moves
-                  from isolation to scale
+COMPOSITION READ (short form)
+Artistic image:  a working studio seen mid-use — documentary, not staged
+Major masses:    one full-bleed interior field at 7/12; one compact type mass in
+                 the remaining 5/12; one deep quiet interval below both
+Centres:         semantic = the space itself; optical = the corridor's vanishing
+                 point; they coincide by choice, action deferred to the index
+Dominance:       image dominates by area AND by convergence; the type mass is
+                 subordinate, the credits plate is support
+Direction:       the receding corridor leads down-right into the credits
+Rhythm:          one event per screen; the interval below is the pause
+Negative space:  the 5/12 column is a shape, not a gap; it carries the eyebrow
+Tension:         the crop's compression, released by the deep field below
+Edges:           image bleeds left and bottom, commits; text column clears fully
+Responsive:      at 390px the corridor recrops to portrait; dominance moves from
+                 isolation to scale, because isolation does not exist in a column
+Diagnosis:       the mechanism depends on one exceptional photograph — flagged as
+                 an unresolved dependency, not designed around yet
 ```
 
 **How two notes produced two decisions**

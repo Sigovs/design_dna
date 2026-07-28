@@ -43,7 +43,7 @@ deliverable/audience/family, **mandate** (REBRAND / REDESIGN / REFRESH), **diale
 and **dimensionality role** (MAIN / SUPPORT / ABSENT). Each is declared before the
 thing it governs: the mandate before the dialect, because a dialect executes an
 identity and never substitutes for one; the role before any technique and before
-the composition pass, because it decides what the composition is made of.
+the Composition Read, because it decides what the composition is made of.
 
 **An unstated mandate defaults to REDESIGN, never to invention.** Under REDESIGN,
 list what carries through untouched before designing anything, and close the report
@@ -100,6 +100,6 @@ blockers — auth, missing credentials, absent files. Everything else is a decis
 you make and log above.
 
 > **Why the contract carries these and not only the procedure.** Procedures fade
-> over a long session: the composition pass and the critique panel both went unrun
+> over a long session: the Composition Read and the critique panel both went unrun
 > for a week, while the report contract held from the first run. Rules that must
 > survive belong in the contract, not only in the procedure.

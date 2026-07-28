@@ -50,7 +50,9 @@ line resolves locally instead of over the network.
 design_dna/
 ├── TASTE.md                        # the manifest — agents read this first
 ├── skills/                         # each split INVARIANT / DIALECT
-│   ├── academic-composition/SKILL.md # cross-dialect · I: dominant/subordinate, tone, figure-ground, eye path, resolution
+│   ├── academic-composition/       # cross-dialect · the composition method
+│   │   ├── SKILL.md                # I: masses-before-components, decided centre, dominant, tone, eye path, resolution
+│   │   └── references/             # the academic method, routed to per task (not loaded wholesale)
 │   ├── dimensionality/SKILL.md     # role-gated · I: removability, first read, budget, per-frame AA, one depth idea
 │   ├── spacing-taste/SKILL.md      # I: hierarchy, tokens, internal<external · D: air-first, bottom-heavy
 │   ├── typography-taste/SKILL.md   # I: legible rank, optical correction · D: didone + grotesque + mono, spec plates
@@ -100,15 +102,19 @@ whose dissent is mandatory** and who may not write "no objections". It ends in a
 It earns its place. Run against this repo's own gallery it caught a mobile wall
 (the dominant mass sitting off-screen on the primary device), five interactive
 surfaces at 2.48:1 contrast, and a filter model that rendered 42 chips for 7
-entries — none of which the composition pass alone had surfaced.
+entries — none of which the Composition Read alone had surfaced.
 
 **`academic-composition` is the cross-dialect quality layer.** It is a method for
-judging visual relationships — masses, intervals, directions, tone, negative space
-— not a style, and it does not push work toward looking classical, editorial, or
-spacious. Its invariants bind in every dialect, including `brief-derived`. Its
-**composition pass runs inside the Design Read: after the dialect declaration,
-before typography, colour, effects, and motion** — because composition decided
-after styling is just whatever the styling left over.
+seeing, constructing and diagnosing visual relationships — masses, intervals,
+directions, tone, negative space — not a style, and it does not push work toward
+looking classical, editorial, or spacious. Its invariants bind in every dialect,
+including `brief-derived`. Its **COMPOSITION READ and COMPOSITION PLAN run inside
+the Design Read: after the dialect declaration, before typography, colour,
+effects, motion — and before any grid, component or breakpoint** — because a
+composition decided after the structure is whatever the structure left over. The
+academic method behind each stage lives in
+[skills/academic-composition/references/](skills/academic-composition/references/),
+which the skill routes to per task rather than loading wholesale.
 
 **No dialect is a silent default.** Every Design Read has to choose: a stored
 dialect, a partial combination, or `brief-derived / no stored dialect`. An
@@ -281,14 +287,16 @@ while it is honest.
    palette change; a complete static path for every animation; depth cues coherent
    with the spatial model they imply; and controlled irregularity that stays
    legible and intentional.
-   **Composition is the cross-dialect layer inside this tier** — a dominant with
-   subordinates and support, unity, tonal structure before colour, actively shaped
-   negative space, optically judged balance, a directed eye path, rhythm with felt
-   variation, mass relationships chosen as ratios, committed edges and crops,
-   tension with counterweight, sections that resolve, and a governing idea
-   re-established at every breakpoint. Its **pass runs after the dialect
-   declaration and before any surface styling**, and it judges relationships, not
-   compliance with a preferred look.
+   **Composition is the cross-dialect layer inside this tier** — the page
+   describable as 3–7 major masses before any component is named, a compositional
+   centre that is decided rather than inherited, a dominant with subordinates and
+   support, unity, tonal structure before colour, actively shaped negative space,
+   optically judged balance, a directed eye path, rhythm with felt variation, mass
+   relationships chosen as ratios, committed edges and crops, tension with
+   counterweight, sections that resolve, and a governing idea re-established at
+   every breakpoint. Its **Read and Plan run after the dialect declaration and
+   before any grid, component or surface styling**, and they judge relationships,
+   not compliance with a preferred look.
    **Constructed depth is role-gated before it is anything else** — every read
    declares MAIN, SUPPORT or ABSENT, and then ten invariants bind: content survives
    removal at SUPPORT, no scene gates the first read, the frame and payload budget

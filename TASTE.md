@@ -50,6 +50,8 @@ The invariants, by domain — full text in the linked skills:
 | Responsive recomposition — the governing idea re-established at every breakpoint, not merely the content | [composition](skills/academic-composition/SKILL.md#invariant) |
 | **The dominant is the subject, not the device presenting it** — a signature mechanism serves the subject, never occupies its place | [composition](skills/academic-composition/SKILL.md#invariant) |
 | **The means of the visitor's task survive the composition** — no compositional move may delete the means of doing what they came to do | [composition](skills/academic-composition/SKILL.md#invariant) |
+| **Major masses before components** — the page is describable as 3–7 masses before any card, column or grid is named | [composition](skills/academic-composition/SKILL.md#invariant) |
+| **The compositional centre is decided, not inherited** — semantic, optical, geometric and centre-of-action are distinguished, and one is declared to govern | [composition](skills/academic-composition/SKILL.md#invariant) |
 | Intentional spatial hierarchy — grouping and separation are decided, never inherited | [spacing](skills/spacing-taste/SKILL.md#invariant) |
 | Rhythm and optical balance — repeated relationships, optically corrected at size | [spacing](skills/spacing-taste/SKILL.md#invariant), [typography](skills/typography-taste/SKILL.md#invariant) |
 | Token discipline — every value resolves to a documented scale; no magic numbers | [spacing](skills/spacing-taste/SKILL.md#invariant) |
@@ -192,11 +194,17 @@ composition is made of. Its three answers and their obligations are in
 **Promoting SUPPORT → MAIN mid-project requires re-running this Design Read**, since
 it changes the dominant, the eye path, and usually the dialect. Demotion never does.
 
-### 2a. The Academic Composition Pass
+### 2a. The Composition Read and Plan
 
-**After the dialect declaration and before typography, colour, effects, motion, or
-any other surface styling decision**, run the composition pass from
-[academic-composition](skills/academic-composition/SKILL.md#academic-composition-pass).
+**After the dialect declaration and before typography, colour, effects, motion,
+grid, components, or any other structural or surface decision**, run the
+[COMPOSITION READ](skills/academic-composition/SKILL.md#composition-read) and then
+the [COMPOSITION PLAN](skills/academic-composition/SKILL.md#composition-plan) from
+[academic-composition](skills/academic-composition/SKILL.md).
+
+The Read observes and states the composition in relationships; the Plan commits to
+them. **Grids, columns, cards, components, tokens and breakpoints are named only
+after the Plan** — they are how a composition gets built, never where it starts.
 
 Order matters: composition is decided in terms of masses, intervals, directions,
 tone, and negative space *before* anything is styled. Choosing a typeface or a
@@ -208,13 +216,21 @@ visual critique.
 adjustments, isolated implementation fixes — apply only the relevant checks.
 
 ```
-COMPOSITION PASS
-1. Dominant:      2. Subordinate:   3. Eye path:
-4. Tonal test:    5. Negative space:6. Edges/forces:
-7. Tension/rest:  8. Resolution:    9. Responsive:
+COMPOSITION READ                        (full form: 19 lines, in the skill)
+1. Artistic image  2. Format forces   3. Major masses (3–7, no components)
+4. Centres         5. Dominance       6. Balance
+7. Direction       8. Rhythm          9. Negative space
+10. Tension        11. Edges/depth    12. Unity
+13. Type as mass   14. Imagery forces 15. Responsive
+16. Functional     17. Diagnosis
 ```
 
-**The pass evaluates relationships, not compliance with a preferred visual
+Then a **COMPOSITION PLAN** — mass scheme, primary centre, hierarchy mechanism,
+eye path, rhythm, negative space, tension, culmination, cropping, responsive
+recomposition, functional realisation. **Only after the Plan** may grid, columns,
+sections, components, cards, spacing values or breakpoints be named.
+
+**The Read evaluates relationships, not compliance with a preferred visual
 style.** It asks whether the visual forces are ranked, directed, balanced, and
 resolved — not whether the result looks classical, editorial, spacious, or
 asymmetric. A dense modular dashboard and a quiet catalogue page both pass or fail
@@ -222,6 +238,8 @@ on the same questions and look nothing alike.
 
 Keep it compact — short clauses, one block. It is a thinking tool, not
 documentation. Filler answers ("balanced and clean") mean the answer is missing.
+The short form — artistic image, masses, centres, dominance, direction, rhythm,
+negative space, responsive, diagnosis — serves section-level work and critique.
 
 ### 2b. The Critique Panel
 
@@ -284,7 +302,7 @@ its own `yields when:`.
 
 | Skill | Invariant core | Dialect position |
 |---|---|---|
-| [academic-composition](skills/academic-composition/SKILL.md) | **Cross-dialect.** Dominant/subordinate/support, unity, tonal structure before colour, figure-ground, optical balance, directed eye path, rhythm, mass proportion, intentional edges, tension with counterweight, resolution, responsive recomposition, the dominant being the subject rather than the device, the means of the task surviving. | Composed asymmetry with counterweight, detail against quiet fields, mass above centre, downward exhale, one measured disruption. |
+| [academic-composition](skills/academic-composition/SKILL.md) | **Cross-dialect.** Major masses before components, a decided compositional centre, dominant/subordinate/support, unity, tonal structure before colour, figure-ground, optical balance, directed eye path, rhythm, mass proportion, intentional edges, tension with counterweight, resolution, responsive recomposition, the dominant being the subject rather than the device, the means of the task surviving. Routes to `references/` for the academic method behind each stage. | Composed asymmetry with counterweight, detail against quiet fields, mass above centre, downward exhale, one measured disruption. |
 | [dimensionality](skills/dimensionality/SKILL.md) | **Role-gated.** Content survives removal at SUPPORT; no scene gates the first read; declared frame/payload budget; authored reduced-motion fallback; AA per frame; one depth idea per view; input honesty; choreography has a subject; no ambient motion in reading zones; mobile authored separately. | auction-editorial defaults to ABSENT/SUPPORT — material and light over geometry, patient camera. immersive-authored-world permits MAIN. |
 | [spacing-taste](skills/spacing-taste/SKILL.md) | Spatial hierarchy is deliberate; spacing is tokenised; internal gaps < external gaps. | Air-first — generous space, bottom-heavy composition, whitespace as a status signal. |
 | [typography-taste](skills/typography-taste/SKILL.md) | Hierarchy is legible; roles are bounded; type is optically corrected at every size. | Editorial contrast — expressive display + quiet grotesque + mono, italic signature word, spec plates. |

@@ -1,6 +1,6 @@
 ---
 name: academic-composition
-description: Classical academic composition translated into digital art direction, interface design, responsive design, and visual critique — in two tiers. INVARIANT (dominant/subordinate/support hierarchy, unity and subordination, tonal structure before colour, figure-ground clarity, optical over mathematical balance, directed eye movement, rhythm with variation, proportion relationships, intentional edges and crops, tension with counterweight, compositional resolution, responsive recomposition, the dominant being the subject rather than the device presenting it, and the means of the visitor's task surviving the composition) and DIALECT (auction-editorial's composed asymmetry and downward exhale, with yields-when). Contains the ACADEMIC COMPOSITION PASS that runs after dialect selection and before any surface styling. Use before laying out any full page or substantial section, when art-directing imagery, and when critiquing a design.
+description: Classical academic composition translated into digital art direction, interface design, responsive design, and visual critique — in two tiers. INVARIANT (dominant/subordinate/support hierarchy, unity and subordination, tonal structure before colour, figure-ground clarity, optical over mathematical balance, directed eye movement, rhythm with variation, proportion relationships, intentional edges and crops, tension with counterweight, compositional resolution, responsive recomposition, the dominant being the subject rather than the device presenting it, the means of the visitor's task surviving the composition, major masses established before components, and a decided compositional centre) and DIALECT (auction-editorial's composed asymmetry and downward exhale, with yields-when). Contains the COMPOSITION READ and COMPOSITION PLAN that run after dialect selection and before any grid, component or surface styling decision, and routes to references/ for the academic method behind each stage. Use before laying out any full page or substantial section, when art-directing imagery, and when critiquing a design.
 ---
 
 # Academic Composition
@@ -11,9 +11,10 @@ description: Classical academic composition translated into digital art directio
 
 This skill is **not a visual style.** It will not make a project look classical,
 editorial, minimal, spacious, symmetrical, or "artistic". It is a method for
-judging relationships — between visual forces, masses, intervals, directions,
-scale, tone, and negative space — and it applies **across every dialect**,
-including a dialect derived entirely from the brief.
+seeing, constructing, developing and diagnosing relationships — between visual
+forces, masses, intervals, directions, scale, tone, and negative space — and it
+applies **across every dialect**, including a dialect derived entirely from the
+brief.
 
 A dense operational dashboard, a playful youth-brand campaign page, a
 government service form, and a quiet auction catalogue are all subject to these
@@ -33,6 +34,30 @@ Specifically: the rule of thirds is not in this skill. Neither is the golden
 ratio, a fixed proportion set, mandatory asymmetry, or centred symmetry. If you
 find yourself reaching for a ratio to justify a decision, you have replaced
 judgement with arithmetic — which is the failure this file exists to prevent.
+
+## The governing sequence
+
+Composition is **constructed before it becomes interface structure.** Work in
+this order, and treat it as recursive rather than linear — the artistic image
+informs every structural decision, and the structure that emerges refines the
+artistic image:
+
+```
+OBSERVATION → ARTISTIC INTENTION → FORMAT → MAJOR MASSES → COMPOSITIONAL CENTRE
+→ DOMINANCE AND SUBORDINATION → BALANCE → DIRECTION AND MOVEMENT
+→ RHYTHM AND INTERVAL → SPACE → TENSION AND COUNTERWEIGHT → UNITY
+→ FUNCTIONAL REALISATION → RESPONSIVE RECOMPOSITION → VALIDATION
+```
+
+**Grids, columns, cards, components, tokens, breakpoints and section templates
+are instruments of the last stages.** They are how a composition is built; they
+are never where it starts. A page that begins as a component inventory or a
+twelve-column grid has no mass structure to inventory or place.
+
+Do not begin from a reference site. A reference answers somebody else's format,
+content and subject, so borrowing its arrangement imports a conclusion whose
+premises you do not have. Read references for the **principle** —
+[TASTE.md §6 (d)](../../TASTE.md#6-vault-hook--the-vaultdesign-loop).
 
 ---
 
@@ -86,6 +111,8 @@ as two unfinished designs sharing a page. Accidental competition is the common
 case — a strong background image behind a strong headline, two full-bleed
 elements at the same scale, a bold illustration next to a bold statistic.
 
+Depth: [unity-and-plastic-connection](references/unity-and-plastic-connection.md).
+
 ### C3 — Tonal structure before colour
 
 The major hierarchy must remain intelligible in **grayscale**, at **thumbnail
@@ -128,6 +155,8 @@ no amount of component polish will fix.
 space has a considered shape at whatever amount the brief calls for — dense
 layouts have figure-ground relationships too, and they are harder.
 
+Depth: [negative-space-and-tension](references/negative-space-and-tension.md).
+
 ### C5 — Optical balance over mathematical balance
 
 Judge visual weight through **scale, contrast, density, detail, position, colour,
@@ -143,6 +172,8 @@ Balance is judged **optically** — by looking, at real size, and at thumbnail.
 coordinate captures. This is also the invariant that most often exposes
 generated layouts: they are mathematically placed and optically wrong, because
 arithmetic was used where looking was required.
+
+Depth: [optical-balance](references/optical-balance.md).
 
 ### C6 — Directed eye movement
 
@@ -164,6 +195,8 @@ flip nothing that would misrepresent the subject.
 means the reading order is decided by accident, so the argument the design is
 making arrives scrambled.
 
+Depth: [direction-and-movement](references/direction-and-movement.md).
+
 ### C7 — Rhythm with variation
 
 Repetition creates coherence, recognition, and pace. **Vary intervals, scale,
@@ -180,6 +213,8 @@ they can *feel*. No pattern is chaos; no departure is a metronome.
 *Why:* uniform repetition reads as machine output and gives the viewer no cue
 about where they are in a page. Uniform variation is equally exhausting for the
 opposite reason. Pace is the actual deliverable.
+
+Depth: [rhythm-interval-and-pause](references/rhythm-interval-and-pause.md).
 
 ### C8 — Proportion and scale relationships
 
@@ -228,6 +263,8 @@ noticeable than a 30px offset, because the first reads as an error and the secon
 as a decision. Tangencies also create unintended visual connections between
 unrelated elements.
 
+Depth: [space-depth-and-edges](references/space-depth-and-edges.md).
+
 ### C10 — Tension, counterweight, and rest
 
 **Visual tension must have a purpose.** When a composition uses imbalance,
@@ -243,6 +280,10 @@ answers to a specific brief, and neither is a default.
 misalignment rather than as force — the viewer registers discomfort and
 attributes it to sloppiness. Counterweight is what converts imbalance into
 intent.
+
+**Not every tension is to be neutralised.** Some compositions depend on force
+that is never released — that is a decision, stated in the Read, not an accident
+left in place.
 
 ### C11 — Compositional resolution
 
@@ -276,6 +317,11 @@ the composition. A dominant established by horizontal isolation on desktop may
 need to become a dominant established by scale or tone on mobile, because
 horizontal isolation does not exist at 390px.
 
+**A counterweight that is no longer visible is no longer a counterweight.**
+Desktop asymmetry held by a mass 900px to the right does not survive one column:
+either the counterweight is re-established by other means, or the asymmetry is
+abandoned for that format.
+
 *Why:* stacking preserves content and discards composition — every element
 survives and every relationship dies. Since small screens are usually the
 majority of real traffic, an un-recomposed layout means most people never see the
@@ -285,6 +331,8 @@ design.
 [anti-patterns U7](../anti-patterns/SKILL.md#invariant) (content parity) forbids
 *dropping* content to avoid re-composing. C12 requires *actively recomposing*
 what remains. U7 is the floor; C12 is the work.
+
+Depth: [responsive-recomposition](references/responsive-recomposition.md).
 
 ### C13 — The dominant is the subject
 
@@ -343,49 +391,174 @@ composing, then check each one is still present and reachable afterwards. The
 response contract carries `TASK:` and `MEANS:` for exactly this reason — a means
 you never named is a means you will lose to the next good compositional argument.
 
+### C15 — Major masses before components
+
+**Before any component, card, column, grid or navigation pattern is named, the
+composition must be describable as 3–7 major masses** — silhouette, area, visual
+weight, value, density, and the intervals between them — stated without reference
+to a single UI element.
+
+A compliant description reads: *one dense dark upper band; one large directional
+image field pulling right; one compact high-contrast type mass held against it;
+one quiet interval; one repeated low-density information band.* A non-compliant
+one reads: *a header, a hero card, a feature grid, a CTA section.*
+
+**If the page cannot be described this way, there is no composition to evaluate**
+— there is an arrangement of containers, and every later judgement (balance,
+rhythm, centre) will be made about the containers instead of about the work.
+
+*Why it's universal:* the mass structure is what survives squinting, thumbnailing,
+a changed component library, and a redesign of every card on the page. Components
+are the *implementation* of masses; naming them first fixes the implementation
+before the thing being implemented exists. This is the mechanism underneath C1 and
+C3 — you cannot rank forces you have never identified as forces.
+
+*Relationship to other rules:* C3 tests whether the mass hierarchy survives
+grayscale; C15 requires that masses were established as masses in the first place.
+Depth: [format-and-major-masses](references/format-and-major-masses.md).
+
+### C16 — The compositional centre is decided, not inherited
+
+**A composition has a centre, and which centre it is must be a decision.** The
+semantic centre (what the page is about), the optical centre (where weight
+gathers), the geometric centre (the middle of the format), and the centre of
+action (where the visitor acts) are four different things, and they coincide only
+by choice.
+
+State which one governs, and how it is made: by isolation, contrast, direction,
+scale, density, value, surrounding quiet, convergence of movement, semantic
+importance, or an interruption of rhythm. Then say what the secondary centres do —
+**strengthen, compete, or fragment.** Two centres of equal force is not a
+composition with a rich centre; it is a composition with none.
+
+**The centre is not automatically** the largest object, the brightest object, the
+headline, the hero image, the geometric middle, or the primary call to action.
+
+*Why it's universal:* an undecided centre drifts. The page still has one — the eye
+finds it regardless — but it was chosen by whichever element happened to be
+loudest, which is how a legal disclaimer ends up holding the optical centre of a
+product page. This is distinct from [C1](#invariant): C1 ranks the *forces*, C16
+places their *convergence* inside the format.
+
+Depth:
+[compositional-center-and-hierarchy](references/compositional-center-and-hierarchy.md).
+
 ---
 
-## ACADEMIC COMPOSITION PASS
+## COMPOSITION READ
 
 Runs **after the dialect declaration** and **before typography, colour, effects,
-motion, and any other surface styling decision.** Wired into the Design Read in
-[TASTE.md §2](../../TASTE.md#2-the-design-read).
+motion, grid, components and any other structural or surface decision.** Wired
+into the Design Read in [TASTE.md §2](../../TASTE.md#2-the-design-read).
 
 **When it is required:** any full-page design, any substantial section-level
 design, or any visual critique.
 
 **When it is not:** atomic UI edits, minor copy changes, small token adjustments,
-isolated implementation fixes. For smaller work, apply only the relevant
-composition checks — often one or two.
+isolated implementation fixes. For smaller work, run the short form — often three
+or four lines.
 
-Answer in **one compact block.** Short clauses, not paragraphs.
+Answer in **one compact block.** Short clauses, not paragraphs. Every line names
+something observable in the artefact or the brief.
 
 ```
-COMPOSITION PASS
-1. Dominant:      <the primary mass or governing idea, and what makes it dominant>
-2. Subordinate:   <what supports it; anything competing unintentionally>
-3. Eye path:      <the intended route, and what directs it>
-4. Tonal test:    <survives grayscale / thumbnail / squint? major masses only>
-5. Negative space:<actively shaped, or leftover? name the shapes>
-6. Edges/forces:  <directional forces, crops, overlaps, tangencies — helping?>
-7. Tension/rest:  <where the tension is, and what counterweights or releases it>
-8. Resolution:    <does the section resolve, transition, stay open — or just stop?>
-9. Responsive:    <what is re-established at each breakpoint to keep the idea>
+COMPOSITION READ
+1.  Context:       <business, content, cultural, technical and user conditions>
+2.  Artistic image:<the world / state / character the composition must construct>
+3.  Format forces: <ratio, edge pressure, fold, scroll-as-sequence, safe areas>
+4.  Major masses:  <3–7 masses, named without components>
+5.  Centres:       <semantic / optical / geometric / action — which governs, how made>
+6.  Dominance:     <dominant, subordinate, support, bridge, counterweight>
+7.  Balance:       <centre of gravity; stable, intentionally unstable, or drifting>
+8.  Direction:     <major vectors, convergences, oppositions, where the eye exits>
+9.  Rhythm:        <meter, variation, pause, buildup, culmination, release>
+10. Negative space:<the shapes of the empty fields, and what they do>
+11. Tension:       <where, what causes it, what contains it — or that it stays open>
+12. Spatial depth: <foreground / middle / background, overlap, surface logic>
+13. Edges:         <crops, frame contact, continuation, edge pressure>
+14. Unity:         <what makes this one work rather than several>
+15. Typography:    <text as mass, texture and direction — not as content>
+16. Imagery:       <the images' internal forces, and how the page answers them>
+17. Responsive:    <what collapses when the format changes>
+18. Functional:    <task, means, navigation, interaction, accessibility conditions>
+19. Diagnosis:     <the single most important opportunity or failure>
 ```
 
-**The pass must reveal reasoning and stay concise.** It is a thinking tool, not
+**Short form** — section-level work and quick critique: lines 2, 4, 5, 6, 8, 9,
+10, 17, 19.
+
+**The Read must reveal reasoning and stay concise.** It is a thinking tool, not
 ceremonial documentation. If a line would be filler ("balanced and clean"), the
 answer is missing — say what actually creates the balance, or say the composition
-doesn't have it yet and fix it.
+does not have it yet.
 
-For a critique, the same nine questions run against the existing design, and each
-answer names the evidence in the artefact rather than a general impression.
+Banned in a Read: *premium, clean, bold, elegant, modern, luxury, dynamic,
+minimal* — unsupported adjectives standing where an observation belongs. Not
+*"a bold premium composition with strong hierarchy"* but *"a horizontally
+compressed opening mass anchors the upper-left field while a large low-detail
+image carries force toward the right edge; a deep lower interval delays the next
+group and releases the dense opening."*
+
+For a critique, the same lines run against the existing design, and each answer
+names evidence in the artefact rather than a general impression.
+
+## COMPOSITION PLAN
+
+After the Read, and **before** any grid, column count, section template,
+component, container, card, spacing value or breakpoint is named:
+
+```
+COMPOSITION PLAN
+- mass scheme            - negative-space strategy
+- primary centre         - tension and counterweight mechanism
+- hierarchy mechanism    - image ↔ typography relationship
+- centre of gravity      - sectional development, culmination, release
+- static or dynamic      - edge and cropping strategy
+- eye path               - responsive recomposition, per format
+- density distribution   - functional realisation (task, means, states)
+- rhythm and intervals   - dialect if any · unresolved dependencies · validation criteria
+```
+
+Only then: grid, columns, sections, components, containers, cards, spacing
+values, breakpoints, implementation patterns.
+
+---
+
+## Reference routing
+
+`SKILL.md` is the law and the procedure. The academic method behind each stage
+lives in `references/`. **Do not load them all.** Read what the task needs:
+
+| Task | Read |
+|---|---|
+| Constructing a new page | [academic-foundations](references/academic-foundations.md), [format-and-major-masses](references/format-and-major-masses.md), [compositional-center-and-hierarchy](references/compositional-center-and-hierarchy.md), [rhythm-interval-and-pause](references/rhythm-interval-and-pause.md), [responsive-recomposition](references/responsive-recomposition.md) |
+| Diagnosing an existing page | [diagnosis](references/diagnosis.md), [optical-balance](references/optical-balance.md), [negative-space-and-tension](references/negative-space-and-tension.md), [unity-and-plastic-connection](references/unity-and-plastic-connection.md) |
+| Image-led hero | [format-and-major-masses](references/format-and-major-masses.md), [direction-and-movement](references/direction-and-movement.md), [typography-and-imagery](references/typography-and-imagery.md), [space-depth-and-edges](references/space-depth-and-edges.md) |
+| Long scrolling homepage | [rhythm-interval-and-pause](references/rhythm-interval-and-pause.md), [unity-and-plastic-connection](references/unity-and-plastic-connection.md), [responsive-recomposition](references/responsive-recomposition.md) |
+| Mobile adaptation | [responsive-recomposition](references/responsive-recomposition.md), [format-and-major-masses](references/format-and-major-masses.md), [compositional-center-and-hierarchy](references/compositional-center-and-hierarchy.md) |
+| Dense functional interface | [compositional-center-and-hierarchy](references/compositional-center-and-hierarchy.md), [optical-balance](references/optical-balance.md), [space-depth-and-edges](references/space-depth-and-edges.md), [diagnosis](references/diagnosis.md) |
+| Auction / collector work | the universal references above **plus** [dialects/auction-editorial](references/dialects/auction-editorial.md) |
+| Learning to see it | [academic-studies](references/academic-studies.md) |
+
+Adjacent skills own their own depth and are not duplicated here:
+[colour](../color-taste/SKILL.md) owns chromatic relationships (composition owns
+where the colour masses sit and what they weigh), [typography](../typography-taste/SKILL.md)
+owns setting (composition owns type as mass, texture and direction),
+[motion](../motion-taste/SKILL.md) owns timing and easing (composition owns what
+must move, stay stable, or culminate), [spacing](../spacing-taste/SKILL.md) owns
+the token scale (composition owns which interval relationship you are choosing),
+and [dimensionality](../dimensionality/SKILL.md) owns constructed depth.
 
 ---
 
 ## DIALECT
 
 *auction-editorial — tendencies, not fixed formulas.*
+
+The dialect's compositional preferences, risks and yields are collected in
+[references/dialects/auction-editorial.md](references/dialects/auction-editorial.md),
+which defers to [dialects/auction-editorial.md](../../dialects/auction-editorial.md)
+as the single source of truth for the dialect itself.
 
 ### D1 — Composed asymmetry with a stable optical counterweight
 
@@ -441,17 +614,20 @@ conclude*, not steps to execute.
 - the brief calls for symmetry, modularity, playfulness, utility, or another
   compositional system.
 
-When any of these applies, the **invariants C1–C12 still bind.** A symmetrical,
-modular, dense, or playful composition still needs a dominant, a directed eye
-path, active negative space, optical balance, and resolution. Yielding changes the
-compositional *system*, never the requirement that the relationships be composed.
+When any of these applies, the **invariants C1–C16 still bind.** A symmetrical,
+modular, dense, or playful composition still needs a mass structure, a dominant,
+a decided centre, a directed eye path, active negative space, optical balance,
+and resolution. Yielding changes the compositional *system*, never the
+requirement that the relationships be composed.
 
 ---
 
 ## Checklist
 
 **Invariant — every full page or substantial section**
+- [ ] The page is describable as 3–7 masses with no component named (C15).
 - [ ] A dominant exists, and you can say what makes it dominant.
+- [ ] The governing centre is named — semantic, optical, geometric or action (C16).
 - [ ] Every element strengthens, frames, counterbalances, or clarifies the dominant.
 - [ ] Major hierarchy survives grayscale, thumbnail, and squint.
 - [ ] Negative space has named shapes; figure-ground is legible.
@@ -460,14 +636,14 @@ compositional *system*, never the requirement that the relationships be composed
 - [ ] Rhythm has a predictable pattern and felt departures.
 - [ ] Mass relationships chosen as ratios, not as conventional component sizes.
 - [ ] Edges committed or cleared — no near-alignments, no accidental tangencies.
-- [ ] Tension has counterweight; the page is neither uniformly tense nor inert.
+- [ ] Tension has counterweight, or is deliberately left open and said to be.
 - [ ] Every section resolves, transitions, or stays open on purpose.
 - [ ] Each breakpoint re-establishes the governing idea, not just the content.
 - [ ] The dominant is the SUBJECT, not the device presenting it (C13).
 - [ ] The task is named in plain words, and every means serving it survives (C14).
 
 **Dialect — when auction-editorial is active**
-- [ ] Asymmetry, if used, has a stable counterweight.
+- [ ] Asymmetry, if used, has a stable counterweight — and it survives mobile.
 - [ ] Detail concentrated against quiet fields.
 - [ ] Tension and rest alternate at a felt pace.
 - [ ] Mass slightly above centre; deeper field below; sections exhale downward.

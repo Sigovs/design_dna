@@ -1257,6 +1257,71 @@ console.log('\nremove photos');
   await rc.close();
 }
 
+/* ── fast-forward retry ───────────────────────────────────────────────────
+   Reported as "Upload failed: 422 Update is not a fast forward. Nothing was
+   saved." The ref moves between reading it and updating it — the capture Action
+   commits shots, another device saves — and an upload makes that window wide.
+   The retry must also RE-MERGE: rebasing a stale sites.json onto a newer tree
+   would clobber whatever arrived, which is why content is a callback. */
+console.log('\n422 not-a-fast-forward retry');
+{
+  const fc = await browser.newContext();
+  await fc.addInitScript(() => localStorage.setItem('design-dna:vault:gh-token', 'github_pat_smoke'));
+  let refReads = 0, treeBuilds = 0, patches = 0, sitesRebuilds = 0, ok = false;
+  await fc.route('https://api.github.com/**', async (route) => {
+    const url = route.request().url(), method = route.request().method();
+    const json = (x, s = 200) => route.fulfill({ status: s, contentType: 'application/json', body: JSON.stringify(x) });
+    if (/\/commits\?path=/.test(url)) return json([]);
+    if (/\/contents\/vault\/sites\.json/.test(url) && method === 'GET') {
+      return json({ sha: `s${refReads}`, content: Buffer.from(readFileSync(join(VAULT, 'sites.json'), 'utf8')).toString('base64') });
+    }
+    if (/\/git\/ref\/heads\//.test(url) && method === 'GET') { refReads += 1; return json({ object: { sha: `head${refReads}` } }); }
+    if (/\/git\/commits\/head\d+$/.test(url)) return json({ tree: { sha: `tree${refReads}` } });
+    if (/\/git\/blobs$/.test(url) && method === 'POST') return json({ sha: 'blob1' });
+    if (/\/git\/trees$/.test(url) && method === 'POST') {
+      treeBuilds += 1;
+      const body = JSON.parse(route.request().postData() ?? '{}');
+      if ((body.tree ?? []).some((x) => x.path === 'vault/sites.json')) sitesRebuilds += 1;
+      return json({ sha: `nt${treeBuilds}` });
+    }
+    if (/\/git\/commits$/.test(url) && method === 'POST') return json({ sha: `commit${treeBuilds}` });
+    if (/\/git\/refs\/heads\//.test(url) && method === 'PATCH') {
+      patches += 1;
+      if (patches < 3) return json({ message: 'Update is not a fast forward' }, 422);   // branch moved twice
+      ok = true;
+      return json({ ok: true });
+    }
+    return json({});
+  });
+
+  const fp = await fc.newPage();
+  const fErrs = [];
+  fp.on('pageerror', (e) => fErrs.push(String(e.message)));
+  await fp.goto(URL_BASE, { waitUntil: 'domcontentloaded' });
+  await fp.waitForSelector('.card');
+  await fp.waitForTimeout(1000);
+  await fp.locator('.card h2').first().click();
+  await fp.waitForTimeout(900);
+
+  if (await fp.locator('#remove-photos').count()) {
+    await fp.locator('#remove-photos').click();
+    await fp.waitForTimeout(250);
+    await fp.locator('#remove-photos-confirm .btn--danger').click();
+    await fp.waitForTimeout(2500);
+  }
+
+  check('a moved branch is retried rather than surfaced as 422',
+    ok && patches === 3, `${patches} PATCH attempts, succeeded: ${ok}`);
+  check('each attempt rebuilds on the new head', refReads === 3 && treeBuilds === 3,
+    `${refReads} ref reads, ${treeBuilds} tree builds`);
+  check('each attempt re-merges sites.json rather than reusing a stale copy',
+    sitesRebuilds === 3, `${sitesRebuilds} rebuilds`);
+  check('the user sees success, not the 422',
+    /Removed \d+ image/.test((await fp.locator('#toast').textContent().catch(() => '')) ?? ''));
+  check('no page errors during the retry', fErrs.length === 0, fErrs.slice(0, 2).join(' | ') || 'clean');
+  await fc.close();
+}
+
 console.log('\nnote clamp — 1500+ char mixed-script note');
 {
   const LONG = (

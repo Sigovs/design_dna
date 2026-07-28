@@ -623,7 +623,8 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .extra-state--failed { border-bottom-color: color-mix(in oklab, var(--danger) 75%, var(--bg)); }
 .extra-cap { margin-top: var(--space-3); display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
 .extra-label { color: var(--ink-50); cursor: pointer; }
-.extra-label--empty { color: var(--ink-30); font-style: italic; text-transform: none; letter-spacing: .04em; }
+/* Functional text: it is the control that opens the label editor (color-taste I1). */
+.extra-label--empty { color: var(--ink-50); font-style: italic; text-transform: none; letter-spacing: .04em; }
 .extra-label-editor { flex: 1 1 100%; }
 .extra-label-editor[hidden] { display: none; }
 .extra-label-editor input {
@@ -2246,7 +2247,7 @@ async function removePhotos(entry) {
     Object.assign(entry, cleared);
     const commit = await commitTree(cfg, {
       message: `vault: remove photos from ${entry.id}`,
-      texts: [{ path: cfg.path, content: await mergedSitesContent(cfg, { [entry.id]: cleared }) }],
+      texts: [{ path: cfg.path, content: () => mergedSitesContent(cfg, { [entry.id]: cleared }) }],
       deletions: [...new Set(files.map((f) => `vault/${f}`))],
     });
     dirty = false;
@@ -2283,7 +2284,7 @@ async function removeExtra(entry, index) {
   try {
     const commit = await commitTree(cfg, {
       message: `vault: remove extra from ${entry.id}`,
-      texts: [{ path: cfg.path, content: await mergedSitesContent(cfg) }],
+      texts: [{ path: cfg.path, content: () => mergedSitesContent(cfg) }],
       deletions: extra.file ? [`vault/${extra.file}`] : [],
     });
     entries = all.map(normalise);
@@ -2826,7 +2827,8 @@ async function promoteToVocab(cat, tag, entry) {
   }
   const cfg = repoConfig();
   // Read both files fresh: never write memory over someone else's newer commit.
-  const sitesContent = await mergedSitesContent(cfg);
+  // Recomputed per attempt by commitTree, so a retry re-merges against the new head.
+  const sitesContent = () => mergedSitesContent(cfg);
   const next = await freshVocab(cfg);
   if (!next.categories?.[cat]) { toast(`Category ${cat} is no longer in the vocabulary.`, 'bad'); return; }
   if (!next.categories[cat].tags.includes(tag)) next.categories[cat].tags.push(tag);
@@ -3285,40 +3287,61 @@ function openTokenPanel() {
 /* One commit, any mix of text files, binary files, and deletions. The Contents
    API can only touch one path per commit, so anything that changes sites.json
    *and* images together has to go through the Git Data API. */
-async function commitTree(cfg, { message, texts = [], binaries = [], deletions = [] }) {
-  const ref = await gh(`/repos/${cfg.owner}/${cfg.repo}/git/ref/heads/${encodeURIComponent(cfg.branch)}`);
-  const parent = ref.object.sha;
-  const head = await gh(`/repos/${cfg.owner}/${cfg.repo}/git/commits/${parent}`);
+/* The ref can move between reading it and updating it — the capture Action commits
+   shots, another device saves — and GitHub then rejects the update with
+   422 "Update is not a fast forward". An upload makes that window wide: downscaling
+   and pushing blobs takes seconds. So rebuild on the new head and try again.
 
-  const tree = [];
-  for (const { path, content } of texts) {
-    tree.push({ path, mode: '100644', type: 'blob', content });
-  }
-  // Binary content cannot go inline in a tree — it needs a base64 blob first.
+   `texts` content may be a function, and it is re-invoked on every attempt: the
+   retry must re-merge against the NEW remote state, or it would rebase a stale
+   sites.json onto a newer tree and quietly clobber whatever arrived. */
+async function commitTree(cfg, { message, texts = [], binaries = [], deletions = [] }, attempts = 3) {
+  // Blobs are content-addressed, so they are created once and reused across attempts.
+  const blobs = [];
   for (const { path, base64 } of binaries) {
     const blob = await gh(`/repos/${cfg.owner}/${cfg.repo}/git/blobs`, {
       method: 'POST',
       body: JSON.stringify({ content: base64, encoding: 'base64' }),
     });
-    tree.push({ path, mode: '100644', type: 'blob', sha: blob.sha });
-  }
-  for (const path of deletions) {
-    tree.push({ path, mode: '100644', type: 'blob', sha: null });
+    blobs.push({ path, sha: blob.sha });
   }
 
-  const newTree = await gh(`/repos/${cfg.owner}/${cfg.repo}/git/trees`, {
-    method: 'POST',
-    body: JSON.stringify({ base_tree: head.tree.sha, tree }),
-  });
-  const commit = await gh(`/repos/${cfg.owner}/${cfg.repo}/git/commits`, {
-    method: 'POST',
-    body: JSON.stringify({ message, tree: newTree.sha, parents: [parent] }),
-  });
-  await gh(`/repos/${cfg.owner}/${cfg.repo}/git/refs/heads/${encodeURIComponent(cfg.branch)}`, {
-    method: 'PATCH',
-    body: JSON.stringify({ sha: commit.sha }),
-  });
-  return commit;
+  for (let attempt = 1; ; attempt++) {
+    const ref = await gh(`/repos/${cfg.owner}/${cfg.repo}/git/ref/heads/${encodeURIComponent(cfg.branch)}`);
+    const parent = ref.object.sha;
+    const head = await gh(`/repos/${cfg.owner}/${cfg.repo}/git/commits/${parent}`);
+
+    const tree = [];
+    for (const { path, content } of texts) {
+      tree.push({
+        path, mode: '100644', type: 'blob',
+        content: typeof content === 'function' ? await content() : content,
+      });
+    }
+    for (const { path, sha } of blobs) tree.push({ path, mode: '100644', type: 'blob', sha });
+    for (const path of deletions) tree.push({ path, mode: '100644', type: 'blob', sha: null });
+
+    const newTree = await gh(`/repos/${cfg.owner}/${cfg.repo}/git/trees`, {
+      method: 'POST',
+      body: JSON.stringify({ base_tree: head.tree.sha, tree }),
+    });
+    const commit = await gh(`/repos/${cfg.owner}/${cfg.repo}/git/commits`, {
+      method: 'POST',
+      body: JSON.stringify({ message, tree: newTree.sha, parents: [parent] }),
+    });
+
+    try {
+      await gh(`/repos/${cfg.owner}/${cfg.repo}/git/refs/heads/${encodeURIComponent(cfg.branch)}`, {
+        method: 'PATCH',
+        body: JSON.stringify({ sha: commit.sha }),
+      });
+      return commit;
+    } catch (err) {
+      const moved = err.status === 422 || err.status === 409;
+      if (!moved || attempt >= attempts) throw err;
+      status(`the branch moved while saving — rebuilding on the new head (attempt ${attempt + 1})…`);
+    }
+  }
 }
 
 async function removeViaGitApi(cfg, entry, remaining) {
@@ -3327,7 +3350,7 @@ async function removeViaGitApi(cfg, entry, remaining) {
   for (const x of entry.extras ?? []) if (x.file) deletions.push(`vault/${x.file}`);
   return commitTree(cfg, {
     message: `vault: remove ${entry.id}`,
-    texts: [{ path: cfg.path, content: await mergedSitesContent(cfg) }],
+    texts: [{ path: cfg.path, content: () => mergedSitesContent(cfg) }],
     deletions: [...new Set(deletions)],
   });
 }
@@ -3421,7 +3444,7 @@ async function uploadExtras(entry, files, { asHero = false } = {}) {
   const remaining = entries.map((e) => (e.id === entry.id ? entry : e));
   const commit = await commitTree(cfg, {
     message: `vault: add ${saved} image${saved === 1 ? '' : 's'} to ${entry.id}`,
-    texts: [{ path: cfg.path, content: await mergedSitesContent(cfg) }],
+    texts: [{ path: cfg.path, content: () => mergedSitesContent(cfg) }],
     binaries,
   });
   entries = remaining.map(normalise);

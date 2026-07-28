@@ -1,6 +1,6 @@
 ---
 name: anti-patterns
-description: Failure modes in two tiers — INVARIANT universal failures (weak hierarchy, inaccessible contrast, gratuitous motion, arbitrary spacing, inconsistent tokens, horizontal page scroll, content parity across viewports, controlled irregularity that stops being legible or intentional, and depth cues incoherent with the spatial model they imply) and DIALECT trope bans (AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, underlined nav, repeated primary CTAs, imagery hidden on mobile, template anonymity — each with a yields-when). Use as the final gate before shipping any visual work, and whenever choosing between a container and open air.
+description: Failure modes in two tiers — INVARIANT universal failures (weak hierarchy, inaccessible contrast, gratuitous motion, arbitrary spacing, inconsistent tokens, horizontal page scroll, content parity across viewports, controlled irregularity that stops being legible or intentional, and depth cues incoherent with the spatial model they imply) and DIALECT trope bans (AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, underlined nav, repeated primary CTAs, imagery hidden on mobile, directions named after libraries, the default Spline aesthetic, ambient motion behind body copy, template anonymity — each with a yields-when). Use as the final gate before shipping any visual work, and whenever choosing between a container and open air.
 ---
 
 # Anti-Patterns
@@ -310,7 +310,60 @@ performance on mobile connections, or the small-viewport composition is stronger
 without it. **Invariant floor:** content parity (U7) — anything carrying
 information gets re-composed, never dropped.
 
-### D8 — Template-looking anything
+### D8 — Naming a design direction after a library
+
+**Avoided:** "a Three.js site", "something Spline-y", "a GSAP page", "a Framer look".
+A tool is an implementation note and belongs in the report beside the build — never
+in the Design Read.
+
+*Why:* naming the direction after the library inverts the order of decisions. The
+role, the composition, and the dialect decide what the work needs; the tool is
+chosen last, to serve that. Once a library is the brief, every later decision gets
+made to justify it, and the output advertises its toolchain — the same anonymity
+failure as D11 wearing a different badge. See
+[dimensionality → tool notes](../dimensionality/SKILL.md#tool-notes-non-normative).
+
+`yields when:` the deliverable genuinely *is* about the technology — a library's own
+documentation, a demo, a technical showcase, a conference artefact — where the tool
+is the subject rather than the means. Naming it then is accurate, not lazy.
+
+### D9 — The default Spline aesthetic
+
+**Avoided as an unmodified look:** soft gradient blobs, glossy plastic material,
+floating primitives at rest in an empty field. Recognisable at a glance because it
+is what the tool produces before anyone makes a decision.
+
+*Why:* it is the 3D equivalent of the banned palettes in D1 — not ugly,
+*exhausted* — and it reads as "the default was accepted". The house look is what the
+tool gives away free; overriding it with real material reference, considered light,
+and a form that has a reason to exist is where the design begins. Related:
+[dimensionality D6](../dimensionality/SKILL.md#invariant) (one depth idea per view)
+and auction-editorial's preference for material and light over geometry.
+
+`yields when:` the soft-gradient register is genuinely the brand's own and predates
+the tool, or the piece is deliberately and legibly referencing that idiom. Then
+execute it with a structural difference — as with any trope, the exit is a real idea,
+not permission.
+
+### D10 — Ambient motion behind body copy
+
+**Avoided:** any perpetual loop — particles, drifting gradients, a rotating object,
+a looping video — running behind, beside, or within a block of text meant to be read.
+
+*Why:* peripheral movement is involuntarily attention-capturing and cannot be
+ignored on request, so it makes sustained reading measurably harder. This is the
+taste-tier statement of the matter;
+[dimensionality D9](../dimensionality/SKILL.md#invariant) is the **invariant** that
+forbids it outright inside reading zones. This entry is the dialect's broader
+dislike of ambient motion competing with content anywhere.
+
+`yields when:` the motion *is* what the text is describing and stillness would
+misrepresent it — a motion showreel, a physics explanation, a live data field.
+Then keep it out of the measure or give the reader a stop control. **Invariant
+floor:** dimensionality D9 still binds — nothing loops perpetually inside a
+reading zone.
+
+### D11 — Template-looking anything
 
 **Avoided:** output that could be swapped into an unrelated product without anyone
 noticing. Symptoms: every section the same height and rhythm; icons for concepts
@@ -355,5 +408,7 @@ structure.
 - [ ] No underlined nav; inline prose links *are* underlined.
 - [ ] One primary CTA per view.
 - [ ] Imagery present and re-composed on mobile.
+- [ ] No direction named after a library; no unmodified default-tool aesthetic.
+- [ ] No ambient motion competing with body copy.
 - [ ] One structural decision specific to this content, nameable in one line.
 - [ ] Every yield named in the report with its condition.

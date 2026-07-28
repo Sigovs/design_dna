@@ -74,11 +74,12 @@ Stored dialects live in `dialects/`.
 
 ## 2. The Design Read
 
-Before generating anything visual, output exactly two lines:
+Before generating anything visual, output exactly three lines:
 
 ```
 Reading this as <deliverable> for <audience>, leaning <aesthetic family>.
 Dialect: <stored dialect | partial: X + brief-derived | brief-derived / no stored dialect>.
+Dimensionality: <MAIN | SUPPORT | ABSENT> — <why, in one clause>.
 ```
 
 Examples:
@@ -86,12 +87,15 @@ Examples:
 ```
 Reading this as a landing hero for first-time enterprise buyers, leaning editorial-technical.
 Dialect: auction-editorial.
+Dimensionality: SUPPORT — one lit object carries emphasis; the page stands without it.
 
 Reading this as an operations console for warehouse staff on shared terminals, leaning swiss-utility.
 Dialect: brief-derived / no stored dialect — density and glanceability outrank restraint here.
+Dimensionality: ABSENT — depth is carried by tone and overlap; a scene would cost the scan.
 
 Reading this as a festival lineup page for an 18–25 audience, leaning expressive-poster.
 Dialect: partial: auction-editorial principles (metadata as composition) + brief-derived colour and motion.
+Dimensionality: MAIN — the staged scene is the composition; D1–D10 bind at full weight.
 ```
 
 **The dialect line is a required choice, and it has three legal answers:**
@@ -109,6 +113,18 @@ brief. When the brief is thin, derive the dialect from what you *do* know
 (audience, function, sector, density needs) and say `brief-derived`. If you then
 lean on auction-editorial anyway, you must be able to name the compatibility
 you found; "nothing else was specified" is not one.
+
+**The dimensionality line is also a required choice**, declared here — after the
+dialect and **before** the composition pass, because the role decides what the
+composition is made of. Its three answers and their obligations are in
+[dimensionality](skills/dimensionality/SKILL.md#role-ladder):
+
+- **MAIN** — depth or motion *is* the composition;
+- **SUPPORT** — it reinforces a composition that stands without it;
+- **ABSENT** — deliberately unused, and defensible: say what carries depth instead.
+
+**Promoting SUPPORT → MAIN mid-project requires re-running this Design Read**, since
+it changes the dominant, the eye path, and usually the dialect. Demotion never does.
 
 ### 2a. The Academic Composition Pass
 
@@ -197,6 +213,7 @@ its own `yields when:`.
 | Skill | Invariant core | Dialect position |
 |---|---|---|
 | [academic-composition](skills/academic-composition/SKILL.md) | **Cross-dialect.** Dominant/subordinate/support, unity, tonal structure before colour, figure-ground, optical balance, directed eye path, rhythm, mass proportion, intentional edges, tension with counterweight, resolution, responsive recomposition. | Composed asymmetry with counterweight, detail against quiet fields, mass above centre, downward exhale, one measured disruption. |
+| [dimensionality](skills/dimensionality/SKILL.md) | **Role-gated.** Content survives removal at SUPPORT; no scene gates the first read; declared frame/payload budget; authored reduced-motion fallback; AA per frame; one depth idea per view; input honesty; choreography has a subject; no ambient motion in reading zones; mobile authored separately. | auction-editorial defaults to ABSENT/SUPPORT — material and light over geometry, patient camera. immersive-authored-world permits MAIN. |
 | [spacing-taste](skills/spacing-taste/SKILL.md) | Spatial hierarchy is deliberate; spacing is tokenised; internal gaps < external gaps. | Air-first — generous space, bottom-heavy composition, whitespace as a status signal. |
 | [typography-taste](skills/typography-taste/SKILL.md) | Hierarchy is legible; roles are bounded; type is optically corrected at every size. | Editorial contrast — expressive display + quiet grotesque + mono, italic signature word, spec plates. |
 | [color-taste](skills/color-taste/SKILL.md) | AA verified every change; never meaning by hue alone; legibility fixed at the background layer. | Chromatic restraint — neutral dark base, smoky desaturated accents used as a setting. |
@@ -210,9 +227,11 @@ invariants bind whatever you selected in the dialect line, and its pass runs bef
 any surface decision (§2a).
 
 **Conflict order.** Invariants beat everything. Inside the dialect tier:
-anti-patterns → composition → spacing → typography → color → motion. Composition
-sits above spacing because the shape of the masses and the eye path decide what the
-spacing is *for*; motion is last because motion is seasoning.
+anti-patterns → composition → dimensionality → spacing → typography → color →
+motion. Composition sits above spacing because the shape of the masses and the eye
+path decide what the spacing is *for*; dimensionality sits just under it because the
+declared role decides what the composition is made of; motion is last because motion
+is seasoning.
 
 ---
 

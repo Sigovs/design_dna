@@ -37,3 +37,15 @@ autonomy rules above — change one, change both.
 `## DIALECT`. A new dialect rule without a `yields when:` is incomplete. Never
 move a rule between tiers as a side effect of another edit — a tier change is its
 own decision and needs its own argument in the commit.
+
+**Declarations before techniques.** The Design Read outputs three lines —
+deliverable/audience/family, **dialect**, and **dimensionality role**
+(MAIN / SUPPORT / ABSENT). The role is declared *before* any technique is chosen and
+*before* the composition pass, because it decides what the composition is made of.
+Promoting SUPPORT → MAIN mid-project requires re-running the Design Read; demotion
+never does.
+
+**A tool is never a direction.** Three.js, Spline, GSAP and their kin are
+implementation notes, recorded beside the build in the report. Naming a direction
+after a library is an anti-pattern (`anti-patterns` D8), and the tool notes in
+`skills/dimensionality` are explicitly non-normative — never cite them as a reason.

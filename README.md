@@ -51,6 +51,7 @@ design_dna/
 ├── TASTE.md                        # the manifest — agents read this first
 ├── skills/                         # each split INVARIANT / DIALECT
 │   ├── academic-composition/SKILL.md # cross-dialect · I: dominant/subordinate, tone, figure-ground, eye path, resolution
+│   ├── dimensionality/SKILL.md     # role-gated · I: removability, first read, budget, per-frame AA, one depth idea
 │   ├── spacing-taste/SKILL.md      # I: hierarchy, tokens, internal<external · D: air-first, bottom-heavy
 │   ├── typography-taste/SKILL.md   # I: legible rank, optical correction · D: didone + grotesque + mono, spec plates
 │   ├── color-taste/SKILL.md        # I: AA, no hue-only meaning, scrims · D: neutral dark base, smoky accents
@@ -81,7 +82,7 @@ it's inconvenient — and every dialect rule additionally carries a `yields when
 because a rule with no stated exit gets broken silently instead.
 
 Invariants outrank everything. Inside the dialect tier the conflict order is
-anti-patterns → composition → spacing → typography → color → motion.
+anti-patterns → composition → dimensionality → spacing → typography → color → motion.
 
 **The Critique Panel** ([TASTE.md §2b](TASTE.md#2b-the-critique-panel)) runs twice —
 after a Design Read, to critique the *direction*, and after a build, to critique the
@@ -236,6 +237,13 @@ while it is honest.
    re-established at every breakpoint. Its **pass runs after the dialect
    declaration and before any surface styling**, and it judges relationships, not
    compliance with a preferred look.
+   **Constructed depth is role-gated before it is anything else** — every read
+   declares MAIN, SUPPORT or ABSENT, and then ten invariants bind: content survives
+   removal at SUPPORT, no scene gates the first read, the frame and payload budget
+   is declared up front, reduced motion gets an *authored* still, AA holds per
+   frame over moving layers, one depth idea per view, apparent affordances are
+   real, every timeline has a subject, nothing loops in a reading zone, and mobile
+   is authored separately.
 3. **Dialects are chosen, never assumed — and the house one is auction-editorial.**
    A second, **provisional** dialect exists
    ([immersive-authored-world](dialects/immersive-authored-world.md): the page as a

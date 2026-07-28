@@ -1182,6 +1182,81 @@ console.log('\nthree-block inline save matrix (note / works / doesn\'t)');
   await dctx.close();
 }
 
+/* ── remove photos ────────────────────────────────────────────────────────
+   The recovery path from a bad capture. The subtle part is that mergeOnto
+   deliberately refuses to let a local null erase a remote shot path — so a
+   deliberate deletion has to survive the merge via an explicit override. If that
+   override regressed, the removal would appear to work and be silently undone. */
+console.log('\nremove photos');
+{
+  const rc = await browser.newContext();
+  await rc.addInitScript(() => localStorage.setItem('design-dna:vault:gh-token', 'github_pat_smoke'));
+  let deletions = null, message = null, written = null;
+  await rc.route('https://api.github.com/**', async (route) => {
+    const url = route.request().url(), method = route.request().method();
+    const json = (x) => route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(x) });
+    if (/\/commits\?path=/.test(url)) return json([]);
+    if (/\/contents\/vault\/sites\.json/.test(url) && method === 'GET') {
+      return json({ sha: 's1', content: Buffer.from(readFileSync(join(VAULT, 'sites.json'), 'utf8')).toString('base64') });
+    }
+    if (/\/git\/ref\/heads\//.test(url)) return json({ object: { sha: 'p' } });
+    if (/\/git\/commits\/p$/.test(url)) return json({ tree: { sha: 't' } });
+    if (/\/git\/trees$/.test(url) && method === 'POST') {
+      const body = JSON.parse(route.request().postData() ?? '{}');
+      deletions = (body.tree ?? []).filter((x) => x.sha === null).map((x) => x.path);
+      const s = (body.tree ?? []).find((x) => x.path === 'vault/sites.json');
+      if (s) written = JSON.parse(s.content);
+      return json({ sha: 'nt' });
+    }
+    if (/\/git\/commits$/.test(url) && method === 'POST') {
+      message = JSON.parse(route.request().postData() ?? '{}').message;
+      return json({ sha: 'c0ffee1234567' });
+    }
+    if (/\/git\/refs\/heads\//.test(url) && method === 'PATCH') return json({ ok: true });
+    return json({});
+  });
+
+  const rp = await rc.newPage();
+  await rp.goto(URL_BASE, { waitUntil: 'domcontentloaded' });
+  await rp.waitForSelector('.card');
+  await rp.waitForTimeout(1000);
+
+  // An entry that actually has shots.
+  const sites = JSON.parse(readFileSync(join(VAULT, 'sites.json'), 'utf8'));
+  const withShots = sites.find((e) => e.shots?.hero);
+  await rp.locator('.card h2', { hasText: withShots.title }).first().click();
+  await rp.waitForTimeout(900);
+  const id = (await rp.locator('#detail-id').textContent()).trim();
+
+  check('remove photos is offered when an entry has images',
+    await rp.locator('#remove-photos').isVisible());
+  await rp.locator('#remove-photos').click();
+  await rp.waitForTimeout(300);
+  check('removing photos needs a second, named confirmation',
+    (await rp.locator('#remove-photos-confirm').isVisible())
+    && /Remove \d+ image/.test(await rp.locator('#remove-photos-confirm p').textContent()));
+
+  await rp.locator('#remove-photos-confirm .btn--danger').click();
+  await rp.waitForTimeout(1600);
+
+  check('the image files are deleted in the commit',
+    Array.isArray(deletions) && deletions.length >= 1
+    && deletions.every((d) => d.startsWith(`vault/shots/${id}/`)),
+    (deletions ?? []).join(', '));
+  check('the commit message names the entry',
+    message === `vault: remove photos from ${id}`, message ?? 'none');
+
+  const e = written?.find((x) => x.id === id);
+  check('the deletion survives the merge — shots really are null',
+    e && !e.shots.full && !e.shots.hero && !e.shots.mobile,
+    JSON.stringify(e?.shots));
+  check('captureError is cleared so the Action retries',
+    e && e.captureError === null);
+  check('the card falls back to a placeholder, not a broken preview',
+    (await rp.locator('.card-shot--pending, .card-shot--failed').count()) > 0);
+  await rc.close();
+}
+
 console.log('\nnote clamp — 1500+ char mixed-script note');
 {
   const LONG = (

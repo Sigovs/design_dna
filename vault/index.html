@@ -1991,7 +1991,38 @@ function extrasBlock(entry) {
     className: 'btn', type: 'button', id: 'extras-add', textContent: '+ add photos',
   });
   head.append(addBtn);
-  wrap.append(head);
+
+  /* Removing photos is destructive, so it gets the same two-tap confirm as every
+     other destructive action here — and only appears when there is something to
+     remove. */
+  const imageCount = Object.values(entry.shots ?? {}).filter(Boolean).length
+    + (entry.extras ?? []).filter((x) => x.file).length;
+  if (imageCount) {
+    const removeBtn = el('button', {
+      className: 'btn btn--danger', type: 'button', id: 'remove-photos',
+      textContent: 'remove photos',
+    });
+    const confirm = el('div', { className: 'danger-confirm', id: 'remove-photos-confirm', hidden: true });
+    confirm.append(el('p', {},
+      el('strong', { textContent: `Remove ${imageCount} image${imageCount === 1 ? '' : 's'} from ${entry.title || entry.id}?` }),
+      document.createTextNode(' They stay in git history, and the capture Action will try again.')));
+    const yes = el('button', { className: 'btn btn--danger', type: 'button', textContent: 'yes, remove' });
+    const no = el('button', { className: 'btn', type: 'button', textContent: 'cancel' });
+    confirm.append(el('div', { className: 'danger-confirm-actions' }, yes, no));
+
+    removeBtn.addEventListener('click', () => { confirm.hidden = false; removeBtn.hidden = true; yes.focus(); });
+    no.addEventListener('click', () => { confirm.hidden = true; removeBtn.hidden = false; });
+    yes.addEventListener('click', guard('Remove photos', async () => {
+      yes.disabled = true;
+      yes.textContent = 'removing…';
+      await removePhotos(entry);
+    }));
+
+    head.append(removeBtn);
+    wrap.append(head, confirm);
+  } else {
+    wrap.append(head);
+  }
 
   /* READ-first: with no extras, the strip only repeats the shots already visible
      in the left column — 230px of duplication measured on a 2786px view. Show the
@@ -2181,6 +2212,53 @@ function extraFigure(entry, extra, index) {
   cap.append(del, confirm);
   fig.append(cap);
   return fig;
+}
+
+/* Remove every image an entry has — the three standard shots and any extras — in
+   one commit. The recovery path from a bad capture: a Cloudflare interstitial, a
+   consent wall, a redesign shot too early. Files stay in git history; clearing
+   captureError as well means the Action will simply try again on the next push. */
+async function removePhotos(entry) {
+  const files = [
+    ...Object.values(entry.shots ?? {}).filter(Boolean),
+    ...(entry.extras ?? []).map((x) => x.file).filter(Boolean),
+  ];
+  const cleared = {
+    shots: { full: null, hero: null, mobile: null },
+    extras: [],
+    captureError: null,
+  };
+
+  if (!getToken()) {
+    Object.assign(entry, cleared);
+    persist();
+    render();
+    reopenDetail(entry.id);
+    download();
+    toast(`Cleared ${files.length} image${files.length === 1 ? '' : 's'} and downloaded sites.json. `
+      + 'Replace the file and commit; the image files themselves are cleared by "npm run prune".',
+      'warn', 14000);
+    return;
+  }
+
+  const cfg = repoConfig();
+  try {
+    Object.assign(entry, cleared);
+    const commit = await commitTree(cfg, {
+      message: `vault: remove photos from ${entry.id}`,
+      texts: [{ path: cfg.path, content: await mergedSitesContent(cfg, { [entry.id]: cleared }) }],
+      deletions: [...new Set(files.map((f) => `vault/${f}`))],
+    });
+    dirty = false;
+    store.remove(LS_KEY);
+    render();
+    reopenDetail(entry.id);
+    toast(`Removed ${files.length} image${files.length === 1 ? '' : 's'} in ${commit.sha.slice(0, 7)} — `
+      + 'they stay in git history, and the capture Action will try again on the next push.', 'ok', 12000);
+  } catch (err) {
+    const { reason, hint } = explainGhError(err, cfg);
+    toast(`Could not remove the photos. ${reason} Fix: ${hint}`, 'bad', 14000);
+  }
 }
 
 async function removeExtra(entry, index) {
@@ -3013,9 +3091,18 @@ function mergeOnto(remote, local) {
    That is why works/weaknesses "sometimes" vanished after a refresh: it depended
    entirely on whether anyone else had written in between.
    Re-read, merge, then serialise. Same guarantee saveToGitHub already had. */
-async function mergedSitesContent(cfg) {
+async function mergedSitesContent(cfg, overrides = null) {
   const { entries: remote } = await fetchRemote(cfg);
   const merged = mergeOnto(remote, entries);
+  /* mergeOnto refuses to let a local null erase a remote shot path — that is the
+     backfill protection that stops a stale tab wiping Action-written shots. A
+     DELIBERATE deletion therefore has to say so explicitly, after the merge. */
+  if (overrides) {
+    for (const [id, patch] of Object.entries(overrides)) {
+      const i = merged.findIndex((e) => e.id === id);
+      if (i > -1) merged[i] = { ...merged[i], ...patch };
+    }
+  }
   entries = merged.map(normalise);
   baseline = new Map(entries.map((e) => [e.id, structuredClone(e)]));
   return serialise(merged);

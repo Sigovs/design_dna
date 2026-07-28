@@ -35,7 +35,7 @@
         "art-direction"
       ]
     },
-    "note": "Огромный RÙADH поверх split-screen hero сразу создаёт уверенный брендовый жест.\nНикакого стандартного «luxury serif». Один сдержанный grotesk — характер создают фотографии, crop и композиция.\nЧёткий ритм: 4 товара → две editorial-фотографии → 4 товара → крупный image band.\nProduct grid совершенно обычный, но alternating model / isolated product не даёт ему превратиться в Shopify-каталог.\nОчень хорошие странные still lifes: одежда на столбах, металле, песке. Это уже узнаваемый visual language.\nБелое пространство здесь действительно работает: создаёт медленный, дорогой темп.\nМинимум компонентов, контейнеров, рамок и декоративной UI-шелухи.\nОгромный wordmark в footer красиво закрывает композиционный цикл.",
+    "note": "IN — A disciplined fashion-commerce homepage built from a strict four-column product grid repeatedly interrupted by paired, full-bleed editorial imagery. Its identity comes less from interface invention than from confident image sequencing, unusual object-based styling, controlled crops, oversized branding, and generous visual silence. Alternating model photography with isolated garments gives a conventional product catalogue deliberate rhythm, while the split hero and recurring two-image compositions keep commerce connected to a coherent art-directed world. However, microtype, understated calls to action, limited product storytelling, and heavy dependence on exceptional photography prevent it from becoming a complete commerce reference.",
     "shots": {
       "full": "shots/ruadh-com/full.jpg",
       "hero": "shots/ruadh-com/hero.jpg",

@@ -122,7 +122,9 @@ button, input, textarea, select { font: inherit; color: inherit; }
 
 /* ─── masthead ─────────────────────────────────────────────────────────── */
 /* spacing D2: bottom exceeds top, ~1:1.5. This was inverted (top 64-128, bottom 48). */
-.masthead { padding-block: var(--space-6) clamp(var(--space-8), 8vw, var(--space-10)); }
+/* Bottom still exceeds top (spacing D2, ~1:2), but a tool does not need a
+   chapter break under its title: 32/115 measured as dead band above the search. */
+.masthead { padding-block: var(--space-5) var(--space-7); }
 
 .masthead .eyebrow { color: var(--ink-50); display: block; margin-bottom: var(--space-3); }
 .masthead h1 {
@@ -1853,17 +1855,18 @@ function openDetail(id, { editNote = false, showNote = false, restoreScroll = nu
   const statusCell = el('span', { className: 'status-mark label', textContent: entry.dialectStatus });
   statusCell.dataset.status = entry.dialectStatus;
   /* No url means nothing to visit — show where it came from instead. */
+  /* READ-first plate: only what a reader needs to judge the entry. Rows that
+     always say the same thing (kind is "site" on 10/10) or that only matter while
+     debugging (id) are dropped — 365px measured for six rows was metadata
+     out-massing the reasoning it sits above. */
   const rows = [
     entry.url
       ? ['url', el('a', { href: entry.url, target: '_blank', rel: 'noreferrer noopener', textContent: host(entry.url) })]
       : ['source', entry.source || '—'],
-    ...(entry.url && entry.source ? [['source', entry.source]] : []),
-    ['kind', entry.kind],
     ['added', entry.added ?? '—'],
     ['rating', `${entry.rating ?? 0} of 3`],
-    ['dialect', entry.dialects?.length ? entry.dialects.join(', ') : '—'],
     ['review', statusCell],
-    ['id', entry.id],
+    ...(entry.dialects?.length ? [['dialect', entry.dialects.join(', ')]] : []),
   ];
   rows.forEach(([k, v]) => { plate.append(el('dt', { className: 'label', textContent: k }), el('dd', {}, v)); });
   right.append(plate);
@@ -1979,7 +1982,13 @@ function extrasBlock(entry) {
   head.append(addBtn);
   wrap.append(head);
 
-  /* Strip: standard shots first, then extras in order, each with its label. */
+  /* READ-first: with no extras, the strip only repeats the shots already visible
+     in the left column — 230px of duplication measured on a 2786px view. Show the
+     strip only when it carries something the reader cannot already see; the add
+     control stays, quiet, so the capability is never hidden. */
+  const hasExtras = entry.extras.length > 0;
+  wrap.dataset.empty = hasExtras ? '0' : '1';
+
   const strip = el('div', { className: 'extras-strip', id: 'extras-strip' });
   const standard = [
     ['full', 'full page'], ['hero', 'hero'], ['mobile', 'mobile'],
@@ -1994,7 +2003,7 @@ function extrasBlock(entry) {
   if (!strip.children.length) {
     strip.append(el('p', { className: 'hint', textContent: 'No images yet.' }));
   }
-  wrap.append(strip);
+  if (hasExtras) wrap.append(strip);   // nothing new to show → nothing to render
 
   /* The three ways in. */
   const panel = el('div', { className: 'extras-panel', id: 'extras-panel', hidden: true });
@@ -3445,10 +3454,12 @@ function wire() {
      the filter set. A daily instrument should not re-litigate this every load. */
   const disclosure = $('#filter-disclosure');
   if (disclosure) {
+    /* READ-first default: collapsed at every width. Measured 83 controls standing
+       between the page and its first reference, for 10 entries — the filter block
+       is an apparatus, and reading is the daily job. Opening is one click, the
+       choice is remembered, and active filters stay visible in the summary. */
     const stored = store.get(FILTERS_OPEN_KEY);
-    disclosure.open = stored === null
-      ? matchMedia('(min-width: 40.0625rem)').matches
-      : stored === '1';
+    disclosure.open = stored === '1';
     disclosure.addEventListener('toggle', () => {
       store.set(FILTERS_OPEN_KEY, disclosure.open ? '1' : '0');
     });

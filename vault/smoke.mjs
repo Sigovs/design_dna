@@ -179,30 +179,44 @@ console.log('\nfilter wall collapsed behind one disclosure');
 
   /* CO2/CO3 model: only tags in use are rendered, so desktop stays EXPANDED and
      the disclosure applies ≤40rem only. Width-aware by design. */
-  check('desktop renders filters expanded by default',
-    await fp.locator('#filter-disclosure').evaluate((e) => e.open));
+  /* READ-first: collapsed at EVERY width now. 83 controls once stood between the
+     page and its first reference; the filter block is an apparatus and reading is
+     the daily job. */
+  check('filters are collapsed by default at every width',
+    !(await fp.locator('#filter-disclosure').evaluate((e) => e.open)));
+  check('at most a handful of controls precede the first reference',
+    (await fp.evaluate(() => {
+      const card = document.querySelector('.card');
+      return [...document.querySelectorAll('button,input,select,summary')]
+        .filter((e) => e.checkVisibility?.()
+          && e.getBoundingClientRect().top < card.getBoundingClientRect().top).length;
+    })) <= 8,
+    `${await fp.evaluate(() => {
+      const card = document.querySelector('.card');
+      return [...document.querySelectorAll('button,input,select,summary')]
+        .filter((e) => e.checkVisibility?.()
+          && e.getBoundingClientRect().top < card.getBoundingClientRect().top).length;
+    })} controls (was 83)`);
 
   /* A default is not a permanent state. Desktop once had pointer-events: none on
      the summary, so a 6-row filter block opened and could never be closed. */
   await fp.locator('#filter-disclosure > summary').click();
   await fp.waitForTimeout(300);
-  check('the summary closes the panel after it is open',
-    !(await fp.locator('#filter-disclosure').evaluate((e) => e.open)));
+  check('the summary opens the panel',
+    await fp.locator('#filter-disclosure').evaluate((e) => e.open));
   await fp.locator('#filter-disclosure > summary').click();
   await fp.waitForTimeout(300);
-  check('the summary reopens it — a real toggle, not one-way',
-    await fp.locator('#filter-disclosure').evaluate((e) => e.open));
+  check('the summary closes it again — a real toggle, not one-way',
+    !(await fp.locator('#filter-disclosure').evaluate((e) => e.open)));
+  await fp.locator('#filter-disclosure > summary').click();   // leave open for the checks below
+  await fp.waitForTimeout(300);
 
   // The choice is remembered rather than re-litigated on every load.
-  await fp.locator('#filter-disclosure > summary').click();   // close
-  await fp.waitForTimeout(300);
   await fp.reload({ waitUntil: 'domcontentloaded' });
   await fp.waitForSelector('.card');
   await fp.waitForTimeout(800);
-  check('the open/closed choice survives a reload',
-    !(await fp.locator('#filter-disclosure').evaluate((e) => e.open)));
-  await fp.locator('#filter-disclosure > summary').click();   // back to open
-  await fp.waitForTimeout(300);
+  check('an opened panel survives a reload',
+    await fp.locator('#filter-disclosure').evaluate((e) => e.open));
   check('search stays visible outside the disclosure',
     await fp.locator('#search').isVisible());
   check('the summary reads "filters" when nothing is active',
@@ -607,7 +621,11 @@ console.log('\ndetail');
 await page.locator('.card').first().click();
 await page.waitForTimeout(700);
 check('detail opens', await page.locator('#detail').isVisible());
-check('spec plate has rows', (await page.locator('#detail .plate dt').count()) >= 6);
+/* READ-first plate: rows a reader needs to judge the entry. 'kind' (site on
+   10/10) and 'id' were dropped — metadata was out-massing the reasoning below it. */
+check('spec plate carries the reader-facing rows',
+  (await page.locator('#detail .plate dt').count()) >= 4,
+  (await page.locator('#detail .plate dt').allTextContents()).join(', '));
 await openApparatus(page);
 check('plate shows dialect + review rows',
   (await page.locator('#detail .plate dt').allTextContents())
@@ -619,7 +637,11 @@ check('edit form has a dialects multi-pick',
 check('edit form has tag checkboxes', (await page.locator('#detail .check input[type=checkbox]').count()) > 0);
 check('edit form has a composition tag group',
   (await page.locator('#detail [data-cat="composition"] input[type=checkbox]').count()) >= 9);
-check('extras strip renders the standard shots', (await page.locator('#extras-strip .extra').count()) >= 1);
+/* With no extras the strip only repeated shots already on screen — 230px of
+   duplication. It renders when it carries something new; the add control stays. */
+check('extras strip is absent when there is nothing extra to show',
+  (await page.locator('#extras-strip').count()) === 0
+  || (await page.locator('#extras-strip .extra').count()) >= 1);
 check('"+ add photos" exists and is enabled without a token',
   (await page.locator('#extras-add').isVisible()) && (await page.locator('#extras-add').isEnabled()));
 check('"+ add photos" opens the panel with all three paths', await (async () => {
@@ -1390,11 +1412,11 @@ for (const profile of MOBILE_MATRIX) {
   check(`${profile.name}: detail content is not wider than the viewport`,
     addBox && addBox.headRight <= addBox.vw + 1 && addBox.h2Right <= addBox.vw + 1,
     addBox ? `head=${Math.round(addBox.headRight)} h2=${Math.round(addBox.h2Right)} vw=${addBox.vw}` : 'missing');
-  check(`${profile.name}: extras strip scrolls inside itself, not the page`,
+  check(`${profile.name}: any extras strip scrolls inside itself, not the page`,
     await mp.evaluate(() => {
       const s = document.querySelector('#extras-strip');
-      return s.scrollWidth > s.clientWidth
-        && document.documentElement.scrollWidth <= window.innerWidth + 1;
+      const pageOk = document.documentElement.scrollWidth <= window.innerWidth + 1;
+      return s ? (s.scrollWidth > s.clientWidth && pageOk) : pageOk;
     }));
 
   // Note editing has to be usable at phone width, keyboard and all.

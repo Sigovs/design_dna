@@ -57,6 +57,7 @@ The invariants, by domain — full text in the linked skills:
 | Body-length text is built for sustained reading — face, size, spacing, and measure | [typography](skills/typography-taste/SKILL.md#invariant) |
 | Line breaks are intentional and compositionally resolved | [typography](skills/typography-taste/SKILL.md#invariant) |
 | Accessible contrast — WCAG AA as a contract, verified on every palette change | [color](skills/color-taste/SKILL.md#invariant) |
+| **The accent is derived from something the project contains, the derivation is stated, and the result is then judged where it lands** | [color](skills/color-taste/SKILL.md#invariant) |
 | Reduced-motion paths — every animation has a complete static equivalent | [motion](skills/motion-taste/SKILL.md#invariant) |
 | **Controlled irregularity must remain legible and intentional.** | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
 | **Depth cues are coherent with the spatial model they imply** — interface elevation matches real layering; atmospheric and illustrative depth may be non-literal when intentional and not misleading | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
@@ -409,6 +410,16 @@ For `upload` and `image-url` entries, and for any `extras` whose labels point at
 something specific, **actually open and analyse the image.** Do not treat a
 filename or a label as a substitute for looking.
 
+What each image kind is for:
+
+| Shot | What it answers |
+|---|---|
+| `hero` | What arrives before any scrolling — the first read. |
+| `full` | The page as one object: proportion, rhythm, where the masses sit. |
+| `mobile` | What survives one column. |
+| `strip` / `stripMobile` | **The scroll sequence** — what arrives, in what order, against what. Read it as a sequence; the order IS the evidence. |
+| `navScrolled` | Present only when the pinned header changes after the first screen. Its presence is itself the finding. |
+
 In the Design Read, say what design decisions each relevant image demonstrates —
 in these terms: **composition** (dominant/subordinate, eye path, figure-ground),
 **tonal structure** (what survives grayscale, where the masses sit),
@@ -416,9 +427,53 @@ in these terms: **composition** (dominant/subordinate, eye path, figure-ground),
 Extras' labels tell you what to look at — *"hover state"*, *"checkout page"*,
 *"mobile menu"* — so look at that thing, not the whole frame.
 
+#### The output of a read is a PRINCIPLE, never a description
+
+**State what principle you take, never what the reference looks like.**
+
+A read that produces *"the reference does X, so do X"* is a **failed read** — and so
+is a read that produces a description at all. The required form is:
+
+```
+the reference solves <problem> by <principle>,
+which in this brief means <different concrete move>
+```
+
+The third clause is not optional and it must be **different from the second**. If
+the concrete move is the reference's move, nothing was read: the artefact was
+transplanted and the derivation written backwards to justify it.
+
+| Failed read | Real read |
+|---|---|
+| "Ruadh uses a full-bleed image with the type overlapping the bottom edge — do that." | "Ruadh solves *there is one thing to sell and no time to explain it* by making a single mass carry the whole first screen and letting everything else defer to it — which here, where the visitor arrives with a task rather than a desire, means the search field takes that role and the imagery drops to support." |
+| "The Gentlewoman sets its headlines in a didone at 96px." | "The Gentlewoman solves *the reader must know the register before reading a word* by carrying the identity entirely in one typographic contrast — which here, on a tool, means the register is carried by density and restraint instead, because a display face on a working instrument is costume." |
+
+> **Why this rule exists, recorded verbatim:** richer visual evidence increases the
+> pull toward imitation, which is the opposite of this vault's purpose — the note
+> is the payload, the shots are evidence.
+
+The filmstrip is exactly the evidence this rule is for. Eight frames of somebody
+else's scroll are a page you can rebuild; the principle behind their order is a
+decision you can use.
+
 Then **apply the decisions, never reproduce the artefact.** And where a reference's
 decision conflicts with an invariant, **the invariant wins** — the reference is
 evidence about taste, never a licence to break a quality law.
+
+#### Live browsing — the narrow exception
+
+**The archive is the source.** References go offline, get redesigned, and A/B-test
+you into a variant nobody else will ever see. A shot is dated and stable; the live
+site is neither.
+
+Visit the live site **only** when both hold:
+
+1. the entry's value is **temporal** — transitions, scroll choreography, staged
+   motion, a state that only exists mid-interaction; **and**
+2. the filmstrip and the extras **cannot answer the question**.
+
+Then say so in the Design Read — *"visited live, because <the temporal question>"* —
+and state the date. Everything else reads the archive.
 
 ### (e) Weight by rating and status
 

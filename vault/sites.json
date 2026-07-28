@@ -36,7 +36,26 @@
     "shots": {
       "full": "shots/porsche-com-usa/full.jpg",
       "hero": "shots/porsche-com-usa/hero.jpg",
-      "mobile": "shots/porsche-com-usa/mobile.jpg"
+      "mobile": "shots/porsche-com-usa/mobile.jpg",
+      "strip": [
+        "shots/porsche-com-usa/strip-1.jpg",
+        "shots/porsche-com-usa/strip-2.jpg",
+        "shots/porsche-com-usa/strip-3.jpg",
+        "shots/porsche-com-usa/strip-4.jpg",
+        "shots/porsche-com-usa/strip-5.jpg",
+        "shots/porsche-com-usa/strip-6.jpg",
+        "shots/porsche-com-usa/strip-7.jpg",
+        "shots/porsche-com-usa/strip-8.jpg"
+      ],
+      "stripMobile": [
+        "shots/porsche-com-usa/strip-m-1.jpg",
+        "shots/porsche-com-usa/strip-m-2.jpg",
+        "shots/porsche-com-usa/strip-m-3.jpg",
+        "shots/porsche-com-usa/strip-m-4.jpg",
+        "shots/porsche-com-usa/strip-m-5.jpg",
+        "shots/porsche-com-usa/strip-m-6.jpg"
+      ],
+      "navScrolled": null
     },
     "kind": "site",
     "source": "",
@@ -110,10 +129,19 @@
     "shots": {
       "full": "shots/carvana-com/hero.jpg",
       "hero": "shots/carvana-com/hero.jpg",
-      "mobile": "shots/carvana-com/mobile.jpg"
+      "mobile": "shots/carvana-com/mobile.jpg",
+      "strip": [],
+      "stripMobile": [
+        "shots/carvana-com/strip-m-1.jpg",
+        "shots/carvana-com/strip-m-2.jpg",
+        "shots/carvana-com/strip-m-3.jpg",
+        "shots/carvana-com/strip-m-4.jpg",
+        "shots/carvana-com/strip-m-5.jpg",
+        "shots/carvana-com/strip-m-6.jpg"
+      ]
     },
     "extras": [],
-    "captureError": null,
+    "captureError": "capture blocked by a bot challenge on: desktop page — the site answers a Cloudflare wall, not the page. Mobile shots are real.",
     "works": "Сайт сразу разделяет основные намерения: купить машину, продать свою, получить financing terms или продолжить сохранённый процесс.\nInventory воспринимается не как дилерский склад, а как полноценный e-commerce catalogue.\nПоиск строится вокруг реальных покупательских критериев: бюджет, ежемесячный платёж, кузов, марка, пробег, доставка.\nЦена автомобиля соединена с персональным финансированием. Пользователь видит не абстрактную стоимость, а собственные условия.\nSaved vehicles, financing и история действий сохраняют continuity между визитами. Это особенно важно для покупки, которая редко совершается за одну сессию.\nВесь путь собран внутри одной системы: поиск, trade-in, financing, документы, договор и scheduling delivery/pickup. Carvana действительно позволяет провести практически всю транзакцию онлайн.\nКарточки машин сравнительно плотные, но информация расположена в правильном порядке: изображение → автомобиль → цена/платёж → ключевые условия.\nГолубой, белый и жёлтый делают финансово сложный продукт дружелюбным и менее похожим на традиционный автомобильный dealership.\n7-Day Money Back Guarantee, доставка и Vending Machine превращены в понятные consumer benefits, а не спрятаны в юридическом тексте.\nСистема масштабируется на десятки тысяч автомобилей и множество состояний пользователя. По данным Figma, над её согласованностью работала отдельная крупная design-systems команда.",
     "weaknesses": "Homepage и supporting content собраны довольно предсказуемо: hero search, benefit blocks, карточки, steps, testimonials, FAQ.\nОсновная сетка inventory функциональна, но мало отличается от большого retail marketplace.\nБелые карточки, мягкие тени, rounded controls и дружелюбные иллюстрации выглядят безопасно и немного безлично.\nBlue/yellow branding узнаваемый, но композиционно редко создаёт настоящее напряжение или неожиданность.\nАвтомобили снимаются последовательно и понятно, однако стандартизация убирает индивидуальный характер конкретной машины.\nTypography выполняет интерфейсную работу, но практически не участвует в арт-дирекшене.\nСтраница вынуждена одновременно показывать цену, financing, delivery, badges, mileage и guarantees — поэтому визуальная иерархия местами становится шумной.\nВнешний вид оптимизирован под доверие широкой аудитории, а не под желание, luxury или automotive emotion.\nMotion, насколько можно подтвердить по доступным материалам, в основном функциональный: состояния, loading, filtering, progression. Это правильно для продукта, но не даёт сильного expressive reference.\nЕсли использовать Carvana как визуальный reference, почти наверняка получится обычный blue dealership template.",
     "unsorted": []
@@ -156,7 +184,26 @@
     "shots": {
       "full": "shots/kinncollective-co-uk/full.jpg",
       "hero": "shots/kinncollective-co-uk/hero.jpg",
-      "mobile": "shots/kinncollective-co-uk/mobile.jpg"
+      "mobile": "shots/kinncollective-co-uk/mobile.jpg",
+      "strip": [
+        "shots/kinncollective-co-uk/strip-1.jpg",
+        "shots/kinncollective-co-uk/strip-2.jpg",
+        "shots/kinncollective-co-uk/strip-3.jpg",
+        "shots/kinncollective-co-uk/strip-4.jpg",
+        "shots/kinncollective-co-uk/strip-5.jpg",
+        "shots/kinncollective-co-uk/strip-6.jpg",
+        "shots/kinncollective-co-uk/strip-7.jpg",
+        "shots/kinncollective-co-uk/strip-8.jpg"
+      ],
+      "stripMobile": [
+        "shots/kinncollective-co-uk/strip-m-1.jpg",
+        "shots/kinncollective-co-uk/strip-m-2.jpg",
+        "shots/kinncollective-co-uk/strip-m-3.jpg",
+        "shots/kinncollective-co-uk/strip-m-4.jpg",
+        "shots/kinncollective-co-uk/strip-m-5.jpg",
+        "shots/kinncollective-co-uk/strip-m-6.jpg"
+      ],
+      "navScrolled": null
     },
     "kind": "site",
     "source": "",
@@ -207,7 +254,26 @@
     "shots": {
       "full": "shots/ruadh-com/full.jpg",
       "hero": "shots/ruadh-com/hero.jpg",
-      "mobile": "shots/ruadh-com/mobile.jpg"
+      "mobile": "shots/ruadh-com/mobile.jpg",
+      "strip": [
+        "shots/ruadh-com/strip-1.jpg",
+        "shots/ruadh-com/strip-2.jpg",
+        "shots/ruadh-com/strip-3.jpg",
+        "shots/ruadh-com/strip-4.jpg",
+        "shots/ruadh-com/strip-5.jpg",
+        "shots/ruadh-com/strip-6.jpg",
+        "shots/ruadh-com/strip-7.jpg",
+        "shots/ruadh-com/strip-8.jpg"
+      ],
+      "stripMobile": [
+        "shots/ruadh-com/strip-m-1.jpg",
+        "shots/ruadh-com/strip-m-2.jpg",
+        "shots/ruadh-com/strip-m-3.jpg",
+        "shots/ruadh-com/strip-m-4.jpg",
+        "shots/ruadh-com/strip-m-5.jpg",
+        "shots/ruadh-com/strip-m-6.jpg"
+      ],
+      "navScrolled": "shots/ruadh-com/nav-scrolled.jpg"
     },
     "kind": "site",
     "source": "",
@@ -278,7 +344,26 @@
     "shots": {
       "full": "shots/augen-pro/full.jpg",
       "hero": "shots/augen-pro/hero.jpg",
-      "mobile": "shots/augen-pro/mobile.jpg"
+      "mobile": "shots/augen-pro/mobile.jpg",
+      "strip": [
+        "shots/augen-pro/strip-1.jpg",
+        "shots/augen-pro/strip-2.jpg",
+        "shots/augen-pro/strip-3.jpg",
+        "shots/augen-pro/strip-4.jpg",
+        "shots/augen-pro/strip-5.jpg",
+        "shots/augen-pro/strip-6.jpg",
+        "shots/augen-pro/strip-7.jpg",
+        "shots/augen-pro/strip-8.jpg"
+      ],
+      "stripMobile": [
+        "shots/augen-pro/strip-m-1.jpg",
+        "shots/augen-pro/strip-m-2.jpg",
+        "shots/augen-pro/strip-m-3.jpg",
+        "shots/augen-pro/strip-m-4.jpg",
+        "shots/augen-pro/strip-m-5.jpg",
+        "shots/augen-pro/strip-m-6.jpg"
+      ],
+      "navScrolled": "shots/augen-pro/nav-scrolled.jpg"
     },
     "kind": "site",
     "source": "",
@@ -366,7 +451,25 @@
     "shots": {
       "full": "shots/beings-co/full.jpg",
       "hero": "shots/beings-co/hero.jpg",
-      "mobile": "shots/beings-co/mobile.jpg"
+      "mobile": "shots/beings-co/mobile.jpg",
+      "strip": [
+        "shots/beings-co/strip-1.jpg",
+        "shots/beings-co/strip-2.jpg",
+        "shots/beings-co/strip-3.jpg",
+        "shots/beings-co/strip-4.jpg",
+        "shots/beings-co/strip-5.jpg",
+        "shots/beings-co/strip-6.jpg",
+        "shots/beings-co/strip-7.jpg",
+        "shots/beings-co/strip-8.jpg"
+      ],
+      "stripMobile": [
+        "shots/beings-co/strip-m-1.jpg",
+        "shots/beings-co/strip-m-2.jpg",
+        "shots/beings-co/strip-m-3.jpg",
+        "shots/beings-co/strip-m-4.jpg",
+        "shots/beings-co/strip-m-5.jpg"
+      ],
+      "navScrolled": "shots/beings-co/nav-scrolled.jpg"
     },
     "kind": "site",
     "source": "",
@@ -414,7 +517,26 @@
     "shots": {
       "full": "shots/ciridae-com/full.jpg",
       "hero": "shots/ciridae-com/hero.jpg",
-      "mobile": "shots/ciridae-com/mobile.jpg"
+      "mobile": "shots/ciridae-com/mobile.jpg",
+      "strip": [
+        "shots/ciridae-com/strip-1.jpg",
+        "shots/ciridae-com/strip-2.jpg",
+        "shots/ciridae-com/strip-3.jpg",
+        "shots/ciridae-com/strip-4.jpg",
+        "shots/ciridae-com/strip-5.jpg",
+        "shots/ciridae-com/strip-6.jpg",
+        "shots/ciridae-com/strip-7.jpg",
+        "shots/ciridae-com/strip-8.jpg"
+      ],
+      "stripMobile": [
+        "shots/ciridae-com/strip-m-1.jpg",
+        "shots/ciridae-com/strip-m-2.jpg",
+        "shots/ciridae-com/strip-m-3.jpg",
+        "shots/ciridae-com/strip-m-4.jpg",
+        "shots/ciridae-com/strip-m-5.jpg",
+        "shots/ciridae-com/strip-m-6.jpg"
+      ],
+      "navScrolled": null
     },
     "kind": "site",
     "source": "",
@@ -447,7 +569,14 @@
     "shots": {
       "full": "shots/electrafilmworks-com/full.jpg",
       "hero": "shots/electrafilmworks-com/hero.jpg",
-      "mobile": "shots/electrafilmworks-com/mobile.jpg"
+      "mobile": "shots/electrafilmworks-com/mobile.jpg",
+      "strip": [
+        "shots/electrafilmworks-com/strip-1.jpg"
+      ],
+      "stripMobile": [
+        "shots/electrafilmworks-com/strip-m-1.jpg"
+      ],
+      "navScrolled": null
     },
     "kind": "site",
     "source": "",
@@ -499,7 +628,14 @@
     "shots": {
       "full": "shots/i-pinimg-com-736x-46-d9-d5-46d9d54b7cc97b5687cbfd24a1410d34-/hero.jpg",
       "hero": "shots/i-pinimg-com-736x-46-d9-d5-46d9d54b7cc97b5687cbfd24a1410d34-/hero.jpg",
-      "mobile": "shots/i-pinimg-com-736x-46-d9-d5-46d9d54b7cc97b5687cbfd24a1410d34-/mobile.jpg"
+      "mobile": "shots/i-pinimg-com-736x-46-d9-d5-46d9d54b7cc97b5687cbfd24a1410d34-/mobile.jpg",
+      "strip": [
+        "shots/i-pinimg-com-736x-46-d9-d5-46d9d54b7cc97b5687cbfd24a1410d34-/strip-1.jpg"
+      ],
+      "stripMobile": [
+        "shots/i-pinimg-com-736x-46-d9-d5-46d9d54b7cc97b5687cbfd24a1410d34-/strip-m-1.jpg"
+      ],
+      "navScrolled": null
     },
     "kind": "site",
     "source": "",
@@ -554,7 +690,14 @@
     "shots": {
       "full": "shots/thenewmobileworkforce-imm-g-prod-com-back-at-hq/full.jpg",
       "hero": "shots/thenewmobileworkforce-imm-g-prod-com-back-at-hq/hero.jpg",
-      "mobile": "shots/thenewmobileworkforce-imm-g-prod-com-back-at-hq/mobile.jpg"
+      "mobile": "shots/thenewmobileworkforce-imm-g-prod-com-back-at-hq/mobile.jpg",
+      "navScrolled": null,
+      "strip": [
+        "shots/thenewmobileworkforce-imm-g-prod-com-back-at-hq/strip-1.jpg"
+      ],
+      "stripMobile": [
+        "shots/thenewmobileworkforce-imm-g-prod-com-back-at-hq/strip-m-1.jpg"
+      ]
     },
     "kind": "site",
     "source": "",
@@ -585,7 +728,26 @@
     "shots": {
       "full": "shots/trionn-com/full.jpg",
       "hero": "shots/trionn-com/hero.jpg",
-      "mobile": "shots/trionn-com/mobile.jpg"
+      "mobile": "shots/trionn-com/mobile.jpg",
+      "navScrolled": "shots/trionn-com/nav-scrolled.jpg",
+      "strip": [
+        "shots/trionn-com/strip-1.jpg",
+        "shots/trionn-com/strip-2.jpg",
+        "shots/trionn-com/strip-3.jpg",
+        "shots/trionn-com/strip-4.jpg",
+        "shots/trionn-com/strip-5.jpg",
+        "shots/trionn-com/strip-6.jpg",
+        "shots/trionn-com/strip-7.jpg",
+        "shots/trionn-com/strip-8.jpg"
+      ],
+      "stripMobile": [
+        "shots/trionn-com/strip-m-1.jpg",
+        "shots/trionn-com/strip-m-2.jpg",
+        "shots/trionn-com/strip-m-3.jpg",
+        "shots/trionn-com/strip-m-4.jpg",
+        "shots/trionn-com/strip-m-5.jpg",
+        "shots/trionn-com/strip-m-6.jpg"
+      ]
     },
     "kind": "site",
     "source": "",
@@ -630,7 +792,24 @@
     "shots": {
       "full": "shots/rmsothebys-com/full.jpg",
       "hero": "shots/rmsothebys-com/hero.jpg",
-      "mobile": "shots/rmsothebys-com/mobile.jpg"
+      "mobile": "shots/rmsothebys-com/mobile.jpg",
+      "strip": [
+        "shots/rmsothebys-com/strip-1.jpg",
+        "shots/rmsothebys-com/strip-2.jpg",
+        "shots/rmsothebys-com/strip-3.jpg",
+        "shots/rmsothebys-com/strip-4.jpg",
+        "shots/rmsothebys-com/strip-5.jpg",
+        "shots/rmsothebys-com/strip-6.jpg"
+      ],
+      "stripMobile": [
+        "shots/rmsothebys-com/strip-m-1.jpg",
+        "shots/rmsothebys-com/strip-m-2.jpg",
+        "shots/rmsothebys-com/strip-m-3.jpg",
+        "shots/rmsothebys-com/strip-m-4.jpg",
+        "shots/rmsothebys-com/strip-m-5.jpg",
+        "shots/rmsothebys-com/strip-m-6.jpg"
+      ],
+      "navScrolled": null
     },
     "kind": "site",
     "source": "",
@@ -675,7 +854,19 @@
     "shots": {
       "full": "shots/thegentlewoman-co-uk/full.jpg",
       "hero": "shots/thegentlewoman-co-uk/hero.jpg",
-      "mobile": "shots/thegentlewoman-co-uk/mobile.jpg"
+      "mobile": "shots/thegentlewoman-co-uk/mobile.jpg",
+      "strip": [
+        "shots/thegentlewoman-co-uk/strip-1.jpg"
+      ],
+      "stripMobile": [
+        "shots/thegentlewoman-co-uk/strip-m-1.jpg",
+        "shots/thegentlewoman-co-uk/strip-m-2.jpg",
+        "shots/thegentlewoman-co-uk/strip-m-3.jpg",
+        "shots/thegentlewoman-co-uk/strip-m-4.jpg",
+        "shots/thegentlewoman-co-uk/strip-m-5.jpg",
+        "shots/thegentlewoman-co-uk/strip-m-6.jpg"
+      ],
+      "navScrolled": null
     },
     "kind": "site",
     "source": "",

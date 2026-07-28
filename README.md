@@ -126,10 +126,24 @@ is never inferred or recommended.
 
 ## The taste vault
 
-`vault/` is the evidence base: sites worth learning from, three screenshots each,
+`vault/` is the evidence base: sites worth learning from, screenshots as evidence,
 controlled tags, and a note on **why** it works. The note is the payload — the
 shots are proof. Full detail and the entry schema live in
 [vault/README.md](vault/README.md).
+
+Each entry carries the page shots (`full`, `hero`, `mobile`) plus a **scroll
+filmstrip** — eight desktop frames and six mobile ones in scroll order — and the
+pinned header after the first screen, stored only when it actually changes. The
+filmstrip records what the full-page shot cannot: sequence, which is a decision.
+
+> **Richer evidence increases the pull toward imitation, which is the opposite of
+> this vault's purpose.** So the read has a required output form, in
+> [TASTE.md §6 (d)](TASTE.md#6-vault-hook--the-vaultdesign-loop): *the reference
+> solves &lt;problem&gt; by &lt;principle&gt;, which in this brief means
+> &lt;different concrete move&gt;*. A read that produces "the reference does X, so do
+> X" is a failed read. The live site is visited only when the entry's value is
+> **temporal** and the filmstrip cannot answer the question — otherwise the archive
+> is the source, because references go offline and change.
 
 Tags are grouped into seven categories — **composition**, **risks**, typography,
 layout, motion, color, imagery. `risks` is the only one that records something

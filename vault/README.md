@@ -1,8 +1,9 @@
 # Taste Vault
 
 The visual reference library behind the taste system. Every entry is a site worth
-learning from, three screenshots as evidence, a controlled set of tags, and — the
-part that actually matters — **a note saying why it works.**
+learning from, screenshots as evidence — page shots plus the scroll filmstrip — a
+controlled set of tags, and — the part that actually matters — **a note saying why
+it works.**
 
 The note is the payload. Shots without a note are a mood board, and a mood board
 teaches an agent nothing except how to copy pixels. Write the note as if you were
@@ -17,11 +18,11 @@ different brief.
 |---|---|
 | `sites.json` | The library. An array of entries — schema below. Hand-editable. |
 | `vocab.json` | The controlled tag vocabulary. **Single source of truth** — `index.html` and `capture.mjs` both read it. Add tags here. |
-| `capture.mjs` | Playwright capture tool. Three shots per entry. |
+| `capture.mjs` | Playwright capture tool. Page shots, the scroll filmstrip, and the scrolled header. |
 | `index.html` | The gallery. Browse, search, filter, edit, add. No backend. |
 | `smoke.mjs` | `npm run smoke` — checks the gallery still works, including a real mobile matrix (WebKit iPhone 13 / iPhone SE, Chrome Pixel 5) plus blocked-storage and hanging-API scenarios. No build step means nothing else catches a boot-time throw, and one throw kills every listener on the page. |
 | `prune.mjs` | `npm run prune` — deletes shot directories no entry points at any more. |
-| `shots/<id>/` | `full.jpg` (1440w full page), `hero.jpg` (1440×900 crop, 2x), `mobile.jpg` (390w full page). **Committed.** |
+| `shots/<id>/` | `full.jpg` (1440w full page), `hero.jpg` (1440×900 crop, 2x), `mobile.jpg` (390w full page), `strip-1..8.jpg` (desktop scroll filmstrip), `strip-m-1..6.jpg` (mobile), `nav-scrolled.jpg` (only when the pinned header changes). **Committed.** |
 
 Shots are JPEG, and only the hero is 2x. PNG at 2x measured ~33MB per entry,
 which makes a reference library that nobody can clone. Full-page shots are also
@@ -52,7 +53,10 @@ clipped at 14,000px so an infinite-scroll site can't produce an unusable strip.
   "shots": {
     "full": "shots/rmsothebys-com/full.jpg",
     "hero": "shots/rmsothebys-com/hero.jpg",
-    "mobile": "shots/rmsothebys-com/mobile.jpg"
+    "mobile": "shots/rmsothebys-com/mobile.jpg",
+    "strip": ["shots/rmsothebys-com/strip-1.jpg", "… 8 frames, in scroll order"],
+    "stripMobile": ["shots/rmsothebys-com/strip-m-1.jpg", "… 6 frames"],
+    "navScrolled": null
   }
 }
 ```
@@ -94,6 +98,11 @@ clipped at 14,000px so an infinite-scroll site can't produce an unusable strip.
   invent one. Composition tags are also never inferred from a rating or a note:
   they need human review or clear existing evidence.
 - `shots` — paths relative to `vault/`, or `null` when not yet captured.
+  `strip` and `stripMobile` are **arrays** of frame paths in scroll order — an
+  empty array means no filmstrip yet. `navScrolled` is a string only when the
+  pinned header actually changes after the first screen; **`null` is an answer,
+  not a gap**, and it is never re-asked. Anything reading `shots` as a flat map of
+  strings has to flatten first — see `shotFiles()` in `index.html` and `prune.mjs`.
 
 `out` is not a rejection. An `out` entry is the most valuable kind in the vault:
 it is evidence that good work exists outside the house dialect, and it is the only

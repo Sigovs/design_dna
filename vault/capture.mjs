@@ -11,15 +11,31 @@
  * agency/CDN hosts are common). Off by default and logged loudly when used — we
  * are only taking screenshots, but an unverified host is still unverified.
  *
- * Three shots per entry, into vault/shots/<id>/ :
- *   full.jpg    1440w full-page desktop
- *   hero.jpg    1440x900 viewport crop — what you see before scrolling
- *   mobile.jpg  390w full-page
+ * Shots per entry, into vault/shots/<id>/ :
+ *   full.jpg          1440w full-page desktop
+ *   hero.jpg          1440x900 viewport crop — what you see before scrolling
+ *   mobile.jpg        390w full-page
+ *   strip-1..8.jpg    the scroll filmstrip: 8 viewport-height desktop frames,
+ *                     evenly spaced down the page
+ *   strip-m-1..6.jpg  the same at 390w, 6 frames
+ *   nav-scrolled.jpg  the pinned header after the first screen — ONLY when it
+ *                     actually differs from its top state
+ *
+ * Why the filmstrip: a full-page strip flattens a page into one image, which is
+ * exactly what a page never is. Sequence — what arrives, in what order, against
+ * what — is a compositional decision, and the full shot cannot record it. Eight
+ * frames are what one viewport-height step gives you across a normal page.
  *
  * Shots are committed to the repo. They are the point of the repo — which is
  * also why they are JPEG and why full-page shots are 1x: PNG at 2x ran ~33MB
  * per entry, and a reference library has to stay clonable. The hero is the one
- * shot kept at 2x, because it's the card preview and the detail focal point.
+ * shot kept at 2x, because it's the card preview and the detail focal point;
+ * filmstrip frames are the lowest quality here, because they are read as a
+ * sequence and never as a surface.
+ *
+ * A NOTE ON WHAT THIS IS FOR. Richer evidence increases the pull toward
+ * imitation, which is the opposite of this vault's purpose. The note is the
+ * payload; the shots are the evidence for it. See TASTE.md §6 (d).
  */
 
 import { chromium, devices } from 'playwright';
@@ -38,7 +54,34 @@ const MOBILE = { width: 390, height: 844 };
 /* Full-page shots of infinite-scroll sites can run tens of thousands of px.
    Clip rather than produce an unusable 40MB strip. */
 const MAX_FULL_HEIGHT = 14_000;
-const QUALITY = { hero: 88, full: 80, mobile: 82 };
+const QUALITY = { hero: 88, full: 80, mobile: 82, strip: 72 };
+
+/* Frame counts. Eight desktop frames is one viewport-height step across a page of
+   ordinary length; six is the same reading on a phone, where each screen carries
+   less. Short pages get fewer — see framePositions(). */
+const STRIP_FRAMES = { desktop: 8, mobile: 6 };
+
+/* Bot walls are not references. Found by looking at what the first backfill
+   actually stored: carvana's desktop filmstrip was one frame of a Cloudflare
+   "Verify you are human" page, filed in the vault as evidence about design.
+   A challenge page is short and says so; both conditions are required, so a page
+   that merely writes about security is not mistaken for one. The MOBILE pass on
+   the same site sailed through, which is why this is checked per pass rather than
+   per entry. */
+const CHALLENGE_MARKERS = [
+  /verify you are human/i,
+  /performing security verification/i,
+  /checking your browser/i,
+  /just a moment/i,
+  /attention required/i,
+  /enable javascript and cookies to continue/i,
+  /access denied/i,
+];
+
+async function isChallengePage(page) {
+  const text = await page.evaluate(() => (document.body?.innerText ?? '').slice(0, 4000));
+  return text.length < 1500 && CHALLENGE_MARKERS.some((re) => re.test(text));
+}
 
 /* Consent walls ruin hero shots. Best-effort dismissal, never fatal. */
 const CONSENT_PATTERNS = [
@@ -178,60 +221,249 @@ async function fullPageShot(page, path, quality, width) {
   }
 }
 
-async function shoot(browser, entry) {
+/* Lazy content is triggered BY the scroll, so a frame taken the instant we arrive
+   records skeletons and blank image boxes. settle() already walked the page once,
+   but a second pass re-triggers viewport-observer loaders that unload off-screen
+   content — common on the exact image-led sites worth capturing. */
+async function settleViewport(page) {
+  try {
+    await page.waitForLoadState('networkidle', { timeout: 5_000 });
+  } catch { /* a page that never idles still gets its frame */ }
+
+  await page.evaluate(async () => {
+    const visible = [...document.images].filter((img) => {
+      const r = img.getBoundingClientRect();
+      return r.width > 0 && r.bottom > 0 && r.top < window.innerHeight;
+    });
+    await Promise.all(visible.map((img) => (img.complete ? null : new Promise((done) => {
+      img.addEventListener('load', done, { once: true });
+      img.addEventListener('error', done, { once: true });
+      setTimeout(done, 3_000);            // never let one dead image hold the run
+    }))));
+  });
+
+  await page.waitForTimeout(250);
+}
+
+/* Evenly spaced across the scrollable range — but never more frames than there
+   are distinct screens. A page two viewports tall would otherwise return eight
+   near-identical images, which reads as evidence and is not. */
+async function framePositions(page, wanted) {
+  return page.evaluate((n) => {
+    const height = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+    const view = window.innerHeight;
+    const max = Math.max(0, height - view);
+    const distinct = Math.max(1, Math.ceil(max / view) + 1);
+    const count = Math.min(n, distinct);
+    if (count < 2) return [0];
+    return Array.from({ length: count }, (_, i) => Math.round((max * i) / (count - 1)));
+  }, wanted);
+}
+
+async function filmstrip(page, entryId, { frames, prefix }) {
+  const positions = await framePositions(page, frames);
+  const out = [];
+  for (const [i, y] of positions.entries()) {
+    await page.evaluate((top) => window.scrollTo(0, top), y);
+    await settleViewport(page);
+    const rel = `shots/${entryId}/${prefix}-${i + 1}.jpg`;
+    await page.screenshot({ path: join(VAULT, rel), type: 'jpeg', quality: QUALITY.strip });
+    out.push(rel);
+  }
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await page.waitForTimeout(200);
+  log(`  · ${prefix} — ${out.length} frame${out.length === 1 ? '' : 's'}`
+    + (out.length < frames ? ` (page is only ${out.length} screen${out.length === 1 ? '' : 's'} deep)` : ''));
+  return out;
+}
+
+/* The header that changes when you leave the first screen — shrinks, gains a
+   background, swaps to a compact mark. It is a real decision, it is invisible in
+   the hero, and the strip only catches it by accident.
+
+   FOUND BY MEASUREMENT, not assumed: the first version looked for
+   `header, nav, [role=banner], .header, .navbar` and matched NOTHING on
+   porsche.com — that page has none of those tags in the light DOM, because its
+   chrome is web components. A tag-name search finds the sites built the way the
+   searcher expects and misses exactly the modern ones worth capturing. So the
+   header is found by hit-testing the top edge of the viewport and walking up to
+   the nearest pinned ancestor, whatever it happens to be called. */
+async function pinnedHeaderHandle(page) {
+  const handle = await page.evaluateHandle(() => {
+    const xs = [Math.round(window.innerWidth / 2), 24, window.innerWidth - 24];
+    for (const y of [6, 18, 32]) {
+      for (const x of xs) {
+        let node = document.elementFromPoint(x, y);
+        while (node && node !== document.body && node !== document.documentElement) {
+          const st = getComputedStyle(node);
+          if (st.position === 'fixed' || st.position === 'sticky') {
+            const r = node.getBoundingClientRect();
+            if (r.top <= 8 && r.height >= 24 && r.width >= window.innerWidth * 0.5) return node;
+          }
+          node = node.parentElement;
+        }
+      }
+    }
+    return null;
+  });
+  const node = handle.asElement();
+  if (!node) await handle.dispose();
+  return node;
+}
+
+/* Compare the header's OWN state, not the pixels of the strip it occupies.
+   A transparent header sits over different content once you scroll, so a pixel
+   diff of that band says "changed" on almost every page — which would store a
+   frame on all of them and make the field meaningless. Height, ground, shadow,
+   class list and child count say whether the HEADER changed. */
+const HEADER_SIGNATURE = (node) => {
+  const st = getComputedStyle(node);
+  const r = node.getBoundingClientRect();
+  return JSON.stringify({
+    height: Math.round(r.height),
+    visible: st.visibility !== 'hidden' && st.display !== 'none' && r.bottom > 0,
+    background: st.backgroundColor,
+    backdrop: st.backdropFilter,
+    shadow: st.boxShadow,
+    border: st.borderBottom,
+    transform: st.transform,
+    classes: String(node.className?.baseVal ?? node.className ?? ''),
+    children: node.childElementCount,
+  });
+};
+
+async function navScrolledShot(page, entryId) {
+  await page.evaluate(() => window.scrollTo(0, Math.round(window.innerHeight * 1.5)));
+  await settleViewport(page);
+
+  const header = await pinnedHeaderHandle(page);
+  if (!header) {
+    await page.evaluate(() => window.scrollTo(0, 0));
+    log('  · nothing pinned to the top after scrolling — no nav state to store');
+    return null;
+  }
+
+  const scrolled = await page.evaluate(HEADER_SIGNATURE, header);
+  const box = await page.evaluate((n) => {
+    const r = n.getBoundingClientRect();
+    return { x: 0, y: 0, width: Math.round(window.innerWidth), height: Math.min(Math.ceil(r.bottom), window.innerHeight) };
+  }, header);
+
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await settleViewport(page);
+  const top = await page.evaluate(HEADER_SIGNATURE, header);
+
+  let rel = null;
+  if (top === scrolled) {
+    log('  · the header is unchanged after scrolling — not stored');
+  } else {
+    await page.evaluate(() => window.scrollTo(0, Math.round(window.innerHeight * 1.5)));
+    await settleViewport(page);
+    rel = `shots/${entryId}/nav-scrolled.jpg`;
+    await page.screenshot({ path: join(VAULT, rel), clip: box, type: 'jpeg', quality: QUALITY.hero });
+    log('  · nav-scrolled.jpg — the header changes on scroll');
+  }
+
+  await header.dispose();
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await page.waitForTimeout(200);
+  return rel;
+}
+
+/* What a run should produce. Every part is independent, so a backfill reshoots
+   only what is absent instead of rewriting a whole entry's images. */
+const ALL_PARTS = { hero: true, full: true, strip: true, navScrolled: true, mobile: true, stripMobile: true };
+
+async function shoot(browser, entry, want = ALL_PARTS) {
   const dir = join(SHOTS, entry.id);
   await mkdir(dir, { recursive: true });
 
   log(`  shooting ${entry.url}`);
 
-  // Desktop hero: 2x, because this is the shot you actually look at.
-  const heroCtx = await browser.newContext({ viewport: DESKTOP, deviceScaleFactor: 2, ignoreHTTPSErrors: INSECURE });
-  const heroPage = await heroCtx.newPage();
+  const shots = {};
+  const blocked = [];
   let title = entry.title || '';
-  try {
-    await settle(heroPage, entry.url);
-    title = (await heroPage.title()) || title;
-    await heroPage.screenshot({ path: join(dir, 'hero.jpg'), type: 'jpeg', quality: QUALITY.hero });
-    log('  · hero.jpg');
-  } finally {
-    await heroCtx.close();
+
+  // Desktop hero: 2x, because this is the shot you actually look at.
+  if (want.hero) {
+    const heroCtx = await browser.newContext({ viewport: DESKTOP, deviceScaleFactor: 2, ignoreHTTPSErrors: INSECURE });
+    const heroPage = await heroCtx.newPage();
+    try {
+      await settle(heroPage, entry.url);
+      if (await isChallengePage(heroPage)) {
+        blocked.push('desktop hero');
+        warn('a bot challenge answered instead of the site — hero not stored');
+      } else {
+        title = (await heroPage.title()) || title;
+        await heroPage.screenshot({ path: join(dir, 'hero.jpg'), type: 'jpeg', quality: QUALITY.hero });
+        shots.hero = `shots/${entry.id}/hero.jpg`;
+        log('  · hero.jpg');
+      }
+    } finally {
+      await heroCtx.close();
+    }
   }
 
-  // Desktop full page: 1x — a 1440x12000 strip at 2x is unclonable.
-  const fullCtx = await browser.newContext({ viewport: DESKTOP, deviceScaleFactor: 1, ignoreHTTPSErrors: INSECURE });
-  const fullPage_ = await fullCtx.newPage();
-  try {
-    await settle(fullPage_, entry.url);
-    await fullPageShot(fullPage_, join(dir, 'full.jpg'), QUALITY.full, DESKTOP.width);
-    log('  · full.jpg');
-  } finally {
-    await fullCtx.close();
+  /* One desktop load serves the full page, the filmstrip and the scrolled nav:
+     they are three readings of the same visit, and reloading between them would
+     re-roll every A/B test and lazy loader on the page. */
+  if (want.full || want.strip || want.navScrolled) {
+    const fullCtx = await browser.newContext({ viewport: DESKTOP, deviceScaleFactor: 1, ignoreHTTPSErrors: INSECURE });
+    const fullPage_ = await fullCtx.newPage();
+    try {
+      await settle(fullPage_, entry.url);
+      if (await isChallengePage(fullPage_)) {
+        blocked.push('desktop page');
+        warn('a bot challenge answered instead of the site — no desktop shots stored');
+      } else {
+        if (want.full) {
+          await fullPageShot(fullPage_, join(dir, 'full.jpg'), QUALITY.full, DESKTOP.width);
+          shots.full = `shots/${entry.id}/full.jpg`;
+          log('  · full.jpg');
+        }
+        /* Nav first: it reads the top state, and the strip leaves the page scrolled. */
+        if (want.navScrolled) shots.navScrolled = await navScrolledShot(fullPage_, entry.id);
+        if (want.strip) {
+          shots.strip = await filmstrip(fullPage_, entry.id, { frames: STRIP_FRAMES.desktop, prefix: 'strip' });
+        }
+      }
+    } finally {
+      await fullCtx.close();
+    }
   }
 
   // Mobile: real device emulation, full page. 390px wide, so 1x is enough.
-  const mobileCtx = await browser.newContext({
-    ...devices['iPhone 13'],
-    viewport: MOBILE,
-    deviceScaleFactor: 1,
-    ignoreHTTPSErrors: INSECURE,
-  });
-  const mpage = await mobileCtx.newPage();
-  try {
-    await settle(mpage, entry.url);
-    await fullPageShot(mpage, join(dir, 'mobile.jpg'), QUALITY.mobile, MOBILE.width);
-    log('  · mobile.jpg');
-  } finally {
-    await mobileCtx.close();
+  if (want.mobile || want.stripMobile) {
+    const mobileCtx = await browser.newContext({
+      ...devices['iPhone 13'],
+      viewport: MOBILE,
+      deviceScaleFactor: 1,
+      ignoreHTTPSErrors: INSECURE,
+    });
+    const mpage = await mobileCtx.newPage();
+    try {
+      await settle(mpage, entry.url);
+      if (await isChallengePage(mpage)) {
+        blocked.push('mobile');
+        warn('a bot challenge answered instead of the site — no mobile shots stored');
+      } else {
+        if (want.mobile) {
+          await fullPageShot(mpage, join(dir, 'mobile.jpg'), QUALITY.mobile, MOBILE.width);
+          shots.mobile = `shots/${entry.id}/mobile.jpg`;
+          log('  · mobile.jpg');
+        }
+        if (want.stripMobile) {
+          shots.stripMobile = await filmstrip(mpage, entry.id, { frames: STRIP_FRAMES.mobile, prefix: 'strip-m' });
+        }
+      }
+    } finally {
+      await mobileCtx.close();
+    }
   }
 
-  return {
-    title: cleanTitle(title),
-    shots: {
-      full: `shots/${entry.id}/full.jpg`,
-      hero: `shots/${entry.id}/hero.jpg`,
-      mobile: `shots/${entry.id}/mobile.jpg`,
-    },
-  };
+  /* MERGE, never replace: a run that was asked for the filmstrip alone must not
+     drop the hero path it never touched. */
+  return { title: cleanTitle(title), shots: { ...(entry.shots ?? {}), ...shots }, blocked };
 }
 
 /* What "complete" means depends on how the entry was born.
@@ -242,14 +474,36 @@ function kindOf(entry) {
   return entry.kind || 'site';
 }
 
-function shotsMissing(entry) {
+/* Which parts this entry still owes, part by part — so a backfill shoots the
+   filmstrip for an entry that already has its three page shots, instead of
+   rewriting images that are already correct.
+   navScrolled asks a different question: a null is a legitimate ANSWER (the page
+   has no pinned header, or the header does not change), so it is attempted once —
+   when the key has never been written — and the recorded null closes it forever.
+   Re-asking a settled question is how a backfill becomes a treadmill. */
+function missingParts(entry) {
   const kind = kindOf(entry);
   const s = entry.shots || {};
   const have = (k) => Boolean(s[k]) && existsSync(join(VAULT, s[k]));
+  const haveStrip = (k) => Array.isArray(s[k]) && s[k].length > 0
+    && s[k].every((rel) => Boolean(rel) && existsSync(join(VAULT, rel)));
 
-  if (kind === 'upload') return false;
-  if (kind === 'image-url') return !have('hero');
-  return ['full', 'hero', 'mobile'].some((k) => !have(k));
+  if (kind === 'upload') return {};
+  if (kind === 'image-url') return have('hero') ? {} : { image: true };
+
+  const want = {
+    hero: !have('hero'),
+    full: !have('full'),
+    mobile: !have('mobile'),
+    strip: !haveStrip('strip'),
+    stripMobile: !haveStrip('stripMobile'),
+  };
+  want.navScrolled = !('navScrolled' in s);
+  return Object.fromEntries(Object.entries(want).filter(([, v]) => v));
+}
+
+function shotsMissing(entry) {
+  return Object.keys(missingParts(entry)).length > 0;
 }
 
 /* Captured extras that have not been shot yet. Uploaded extras are never pending. */
@@ -358,7 +612,7 @@ async function cmdAdd(url) {
     dialects: [],
     tags: await emptyVocabTags(),
     note: 'TODO',
-    shots: { full: null, hero: null, mobile: null },
+    shots: { full: null, hero: null, mobile: null, strip: [], stripMobile: [] },
     extras: [],
     captureError: null,
   };
@@ -369,12 +623,16 @@ async function cmdAdd(url) {
     if (isImage) {
       const rel = `shots/${entry.id}/hero.jpg`;
       const { width, height } = await fetchAndDownscaleImage(browser, entry.url, join(VAULT, rel));
-      entry.shots = { full: rel, hero: rel, mobile: null };
+      // A single image has no scroll, so it has no filmstrip — recorded, not left undefined.
+      entry.shots = { full: rel, hero: rel, mobile: null, strip: [], stripMobile: [], navScrolled: null };
       log(`  · hero.jpg (${width}x${height})`);
     } else {
-      const { title, shots } = await shoot(browser, entry);
+      const { title, shots, blocked } = await shoot(browser, entry);
       entry.title = title || entry.title;
       entry.shots = shots;
+      if (blocked.length) {
+        entry.captureError = `capture blocked by a bot challenge on: ${blocked.join(', ')}`;
+      }
     }
   } finally {
     await browser.close();
@@ -397,8 +655,11 @@ async function cmdRecapture(id) {
   log(`\nreshooting ${entry.id}`);
   const browser = await chromium.launch();
   try {
-    const { title, shots } = await shoot(browser, entry);
+    const { title, shots, blocked } = await shoot(browser, entry);
     entry.shots = shots;
+    entry.captureError = blocked.length
+      ? `capture blocked by a bot challenge on: ${blocked.join(', ')}`
+      : null;
     // A hand-written title is a deliberate edit; only fill it if it's still the default.
     if (!entry.title || entry.title === new URL(entry.url).hostname.replace(/^www\./, '')) {
       entry.title = title || entry.title;
@@ -430,7 +691,12 @@ async function cmdCaptureMissing() {
   log(`${todo.length} entr${todo.length === 1 ? 'y' : 'ies'} pending:`);
   todo.forEach((e) => {
     const bits = [];
-    if (shotsMissing(e)) bits.push(kindOf(e) === 'image-url' ? 'hero from image URL' : 'page shots');
+    /* Name the parts, not just "page shots": a filmstrip backfill on an entry that
+       already has its three shots would otherwise read as an unexplained reshoot. */
+    if (shotsMissing(e)) {
+      const parts = Object.keys(missingParts(e)).filter((k) => k !== 'navScrolled');
+      bits.push(kindOf(e) === 'image-url' ? 'hero from image URL' : parts.join(' + '));
+    }
     const px = pendingExtras(e).length;
     if (px) bits.push(`${px} extra${px === 1 ? '' : 's'}`);
     log(`  · ${e.id} (${bits.join(' + ')})`);
@@ -450,13 +716,18 @@ async function cmdCaptureMissing() {
             log(`  fetching image ${entry.url}`);
             const { width, height } = await fetchAndDownscaleImage(browser, entry.url, join(VAULT, rel));
             // A single image is the whole reference: it is the hero and the full view.
-            entry.shots = { full: rel, hero: rel, mobile: null };
+            entry.shots = { full: rel, hero: rel, mobile: null, strip: [], stripMobile: [], navScrolled: null };
             entry.captureError = null;
             log(`  · hero.jpg (${width}x${height})`);
           } else {
-            const { title, shots } = await shoot(browser, entry);
+            const { title, shots, blocked } = await shoot(browser, entry, missingParts(entry));
             entry.shots = shots;
-            entry.captureError = null;
+            /* A bot wall is not a success and not a crash. Recorded on the entry so
+               the gallery says why an entry is short of shots, instead of showing a
+               Cloudflare page as evidence about design. */
+            entry.captureError = blocked.length
+              ? `capture blocked by a bot challenge on: ${blocked.join(', ')} — the site answers a wall, not the page`
+              : null;
             const host = (() => { try { return new URL(entry.url).hostname.replace(/^www\./, ''); } catch { return ''; } })();
             if (!entry.title || entry.title === host) entry.title = title || entry.title;
           }

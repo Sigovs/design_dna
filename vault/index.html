@@ -594,6 +594,43 @@ button, input, textarea, select { font: inherit; color: inherit; }
   .shot-full, .shot-mobile { max-height: 38vh; }
 }
 
+/* ─── filmstrip ───────────────────────────────────────────────────────────
+   The scroll sequence, read left to right. Deliberately a strip and not a grid:
+   a grid invites you to compare frames as surfaces, a strip makes you read them
+   in the order the visitor met them, which is the only thing this evidence is
+   for. It never appears on a card — the card carries one image and the note. */
+.film-block { margin-top: var(--space-6); border-top: 1px solid var(--rule); padding-top: var(--space-5); }
+.film-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: var(--space-4); flex-wrap: wrap;
+}
+.film-head > .label { color: var(--ink-30); }
+.film-switch { display: flex; gap: var(--space-4); }
+.film-switch .btn { border: 0; padding: 0; color: var(--ink-50); font: inherit; }
+.film-switch .btn[aria-pressed="true"] { color: var(--ink); border-bottom: 1px solid var(--ink); }
+.film-strip {
+  display: grid; grid-auto-flow: column; gap: var(--space-3);
+  margin-top: var(--space-5); max-width: 100%; min-width: 0;
+  overflow-x: auto; overscroll-behavior-x: contain;
+  padding-bottom: var(--space-3);
+  scroll-snap-type: x proximity;
+}
+.film-strip[data-mode="desktop"] { grid-auto-columns: minmax(11rem, 14rem); }
+.film-strip[data-mode="mobile"]  { grid-auto-columns: minmax(5.5rem, 7rem); }
+.film-frame { margin: 0; scroll-snap-align: start; min-width: 0; }
+.film-frame a { display: block; }
+.film-frame img {
+  width: 100%; object-fit: cover; object-position: top center;
+  background: var(--bg-raised); border-bottom: 1px solid var(--rule);
+}
+.film-strip[data-mode="desktop"] .film-frame img { aspect-ratio: 16 / 10; }
+.film-strip[data-mode="mobile"]  .film-frame img { aspect-ratio: 39 / 84; }
+/* The number is the payload of the caption: it is the position in the sequence. */
+.film-frame figcaption { margin-top: var(--space-2); color: var(--ink-50); }
+.film-nav { margin-top: var(--space-5); display: flex; gap: var(--space-4); align-items: flex-start; }
+.film-nav img { width: 14rem; max-width: 55%; border-bottom: 1px solid var(--rule); background: var(--bg-raised); }
+.film-nav p { color: var(--ink-50); font-size: var(--text-xs); max-width: 24ch; }
+
 /* ─── extras ─────────────────────────────────────────────────────────────── */
 .extras-block { margin-top: var(--space-6); border-top: 1px solid var(--rule); padding-top: var(--space-5); }
 .extras-head {
@@ -1013,6 +1050,20 @@ const statusFilter = new Set();     // dialectStatus values
 let query = '';
 let openId = null;
 
+/* Shot fields are no longer all strings: `strip` and `stripMobile` are arrays of
+   frame paths. Everything that counts, deletes or compares images goes through
+   here, so adding a shot kind never means hunting for the loops that assumed a
+   string — Object.values() over a mixed shape silently yields arrays, and
+   `array.startsWith` throws where it is read as a path. */
+const STRIP_KEYS = ['strip', 'stripMobile'];
+const shotFiles = (shots) => Object.values(shots ?? {})
+  .flatMap((v) => (Array.isArray(v) ? v : [v]))
+  .filter((v) => typeof v === 'string' && v);
+
+/* What a cleared entry looks like. One definition, so a new shot kind cannot be
+   left behind by a removal that predates it. */
+const EMPTY_SHOTS = { full: null, hero: null, mobile: null, strip: [], stripMobile: [], navScrolled: null };
+
 const STATUS_FALLBACK = ['unreviewed', 'in', 'out', 'hybrid'];
 const statuses = () => (vocab.dialectStatus?.length ? vocab.dialectStatus : STATUS_FALLBACK);
 const dialectList = () => vocab.dialects ?? [];
@@ -1038,6 +1089,15 @@ function normalise(entry) {
     added: x.added ?? entry.added ?? '',
     error: x.error ?? null,
   }));
+  /* Filmstrips arrived after most entries did: an entry written before them has
+     no `strip` key at all, and a strip written as null by a hand edit must read
+     as "none" rather than crashing the strip renderer. */
+  entry.shots = { ...(entry.shots ?? {}) };
+  for (const k of STRIP_KEYS) {
+    entry.shots[k] = Array.isArray(entry.shots[k])
+      ? entry.shots[k].filter((f) => typeof f === 'string' && f)
+      : [];
+  }
   if (typeof entry.captureError !== 'string') entry.captureError = entry.captureError ?? null;
   /* note stays the general reasoning field; these two split the judgement.
      Never auto-populated from note — a human moves text if they want to. */
@@ -1308,8 +1368,12 @@ function backfillShots(localEntries, remoteEntries) {
     const theirs = remoteById.get(mine.id);
     if (!theirs?.shots) return mine;
     const shots = { ...(mine.shots ?? {}) };
-    for (const k of ['full', 'hero', 'mobile']) {
-      if (!shots[k] && theirs.shots[k]) shots[k] = theirs.shots[k];
+    /* Every kind the file knows about, not a hard-coded three: the filmstrip is
+       machine-written like the rest, and a key this build has never heard of is
+       still not a working copy's to erase. */
+    for (const k of Object.keys(theirs.shots)) {
+      const empty = Array.isArray(shots[k]) ? shots[k].length === 0 : !shots[k];
+      if (empty && theirs.shots[k]) shots[k] = theirs.shots[k];
     }
     return { ...mine, shots };
   });
@@ -1710,7 +1774,9 @@ function pendingPlaceholder(entry) {
 function card(entry) {
   /* A div, not a button: the note's edit pencil is a real button and nesting one
      button inside another is invalid. Keyboard parity is wired below. */
-  const node = el('div', { className: 'card', role: 'button', tabIndex: 0 });
+  /* data-id is not decoration: it is how a check addresses one specific entry
+     rather than "the first card", which changes every time the sort does. */
+  const node = el('div', { className: 'card', role: 'button', tabIndex: 0, dataset: { id: entry.id } });
   const hero = entry.shots?.hero;
 
   node.append(hero
@@ -1862,6 +1928,11 @@ function openDetail(id, { editNote = false, showNote = false, restoreScroll = nu
      "+ add photos" near the top of the column instead of ~1400px down. */
   right.append(extrasBlock(entry));
 
+  /* Evidence before metadata: the strip is part of the reference, not part of the
+     record-keeping. Absent entirely when the entry has no filmstrip. */
+  const film = filmstripBlock(entry);
+  if (film) right.append(film);
+
   const plate = el('dl', { className: 'plate' });
   const statusCell = el('span', { className: 'status-mark label', textContent: entry.dialectStatus });
   statusCell.dataset.status = entry.dialectStatus;
@@ -1977,6 +2048,77 @@ function editForm(entry) {
   }));
 
   return form;
+}
+
+/* ── filmstrip ─────────────────────────────────────────────────────────────
+   Eight desktop frames and six mobile ones, in scroll order. The full-page shot
+   above already shows the page as an object; this shows it as a sequence — what
+   arrives, in what order, against what. Detail view only: the card carries one
+   image and the note, and a strip of eight thumbnails on a card would turn the
+   grid into a contact sheet to browse rather than a set of claims to read. */
+function filmstripBlock(entry) {
+  const strips = {
+    desktop: (entry.shots?.strip ?? []).filter(Boolean),
+    mobile: (entry.shots?.stripMobile ?? []).filter(Boolean),
+  };
+  const navShot = entry.shots?.navScrolled || null;
+  if (!strips.desktop.length && !strips.mobile.length && !navShot) return null;
+
+  const wrap = el('section', { className: 'film-block', id: 'film-block' });
+  let mode = strips.desktop.length ? 'desktop' : 'mobile';
+
+  const head = el('div', { className: 'film-head' });
+  const count = el('span', { className: 'label', id: 'film-count' });
+  head.append(count);
+
+  const strip = el('div', { className: 'film-strip', id: 'film-strip' });
+
+  /* Both widths only when both exist — a switch with one live option is a lie
+     about what the archive holds. */
+  if (strips.desktop.length && strips.mobile.length) {
+    const sw = el('div', { className: 'film-switch', id: 'film-switch' });
+    for (const key of ['desktop', 'mobile']) {
+      const b = el('button', { className: 'btn label', type: 'button', textContent: key });
+      b.dataset.mode = key;
+      b.addEventListener('click', () => { mode = key; paint(); });
+      sw.append(b);
+    }
+    head.append(sw);
+  }
+
+  function paint() {
+    const frames = strips[mode];
+    count.textContent = `scroll · ${frames.length} frame${frames.length === 1 ? '' : 's'} · ${mode}`;
+    strip.dataset.mode = mode;
+    strip.textContent = '';
+    frames.forEach((src, i) => {
+      const fig = el('figure', { className: 'film-frame' });
+      /* Each frame links to its own file: reading sequence needs the small view,
+         reading a decision inside one frame needs the full one. */
+      const link = el('a', { href: src, target: '_blank', rel: 'noreferrer noopener' });
+      link.append(el('img', {
+        src, loading: 'lazy',
+        alt: `${entry.title || entry.id} — ${mode} scroll frame ${i + 1} of ${frames.length}`,
+      }));
+      fig.append(link, el('figcaption', { className: 'label', textContent: String(i + 1) }));
+      strip.append(fig);
+    });
+    wrap.querySelectorAll('.film-switch .btn')
+      .forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.mode === mode)));
+  }
+
+  wrap.append(head, strip);
+  paint();
+
+  /* Only present when the header actually changed after the first screen — the
+     capture stores nothing when it does not, so its presence is the finding. */
+  if (navShot) {
+    const nav = el('div', { className: 'film-nav' });
+    nav.append(el('img', { src: navShot, loading: 'lazy', alt: `${entry.title || entry.id} — header after scrolling` }));
+    nav.append(el('p', { textContent: 'the pinned header after the first screen — stored because it differs from its top state' }));
+    wrap.append(nav);
+  }
+  return wrap;
 }
 
 /* ── extras ────────────────────────────────────────────────────────────────
@@ -2215,17 +2357,17 @@ function extraFigure(entry, extra, index) {
   return fig;
 }
 
-/* Remove every image an entry has — the three standard shots and any extras — in
-   one commit. The recovery path from a bad capture: a Cloudflare interstitial, a
+/* Remove every image an entry has — the page shots, every filmstrip frame, and
+   any extras — in one commit. The recovery path from a bad capture: a Cloudflare interstitial, a
    consent wall, a redesign shot too early. Files stay in git history; clearing
    captureError as well means the Action will simply try again on the next push. */
 async function removePhotos(entry) {
   const files = [
-    ...Object.values(entry.shots ?? {}).filter(Boolean),
+    ...shotFiles(entry.shots),
     ...(entry.extras ?? []).map((x) => x.file).filter(Boolean),
   ];
   const cleared = {
-    shots: { full: null, hero: null, mobile: null },
+    shots: { ...EMPTY_SHOTS },
     extras: [],
     captureError: null,
   };
@@ -3075,8 +3217,9 @@ function mergeOnto(remote, local) {
 
     // Shots are machine-written: never let a local null erase a remote path.
     const shots = { ...(theirs.shots ?? {}), ...(mine.shots ?? {}) };
-    for (const k of ['full', 'hero', 'mobile']) {
-      if (!shots[k] && theirs.shots?.[k]) shots[k] = theirs.shots[k];
+    for (const k of Object.keys(theirs.shots ?? {})) {
+      const empty = Array.isArray(shots[k]) ? shots[k].length === 0 : !shots[k];
+      if (empty && theirs.shots[k]) shots[k] = theirs.shots[k];
     }
     merged.shots = shots;
 
@@ -3345,8 +3488,7 @@ async function commitTree(cfg, { message, texts = [], binaries = [], deletions =
 }
 
 async function removeViaGitApi(cfg, entry, remaining) {
-  const deletions = [];
-  for (const rel of Object.values(entry.shots ?? {})) if (rel) deletions.push(`vault/${rel}`);
+  const deletions = shotFiles(entry.shots).map((rel) => `vault/${rel}`);
   for (const x of entry.extras ?? []) if (x.file) deletions.push(`vault/${x.file}`);
   return commitTree(cfg, {
     message: `vault: remove ${entry.id}`,
@@ -3569,7 +3711,7 @@ async function submitAdd(ev) {
     ...readDialectForm($('#add-dialect')),
     tags: readVocabForm($('#add-vocab')),
     note: $('#add-note').value.trim() || 'TODO',
-    shots: { full: null, hero: null, mobile: null },
+    shots: { ...EMPTY_SHOTS },
   }));
 
   persist();

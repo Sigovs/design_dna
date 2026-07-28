@@ -30,9 +30,15 @@ if (!existsSync(SHOTS)) {
 
 const entries = JSON.parse(await readFile(join(VAULT, 'sites.json'), 'utf8'));
 const liveIds = new Set(entries.map((e) => e.id));
-const referenced = new Set(
-  entries.flatMap((e) => Object.values(e.shots ?? {}).filter(Boolean))
-);
+
+/* Shot fields are mixed: strings for the page shots, arrays for the filmstrips.
+   Flatten before treating any of them as a path — an array read as a string is
+   how a live directory gets classified as an orphan. */
+const shotFiles = (shots) => Object.values(shots ?? {})
+  .flatMap((v) => (Array.isArray(v) ? v : [v]))
+  .filter((v) => typeof v === 'string' && v);
+
+const referenced = new Set(entries.flatMap((e) => shotFiles(e.shots)));
 
 const dirs = readdirSync(SHOTS, { withFileTypes: true })
   .filter((d) => d.isDirectory())

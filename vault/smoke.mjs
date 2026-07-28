@@ -65,24 +65,48 @@ console.log('\nshots invariant');
     return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
   })();
 
+  /* Shot fields are mixed since the filmstrip landed: strings for the page shots,
+     arrays of frames for `strip` / `stripMobile`. Every path check flattens first
+     — join() throws on an array, so an un-flattened loop fails as a crash rather
+     than as a finding. */
+  const shotPaths = (shots) => Object.entries(shots ?? {})
+    .flatMap(([kind, v]) => (Array.isArray(v) ? v.map((f, i) => [`${kind}[${i}]`, f]) : [[kind, v]]))
+    .filter(([, f]) => typeof f === 'string' && f);
+
   // 1. Every recorded path must resolve to a file on disk.
   const dangling = [];
   for (const e of sites) {
-    for (const [kind, rel] of Object.entries(e.shots ?? {})) {
-      if (rel && !existsSync(join(VAULT, rel))) dangling.push(`${e.id}/${kind} -> ${rel}`);
+    for (const [kind, rel] of shotPaths(e.shots)) {
+      if (!existsSync(join(VAULT, rel))) dangling.push(`${e.id}/${kind} -> ${rel}`);
     }
   }
   check('every recorded shots path resolves to a file', dangling.length === 0,
     dangling.length ? dangling.join(', ') : `${sites.length} entries checked`);
 
+  // 1b. The filmstrip is a sequence: a gap in the numbering is a lost frame.
+  const brokenStrips = [];
+  for (const e of sites) {
+    for (const key of ['strip', 'stripMobile']) {
+      const frames = e.shots?.[key];
+      if (!Array.isArray(frames) || !frames.length) continue;
+      const prefix = key === 'strip' ? 'strip' : 'strip-m';
+      const expected = frames.map((_, i) => `shots/${e.id}/${prefix}-${i + 1}.jpg`);
+      if (JSON.stringify(frames) !== JSON.stringify(expected)) {
+        brokenStrips.push(`${e.id}/${key}`);
+      }
+    }
+  }
+  check('filmstrip frames are stored in scroll order with no gaps', brokenStrips.length === 0,
+    brokenStrips.length ? brokenStrips.join(', ') : 'sequence intact');
+
   // 2. Orphaned files: shots on disk that no entry points at any more.
-  const referenced = new Set(sites.flatMap((e) => Object.values(e.shots ?? {}).filter(Boolean)));
+  const referenced = new Set(sites.flatMap((e) => shotPaths(e.shots).map(([, f]) => f)));
   const shotDirs = existsSync(join(VAULT, 'shots'))
     ? readdirSync(join(VAULT, 'shots'), { withFileTypes: true })
         .filter((d) => d.isDirectory()).map((d) => d.name)
     : [];
   const orphanDirs = shotDirs.filter((dir) =>
-    !sites.some((e) => Object.values(e.shots ?? {}).some((v) => v?.startsWith(`shots/${dir}/`)))
+    ![...referenced].some((rel) => rel.startsWith(`shots/${dir}/`))
     && !sites.some((e) => e.id === dir));
   /* A leftover directory is the expected residue of removing an entry through the
      download-json fallback, so it is a warning pointing at prune — not a failure. */
@@ -682,6 +706,73 @@ check('url field says how it was understood — page', await (async () => {
 await page.fill('#extra-url', '');
 await page.click('#extras-add');   // close again
 await page.waitForTimeout(200);
+
+/* ── filmstrip ────────────────────────────────────────────────────────────
+   Two claims, and the second one is the load-bearing one: the strip belongs to
+   the detail view, and the card must stay a single image plus its note. A
+   contact sheet on the card would turn the grid from a set of claims to read
+   into a pile of pictures to browse — which is exactly the pull the vault is
+   meant to resist. */
+console.log('\nfilmstrip');
+{
+  const sites = JSON.parse(readFileSync(join(VAULT, 'sites.json'), 'utf8'));
+  const withStrip = sites.filter((e) => (e.shots?.strip ?? []).length > 0);
+
+  check('the filmstrip never appears on a card',
+    (await page.locator('.card .film-block, .card .film-frame').count()) === 0);
+
+  if (!withStrip.length) {
+    console.log('  · no entry carries a filmstrip yet — display checks skipped');
+  } else {
+    const target = withStrip[0];
+    await page.keyboard.press('Escape');
+    await page.waitForTimeout(200);
+    await page.locator(`.card[data-id="${target.id}"]`).first().click();
+    await page.waitForTimeout(600);
+
+    const frames = await page.locator('#film-strip .film-frame').count();
+    check('the filmstrip renders in the detail view', frames > 0, `${frames} frames`);
+    check('every desktop frame in the data is on screen',
+      frames === target.shots.strip.length,
+      `${frames} rendered / ${target.shots.strip.length} recorded`);
+    check('frames are captioned by their position in the sequence',
+      (await page.locator('#film-strip .film-frame figcaption').first().textContent()).trim() === '1');
+    check('every frame image actually loaded', await page.evaluate(() =>
+      [...document.querySelectorAll('#film-strip img')].every((i) => i.complete && i.naturalWidth > 0)));
+
+    /* The strip scrolls inside itself. If it pushed the page instead, every
+       other column in the detail view would inherit a horizontal scrollbar. */
+    const overflow = await page.evaluate(() => {
+      const s = document.querySelector('#film-strip');
+      return { inner: s.scrollWidth > s.clientWidth + 2, page: document.body.scrollWidth > window.innerWidth + 2 };
+    });
+    check('the strip scrolls inside itself, not the page', !overflow.page,
+      overflow.inner ? 'strip overflows its own box, as designed' : 'strip fits');
+
+    if ((target.shots?.stripMobile ?? []).length) {
+      check('a width switch appears only when both widths exist',
+        (await page.locator('#film-switch .btn').count()) === 2);
+      await page.locator('#film-switch .btn[data-mode="mobile"]').click();
+      await page.waitForTimeout(300);
+      check('switching to mobile swaps the frames',
+        (await page.locator('#film-strip .film-frame').count()) === target.shots.stripMobile.length
+        && (await page.locator('#film-strip').getAttribute('data-mode')) === 'mobile');
+      await page.locator('#film-switch .btn[data-mode="desktop"]').click();
+      await page.waitForTimeout(250);
+    }
+
+    const navShot = target.shots?.navScrolled;
+    check('the scrolled header is shown when one was stored, and only then',
+      (await page.locator('#film-block .film-nav').count()) === (navShot ? 1 : 0));
+
+    await shot(page, 'gallery-filmstrip');
+    await page.keyboard.press('Escape');
+    await page.waitForTimeout(250);
+    await page.locator('.card').first().click();
+    await page.waitForTimeout(500);
+    await openApparatus(page);
+  }
+}
 
 check('note has an inline editor', (await page.locator('#detail #note-inline').count()) === 1);
 check('note editor starts closed', !(await page.locator('#detail #note-editor').isVisible()));

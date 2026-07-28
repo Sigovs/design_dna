@@ -8,18 +8,35 @@
     "dialectStatus": "unreviewed",
     "dialects": [],
     "tags": {
-      "composition": [],
-      "typography": [],
-      "layout": [],
+      "composition": [
+        "spatial-tension",
+        "rhythm-variation",
+        "commercial-editorial-balance",
+        "scale-exchange",
+        "displaced-content",
+        "curated-sequencing"
+      ],
+      "typography": [
+        "editorial-field",
+        "single-serif-system",
+        "oversized-wordmark",
+        "monumental-body-copy",
+        "typographic-scale-shift",
+        "micro-caption-risk",
+        "dense-copy-risk-layout"
+      ],
+      "layout": [
+        "controlled-asymmetry"
+      ],
       "motion": [],
       "color": [],
       "imagery": []
     },
     "note": "TODO",
     "shots": {
-      "full": "shots/kinncollective-co-uk/full.jpg",
-      "hero": "shots/kinncollective-co-uk/hero.jpg",
-      "mobile": "shots/kinncollective-co-uk/mobile.jpg"
+      "full": null,
+      "hero": null,
+      "mobile": null
     },
     "kind": "site",
     "source": "",

@@ -77,6 +77,43 @@ legibility as an image-composition problem, which is what it is. Degrading the
 text instead — adding shadows, outlines, or heavier weights — trades one defect
 for another.
 
+### I5 — The accent is derived, and the derivation is stated
+
+An accent is never chosen. It is **derived from something the project actually
+contains**, and the derivation is stated in one line before the palette is used.
+An accent that cannot name its source is a default, and the default is whatever
+the generating model reaches for.
+
+Legitimate derivation routes, in no fixed order:
+
+- the client's existing brand values, **measured** rather than eyeballed;
+- the material or environment the subject lives in;
+- **the hue the project's photography leaves unoccupied** — read the image set,
+  find the clearest free chromatic territory, and take the accent there so it
+  never competes with the subject.
+
+**Derivation is necessary and not sufficient.** A correctly derived value can
+still fail in place. After deriving, judge the accent **where it actually lands**
+— on buttons, on prices, beside the subject — and replace it if it reads wrong,
+recording that the derivation was sound and the result was not.
+
+*Relationship to [I2](#invariant):* I2 forbids encoding meaning in hue alone. I5
+adds the inverse check: a hue can **carry** unintended meaning from the domain. In
+an automotive context green reads as electric or eco; in finance red reads as
+loss; in medicine it reads as alarm. After deriving, test the accent against the
+domain's existing colour conventions, not only against the composition.
+
+> **Evidence.** "On one project a page was rebuilt without a declared palette and
+> returned near-black with a warm gold accent — the generating model's own default
+> premium scheme, which no brief had asked for. On a second project the accent was
+> derived correctly from the client's own navy, measured at 1.98:1 against the new
+> ground, lifted in lightness to resolve that, and still read as enterprise
+> software; it was replaced by a warm neutral, with the colour carried by the
+> photography instead. A later pass on the same project derived the accent from the
+> hue the image set left free — 80 degrees clear of everything the photography
+> owned — and stated both why it was free and why it belonged to the client.
+> Logged 2026-07-28."
+
 ---
 
 ## DIALECT
@@ -217,6 +254,8 @@ at the background layer.
 - [ ] No meaning carried by hue alone.
 - [ ] Focus rings visible at ≥3:1 against element and page.
 - [ ] Text over media checked against worst-case overlap; fixed with a scrim.
+- [ ] Accent derived from something the project contains, derivation stated in one
+      line, then judged where it lands and against the domain's colour conventions.
 
 **Dialect — when auction-editorial is active**
 - [ ] Base is off-black or off-white; no `#000`, no `#fff`.

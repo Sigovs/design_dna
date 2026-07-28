@@ -58,11 +58,25 @@
     "dialectStatus": "unreviewed",
     "dialects": [],
     "tags": {
-      "composition": [],
-      "typography": [],
-      "layout": [],
+      "composition": [
+        "active-negative-space",
+        "compositional-resolution",
+        "directed-eye",
+        "optical-balance",
+        "responsive-recomposition"
+      ],
+      "typography": [
+        "big-type",
+        "editorial"
+      ],
+      "layout": [
+        "air"
+      ],
       "motion": [],
-      "color": [],
+      "color": [
+        "bold-accent",
+        "3-color-scheme"
+      ],
       "imagery": []
     },
     "note": "IN — A highly controlled immersive product world built through clinical whitespace, selective blur, restrained typography, floating navigation, and precise shifts between white, black, and electric blue. The interface, cursor behavior, product imagery, and transitions belong to the same fictional system rather than appearing as separate decorative layers. Strong visual silence allows each central object or narrative event to hold attention, while the product pages successfully extend the homepage language into a larger authored experience. However, the extreme softness, thin microtype, low-contrast information, and discovery-dependent navigation sometimes suppress product clarity too aggressively. A strong immersive-authored-world reference, but not a complete usability reference. последовательный clinical-futuristic art direction;\nblur используется как пространственный и narrative-мотив;\nцентральный объект/человек формирует dominant event;\nкурсор, навигация, типографика и продуктовые рендеры принадлежат одному миру;\nпереходы white → black → electric blue создают настоящие смены состояния;\nмного visual silence — эффекты не работают одновременно;\nпродуктовые страницы продолжают язык homepage, а не превращаются в обычный каталог.",

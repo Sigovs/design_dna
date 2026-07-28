@@ -34,9 +34,9 @@
     },
     "note": "TODO",
     "shots": {
-      "full": null,
-      "hero": null,
-      "mobile": null
+      "full": "shots/kinncollective-co-uk/full.jpg",
+      "hero": "shots/kinncollective-co-uk/hero.jpg",
+      "mobile": "shots/kinncollective-co-uk/mobile.jpg"
     },
     "kind": "site",
     "source": "",

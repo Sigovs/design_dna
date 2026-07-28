@@ -19,6 +19,15 @@
         "visual-silence"
       ]
     },
+    "risks": {
+      "hue": 25,
+      "tags": [
+        "ambiguous-reading-order",
+        "decorative-information-legibility-risk",
+        "mobile-recomposition-risk",
+        "repeated-composition-risk"
+      ]
+    },
     "typography": {
       "hue": 165,
       "tags": [
@@ -84,5 +93,6 @@
     "in",
     "out",
     "hybrid"
-  ]
+  ],
+  "_risksComment": "Named failure modes and near-failures — the ONLY category where a tag records something wrong. Every other category is positive merit. Kept separate so a merit query never returns a risk."
 }

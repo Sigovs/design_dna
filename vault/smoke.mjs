@@ -148,14 +148,17 @@ check('count is populated', (await page.locator('#count').textContent()).trim().
 // Every card that should have a preview actually renders a loaded image.
 const withShots = JSON.parse(readFileSync(join(VAULT, 'sites.json'), 'utf8'))
   .filter((e) => e.shots?.hero).length;
+/* The pending placeholder renders a favicon <img> inside .card-shot, so a bare
+   `.card-shot img` count includes entries that have no preview at all. */
 check('every entry with a hero shot renders a preview',
-  (await page.locator('.card-shot img').count()) === withShots,
-  `${await page.locator('.card-shot img').count()} previews / ${withShots} expected`);
+  (await page.locator('.card-shot img:not(.pending-favicon)').count()) === withShots,
+  `${await page.locator('.card-shot img:not(.pending-favicon)').count()} previews / ${withShots} expected`);
 check('every preview image actually loaded',
-  await page.locator('.card-shot img').evaluateAll((imgs) =>
+  await page.locator('.card-shot img:not(.pending-favicon)').evaluateAll((imgs) =>
     imgs.length > 0 && imgs.every((i) => i.complete && i.naturalWidth > 0)));
-check('no card shows "no shots yet" for an entry that has them',
-  (await page.locator('.card-shot--empty').count()) ===
+/* .card-shot--empty no longer exists: pending and failed are distinct states. */
+check('entries without shots show a placeholder, not a broken preview',
+  (await page.locator('.card-shot--pending, .card-shot--failed').count()) ===
     (JSON.parse(readFileSync(join(VAULT, 'sites.json'), 'utf8')).length - withShots));
 await shot(page, 'gallery-grid', { fullPage: true });
 
@@ -1016,6 +1019,8 @@ console.log('\nvocab growth survives a save round-trip');
      tree → commit → ref. Capture what would be committed. */
   let committedVocab = null;
   let commitMessage = null;
+  /* promoteToVocab now re-reads BOTH files before writing, so the mock must serve
+     them — that re-read is the fix for vocab categories being silently dropped. */
   await gc.route('https://api.github.com/**', async (route) => {
     const url = route.request().url();
     const method = route.request().method();
@@ -1034,6 +1039,13 @@ console.log('\nvocab growth survives a save round-trip');
     }
     if (/\/git\/refs\/heads\//.test(url) && method === 'PATCH') return json({ ok: true });
     if (/\/commits\?path=/.test(url)) return json([]);
+    // Both files are re-read before writing — that is the clobber fix.
+    if (/\/contents\/vault\/vocab\.json/.test(url) && method === 'GET') {
+      return json({ sha: 'vsha', content: Buffer.from(readFileSync(join(VAULT, 'vocab.json'), 'utf8')).toString('base64') });
+    }
+    if (/\/contents\/vault\/sites\.json/.test(url) && method === 'GET') {
+      return json({ sha: 'ssha', content: Buffer.from(readFileSync(join(VAULT, 'sites.json'), 'utf8')).toString('base64') });
+    }
     return json({});
   });
   const gp = await gc.newPage();
@@ -1049,7 +1061,9 @@ console.log('\nvocab growth survives a save round-trip');
   check('a new tag is proposed for the vocabulary, not silently added',
     (await gp.locator('.queue-bar--vocab').count()) === 1
     && !(await gp.evaluate(() => window.__vocabHasTag ?? false)));
-  await gp.locator('.queue-bar--vocab .btn--primary').first().click();
+  // Many non-canonical tags exist in live data, so target OUR tag's proposal row.
+  await gp.locator('.queue-bar--vocab .queue-row')
+    .filter({ hasText: 'controlled-accent' }).locator('.btn--primary').first().click();
   await gp.waitForTimeout(1200);
   check('confirming writes vocab.json in the same commit as sites.json',
     committedVocab !== null
@@ -1536,7 +1550,7 @@ console.log('\nmobile · WebKit · iPhone 13 · token rejection messages');
     await tp.waitForTimeout(700);
     await openApparatus(tp);
     await tp.locator('#detail [data-field="dialectStatus"] input[value="in"]').check();
-    await tp.locator('#detail button[type="submit"]').click();
+    await tp.locator('#entry-save').click();
     await tp.waitForTimeout(2500);
 
     const msg = ((await tp.locator('#toast').textContent()) ?? '')
@@ -1571,7 +1585,7 @@ console.log('\nmobile · WebKit · iPhone 13 · token rejection messages');
   await cp.waitForTimeout(700);
   await openApparatus(cp);
   await cp.locator('#detail [data-field="dialectStatus"] input[value="in"]').check();
-  await cp.locator('#detail button[type="submit"]').click();
+  await cp.locator('#entry-save').click();
   await cp.waitForTimeout(2000);
   check('whitespace is stripped from the pasted token before use',
     sentAuth === 'Bearer github_pat_padded', String(sentAuth));

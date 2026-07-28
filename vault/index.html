@@ -289,6 +289,16 @@ button, input, textarea, select { font: inherit; color: inherit; }
 /* danger styling — tokens only, no new palette */
 .btn--danger { border-color: color-mix(in oklab, var(--danger) 75%, var(--bg)); color: var(--danger); }
 .btn--danger:hover { border-color: var(--danger); color: color-mix(in oklab, var(--danger) 80%, var(--ink)); }
+.entry-actions {
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+.entry-actions-spacer { flex: 1 1 auto; }
+@media (max-width: 40rem) {
+  .entry-actions { flex-direction: column; align-items: stretch; }
+  .entry-actions .btn { width: 100%; justify-content: center; }
+  .entry-actions-spacer { display: none; }
+}
 .danger-zone { border-top: 1px solid var(--rule); margin-top: var(--space-8); padding-top: var(--space-6); }
 .danger-zone > .label { display: block; color: var(--ink-30); margin-bottom: var(--space-3); }
 .danger-confirm { margin-top: var(--space-4); }
@@ -1912,7 +1922,7 @@ function closeDetail() {
 }
 
 function editForm(entry) {
-  const form = el('form', { className: 'form' });
+  const form = el('form', { className: 'form', id: 'entry-form' });
   form.append(el('h3', { className: 'label', textContent: 'edit' }));
 
   /* Titles come from <title> and are often SEO junk — always editable. */
@@ -1943,9 +1953,10 @@ function editForm(entry) {
 
   // The note lives in its own inline editor above (noteBlock) — one field, one owner.
 
+  /* Save lives in the entry actions row beside Remove, not buried in the form —
+     the two things you do to an entry belong in one place. */
   const actions = el('div', { className: 'form-actions' });
-  actions.append(el('button', { className: 'btn btn--primary', type: 'submit', textContent: 'save' }));
-  actions.append(el('span', { className: 'hint', textContent: 'Saves to GitHub. Without a stored token you get the choice of pasting one or downloading the file.' }));
+  actions.append(el('span', { className: 'hint', textContent: 'Changes here are written by SAVE, at the bottom of the entry.' }));
   form.append(actions);
 
   form.addEventListener('submit', guard('Save', async (ev) => {
@@ -2194,7 +2205,7 @@ async function removeExtra(entry, index) {
   try {
     const commit = await commitTree(cfg, {
       message: `vault: remove extra from ${entry.id}`,
-      texts: [{ path: cfg.path, content: serialise(all) }],
+      texts: [{ path: cfg.path, content: await mergedSitesContent(cfg) }],
       deletions: extra.file ? [`vault/${extra.file}`] : [],
     });
     entries = all.map(normalise);
@@ -2366,7 +2377,22 @@ function dangerZone(entry) {
     await removeEntry(entry.id);
   }));
 
-  zone.append(start, confirm);
+  /* SAVE sits beside REMOVE: the two things you do to an entry, in one row, at the
+     end of it. Save was previously buried inside the collapsed metadata form,
+     which meant the primary action hid behind a disclosure. */
+  const save = el('button', {
+    className: 'btn btn--primary', type: 'button', id: 'entry-save', textContent: 'save',
+  });
+  save.addEventListener('click', guard('Save', async () => {
+    const form = $('#entry-form');
+    if (!form) { toast('Nothing to save — the metadata form is not open.', 'warn'); return; }
+    // requestSubmit fires the form's own submit handler, validation and all.
+    form.requestSubmit();
+  }));
+
+  const row = el('div', { className: 'entry-actions' });
+  row.append(save, el('span', { className: 'entry-actions-spacer' }), start, confirm);
+  zone.append(row);
   return zone;
 }
 
@@ -2721,14 +2747,17 @@ async function promoteToVocab(cat, tag, entry) {
     return;
   }
   const cfg = repoConfig();
-  const next = structuredClone(vocab);
+  // Read both files fresh: never write memory over someone else's newer commit.
+  const sitesContent = await mergedSitesContent(cfg);
+  const next = await freshVocab(cfg);
+  if (!next.categories?.[cat]) { toast(`Category ${cat} is no longer in the vocabulary.`, 'bad'); return; }
   if (!next.categories[cat].tags.includes(tag)) next.categories[cat].tags.push(tag);
   next.categories[cat].tags.sort();
 
   const commit = await commitTree(cfg, {
     message: `vault: add '${tag}' to ${cat} vocabulary`,
     texts: [
-      { path: cfg.path, content: serialise(entries) },
+      { path: cfg.path, content: sitesContent },
       { path: 'vault/vocab.json', content: JSON.stringify(next, null, 2) + '\n' },
     ],
   });
@@ -2976,6 +3005,35 @@ function mergeOnto(remote, local) {
   return [...out.values()];
 }
 
+/* EVERY write that includes sites.json must go through this. commitTree() uses the
+   Git Data API, which has no optimistic-concurrency check on file content: it
+   builds a tree from base_tree and overwrites whatever is at the path. So writing
+   serialise(entries) straight from memory silently clobbers anything that landed
+   since this page loaded — a phone save, or the capture Action writing shot paths.
+   That is why works/weaknesses "sometimes" vanished after a refresh: it depended
+   entirely on whether anyone else had written in between.
+   Re-read, merge, then serialise. Same guarantee saveToGitHub already had. */
+async function mergedSitesContent(cfg) {
+  const { entries: remote } = await fetchRemote(cfg);
+  const merged = mergeOnto(remote, entries);
+  entries = merged.map(normalise);
+  baseline = new Map(entries.map((e) => [e.id, structuredClone(e)]));
+  return serialise(merged);
+}
+
+/* Same hazard for the vocabulary: promoting a tag used to write the whole vocab
+   object from memory, which is how the `risks` category was silently dropped. */
+async function freshVocab(cfg) {
+  try {
+    const data = await gh(
+      `/repos/${cfg.owner}/${cfg.repo}/contents/vault/vocab.json?ref=${encodeURIComponent(cfg.branch)}`,
+      { cache: 'no-store' });
+    return JSON.parse(b64decode(data.content));
+  } catch {
+    return structuredClone(vocab);   // offline or missing: fall back to memory
+  }
+}
+
 async function fetchRemote(cfg) {
   const data = await gh(
     `/repos/${cfg.owner}/${cfg.repo}/contents/${cfg.path}?ref=${encodeURIComponent(cfg.branch)}`,
@@ -3182,7 +3240,7 @@ async function removeViaGitApi(cfg, entry, remaining) {
   for (const x of entry.extras ?? []) if (x.file) deletions.push(`vault/${x.file}`);
   return commitTree(cfg, {
     message: `vault: remove ${entry.id}`,
-    texts: [{ path: cfg.path, content: serialise(remaining) }],
+    texts: [{ path: cfg.path, content: await mergedSitesContent(cfg) }],
     deletions: [...new Set(deletions)],
   });
 }
@@ -3276,7 +3334,7 @@ async function uploadExtras(entry, files, { asHero = false } = {}) {
   const remaining = entries.map((e) => (e.id === entry.id ? entry : e));
   const commit = await commitTree(cfg, {
     message: `vault: add ${saved} image${saved === 1 ? '' : 's'} to ${entry.id}`,
-    texts: [{ path: cfg.path, content: serialise(remaining) }],
+    texts: [{ path: cfg.path, content: await mergedSitesContent(cfg) }],
     binaries,
   });
   entries = remaining.map(normalise);

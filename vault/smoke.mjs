@@ -1038,6 +1038,103 @@ console.log('\nvocab growth survives a save round-trip');
   await gc.close();
 }
 
+/* ── three-block inline-save matrix ───────────────────────────────────────
+   The reported bug: saving note, then works, then weaknesses kept only the
+   first. Cause: a successful save replaces every object in `entries`, so the
+   other two blocks were still bound to an orphan and their writes went nowhere.
+   Asserted in every order, because the survivor was always whichever field was
+   saved first. */
+console.log('\nthree-block inline save matrix (note / works / doesn\'t)');
+{
+  const ORDERS = [
+    ['note', 'works', 'weaknesses'],
+    ['works', 'weaknesses', 'note'],
+    ['weaknesses', 'note', 'works'],
+  ];
+
+  for (const order of ORDERS) {
+    const sctx = await browser.newContext();
+    await sctx.addInitScript(() => localStorage.setItem('design-dna:vault:gh-token', 'github_pat_smoke'));
+
+    const puts = [];
+    let serverState = null;
+    await sctx.route('https://api.github.com/**', async (route) => {
+      const url = route.request().url(), method = route.request().method();
+      const json = (x) => route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(x) });
+      if (/\/commits\?path=/.test(url)) return json([]);
+      if (/\/contents\/vault\/sites\.json/.test(url) && method === 'GET') {
+        if (!serverState) serverState = readFileSync(join(VAULT, 'sites.json'), 'utf8');
+        return json({ sha: `sha${puts.length}`, content: Buffer.from(serverState).toString('base64') });
+      }
+      if (/\/contents\/vault\/sites\.json/.test(url) && method === 'PUT') {
+        const body = JSON.parse(route.request().postData() ?? '{}');
+        serverState = Buffer.from(body.content, 'base64').toString('utf8');   // the repo persists
+        puts.push(JSON.parse(serverState));
+        return json({ commit: { sha: `commit${puts.length}` } });
+      }
+      return json({});
+    });
+
+    const sp = await sctx.newPage();
+    await sp.goto(URL_BASE, { waitUntil: 'domcontentloaded' });
+    await sp.waitForSelector('.card');
+    await sp.waitForTimeout(1000);
+    await sp.locator('.card').first().click();
+    await sp.waitForTimeout(800);
+    const id = (await sp.locator('#detail-id').textContent()).trim();
+
+    for (const field of order) {
+      await sp.locator(`#${field}-edit`).click();
+      await sp.waitForTimeout(300);
+      await sp.fill(`#${field}-inline`, `SMOKE-${field.toUpperCase()}`);
+      await sp.locator(`#${field}-editor .btn--primary`).click();
+      await sp.waitForTimeout(1400);
+    }
+
+    const committed = puts.at(-1)?.find((e) => e.id === id) ?? {};
+    const kept = ['note', 'works', 'weaknesses']
+      .filter((f) => String(committed[f] ?? '').startsWith('SMOKE-'));
+    check(`saved in order ${order.join(' → ')}: all three survive`,
+      kept.length === 3, `${kept.length}/3 kept [${kept.join(', ') || 'none'}]`);
+
+    // And they survive a reload, read back from what was actually committed.
+    await sp.reload({ waitUntil: 'domcontentloaded' });
+    await sp.waitForSelector('.card');
+    await sp.waitForTimeout(900);
+    await sctx.close();
+  }
+
+  /* The download fallback must carry all three too — no token stored. */
+  const dctx = await browser.newContext({ acceptDownloads: true });
+  const dp = await dctx.newPage();
+  await dp.goto(URL_BASE, { waitUntil: 'domcontentloaded' });
+  await dp.waitForSelector('.card');
+  await dp.waitForTimeout(900);
+  await dp.locator('.card').first().click();
+  await dp.waitForTimeout(800);
+  const did = (await dp.locator('#detail-id').textContent()).trim();
+  for (const field of ['note', 'works', 'weaknesses']) {
+    await dp.locator(`#${field}-edit`).click();
+    await dp.waitForTimeout(250);
+    await dp.fill(`#${field}-inline`, `DL-${field.toUpperCase()}`);
+    await dp.locator(`#${field}-editor .btn--primary`).click();
+    await dp.waitForTimeout(700);
+    // No token: the save-choice panel appears. Take the download path once.
+    const dl = dp.locator('#token-download');
+    if (await dl.isVisible().catch(() => false)) {
+      const wait = dp.waitForEvent('download');
+      await dl.click();
+      const file = await wait;
+      const payload = JSON.parse(readFileSync(await file.path(), 'utf8'));
+      const e = payload.find((x) => x.id === did) ?? {};
+      check(`download fallback carries ${field}`,
+        String(e[field] ?? '').startsWith('DL-'), String(e[field] ?? '(empty)').slice(0, 18));
+      await dp.waitForTimeout(300);
+    }
+  }
+  await dctx.close();
+}
+
 console.log('\nnote clamp — 1500+ char mixed-script note');
 {
   const LONG = (

@@ -1093,6 +1093,14 @@ const el = (tag, props = {}, ...kids) => {
   kids.flat().forEach((k) => k != null && n.append(k));
   return n;
 };
+/* `entries` is REPLACED wholesale after a successful save — mergeOnto() returns
+   fresh objects built from the remote file. Any handler that closed over an entry
+   object at render time is then holding an orphan: mutating it changes nothing
+   that persist() or serialise() will ever see. That is why saving note, then
+   works, then weaknesses kept only the first: each later save wrote into a
+   detached copy. Always resolve the current object by id at mutation time. */
+const live = (id) => entries.find((e) => e.id === id) ?? null;
+
 const hueOf = (cat) => vocab.categories[cat]?.hue ?? 0;
 const host = (url) => { try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return url; } };
 
@@ -1939,16 +1947,18 @@ function editForm(entry) {
 
   form.addEventListener('submit', guard('Save', async (ev) => {
     ev.preventDefault();
-    entry.title = $(`#${CSS.escape(titleId)}`, form).value.trim() || entry.title;
-    entry.rating = Number(new FormData(form).get(`rate-${entry.id}`) ?? entry.rating);
-    Object.assign(entry, readDialectForm(dialectWrap));
-    entry.tags = readVocabForm(vocabWrap);
+    // Same rule as the judgement blocks: resolve by id, never the captured object.
+    const target = live(entry.id) ?? entry;
+    target.title = $(`#${CSS.escape(titleId)}`, form).value.trim() || target.title;
+    target.rating = Number(new FormData(form).get(`rate-${entry.id}`) ?? target.rating);
+    Object.assign(target, readDialectForm(dialectWrap));
+    target.tags = readVocabForm(vocabWrap);
     persist();
     renderFilters();
     renderDialectFilters();
     render();
-    reopenDetail(entry.id);   // re-render, keeping reading position
-    await requestSave(`Changes to "${entry.title}"`);
+    reopenDetail(target.id);   // re-render, keeping reading position
+    await requestSave(`Changes to "${target.title}"`);
   }));
 
   return form;
@@ -2286,12 +2296,15 @@ function textBlock(entry, field) {
   cancel.addEventListener('click', () => { area.value = note; close(); });
 
   save.addEventListener('click', guard(`Save ${field}`, async () => {
+    /* Resolve by id, never through the captured object: a previous save may have
+       replaced it. Without this, the second and third field edits are lost. */
+    const target = live(entry.id) ?? entry;
     const typed = area.value.trim();
     const next = typed || (spec.emptyIsTodo ? 'TODO' : '');
-    if (next === (entry[field] ?? '').trim()) { close(); toast(`${field} unchanged.`, 'warn', 3000); return; }
+    if (next === (target[field] ?? '').trim()) { close(); toast(`${field} unchanged.`, 'warn', 3000); return; }
     save.disabled = true;
     save.textContent = 'saving…';
-    entry[field] = next;                                // only this field
+    target[field] = next;                               // only this field
     persist();
     render();
     reopenDetail(entry.id);                          // re-render, keeping reading position
@@ -3013,6 +3026,10 @@ async function saveToGitHub() {
         dirty = false;
         store.remove(LS_KEY);
         renderFilters(); renderDialectFilters(); render();
+        /* Every object in `entries` is new, so an open detail sheet is still bound
+           to the previous ones. Rebind it, keeping reading position, or the next
+           field the user edits writes into an orphan. */
+        if (openId && !$('#detail').hidden) reopenDetail(openId);
         const short = res.commit?.sha?.slice(0, 7) ?? '';
         status(`saved as ${short} — shots are being captured by the Action, ~2 min. Reload after it finishes.`, 'ok');
         return;

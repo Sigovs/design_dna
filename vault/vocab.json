@@ -21,11 +21,12 @@
     "typography": {
       "hue": 165,
       "tags": [
-        "display-serif",
-        "grotesque",
-        "mono-details",
         "big-type",
-        "editorial"
+        "commerce-editorial-alternation",
+        "display-serif",
+        "editorial",
+        "grotesque",
+        "mono-details"
       ]
     },
     "layout": {

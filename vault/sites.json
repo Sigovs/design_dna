@@ -1,5 +1,76 @@
 [
   {
+    "id": "carvana-com",
+    "kind": "site",
+    "url": "https://www.carvana.com/",
+    "source": "",
+    "title": "Carvana",
+    "added": "2026-07-27",
+    "rating": 2,
+    "dialectStatus": "unreviewed",
+    "dialects": [],
+    "tags": {
+      "composition": [
+        "conversion-first-hierarchy",
+        "inventory-first-experience",
+        "low-anxiety-commerce",
+        "transactional-continuity",
+        "utility-over-expression",
+        "predictable-section-rhythm"
+      ],
+      "risks": [],
+      "typography": [
+        "functional-sans",
+        "payment-led-hierarchy",
+        "scannable-pricing",
+        "interface-neutrality",
+        "limited-expressive-range"
+      ],
+      "layout": [
+        "search-led-opening",
+        "ecommerce-inventory-grid",
+        "persistent-filters",
+        "vehicle-detail-funnel",
+        "modular-benefit-bands",
+        "scalable-design-system",
+        "conventional-homepage-structure"
+      ],
+      "motion": [
+        "state-transition",
+        "filtering-feedback",
+        "purchase-progression",
+        "delivery-status",
+        "functional-motion",
+        "restrained-expression"
+      ],
+      "color": [
+        "carvana-blue",
+        "bright-yellow-accent",
+        "white-commerce-ground",
+        "friendly-high-contrast",
+        "mass-market-trust-palette"
+      ],
+      "imagery": [
+        "standardized-vehicle-photography",
+        "consistent-angle-system",
+        "product-first-imagery",
+        "vehicle-comparability",
+        "vending-machine-brand-asset",
+        "limited-emotional-cropping"
+      ]
+    },
+    "note": "MAYBE — A highly mature automotive-commerce platform that transforms dealership activity into one continuous, personalized transaction. Search, inventory, saved vehicles, financing, trade-in, documentation, purchase and delivery remain connected around the shopper and the selected vehicle, producing exceptional commercial clarity at considerable scale. Standardized vehicle imagery, payment-led cards, persistent progress, direct guarantees and friendly blue-and-yellow branding reduce anxiety around an expensive purchase. However, the visual system remains conventionally product-led: predictable content bands, neutral typography, uniform inventory grids, familiar rounded components and restrained functional motion provide limited compositional or art-direction value. Preserve as an outstanding reference for automotive product architecture, conversion and transactional continuity—not as a primary taste or visual-dialect reference.\n\nAesthetic family: friendly-automotive-commerce-system\n\nРасклад: product/commerce UX 9/10; визуальный арт-дирекшен 6.5/10; как референс для dealer conversion 9/10; как референс для Taste Vault 5.5/10. Это практически противоположность Trionn. Там интерфейс впечатляет сильнее, чем обслуживает задачу. Здесь почти каждый элемент обслуживает покупку, продажу или финансирование машины — но визуально сайт редко выходит за пределы хорошо отполированного mass-market e-commerce.\n\nSignature mechanism: every vehicle is presented as a continuously purchasable product whose price, financing, trade-in value, availability and delivery state update around the individual shopper. Это не столько визуальная, сколько продуктовая signature mechanism. Она проходит через inventory, vehicle cards, personalized payments, saved cars, trade-in, checkout, delivery tracking. Пользователь не переходит между отдельными дилерскими отделами — одна машина постепенно превращается из результата поиска в персонализированную сделку.\n\nСамый важный урок: Carvana доказывает, что automotive originality может находиться не в необычной homepage-композиции, а в целостности коммерческого пути. Забрать: inventory-first thinking; payment-aware browsing; сохранение контекста; ясные states; постоянную связь машины с действиями; минимальное расстояние между желанием и следующим шагом. Но визуально нельзя останавливаться на Carvana — её product architecture нужно соединять с более сильным арт-дирекшеном вроде Kinn или Beings: Carvana underneath, stronger automotive character on top.\n\nВ Vault оставлять, но в PRODUCT / AUTOMOTIVE COMMERCE, не в TASTE / ART DIRECTION. Это один из лучших примеров того, как должен работать онлайн-dealer, но далеко не лучший пример того, как он должен выглядеть.\n\nCloudflare заблокировал живую проверку в cloud browser, поэтому актуальную структуру и продуктовые возможности сверял по индексируемым страницам Carvana, описанию приложения и материалам об их дизайн-системе. Motion здесь оцениваю осторожно.",
+    "shots": {
+      "full": null,
+      "hero": null,
+      "mobile": null
+    },
+    "extras": [],
+    "captureError": "capture blocked — Cloudflare \"verify you are human\" interstitial, twice. Upload shots manually via + add photos, or capture from a signed-in browser.",
+    "works": "Сайт сразу разделяет основные намерения: купить машину, продать свою, получить financing terms или продолжить сохранённый процесс.\nInventory воспринимается не как дилерский склад, а как полноценный e-commerce catalogue.\nПоиск строится вокруг реальных покупательских критериев: бюджет, ежемесячный платёж, кузов, марка, пробег, доставка.\nЦена автомобиля соединена с персональным финансированием. Пользователь видит не абстрактную стоимость, а собственные условия.\nSaved vehicles, financing и история действий сохраняют continuity между визитами. Это особенно важно для покупки, которая редко совершается за одну сессию.\nВесь путь собран внутри одной системы: поиск, trade-in, financing, документы, договор и scheduling delivery/pickup. Carvana действительно позволяет провести практически всю транзакцию онлайн.\nКарточки машин сравнительно плотные, но информация расположена в правильном порядке: изображение → автомобиль → цена/платёж → ключевые условия.\nГолубой, белый и жёлтый делают финансово сложный продукт дружелюбным и менее похожим на традиционный автомобильный dealership.\n7-Day Money Back Guarantee, доставка и Vending Machine превращены в понятные consumer benefits, а не спрятаны в юридическом тексте.\nСистема масштабируется на десятки тысяч автомобилей и множество состояний пользователя. По данным Figma, над её согласованностью работала отдельная крупная design-systems команда.",
+    "weaknesses": "Homepage и supporting content собраны довольно предсказуемо: hero search, benefit blocks, карточки, steps, testimonials, FAQ.\nОсновная сетка inventory функциональна, но мало отличается от большого retail marketplace.\nБелые карточки, мягкие тени, rounded controls и дружелюбные иллюстрации выглядят безопасно и немного безлично.\nBlue/yellow branding узнаваемый, но композиционно редко создаёт настоящее напряжение или неожиданность.\nАвтомобили снимаются последовательно и понятно, однако стандартизация убирает индивидуальный характер конкретной машины.\nTypography выполняет интерфейсную работу, но практически не участвует в арт-дирекшене.\nСтраница вынуждена одновременно показывать цену, financing, delivery, badges, mileage и guarantees — поэтому визуальная иерархия местами становится шумной.\nВнешний вид оптимизирован под доверие широкой аудитории, а не под желание, luxury или automotive emotion.\nMotion, насколько можно подтвердить по доступным материалам, в основном функциональный: состояния, loading, filtering, progression. Это правильно для продукта, но не даёт сильного expressive reference.\nЕсли использовать Carvana как визуальный reference, почти наверняка получится обычный blue dealership template."
+  },
+  {
     "id": "kinncollective-co-uk",
     "url": "https://www.kinncollective.co.uk/",
     "title": "Large screens",

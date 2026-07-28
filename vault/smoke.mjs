@@ -95,11 +95,22 @@ console.log('\nshots invariant');
       `${shotDirs.length} dirs, ${referenced.size} files referenced`);
   }
 
-  // 3. Anything added before today has had time to be captured. Missing shots
-  //    there means the Action failed or the paths were lost — flag, don't pass.
-  const stale = sites.filter((e) => e.added < today && !(e.shots?.full && e.shots?.hero && e.shots?.mobile));
-  check('every entry older than today has all three shots', stale.length === 0,
+  /* 3. Anything added before today has had time to be captured. Missing shots
+        there means the Action failed or the paths were lost — flag, don't pass.
+        An entry carrying a captureError is a DIFFERENT case: the failure is
+        recorded on the entry and shown in the gallery, which is the whole point of
+        that field. Those are surfaced as a warning, never silently passed. */
+  const blocked = sites.filter((e) => e.captureError);
+  const stale = sites.filter((e) => e.added < today && !e.captureError
+    && !(e.shots?.full && e.shots?.hero && e.shots?.mobile));
+  check('every entry older than today has all three shots, or a recorded reason',
+    stale.length === 0,
     stale.length ? stale.map((e) => `${e.id} (added ${e.added})`).join(', ') : 'none pending');
+  if (blocked.length) {
+    console.log(`  ! ${blocked.length} entr${blocked.length === 1 ? 'y' : 'ies'} with a recorded capture failure`
+      + ` (flagged in the gallery, not silently empty):`);
+    blocked.forEach((e) => console.log(`      ${e.id} — ${e.captureError.split(' — ')[1] ?? e.captureError}`));
+  }
 
   const awaiting = sites.filter((e) => e.added >= today && !e.shots?.full);
   if (awaiting.length) {

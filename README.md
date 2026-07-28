@@ -62,6 +62,11 @@ design_dna/
 │   ├── auction-editorial.md        # the house dialect — PRINCIPLES + optional EXPRESSIONS
 │   └── immersive-authored-world.md # PROVISIONAL — the page as a staged spatial experience
 ├── .github/workflows/capture.yml   # auto-captures shots when sites.json changes
+├── projects/                       # records of MY OWN work — the inward half of the loop
+│   ├── README.md                   # why, when to write, how it feeds distillation
+│   ├── _TEMPLATE.md                # front-matter + five required sections
+│   ├── check.mjs                   # npm run projects:check — register collisions
+│   └── <project-slug>.md           # one per project, written at close
 ├── vault/                          # the taste vault — visual reference library
 │   ├── sites.json                  # the library (entry schema in vault/README.md)
 │   ├── vocab.json                  # controlled tag vocabulary — single source of truth
@@ -136,6 +141,36 @@ exactly what keeps the others merit-only. The composition category carries
 `compositional-resolution`, `responsive-recomposition`): a tag means a human
 confirmed the quality is *present*. Compositional failures stay in the note, in
 prose.
+
+## Project records
+
+> The vault holds other designers' sites. It is structurally incapable of detecting
+> that MY work is repeating itself, because self-similarity is only visible by
+> comparing my own projects to each other, and no such corpus exists. Across five
+> briefs in one week the house dialect stopped yielding and four different clients
+> came out looking like one studio — and nothing in the system could see it. Project
+> records are that instrument. Second purpose: environment knowledge learned by hand
+> evaporates (e.g. overriding kit tokens in a custom layer does not recolour an
+> already-compiled style.css — discovered by hand, would be rediscovered by hand
+> next time).
+
+[`projects/`](projects/README.md) is the inward half of the loop. One record per
+project, **written at close or at a direction lock, never continuously** — a record
+that must be maintained will not be, and this repo already has the evidence: two
+vault entries sat on TODO notes for days.
+
+```bash
+npm run projects:check     # register collisions between my own projects
+```
+
+Each record carries machine-readable front-matter — mandate, carried elements,
+dialect and fit, suspended expressions, dimensionality role, and a **register**
+(ground, display, accent, image treatment) — then five required prose sections,
+the last of which is *what turned out wrong*. An empty section 5 is an incomplete
+record, not a clean one. The check reads the registers and names any two projects
+sharing ground + display + image treatment. **It reports, it does not judge.**
+
+---
 
 ### 🔗 Live gallery — https://sigovs.github.io/design_dna/vault/
 

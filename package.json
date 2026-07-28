@@ -8,9 +8,10 @@
     "add": "node vault/capture.mjs add",
     "recapture": "node vault/capture.mjs recapture",
     "capture-missing": "node vault/capture.mjs capture-missing",
+    "prune": "node vault/prune.mjs",
     "vault": "live-server vault --port=5177 --entry-file=index.html",
     "smoke": "node vault/smoke.mjs",
-    "prune": "node vault/prune.mjs",
+    "projects:check": "node projects/check.mjs",
     "postinstall": "playwright install chromium"
   },
   "devDependencies": {

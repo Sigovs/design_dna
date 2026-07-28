@@ -356,6 +356,12 @@ it is the step that makes this DNA evidence-based rather than a set of assertion
 
 **Run this before any visual work, in this order.**
 
+> **The other half of the loop:** `vault/` looks outward at other people's work;
+> [`projects/`](projects/README.md) looks inward at mine, so the system can see its
+> own repetition — `npm run projects:check` reports register collisions between my
+> own projects. The vault cannot detect that my work is repeating itself; only the
+> records can.
+
 ### (a) Load the library
 
 ```

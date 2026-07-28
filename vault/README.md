@@ -282,6 +282,11 @@ Read TASTE.md, every file in skills/, and every file in dialects/ so you know
 the current rules AND which tier each one sits in: INVARIANT (universal quality
 law, never yields) or DIALECT (aesthetic position with a stated yields-when).
 
+Then read projects/ — every record, front-matter and prose. Those are MY own
+projects; vault/ is other people's work. The vault cannot detect that my work is
+repeating itself, because self-similarity is only visible by comparing my projects
+to each other. Run npm run projects:check and read what it reports.
+
 Then read vault/sites.json and look at the shots for every entry added since
 <DATE OF LAST RUN> (use the `added` field). Weight rating-3 entries heavily,
 rating-2 lightly, and ignore rating-1 except as counter-evidence. Read the
@@ -348,7 +353,16 @@ Produce, in this order:
    vault/vocab.json, and vocabulary tags that have never been used and should be
    retired.
 
-7. SUMMARY DRIFT — if any amendment is accepted, state the exact replacement
+7. SELF-REPETITION — from projects/ and the register collisions reported by
+   npm run projects:check: what is recurring across MY OWN projects that no
+   brief asked for? Name the projects and the shared register. Distinguish a
+   brand legitimately carried across two briefs from the house dialect that
+   stopped yielding — and if you cannot tell, say so rather than guessing. A
+   pattern that appears in the records but in no vault entry is not taste, it
+   is a habit. Cross-check against each record's section 5: a habit the author
+   already recorded as wrong is the strongest possible finding.
+
+8. SUMMARY DRIFT — if any amendment is accepted, state the exact replacement
    lines for the five-line taste summary in README.md. Never leave that summary
    describing rules that no longer exist.
 

@@ -10,12 +10,30 @@
       "immersive-authored-world"
     ],
     "tags": {
-      "composition": [],
-      "typography": [],
-      "layout": [],
+      "composition": [
+        "active-negative-space",
+        "directed-eye",
+        "dominant-mass",
+        "responsive-recomposition",
+        "tonal-structure",
+        "visual-silence"
+      ],
+      "typography": [
+        "commerce-editorial-alternation",
+        "editorial"
+      ],
+      "layout": [
+        "air",
+        "grid-break"
+      ],
       "motion": [],
-      "color": [],
-      "imagery": []
+      "color": [
+        "neutral"
+      ],
+      "imagery": [
+        "photography",
+        "art-direction"
+      ]
     },
     "note": "TODO",
     "shots": {

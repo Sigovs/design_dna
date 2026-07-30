@@ -1,0 +1,123 @@
+name: distillation watch
+
+# The vault→DNA loop, automated as far as it can honestly go.
+#
+# Detection runs by itself: whenever entries are added or judged, this counts the
+# evidence, applies the ritual's own thresholds, and — when an UNCOVERED pattern
+# crosses one — files or updates a single issue with the quoted evidence.
+#
+# Writing the rule stays human-triggered on purpose. vault/README.md's own rule:
+# "Nothing lands in skills/ without a person reading the diff" — the safeguard
+# against the vault quietly averaging the taste back toward the mean. The first
+# ritual run earned that rule twice over: it produced an amendment that
+# contradicted an existing line in the same skill, which no merge would have
+# caught.
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'vault/sites.json'
+  schedule:
+    - cron: '0 9 * * 1'          # Monday morning, in case nothing was added
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: distillation-watch
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    # The capture Action's own commits touch vault/sites.json. Never self-trigger.
+    if: >-
+      github.event_name != 'push' ||
+      (!contains(github.event.head_commit.message, '[skip ci]') &&
+       github.event.head_commit.author.name != 'github-actions[bot]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # No dependencies: distill.mjs is plain Node by design, so the watch keeps
+      # working when the capture toolchain does not.
+      - name: Detect candidates
+        id: distill
+        run: |
+          set +e
+          node vault/distill.mjs --write > candidates.txt 2>&1
+          echo "code=$?" >> "$GITHUB_OUTPUT"
+          set -e
+          cat candidates.txt
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo '### Distillation watch'
+            echo ''
+            echo '```'
+            cat candidates.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # Exit 10 from distill.mjs means: an uncovered pattern cleared the evidence
+      # threshold. One issue, reused — a new issue per push would train you to
+      # ignore them.
+      - name: File or update the issue
+        if: steps.distill.outputs.code == '10'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const body = [
+              'A pattern in the vault has crossed the ritual\'s evidence threshold and **no rule covers it**.',
+              '',
+              'Detection is automatic; writing the rule is not. Run the ritual in',
+              '`vault/README.md` → *The distillation prompt*, or say so in a session and it',
+              'gets written with a tier, an identifier, an argument, and the citations below.',
+              '',
+              '```',
+              fs.readFileSync('candidates.txt', 'utf8').slice(0, 55000),
+              '```',
+              '',
+              `_Updated by distillation watch · ${context.sha.slice(0, 7)}_`,
+            ].join('\n');
+
+            const title = 'distillation due — an uncovered pattern is over threshold';
+            const { data: open } = await github.rest.issues.listForRepo({
+              ...context.repo, state: 'open', labels: 'distillation',
+            });
+
+            if (open.length) {
+              await github.rest.issues.update({ ...context.repo, issue_number: open[0].number, body });
+              core.info(`updated issue #${open[0].number}`);
+            } else {
+              const { data: created } = await github.rest.issues.create({
+                ...context.repo, title, body, labels: ['distillation'],
+              });
+              core.info(`opened issue #${created.number}`);
+            }
+
+      - name: Close the issue when nothing is pending
+        if: steps.distill.outputs.code == '0'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: open } = await github.rest.issues.listForRepo({
+              ...context.repo, state: 'open', labels: 'distillation',
+            });
+            for (const issue of open) {
+              await github.rest.issues.createComment({
+                ...context.repo, issue_number: issue.number,
+                body: 'Nothing uncovered is over threshold any more — closing. The watch will reopen this if that changes.',
+              });
+              await github.rest.issues.update({ ...context.repo, issue_number: issue.number, state: 'closed' });
+            }

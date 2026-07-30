@@ -249,7 +249,21 @@ it still writes to GitHub through the API.
 
 ```bash
 npm run sync     # before ANY design work, in whichever copy you are using
+npm run distill  # what recurs across entries, and whether a rule can be argued
 ```
+
+**Detection is automatic; authorship is not.** `npm run distill` reads every
+entry's judgement fields, matches them against a declared theme lexicon, applies
+the ritual's thresholds (3+ entries, or 2 rating-3s) and reports which themes
+recur — quoting the sentence from each entry, so the evidence is verifiable rather
+than asserted. It separates *patterns no rule covers yet* from *recurrences that
+confirm an existing rule*, and exits 10 when something uncovered is over
+threshold. [`.github/workflows/distill.yml`](.github/workflows/distill.yml) runs it
+on every change to `sites.json` and on Mondays, and files a single reusable issue
+with the evidence when that happens. **It never writes a rule** — a rule needs a
+tier, an identifier and an argument, and the first ritual run proved why: its
+amendment contradicted an existing line in the same skill, which no merge would
+have caught.
 
 Adding entries from the gallery writes straight to `origin`, and the capture Action
 commits shots back — so **origin moves without this machine**, and every local clone
@@ -315,8 +329,9 @@ while it is honest.
    optically judged balance, a directed eye path, rhythm with felt variation, mass
    relationships chosen as ratios, committed edges and crops, tension with
    counterweight, sections that resolve, a declared asset dependency that still
-   holds when the photography is ordinary, and a governing idea re-established at
-   every breakpoint. Its **Read and Plan run after the dialect declaration and
+   holds when the photography is ordinary, a first screen that says what the thing
+   is (or a Read that declares the withholding), and a governing idea
+   re-established at every breakpoint. Its **Read and Plan run after the dialect declaration and
    before any grid, component or surface styling**, and they judge relationships,
    not compliance with a preferred look.
    **Constructed depth is role-gated before it is anything else** — every read

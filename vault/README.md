@@ -507,3 +507,31 @@ references and there are 2 (`rmsothebys-com`, `thegentlewoman-co-uk`).
 review, not set.
 
 Next run starts from entries added after 2026-07-28.
+
+### 2026-07-30 — second pass, first automated detection
+
+Ran `npm run distill` (new: `vault/distill.mjs`) over the same 13 entries. It found
+one **uncovered** pattern over threshold that the first pass had not named:
+
+| Amendment | Evidence | Landed as |
+|---|---|---|
+| The first screen identifies what this is | 3 entries incl. `beings-co` (3) | [composition C18](../skills/academic-composition/SKILL.md#invariant) |
+
+The detector also confirmed five recurrences that existing rules already cover
+(asset dependence → C17, persistent overlays → U10, micro-type → typography I7,
+repeated mechanism → C7, low contrast → color I1 / U2). That is the useful negative
+result: no amendment needed, and each of those rules now has its citations on file.
+
+Below threshold, carried to the next run: *the visitor made to learn the interface
+before getting the content* (2 entries), *the mechanism demonstrating itself instead
+of the content* (1), *emptiness read as a loading failure* (1).
+
+**Lexicon correction, made during the run.** The first output matched `/overlay/`
+against *"minimal overlay typography"* — praise — and `/перекрыва/` against
+portraits overlapping a wordmark. Both were tightened to match the complaint rather
+than the vocabulary, and the tightening surfaced a stronger citation nobody had
+read: `porsche-com-usa` — *"cookie dialog огромный и практически полностью
+блокирует experience."* A detector is only as honest as its lexicon, which is why
+the lexicon is declared in the open at the top of `distill.mjs`.
+
+Next run starts from entries added after 2026-07-30.

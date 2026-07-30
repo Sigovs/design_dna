@@ -1,6 +1,6 @@
 ---
 name: academic-composition
-description: Classical academic composition translated into digital art direction, interface design, responsive design, and visual critique — in two tiers. INVARIANT (dominant/subordinate/support hierarchy, unity and subordination, tonal structure before colour, figure-ground clarity, optical over mathematical balance, directed eye movement, rhythm with variation, proportion relationships, intentional edges and crops, tension with counterweight, compositional resolution, responsive recomposition, the dominant being the subject rather than the device presenting it, the means of the visitor's task surviving the composition, major masses established before components, a decided compositional centre, and a declared asset dependency that survives an ordinary asset) and DIALECT (auction-editorial's composed asymmetry and downward exhale, with yields-when). Contains the COMPOSITION READ and COMPOSITION PLAN that run after dialect selection and before any grid, component or surface styling decision, and routes to references/ for the academic method behind each stage. Use before laying out any full page or substantial section, when art-directing imagery, and when critiquing a design.
+description: Classical academic composition translated into digital art direction, interface design, responsive design, and visual critique — in two tiers. INVARIANT (dominant/subordinate/support hierarchy, unity and subordination, tonal structure before colour, figure-ground clarity, optical over mathematical balance, directed eye movement, rhythm with variation, proportion relationships, intentional edges and crops, tension with counterweight, compositional resolution, responsive recomposition, the dominant being the subject rather than the device presenting it, the means of the visitor's task surviving the composition, major masses established before components, a decided compositional centre, a declared asset dependency that survives an ordinary asset, and a first screen that identifies what it is) and DIALECT (auction-editorial's composed asymmetry and downward exhale, with yields-when). Contains the COMPOSITION READ and COMPOSITION PLAN that run after dialect selection and before any grid, component or surface styling decision, and routes to references/ for the academic method behind each stage. Use before laying out any full page or substantial section, when art-directing imagery, and when critiquing a design.
 ---
 
 # Academic Composition
@@ -499,6 +499,43 @@ hero for a worse frame, triple the headline, remove the photography.
 > or better, so this is not a weakness of bad work — it is the standing cost of
 > image-led art direction.
 
+### C18 — The first screen identifies what this is
+
+**The first screen either says what the thing is, or the Read declares that
+withholding it is the subject.** One of the two. There is no third state where the
+question simply went unasked.
+
+Identification does not mean explaining. It means a visitor arriving cold can
+answer *what is this, and is it for me* — from the dominant, the copy, the imagery,
+or all three together. A monumental wordmark identifies the **brand**; it does not
+identify the **offer**, and those are different questions.
+
+Where withholding is genuinely the design — a teaser, an art piece, an
+invitation-only launch — that is a legitimate composition, and it is declared in
+the Read as *the subject is the withholding*. Declared, it can be judged. Undeclared,
+it is indistinguishable from a page whose author forgot the visitor did not already
+know.
+
+*Why it's universal:* atmosphere is easy and identification is work, so the second
+loses whenever the first is going well. This is why it appears in the vault as a
+weakness of *strong* pages rather than weak ones: the register arrives, the offer
+does not. It is also distinct from every neighbouring rule —
+[C13](#invariant) asks whether the dominant is the subject, [C14](#invariant)
+whether the means survive, C18 whether the visitor can tell **what they are looking
+at at all**. A page can pass both and still leave a caster wondering whether they
+have found a talent directory or a social campaign.
+
+> **Evidence — distilled from the vault, 2026-07-30, second pass.** Three entries,
+> including a rating-3, all recording it as the cost of an otherwise excellent
+> opening: `vault/beings-co` (3, in) — *"на первом экране не сразу очевидно, что
+> это именно searchable casting directory, а не социальная кампания"*;
+> `vault/kinncollective-co-uk` (2) — *"первый экран настолько минимален, что не
+> сразу объясняет, чем занимается компания"*; `vault/augen-pro` (2, hybrid) —
+> *"чтение принесено в жертву атмосфере: сайт хорошо создаёт ощущение, но хуже
+> объясняет, что именно делает компания."* Measured on the author's own work the
+> same week: `360 Auto Care`'s first screen shows a glossy dealership SUV under
+> studio light, and the page is a neighbourhood repair shop.
+
 ---
 
 ## COMPOSITION READ
@@ -670,7 +707,7 @@ conclude*, not steps to execute.
 - the brief calls for symmetry, modularity, playfulness, utility, or another
   compositional system.
 
-When any of these applies, the **invariants C1–C17 still bind.** A symmetrical,
+When any of these applies, the **invariants C1–C18 still bind.** A symmetrical,
 modular, dense, or playful composition still needs a mass structure, a dominant,
 a decided centre, a directed eye path, active negative space, optical balance,
 and resolution. Yielding changes the compositional *system*, never the
@@ -698,6 +735,7 @@ requirement that the relationships be composed.
 - [ ] The dominant is the SUBJECT, not the device presenting it (C13).
 - [ ] The task is named in plain words, and every means serving it survives (C14).
 - [ ] The asset dependency is named, and a second mechanism holds without it (C17).
+- [ ] The first screen says what this is — or the Read declares the withholding (C18).
 
 **Dialect — when auction-editorial is active**
 - [ ] Asymmetry, if used, has a stable counterweight — and it survives mobile.

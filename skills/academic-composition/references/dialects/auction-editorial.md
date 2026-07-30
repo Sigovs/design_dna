@@ -19,7 +19,7 @@ that has come to evaluate rather than to browse.
 
 It is a **position**, not a law. Everything below yields under the conditions
 listed in [SKILL.md's DIALECT section](../../SKILL.md#dialect), and the invariants
-C1–C17 bind regardless.
+C1–C18 bind regardless.
 
 ## Preferred mechanisms
 
@@ -68,7 +68,12 @@ condition in the report.
 
 ## What still binds when it is active
 
-All of C1–C17. Specifically, the four this dialect most often strains:
+All of C1–C18. Specifically, the five this dialect most often strains:
+
+- **[C18](../../SKILL.md#invariant)** — atmosphere arrives before identification in
+  this register, and the vault records that as a weakness of its *best* entries.
+  Either the first screen says what the thing is, or the Read declares that the
+  withholding is the subject.
 
 - **[C17](../../SKILL.md#invariant)** — this dialect's mechanisms assume exceptional
   photography, which is exactly the dependency C17 requires you to declare. With a

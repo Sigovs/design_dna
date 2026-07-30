@@ -592,23 +592,23 @@
     "title": "Layout",
     "added": "2026-07-25",
     "rating": 2,
-    "dialectStatus": "unreviewed",
+    "dialectStatus": "in",
     "dialects": [
       "auction-editorial"
     ],
     "tags": {
       "composition": [
-        "vertical-narrative",
         "dominant-mass",
+        "visual-silence",
+        "vertical-narrative",
         "layered-overlap",
         "asymmetric-balance",
-        "visual-silence",
         "figure-ground-tension"
       ],
       "risks": [
         "ambiguous-reading-order",
-        "mobile-recomposition-risk",
-        "decorative-information-legibility-risk"
+        "decorative-information-legibility-risk",
+        "mobile-recomposition-risk"
       ],
       "typography": [],
       "layout": [],

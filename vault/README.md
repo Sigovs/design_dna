@@ -22,6 +22,7 @@ different brief.
 | `index.html` | The gallery. Browse, search, filter, edit, add. No backend. |
 | `smoke.mjs` | `npm run smoke` — checks the gallery still works, including a real mobile matrix (WebKit iPhone 13 / iPhone SE, Chrome Pixel 5) plus blocked-storage and hanging-API scenarios. No build step means nothing else catches a boot-time throw, and one throw kills every listener on the page. |
 | `prune.mjs` | `npm run prune` — deletes shot directories no entry points at any more. |
+| `sync.mjs` | `npm run sync` — **run this before any design work.** Fast-forwards this copy if that is safe, then reports what the vault owes: entries without judgement, without tags, awaiting a dialect call, and whether the distillation is overdue. Refuses to merge a copy with local commits or edits. |
 | `shots/<id>/` | `full.jpg` (1440w full page), `hero.jpg` (1440×900 crop, 2x), `mobile.jpg` (390w full page), `strip-1..8.jpg` (desktop scroll filmstrip), `strip-m-1..6.jpg` (mobile), `nav-scrolled.jpg` (only when the pinned header changes). **Committed.** |
 
 Shots are JPEG, and only the hero is 2x. PNG at 2x measured ~33MB per entry,

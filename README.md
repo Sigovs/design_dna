@@ -245,6 +245,24 @@ Add `-- --insecure` to any capture command for hosts with a broken TLS cert (off
 default, logged when used). Saving from a locally served gallery works the same way —
 it still writes to GitHub through the API.
 
+### Keeping copies in step
+
+```bash
+npm run sync     # before ANY design work, in whichever copy you are using
+```
+
+Adding entries from the gallery writes straight to `origin`, and the capture Action
+commits shots back — so **origin moves without this machine**, and every local clone
+is stale by default. `npm run sync` fast-forwards when that is safe, refuses when the
+copy has local commits or edits, and then reports what the vault owes: entries with no
+judgement written, entries with no tags, entries awaiting a dialect call, capture
+failures, free-addition tags at the promotion threshold, and how many entries have
+arrived since the last distillation.
+
+**Three or more new entries since the last run is the trip-wire** — that is the point
+at which a pattern can clear the evidence threshold, so the ritual below is worth
+running.
+
 ### The weekly distillation ritual
 
 Once a week, turn references into rules. Run the distillation prompt — the full

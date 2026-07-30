@@ -1,6 +1,6 @@
 ---
 name: typography-taste
-description: Typography rules in two tiers — INVARIANT (legible hierarchy, bounded type roles, body-length text built for sustained reading, optical correction at every size, a 14px floor under functional text, tabular figures for aligned data, tracked and short uppercase, intentional line breaks) and DIALECT (auction-editorial's didone display + quiet grotesque + mono, italic signature word, mono micro-labels, spec plates, each with a yields-when). Use before choosing typefaces, setting type scales, writing headings, or laying out any data, label, or caption.
+description: Typography rules in two tiers — INVARIANT (legible hierarchy, bounded type roles, body-length text built for sustained reading, optical correction at every size, a 14px floor under functional text, roles distinguished from voices, tabular figures for aligned data, tracked and short uppercase, intentional line breaks) and DIALECT (auction-editorial's didone display + quiet grotesque + mono, italic signature word, mono micro-labels, spec plates, each with a yields-when). Use before choosing typefaces, setting type scales, writing headings, or laying out any data, label, or caption.
 ---
 
 # Typography Taste
@@ -175,6 +175,58 @@ because they are read for hours.
 > Measured on the author's own work the same week: the taste vault adopted a 14px
 > floor after five surfaces failed at 12px, and `360 Auto Care` shipped 11px inside
 > its primary call to action, 12px on navigation, address and the skip link.
+
+### I8 — A role is not a voice
+
+Two different things, and the words are not interchangeable:
+
+- **A role is a functional job text does** — display, lead, body, label, caption,
+  metadata, data, control, legal. Roles are named and bounded by
+  [I2](#invariant), and a system can have many of them.
+- **A voice is a visibly distinct typographic expression** — a different face, a
+  different width, a different casing convention, a different tracking regime, a
+  different scale behaviour, a different alignment logic, or a decorative treatment
+  that reads as its own register.
+
+**A new role does not earn a new voice.** Most roles are served by the existing
+voices at different sizes, weights and colours — that is what a type system is for.
+Adding a voice per role is how a page ends up looking like four designers were paid
+by the typeface.
+
+**Every voice beyond the first must have a systemic purpose you can state** — a job
+the existing voices structurally cannot do. "Data must scan as a ledger, which
+proportional figures cannot do" is a systemic purpose. "The testimonials section
+needed something different" is not: that is a role, and a role gets a size and a
+weight.
+
+**No number is imposed here.** How many voices a system runs is a dialect decision
+— [D1](#dialect) sets three for auction-editorial, and yields when the brand has
+its own system. The invariant is that each one is *justified*, not that there are
+three.
+
+#### The voice audit — across sections, not within one
+
+Run down the page, section by section, and record what changes. This is the type
+column of the [section-language ledger](../../TASTE.md#2c-selection-coherence-and-device-discipline):
+
+| Axis | Drift looks like |
+|---|---|
+| **Typeface** | A face appearing in one section and nowhere else |
+| **Width** | Condensed here, normal there, with no reason for either |
+| **Casing** | Uppercase headings in three sections, sentence case in the fourth |
+| **Tracking** | Tight display tracking in one passage, default in the next at the same size |
+| **Scale behaviour** | One section fluid, another fixed; steps that jump by 1.2 here and 2.0 there |
+| **Alignment logic** | Centred sections alternating with left-aligned ones, unexplained |
+| **Decorative treatment** | Underlines, outlines, gradients, strokes on type in one place only |
+
+**Each change is either carried by the concept — and you can say which part of it —
+or it is drift.** A deliberate register shift at a section boundary is authorship;
+seven of them are [anti-patterns U11](../anti-patterns/SKILL.md#invariant).
+
+*Why:* type is the cheapest place to add apparent variety and the most expensive
+place to lose coherence, because the reader uses typographic consistency to know
+what kind of thing they are reading. When the voice changes without a reason, the
+cue stops working everywhere, not just where it changed.
 
 ---
 

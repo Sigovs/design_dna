@@ -37,7 +37,10 @@ checkable after the fact.
 ## 3. Decisions
 
 One line each. The rejected option is the informative half — a decision with
-nothing rejected was not a decision.
+nothing rejected was not a decision. `why:` states the **specific intended
+effect** and which of concept / character / hierarchy / usability it strengthened
+([TASTE.md §2c](../TASTE.md#2c-selection-coherence-and-device-discipline)) — a
+style name is not an effect.
 
 - decided: … | rejected: … | why: …
 

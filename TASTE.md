@@ -25,6 +25,9 @@ decide *identically*.
    before you break anything.
 5. **State your Design Read first** (§2) — reading, mandate, dialect,
    dimensionality. It takes four lines and prevents most drift.
+6. **Every significant decision names what it strengthens** (§2c) — concept,
+   character, hierarchy, or usability. A reaction ("feels premium") is not an
+   explanation, and neither quietness nor loudness is a justification by itself.
 
 ---
 
@@ -61,6 +64,7 @@ The invariants, by domain — full text in the linked skills:
 | Body-length text is built for sustained reading — face, size, spacing, and measure | [typography](skills/typography-taste/SKILL.md#invariant) |
 | Line breaks are intentional and compositionally resolved | [typography](skills/typography-taste/SKILL.md#invariant) |
 | **Functional text has a floor** — information a visitor must read is never below 14px; below the floor, type is decoration and carries nothing | [typography](skills/typography-taste/SKILL.md#invariant) |
+| **A role is not a voice** — many functional roles are served by few typographic voices; each additional voice states the systemic job the existing ones cannot do | [typography](skills/typography-taste/SKILL.md#invariant) |
 | Accessible contrast — WCAG AA as a contract, verified on every palette change | [color](skills/color-taste/SKILL.md#invariant) |
 | **The accent is derived from something the project contains, the derivation is stated, and the result is then judged where it lands** | [color](skills/color-taste/SKILL.md#invariant) |
 | Reduced-motion paths — every animation has a complete static equivalent | [motion](skills/motion-taste/SKILL.md#invariant) |
@@ -68,6 +72,7 @@ The invariants, by domain — full text in the linked skills:
 | **Depth cues are coherent with the spatial model they imply** — interface elevation matches real layering; atmospheric and illustrative depth may be non-literal when intentional and not misleading | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
 | Universal failure modes — weak hierarchy, inaccessible contrast, gratuitous motion, arbitrary spacing, inconsistent tokens | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
 | **Anything permanently on screen is part of the composition** — sticky, floating and consent layers are counted in the mass scheme; one overlay over content at a time | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
+| **Competing art directions inside one page** — sections that stop belonging to one authored language, however good each is alone | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
 
 ### DIALECT
 
@@ -266,6 +271,29 @@ paraphrasing it.
 | **4 · Brief advocate** | the brief | Drift check: does this still serve the stated jobs and audience, or has form begun to lead function? **Quotes the brief line** served or violated. |
 | **5 · Contrarian** | everything above | **Mandatory dissent.** Must argue the strongest case *against* the result even while agreeing with it, and propose the one alternative most worth considering. **May not write "no objections".** |
 
+**The composition critic's standing questions.** Six, asked every time, in addition
+to spot-checking the pass:
+
+1. **What is the single central idea of the page?** If it takes more than one
+   sentence, that is the finding.
+2. **Which visual devices directly strengthen it?** Name them.
+3. **Which devices compete with it?** Name those too, and say what they are winning
+   attention for instead.
+4. **Do any sections appear to belong to a different art direction?** Read the
+   [section-language ledger](#2c-selection-coherence-and-device-discipline) down its
+   columns, not across its rows.
+5. **Are typography roles being confused with new visual voices?**
+   ([typography I8](skills/typography-taste/SKILL.md#invariant).)
+6. **Would removing roughly 20% of the visual devices improve the work?** Say which
+   20%, and what happens if they go.
+
+**The critic may not answer question 6 with a reflex.** "Simplify" is not a
+finding. Each removal is argued: *what is strengthened* by its absence, and *what is
+lost* — and if the honest answer is that something real is lost and nothing is
+strengthened, the correct verdict is **keep it**, said plainly. A page can also be
+under-devised: if the answer is that the work needs a device it does not have, that
+is a legitimate answer to question 6 and it is stated as one.
+
 **Output ends with a DISPOSITION table.** Every point raised gets exactly one of
 **accept** · **reject-with-reason** · **defer**, filled in by the agent and
 reviewed by the human. **Silence is not a disposition** — a point left off the
@@ -295,6 +323,98 @@ run will inherit.
 The read is a commitment. If the output does not visibly match the family and
 dialect you named, the output is wrong, not the read.
 
+### 2c. Selection, coherence, and device discipline
+
+Three checks that run **during the build**, not after it. The Composition Read and
+Plan (§2a) decide the structure; these decide what is allowed to enter it. The
+panel (§2b) then audits whether they were actually applied.
+
+#### The Selection Pass — every significant decision states what it strengthens
+
+A decision is *significant* if removing it would change how the page reads. For
+each one, name which of these it strengthens, and how:
+
+| | The question it answers |
+|---|---|
+| **Central concept** | Does this make the page's one idea more legible? |
+| **Brand character** | Does this make the identity more specifically itself? |
+| **Hierarchy** | Does this make rank easier to read? |
+| **Usability** | Does this make the task easier to complete? |
+
+**A decision that strengthens none of the four is not a decision, it is an
+addition.** Remove it, or find the job it is actually doing and say that instead.
+
+> **When several solutions are viable, choose the one that expresses the central
+> idea most clearly. Quietness and loudness have no value by themselves; both have
+> to be justified by the idea.**
+
+This is not a preference for restraint. A loud, dense, saturated, high-contrast
+answer is the correct answer whenever it expresses the idea more clearly than a
+quiet one — and "restrained" is as empty a justification as "bold" when the idea
+does not call for it.
+
+**This does not outrank the dialect tier** (§1). A dialect preference — air-first
+spacing, chromatic restraint, one committed gesture — remains a strong default with
+a stated `yields when:`. What the Selection Pass forbids is applying it *because it
+is the default*: the reason on the line has to be the effect on this page, and
+"the dialect prefers it" is the tier, not the reason.
+
+**These phrases are not explanations, and a report containing them is
+incomplete:** *looks interesting · feels premium · adds visual interest · makes it
+pop · modern · clean · elevated · gives it personality.* Each names a reaction, not
+an effect. Replace with the effect: *"the plate pins the price to the vehicle so
+the two are read as one fact"* is an explanation; *"the plate feels premium"* is
+not.
+
+This is why `why:` in the [report contract](#7-report-format) must state **the
+specific intended effect**, not the name of a style.
+
+#### The section-language ledger — auditing the whole page
+
+**Diagnostic, not a demand that sections look identical.** Variation is how a page
+develops ([C7](skills/academic-composition/SKILL.md#invariant)); what this catches
+is variation that changes *art direction* rather than pace.
+
+For each major section, record what it actually does on these seven axes:
+
+```
+SECTION-LANGUAGE LEDGER
+section        ground        type voice    borders/containers   image treatment   depth      motion            signature device
+<name>         <what>        <which>       <what>               <what>            <what>     <what>            <what, or none>
+```
+
+Then read down the columns, not across the rows. Every change in a column is
+either **carried by the concept** — and you can say which part of it — **or it is
+drift.** Two or three deliberate changes in a long page is authorship; a new answer
+in every column in every section is several designs sharing a URL, which is
+[anti-patterns U11](skills/anti-patterns/SKILL.md#invariant).
+
+The ledger is where that failure becomes visible, because it is invisible section
+by section: each passage reviews well and the page does not.
+Depth: [unity-and-plastic-connection](skills/academic-composition/references/unity-and-plastic-connection.md).
+
+#### The device budget — a device earns its place by having a distinct job
+
+**Before adding a visual device, name its specific job, and ask whether a device
+already in the page can do that job. If it has no distinct job, or duplicates one
+that exists, it does not enter.**
+
+A *device* is a repeatable visual mechanism — a scrim, a plate, a rule, a badge, an
+outline, a marquee, a hover lift, a gradient wash, a watermark, a numbering system,
+a reveal. Not content, and **not function**: a status indicator, a piece of
+evidence, a navigation control, a specification, a price are all content the page
+owes the visitor, and they are never cut to reduce a device count.
+
+Two devices doing one job is the common case, and the cheaper fix is almost always
+to strengthen one and delete the other rather than to keep both at half strength.
+
+Related, narrower rules already bind: one depth idea per view
+([dimensionality](skills/dimensionality/SKILL.md#invariant)), persistent layers
+counted in the mass scheme
+([U10](skills/anti-patterns/SKILL.md#invariant)), and one committed gesture in this
+dialect ([auction-editorial P4](dialects/auction-editorial.md#p4--one-committed-gesture-beats-several-safe-ones)).
+The budget is the general form of the same discipline.
+
 ---
 
 ## 3. Skill index
@@ -309,10 +429,10 @@ its own `yields when:`.
 | [academic-composition](skills/academic-composition/SKILL.md) | **Cross-dialect.** Major masses before components, a decided compositional centre, declared asset dependency, an identified first screen, dominant/subordinate/support, unity, tonal structure before colour, figure-ground, optical balance, directed eye path, rhythm, mass proportion, intentional edges, tension with counterweight, resolution, responsive recomposition, the dominant being the subject rather than the device, the means of the task surviving. Routes to `references/` for the academic method behind each stage. | Composed asymmetry with counterweight, detail against quiet fields, mass above centre, downward exhale, one measured disruption. |
 | [dimensionality](skills/dimensionality/SKILL.md) | **Role-gated.** Content survives removal at SUPPORT; no scene gates the first read; declared frame/payload budget; authored reduced-motion fallback; AA per frame; one depth idea per view; input honesty; choreography has a subject; no ambient motion in reading zones; mobile authored separately. | auction-editorial defaults to ABSENT/SUPPORT — material and light over geometry, patient camera. immersive-authored-world permits MAIN. |
 | [spacing-taste](skills/spacing-taste/SKILL.md) | Spatial hierarchy is deliberate; spacing is tokenised; internal gaps < external gaps. | Air-first — generous space, bottom-heavy composition, whitespace as a status signal. |
-| [typography-taste](skills/typography-taste/SKILL.md) | Hierarchy is legible; roles are bounded; type is optically corrected at every size; functional text never below 14px. | Editorial contrast — expressive display + quiet grotesque + mono, italic signature word, spec plates. |
+| [typography-taste](skills/typography-taste/SKILL.md) | Hierarchy is legible; roles are bounded and distinct from voices; type is optically corrected at every size; functional text never below 14px. | Editorial contrast — expressive display + quiet grotesque + mono, italic signature word, spec plates. |
 | [color-taste](skills/color-taste/SKILL.md) | AA verified every change; never meaning by hue alone; legibility fixed at the background layer. | Chromatic restraint — neutral dark base, smoky desaturated accents used as a setting. |
 | [motion-taste](skills/motion-taste/SKILL.md) | Reduced-motion path for everything; state changes perceivable with keyboard parity; no jank. | Calm and physical — crossfade over travel, subtle hover, motion never as identity. |
-| [anti-patterns](skills/anti-patterns/SKILL.md) | The five universal failure modes, plus controlled-irregularity legibility. | The trope bans — AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, template anonymity. |
+| [anti-patterns](skills/anti-patterns/SKILL.md) | The five universal failure modes, controlled-irregularity legibility, uncounted persistent overlays, and competing art directions inside one page. | The trope bans — AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, template anonymity. |
 
 **`academic-composition` applies across all dialects**, including
 `brief-derived / no stored dialect`. It is not part of the house style and it does
@@ -465,6 +585,22 @@ The third clause is not optional and it must be **different from the second**. I
 the concrete move is the reference's move, nothing was read: the artefact was
 transplanted and the derivation written backwards to justify it.
 
+**What you are recovering is the generative system, not the appearance** — the rules
+that would produce that page again from different content. Read for these, and the
+principle you state should come from one of them:
+
+| | The question |
+|---|---|
+| **Hierarchy** | What is ranked first, and by what mechanism? |
+| **Rhythm** | What is the meter, and where does it depart? |
+| **Contrast logic** | Where does contrast get spent — tone, scale, density, hue? |
+| **Image behaviour** | How do images enter, crop, bleed, repeat, and defer? |
+| **Typographic relationships** | How do the voices relate — and which roles share one? |
+| **Interaction principles** | What responds, to what, and what stays still? |
+
+A page can be reproduced from its appearance and only *re-derived* from its system.
+The second is the one that transfers to a brief with different content.
+
 | Failed read | Real read |
 |---|---|
 | "Ruadh uses a full-bleed image with the type overlapping the bottom edge — do that." | "Ruadh solves *there is one thing to sell and no time to explain it* by making a single mass carry the whole first screen and letting everything else defer to it — which here, where the visitor arrives with a task rather than a desire, means the search field takes that role and the imagery drops to support." |
@@ -541,7 +677,12 @@ End any visual work with:
 
 - **Design Read** — the four lines you committed to: reading, mandate, dialect,
   dimensionality.
-- **Composition pass** — the nine-line block (§2a), where one was required.
+- **Composition Read and Plan** — §2a, where one was required.
+- **Selection lines** — for each significant decision, what it strengthens and the
+  **specific intended effect** (§2c). Naming a style is not naming an effect.
+- **Section-language ledger** — where a full page was designed or critiqued: one
+  row per section, and every column change either carried by the concept or named
+  as drift.
 - **Critique panel + disposition table** — where §2b ran. Every point disposed of.
 - **Invariants applied** — which bound the work, and where they bit.
 - **Dialect yields** — every dialect rule you set aside, with the `yields when:`

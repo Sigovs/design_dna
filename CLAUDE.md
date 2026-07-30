@@ -79,7 +79,9 @@ TASK:    <what the visitor arrived to do — plain words>
 MEANS:   <the specific means serving it, and where each one is>
 
 DECISIONS
-- decided: <what you chose> | rejected: <what you didn't> | why: <one line>
+- decided: <what you chose> | rejected: <what you didn't> | why: <the specific
+  intended effect, and which of concept / character / hierarchy / usability it
+  strengthens — never the name of a style>
 - ...
 BLOCKERS: none | <the exact action the user must take>
 ```

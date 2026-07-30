@@ -1,6 +1,6 @@
 ---
 name: anti-patterns
-description: Failure modes in two tiers — INVARIANT universal failures (weak hierarchy, inaccessible contrast, gratuitous motion, arbitrary spacing, inconsistent tokens, uncounted persistent overlays, horizontal page scroll, content parity across viewports, controlled irregularity that stops being legible or intentional, and depth cues incoherent with the spatial model they imply) and DIALECT trope bans (AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, underlined nav, repeated primary CTAs, imagery hidden on mobile, the default Spline aesthetic, ambient motion behind body copy, template anonymity — each with a yields-when). Use as the final gate before shipping any visual work, and whenever choosing between a container and open air.
+description: Failure modes in two tiers — INVARIANT universal failures (weak hierarchy, inaccessible contrast, gratuitous motion, arbitrary spacing, inconsistent tokens, uncounted persistent overlays, competing art directions inside one page, horizontal page scroll, content parity across viewports, controlled irregularity that stops being legible or intentional, and depth cues incoherent with the spatial model they imply) and DIALECT trope bans (AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, underlined nav, repeated primary CTAs, imagery hidden on mobile, the default Spline aesthetic, ambient motion behind body copy, template anonymity — each with a yields-when). Use as the final gate before shipping any visual work, and whenever choosing between a container and open air.
 ---
 
 # Anti-Patterns
@@ -207,6 +207,51 @@ every persistent layer present, not with them mocked away.
 > plus a custom cursor, both noted as pattern-recognisable overlay rather than
 > authored structure; `vault/rmsothebys-com` (1, out) — *"the carousel arrows are
 > large chrome overlays on the photograph."*
+
+### U11 — Competing art directions inside one page
+
+**One page is one authored whole.** When sections stop belonging to the same
+direction, the page is several designs sharing a URL — and the reader pays for it
+even though every individual section reviews well.
+
+Symptoms, in the order they are usually visible:
+
+- **Every section introduces a new signature device** — a marquee here, an outlined
+  badge there, a diagonal wipe below, each one arriving once and never returning.
+- **Unrelated background systems** — a photographic field, then a flat tint, then a
+  gradient, then a pattern, with nothing establishing which is the page's ground.
+- **Typography voice drift** — a face, width, casing or tracking regime that changes
+  at section boundaries without a reason ([typography I8](../typography-taste/SKILL.md#invariant)).
+- **Inconsistent image treatment** — graded here, full-colour there, cut-out below;
+  different crops logics; some bleeding, some inset, with no rule.
+- **Border, radius, depth or motion logic changing without conceptual
+  justification** — hairlines then heavy strokes; 0px then 16px radii; flat then
+  elevated; crossfade then slide.
+- **Locally attractive sections that do not form one whole** — the diagnostic
+  symptom, and the reason this failure survives review: it is invisible section by
+  section, and only appears when the page is seen at once.
+
+*Why it's universal:* readers build a model of the page's language in the first two
+screens and use it to interpret everything after. Every unexplained change spends
+that model, and once it is gone, nothing on the page is read as intentional — the
+work reads as assembled rather than authored, in any aesthetic.
+
+**This is not a demand for uniformity, and it is the opposite failure to
+[D10](#dialect).** D10 is anonymity — a page so consistent it could belong to
+anything. U11 is incoherence. Between them sits the intended state: one language,
+developed, with departures that mean something
+([C7](../academic-composition/SKILL.md#invariant)).
+
+**Where it is caught and corrected** — this rule diagnoses; the mechanisms already
+exist and are not restated here:
+
+| Mechanism | What it does |
+|---|---|
+| [Section-language ledger](../../TASTE.md#2c-selection-coherence-and-device-discipline) | Makes the drift visible: one row per section, seven columns, read down |
+| [Device budget](../../TASTE.md#2c-selection-coherence-and-device-discipline) | Stops the next single-use device from entering |
+| [Selection Pass](../../TASTE.md#2c-selection-coherence-and-device-discipline) | Forces each change to name what it strengthens |
+| [C2](../academic-composition/SKILL.md#invariant) · [unity-and-plastic-connection](../academic-composition/references/unity-and-plastic-connection.md) | The compositional altitude: unity, plastic connection, the repair order |
+| [Composition critic](../../TASTE.md#2b-the-critique-panel) | Asks directly whether any section belongs to a different art direction |
 
 ---
 

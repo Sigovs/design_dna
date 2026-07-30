@@ -91,6 +91,17 @@ because a rule with no stated exit gets broken silently instead.
 Invariants outrank everything. Inside the dialect tier the conflict order is
 anti-patterns → composition → dimensionality → spacing → typography → color → motion.
 
+**Judgment is a procedure, not a reflex.** Three checks run during the build
+([TASTE.md §2c](TASTE.md#2c-selection-coherence-and-device-discipline)): the
+**Selection Pass** makes every significant decision name what it strengthens —
+concept, character, hierarchy or usability — and bans the reaction-words that stand
+in for explanations; the **section-language ledger** puts one row per section
+against seven columns so a change of art direction becomes visible where it is
+otherwise invisible; and the **device budget** requires a new visual device to name
+a job no existing device can do. Neither quietness nor loudness counts as a
+justification: when several solutions are viable, the one that expresses the central
+idea most clearly wins.
+
 **The Critique Panel** ([TASTE.md §2b](TASTE.md#2b-the-critique-panel)) runs twice —
 after a Design Read, to critique the *direction*, and after a build, to critique the
 *result*, before anything ships. Five critics in role, 3–6 lines each, **no consensus
@@ -316,12 +327,14 @@ while it is honest.
    hierarchy with internal gaps smaller than external; rhythm and optical balance;
    legible rank; body-length text built for sustained reading; line breaks that read
    as chosen; a 14px floor under every piece of functional text, below which type is
-   decoration and carries no information; every value from a documented token scale;
+   decoration and carries no information; typographic roles kept distinct from
+   typographic voices, each voice justified by a job the others cannot do; every value from a documented token scale;
    WCAG AA verified on every palette change; a complete static path for every
    animation; depth cues coherent with the spatial model they imply; controlled
-   irregularity that stays legible and intentional; and every permanently-visible
+   irregularity that stays legible and intentional; every permanently-visible
    layer — sticky, floating, consent — counted in the composition rather than added
-   on top of it, one over content at a time.
+   on top of it, one over content at a time; and one page reading as one authored
+   language rather than as several art directions sharing a URL.
    **Composition is the cross-dialect layer inside this tier** — the page
    describable as 3–7 major masses before any component is named, a compositional
    centre that is decided rather than inherited, a dominant with subordinates and

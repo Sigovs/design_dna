@@ -122,7 +122,7 @@ Before generating anything visual, output exactly four lines:
 ```
 Reading this as <deliverable> for <audience>, leaning <aesthetic family>.
 Mandate: <REBRAND | REDESIGN | REFRESH> — <what is fixed, what is in scope>.
-Dialect: <stored dialect | partial: X + brief-derived | brief-derived / no stored dialect>.
+Style mode: <HYBRID | PURE | DIRECTED HYBRID> — anchor <dialect> / contrast <dialect> / signature <dialect or none>; unifying principle: <one clause>.
 Dimensionality: <MAIN | SUPPORT | ABSENT> — <why, in one clause>.
 ```
 
@@ -281,7 +281,11 @@ to spot-checking the pass:
    attention for instead.
 4. **Do any sections appear to belong to a different art direction?** Read the
    [section-language ledger](#2c-selection-coherence-and-device-discipline) down its
-   columns, not across its rows.
+   columns, not across its rows. Where a style mode was declared, run the
+   [page-wide dialect audit](dialects/HYBRID.md#the-page-wide-dialect-audit): is the
+   Anchor still identifiable, is the Contrast tension rather than interruption, is
+   the Signature still doing one job, and is each domain owned by the same dialect in
+   every section?
 5. **Are typography roles being confused with new visual voices?**
    ([typography I8](skills/typography-taste/SKILL.md#invariant).)
 6. **Would removing roughly 20% of the visual devices improve the work?** Say which
@@ -459,7 +463,24 @@ live only in the dialect files.
 | [auction-editorial](dialects/auction-editorial.md) | confirmed | The house dialect. Split into **PRINCIPLES** (compositional logic and decision tendencies) and **EXPRESSIONS** (optional visual manifestations). The expressions are not a checklist — a design can belong to this dialect while using few of them. |
 | [immersive-authored-world](dialects/immersive-authored-world.md) | **provisional** | The page as a staged spatial experience rather than a document: one symbolic central event, layered depth, typography and interface belonging to the world, motion that changes narrative state, spectacle separated by silence. Carries a strict effect hierarchy and an INVARIANT COMPLIANCE section. |
 
-**Neither is a default, and neither is ever inferred.** `immersive-authored-world`
+**Selection and combination are governed by
+[dialects/HYBRID.md](dialects/HYBRID.md)** — the three style modes, the
+Anchor / Contrast / Signature roles, the CONTROL MAP, the incompatibility test and
+the page-wide dialect audit. **HYBRID is the default when Alex names no style**; one
+named dialect is PURE; two or more named is DIRECTED HYBRID; and a request for
+something plain, conventional or single-system is followed as stated rather than
+overridden by hybridity. The one rule worth repeating here, because everything
+depends on it: **dialects are mixed by responsibility, never by page section.**
+
+Everything in the library beyond the two below carries status **library** — a
+recognised art direction available as an *input* to a Read, with no house authority.
+**Eight of the ten dialect files are `library`; exactly one (`auction-editorial`) is
+evidence of Alex's own design DNA.** A library dialect has no promotion path of its
+own: it was authored, so only the authored route could ever apply, and only after
+Alex re-declares it `provisional`. See
+[dialects/README.md](dialects/README.md#status-what-each-one-means-and-what-it-authorises).
+
+**Neither of the two below is a default, and neither is ever inferred.** `immersive-authored-world`
 is additionally **provisional** — author-created ahead of Vault evidence, confirmed
 only once ≥3 human-reviewed entries carry it with `dialectStatus: "in"`. Select it
 only when Alex names it; never recommend it because a brief sounds creative.
@@ -633,7 +654,29 @@ Visit the live site **only** when both hold:
 Then say so in the Design Read — *"visited live, because <the temporal question>"* —
 and state the date. Everything else reads the archive.
 
-### (e) Weight by rating and status
+### (e) Read the synthesis layer, and inherit its uncertainty
+
+[vault/EVIDENCE.md](vault/EVIDENCE.md) is what Alex's judgements have been read to
+mean, with the confidence they actually earn. Four levels, and the level is part of
+the claim:
+
+| Level | What it licenses in a Design Read |
+|---|---|
+| **A · demonstrated** | Cite it as a preference, with its entry ids |
+| **B · emerging** | Cite it as an open question. Never as a preference |
+| **C · contextual** | Apply only inside the stated context; say which |
+| **D · unknown / conflicted** | Say it is unknown. Do not fill the gap with theory |
+
+**It never overrides a skill.** If an A-level reading collides with an invariant, the
+invariant wins — §1, unchanged. And nothing moves from that file into `skills/`
+except through the [distillation ritual](vault/README.md#the-distillation-prompt),
+at the usual thresholds, as a diff Alex approves.
+
+Two things it is for, specifically: it holds the **conflicts** rather than averaging
+them, and it records what is **not** known — so a Read says *"nothing is known about
+colour from the evidence"* instead of inventing a preference.
+
+### (f) Weight by rating and status
 
 | Entry | How to use it |
 |---|---|
@@ -643,7 +686,7 @@ and state the date. Everything else reads the archive.
 | `dialectStatus: in` | Belongs to a stored dialect; strongest when you selected that dialect. |
 | `hybrid` / `unreviewed` | Usable, but unclassified — say so. |
 
-### (f) Ignore judgements that do not exist
+### (g) Ignore judgements that do not exist
 
 An entry whose `note`, `works`, and `weaknesses` are all empty or `TODO`
 **contributes its tags and nothing more.**
@@ -678,6 +721,9 @@ End any visual work with:
 - **Design Read** — the four lines you committed to: reading, mandate, dialect,
   dimensionality.
 - **Composition Read and Plan** — §2a, where one was required.
+- **Art direction block** — style mode, roles, unifying principle and CONTROL MAP
+  ([dialects/HYBRID.md](dialects/HYBRID.md)), for any full-page or substantial
+  section work. Under PURE the hybrid fields are marked n/a, never filled.
 - **Selection lines** — for each significant decision, what it strengthens and the
   **specific intended effect** (§2c). Naming a style is not naming an effect.
 - **Section-language ledger** — where a full page was designed or critiqued: one

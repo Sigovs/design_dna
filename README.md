@@ -60,7 +60,10 @@ design_dna/
 │   ├── motion-taste/SKILL.md       # I: reduced-motion, keyboard parity, no jank · D: crossfade, subtle hover
 │   └── anti-patterns/SKILL.md      # I: the universal failures · D: the trope bans
 ├── dialects/
-│   ├── README.md                   # dialect index + confirmed/provisional status
+│   ├── README.md                   # index + confirmed / provisional / library status
+│   ├── HYBRID.md                   # style modes, Anchor/Contrast/Signature, CONTROL MAP, audit
+│   ├── _TEMPLATE.md                # the shared dialect shape
+│   ├── check.mjs                   # npm run dialects:check — shape, indexes, vocab in sync
 │   ├── auction-editorial.md        # the house dialect — PRINCIPLES + optional EXPRESSIONS
 │   └── immersive-authored-world.md # PROVISIONAL — the page as a staged spatial experience
 ├── .github/workflows/capture.yml   # auto-captures shots when sites.json changes
@@ -131,8 +134,24 @@ which the skill routes to per task rather than loading wholesale.
 dialect, a partial combination, or `brief-derived / no stored dialect`. An
 underspecified brief does not become the house style by default.
 
-Two dialects exist — see [dialects/README.md](dialects/README.md) for the index and
-status. [auction-editorial](dialects/auction-editorial.md) is **confirmed** (the
+**Style modes.** With no style named, the default is a **controlled hybrid**:
+contrasting dialects, each holding a different systemic responsibility — Anchor
+(~60–75%), Contrast (~20–30%), optional Signature (~5–10%). One dialect named is
+**PURE**, and PURE admits no second dialect as an influence. Two or more named is
+**DIRECTED HYBRID**, still with dominance assigned. The load-bearing rule:
+**dialects are mixed by responsibility, never by page section** — a brutalist hero
+above an elegant services section is [U11](skills/anti-patterns/SKILL.md#invariant),
+not a hybrid. Selection and combination live in
+[dialects/HYBRID.md](dialects/HYBRID.md).
+
+**Ten dialect files exist, and only one is evidence.** `auction-editorial` is
+**confirmed** — distilled from the vault, and the only dialect that is part of
+Alex's demonstrated DNA. `immersive-authored-world` is **provisional** — an author's
+hypothesis, 2 of 3 `in` records. The other eight are **library**: described decision
+methods, available as inputs to a Read, asserting nothing about Alex's taste and
+carrying no route to `confirmed` of their own. See
+[dialects/README.md](dialects/README.md) for the index and the two original evidence
+rules. [auction-editorial](dialects/auction-editorial.md) is **confirmed** (the
 house dialect). [immersive-authored-world](dialects/immersive-authored-world.md) is
 **provisional**: the page as a staged spatial experience, author-created ahead of
 Vault evidence and confirmed only once ≥3 human-reviewed entries carry it with

@@ -231,6 +231,21 @@ Symptoms, in the order they are usually visible:
   symptom, and the reason this failure survives review: it is invisible section by
   section, and only appears when the page is seen at once.
 
+**Five named forms of the same failure**, every one produced by assigning art
+direction to sections instead of to responsibilities
+([dialects/HYBRID.md](../../dialects/HYBRID.md)):
+
+| Form | What it looks like |
+|---|---|
+| **Style buffet** | Several dialects present, none owning a domain — a page assembled from whatever looked good |
+| **Dialect-per-section** | A brutalist hero, elegant services, cinematic reviews, a retro footer |
+| **Equal-weight collage** | Two dialects at 50/50, so every domain has two answers and no Anchor is identifiable |
+| **Signature-device inflation** | A borrowed one-job device spreading across sections until it is a second system |
+| **Novelty hybrid** | A combination chosen because it is unusual, with no tension the brief needed |
+
+The corrections are the CONTROL MAP, the Selection Pass and the ledger — not
+restated here.
+
 *Why it's universal:* readers build a model of the page's language in the first two
 screens and use it to interpret everything after. Every unexplained change spends
 that model, and once it is gone, nothing on the page is read as intentional — the

@@ -22,6 +22,8 @@ different brief.
 | `index.html` | The gallery. Browse, search, filter, edit, add. No backend. |
 | `smoke.mjs` | `npm run smoke` — checks the gallery still works, including a real mobile matrix (WebKit iPhone 13 / iPhone SE, Chrome Pixel 5) plus blocked-storage and hanging-API scenarios. No build step means nothing else catches a boot-time throw, and one throw kills every listener on the page. |
 | `prune.mjs` | `npm run prune` — deletes shot directories no entry points at any more. |
+| `EVIDENCE.md` | The **synthesis layer**: what Alex's judgements have been read to mean, at four confidence levels, every claim carrying its entry ids, its opposing ids, its context and its `yields when:`. Interpretation only — evidence stays in `sites.json`, executable rules stay in `skills/`. |
+| `evidence.mjs` | `npm run evidence:check` — mechanical truths about `EVIDENCE.md`: cited ids resolve, inventory counts match the data, no duplicate claim ids, every claim cites at least one entry, recorded ambiguities still real. It does not judge interpretation. |
 | `sync.mjs` | `npm run sync` — **run this before any design work.** Fast-forwards this copy if that is safe, then reports what the vault owes: entries without judgement, without tags, awaiting a dialect call, and whether the distillation is overdue. Refuses to merge a copy with local commits or edits. |
 | `shots/<id>/` | `full.jpg` (1440w full page), `hero.jpg` (1440×900 crop, 2x), `mobile.jpg` (390w full page), `strip-1..8.jpg` (desktop scroll filmstrip), `strip-m-1..6.jpg` (mobile), `nav-scrolled.jpg` (only when the pinned header changes). **Committed.** |
 
@@ -298,6 +300,11 @@ Read TASTE.md, every file in skills/, and every file in dialects/ so you know
 the current rules AND which tier each one sits in: INVARIANT (universal quality
 law, never yields) or DIALECT (aesthetic position with a stated yields-when).
 
+Then read vault/EVIDENCE.md — the synthesis layer. It already records what previous
+readings concluded, at what confidence, from which entries. Amend it rather than
+re-deriving it, and treat its level-D conflicts as findings to carry forward rather
+than gaps to fill.
+
 Then read projects/ — every record, front-matter and prose. Those are MY own
 projects; vault/ is other people's work. The vault cannot detect that my work is
 repeating itself, because self-similarity is only visible by comparing my projects
@@ -408,7 +415,7 @@ logic** — and **Alex approves before the dialect exists.**
 > This is the rule for dialects *distilled from the vault*, which is the norm. Alex
 > may also author one directly ahead of evidence; that one is marked **provisional**
 > and earns confirmation the other way round — ≥3 human-reviewed entries carrying it
-> with `dialectStatus: "in"`. See [dialects/README.md](../dialects/README.md#status-confirmed-vs-provisional).
+> with `dialectStatus: "in"`. See [dialects/README.md](../dialects/README.md#status-what-each-one-means-and-what-it-authorises).
 > An agent still may not create either kind.
 
 "Meaningful decision logic" means shared *compositional reasoning*: how they rank

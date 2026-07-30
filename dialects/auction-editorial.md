@@ -5,6 +5,10 @@ description: The house dialect — the aesthetic Alex defaults to when the brief
 
 # Dialect — auction-editorial
 
+> **Status: confirmed.** The house dialect, distilled from evidence. It keeps its own
+> PRINCIPLES / EXPRESSIONS shape, which predates the shared one in
+> [_TEMPLATE.md](_TEMPLATE.md) — see [the index](README.md#status-what-each-one-means-and-what-it-authorises).
+
 The register of a printed auction catalogue and a well-edited magazine: facts
 presented as records, photography given room, typography doing the work that
 decoration does elsewhere.

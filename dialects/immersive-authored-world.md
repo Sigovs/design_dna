@@ -6,6 +6,10 @@ status: provisional
 
 # Dialect — immersive-authored-world
 
+> **Status: provisional.** Author-created ahead of Vault evidence; keeps its own
+> shape, which predates [_TEMPLATE.md](_TEMPLATE.md). Promotion criteria are in
+> [the index](README.md#promotion-criteria).
+
 > ## ⚠ PROVISIONAL
 >
 > **Author-created ahead of sufficient Vault evidence.** This dialect was written

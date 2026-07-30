@@ -4,7 +4,11 @@ client:       <name or "self">
 date:         <yyyy-mm-dd of the close or the direction lock>
 mandate:      REBRAND | REDESIGN | REFRESH
 carried:      [<named elements>]          # [] for REBRAND
-dialect:      [<declared dialects>]
+style_mode:   HYBRID | PURE | DIRECTED HYBRID | not recorded
+dialect:      [<names from dialects/README.md>]   # anchor first
+anchor:       <dialect name, or not recorded>
+contrast:     <dialect name · n/a under PURE · not recorded>
+signature:    <dialect name + its one job · n/a · not recorded>
 dialect_fit:  full | partial | override
 suspended:    [<dialect expressions switched off>]
 role:         MAIN | SUPPORT | ABSENT      # dimensionality ladder

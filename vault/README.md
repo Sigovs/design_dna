@@ -476,3 +476,33 @@ quality before letting it change anything.* A rule may only be amended by
 evidence that succeeds as a whole. This is also why `out` entries are kept rather
 than deleted — the entry is now a useful anti-reference, and the dismissal is part
 of the record.
+
+---
+
+## Distillation log
+
+The ritual's own rule: log each run so the next one knows where to start.
+
+### 2026-07-30 — first run
+
+Read: 13 entries (2 × rating-3, 9 × rating-2, 2 × rating-1 `out`), their shots, and
+`projects/` (1 record, not comparable). Three amendments applied, each above the
+evidence threshold, each citing the entries behind it:
+
+| Amendment | Evidence | Landed as |
+|---|---|---|
+| Functional text has a 14px floor | 5 entries incl. both rating-3s | [typography I7](../skills/typography-taste/SKILL.md#invariant) |
+| The composition declares what it depends on | 5 entries, 4 of them `in` | [composition C17](../skills/academic-composition/SKILL.md#invariant) |
+| Anything permanently on screen is part of the composition | 3 entries incl. `ciridae-com` (3) | [anti-patterns U10](../skills/anti-patterns/SKILL.md#invariant) |
+| The monumental identity mark — two permitted cases | both rating-3s + 2 supporting | clarification under [C13](../skills/academic-composition/SKILL.md#invariant) |
+
+Not applied, and why: **no vocabulary promotions** — 122 free-addition tags exist and
+**every one is used exactly once**, so none reaches the 3× threshold and none can
+group anything. That is itself the finding: the classifier is minting per-entry
+vocabulary. **No new dialect** — the binding rule needs ≥3 human-approved `out`
+references and there are 2 (`rmsothebys-com`, `thegentlewoman-co-uk`).
+**No dialectStatus changed** — it is a human judgement by schema; three entries
+(`carvana-com`, `kinncollective-co-uk`, `i-pinimg-…-46d9d54b`) are proposed for
+review, not set.
+
+Next run starts from entries added after 2026-07-28.

@@ -1,6 +1,6 @@
 ---
 name: academic-composition
-description: Classical academic composition translated into digital art direction, interface design, responsive design, and visual critique — in two tiers. INVARIANT (dominant/subordinate/support hierarchy, unity and subordination, tonal structure before colour, figure-ground clarity, optical over mathematical balance, directed eye movement, rhythm with variation, proportion relationships, intentional edges and crops, tension with counterweight, compositional resolution, responsive recomposition, the dominant being the subject rather than the device presenting it, the means of the visitor's task surviving the composition, major masses established before components, and a decided compositional centre) and DIALECT (auction-editorial's composed asymmetry and downward exhale, with yields-when). Contains the COMPOSITION READ and COMPOSITION PLAN that run after dialect selection and before any grid, component or surface styling decision, and routes to references/ for the academic method behind each stage. Use before laying out any full page or substantial section, when art-directing imagery, and when critiquing a design.
+description: Classical academic composition translated into digital art direction, interface design, responsive design, and visual critique — in two tiers. INVARIANT (dominant/subordinate/support hierarchy, unity and subordination, tonal structure before colour, figure-ground clarity, optical over mathematical balance, directed eye movement, rhythm with variation, proportion relationships, intentional edges and crops, tension with counterweight, compositional resolution, responsive recomposition, the dominant being the subject rather than the device presenting it, the means of the visitor's task surviving the composition, major masses established before components, a decided compositional centre, and a declared asset dependency that survives an ordinary asset) and DIALECT (auction-editorial's composed asymmetry and downward exhale, with yields-when). Contains the COMPOSITION READ and COMPOSITION PLAN that run after dialect selection and before any grid, component or surface styling decision, and routes to references/ for the academic method behind each stage. Use before laying out any full page or substantial section, when art-directing imagery, and when critiquing a design.
 ---
 
 # Academic Composition
@@ -365,6 +365,26 @@ an immersive treatment of the same subject all fail the same way when the device
 outranks the thing. Restraint is not a defence — suppressing the subject is the
 failure, whatever the register doing the suppressing.
 
+**The monumental identity mark — a permitted case, distilled from the vault
+2026-07-30.** A wordmark at monumental scale *may* be the dominant of the opening
+composition, in two conditions and no others:
+
+1. **The subject cannot be shown** — an abstract service, a platform, a capability.
+   `vault/ciridae-com` (3, in): a centred mark on an atmospheric field, flanked by
+   two micro-labels, because "AI transformation" has no photograph.
+2. **The subject enters and disrupts the mark**, so the two are one mass rather than
+   two ranked ones. `vault/beings-co` (3, in): BEINGS at full width with the
+   portrait rising into the letterforms — *"портреты входят с ним в конфликт,
+   перекрываются и меняют его восприятие."* Supported at rating 2 by
+   `vault/kinncollective-co-uk` and `vault/ruadh-com`, where the wordmark's scale is
+   confident enough that a headline is not needed at all.
+
+**Outside those two conditions the mark is a device and C13 binds.** The same
+`beings-co` note records the failure mode from the inside — *"огромный wordmark
+иногда конкурирует с лицами и может восприниматься как foreground decoration."*
+A mark that could be swapped for any other name without changing the composition is
+decoration at scale.
+
 ### C14 — The means of the task survive the composition
 
 **Every full-page deliverable serves a visitor who arrived to do something. No
@@ -442,6 +462,42 @@ places their *convergence* inside the format.
 
 Depth:
 [compositional-center-and-hierarchy](references/compositional-center-and-hierarchy.md).
+
+### C17 — The composition declares what it depends on
+
+**When a composition's identity is carried by one class of asset — the photography,
+the film, the artwork, the one exceptional hero frame — the Read names that
+dependency, and the composition must hold when the asset is ordinary.**
+
+Name, in the Read: *what carries the identity*, and *what carries it if that
+degrades*. If the honest answer to the second is "nothing", the composition is not
+finished — it is a presentation of an asset, and it will read as generic the first
+week the client sends their own photographs.
+
+Not a prohibition on depending on great assets: exceptional imagery is a legitimate
+and often correct strategy. **The requirement is that the dependency is stated and
+survivable** — a second mechanism (structure, typographic mass, tonal system,
+interval, sequence) that keeps the work recognisable when the first weakens.
+
+*Why it's universal:* an asset dependency is invisible at delivery, when the assets
+are at their best, and becomes the whole story at the first content update. It is
+also the failure that no other invariant catches — C1–C16 all judge the composition
+as it stands, and this one judges what happens to it next. Study L in
+[academic-studies](references/academic-studies.md) is how you test it: swap the
+hero for a worse frame, triple the headline, remove the photography.
+
+> **Evidence — distilled from the vault, 2026-07-30.** Five entries record it
+> independently, and it is the most-repeated weakness in the library:
+> `vault/beings-co` (3, in) — *"hero очень зависит от сильных портретов. С обычной
+> корпоративной фотографией вся система резко потеряет энергию"*;
+> `vault/ruadh-com` (2, in) — *"почти весь характер держится на фотографии и
+> логотипе. Поставь обычный fashion-контент — сайт резко станет generic"*;
+> `vault/electrafilmworks-com` (2, in) — *"depends heavily on the strength of the
+> underlying films"*; `vault/kinncollective-co-uk` (2) — *"характер сильно
+> зависит"* from the interiors; `vault/i-pinimg-…-46d9d54b` (2) — *"heavy
+> dependence on pre-existing character artwork."* Four of the five are rated `in`
+> or better, so this is not a weakness of bad work — it is the standing cost of
+> image-led art direction.
 
 ---
 
@@ -614,7 +670,7 @@ conclude*, not steps to execute.
 - the brief calls for symmetry, modularity, playfulness, utility, or another
   compositional system.
 
-When any of these applies, the **invariants C1–C16 still bind.** A symmetrical,
+When any of these applies, the **invariants C1–C17 still bind.** A symmetrical,
 modular, dense, or playful composition still needs a mass structure, a dominant,
 a decided centre, a directed eye path, active negative space, optical balance,
 and resolution. Yielding changes the compositional *system*, never the
@@ -641,6 +697,7 @@ requirement that the relationships be composed.
 - [ ] Each breakpoint re-establishes the governing idea, not just the content.
 - [ ] The dominant is the SUBJECT, not the device presenting it (C13).
 - [ ] The task is named in plain words, and every means serving it survives (C14).
+- [ ] The asset dependency is named, and a second mechanism holds without it (C17).
 
 **Dialect — when auction-editorial is active**
 - [ ] Asymmetry, if used, has a stable counterweight — and it survives mobile.

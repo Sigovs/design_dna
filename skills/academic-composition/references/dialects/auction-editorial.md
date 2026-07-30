@@ -19,7 +19,7 @@ that has come to evaluate rather than to browse.
 
 It is a **position**, not a law. Everything below yields under the conditions
 listed in [SKILL.md's DIALECT section](../../SKILL.md#dialect), and the invariants
-C1–C16 bind regardless.
+C1–C17 bind regardless.
 
 ## Preferred mechanisms
 
@@ -68,7 +68,11 @@ condition in the report.
 
 ## What still binds when it is active
 
-All of C1–C16. Specifically, the three this dialect most often strains:
+All of C1–C17. Specifically, the four this dialect most often strains:
+
+- **[C17](../../SKILL.md#invariant)** — this dialect's mechanisms assume exceptional
+  photography, which is exactly the dependency C17 requires you to declare. With a
+  mixed library the register has nothing to stand on.
 
 - **[C13](../../SKILL.md#invariant)** — the object is the dominant. A committed
   gesture that outranks the car, the lot or the garment has eaten the work.

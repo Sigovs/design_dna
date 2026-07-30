@@ -283,17 +283,21 @@ while it is honest.
 2. **The invariants are about organisation, not appearance.** Intentional spatial
    hierarchy with internal gaps smaller than external; rhythm and optical balance;
    legible rank; body-length text built for sustained reading; line breaks that read
-   as chosen; every value from a documented token scale; WCAG AA verified on every
-   palette change; a complete static path for every animation; depth cues coherent
-   with the spatial model they imply; and controlled irregularity that stays
-   legible and intentional.
+   as chosen; a 14px floor under every piece of functional text, below which type is
+   decoration and carries no information; every value from a documented token scale;
+   WCAG AA verified on every palette change; a complete static path for every
+   animation; depth cues coherent with the spatial model they imply; controlled
+   irregularity that stays legible and intentional; and every permanently-visible
+   layer — sticky, floating, consent — counted in the composition rather than added
+   on top of it, one over content at a time.
    **Composition is the cross-dialect layer inside this tier** — the page
    describable as 3–7 major masses before any component is named, a compositional
    centre that is decided rather than inherited, a dominant with subordinates and
    support, unity, tonal structure before colour, actively shaped negative space,
    optically judged balance, a directed eye path, rhythm with felt variation, mass
    relationships chosen as ratios, committed edges and crops, tension with
-   counterweight, sections that resolve, and a governing idea re-established at
+   counterweight, sections that resolve, a declared asset dependency that still
+   holds when the photography is ordinary, and a governing idea re-established at
    every breakpoint. Its **Read and Plan run after the dialect declaration and
    before any grid, component or surface styling**, and they judge relationships,
    not compliance with a preferred look.

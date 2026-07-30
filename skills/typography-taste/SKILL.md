@@ -1,6 +1,6 @@
 ---
 name: typography-taste
-description: Typography rules in two tiers — INVARIANT (legible hierarchy, bounded type roles, body-length text built for sustained reading, optical correction at every size, tabular figures for aligned data, tracked and short uppercase, intentional line breaks) and DIALECT (auction-editorial's didone display + quiet grotesque + mono, italic signature word, mono micro-labels, spec plates, each with a yields-when). Use before choosing typefaces, setting type scales, writing headings, or laying out any data, label, or caption.
+description: Typography rules in two tiers — INVARIANT (legible hierarchy, bounded type roles, body-length text built for sustained reading, optical correction at every size, a 14px floor under functional text, tabular figures for aligned data, tracked and short uppercase, intentional line breaks) and DIALECT (auction-editorial's didone display + quiet grotesque + mono, italic signature word, mono micro-labels, spec plates, each with a yields-when). Use before choosing typefaces, setting type scales, writing headings, or laying out any data, label, or caption.
 ---
 
 # Typography Taste
@@ -74,8 +74,8 @@ width, not only at breakpoints:
 
 ```css
 :root {
-  --text-xs:      0.6875rem;                            /* labels stay fixed */
-  --text-sm:      clamp(0.8125rem, 0.8vw + 0.7rem, 0.9375rem);
+  --text-xs:      0.875rem;      /* 14px — the floor (I7), fixed, never smaller */
+  --text-sm:      clamp(0.9375rem, 0.5vw + 0.8rem, 1rem);
   --text-body:    clamp(1rem, 0.35vw + 0.95rem, 1.125rem);
   --text-lead:    clamp(1.125rem, 0.9vw + 1rem, 1.5rem);
   --text-h3:      clamp(1.5rem, 1.6vw + 1.1rem, 2rem);
@@ -139,6 +139,42 @@ decision. What this rule forbids is the break nobody chose.
 as a line break — it is the most visible typographic error a page can make, and it
 signals that no one looked. The obligation is authorship of the breaks, not
 uniformity of the lines.
+
+### I7 — Functional text has a floor
+
+**Text that carries information the visitor has to read is never smaller than
+14px (0.875rem), at any breakpoint.** That covers navigation, prices, labels,
+captions, addresses, metadata, table cells, form labels and helper text, button
+sub-labels, and every micro-label in an interface.
+
+Below the floor, type is **decoration, and decoration may carry no information.** A
+watermark, a background numeral, an ornamental repeat — those may be any size,
+because nothing is lost when they are not read.
+
+**A 12px label is not a design decision. It is information the author decided the
+reader does not need** — and if that is true, delete it; if it is false, set it at
+the floor.
+
+*Why:* this is the single most frequent recorded failure in the vault, and it
+appears in exactly the entries whose art direction is otherwise strongest — the
+confidence that produces a monumental opening also shrinks the functional layer
+until it disappears. Contrast is a separate axis and is governed by
+[color I1](../color-taste/SKILL.md#invariant): micro-type at AA is still
+unreadable if it is 11px on a phone at arm's length. It is also not a
+density question — dense interfaces need *more* legibility per line, not less,
+because they are read for hours.
+
+> **Evidence — distilled from the vault, 2026-07-30.** Five entries record it
+> independently, including both rating-3 references:
+> `vault/ciridae-com` (3, in) — *"светло-серый текст иногда слабоват по
+> контрасту"*; `vault/ruadh-com` (2, in) — *"навигация, названия и цены слишком
+> мелкие"*; `vault/kinncollective-co-uk` (2) — *"некоторые подписи под
+> изображениями слишком мелкие"*; `vault/augen-pro` (2, hybrid) — *"контраст
+> микротекста местами объективно слишком низкий… информация почти исчезает"*;
+> `vault/i-pinimg-…-46d9d54b` (2) — *"extreme microtype… limit its value"*.
+> Measured on the author's own work the same week: the taste vault adopted a 14px
+> floor after five surfaces failed at 12px, and `360 Auto Care` shipped 11px inside
+> its primary call to action, 12px on navigation, address and the skip link.
 
 ---
 
@@ -207,13 +243,20 @@ Eyebrows, spec-plate keys, buttons, captions, nav items, table headers:
 ```css
 .eyebrow, .plate dt, .btn, .caption, th {
   font-family: var(--font-mono);
-  font-size: 0.6875rem;      /* 11px — small on purpose */
+  font-size: var(--text-xs);  /* 14px — the I7 floor; these all carry information */
   text-transform: uppercase;
   letter-spacing: 0.12em;
   font-weight: 500;
   line-height: 1.2;
 }
 ```
+
+**This block used to specify 11px, "small on purpose".** It was corrected by the
+2026-07-30 distillation: every selector in it — eyebrow, plate key, button,
+caption, table header — carries information, so all of them sit above the
+[I7](#invariant) floor. The label register survives on **tracking, case and
+family**, not on being tiny; that is what the *Why* below already claimed, and the
+11px was doing none of the work.
 
 *Why:* uppercase mono reads as a *label* rather than as language — the eye files
 it as metadata and moves on to the content. Small size keeps a label from

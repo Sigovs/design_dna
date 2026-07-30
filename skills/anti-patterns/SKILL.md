@@ -1,6 +1,6 @@
 ---
 name: anti-patterns
-description: Failure modes in two tiers — INVARIANT universal failures (weak hierarchy, inaccessible contrast, gratuitous motion, arbitrary spacing, inconsistent tokens, horizontal page scroll, content parity across viewports, controlled irregularity that stops being legible or intentional, and depth cues incoherent with the spatial model they imply) and DIALECT trope bans (AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, underlined nav, repeated primary CTAs, imagery hidden on mobile, the default Spline aesthetic, ambient motion behind body copy, template anonymity — each with a yields-when). Use as the final gate before shipping any visual work, and whenever choosing between a container and open air.
+description: Failure modes in two tiers — INVARIANT universal failures (weak hierarchy, inaccessible contrast, gratuitous motion, arbitrary spacing, inconsistent tokens, uncounted persistent overlays, horizontal page scroll, content parity across viewports, controlled irregularity that stops being legible or intentional, and depth cues incoherent with the spatial model they imply) and DIALECT trope bans (AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, underlined nav, repeated primary CTAs, imagery hidden on mobile, the default Spline aesthetic, ambient motion behind body copy, template anonymity — each with a yields-when). Use as the final gate before shipping any visual work, and whenever choosing between a container and open air.
 ---
 
 # Anti-Patterns
@@ -172,6 +172,41 @@ language, understood as imagery rather than as structure.
 > [D3](#d3--decorative-shadows), with its own yields-when. **This invariant governs
 > spatial coherence; the dialect governs taste.** A Material-Design surface full of
 > elevation is fine under U9 as long as its elevations are truthful.
+
+### U10 — Anything permanently on screen is part of the composition
+
+**An element that is always present — sticky header, floating navigation, cookie
+bar, chat bubble, cart drawer, custom cursor, scroll indicator — is a mass, and it
+is counted in the mass scheme and in the first-screen budget
+([C15](../academic-composition/SKILL.md#invariant)) like any other.**
+
+Two failures follow, both defects:
+
+- **Uncounted.** The layout is composed, then the persistent layer is added, so it
+  lands wherever it lands — usually on the corner the composition was using as
+  release, or on top of the content an anchor jump just scrolled to.
+- **Stacked.** Two or more persistent overlays over content at once. Each was
+  defensible alone; together they occupy the page, and the visitor's first act is
+  dismissal rather than reading.
+
+*Why it is universal:* these elements are exempted from review by convention —
+they arrive from a consent vendor, a support widget, a framework default, or a
+component library, and no one composes them. The result is that the most
+consistently visible part of the interface is the least designed part of it. The
+cost is not taste; it is the first screen, which is the only one most visitors see.
+
+*Satisfying it:* name every persistent element in the mass scheme before layout;
+allow **one** overlay over content at a time; give anchor targets scroll-margin
+equal to the sticky mass; and check the first screen at a real viewport height with
+every persistent layer present, not with them mocked away.
+
+> **Evidence — distilled from the vault, 2026-07-30.** `vault/ciridae-com`
+> (3, in) — *"cookie panel и floating chat одновременно перекрывают значительную
+> часть страницы"*, recorded against an entry whose composition is otherwise
+> rated a reference; `vault/augen-pro` (2, hybrid) — floating capsule navigation
+> plus a custom cursor, both noted as pattern-recognisable overlay rather than
+> authored structure; `vault/rmsothebys-com` (1, out) — *"the carousel arrows are
+> large chrome overlays on the photograph."*
 
 ---
 

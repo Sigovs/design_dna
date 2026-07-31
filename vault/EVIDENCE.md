@@ -27,10 +27,11 @@ correct** — that is Alex's review, and the claims below are marked accordingly
 | **Partial / contextual** (`hybrid`) | **1** | `porsche-com-usa` (2) |
 | **Not yet a judgement** (`unreviewed`) | **0** | — the library is fully reviewed |
 
-> **One record removed, two restored, 2026-07-31.** `carvana-com` is gone from the
-> vault. `porsche-com-usa` and `thenewmobileworkforce-…-back-at-hq` were removed with
-> it and have since been **restored from history, unedited** — original notes,
-> `works`, `weaknesses`, metadata and every frame, byte for byte.
+> **One record removed, two restored, 2026-07-31.** A third commerce platform was
+> deleted from the vault and stays deleted. `porsche-com-usa` and
+> `thenewmobileworkforce-…-back-at-hq` were removed alongside it and have since been
+> **restored from history, unedited** — original notes, `works`, `weaknesses`,
+> metadata and every frame, byte for byte.
 >
 > **The claims below follow the data back.** [A1](#a1--one-governing-event-owns-the-first-screen-and-everything-else-defers-to-it)
 > has its limiting case again, [B3](#b--emerging) has its corroboration again, and

@@ -1,0 +1,9 @@
+DESIGN:
+Independent quarterly of long essays and photo reportage, read online.
+Brand: none — a new publication, invented for this fixture, with no prior identity.
+Goal: the issue index and an essay reading view.
+Audience: subscribers who read in long sittings, mostly on a phone at night.
+Content: essays of 4000-9000 words; commissioned photography for roughly one essay
+in four; the rest is text only, with pull quotes and footnotes.
+Constraint: no advertising, no recommendation feed, no infinite scroll. Reading
+position must survive a closed tab.

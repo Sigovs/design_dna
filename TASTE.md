@@ -196,13 +196,11 @@ read as licence to invent. If you believe the brief actually wants a REBRAND, sa
 so and name the evidence in the brief that says so; absence of a brand description
 is not that evidence.
 
-> **Why this step exists.** Across five briefs the agent substituted an invented
-> identity for the client's existing one, because nothing in the procedure
-> distinguished *fixing* a brand from *replacing* it. With no brand anchor
-> declared, the agent falls back on the house dialect — which is how four different
-> clients came out looking like the same studio. The mandate is the anchor:
-> declared first, it makes "invent an identity" an explicit choice rather than a
-> default that nobody noticed being made.
+> **Why this step exists.** Nothing else in the procedure distinguishes *fixing* an
+> identity from *replacing* it, and an agent with no brand anchor declared falls back
+> on the house dialect — which is how unrelated projects come out looking like the
+> same studio. The mandate is the anchor: declared first, it makes "invent an
+> identity" an explicit choice rather than a default nobody noticed being made.
 
 **The dialect line is a required choice, and it has three legal answers:**
 

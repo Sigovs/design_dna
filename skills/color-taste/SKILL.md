@@ -86,7 +86,7 @@ the generating model reaches for.
 
 Legitimate derivation routes, in no fixed order:
 
-- the client's existing brand values, **measured** rather than eyeballed;
+- an existing identity's own values, **measured** rather than eyeballed;
 - the material or environment the subject lives in;
 - **the hue the project's photography leaves unoccupied** — read the image set,
   find the clearest free chromatic territory, and take the accent there so it
@@ -103,16 +103,15 @@ an automotive context green reads as electric or eco; in finance red reads as
 loss; in medicine it reads as alarm. After deriving, test the accent against the
 domain's existing colour conventions, not only against the composition.
 
-> **Evidence.** "On one project a page was rebuilt without a declared palette and
-> returned near-black with a warm gold accent — the generating model's own default
-> premium scheme, which no brief had asked for. On a second project the accent was
-> derived correctly from the client's own navy, measured at 1.98:1 against the new
-> ground, lifted in lightness to resolve that, and still read as enterprise
-> software; it was replaced by a warm neutral, with the colour carried by the
-> photography instead. A later pass on the same project derived the accent from the
-> hue the image set left free — 80 degrees clear of everything the photography
-> owned — and stated both why it was free and why it belonged to the client.
-> Logged 2026-07-28."
+**The three failure shapes, in the order they appear.** *No derivation* — a page
+built without a declared palette returns near-black with a warm gold accent, which
+is the generating model's default idea of premium and not a decision. *Derivation
+without judgement* — a value taken correctly from an existing identity, corrected
+for contrast, and still wrong in place, because it carries the register of the
+category it came from. *Derivation from the image set* — reading the photography for
+the clearest unoccupied chromatic territory and taking the accent there, which is
+the only route of the three that produces a colour that both belongs and does not
+compete.
 
 ---
 

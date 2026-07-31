@@ -19,11 +19,11 @@ Terms extracted for candidate ranking: <!--TERMS-->
 |---|---|---|
 | `[P evidence:A1 sites:beings-co,ciridae-com]` | **Permanent** — a demonstrated preference | a claim id from `vault/EVIDENCE.md`, plus the site ids it rests on |
 | `[J]` | **Project** — a decision for this brief only | nothing |
-| `[R site:rolls-roycemotorcars-com-en-us-home-html layer:colour]` | **Reference-specific** — one site's device. **Never a rule** | a record id; `layer:` only where that site has a sidecar |
+| `[R site:organimo-com layer:typography]` | **Reference-specific** — one site's device. **Never a rule** | a record id; `layer:` only where that site has a sidecar |
 | `[A]` | **Agent** — a recommendation with no evidence behind it | nothing |
 | `[?]` | **Unknown** — the evidence does not answer this | nothing |
 
-Claim ids (`A1`, `D3`) and record ids (`rolls-roycemotorcars-…`) are different
+Claim ids (`A1`, `D3`) and record ids (`organimo-com`) are different
 identifier types and are validated against different sources.
 
 ## Candidates — ranked, NOT selected

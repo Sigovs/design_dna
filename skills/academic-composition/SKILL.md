@@ -353,12 +353,11 @@ its own cleverness. This is [C1](#invariant) applied to the specific case the
 author keeps losing: C1 asks whether *a* dominant exists, C13 asks whether it is
 the *right* one.
 
-> **Evidence.** "A dealer homepage selling a Ferrari 575 Maranello led its first
-> screen with the chassis number set in mono at 10rem, with the car present as a
-> 26rem plate — smaller than a card image in the grid below. The register below it
-> carried the comment 'photography withheld' and desaturated the vehicle
-> thumbnails. The mechanism was unmistakable and the product was suppressed twice.
-> Logged 2026-07-28."
+*How it fails in practice:* the metaphor is applied twice. Once in the composition,
+where the device takes the dominant position the subject should hold, and again in
+the treatment, where the subject is suppressed to keep the device legible — cropped
+small, desaturated, or withheld entirely. Either move alone is recoverable. Together
+they are the diagnosis.
 
 **INVARIANT, not dialect: it holds under every dialect.** A brutalist, a Swiss, and
 an immersive treatment of the same subject all fail the same way when the device
@@ -400,11 +399,10 @@ document nobody consults while cutting a section for rhythm, which is precisely
 when it is needed. A page that presents an offer and withholds the means of
 accepting it is not restrained; it is broken.
 
-> **Evidence.** "Across five consecutive full-page runs for the same client, the
-> make/model inventory search was specified, then absent from the output five times
-> — lost each time to a legitimate-sounding compositional move: section
-> consolidation, rhythm breaking, concept purity. Prices appeared on a page with no
-> way to respond to them. Logged 2026-07-28."
+*How it disappears:* never in one move, and never obviously. A means is lost to
+section consolidation, to breaking a rhythm that had become monotonous, to concept
+purity — each defensible on its own terms, and none of them announcing that the
+page now presents an offer with no way to accept it.
 
 *How to satisfy it:* name the task in plain words and list the means before
 composing, then check each one is still present and reachable afterwards. A means you never named is a means you will lose to the next good compositional
@@ -472,7 +470,7 @@ dependency, and the composition must hold when the asset is ordinary.**
 Name, in the Read: *what carries the identity*, and *what carries it if that
 degrades*. If the honest answer to the second is "nothing", the composition is not
 finished — it is a presentation of an asset, and it will read as generic the first
-week the client sends their own photographs.
+time the imagery is ordinary.
 
 Not a prohibition on depending on great assets: exceptional imagery is a legitimate
 and often correct strategy. **The requirement is that the dependency is stated and
@@ -532,9 +530,7 @@ have found a talent directory or a social campaign.
 > `vault/kinncollective-co-uk` (2) — *"первый экран настолько минимален, что не
 > сразу объясняет, чем занимается компания"*; `vault/augen-pro` (2, hybrid) —
 > *"чтение принесено в жертву атмосфере: сайт хорошо создаёт ощущение, но хуже
-> объясняет, что именно делает компания."* Measured on the author's own work the
-> same week: `360 Auto Care`'s first screen shows a glossy dealership SUV under
-> studio light, and the page is a neighbourhood repair shop.
+> объясняет, что именно делает компания."*
 
 ---
 

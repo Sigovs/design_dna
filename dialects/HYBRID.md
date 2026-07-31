@@ -245,26 +245,26 @@ plainly. So is *this page needs a device it does not have*.
 
 ## Worked examples — reasoning, not layouts
 
-**1 · Automotive service business.** Anchor `brutalist-utility`, Contrast
+**1 · Small-batch furniture workshop.** Anchor `brutalist-utility`, Contrast
 `refined-elegance`, Signature `cinematic-industrial` (image lighting only).
 Unifying principle: *workshop honesty, presented with professional precision.*
-Brutalist owns composition, geometry and how information is displayed — the bay,
-the lift, the price, the hours are structural, not decorated. Refined owns spacing
-and typographic detail everywhere, which is what separates "honest" from "cheap".
-The cinematic signature lights the photography and touches nothing else.
+Brutalist owns composition, geometry and how information is displayed — the joint,
+the timber, the lead time, the price are structural, not decorated. Refined owns
+spacing and typographic detail everywhere, which is what separates "honest" from
+"cheap". The cinematic signature lights the photography and touches nothing else.
 Guardrails: the moment refinement reaches the composition, the structure stops
 being exposed and the page becomes ordinary; the moment cinematic reaches type or
-layout, the shop becomes a car advert. Task means — call, hours, address, what is
-serviced — are owned by the task under every mode.
+layout, the workshop becomes a catalogue. Task means — what is made, what it costs,
+how long it takes, how to commission one — are owned by the task under every mode.
 
-**2 · High-end performance dealership.** Anchor `technical-luxury`, Contrast
+**2 · Measurement-instrument manufacturer.** Anchor `technical-luxury`, Contrast
 `expressive-poster`, Signature `auction-editorial` (evidence behaviour — the
-composed record). Unifying principle: *the specification is the seduction.*
+composed record). Unifying principle: *the tolerances are the argument.*
 Technical owns structure, detailing and information; the poster owns exactly one
-scale collision, where the car meets its own name; auction-editorial contributes
-how provenance and specification are composed as a record rather than dumped as a
-table. Guardrail: if the poster moment repeats, the page becomes a campaign and the
-evidence stops being credible.
+scale collision, where the instrument meets its own designation;
+auction-editorial contributes how provenance and specification are composed as a
+record rather than dumped as a table. Guardrail: if the poster moment repeats, the
+page becomes a campaign and the evidence stops being credible.
 
 **3 · Cultural / editorial project.** Anchor `swiss-editorial`, Contrast
 `organic-tactile`, Signature a limited `retro-futurist` interaction cue. Unifying

@@ -81,7 +81,7 @@ design_dna/
 │   ├── check.mjs                   # npm run projects:check — register collisions
 │   ├── requests/<slug>.txt         # the raw DESIGN request a brief was compiled from
 │   ├── briefs/_TEMPLATE.md         # the 14-section brief scaffold + provenance table
-│   ├── briefs/<slug>-<date>.md     # one compiled brief per project
+│   ├── briefs/<slug>.md            # one compiled brief per project
 │   └── <project-slug>.md           # one per project, written at close
 ├── explore/                        # EXPLORE artifacts — three directions per brief
 │   └── README.md                   # the convention; artifacts are project-local
@@ -209,9 +209,9 @@ where it came from. `brief.mjs` is **phase 1 only** — it is mechanical and pro
 no design conclusion.
 
 ```bash
-npm run brief -- --input projects/requests/<slug>.txt --out projects/briefs/<slug>-<date>.md
-npm run brief -- --out projects/briefs/<slug>-<date>.md      # request on stdin
-npm run brief:check -- projects/briefs/<slug>-<date>.md
+npm run brief -- --input projects/requests/<slug>.txt --out projects/briefs/<slug>.md
+npm run brief -- --out projects/briefs/<slug>.md      # request on stdin
+npm run brief:check -- projects/briefs/<slug>.md
 ```
 
 **Phase 1** parses the request, pools the vault by `dialectStatus`, and orders each
@@ -333,13 +333,12 @@ happens through the distillation ritual below.
 
 > The vault holds other designers' sites. It is structurally incapable of detecting
 > that MY work is repeating itself, because self-similarity is only visible by
-> comparing my own projects to each other, and no such corpus exists. Across five
-> briefs in one week the house dialect stopped yielding and four different clients
-> came out looking like one studio — and nothing in the system could see it. Project
-> records are that instrument. Second purpose: environment knowledge learned by hand
-> evaporates (e.g. overriding kit tokens in a custom layer does not recolour an
-> already-compiled style.css — discovered by hand, would be rediscovered by hand
-> next time).
+> comparing my own projects to each other, and no such corpus exists. A dialect that
+> stops yielding makes unrelated projects converge on one look, and nothing in a
+> reference library can detect that. Project records are the instrument. Second
+> purpose: environment knowledge learned by hand evaporates — the build quirks and
+> platform behaviour that took an afternoon to work out and will take another
+> afternoon next time.
 
 [`projects/`](projects/README.md) is the inward half of the loop. One record per
 project, **written at close or at a direction lock, never continuously** — a record

@@ -172,9 +172,8 @@ because they are read for hours.
 > изображениями слишком мелкие"*; `vault/augen-pro` (2, hybrid) — *"контраст
 > микротекста местами объективно слишком низкий… информация почти исчезает"*;
 > `vault/i-pinimg-…-46d9d54b` (2) — *"extreme microtype… limit its value"*.
-> Measured on the author's own work the same week: the taste vault adopted a 14px
-> floor after five surfaces failed at 12px, and `360 Auto Care` shipped 11px inside
-> its primary call to action, 12px on navigation, address and the skip link.
+> Measured on the author's own work: this repository's own gallery adopted the 14px
+> floor only after five of its surfaces were found failing at 12px.
 
 ### I8 — A role is not a voice
 

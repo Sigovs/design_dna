@@ -7,12 +7,11 @@ Records of **my own** work. One file per project, written at close.
 > The vault holds other designers' sites. It is structurally incapable of
 > detecting that MY work is repeating itself, because self-similarity is only
 > visible by comparing my own projects to each other, and no such corpus exists.
-> Across five briefs in one week the house dialect stopped yielding and four
-> different clients came out looking like one studio — and nothing in the system
-> could see it. Project records are that instrument. Second purpose: environment
-> knowledge learned by hand evaporates (e.g. overriding kit tokens in a custom
-> layer does not recolour an already-compiled style.css — discovered by hand,
-> would be rediscovered by hand next time).
+> A dialect that stops yielding makes unrelated projects converge on one look, and
+> nothing in a reference library can detect that. Project records are the
+> instrument. Second purpose: environment knowledge learned by hand evaporates —
+> the build quirks, the platform behaviour, the thing that took an afternoon to
+> work out and will take another afternoon next time.
 
 Two instruments, two directions. `vault/` looks outward at work worth learning
 from. `projects/` looks inward at work already done, so the system can see its own
@@ -27,10 +26,9 @@ evidence: two vault entries sat on `TODO` notes for days while everything around
 them was rewritten several times over. A record written once, after the fact, with
 section 5 filled in honestly, is worth more than five kept half-current.
 
-A record written late is still worth writing — see
-[aan-master-2026](aan-master-2026.md), reconstructed after the fact, where most
-fields could not be recovered. That record is thin, and its thinness is the
-argument for writing at close.
+A record written late is still worth writing, but expect it to be thin:
+reconstructed after the fact, most fields cannot be recovered, and `not recorded`
+is the honest entry. That thinness is the argument for writing at close.
 
 ## Structure
 

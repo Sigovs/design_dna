@@ -49,7 +49,6 @@ evidence completeness → rating. **It orders the list. The agent selects.**
 | `ruadh-com` | 2 | in | 5 | — | — |
 | `augen-pro` | 2 | in | 5 | — | — |
 | `kinncollective-co-uk` | 2 | in | 5 | — | — |
-| `thenewmobileworkforce-imm-g-prod-com-back-at-hq` | 2 | in | 5 | — | — |
 | `i-pinimg-com-736x-46-d9-d5-46d9d54b7cc97b5687cbfd24a1410d34-` | 2 | in | 4 | — | — |
 | `trionn-com` | 2 | in | 4 | — | — |
 | `rolls-roycemotorcars-com-en-us-home-html` | 3 | in | 3 | 8 | composition:IN, hierarchy:IN, colour:IN, spacing / density:IN, motion:IN, interaction:IN, interaction:IN, design dialect:IN |
@@ -132,8 +131,6 @@ is a sequence, and sequence is the thing being designed.
   - `obys-agency` — the side-scrolling sequence `[R site:obys-agency layer:composition]`.
     Horizontal movement fights sustained vertical reading.
   - `immersive-g-com` — cursor-tracked reveal. The reader is on a phone at night.
-  - `thenewmobileworkforce-imm-g-prod-com-back-at-hq` — an interface to be learned.
-    A reading view that must be learned has already lost.
   - `electrafilmworks-com` — `in` and relevant, but its subject is film and its
     lessons here duplicate the two primaries `[J]`.
 
@@ -247,11 +244,16 @@ page with three floating layers is not a reading page.
 
 ## 10. Motion and interaction
 
-Restraint, and here the evidence is specific
-`[P evidence:C1e sites:thenewmobileworkforce-imm-g-prod-com-back-at-hq,trionn-com]`:
-motion is approved where the subject is temporal and criticised where it
-demonstrates capability. **An essay is not temporal.** Motion seasons the
-transition between index and essay and does nothing else.
+Restraint — and the evidence supports only half of why. **`[?]` When motion as
+identity actually works is not answered by this vault** (`vault/EVIDENCE.md` D7):
+the record that showed it has been removed, and what remains is one account of it
+failing — `[R site:trionn-com]`, where Alex records motion demonstrating the
+technology rather than revealing the content, every episode competing to be the
+main one.
+
+So the decision is the project's, not the evidence's `[J]`: an essay is not
+temporal, so motion seasons the transition between index and essay and does
+nothing else.
 
 No scroll-jacking, and the reason is recorded rather than assumed: `organimo-com`
 is rated 3, and its own limitation note says the capture preserved the visual
@@ -298,8 +300,8 @@ still rather than a disabled one `[J]`.
 - `vault/EVIDENCE.md` — A1 (one governing event), A2 (identity carried by one
   system), A3 (interface subordinate to content), B1 (rhythm as a stated sequence),
   B2 (type and image as one mass), B3 (real photography, one entry, weak),
-  C1e (motion where the subject is temporal), C2e (dark ground discriminates
-  nothing), **D1 (colour: not answered by the evidence)**.
+  C2e (dark ground discriminates nothing), **D1 (colour: not answered by the
+  evidence)**, **D7 (when motion as identity works: not answered either)**.
 - Layer verdicts read from sidecars: `vault/reviews/organimo-com.md` (typography),
   `vault/reviews/obys-agency.md` (composition).
 - Records carrying the recorded weaknesses cited above: `ciridae-com` (sparse

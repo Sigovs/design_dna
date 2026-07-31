@@ -43,8 +43,8 @@ that is a taste or implementation decision is yours to make.
 **Never blind `git add -A` — stage explicitly or review `git status` before
 staging.** A sweep-everything stage will commit files you did not write and have
 not read: exports dropped into the tree by another session, scratch files, local
-config. This has already happened once in this repo (`vault/shots/f1_redbull.json`
-was committed blind, then had to be recovered and untracked).
+config. A file that enters the repository this way is rarely noticed going in and
+is awkward to remove afterwards, because by then something else references it.
 
 Stage the paths you actually changed. If you do use `-A`, run `git status` first
 and account for every line.

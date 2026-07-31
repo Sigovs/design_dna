@@ -740,68 +740,6 @@
     "unsorted": []
   },
   {
-    "id": "thenewmobileworkforce-imm-g-prod-com-back-at-hq",
-    "url": "https://thenewmobileworkforce.imm-g-prod.com/back-at-hq",
-    "title": "Large Screens, Transitions, PNG/Cutout use",
-    "added": "2026-07-25",
-    "rating": 2,
-    "dialectStatus": "in",
-    "dialects": [],
-    "tags": {
-      "composition": [
-        "active-negative-space",
-        "compositional-resolution",
-        "directed-eye",
-        "dominant-mass",
-        "intentional-crop",
-        "optical-balance",
-        "responsive-recomposition"
-      ],
-      "risks": [],
-      "typography": [],
-      "layout": [
-        "air",
-        "grid-break",
-        "bleed",
-        "asymmetry"
-      ],
-      "motion": [
-        "crossfade",
-        "scroll-reveal",
-        "parallax"
-      ],
-      "color": [
-        "bold-accent",
-        "dark"
-      ],
-      "imagery": [
-        "photography",
-        "art-direction",
-        "illustration"
-      ]
-    },
-    "note": "IN — A landmark interactive branded experience that translates the operational relationship between Citrix and Red Bull Racing into the spatial and temporal behavior of the interface itself. WebGL environments, telemetry-inspired graphics, F1-style navigation, cinematic racing imagery, sound design, depth transitions and velocity-based blur connect the track, garage, factory and distributed workforce as parts of one continuous high-performance system. Its strongest quality is semantic motion: speed, connectivity and data are not merely described but experienced through navigation. Heavy technological dependence, delayed comprehension, motion-led accessibility issues and limited scalability beyond a campaign format reduce its utility as a conventional commercial framework, but it remains an exceptional reference for subject-derived interaction language and interface-as-environment.",
-    "shots": {
-      "full": "shots/thenewmobileworkforce-imm-g-prod-com-back-at-hq/full.jpg",
-      "hero": "shots/thenewmobileworkforce-imm-g-prod-com-back-at-hq/hero.jpg",
-      "mobile": "shots/thenewmobileworkforce-imm-g-prod-com-back-at-hq/mobile.jpg",
-      "navScrolled": null,
-      "strip": [
-        "shots/thenewmobileworkforce-imm-g-prod-com-back-at-hq/strip-1.jpg"
-      ],
-      "stripMobile": [
-        "shots/thenewmobileworkforce-imm-g-prod-com-back-at-hq/strip-m-1.jpg"
-      ]
-    },
-    "kind": "site",
-    "source": "",
-    "extras": [],
-    "captureError": null,
-    "works": "Это не обычный corporate case study про партнёрство Citrix и Red Bull Racing. Весь интерфейс ведёт себя как работающая гоночная система.\nСкорость выражена не фотографией болида, а самой навигацией: резкие пространственные переходы, размытие, ускорение, смена глубины.\nF1-style menu — не декоративная отсылка. Он превращает перемещение между разделами в выбор гоночного режима или телеметрического канала.\n3D, видео, звук, техническая графика и данные собраны в единую среду, а не разложены на отдельные «feature sections».\nТёмно-синяя и холодная голубая палитра создаёт ощущение ночного pit wall, инженерного интерфейса и аэродинамической лаборатории.\nКонтент организован вокруг реального operational journey: track, garage, factory, data analysis, modeling and car development.\nИнтерфейс постоянно соединяет две скорости: почти неподвижную техническую точность и резкое гоночное ускорение.\nОн показывает технологическую компанию через результат её работы, а не через облака, серверы и generic SaaS illustrations.\nКоммерческое сообщение становится понятным через experience: Citrix позволяет команде работать как единая система независимо от физического местоположения.",
-    "weaknesses": "Experience сильно зависит от WebGL, производительности устройства и качества соединения.\nСайт почти невозможно полноценно понять без motion и взаимодействия.\nNavigation эффектная, но требует изучения — пользователь сначала осваивает интерфейс, а потом получает информацию.\nИз-за переходов просмотр может ощущаться медленнее, хотя визуально всё изображает скорость.\nSound усиливает immersion, но для многих пользователей будет нежелательным.\nЧасть HUD-графики сегодня может выглядеть как знакомый gaming/F1 interface.\nТехническая сложность значительно выше реальной информационной задачи.\nAccessibility была слабой стороной: Awwwards дал ей только 6.75/10.\nЭто campaign experience, а не масштабируемая система для большого количества обычных страниц.\nНа mobile пространственный эффект неизбежно теряет часть глубины и кинематографичности.",
-    "unsorted": []
-  },
-  {
     "id": "trionn-com",
     "url": "https://trionn.com/",
     "title": "TRIONN",

@@ -33,12 +33,17 @@ Thumbs.db
 #
 # vault/shots/ stays tracked — see the note above. That is the one exception,
 # and it is deliberate: those screenshots ARE the evidence.
-screenshots/
+#
+# Anchored to the root on purpose. An unanchored `screenshots/` matches a
+# directory of that name at every level, which silently swallowed the shots an
+# EXPLORE round is supposed to keep (explore/README.md).
+/screenshots/
 evidence/
 contact-sheet*
 *-preview.*
 *.png
 !vault/shots/**
+!explore/**/*.png
 
 # ── client and implementation work ────────────────────────────────────────
 # This repository holds the taste system, not the sites it is used on.

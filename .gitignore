@@ -25,3 +25,29 @@ Thumbs.db
 
 # local agent config (not part of the taste system)
 .claude/
+
+# ── visual acceptance evidence and previews ───────────────────────────────
+# Browser screenshots, contact sheets and preview captures are reproducible from
+# the page they were taken of. They are NOT evidence about taste and do not
+# belong in this repository.
+#
+# vault/shots/ stays tracked — see the note above. That is the one exception,
+# and it is deliberate: those screenshots ARE the evidence.
+screenshots/
+evidence/
+contact-sheet*
+*-preview.*
+*.png
+!vault/shots/**
+
+# ── client and implementation work ────────────────────────────────────────
+# This repository holds the taste system, not the sites it is used on.
+homepage/
+site/
+client/
+backup-*/
+
+# ── scratch ───────────────────────────────────────────────────────────────
+_*.mjs
+*.tgz
+tmp/

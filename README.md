@@ -59,26 +59,47 @@ design_dna/
 │   ├── color-taste/SKILL.md        # I: AA, no hue-only meaning, scrims · D: neutral dark base, smoky accents
 │   ├── motion-taste/SKILL.md       # I: reduced-motion, keyboard parity, no jank · D: crossfade, subtle hover
 │   └── anti-patterns/SKILL.md      # I: the universal failures · D: the trope bans
-├── dialects/
+├── dialects/                       # 1 confirmed · 1 provisional · 8 library
 │   ├── README.md                   # index + confirmed / provisional / library status
 │   ├── HYBRID.md                   # style modes, Anchor/Contrast/Signature, CONTROL MAP, audit
 │   ├── _TEMPLATE.md                # the shared dialect shape
 │   ├── check.mjs                   # npm run dialects:check — shape, indexes, vocab in sync
-│   ├── auction-editorial.md        # the house dialect — PRINCIPLES + optional EXPRESSIONS
-│   └── immersive-authored-world.md # PROVISIONAL — the page as a staged spatial experience
-├── .github/workflows/capture.yml   # auto-captures shots when sites.json changes
+│   ├── auction-editorial.md        # CONFIRMED — the house dialect, distilled from the vault
+│   ├── immersive-authored-world.md # PROVISIONAL — the page as a staged spatial experience
+│   ├── brutalist-utility.md        # library — the structure of the thing is the design of it
+│   ├── refined-elegance.md         # library — quality legible in proportion and interval
+│   ├── swiss-editorial.md          # library — a declared system carries the meaning
+│   ├── cinematic-industrial.md     # library — light, scale and material consequence persuade
+│   ├── retro-futurist.md           # library — a named period's idea of the future
+│   ├── expressive-poster.md        # library — type as image, one message, scale collisions
+│   ├── technical-luxury.md         # library — value demonstrated, not asserted
+│   └── organic-tactile.md          # library — let the hand show
+├── brief.mjs                       # npm run brief / brief:check — the brief compiler
 ├── projects/                       # records of MY OWN work — the inward half of the loop
 │   ├── README.md                   # why, when to write, how it feeds distillation
-│   ├── _TEMPLATE.md                # front-matter + five required sections
+│   ├── _TEMPLATE.md                # front-matter + required sections, incl. exploration
 │   ├── check.mjs                   # npm run projects:check — register collisions
+│   ├── requests/<slug>.txt         # the raw DESIGN request a brief was compiled from
+│   ├── briefs/_TEMPLATE.md         # the 14-section brief scaffold + provenance table
+│   ├── briefs/<slug>-<date>.md     # one compiled brief per project
 │   └── <project-slug>.md           # one per project, written at close
+├── explore/                        # EXPLORE artifacts — three directions per brief
+│   └── README.md                   # the convention; artifacts are project-local
 ├── vault/                          # the taste vault — visual reference library
 │   ├── sites.json                  # the library (entry schema in vault/README.md)
 │   ├── vocab.json                  # controlled tag vocabulary — single source of truth
-│   ├── capture.mjs                 # Playwright capture: full / hero / mobile
+│   ├── EVIDENCE.md                 # the synthesis layer — claims at levels A/B/C/D
+│   ├── evidence.mjs                # npm run evidence:check — synthesis vs. sites.json
+│   ├── review.mjs                  # npm run review / review:deep — continuous ingestion
+│   ├── reviews/<id>.md             # per-record revision history, append-only
+│   ├── capture.mjs                 # Playwright capture: full / hero / mobile / filmstrip
+│   ├── sync.mjs · distill.mjs      # npm run sync · npm run distill
+│   ├── prune.mjs · smoke.mjs       # npm run prune · npm run smoke
 │   ├── index.html                  # the gallery — browse, filter, edit, add
 │   ├── shots/<id>/                 # committed screenshots (the evidence)
 │   └── README.md                   # workflow + the distillation prompt
+├── .github/workflows/capture.yml   # auto-captures shots when sites.json changes
+├── .github/workflows/distill.yml   # runs the distillation check on sites.json changes
 ├── CLAUDE.md                       # working-style rules for editing this repo
 ├── package.json
 └── README.md
@@ -134,6 +155,23 @@ which the skill routes to per task rather than loading wholesale.
 dialect, a partial combination, or `brief-derived / no stored dialect`. An
 underspecified brief does not become the house style by default.
 
+**Delivery mode, declared before anything else.** The mandate answers *how much of
+this brand may I replace*; the delivery mode answers *has a direction been chosen
+yet*. **EXPLORE** produces three structurally different directions and Alex picks;
+**BUILD** takes one direction to completion. EXPLORE is the default only when no
+meaningful visual direction exists — a component change, a fix, an urgent revision,
+anything on an already-approved composition, and *"just do it"* are all BUILD, and
+offering three concepts instead is a way of not doing the work. Structural
+difference is the test: three palettes on one layout is one direction. Invariants
+bind in all three. The procedure is
+[TASTE.md §2d](TASTE.md#2d-explore--three-directions-before-one-is-chosen);
+artifacts go in [explore/](explore/README.md) and are **project-local** — a rejected
+direction is not negative evidence about anything and never reaches the vault.
+
+**Style mode sits inside a direction, not above it.** Delivery mode decides how many
+directions exist; style mode decides what each one is made of, so under EXPLORE the
+three often differ — A may be PURE, B DIRECTED HYBRID, C HYBRID.
+
 **Style modes.** With no style named, the default is a **controlled hybrid**:
 contrasting dialects, each holding a different systemic responsibility — Anchor
 (~60–75%), Contrast (~20–30%), optional Signature (~5–10%). One dialect named is
@@ -157,6 +195,60 @@ house dialect). [immersive-authored-world](dialects/immersive-authored-world.md)
 Vault evidence and confirmed only once ≥3 human-reviewed entries carry it with
 `dialectStatus: "in"`. Selection is always a human decision; a provisional dialect
 is never inferred or recommended.
+
+```bash
+npm run dialects:check     # shape, indexes and vocabulary in sync
+```
+
+---
+
+## The brief compiler
+
+A short request compiles into a project-specific direction whose every claim says
+where it came from. `brief.mjs` is **phase 1 only** — it is mechanical and produces
+no design conclusion.
+
+```bash
+npm run brief -- --input projects/requests/<slug>.txt --out projects/briefs/<slug>-<date>.md
+npm run brief -- --out projects/briefs/<slug>-<date>.md      # request on stdin
+npm run brief:check -- projects/briefs/<slug>-<date>.md
+```
+
+**Phase 1** parses the request, pools the vault by `dialectStatus`, and orders each
+pool by project-type relevance → Alex-approved layer relevance → dialect fit →
+evidence completeness → rating. Then it emits the fourteen-section scaffold with the
+decision slots empty. **Ranking is not selection** — a keyword score cannot decide
+which reference belongs in a brief. **Phase 2** is the agent's: it authors the
+direction into those slots.
+
+**Four reference roles, and the vault's own status decides eligibility.**
+
+| Role | Drawn from | Limit |
+|---|---|---|
+| **Primary** | `dialectStatus: in` | max 2 |
+| **Secondary** | `dialectStatus: in` | max 3 |
+| **Contextual** | `dialectStatus: hybrid` — **one named layer or function only**, never an overall endorsement | max 3 |
+| **Anti-reference** | `dialectStatus: out` — prohibitions and failure patterns only | — |
+
+Section 2 must also name what was **not carried forward**, and why each one lost.
+
+**Five provenance markers, machine-validated.**
+
+| Marker | Means | Validated against |
+|---|---|---|
+| `[P evidence:A1 sites:beings-co,ciridae-com]` | **Permanent** — a demonstrated preference | claim ids in [vault/EVIDENCE.md](vault/EVIDENCE.md); `sites:` required, resolved against `sites.json` |
+| `[J]` | **Project** — a decision for this brief only | — |
+| `[R site:<id> layer:<name>]` | **Reference-specific** — one site's device, **never a rule** | record id in `sites.json`; `layer:` must exist in that site's sidecar |
+| `[A]` | **Agent** — a recommendation with no evidence behind it | — |
+| `[?]` | **Unknown** — the evidence does not answer this | — |
+
+Claim ids and record ids are different identifier types and are checked against
+different sources; conflating them is how a brief cites a claim that does not exist.
+`brief:check` verifies the sections are present, the provenance resolves, the caps
+hold, sections 12 (anti-patterns) and 13 (evidence) carry real content, and any
+`library` or `provisional` dialect is labelled as such wherever it is used. A brief
+is a **project artifact** — nothing in it becomes a permanent preference without Alex
+saying so.
 
 ---
 
@@ -191,6 +283,51 @@ exactly what keeps the others merit-only. The composition category carries
 `compositional-resolution`, `responsive-recomposition`): a tag means a human
 confirmed the quality is *present*. Compositional failures stay in the note, in
 prose.
+
+### Continuous ingestion
+
+```bash
+npm run review -- <url>              # QUICK — capture, find or create, scaffold
+npm run review:deep -- <url>         # DEEP — the same, with all nine layers stubbed
+npm run review -- <url> --dry-run    # inspect and report, write nothing
+```
+
+`review.mjs` does **mechanics only**: URL normalisation, duplicate lookup, capture,
+shot paths, record scaffolding, the revision sidecar, integrity checks. It never
+reads meaning out of a comment — a regex cannot tell *"шрифтовая пара пока ни туда
+ни сюда"* from a rejection, and guessing wrong writes a false judgement into
+evidence. The agent fills the semantic fields; the script guarantees they have a
+correct, deduplicated, honestly-labelled place to go.
+
+Each record gets a sidecar in `vault/reviews/<id>.md` — **append-only revision
+history**. Alex's wording is never edited, agent observations are never merged into
+his judgement, and a layer verdict is never propagated to the whole record:
+`dialectStatus` stays a whole-record field only Alex sets. Where a capture could not
+reach the design — a bot wall, a loading screen, a page with no scroll room — the
+limitation is recorded on the entry rather than papered over.
+
+### The synthesis layer
+
+[`vault/EVIDENCE.md`](vault/EVIDENCE.md) is where the vault stops being a list and
+becomes readable taste — built **only** from Alex's own human-reviewed judgements,
+never from agent observations. Claims sit at four levels: **A · demonstrated**,
+**B · emerging**, **C · contextual**, **D · unknown or conflicted**. D is the point
+of the file: colour, for instance, is recorded as *not known*, so a brief cites `[?]`
+instead of inventing a preference.
+
+```bash
+npm run evidence:check     # synthesis layer vs. sites.json
+```
+
+It verifies mechanical truths only — every cited entry id exists, the inventory
+counts match what `sites.json` actually contains, no claim id repeats, every claim
+cites at least one supporting entry, and the recorded data-quality ambiguities are
+still real. **It does not judge interpretation.** Whether a claim is true, or sits at
+the right level, is Alex's review.
+
+The layering is one-way: `sites.json` (evidence) → `EVIDENCE.md` (interpretation) →
+`skills/` (executable). Nothing skips a layer, and promotion into `skills/` only ever
+happens through the distillation ritual below.
 
 ## Project records
 
@@ -397,7 +534,13 @@ while it is honest.
 ## Working style
 
 Agents using this system make senior decisions and don't ask yes/no questions to
-resolve taste, and don't pause for permission between steps. Close calls get
+resolve taste, and don't pause for permission between steps. **They may ask a
+clarifying question — up to three at once — when the missing piece is factual and
+would change the architecture, the scope, the accuracy or the deliverable:** a
+business goal, real content or constraints, a brand element that must stay fixed, a
+genuinely ambiguous audience, the scope of the request, or a contradiction. Taste is
+never the subject of a question, and where a reversible assumption exists it is
+taken and disclosed rather than raised. Close calls get
 flagged in the final report under *Judgment calls*, one line each — that's the
 review surface, not a stream of questions mid-task. Anything that violates the
 DNA because of a real external constraint gets named under *Known compromises*.
@@ -413,20 +556,21 @@ project that wires in the manifest gets the working style too.
 
 ## Phase plan
 
-**Phase 1 — taste skills (done, this commit).**
-The written system: manifest, Design Read procedure, five skills. Enough to
-change agent output on its own.
+**Phase 1 — taste skills. Done.**
+The written system: manifest, Design Read procedure, the skills, the two tiers.
+Enough to change agent output on its own.
 
-**Phase 2 — vault: capture tool + gallery.**
-A capture tool for saving visual references (screenshot + tags + a note on *why*
-it works) into `vault/`, plus a local gallery for browsing them. Activates the
-vault hook in `TASTE.md` §3: *before designing X, query `vault/` for entries
-tagged X.* Notes matter more than images — the goal is to transfer reasoning, not
-to copy pixels. Image files stay gitignored until the gallery decides how to
-store them.
+**Phase 2 — the vault. Done.**
+Capture tool, gallery, controlled vocabulary, committed shots, the online save path
+and the capture Action. Notes matter more than images: the goal is to transfer
+reasoning, not to copy pixels.
 
-**Phase 3 — distillation runs.**
-Read the accumulated vault and extract the patterns Alex hasn't articulated yet,
-then fold them back into the skills as new rules with rationale. This is where
-the system stops being a snapshot of current opinions and starts learning from
-evidence — the skills become the distillate of the vault rather than of memory.
+**Phase 3 — distillation and synthesis. Running.**
+`npm run distill` detects what recurs; `vault/EVIDENCE.md` states what the evidence
+supports and at what level; `brief.mjs` turns that into a project direction with
+traceable provenance. Detection is automatic, authorship is not — nothing lands in
+`skills/` without a person reading the diff.
+
+**Phase 4 — the inward half.** `projects/` records Alex's own work so the system can
+see self-repetition, which the vault is structurally incapable of detecting. It only
+becomes useful once enough records exist to compare.

@@ -22,30 +22,30 @@ correct** — that is Alex's review, and the claims below are marked accordingly
 
 | Class | Count | Entry ids |
 |---|---|---|
-| **Usable `in`** (human-set) | **12** | `beings-co` (3) · `ciridae-com` (3) · `ruadh-com` (2) · `electrafilmworks-com` (2) · `trionn-com` (2) · `kinncollective-co-uk` (2) · `augen-pro` (2) · `i-pinimg-…-46d9d54b` (2) · `organimo-com` (3) · `immersive-g-com` (3) · `rolls-roycemotorcars-…-home-html` (3) · `obys-agency` (2) |
+| **Usable `in`** (human-set) | **13** | `beings-co` (3) · `ciridae-com` (3) · `ruadh-com` (2) · `electrafilmworks-com` (2) · `thenewmobileworkforce-…-back-at-hq` (2) · `trionn-com` (2) · `kinncollective-co-uk` (2) · `augen-pro` (2) · `i-pinimg-…-46d9d54b` (2) · `organimo-com` (3) · `immersive-g-com` (3) · `rolls-roycemotorcars-…-home-html` (3) · `obys-agency` (2) |
 | **Usable `out`** (human-set) | **2** | `rmsothebys-com` (1) · `thegentlewoman-co-uk` (1) |
-| **Partial / contextual** (`hybrid`) | **0** | — none |
+| **Partial / contextual** (`hybrid`) | **1** | `porsche-com-usa` (2) |
 | **Not yet a judgement** (`unreviewed`) | **0** | — the library is fully reviewed |
 
-> **Three records removed, 2026-07-30.** The two `hybrid` entries were competitive
-> research into commerce platforms rather than references Alex chose. A third, a
-> branded interactive experience for a motorsport partnership, went with them for
-> the same reason. All three are deleted from the vault with their shots.
-> **This removes evidence; it does not reinterpret any.** Nothing below was
-> strengthened to compensate. Two claims leaned on the removed records and both were
-> recomputed rather than defended: [B3](#b--emerging) is narrowed, and the former
-> `C1e` is **deleted** because it was a contrast between two entries and only one
-> survives — what that one entry still shows is recorded at [D7](#d--unknown-or-conflicted),
-> which is the level a single observation earns.
+> **One record removed, two restored, 2026-07-31.** `carvana-com` is gone from the
+> vault. `porsche-com-usa` and `thenewmobileworkforce-…-back-at-hq` were removed with
+> it and have since been **restored from history, unedited** — original notes,
+> `works`, `weaknesses`, metadata and every frame, byte for byte.
 >
-> The `hybrid` class is now empty, which is a fact about the library and not a
-> statement that partial judgements are unwelcome.
+> **The claims below follow the data back.** [A1](#a1--one-governing-event-owns-the-first-screen-and-everything-else-defers-to-it)
+> has its limiting case again, [B3](#b--emerging) has its corroboration again, and
+> `C1e` and `D2` — both deleted while their evidence was absent — are **restored in
+> their original wording**, because the entries they rest on are the same entries.
+> The `D7` bullet that stood in for `C1e` is removed: it existed only while the
+> contrast had one half.
+>
+> Nothing here was rewritten to fit the restoration. A claim whose evidence returns
+> unchanged is restored, not re-derived.
 
 > **Counter refresh, 2026-07-30.** Four records reviewed through the continuous
 > ingestion workflow — `organimo-com` (3), `immersive-g-com` (3),
 > `rolls-roycemotorcars-…-home-html` (3) and `obys-agency` (2) — took the usable
-> `in` total from 9 to 13 at the time — 12 after the removals noted above.
-> **Counted, not interpreted:** no claim below was
+> `in` total from 9 to 13. **Counted, not interpreted:** no claim below was
 > reinterpreted, promoted, weakened or removed, and none of the four is cited in
 > A, B, C or D yet. Their reasoning belongs to the next distillation pass.
 >
@@ -95,11 +95,11 @@ proposed to the ritual; still not a rule until it lands in a skill.*
 |---|---|
 | **Supporting** | `beings-co` (3) · `ciridae-com` (3) · `ruadh-com` (2) · `electrafilmworks-com` (2) · `trionn-com` (2) · `kinncollective-co-uk` (2) |
 | **Evidence** | kinncollective (reviewed `in` 2026-07-30): *"hero элементарный: одна фотография и огромный wordmark. Но масштаб настолько уверенный, что отдельный headline вообще не требуется"*. beings: the wordmark and the portrait read as **one** mass, *"портреты входят с ним в конфликт, перекрываются"*. ciridae: a single centred mark on an atmospheric field, flanked by two micro-labels — visually inspected. ruadh: *"огромный RÙADH поверх split-screen hero сразу создаёт уверенный брендовый жест"*. electrafilmworks: *"navigation, project metadata, restrained typography remain visually subordinate to the cinematic material"*. trionn: the three-part identity mark is the hero. |
-| **Limiting** | **None among the remaining entries.** The one counter-case — a first screen that had to be learned before it gave anything — was removed with its record, so this claim now has no observed limit in the evidence. That is a thinner sample, not a stronger claim |
+| **Limiting** | `thenewmobileworkforce` — the first screen is an interface to be learned, and its own weakness records the cost: *"пользователь сначала осваивает интерфейс, а потом получает информацию"* |
 | **Applies** | Identity-led and image-led pages |
 | **Yields when** | The visitor arrived with a task rather than a first impression — utility, transaction, dense reference |
 | **Tier if promoted** | Already covered by [C1](../skills/academic-composition/SKILL.md#invariant) and [C13](../skills/academic-composition/SKILL.md#invariant). **This is confirmation of existing invariants from Alex's own evidence, not a new rule.** |
-| **Confidence** | High — 6 of the 8 `in` entries that existed at this reading, including both rating-3s. Four entries reviewed after it are not yet counted for or against it |
+| **Confidence** | High — 6 of the 9 `in` entries that existed at this reading, including both rating-3s. The other 4 of today's 13 were reviewed after it and are not yet counted for or against it |
 
 ### A2 — Identity is carried by ONE system, never by an accumulation of devices
 
@@ -149,11 +149,7 @@ Confidence: Medium — up from Low, on one new human judgement.
 ### B3 — Real photography of real situations outranks polished renders
 
 Supporting: `ciridae-com` (3) — *"реальные enterprise-фотографии сильнее обычных AI-рендеров"*.
-Limiting: **one entry, and nothing corroborates it.** A second record used to be
-named here as pointing the same way; it was a partial judgement, it was never
-counted as support, and it has since been removed from the vault. Narrowed rather
-than deleted, because the one supporting judgement is Alex's and still stands — but
-this is the weakest claim in the file, and a single entry is not a pattern.
+Limiting: one entry. `porsche-com-usa` (`hybrid`) points the same way but is a partial judgement.
 Confidence: Low. Recorded so a second entry can settle it.
 
 ---
@@ -161,6 +157,14 @@ Confidence: Low. Recorded so a second entry can settle it.
 ## C · CONTEXTUAL
 
 *Observed only under stated conditions. Do not generalise past them.*
+
+### C1e — Motion as identity is accepted only where the subject is temporal
+
+`thenewmobileworkforce` (`in`, 2): motion **is** the subject — *"скорость выражена не фотографией болида, а самой навигацией"*. `trionn-com` (`in`, 2): the same ambition, and Alex records the failure — *"motion здесь часто демонстрирует возможности технологии, а не раскрывает содержание"*.
+So: approved where movement carries the meaning; criticised where it demonstrates capability. Both entries are `in`, so **the discriminator is the subject, not the amount**.
+Yields when: the subject is static — then motion returns to seasoning
+([auction-editorial P8](../dialects/auction-editorial.md#p8--motion-seasons-it-does-not-perform)).
+Confidence: Medium, 2 entries, both with recorded reservations.
 
 ### C2e — A dark, atmospheric ground is not itself a preference
 
@@ -179,6 +183,9 @@ Confidence: High as a *negative* finding.
 - **D1 · Colour.** No `in` entry's judgement isolates colour as a reason for approval.
   `beings-co` praises *"два контрастных цвета"* only as part of the simple system (A2).
   **Nothing is known about Alex's colour preferences from this evidence.**
+- **D2 · Mobile authorship.** One data point: `thenewmobileworkforce` weakness —
+  *"на mobile пространственный эффект неизбежно теряет часть глубины"*. Not a
+  preference; a single observation about one technique.
 - **D3 · `trionn-com` is internally conflicted.** Status `in`, note *"MAYBE"*, and a
   severe weakness. **The conflict is retained, not averaged.** It supports A1 and
   counter-supports A2 simultaneously.
@@ -199,17 +206,6 @@ Confidence: High as a *negative* finding.
   evidence shows Alex *rewards* them; it does not show they are distinctive to him.
   Distinctiveness needs `out` entries that are competent and still rejected — and
   both current `out` entries are rejected for execution, not for position.
-- **D7 · Motion that demonstrates instead of revealing.** What survives of the
-  deleted `C1e`. One entry: `trionn-com` (`in`, 2), where Alex records the failure
-  directly — *"motion здесь часто демонстрирует возможности технологии, а не
-  раскрывает содержание"*, with every episode competing to be the main one. **The
-  other half of that claim is gone.** It rested on a second entry showing motion
-  approved because the subject was itself temporal, and that record has been
-  removed, so there is no longer any evidence here for *when motion as identity
-  works* — only for one way it fails. A single negative observation is not a
-  discriminator and is not stated as one. Related invariant, unchanged and not
-  derived from this:
-  [auction-editorial P8](../dialects/auction-editorial.md#p8--motion-seasons-it-does-not-perform).
 
 ---
 

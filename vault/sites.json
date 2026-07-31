@@ -241,6 +241,72 @@
     "captureError": "partial evidence — desktop and mobile both captured with the side menu opened. Verified by measurement: backdrop-filter blur(150px) saturate(1.8) on the open menu pane (600x900 desktop, 390x664 mobile); three viewport-sized videos at object-fit cover with border-radius 0 and no mask-image; 3 pill controls and 0 circular controls at 1440x900. NOT preserved: menu transition timing and easing, video playback continuity, and any masking or compositing technique — none was found and none is claimed."
   },
   {
+    "id": "porsche-com-usa",
+    "url": "https://www.porsche.com/usa/?cs_redirect=1",
+    "title": "Porsche United States",
+    "added": "2026-07-28",
+    "rating": 2,
+    "dialectStatus": "hybrid",
+    "dialects": [],
+    "tags": {
+      "composition": [
+        "active-negative-space",
+        "brief-derived-cultural-directory",
+        "compositional-resolution",
+        "conversion-first-hierarchy"
+      ],
+      "risks": [],
+      "typography": [],
+      "layout": [
+        "air",
+        "bleed",
+        "asymmetry"
+      ],
+      "motion": [],
+      "color": [
+        "neutral",
+        "monochrome",
+        "bold-accent"
+      ],
+      "imagery": [
+        "photography",
+        "product"
+      ]
+    },
+    "note": "MAYBE — An exceptionally disciplined global automotive platform that moves each vehicle between cinematic object of desire and precisely classified, configurable product. Full-viewport campaign imagery, minimal overlay typography, restrained navigation, image-led model cards, explicit powertrain and pricing information, direct configurator access, inventory search and Porsche Center discovery create a coherent progression from brand emotion to commercial action. A mature cross-platform design system provides unusually consistent components, themes and interaction patterns across a complex digital ecosystem. However, the homepage itself follows a conventional premium-automotive sequence, with much of its distinction dependent on iconic products, exceptional imagery and brand recognition rather than original composition. Preserve as a benchmark for automotive hierarchy, restraint, brand–commerce integration and system consistency—not as a primary reference for unconventional layout or expressive editorial structure.",
+    "shots": {
+      "full": "shots/porsche-com-usa/full.jpg",
+      "hero": "shots/porsche-com-usa/hero.jpg",
+      "mobile": "shots/porsche-com-usa/mobile.jpg",
+      "strip": [
+        "shots/porsche-com-usa/strip-1.jpg",
+        "shots/porsche-com-usa/strip-2.jpg",
+        "shots/porsche-com-usa/strip-3.jpg",
+        "shots/porsche-com-usa/strip-4.jpg",
+        "shots/porsche-com-usa/strip-5.jpg",
+        "shots/porsche-com-usa/strip-6.jpg",
+        "shots/porsche-com-usa/strip-7.jpg",
+        "shots/porsche-com-usa/strip-8.jpg"
+      ],
+      "stripMobile": [
+        "shots/porsche-com-usa/strip-m-1.jpg",
+        "shots/porsche-com-usa/strip-m-2.jpg",
+        "shots/porsche-com-usa/strip-m-3.jpg",
+        "shots/porsche-com-usa/strip-m-4.jpg",
+        "shots/porsche-com-usa/strip-m-5.jpg",
+        "shots/porsche-com-usa/strip-m-6.jpg"
+      ],
+      "navScrolled": null
+    },
+    "kind": "site",
+    "source": "",
+    "extras": [],
+    "captureError": null,
+    "works": "Hero почти полностью отдаётся автомобилю. Full-screen cinematic footage, короткое Cayenne., одна основная кнопка — никакой попытки одновременно продать шесть преимуществ, financing и dealership.\nPorsche не боится делать главным обычный Cayenne, а не обязательно GT3 или heritage-модель. Брендовая уверенность позволяет продукту быть достаточно сильным без искусственной драматизации.\nНавигация почти исчезает: menu, центральный wordmark, region и My Porsche. На фоне полноэкранного изображения она воспринимается как часть автомобиля — точная, тихая, функциональная.\nПосле эмоционального hero сразу появляется небольшая editorial-подборка: Cayenne Electric, Panamera и 911. Это хороший переход campaign → discovery.\nЗаголовок Your Porsche journey starts now отделяет эмоциональную часть от модельного каталога. Пользователь понимает, что сейчас сайт переходит к выбору.\nModel cards очень хорошо соединяют desire и utility: автомобиль, powertrain, короткое позиционирование, стартовая цена, configurator и model exploration.\nКарточки не пытаются сделать каждую модель отдельным мини-сайтом. Одинаковая рамка позволяет быстро понять разницу между 911, Taycan, Panamera, Macan и Cayenne.\nТекущие состояния показываются честно: например, 718 отмечен как недоступный для заказа и ведёт к существующему inventory.\nКоммерческий путь собран логично: model discovery → configurator → new/pre-owned finder → Porsche Center.\nLifestyle shop и brand experiences идут только после автомобилей и покупки. У многих luxury-брендов редакционная атмосфера начинает заслонять продукт; здесь иерархия правильная.\nСветлая и тёмная темы компонентов естественно меняются в зависимости от изображения. Интерфейс не привязан к единственному background treatment.\nВся экосистема поддерживается публичным Porsche Design System: фирменные компоненты, tokens, light/dark themes и accessibility рассчитаны на разные продукты и frameworks. Это объясняет редкую для автомобильного бренда целостность между homepage, model pages и configurator. Porsche Design System Signature mechanism\n\nThe vehicle repeatedly moves between cinematic object of desire and precisely classified configurable product without losing its visual authority.\n\nСайт постоянно переключает два режима:\n\nPorsche как эмоциональный объект — движение, масштаб, звук, ландшафт, детали;\nPorsche как выбираемый продукт — model family, powertrain, price, configuration, inventory.\n\nИменно переход между этими режимами является настоящей системой сайта.\n\nHero заставляет хотеть автомобиль. Model cards помогают определить какой. Configurator превращает желание в личную версию. Finder связывает её с реальной покупкой. Porsche USA, Porsche model overview, Porsche Configurator",
+    "weaknesses": "Homepage построена по очень знакомой последовательности: cinematic hero → featured cards → model grid → dealer locator → inventory search → shop → discover.\nЕсли убрать логотип Porsche и дорогую фотографию, большая часть структуры могла бы принадлежать почти любому premium automotive brand.\nModel cards красивы, но это всё равно крупные rounded tiles с gradient overlay, tags и стрелкой — сейчас крайне распространённый паттерн.\nПочти все сильные пространственные решения создаются изображениями, а не композицией интерфейса.\nТипографика чрезвычайно чистая, но редко формирует собственное выразительное событие. Она обслуживает продукт и никогда с ним не спорит.\nНет содержательного композиционного напряжения уровня Kinn или Beings: система не нарушается контентом, разные модели ведут себя практически одинаково.\nHomepage длинная, но ритм довольно ровный. После hero пользователь получает последовательность всё тех же image-led modules.\nОгромное количество Porsche-направлений — models, finder, shop, experiences, motorsport, My Porsche — ощущается как несколько связанных продуктов, а не один непрерывный journey.\nConfigurator и Finder визуально связаны с основным сайтом, но переход между системами всё ещё ощущается.\nCookie dialog огромный и практически полностью блокирует experience. Для premium-сайта это особенно грубое первое взаимодействие.\nБез первоклассной кампанийной фотографии этот дизайн быстро стал бы просто аккуратной корпоративной системой.\nДля Claude это опасный референс: он увидит full-screen car + giant clean type + black rounded cards и создаст очередной Porsche-like template, не понимая, что качество оригинала держится на системности и безупречных assets.\nПочему это всё-таки важный reference\n\nГлавный урок Porsche — не внешний luxury-style, а редакционная дисциплина.\n\nЗдесь почти никогда не пытаются сказать всё сразу:\n\nодин кадр;\nодна модель;\nодин короткий statement;\nодно основное действие;\nзатем следующий уровень информации.\n\nДля dealer-site это особенно полезно. Мы часто получаем hero с inventory search, phone number, trade-in, finance offer, четырьмя CTA и длинным description. Porsche показывает, насколько premium начинает выглядеть интерфейс, когда каждой задаче дают собственный момент.",
+    "unsorted": []
+  },
+  {
     "id": "kinncollective-co-uk",
     "url": "https://www.kinncollective.co.uk/",
     "title": "Large screens",
@@ -737,6 +803,68 @@
     "captureError": null,
     "works": "Oversized character renders act as dominant masses, while torn black surfaces, generous white intervals, compact typography, and recurring red information panels create a controlled vertical rhythm. The strongest decision is the integration of imagery and metadata: content does not sit inside a conventional grid but overlaps and interrupts the composition to build hierarchy, tension, and progression.",
     "weaknesses": "However, extreme microtype, ambiguous reading order, and heavy dependence on pre-existing character artwork limit its value as a complete usability reference.",
+    "unsorted": []
+  },
+  {
+    "id": "thenewmobileworkforce-imm-g-prod-com-back-at-hq",
+    "url": "https://thenewmobileworkforce.imm-g-prod.com/back-at-hq",
+    "title": "Large Screens, Transitions, PNG/Cutout use",
+    "added": "2026-07-25",
+    "rating": 2,
+    "dialectStatus": "in",
+    "dialects": [],
+    "tags": {
+      "composition": [
+        "active-negative-space",
+        "compositional-resolution",
+        "directed-eye",
+        "dominant-mass",
+        "intentional-crop",
+        "optical-balance",
+        "responsive-recomposition"
+      ],
+      "risks": [],
+      "typography": [],
+      "layout": [
+        "air",
+        "grid-break",
+        "bleed",
+        "asymmetry"
+      ],
+      "motion": [
+        "crossfade",
+        "scroll-reveal",
+        "parallax"
+      ],
+      "color": [
+        "bold-accent",
+        "dark"
+      ],
+      "imagery": [
+        "photography",
+        "art-direction",
+        "illustration"
+      ]
+    },
+    "note": "IN — A landmark interactive branded experience that translates the operational relationship between Citrix and Red Bull Racing into the spatial and temporal behavior of the interface itself. WebGL environments, telemetry-inspired graphics, F1-style navigation, cinematic racing imagery, sound design, depth transitions and velocity-based blur connect the track, garage, factory and distributed workforce as parts of one continuous high-performance system. Its strongest quality is semantic motion: speed, connectivity and data are not merely described but experienced through navigation. Heavy technological dependence, delayed comprehension, motion-led accessibility issues and limited scalability beyond a campaign format reduce its utility as a conventional commercial framework, but it remains an exceptional reference for subject-derived interaction language and interface-as-environment.",
+    "shots": {
+      "full": "shots/thenewmobileworkforce-imm-g-prod-com-back-at-hq/full.jpg",
+      "hero": "shots/thenewmobileworkforce-imm-g-prod-com-back-at-hq/hero.jpg",
+      "mobile": "shots/thenewmobileworkforce-imm-g-prod-com-back-at-hq/mobile.jpg",
+      "navScrolled": null,
+      "strip": [
+        "shots/thenewmobileworkforce-imm-g-prod-com-back-at-hq/strip-1.jpg"
+      ],
+      "stripMobile": [
+        "shots/thenewmobileworkforce-imm-g-prod-com-back-at-hq/strip-m-1.jpg"
+      ]
+    },
+    "kind": "site",
+    "source": "",
+    "extras": [],
+    "captureError": null,
+    "works": "Это не обычный corporate case study про партнёрство Citrix и Red Bull Racing. Весь интерфейс ведёт себя как работающая гоночная система.\nСкорость выражена не фотографией болида, а самой навигацией: резкие пространственные переходы, размытие, ускорение, смена глубины.\nF1-style menu — не декоративная отсылка. Он превращает перемещение между разделами в выбор гоночного режима или телеметрического канала.\n3D, видео, звук, техническая графика и данные собраны в единую среду, а не разложены на отдельные «feature sections».\nТёмно-синяя и холодная голубая палитра создаёт ощущение ночного pit wall, инженерного интерфейса и аэродинамической лаборатории.\nКонтент организован вокруг реального operational journey: track, garage, factory, data analysis, modeling and car development.\nИнтерфейс постоянно соединяет две скорости: почти неподвижную техническую точность и резкое гоночное ускорение.\nОн показывает технологическую компанию через результат её работы, а не через облака, серверы и generic SaaS illustrations.\nКоммерческое сообщение становится понятным через experience: Citrix позволяет команде работать как единая система независимо от физического местоположения.",
+    "weaknesses": "Experience сильно зависит от WebGL, производительности устройства и качества соединения.\nСайт почти невозможно полноценно понять без motion и взаимодействия.\nNavigation эффектная, но требует изучения — пользователь сначала осваивает интерфейс, а потом получает информацию.\nИз-за переходов просмотр может ощущаться медленнее, хотя визуально всё изображает скорость.\nSound усиливает immersion, но для многих пользователей будет нежелательным.\nЧасть HUD-графики сегодня может выглядеть как знакомый gaming/F1 interface.\nТехническая сложность значительно выше реальной информационной задачи.\nAccessibility была слабой стороной: Awwwards дал ей только 6.75/10.\nЭто campaign experience, а не масштабируемая система для большого количества обычных страниц.\nНа mobile пространственный эффект неизбежно теряет часть глубины и кинематографичности.",
     "unsorted": []
   },
   {

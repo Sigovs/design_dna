@@ -119,6 +119,10 @@ buys you.
 
 ## 2. The Design Read
 
+**A compiled brief comes first, where one exists.** `npm run brief` gathers the eligible
+evidence and the agent authors the direction into it ([projects/briefs/](projects/briefs/));
+the Design Read below then executes that brief rather than re-deriving it.
+
 ### Delivery mode — declared first
 
 **A delivery mode is not a mandate.** The mandate answers *how much of this brand

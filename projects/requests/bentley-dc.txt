@@ -1,0 +1,4 @@
+DESIGN:
+Luxury automotive dealer website.
+Brand: Bentley Washington DC.
+Goal: redesign the homepage.

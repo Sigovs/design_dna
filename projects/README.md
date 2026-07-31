@@ -76,7 +76,7 @@ corrupts the corpus the check depends on.
 1. **The brief in my own words** — not the client's. What they asked for, restated
    as what it actually is.
 2. **Task and means** — what the visitor came to do, and what serves it.
-   Mirrors `TASK:` / `MEANS:` in the response contract and makes
+   Records the task and the means that served it, which makes
    [C14](../skills/academic-composition/SKILL.md#invariant) checkable later.
 3. **Decisions** — chose / rejected / why, one line each.
 4. **Environment knowledge** — things learned by hand that no documentation

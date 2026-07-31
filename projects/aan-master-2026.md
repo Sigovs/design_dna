@@ -34,8 +34,8 @@ context, and design_dna does not inherit from it.
 
 **Not recorded.** No visitor, task or means for AAN was ever written down.
 
-This absence is itself the finding. `TASK:` and `MEANS:` became required fields in
-the response contract *because* they kept going unrecorded — and when they are
+This absence is itself the finding. Task and means became a required section of the
+project record *because* they kept going unrecorded — and when they are
 unrecorded, the means are the thing that disappears. The logged case behind
 [C14](../skills/academic-composition/SKILL.md#invariant) is exactly this: a
 make/model inventory search specified, then absent from five consecutive runs,

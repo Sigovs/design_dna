@@ -52,8 +52,9 @@ Look at, and write down:
   where their subjects face, how much crop tolerance they have. One hero image
   that works is not an image library.
 - **The real task** — what the visitor came to do, in plain words, and the means
-  that serve it. This becomes `TASK:` and `MEANS:` in the report and is protected
-  by [C14](../SKILL.md#invariant).
+  that serve it. Name them before composing and check them after; they are
+  protected by [C14](../SKILL.md#invariant) and recorded at close in
+  [projects/_TEMPLATE.md](../../../projects/_TEMPLATE.md).
 - **The real format** — not "desktop and mobile" but the actual viewport
   proportions, the fixed chrome, the safe areas, whether the page is met all at
   once or as a scrolled sequence.

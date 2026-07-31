@@ -30,6 +30,12 @@ dialect's logic while diverging in expression — it is not `STYLE MODE: HYBRID`
 | **PURE** | Alex names one dialect, or asks for a single-system execution | That dialect controls the entire art direction |
 | **DIRECTED HYBRID** | Alex names two or more dialects | Those dialects, with responsibilities and dominance still assigned |
 
+**Style mode sits inside a direction, not above it.** Under
+[EXPLORE](../TASTE.md#2d-explore--three-directions-before-one-is-chosen) each of
+the three directions resolves its own style mode, and they will often differ — A
+may be PURE, B DIRECTED HYBRID, C HYBRID. The delivery mode decides how many
+directions exist; the style mode decides what each one is made of.
+
 **HYBRID is the default, and it is not a licence to mix.** A hybrid exists to
 express the central idea more clearly than any single dialect could. If one dialect
 expresses it better, the honest answer is PURE — declared as a decision, not

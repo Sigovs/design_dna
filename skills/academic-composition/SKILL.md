@@ -407,9 +407,9 @@ accepting it is not restrained; it is broken.
 > way to respond to them. Logged 2026-07-28."
 
 *How to satisfy it:* name the task in plain words and list the means before
-composing, then check each one is still present and reachable afterwards. The
-response contract carries `TASK:` and `MEANS:` for exactly this reason — a means
-you never named is a means you will lose to the next good compositional argument.
+composing, then check each one is still present and reachable afterwards. A means you never named is a means you will lose to the next good compositional
+argument, which is why the project record keeps *task and means* as a written
+section ([projects/_TEMPLATE.md](../../projects/_TEMPLATE.md)).
 
 ### C15 — Major masses before components
 

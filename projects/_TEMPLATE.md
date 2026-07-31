@@ -4,6 +4,7 @@ client:       <name or "self">
 date:         <yyyy-mm-dd of the close or the direction lock>
 mandate:      REBRAND | REDESIGN | REFRESH
 carried:      [<named elements>]          # [] for REBRAND
+delivery:     EXPLORE | BUILD | not recorded
 style_mode:   HYBRID | PURE | DIRECTED HYBRID | not recorded
 dialect:      [<names from dialects/README.md>]   # anchor first
 anchor:       <dialect name, or not recorded>
@@ -31,9 +32,9 @@ including the part they did not say out loud.
 ## 2. Task and means
 
 What the visitor came to do, in plain words, and the specific means serving it
-with where each one lives. Same shape as `TASK:` / `MEANS:` in the response
-contract, so [C14](../skills/academic-composition/SKILL.md#invariant) stays
-checkable after the fact.
+with where each one lives. Written down here rather than in the report, so
+[C14](../skills/academic-composition/SKILL.md#invariant) stays checkable after
+the fact — by then the page has changed and memory has not kept the list.
 
 - **Task:**
 - **Means:**
@@ -47,6 +48,17 @@ effect** and which of concept / character / hierarchy / usability it strengthene
 style name is not an effect.
 
 - decided: … | rejected: … | why: …
+
+## 3b. Exploration, if one ran
+
+Only when the project went through [EXPLORE](../TASTE.md#2d-explore--three-directions-before-one-is-chosen).
+**These stay project-local:** a rejected direction is not negative taste evidence,
+and nothing here reaches the vault unless Alex says it is a broader preference.
+
+- **Selected:** <direction, and what decided it>
+- **Rejected:** <the others, one line each — what they lost on, not what was wrong with them>
+- **Combined:** <parts Alex asked to carry across, or n/a>
+- **Marked as a general preference:** <what Alex said travels beyond this project, or none>
 
 ## 4. Environment knowledge
 

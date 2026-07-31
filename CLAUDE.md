@@ -6,7 +6,34 @@
 steps.** Make senior-level decisions and continue. Flag judgment calls in the
 final report only — not as questions mid-task.
 
-**Sole exception: external blockers** (auth failures, locked files, missing
+**EXPLORE is not an exception to this.** Presenting three finished directions is a
+deliverable, not a question that hands design responsibility back to Alex — and
+inside each direction every decision is still made autonomously, with no options
+offered and nothing deferred. Use it only when no visual direction has been chosen;
+a small change, a fix, an urgent revision or "just do it" is BUILD.
+
+### Clarifying questions
+
+**A clarifying question is justified only when its answer could change the
+architecture, the scope, the factual accuracy, or what has to be delivered — never
+when it would merely refine taste.**
+
+Ask when what is missing is: a business goal or required functionality · real
+content, assets, pages or technical constraints · a brand element that must stay
+unchanged · the audience or conversion priority, where it is genuinely ambiguous ·
+the intended scope of the request · a contradiction between instructions, or
+between instruction and evidence.
+
+Never ask Alex to make a decision this system exists to make: *what style do you
+prefer · which layout · what colours · what should I do next · do you like this.*
+In BUILD make the evidence-led decision; in EXPLORE deliver three resolved
+directions; otherwise state the assumption in one line and keep going.
+
+**Three questions at most, at once.** And if a reasonable, reversible assumption is
+available, take it and disclose it rather than stopping — a blocked task costs more
+than a stated assumption that turns out wrong.
+
+**Sole exception for stopping outright: external blockers** (auth failures, locked files, missing
 credentials, a remote that doesn't exist yet). Stop and state exactly what the
 user must do — the specific action, not a general problem description. Everything
 that is a taste or implementation decision is yours to make.
@@ -67,41 +94,24 @@ never an aesthetic family name** — that rule lives in the Design Read procedur
 aesthetic trope. The tool notes in `skills/dimensionality` are explicitly
 non-normative; never cite them as a reason.
 
-## Response contract
+## Reporting
 
-**Every response ends with a DECISIONS block. No exceptions.** It opens with four
-required fields:
+Keep reports short and practical. For completed work, report only:
 
-```
-MANDATE: REBRAND | REDESIGN | REFRESH
-CARRIED: <named elements, or n/a for REBRAND>
-TASK:    <what the visitor arrived to do — plain words>
-MEANS:   <the specific means serving it, and where each one is>
+- **what changed** — max 5 short bullets;
+- **files changed**;
+- **validation result**;
+- **preview URL**, where there is one;
+- **anything that genuinely needs Alex's decision.**
 
-DECISIONS
-- decided: <what you chose> | rejected: <what you didn't> | why: <the specific
-  intended effect, and which of concept / character / hierarchy / usability it
-  strengthens — never the name of a style>
-- ...
-BLOCKERS: none | <the exact action the user must take>
-```
+Write in normal conversational language. Do not explain choices that are visually
+obvious; explain only real tradeoffs or problems.
 
-**A response missing any of the four fields is incomplete.** `MANDATE` and
-`CARRIED` mirror the Design Read declaration in `TASTE.md` §2. `TASK` and `MEANS`
-make [C14](skills/academic-composition/SKILL.md#invariant) checkable without
-re-reading the page: a means you never named is a means you will lose to the next
-good compositional argument.
+**Do not expose internal design reasoning unless Alex asks for it.** No MANDATE /
+CARRIED / TASK / MEANS block, no DECISIONS / rejected / why list, no equivalent
+reasoning protocol, no abstract design-theory language, no section references like
+"§2c", and no re-confirming files that did not change.
 
-For work with no visitor-facing surface — a refactor, a rule change, a data
-migration — `TASK` and `MEANS` describe the operator and the controls the change
-touches, and `MANDATE`/`CARRIED` describe what of the existing system is fixed.
-The fields are never omitted; they are answered at the altitude of the work.
-
-**A question to the user is only valid inside `BLOCKERS`**, and only for external
-blockers — auth, missing credentials, absent files. Everything else is a decision
-you make and log above.
-
-> **Why the contract carries these and not only the procedure.** Procedures fade
-> over a long session: the Composition Read and the critique panel both went unrun
-> for a week, while the report contract held from the first run. Rules that must
-> survive belong in the contract, not only in the procedure.
+The procedures themselves are unchanged — the Design Read, the Composition Read and
+Plan, the Selection Pass and the critique panel still run. They inform the work;
+they are not the report.

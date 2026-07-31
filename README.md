@@ -57,6 +57,9 @@ design_dna/
 │   ├── spacing-taste/SKILL.md      # I: hierarchy, tokens, internal<external · D: air-first, bottom-heavy
 │   ├── typography-taste/SKILL.md   # I: legible rank, optical correction · D: didone + grotesque + mono, spec plates
 │   ├── color-taste/SKILL.md        # I: AA, no hue-only meaning, scrims · D: neutral dark base, smoky accents
+│   ├── motion-judgment/            # cross-dialect · whether to move at all, and what for
+│   │   ├── SKILL.md                # I: declared role, one primary idea, subject over amount, stoppable frames
+│   │   └── references/             # per-category judgment, audit rubric, implementation
 │   ├── motion-taste/SKILL.md       # I: reduced-motion, keyboard parity, no jank · D: crossfade, subtle hover
 │   └── anti-patterns/SKILL.md      # I: the universal failures · D: the trope bans
 ├── dialects/                       # 1 confirmed · 1 provisional · 8 library
@@ -509,6 +512,13 @@ while it is honest.
    frame over moving layers, one depth idea per view, apparent affordances are
    real, every timeline has a subject, nothing loops in a reading zone, and mobile
    is authored separately.
+   **Motion is judged before it is tuned** — every motion system declares its role
+   before it is built, one primary temporal idea owns a viewport, the amount is
+   argued from what the subject *is* rather than from the sector, every frame a
+   visitor can stop on is a designed frame, the page stands up with all animation
+   removed, the reader keeps control of pacing, comprehension never waits on
+   choreography, mobile choreography is authored rather than inherited, and reduced
+   motion delivers the same meaning rather than a disabled interface.
 3. **Dialects are chosen, never assumed — and the house one is auction-editorial.**
    A second, **provisional** dialect exists
    ([immersive-authored-world](dialects/immersive-authored-world.md): the page as a

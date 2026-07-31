@@ -198,6 +198,15 @@ signal (a submitting button). I4's no-layout-shift rule binds either way.
 At most **one** ambient/`--dur-4` moment per page. Scroll-linked effects rare and
 subtle. Total motion on first load: one entrance, ≤1.2s.
 
+**Those are two separate provisions, not one budget.** `≤1.2s` governs the
+**eventful entrance** — the things that arrive and then stop. The single ambient
+moment is the other provision, and it may run long or loop, because a slow
+continuous movement is a condition of the page rather than an event in it. What it
+may not do is delay content or become a second thing competing to be noticed
+([motion-judgment MJ2](../motion-judgment/SKILL.md#invariant)).
+*Clarified 2026-07-31 — a reading of the existing rule, not a change to it: the
+numbers and the `yields when:` below are untouched.*
+
 If the design's distinctiveness would collapse without the animation, fix the
 typography, spacing, and colour first. Dialect principle
 [P8](../../dialects/auction-editorial.md#p8--motion-seasons-it-does-not-perform).

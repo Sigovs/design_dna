@@ -24,8 +24,16 @@ correct** — that is Alex's review, and the claims below are marked accordingly
 |---|---|---|
 | **Usable `in`** (human-set) | **13** | `beings-co` (3) · `ciridae-com` (3) · `ruadh-com` (2) · `electrafilmworks-com` (2) · `thenewmobileworkforce-…-back-at-hq` (2) · `trionn-com` (2) · `kinncollective-co-uk` (2) · `augen-pro` (2) · `i-pinimg-…-46d9d54b` (2) · `organimo-com` (3) · `immersive-g-com` (3) · `rolls-roycemotorcars-…-home-html` (3) · `obys-agency` (2) |
 | **Usable `out`** (human-set) | **2** | `rmsothebys-com` (1) · `thegentlewoman-co-uk` (1) |
-| **Partial / contextual** (`hybrid`) | **2** | `porsche-com-usa` (2) · `carvana-com` (2) |
+| **Partial / contextual** (`hybrid`) | **0** | — none |
 | **Not yet a judgement** (`unreviewed`) | **0** | — the library is fully reviewed |
+
+> **Two records removed, 2026-07-30.** The two `hybrid` entries were competitive
+> research into commerce platforms rather than references Alex chose, and they are
+> deleted from the vault with their shots. **This removes evidence; it does not
+> reinterpret any.** Nothing below was strengthened to compensate, and the one claim
+> that leaned on either of them is narrowed in place — see [B3](#b--emerging).
+> The `hybrid` class is now empty, which is a fact about the library and not a
+> statement that partial judgements are unwelcome.
 
 > **Counter refresh, 2026-07-30.** Four records reviewed through the continuous
 > ingestion workflow — `organimo-com` (3), `immersive-g-com` (3),
@@ -35,16 +43,16 @@ correct** — that is Alex's review, and the claims below are marked accordingly
 > A, B, C or D yet. Their reasoning belongs to the next distillation pass.
 >
 > **Reviewed 2026-07-30, in the gallery, across several sittings.** Alex set
-> `kinncollective-co-uk` `unreviewed → in`, `augen-pro` `hybrid → in`,
-> `i-pinimg-…-46d9d54b` `unreviewed → in`, and `carvana-com` `unreviewed → hybrid`.
+> `kinncollective-co-uk` `unreviewed → in`, `augen-pro` `hybrid → in` and
+> `i-pinimg-…-46d9d54b` `unreviewed → in`.
 > **Nothing is unreviewed any more, and no note/status mismatch remains.**
 >
 > **The three new `in` entries are counted, not yet interpreted.** Their reasoning
-> — `augen-pro`'s semantic blur and its own recorded low-contrast weakness,
-> `i-pinimg`'s layered overlap and extreme microtype, `carvana`'s intent-splitting
-> at `hybrid` — belongs to the next distillation pass. A count edit is not a
-> reading, and inflating the claims below to match a larger sample would be exactly
-> the overgeneralisation this file exists to prevent.
+> — `augen-pro`'s semantic blur and its own recorded low-contrast weakness, and
+> `i-pinimg`'s layered overlap and extreme microtype — belongs to the next
+> distillation pass. A count edit is not a reading, and inflating the claims below
+> to match a larger sample would be exactly the overgeneralisation this file exists
+> to prevent.
 
 **Two `out` entries is below the three the binding rule requires for anything to be
 distilled into a new dialect.** Nothing here proposes one.
@@ -57,12 +65,11 @@ exactly as they are:
 | Entry | The ambiguity |
 |---|---|
 `trionn-com` | note opens **"MAYBE —"** while `dialectStatus` is `in`. Not a mismatch of approval — an approval with a recorded reservation, which is why [D3](#d--unknown-or-conflicted) keeps the conflict rather than resolving it |
-`carvana-com` | `captureError` — the desktop capture is a Cloudflare wall, so its visual evidence is partly unavailable |
 `electrafilmworks-com`, `trionn-com` | zero tags, so invisible to every tag filter |
 
-**All four "IN —" against a non-`in` status are resolved** by Alex's review on
+**Every "IN —" against a non-`in` status is resolved** by Alex's review on
 2026-07-30: `kinncollective-co-uk`, `augen-pro` and `i-pinimg-…-46d9d54b` are now
-`in`; `carvana-com` is `hybrid`, which its own note ("MAYBE —") already implied.
+`in`.
 
 The rule stands for the future: **the status field is the human act, the note is the
 reasoning about it.** Where they disagree, the status governs and the disagreement is
@@ -135,7 +142,11 @@ Confidence: Medium — up from Low, on one new human judgement.
 ### B3 — Real photography of real situations outranks polished renders
 
 Supporting: `ciridae-com` (3) — *"реальные enterprise-фотографии сильнее обычных AI-рендеров"*.
-Limiting: one entry. `porsche-com-usa` (`hybrid`) points the same way but is a partial judgement.
+Limiting: **one entry, and nothing corroborates it.** A second record used to be
+named here as pointing the same way; it was a partial judgement, it was never
+counted as support, and it has since been removed from the vault. Narrowed rather
+than deleted, because the one supporting judgement is Alex's and still stands — but
+this is the weakest claim in the file, and a single entry is not a pattern.
 Confidence: Low. Recorded so a second entry can settle it.
 
 ---
@@ -175,10 +186,10 @@ Confidence: High as a *negative* finding.
 - **D3 · `trionn-com` is internally conflicted.** Status `in`, note *"MAYBE"*, and a
   severe weakness. **The conflict is retained, not averaged.** It supports A1 and
   counter-supports A2 simultaneously.
-- **D4 · No status/note mismatch remains.** All four were resolved by Alex on
+- **D4 · No status/note mismatch remains.** All were resolved by Alex on
   2026-07-30. What remains open is not ambiguity but *unread evidence*: three new `in`
-  entries and one new `hybrid` are counted above and not yet interpreted, which the
-  next distillation pass owns.
+  entries are counted above and not yet interpreted, which the next distillation pass
+  owns.
 - **D5 · Anti-patterns from `out` are under threshold.** Both `out` entries fail on
   the *same* axis — a strong opening that never develops into a page:
   `rmsothebys-com` — *"premium content alone does not create premium art direction"*;

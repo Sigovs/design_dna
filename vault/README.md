@@ -623,9 +623,9 @@ Not applied, and why: **no vocabulary promotions** — 122 free-addition tags ex
 group anything. That is itself the finding: the classifier is minting per-entry
 vocabulary. **No new dialect** — the binding rule needs ≥3 human-approved `out`
 references and there are 2 (`rmsothebys-com`, `thegentlewoman-co-uk`).
-**No dialectStatus changed** — it is a human judgement by schema; three entries
-(`carvana-com`, `kinncollective-co-uk`, `i-pinimg-…-46d9d54b`) are proposed for
-review, not set.
+**No dialectStatus changed** — it is a human judgement by schema; the entries the
+run surfaced (`kinncollective-co-uk`, `i-pinimg-…-46d9d54b` among them) are proposed
+for review, not set.
 
 Next run starts from entries added after 2026-07-28.
 
@@ -650,9 +650,9 @@ of the content* (1), *emptiness read as a loading failure* (1).
 **Lexicon correction, made during the run.** The first output matched `/overlay/`
 against *"minimal overlay typography"* — praise — and `/перекрыва/` against
 portraits overlapping a wordmark. Both were tightened to match the complaint rather
-than the vocabulary, and the tightening surfaced a stronger citation nobody had
-read: `porsche-com-usa` — *"cookie dialog огромный и практически полностью
-блокирует experience."* A detector is only as honest as its lexicon, which is why
-the lexicon is declared in the open at the top of `distill.mjs`.
+than the vocabulary, and the tightening surfaced a stronger citation nobody had read
+— a consent dialog recorded as blocking the experience outright. A detector is only
+as honest as its lexicon, which is why the lexicon is declared in the open at the top
+of `distill.mjs`.
 
 Next run starts from entries added after 2026-07-30.

@@ -61,8 +61,7 @@ evidence completeness → rating. **It orders the list. The agent selects.**
 
 | Record | Rating | Status | Term hits | Approved layers | Alex's layer verdicts |
 |---|---|---|---|---|---|
-| `carvana-com` | 2 | hybrid | 6 | — | — |
-| `porsche-com-usa` | 2 | hybrid | 5 | — | — |
+
 
 **`out` — anti-references only: prohibitions and failure patterns.**
 
@@ -122,10 +121,9 @@ is a sequence, and sequence is the thing being designed.
     needs no headline — with its own recorded cost, which section 12 carries.
   - `organimo-com` (3 / `in`): uppercase headings against normal-case body
     `[R site:organimo-com layer:typography]`, carried as a register decision.
-- **Contextual** — none. Both `hybrid` records are transactional commerce
-  platforms whose approved functions are inventory and financing behaviour; nothing
-  in either transfers to a reading publication, and a contextual slot filled to look
-  complete is worse than an empty one `[J]`.
+- **Contextual** — none available. The vault currently holds no `hybrid` records,
+  and the contextual role draws only from that class. An empty role is the honest
+  result, not a gap to be filled from `in` `[J]`.
 - **Anti-reference** — `thegentlewoman-co-uk` (1 / `out`): one viewport, three
   quarters empty, a magazine cover centred in white. The opening is exceptional and
   **the project fails as a website** — the idea never develops past the first

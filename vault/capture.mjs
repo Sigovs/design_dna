@@ -62,8 +62,8 @@ const QUALITY = { hero: 88, full: 80, mobile: 82, strip: 72 };
 const STRIP_FRAMES = { desktop: 8, mobile: 6 };
 
 /* Bot walls are not references. Found by looking at what the first backfill
-   actually stored: carvana's desktop filmstrip was one frame of a Cloudflare
-   "Verify you are human" page, filed in the vault as evidence about design.
+   actually stored: one entry's desktop filmstrip was a single frame of a
+   "Verify you are human" interstitial, filed in the vault as evidence about design.
    A challenge page is short and says so; both conditions are required, so a page
    that merely writes about security is not mistaken for one. The MOBILE pass on
    the same site sailed through, which is why this is checked per pass rather than
@@ -338,10 +338,10 @@ async function filmstrip(page, entryId, { frames, prefix }) {
    the hero, and the strip only catches it by accident.
 
    FOUND BY MEASUREMENT, not assumed: the first version looked for
-   `header, nav, [role=banner], .header, .navbar` and matched NOTHING on
-   porsche.com — that page has none of those tags in the light DOM, because its
-   chrome is web components. A tag-name search finds the sites built the way the
-   searcher expects and misses exactly the modern ones worth capturing. So the
+   `header, nav, [role=banner], .header, .navbar` and matched NOTHING on a page
+   whose chrome is web components — none of those tags exist in its light DOM.
+   A tag-name search finds the sites built the way the searcher expects and misses
+   exactly the modern ones worth capturing. So the
    header is found by hit-testing the top edge of the viewport and walking up to
    the nearest pinned ancestor, whatever it happens to be called. */
 async function pinnedHeaderHandle(page) {

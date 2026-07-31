@@ -513,8 +513,9 @@ while it is honest.
    real, every timeline has a subject, nothing loops in a reading zone, and mobile
    is authored separately.
    **Motion is judged before it is tuned** — every motion system declares its role
-   before it is built, one primary temporal idea owns a viewport, the amount is
-   argued from what the subject *is* rather than from the sector, every frame a
+   before it is built, one primary temporal idea owns a viewport, expressive
+   amplitude is earned by what the subject *is* or by the register it is presented
+   at rather than by the sector, every frame a
    visitor can stop on is a designed frame, the page stands up with all animation
    removed, the reader keeps control of pacing, comprehension never waits on
    choreography, mobile choreography is authored rather than inherited, and reduced

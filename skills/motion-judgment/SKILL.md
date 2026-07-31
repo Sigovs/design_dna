@@ -108,6 +108,38 @@ discriminates cleanly. Both records are heavily animated; only one is criticised
 
 `[P evidence:C1e sites:thenewmobileworkforce-imm-g-prod-com-back-at-hq,trionn-com]`.
 
+**Two things earn expressive motion, not one.** A subject that is *itself* temporal
+is the case the evidence covers. A subject *presented* at a heightened register —
+an automotive hero, a campaign launch, a piece of luxury storytelling — earns it
+too, because there the ambition of the presentation is the message. Visible,
+committed, cinematic movement is legitimate in both; **spectacle is not confined to
+pages whose subject moves** `[J]`.
+
+What does not change between the two: the movement is still one primary idea
+`MJ2`, still declared `MJ1`, still leaves the composition standing without it
+`MJ5`, and still never delays comprehension `MJ7`. **The register raises the
+permitted amplitude, never the number of ideas.**
+
+**The register is declared, with a reason.** *Heightened* is a decision recorded in
+the Design Read and named by what causes it — the subject, the campaign, the
+dramaturgy, the job the hero is doing. **The word "luxury" on its own is not a
+reason**, and without one the clause becomes a pass that every brief can claim
+`[J]`.
+
+**And it does not overrule the dialect.** This rule decides *whether* a page has
+earned expressive motion. The dialect that the Design Read selected still rations
+its **character and density** — the same hero is quieter under
+[auction-editorial](../../dialects/auction-editorial.md) than under
+`brief-derived`, and that is the dialect doing its job, not a contradiction. If the
+concept genuinely will not fit inside the selected dialect, **re-run the Design
+Read**; a dialect that has to be silently broken was the wrong dialect
+`[J], calibrated`.
+
+*Calibrated 2026-07-31.* An earlier draft read this rule as "static subject →
+seasoning only", which made every hero timid. That reading was too restrained and
+is corrected here. These clauses are authored judgment and rest on no vault record —
+do not cite them as evidence.
+
 Related, and separately recorded: the transition **between two modes of presenting
 the same subject** can itself be the system — a subject moving between a cinematic
 register and a classified, configurable one, with the change of register designed
@@ -174,6 +206,34 @@ own purpose.
 *Why it's invariant:* the visitor arrived for the content. Time spent decoding the
 mechanism is time the mechanism took from the thing it was built to present.
 
+**The threshold — what may be learned, and what may not.** `[J], calibrated 2026-07-31`
+
+**Never learned:** what the page is, what it offers, and the first way to act on it.
+All three are available with no required interaction and before any animation
+finishes. **Depth may be learned; the entrance may not.** No mandatory hold, swipe,
+drag or gesture stands between a visitor and the first content.
+
+**Legitimately learned:** a mechanism that a visitor infers quickly from visible
+signals and that is not required in order to reach the main value. One action or one
+hint is a good guide, **not a law** — the real test is whether the mechanism reads
+itself, not how many steps it takes.
+
+**The tool exception.** Where operating the interface *is* the task — a configurator,
+an editor, a comparison tool — learning the interaction is the work, and this rule
+does not apply to the instrument itself. It still applies to everything around it:
+what the tool is for, how to enter, the primary controls and the way out must all be
+plain.
+
+**Exploration as content.** An experience may make discovery the subject, provided
+the visitor first understands where they have arrived. **A visible skip or exit is
+required whenever the experience delays access to ordinary content** — not as a
+blanket tax on every experimental page.
+
+**Hidden routes are not a motion question.** Choreography never justifies concealing
+navigation, but the rule that owns undiscoverable routes lives in
+[anti-patterns](../anti-patterns/SKILL.md), not here. Motion judgment stops at: an
+effect may not be the reason a route became invisible.
+
 `[R site:thenewmobileworkforce-imm-g-prod-com-back-at-hq]` — recorded as the cost
 of even the successful case: *"Navigation эффектная, но требует изучения —
 пользователь сначала осваивает интерфейс, а потом получает информацию"*, and
@@ -236,17 +296,31 @@ Subject          <what the page is about, and whether it is temporal>
 Journey          <what the visitor does, in order>
 Static verdict   <does the page work with nothing moving? if no, stop and fix that>
 Time adds        <the moments where time carries meaning static layout cannot>
+Register         <ordinary | heightened — and if heightened, what makes it so>
 Primary idea     <the one dominant temporal idea — or "none">
 Stable           <what must not move, ever>
 Roles            <each proposed system: name -> role from MJ1>
 Transport        <who controls pacing: the reader, or the page>
+Learning         <what a visitor must work out, and where the skip or exit is>
 Mobile           <re-authored / reduced / absent>
 Reduced motion   <what the authored alternative is>
+Cost             <what this choreography costs: delay, learning, load, distraction>
 Cut              <what was proposed and rejected, and why>
 ```
 
 **The `Cut` line is required and may not be empty on a page of any size.** A motion
 plan that rejected nothing did not make decisions.
+
+**The `Cost` line is required too, and most required when the answer is yes.**
+Approving an expressive idea is not approving its price, and the price is stated
+rather than discovered later: delay before comprehension, mechanics the visitor has
+to work out, payload and frame cost, attention taken from the subject, and what
+happens to it on mobile and under reduced motion. The strongest motion reference in
+the vault records its own weakness this way
+`[R site:thenewmobileworkforce-imm-g-prod-com-back-at-hq]`; a plan that reports no
+cost has not looked `[J], calibrated`.
+
+**`Register` is `ordinary` unless a reason is written next to it** — see `MJ3`.
 
 ## MOTION PLAN
 

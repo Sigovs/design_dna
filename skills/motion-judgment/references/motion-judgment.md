@@ -9,6 +9,12 @@ becomes noise**, **what must stay stable**, and **what to check after building**
 The AI-generated failure patterns are collected in
 [motion-audit.md](motion-audit.md) rather than repeated here.
 
+> **Calibrated 2026-07-31, round 1.** Passages marked *calibrated* carry Alexander's
+> direct answer to a specific proposal and are `[J]`. Several replaced absolute bans
+> with scoped permissions: the earlier draft forbade outright what he permits under
+> conditions, and a ban that is wrong in one context gets ignored in all of them.
+> **None of this rests on a vault record. Do not cite it as evidence.**
+
 ---
 
 ## Entrance and initial load
@@ -26,8 +32,14 @@ from navigation to *the visitor knows what this is* — `MJ7`.
 
 ## Hero choreography
 
-**Earns it** when the hero is the primary temporal idea and the subject is temporal
-`MJ3`. One idea, at full commitment.
+**Earns it** when the hero is the primary temporal idea — either because the subject
+is temporal or because the presentation register is heightened `MJ3`. One idea, at
+full commitment.
+
+*Calibrated:* **a strong hero may move visibly.** A movement so small it reads as
+drift is a decision not taken — it costs the frames and delivers no impression.
+Commit to an amplitude that is felt, keep the subject itself stable inside it, and
+let the environment carry the movement `[J]`.
 
 **Noise** when the hero animates because heroes animate. Also when the hero must be
 *learned* — an interaction the visitor has to discover before the page gives
@@ -48,6 +60,11 @@ present — a punchline, a reveal the copy sets up, a change of register.
 the single most common signature of unjudged motion, and it flattens exactly the
 hierarchy it appears to create: when everything arrives the same way, arrival stops
 carrying information.
+
+*Calibrated:* a **set** that changes together — a filtered grid, a swapped result
+list — may take **one short shared transition**, because the change is one event and
+one event gets one signal. That is not a reveal cascade; nothing is staggered and
+nothing arrives late `[J]`.
 
 **Stable:** anything above the fold; anything a visitor scrolled *to* on purpose.
 
@@ -79,6 +96,11 @@ forwards usually breaks. Then check the frame budget:
 **Noise** when applied to every image as a default. Parallax on a photograph that
 depicts no space asserts a depth the picture does not have.
 
+*Calibrated:* the test is the **composition**, not the genre. An archival or
+editorial image whose composition is genuinely layered — foreground, subject,
+ground — may carry a light parallax where it supports the story. An image that is
+flat in fact stays flat `[J]`.
+
 **Stable:** text over the moving layer — or better, do not put it there.
 
 **Check:** per-frame contrast over the moving layer
@@ -90,8 +112,14 @@ view ([DM6](../../dimensionality/SKILL.md#invariant)).
 **Earns it** when a fixed frame is genuinely the stage for a change happening within
 it.
 
-**Noise** when used to buy time, or stacked — two or three pins in one page turns
-scrolling into waiting.
+**Noise** when used to buy time, or when pins run back to back — consecutive pinning
+turns scrolling into waiting.
+
+*Calibrated:* the unit is **the chapter, not the page.** One dominant pinned
+sequence per narrative chapter, and a long page may legitimately have several —
+provided each is separated from the next by a full static zone that is read, not
+passed through. Two pins with nothing between them is one pin that lost its nerve
+`[J]`.
 
 **Stable:** the exit. A pin must release predictably and never trap.
 
@@ -142,10 +170,19 @@ must be reachable another way.
 
 ## Hover and focus states
 
-Treat hover as **feedback and revelation**, never as decoration. Pick **one primary
-signal** and at most one supporting one from: image scale · crop change · colour
-transition · surface or border change · type shift · metadata reveal · icon
-displacement · cursor response.
+Treat hover as **feedback and revelation**, never as decoration. Choose from: image
+scale · crop change · colour or tonal transition · surface or border change · type
+shift · metadata reveal · icon displacement · cursor response.
+
+*Calibrated:* **two or three coordinated signals, not one.** A single change is too
+thin for a premium card, and the earlier draft was wrong to make it the universal
+answer. The requirement is coordination, not scarcity — the signals must read as one
+gesture with one intent, not as several effects firing together. Beyond three, or
+where the signals point in different directions, it is the overload pattern `[J]`.
+
+**The line between coordinated and overloaded:** crop change + tonal shift + arrow
+response is one gesture — the card leans toward you. Lift + scale + glow + border +
+arrow is five announcements of the same binary state.
 
 **Never:** hover as the only route to essential information; hover that hides what
 was visible; hover that fires on a container so large the pointer triggers it by
@@ -158,9 +195,16 @@ accident.
 
 **Earns it** when the words *are* the subject and the movement carries their sense.
 
-**Noise:** splitting text into characters because a library makes it easy. There is
-no semantic reason for a headline to arrive letter by letter, and the cost is a
-headline that is unreadable for the duration.
+**Noise:** splitting text into characters because a library makes it easy — every
+heading on the page fragmenting on entry, with no relationship to what any of them
+say.
+
+*Calibrated:* **character and word animation is not banned.** It is legitimate as
+**one** expressive device on a page, tied to the concept — a word that breaks
+because the story is about breaking, a line that assembles because the subject is
+assembly. What is banned is the default: meaningless fragmentation applied to every
+headline `[J]`. If it appears twice on a page it has stopped being a device and
+become a template.
 
 **Stable:** the type's final position, and its legibility at every intermediate
 frame `MJ4`.
@@ -189,6 +233,12 @@ presentations. Crossfade over travel is the house default
 ([motion-taste D1](../../motion-taste/SKILL.md#dialect)).
 
 **Noise:** autoplaying video as ambience behind reading matter.
+
+*Calibrated — the task-led case.* On a service or conversion page, a short video is
+permitted **when it shows the actual work being done** — real hands, real process,
+real premises. It is evidence, and evidence is allowed to move. The conditions are
+absolute: it must not delay the phone number, the address or the booking control by
+a single frame, and the page must be complete with the video absent `[J]`.
 
 **Stable:** the frame. Video sized to its box with no layout shift on load.
 
@@ -231,8 +281,13 @@ settles.
 
 **Earns it** when the pointer is a genuine instrument of the experience.
 
-**Noise:** custom cursors as signature. They cost precision, break on touch entirely,
-and often hide the system cursor's own state information.
+*Calibrated:* **permitted on experimental and editorial desktop work** where the
+cursor communicates interactivity or carries the concept. **Not on a search-results
+page, a service site, or anything task-led**, and never on touch, where it does not
+exist `[J]`.
+
+**Noise:** custom cursors as signature on ordinary pages. They cost precision and
+often hide the system cursor's own state information.
 
 **Stable:** the real cursor's affordances. Never replace a text caret or a resize
 handle.
@@ -245,8 +300,13 @@ alone.
 **Earns it** whenever a wait is real. Honest progress is one of the few motions that
 is always justified.
 
-**Noise:** a loader on a fast page; a branded intro animation; any loader that runs
-for a fixed minimum duration.
+**Noise:** a loader on a fast page; any loader that runs for a fixed minimum
+duration.
+
+*Calibrated:* a **branded** loader is permitted in one case beyond a real wait —
+when it is the authored threshold into a deliberately special experience, and the
+experience is genuinely one. It is not permitted as a house habit on ordinary
+pages `[J]`.
 
 **Stable:** layout. Skeletons match final dimensions
 ([motion-taste D3](../../motion-taste/SKILL.md#dialect)).
@@ -269,6 +329,11 @@ benefit of the first one.
 
 Not a scaled desktop — see `MJ8`. Prefer transitions tied to touch over scroll-linked
 sequences; assume a lower frame budget; assume one hand.
+
+*Calibrated:* **authored separately does not mean stripped.** Mobile is not
+required to give up ambient or expressive motion — it gets its own choreography,
+shorter and cheaper than the desktop one. Swapping a continuous movement for a
+single frame change is one legitimate answer, not the rule `[J]`.
 
 **Check:** on a mid-range device, not a development machine.
 
@@ -298,9 +363,14 @@ wrong move. **A camera move is not a lens change.**
 | **Parallax** | Consequence of camera travel, not a move | Layered planes at different rates — see above |
 
 **Dolly and zoom are not interchangeable.** A dolly changes the spatial
-relationships between planes; a zoom changes none of them. Scaling a flat image and
-calling it a dolly produces a move that reads as wrong without the viewer knowing
-why.
+relationships between planes; a zoom changes none of them. Calling a scale a dolly
+produces a move that reads as wrong without the viewer knowing why.
+
+*Calibrated:* **real parallax is preferred, and a controlled push-in on a flat
+image is legitimate** — provided the source withstands the scaling at the sizes it
+will be shown, and the movement is slow and committed rather than a nervous drift.
+Name it a push-in. It is not a dolly, and dressing a CSS scale in camera
+terminology is the thing to avoid, not the scale itself `[J]`.
 
 **Use camera language only when the spatial metaphor is coherent** — when there is
 a scene, and the viewer is somewhere in it. A card grid has no camera position, so
@@ -327,9 +397,13 @@ be read (~400–700ms). A full spatial transition can run longer if it is carryi
 the visitor somewhere. Applying one duration to all three makes the small feel
 sluggish and the large feel yanked.
 
-**Stagger follows reading order**, not source order or DOM order, and it is small —
-enough to imply sequence, not enough to make the last item wait. If the stagger is
-noticeable as a wave, it is too long.
+**Stagger follows reading order**, not source order or DOM order. Its length is
+decided by **how many items, how far apart, and how much drama the moment carries** —
+not by a fixed number. A short list of two or three elements in a functional
+interface wants a stagger that is felt but not watched; a cinematic hero can carry a
+visibly longer one, because there the sequence *is* part of the impression
+`[J], calibrated`. What stays wrong at any length is a stagger that makes the last
+item arrive after the visitor has already looked at it.
 
 **Entrances and exits are not symmetrical.** Exits are faster: the visitor has
 already decided. An exit at entrance speed feels like the interface arguing.
@@ -341,7 +415,9 @@ responding will be experienced as lag.
 **Pauses are authored.** A deliberate rest between two moments is a decision and
 should be written into the storyboard. Silence in a rhythm is part of the rhythm —
 the same argument as
-[academic-composition C7](../../academic-composition/SKILL.md#invariant).
+[academic-composition C7](../../academic-composition/SKILL.md#invariant). *Calibrated:*
+a rest is placed where the composition needs one, **not mechanically after every
+image** — a rhythm of image-rest-image-rest is as uniform as no rest at all `[J]`.
 
 **Scroll velocity is an input.** At speed, reveals should shorten or resolve
 immediately rather than queue. A visitor scrolling fast is looking for something,

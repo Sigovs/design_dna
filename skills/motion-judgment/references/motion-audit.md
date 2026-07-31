@@ -7,6 +7,12 @@ something already made.*
 finding on any over-animated page is *delete*, and "tune the easing" is what you say
 about the effects that survived.
 
+> **One correction from calibration, 2026-07-31.** The opposite failure exists and
+> this file should name it: an effect reduced until it is imperceptible has not been
+> disciplined, it has been half-removed. It still costs frames, still costs code, and
+> now delivers nothing. **Cut it or commit to it** — a movement too small to be felt
+> is the worst of both answers `[J]`.
+
 ## Finding format
 
 One block per finding, ordered by severity.
@@ -71,13 +77,13 @@ Flag each of these on sight:
 | **Parallax on every image** | Asserts depth the pictures do not have. One depth idea per view — [DM6](../../dimensionality/SKILL.md#invariant) |
 | **Perpetual floating decorative objects** | Never resolve, so the eye never settles. Banned in reading zones — [DM9](../../dimensionality/SKILL.md#invariant) |
 | **Glow + blur + scale together** | Three signals, no hierarchy between them. Usually applied to whatever had no idea behind it |
-| **Text split into characters** | Almost never semantic. Costs legibility for the duration and usually the accessibility tree with it |
+| **Every heading split into characters** | The defect is the *default*, not the device — one concept-driven instance is legitimate, a page of fragmenting headlines is a template. Costs legibility for the duration and usually the accessibility tree with it |
 | **Scroll hijacking** | Takes the one control every visitor already has `MJ6` |
-| **Overlong loaders and branded intros** | A wait manufactured to be filled |
+| **Overlong loaders, and branded intros on ordinary pages** | A wait manufactured to be filled. A branded threshold into a genuinely special experience is the one exception |
 | **Motion masking weak composition** | The author's own review is what the motion is hiding from `MJ5` |
 | **Animation delaying primary content** | Inverts the page's purpose `MJ7` |
 | **Technology demonstration unrelated to the subject** | The exact failure C1e names `MJ3` |
-| **Every card with the same hover package** | Lift + scale + glow + border + arrow: five signals for one binary state |
+| **The five-signal hover package** | Lift + scale + glow + border + arrow: five announcements of one binary state. Two or three *coordinated* signals reading as one gesture is the intended answer, not one signal and not five |
 | **Desktop choreography copied to mobile** | Silent failure — it still runs `MJ8` |
 
 ## What to remove first

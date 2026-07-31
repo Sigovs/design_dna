@@ -24,7 +24,7 @@
  * believing it.
  */
 
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
@@ -130,6 +130,38 @@ const THEMES = [
 
 /* ── evidence ─────────────────────────────────────────────────────────────── */
 const sites = JSON.parse(readFileSync(join(VAULT, 'sites.json'), 'utf8'));
+
+/* ── layer verdicts from the revision sidecars ─────────────────────────────
+   Only rows Alex judged count. An agent observation is not evidence about taste;
+   `unreviewed` is the answer "noticed, not judged" and must never be counted as
+   either side; `contextual` is project-local by definition. Revisions of one
+   site are one reference no matter how many times it was reviewed, so verdicts
+   are collapsed per record id and per layer. */
+function layerVerdicts() {
+  const dir = join(VAULT, 'reviews');
+  if (!existsSync(dir)) return [];
+  const rows = [];
+  for (const f of readdirSync(dir).filter((n) => n.endsWith('.md'))) {
+    const id = f.replace(/\.md$/, '');
+    const rec = sites.find((e) => e.id === id);
+    if (!rec) continue;
+    const seen = new Set();
+    for (const line of readFileSync(join(dir, f), 'utf8').split('\n')) {
+      const m = line.match(/^\|\s*([a-z][a-z \/]+?)\s*\|\s*(.+?)\s*\|\s*(Alex|agent)\s*\|\s*(IN|OUT|unreviewed|contextual)\s*\|/i);
+      if (!m) continue;
+      const [, layer, observation, source, verdict] = m;
+      if (!/^alex$/i.test(source)) continue;                 // agent-only: not evidence
+      if (!/^(IN|OUT)$/i.test(verdict)) continue;            // unreviewed / contextual: not evidence
+      if (/^<|not verified/i.test(observation)) continue;    // an unfilled template row
+      const key = layer.toLowerCase() + '|' + verdict.toUpperCase();
+      if (seen.has(key)) continue;                           // one record counts once per layer
+      seen.add(key);
+      rows.push({ id, layer: layer.trim().toLowerCase(), verdict: verdict.toUpperCase(),
+        observation: observation.trim(), rating: rec.rating ?? 0 });
+    }
+  }
+  return rows;
+}
 const pool = SINCE ? sites.filter((e) => (e.added ?? '') > SINCE) : sites;
 
 const sentences = (text) => String(text ?? '')
@@ -198,6 +230,35 @@ block(confirming, 'Recurrences that confirm an existing rule',
   + '  a check that the rule is still earning its place.');
 
 const over = candidates.filter((c) => c.over);
+/* Layer verdicts, reported beside the note-derived themes and under the same
+   thresholds. They are candidates — this file never promotes anything. */
+const verdicts = layerVerdicts();
+if (verdicts.length) {
+  say('');
+  say('## Layer verdicts Alex recorded in the revision sidecars');
+  const byLayer = new Map();
+  for (const v of verdicts) {
+    const k = v.layer + ' · ' + v.verdict;
+    if (!byLayer.has(k)) byLayer.set(k, []);
+    byLayer.get(k).push(v);
+  }
+  for (const [k, list] of [...byLayer.entries()].sort((a, b) => b[1].length - a[1].length)) {
+    const ids = [...new Set(list.map((v) => v.id))];
+    const r3 = ids.filter((id) => list.find((v) => v.id === id)?.rating === 3).length;
+    const clears = ids.length >= 3 || r3 >= 2;
+    say('');
+    say(`${clears ? '▲ OVER THRESHOLD' : '· below threshold'}  ${k}  [${ids.length} record${ids.length === 1 ? '' : 's'}${r3 ? ', ' + r3 + ' rated 3' : ''}]`);
+    for (const v of list) say(`    ${v.id} (r${v.rating}): "${v.observation.slice(0, 120)}"`);
+  }
+  say('');
+  say('  Same-site revisions are collapsed. Pages from one design system are not');
+  say('  independent evidence — check before treating two ids as two references.');
+} else {
+  say('');
+  say('## Layer verdicts');
+  say('  none recorded yet — vault/reviews/ holds no Alex-sourced IN or OUT rows');
+}
+
 say('');
 say(over.length
   ? `▲ ${over.length} uncovered pattern${over.length === 1 ? '' : 's'} over threshold — run the ritual in vault/README.md`

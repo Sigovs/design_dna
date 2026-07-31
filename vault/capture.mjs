@@ -90,6 +90,17 @@ const CONSENT_PATTERNS = [
   /^(continue|understood|dismiss|close)$/i,
 ];
 
+/* Intro gates that stand between the visitor and the page. Organimo shipped one —
+   a "COMPLETE" button over an audio prompt — and the first capture filed the gate
+   itself as the site, silently, because nothing here matched it.
+   WHITELIST ONLY, and only a control whose text or accessible name matches. There
+   is deliberately no click-on-empty-space fallback: an unidentified click on
+   somebody else's page is an action with unknown consequences, not a read. */
+const SAFE_GATE_PATTERNS = [
+  /^complete$/i, /^enter$/i, /^begin$/i,
+  /^skip intro$/i, /^continue to site$/i,
+];
+
 /* ---------------------------------------------------------------- helpers */
 
 const log = (...a) => console.log(...a);
@@ -168,6 +179,7 @@ async function settle(page, url) {
   }
 
   await dismissConsent(page);
+  await passSafeGate(page);
 
   // Walk the page to trigger lazy images, then return to the top for the hero.
   await page.evaluate(async () => {
@@ -189,6 +201,50 @@ async function settle(page, url) {
   // Freeze motion so shots are deterministic and hero isn't mid-transition.
   await page.addStyleTag({
     content: `*,*::before,*::after{animation-duration:0s!important;animation-delay:0s!important;transition-duration:0s!important;transition-delay:0s!important;scroll-behavior:auto!important}`,
+  });
+}
+
+/* One automatic gate action per visit, then the page is reassessed. Two clicks is
+   navigation, and navigating somebody else's site on their behalf is not capture. */
+async function passSafeGate(page) {
+  for (const pattern of SAFE_GATE_PATTERNS) {
+    try {
+      const btn = page.getByRole('button', { name: pattern }).first();
+      if (await btn.isVisible({ timeout: 700 })) {
+        await btn.click({ timeout: 2000 });
+        await page.waitForTimeout(1200);
+        log('  · passed an intro gate (matched the safe whitelist)');
+        return true;
+      }
+    } catch { /* not present — the normal case */ }
+    try {
+      const link = page.getByRole('link', { name: pattern }).first();
+      if (await link.isVisible({ timeout: 400 })) {
+        await link.click({ timeout: 2000 });
+        await page.waitForTimeout(1200);
+        log('  · passed an intro gate (matched the safe whitelist)');
+        return true;
+      }
+    } catch { /* same */ }
+  }
+  return false;
+}
+
+/* A SIGNAL, never a verdict. A document no taller than the viewport, on a page
+   that plainly has content, is consistent with scroll-jacking — and also with a
+   genuinely one-screen page. It is recorded as "consistent with", and the
+   filmstrip frame count is the corroborating observation. */
+async function limitationSignals(page) {
+  return page.evaluate(() => {
+    const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+    const text = (document.body?.innerText ?? '').trim().length;
+    return {
+      noScrollRoom: h <= window.innerHeight + 2,
+      contentPresent: text > 400,
+      canvases: document.querySelectorAll('canvas').length,
+      height: h,
+      viewport: window.innerHeight,
+    };
   });
 }
 
@@ -382,6 +438,7 @@ async function shoot(browser, entry, want = ALL_PARTS) {
 
   const shots = {};
   const blocked = [];
+  const limits = [];
   let title = entry.title || '';
 
   // Desktop hero: 2x, because this is the shot you actually look at.
@@ -421,6 +478,12 @@ async function shoot(browser, entry, want = ALL_PARTS) {
           shots.full = `shots/${entry.id}/full.jpg`;
           log('  · full.jpg');
         }
+        const sig = await limitationSignals(fullPage_);
+        if (sig.noScrollRoom && sig.contentPresent) {
+          limits.push(`document is ${sig.height}px against a ${sig.viewport}px viewport with content present — `
+            + 'consistent with scroll-jacking or a one-screen page; the filmstrip below is the corroborating observation');
+        }
+        if (sig.canvases) limits.push(`${sig.canvases} canvas element(s) — motion and WebGL state are not preserved by a static shot`);
         /* Nav first: it reads the top state, and the strip leaves the page scrolled. */
         if (want.navScrolled) shots.navScrolled = await navScrolledShot(fullPage_, entry.id);
         if (want.strip) {
@@ -463,7 +526,7 @@ async function shoot(browser, entry, want = ALL_PARTS) {
 
   /* MERGE, never replace: a run that was asked for the filmstrip alone must not
      drop the hero path it never touched. */
-  return { title: cleanTitle(title), shots: { ...(entry.shots ?? {}), ...shots }, blocked };
+  return { title: cleanTitle(title), shots: { ...(entry.shots ?? {}), ...shots }, blocked, limits };
 }
 
 /* What "complete" means depends on how the entry was born.
@@ -627,12 +690,11 @@ async function cmdAdd(url) {
       entry.shots = { full: rel, hero: rel, mobile: null, strip: [], stripMobile: [], navScrolled: null };
       log(`  · hero.jpg (${width}x${height})`);
     } else {
-      const { title, shots, blocked } = await shoot(browser, entry);
+      const { title, shots, blocked, limits } = await shoot(browser, entry);
       entry.title = title || entry.title;
       entry.shots = shots;
-      if (blocked.length) {
-        entry.captureError = `capture blocked by a bot challenge on: ${blocked.join(', ')}`;
-      }
+      if (blocked.length) entry.captureError = `capture blocked by a bot challenge on: ${blocked.join(', ')}`;
+      else if (limits.length) entry.captureError = `partial evidence — ${limits.join('; ')}`;
     }
   } finally {
     await browser.close();
@@ -655,11 +717,11 @@ async function cmdRecapture(id) {
   log(`\nreshooting ${entry.id}`);
   const browser = await chromium.launch();
   try {
-    const { title, shots, blocked } = await shoot(browser, entry);
+    const { title, shots, blocked, limits } = await shoot(browser, entry);
     entry.shots = shots;
     entry.captureError = blocked.length
       ? `capture blocked by a bot challenge on: ${blocked.join(', ')}`
-      : null;
+      : (limits.length ? `partial evidence — ${limits.join('; ')}` : null);
     // A hand-written title is a deliberate edit; only fill it if it's still the default.
     if (!entry.title || entry.title === new URL(entry.url).hostname.replace(/^www\./, '')) {
       entry.title = title || entry.title;
@@ -720,14 +782,19 @@ async function cmdCaptureMissing() {
             entry.captureError = null;
             log(`  · hero.jpg (${width}x${height})`);
           } else {
-            const { title, shots, blocked } = await shoot(browser, entry, missingParts(entry));
+            const { title, shots, blocked, limits } = await shoot(browser, entry, missingParts(entry));
             entry.shots = shots;
+            entry.__limits = limits;
             /* A bot wall is not a success and not a crash. Recorded on the entry so
                the gallery says why an entry is short of shots, instead of showing a
                Cloudflare page as evidence about design. */
+            /* Two different things share this field while the schema is frozen:
+               a FAILURE (nothing usable was captured) and a LIMITATION (static
+               evidence is real, but does not prove flow, motion or timing). */
             entry.captureError = blocked.length
               ? `capture blocked by a bot challenge on: ${blocked.join(', ')} — the site answers a wall, not the page`
-              : null;
+              : (limits.length ? `partial evidence — ${limits.join('; ')}` : null);
+            delete entry.__limits;
             const host = (() => { try { return new URL(entry.url).hostname.replace(/^www\./, ''); } catch { return ''; } })();
             if (!entry.title || entry.title === host) entry.title = title || entry.title;
           }

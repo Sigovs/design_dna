@@ -9,6 +9,8 @@
     "distill": "node vault/distill.mjs",
     "evidence:check": "node vault/evidence.mjs",
     "add": "node vault/capture.mjs add",
+    "review": "node vault/review.mjs",
+    "review:deep": "node vault/review.mjs --deep",
     "recapture": "node vault/capture.mjs recapture",
     "capture-missing": "node vault/capture.mjs capture-missing",
     "prune": "node vault/prune.mjs",

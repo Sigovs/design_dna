@@ -18,7 +18,9 @@ decide *identically*.
    markup, tokens, images, slide decks, diagrams, Figma output — all of it.
 2. **Never ask Alex yes/no questions to resolve taste.** Make the senior
    decision. If a call was genuinely close, note it in your final report under
-   *Judgment calls* — one line each, with what you chose and why.
+   *Judgment calls* — one line each, with what you chose and why. Questions about
+   *facts* — scope, content, constraints, contradictions — are a different thing
+   and are allowed; see §5.
 3. **Load the relevant skill files.** Do not paraphrase them from memory;
    they contain hard numbers and hard bans.
 4. **Invariants are not negotiable. Dialect rules are.** Know which is which
@@ -116,6 +118,29 @@ buys you.
 ---
 
 ## 2. The Design Read
+
+### Delivery mode — declared first
+
+**A delivery mode is not a mandate.** The mandate answers *how much of this brand
+may I replace*; the delivery mode answers *has a direction been chosen yet*. They
+are different questions and both get answered.
+
+```
+Delivery: <EXPLORE | BUILD>
+```
+
+**EXPLORE** — three structurally different directions, then Alex chooses.
+**BUILD** — one direction, taken to completion.
+
+**EXPLORE is the default only when no meaningful visual direction has been
+selected.** It is the wrong answer for: a small component or section change, a
+technical fix, an urgent revision, clearly directed work, anything built on an
+already-approved composition, and requests of the shape *"make this variant"* or
+*"just do it."* Those are BUILD, and offering three concepts instead is a way of
+not doing the work.
+
+The procedure for EXPLORE is [§2d](#2d-explore--three-directions-before-one-is-chosen).
+Under BUILD, continue straight into the four lines below.
 
 Before generating anything visual, output exactly four lines:
 
@@ -258,6 +283,11 @@ panel's value is disagreement that survives contact with the work.
 **It runs at two moments:**
 - **after a Design Read** — critiquing the *direction*, before anything is built;
 - **after a build** — critiquing the *result*, against what was declared.
+
+**Under EXPLORE the panel does not run three times.** Fifteen critiques before
+anything has been chosen is theatre. Each direction carries one *principal risk*
+line instead; the full panel runs once, after Alex selects, on the direction that
+is actually being built.
 
 Each role reads the skills it needs; none restates a rule. If a critic wants to
 cite a limit, they cite it (`spacing I1`, `C10`, `color-taste I1`) rather than
@@ -419,6 +449,71 @@ counted in the mass scheme
 dialect ([auction-editorial P4](dialects/auction-editorial.md#p4--one-committed-gesture-beats-several-safe-ones)).
 The budget is the general form of the same discipline.
 
+### 2d. EXPLORE — three directions before one is chosen
+
+**Run the shared analysis once**, not three times: the mandate; the brand and
+content invariants; the visitor's task and the means serving it; the evidence and
+assets actually available; the practical constraints. Everything below inherits it.
+
+Then **three directions**, each with a short independent Design Read and **one key
+visual proof — the deciding screen or section, not three complete websites.**
+
+| | What it is |
+|---|---|
+| **A · Evidence-led** | The strongest direction supported by the available vault and project evidence |
+| **B · Alternative** | A meaningfully different but task-compatible composition, dialect, or interaction strategy |
+| **C · Wildcard** | A disciplined experimental direction that stays usable and relevant |
+
+**The differences must be structural** — composition, hierarchy, rhythm, image
+behaviour, typography strategy, interaction model, density, symmetry, hero
+treatment, or motion. **Three palettes or three font swaps on one layout are one
+direction, not three.**
+
+**Do not merge directions before Alex selects.** If two become substantially alike,
+they are one direction and one of them is replaced.
+
+Report each in exactly three lines:
+
+```
+A · <name> — <defining idea>
+   advantage: <the strongest thing it buys>
+   risk:      <the principal way it fails>
+```
+
+**What Alex may do:** select one · intentionally combine named parts · reject all
+three · ask for another round. **Rejecting a direction is not a design question
+handed back** — presenting three finished directions is a deliverable, and inside
+each one every decision was still made autonomously.
+
+**On selection, switch to BUILD** and run the full sequence: Composition Read and
+Plan (§2a), the Selection Pass and the ledger (§2c), the complete critique panel
+(§2b), then implementation and validation.
+
+**Invariants bind in all three directions.** What stays open for exploration is
+dialect, palette, typographic mood, density, symmetry, hero treatment, image
+treatment and motion — never hierarchy, contrast, legibility or the means of the
+task.
+
+#### What EXPLORE does not teach
+
+**EXPLORE decisions are project-local.** Approving, rejecting or combining a
+direction does **not** become vault evidence and does **not** become a Design DNA
+preference. A rejected direction is not negative taste evidence — it lost a
+comparison on one brief. Only when Alex explicitly says a judgement is a broader
+preference does it go near the vault, and then by the normal route.
+
+**Noticed but not judged is `unreviewed`.** Use the existing status; do not invent
+one and do not touch the schema. A treatment that is neutral, unresolved, "neither
+here nor there", or conceptually unjustified stays `unreviewed` until Alex judges
+it. Dramatic typographic contrast is the standing example: **conceptually supported
+contrast may become `in`; unclear or incidental contrast stays `unreviewed`;
+contrast that repeatedly damages the system may become `out` — after Alex's
+judgement, never before it.**
+
+Artifacts live in `explore/<project>-<date>/` — see
+[explore/README.md](explore/README.md). They are project exploration, not vault
+evidence.
+
 ---
 
 ## 3. Skill index
@@ -499,9 +594,27 @@ until it earns it.
 
 Adopting this file means adopting how the work gets done, not only how it looks:
 
-- **No yes/no or confirmation questions.** Don't pause for permission between
-  steps. The only thing worth stopping for is an external blocker (auth, missing
+- **No yes/no or confirmation questions about taste.** Don't pause for permission
+  between steps. Stop outright only for an external blocker (auth, missing
   credentials, a locked file) — and then state exactly what Alex must do.
+- **Clarifying questions are allowed, and bounded.** **A clarifying question is justified only when its answer could change the
+  architecture, the scope, the factual accuracy, or what has to be delivered — never
+  when it would merely refine taste.**
+  
+  Ask when what is missing is: a business goal or required functionality · real
+  content, assets, pages or technical constraints · a brand element that must stay
+  unchanged · the audience or conversion priority, where it is genuinely ambiguous ·
+  the intended scope of the request · a contradiction between instructions, or
+  between instruction and evidence.
+  
+  Never ask Alex to make a decision this system exists to make: *what style do you
+  prefer · which layout · what colours · what should I do next · do you like this.*
+  In BUILD make the evidence-led decision; in EXPLORE deliver three resolved
+  directions; otherwise state the assumption in one line and keep going.
+  
+  **Three questions at most, at once.** And if a reasonable, reversible assumption is
+  available, take it and disclose it rather than stopping — a blocked task costs more
+  than a stated assumption that turns out wrong.
 - **Senior decisions, flagged afterwards.** Decide, build, then surface the close
   calls in the report under *Judgment calls*. Taste questions are answered in the
   work, reviewed in the report.
@@ -676,7 +789,19 @@ Two things it is for, specifically: it holds the **conflicts** rather than avera
 them, and it records what is **not** known — so a Read says *"nothing is known about
 colour from the evidence"* instead of inventing a preference.
 
-### (f) Weight by rating and status
+### (f) Read the revision history when a judgement looks thin
+
+`vault/reviews/<id>.md` holds how a record reached its current state: Alex's
+comment verbatim, per-layer verdicts with their source, and what each capture did
+**not** prove. `sites.json` is the current state; the sidecar is the reasoning
+behind it.
+
+Two things it decides for you. **A verdict is per layer** — Alex approving a hero
+says nothing about the typography on the same page, and nothing at all about the
+whole record. And **a layer marked `unreviewed` is not weak approval**; it means
+noticed and not judged, and it stays out of every count.
+
+### (g) Weight by rating and status
 
 | Entry | How to use it |
 |---|---|
@@ -686,7 +811,7 @@ colour from the evidence"* instead of inventing a preference.
 | `dialectStatus: in` | Belongs to a stored dialect; strongest when you selected that dialect. |
 | `hybrid` / `unreviewed` | Usable, but unclassified — say so. |
 
-### (g) Ignore judgements that do not exist
+### (h) Ignore judgements that do not exist
 
 An entry whose `note`, `works`, and `weaknesses` are all empty or `TODO`
 **contributes its tags and nothing more.**

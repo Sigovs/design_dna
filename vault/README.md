@@ -114,6 +114,120 @@ raw material from which a new dialect can be built. Rate it on quality, mark it
 
 ---
 
+## Continuous ingestion — the REVIEW loop
+
+Alex submits a live page in whatever words he has:
+
+```
+REVIEW:
+https://example.com/
+
+Нравится крупный hero, типографика и движение изображений.
+Не нравится стандартная сетка карточек.
+Шрифтовая пара пока ни туда ни сюда.
+```
+
+No template, no vocabulary, no technical terms required.
+
+```bash
+npm run review -- <url>          # QUICK — the default
+npm run review:deep -- <url>     # DEEP  — all nine layers
+npm run review -- <url> --dry-run
+```
+
+### What the script does and what the agent does
+
+**`review.mjs` owns the mechanics** — URL normalisation, duplicate lookup, capture
+(by delegating to `capture.mjs`), shot paths, record scaffolding, the revision
+sidecar, integrity checks.
+
+**The agent owns the meaning** — Alex's comment preserved verbatim, his judgement
+separated from agent observation, observations normalised by layer, a verdict per
+layer, `works` / `weaknesses` / transferable lessons where justified, and a
+*proposed* whole-record judgement that Alex confirms.
+
+**The script never reads meaning out of free text.** A regex cannot tell
+*"шрифтовая пара пока ни туда ни сюда"* from a rejection, and a wrong guess writes
+a false judgement into evidence. That line is the whole reason the split exists.
+
+**QUICK** records only what Alex supplied plus what was directly verified.
+**DEEP** works all nine layers and marks anything it could not verify as
+**`not verified`** rather than filling it speculatively.
+
+### Current state versus history
+
+`sites.json` is the current state. `vault/reviews/<id>.md` is **append-only** and
+holds how it got there: date and mode, submitted URL, Alex's comment verbatim,
+confirmed changes, previous rating and `dialectStatus`, previous `works` /
+`weaknesses` when they changed, capture limitations, and agent observations kept
+visibly separate from Alex's judgement.
+
+### Layer judgements
+
+Nine layers: composition · hierarchy · typography · colour · imagery · spacing and
+density · motion · interaction · design dialect. Each recorded row carries an
+**observation**, its **source** (Alex or agent), a **verdict**
+(`IN` · `OUT` · `unreviewed` · `contextual`) and an **evidence limit** if one applies.
+
+- **A verdict is per layer and never travels.** Liking a hero says nothing about
+  the typography on the same page, and nothing at all about the whole record.
+- **`dialectStatus` stays a whole-record field.** It is never inferred from a layer
+  comment; it changes only when Alex gives an overall judgement or says to change it.
+- **"not sure", "neutral", "not bad", "ни туда ни сюда" are `unreviewed`** — noticed,
+  not judged. Never forced into IN or OUT.
+- **`tags.risks` only when an existing term actually describes a confirmed
+  weakness.** Not every OUT has a risk tag, and inventing one to fill the field is
+  how a vocabulary stops meaning anything.
+- **Rating stays 1–3** — 1 keep · 2 good · 3 reference. A new QUICK record gets the
+  repository defaults, and those are **defaults awaiting Alex, not learned taste**.
+  An existing record keeps its rating and status unless Alex changes them.
+
+### Safe gate policy
+
+`capture.mjs` may click **one** control per visit, and only when its text or
+accessible name matches the whitelist: *complete · enter · begin · skip intro ·
+continue to site* (plus the existing consent list). Then it reassesses the page.
+
+**There is no click-on-empty-space fallback.** An unidentified click on somebody
+else's site is an action with unknown consequences, not a read. If the gate cannot
+be passed safely, capture stops and the limitation is recorded.
+
+### Duplicates
+
+In this order: **exact normalised URL** → update · **confirmed canonical or
+redirect identity** → update · **slug collision** → stop and inspect, never merge ·
+**same `<title>`, different URL** → report a possible duplicate, never merge.
+
+Normalisation lowercases the host, drops `www.`, drops fragments, drops `utm_*`,
+`fbclid` and `gclid`, and drops a trailing slash only where it is semantically
+equivalent. Meaningful paths and query parameters are preserved. **A title is not
+identity**, and no genuinely different page is ever overwritten because a slug
+matched.
+
+### Partial evidence versus failed capture
+
+While the schema is frozen, `captureError` carries **either**:
+
+- a **capture failure** — nothing usable was obtained (bot wall, dead URL); or
+- a **partial-evidence limitation** — static shots are real and correct, but the
+  filmstrip, flow, motion or later sections were not preserved.
+
+Both are written as prose that says which. **Never describe animation mechanics
+that were not directly observed.** A document no taller than the viewport on a page
+with content is a *signal* consistent with scroll-jacking — it is reported as such,
+with the filmstrip frame count as the corroborating observation, never as proof.
+
+### Candidate preferences
+
+`npm run distill` reads the sidecars alongside the notes, under the existing
+thresholds: **3+ unrelated records, or 2+ unrelated rating-3 records.** It does not
+count agent-only observations, `unreviewed` layers, `contextual` rows, several
+revisions of one site, or several pages of one design system treated as independent.
+It produces **candidates only** — promotion into a rule is the distillation ritual
+plus Alex, exactly as before.
+
+---
+
 ## Adding entries
 
 **From a machine with the repo** — capture immediately:

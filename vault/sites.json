@@ -1,5 +1,246 @@
 [
   {
+    "id": "immersive-g-com",
+    "kind": "site",
+    "url": "https://immersive-g.com/",
+    "source": "",
+    "title": "Immersive Garden",
+    "added": "2026-07-30",
+    "rating": 3,
+    "dialectStatus": "in",
+    "dialects": [],
+    "tags": {
+      "composition": [
+        "dominant-mass",
+        "active-negative-space",
+        "visual-silence"
+      ],
+      "risks": [],
+      "typography": [
+        "big-type",
+        "editorial"
+      ],
+      "layout": [
+        "air",
+        "bleed",
+        "grid-break",
+        "asymmetry"
+      ],
+      "motion": [
+        "scroll-reveal",
+        "state-transition"
+      ],
+      "color": [],
+      "imagery": [
+        "photography",
+        "art-direction"
+      ]
+    },
+    "note": "Нравится общее ощущение цельного, авторского digital-world, а не обычного агентского portfolio-сайта.\n\nОсобенно нравится: - интерактивный эффект курсора: скрытые изображения раскрываются и следуют за движением мыши, создавая ощущение исследования;\n- scrollytelling — контент, изображения и переходы последовательно раскрываются по мере прокрутки;\n- взаимодействие пользователя напрямую управляет визуальным повествованием, а не просто запускает декоративную анимацию.\n- очень крупная типографика и уверенная визуальная иерархия;\n- масштабные изображения проектов;\n- свободная, editorial-композиция без стандартной сетки карточек;\n- сочетание минималистичного интерфейса с насыщенным визуальным контентом;\n- большие секции, пространство и хороший ритм страницы;\n- motion и переходы между проектами;\n- ощущение, что весь сайт работает как единый immersive experience.\n\nСайт выглядит смело и экспериментально, но при этом сохраняет контроль и не превращается в набор случайных эффектов.\n\nПока не уверен, насколько отдельные motion-приёмы применимы к обычным dealer или corporate-сайтам. Рассматриваю их скорее как источник принципов: масштаб, атмосфера, переходы, визуальный ритм и создание цельного мира.",
+    "shots": {
+      "full": "shots/immersive-g-com/full.jpg",
+      "hero": "shots/immersive-g-com/hero.jpg",
+      "mobile": "shots/immersive-g-com/mobile.jpg",
+      "strip": [
+        "shots/immersive-g-com/strip-1.jpg",
+        "shots/immersive-g-com/strip-2.jpg",
+        "shots/immersive-g-com/strip-3.jpg",
+        "shots/immersive-g-com/strip-4.jpg",
+        "shots/immersive-g-com/strip-5.jpg",
+        "shots/immersive-g-com/strip-6.jpg",
+        "shots/immersive-g-com/strip-7.jpg",
+        "shots/immersive-g-com/strip-8.jpg"
+      ],
+      "stripMobile": [
+        "shots/immersive-g-com/strip-m-1.jpg",
+        "shots/immersive-g-com/strip-m-2.jpg",
+        "shots/immersive-g-com/strip-m-3.jpg",
+        "shots/immersive-g-com/strip-m-4.jpg",
+        "shots/immersive-g-com/strip-m-5.jpg",
+        "shots/immersive-g-com/strip-m-6.jpg"
+      ],
+      "navScrolled": null
+    },
+    "extras": [],
+    "captureError": "partial evidence — desktop: eight distinct states advanced by wheel (window.scrollY stays 0). Mobile: six distinct states advanced by emulated touch swipe. Verified on both: the experience advances without the document scrolling. NOT preserved anywhere: timing, easing, the transitions between states. The desktop cursor reveal has no verified touch equivalent — it was not observed on mobile and its absence was not proven either."
+  },
+  {
+    "id": "obys-agency",
+    "kind": "site",
+    "url": "https://obys.agency/",
+    "source": "",
+    "title": "Obys Agency",
+    "added": "2026-07-30",
+    "rating": 2,
+    "dialectStatus": "in",
+    "dialects": [],
+    "tags": {
+      "composition": [
+        "visual-silence",
+        "dominant-mass"
+      ],
+      "risks": [],
+      "typography": [],
+      "layout": [
+        "air",
+        "grid-break"
+      ],
+      "motion": [
+        "state-transition"
+      ],
+      "color": [
+        "monochrome",
+        "dark"
+      ],
+      "imagery": []
+    },
+    "note": "creative, ispoljzovanije kompozicii. portfolio site. 2 color scheme. ne krichashij. strogij. mestami interesnoje primenenije graficheskih elelemntov. scroll s boku dlja portfolio screen shots.",
+    "shots": {
+      "full": "shots/obys-agency/full.jpg",
+      "hero": "shots/obys-agency/hero.jpg",
+      "mobile": "shots/obys-agency/mobile.jpg",
+      "strip": [
+        "shots/obys-agency/strip-1.jpg",
+        "shots/obys-agency/strip-2.jpg",
+        "shots/obys-agency/strip-3.jpg",
+        "shots/obys-agency/strip-4.jpg",
+        "shots/obys-agency/strip-5.jpg"
+      ],
+      "stripMobile": [
+        "shots/obys-agency/strip-m-1.jpg",
+        "shots/obys-agency/strip-m-2.jpg",
+        "shots/obys-agency/strip-m-3.jpg",
+        "shots/obys-agency/strip-m-4.jpg",
+        "shots/obys-agency/strip-m-5.jpg",
+        "shots/obys-agency/strip-m-6.jpg"
+      ],
+      "navScrolled": null
+    },
+    "extras": [],
+    "captureError": "partial evidence — the page advances on wheel input while window.scrollY and scrollX both stay 0, so the document never scrolls; four elements do have horizontal overflow. Five materially distinct states were captured, and several are mid-transition rather than settled compositions. A \"Grid\" control was present in the DOM at 1440x900 and did not respond to a click within the timeout — an agent observation, not verified further and not pursued. No claim is made that Vertical or Horizontal modes exist. Timing, easing and transition mechanics are not preserved."
+  },
+  {
+    "id": "organimo-com",
+    "kind": "site",
+    "url": "https://organimo.com/",
+    "source": "",
+    "title": "Sea Moss and Bladderwrack by Organimo®",
+    "added": "2026-07-30",
+    "rating": 3,
+    "dialectStatus": "in",
+    "dialects": [],
+    "tags": {
+      "composition": [
+        "dominant-mass",
+        "active-negative-space",
+        "visual-silence",
+        "directed-eye"
+      ],
+      "risks": [],
+      "typography": [
+        "big-type",
+        "editorial"
+      ],
+      "layout": [
+        "air",
+        "bleed"
+      ],
+      "motion": [
+        "scroll-reveal",
+        "crossfade"
+      ],
+      "color": [
+        "dark",
+        "neutral",
+        "bold-accent"
+      ],
+      "imagery": [
+        "art-direction",
+        "product"
+      ]
+    },
+    "note": "Нравится:\n- hero section;\n- крупный масштаб типографики;\n- движение и анимация изображений;\n- сдержанная, спокойная цветовая гамма;\n- шрифтовая пара;\n- сочетание uppercase-заголовков с обычным регистром в основном тексте;\n- общий flow страницы;\n- крупные, просторные секции и большое количество свободного пространства.\n\nСайт хорошо «дышит»: контент не зажат, а анимация поддерживает композицию и ритм, не перегружая страницу.",
+    "shots": {
+      "full": "shots/organimo-com/full.jpg",
+      "hero": "shots/organimo-com/hero.jpg",
+      "mobile": "shots/organimo-com/mobile.jpg",
+      "strip": [
+        "shots/organimo-com/strip-1.jpg"
+      ],
+      "stripMobile": [
+        "shots/organimo-com/strip-m-1.jpg"
+      ],
+      "navScrolled": null
+    },
+    "extras": [],
+    "captureError": "partial capture — the intro gate was passed, but the site uses scroll-jacking (document height stays 900px), so the filmstrip holds one frame instead of eight.",
+    "works": "Strong reference for an open, breathable page rhythm. Large sections and generous negative space let the composition unfold without feeling empty. The hero uses oversized typography, restrained color, and image motion as one coordinated system. Uppercase is reserved mainly for small labels, while normal text keeps a natural case. The italic word inside 'Limitless begins here' creates controlled typographic contrast without turning into decoration. The nearly black background, soft pink-lilac atmospheric haze, and gold as the only sharp accent feel disciplined rather than flashy. Motion and transitions support the page flow and connect the large sections instead of behaving like isolated effects.",
+    "weaknesses": "The current screenshots are incomplete evidence of the reference because the site uses scroll-jacking and motion-driven transitions. The static capture preserves the visual language but not the behavior, timing, or full flow."
+  },
+  {
+    "id": "rolls-roycemotorcars-com-en-us-home-html",
+    "kind": "site",
+    "url": "https://www.rolls-roycemotorcars.com/en_US/home.html",
+    "source": "",
+    "title": "Rolls-Royce Motor Cars: Inspiring Greatness",
+    "added": "2026-07-30",
+    "rating": 3,
+    "dialectStatus": "in",
+    "dialects": [],
+    "tags": {
+      "composition": [
+        "dominant-mass",
+        "active-negative-space",
+        "tonal-structure"
+      ],
+      "risks": [],
+      "typography": [],
+      "layout": [
+        "air",
+        "bleed"
+      ],
+      "motion": [
+        "restraint"
+      ],
+      "color": [
+        "dark",
+        "neutral"
+      ],
+      "imagery": [
+        "photography",
+        "art-direction",
+        "product"
+      ]
+    },
+    "note": "ooo zabil. mne etot ochenj nravitsja.....https://www.rolls-roycemotorcars.com/en_US/home.html tut vse cvet, menu bokovoje, frozen glass, models, vs evse vse krugliej knoki k mestu video vpisivaetsja ochenj kruto kak ne otdeljnij a kak prodolzhenije backgrounda, posmotri.",
+    "shots": {
+      "full": "shots/rolls-roycemotorcars-com-en-us-home-html/full.jpg",
+      "hero": "shots/rolls-roycemotorcars-com-en-us-home-html/hero.jpg",
+      "mobile": "shots/rolls-roycemotorcars-com-en-us-home-html/mobile.jpg",
+      "strip": [
+        "shots/rolls-roycemotorcars-com-en-us-home-html/strip-1.jpg",
+        "shots/rolls-roycemotorcars-com-en-us-home-html/strip-2.jpg",
+        "shots/rolls-roycemotorcars-com-en-us-home-html/strip-3.jpg",
+        "shots/rolls-roycemotorcars-com-en-us-home-html/strip-4.jpg",
+        "shots/rolls-roycemotorcars-com-en-us-home-html/strip-5.jpg",
+        "shots/rolls-roycemotorcars-com-en-us-home-html/strip-6.jpg",
+        "shots/rolls-roycemotorcars-com-en-us-home-html/strip-7.jpg",
+        "shots/rolls-roycemotorcars-com-en-us-home-html/strip-8.jpg"
+      ],
+      "stripMobile": [
+        "shots/rolls-roycemotorcars-com-en-us-home-html/strip-m-1.jpg",
+        "shots/rolls-roycemotorcars-com-en-us-home-html/strip-m-2.jpg",
+        "shots/rolls-roycemotorcars-com-en-us-home-html/strip-m-3.jpg",
+        "shots/rolls-roycemotorcars-com-en-us-home-html/strip-m-4.jpg",
+        "shots/rolls-roycemotorcars-com-en-us-home-html/strip-m-5.jpg",
+        "shots/rolls-roycemotorcars-com-en-us-home-html/strip-m-6.jpg"
+      ],
+      "navScrolled": "shots/rolls-roycemotorcars-com-en-us-home-html/nav-scrolled.jpg"
+    },
+    "extras": [],
+    "captureError": "partial evidence — desktop and mobile both captured with the side menu opened. Verified by measurement: backdrop-filter blur(150px) saturate(1.8) on the open menu pane (600x900 desktop, 390x664 mobile); three viewport-sized videos at object-fit cover with border-radius 0 and no mask-image; 3 pill controls and 0 circular controls at 1440x900. NOT preserved: menu transition timing and easing, video playback continuity, and any masking or compositing technique — none was found and none is claimed."
+  },
+  {
     "id": "porsche-com-usa",
     "url": "https://www.porsche.com/usa/?cs_redirect=1",
     "title": "Porsche United States",

@@ -1,6 +1,6 @@
 ---
 name: anti-patterns
-description: Failure modes in two tiers — INVARIANT universal failures (weak hierarchy, inaccessible contrast, gratuitous motion, arbitrary spacing, inconsistent tokens, uncounted persistent overlays, competing art directions inside one page, horizontal page scroll, content parity across viewports, controlled irregularity that stops being legible or intentional, and depth cues incoherent with the spatial model they imply) and DIALECT trope bans (AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, underlined nav, repeated primary CTAs, imagery hidden on mobile, the default Spline aesthetic, ambient motion behind body copy, template anonymity — each with a yields-when). Use as the final gate before shipping any visual work, and whenever choosing between a container and open air.
+description: Failure modes in two tiers — INVARIANT universal failures (weak hierarchy, inaccessible contrast, gratuitous motion, arbitrary spacing, inconsistent tokens, uncounted persistent overlays, competing art directions inside one page, horizontal page scroll, content parity across viewports, controlled irregularity that stops being legible or intentional, depth cues incoherent with the spatial model they imply, and task-relevant routes that cannot be discovered without hover, completed animation or guessing) and DIALECT trope bans (AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, underlined nav, repeated primary CTAs, imagery hidden on mobile, the default Spline aesthetic, ambient motion behind body copy, template anonymity — each with a yields-when). Use as the final gate before shipping any visual work, and whenever choosing between a container and open air.
 ---
 
 # Anti-Patterns
@@ -268,6 +268,73 @@ exist and are not restated here:
 | [C2](../academic-composition/SKILL.md#invariant) · [unity-and-plastic-connection](../academic-composition/references/unity-and-plastic-connection.md) | The compositional altitude: unity, plastic connection, the repair order |
 | [Composition critic](../../TASTE.md#2b-the-critique-panel) | Asks directly whether any section belongs to a different art direction |
 
+### U12 — Undiscoverable routes
+
+**A task-relevant route exists for the visitor only when its entry is discoverable
+without trial, and its destination or function becomes legible before the visitor
+commits to it. Disclosure may be progressive; discovery may not depend exclusively
+on hover, completed animation, an unexplained gesture, or accidental exploration.**
+
+**Two separate moments, and both bind.** *Entry* — the visitor can tell that a way
+in exists, and where. *Commitment* — before spending an action, they can tell where
+it goes or what it does. A route may reveal its label at the second moment rather
+than the first: a menu that opens is not a violation, an unmarked region that turns
+out to have been a menu is.
+
+Symptoms:
+
+- **Section names carried only by hover** — the labels exist, and on touch they do
+  not exist at all.
+- **Icon-only primary navigation without established meaning** — an invented glyph
+  set carries no meaning the visitor brought with them.
+- **Numbered or abstract items with nothing else** — `01–05` naming an order but not
+  a destination, so choosing means guessing.
+- **Navigation that appears only after an animation completes** — the route is
+  contingent on watching.
+- **A gesture with no visible cue** as the only path to something task-relevant.
+- **An unexplained entry into a nested level** — the level below is fine, the way
+  into it is not.
+
+*Why it's universal:* a route the visitor cannot find has the same value as a route
+that does not exist, and the cost is invisible in review — the designer knows where
+everything is, so the failure only ever appears in use. Unlike a weak hierarchy, no
+amount of looking fixes it: there is nothing on screen to look at.
+
+**The test.**
+
+- Without hover, and without waiting for decorative animation, can the visitor
+  locate the entry?
+- Can keyboard and touch users reveal the same route?
+- Before committing, can they understand its destination or function?
+
+**Unconventional presentation stays legal.** Numbers, spatial maps, experimental
+navigation models and icons are all permitted when their navigational function can
+be inferred before commitment. This rule bans concealment, never unfamiliarity.
+
+**Scope: task-relevant routes and controls.** Easter eggs and genuinely optional
+discoveries sit outside it — nothing is lost by never finding them. Experimental
+presentation does not license hiding a required entrance, a required exit, or the
+primary path through a task. Gestures remain legitimate as accelerators and as
+optional exploration, provided ignorance of the gesture blocks no task and no core
+content.
+
+**No `yields when:`.** It is an invariant, and the scope above is doing the work an
+exception would otherwise do.
+
+**Boundaries with neighbouring rules** — each owns a different failure, and one
+design may breach several:
+
+| Rule | Owns |
+|---|---|
+| [U1](#invariant) | Ambiguous rank **among what is present**. U12 is about what is not present at all — U1 is not extended to cover it |
+| [U7](#invariant) | Viewport disparity. It may additionally fire when a hover-only label disappears on touch, but the discoverability failure is U12's |
+| [DM7](../dimensionality/SKILL.md#invariant) | The stricter role-gated application inside interactive dimensional scenes, and the inverse that U12 does not carry: what *looks* interactive must be |
+| [MJ7](../motion-judgment/SKILL.md#invariant) | Access **delayed** by choreography. U12 owns access **concealed**. A design may violate both |
+| [C14](../academic-composition/SKILL.md#invariant) | A means the composition **removed**. U12 covers a means that is present and cannot be found |
+
+*Authored judgment, 2026-07-31* `[J]`. This rule rests on no vault record and is not
+evidence of a demonstrated preference.
+
 ---
 
 ## DIALECT
@@ -477,6 +544,7 @@ structure.
 - [ ] Content parity across viewports.
 - [ ] Any irregularity is legible and reads as intentional.
 - [ ] Depth cues coherent with the spatial model; elevation matches real layering.
+- [ ] Every task-relevant route findable without hover, animation or guessing, and legible before commitment.
 
 **Dialect — when auction-editorial is active**
 - [ ] No AI-default palette or archetype (or a named structural differentiation).

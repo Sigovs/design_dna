@@ -491,8 +491,10 @@ while it is honest.
    animation; depth cues coherent with the spatial model they imply; controlled
    irregularity that stays legible and intentional; every permanently-visible
    layer — sticky, floating, consent — counted in the composition rather than added
-   on top of it, one over content at a time; and one page reading as one authored
-   language rather than as several art directions sharing a URL.
+   on top of it, one over content at a time; one page reading as one authored
+   language rather than as several art directions sharing a URL; and every
+   task-relevant route findable without hover, a completed animation or guesswork,
+   and legible before the visitor commits to it.
    **Composition is the cross-dialect layer inside this tier** — the page
    describable as 3–7 major masses before any component is named, a compositional
    centre that is decided rather than inherited, a dominant with subordinates and

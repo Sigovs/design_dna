@@ -636,7 +636,12 @@ async function shoot(browser, entry, want = ALL_PARTS) {
       } else {
         const wall = await survivingConsentWall(heroPage);
         if (wall) {
-          limits.push(`a consent dialog was still covering the page when the shots were taken, so every frame shows the dialog and not the site — no CONSENT_PATTERNS entry matched its buttons ("${wall}")`);
+          /* Deliberately does not name a cause. The first version of this message
+             blamed the whitelist, which was wrong for TRIONN — its labels match
+             fine, the bar simply mounts after the clearing pass has run. A
+             limitation that guesses at its own cause sends the next reader to
+             the wrong place. */
+          limits.push(`a consent dialog was covering the page when the shots were taken, so the frames show the dialog and not the site — it was not cleared by any pass ("${wall}")`);
           warn('a consent dialog survived dismissal — shots stored, limitation recorded');
         }
         title = (await heroPage.title()) || title;

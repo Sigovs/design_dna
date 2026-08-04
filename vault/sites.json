@@ -62,7 +62,10 @@
       "navScrolled": null
     },
     "extras": [],
-    "captureError": "partial evidence — desktop: eight distinct states advanced by wheel (window.scrollY stays 0). Mobile: six distinct states advanced by emulated touch swipe. Verified on both: the experience advances without the document scrolling. NOT preserved anywhere: timing, easing, the transitions between states. The desktop cursor reveal has no verified touch equivalent — it was not observed on mobile and its absence was not proven either."
+    "captureError": "partial evidence — desktop: eight distinct states advanced by wheel (window.scrollY stays 0). Mobile: six distinct states advanced by emulated touch swipe. Verified on both: the experience advances without the document scrolling. NOT preserved anywhere: timing, easing, the transitions between states. The desktop cursor reveal has no verified touch equivalent — it was not observed on mobile and its absence was not proven either.",
+    "works": "",
+    "weaknesses": "",
+    "unsorted": []
   },
   {
     "id": "obys-agency",
@@ -117,7 +120,10 @@
       "navScrolled": null
     },
     "extras": [],
-    "captureError": "partial evidence — the page advances on wheel input while window.scrollY and scrollX both stay 0, so the document never scrolls; four elements do have horizontal overflow. Five materially distinct states were captured, and several are mid-transition rather than settled compositions. A \"Grid\" control was present in the DOM at 1440x900 and did not respond to a click within the timeout — an agent observation, not verified further and not pursued. No claim is made that Vertical or Horizontal modes exist. Timing, easing and transition mechanics are not preserved."
+    "captureError": "partial evidence — the page advances on wheel input while window.scrollY and scrollX both stay 0, so the document never scrolls; four elements do have horizontal overflow. Five materially distinct states were captured, and several are mid-transition rather than settled compositions. A \"Grid\" control was present in the DOM at 1440x900 and did not respond to a click within the timeout — an agent observation, not verified further and not pursued. No claim is made that Vertical or Horizontal modes exist. Timing, easing and transition mechanics are not preserved.",
+    "works": "",
+    "weaknesses": "",
+    "unsorted": []
   },
   {
     "id": "organimo-com",
@@ -175,7 +181,8 @@
     "extras": [],
     "captureError": "partial capture — the intro gate was passed, but the site uses scroll-jacking (document height stays 900px), so the filmstrip holds one frame instead of eight.",
     "works": "Strong reference for an open, breathable page rhythm. Large sections and generous negative space let the composition unfold without feeling empty. The hero uses oversized typography, restrained color, and image motion as one coordinated system. Uppercase is reserved mainly for small labels, while normal text keeps a natural case. The italic word inside 'Limitless begins here' creates controlled typographic contrast without turning into decoration. The nearly black background, soft pink-lilac atmospheric haze, and gold as the only sharp accent feel disciplined rather than flashy. Motion and transitions support the page flow and connect the large sections instead of behaving like isolated effects.",
-    "weaknesses": "The current screenshots are incomplete evidence of the reference because the site uses scroll-jacking and motion-driven transitions. The static capture preserves the visual language but not the behavior, timing, or full flow."
+    "weaknesses": "The current screenshots are incomplete evidence of the reference because the site uses scroll-jacking and motion-driven transitions. The static capture preserves the visual language but not the behavior, timing, or full flow.",
+    "unsorted": []
   },
   {
     "id": "rolls-roycemotorcars-com-en-us-home-html",
@@ -189,8 +196,8 @@
     "dialects": [],
     "tags": {
       "composition": [
-        "dominant-mass",
         "active-negative-space",
+        "dominant-mass",
         "tonal-structure"
       ],
       "risks": [],
@@ -203,8 +210,8 @@
         "restraint"
       ],
       "color": [
-        "dark",
-        "neutral"
+        "neutral",
+        "dark"
       ],
       "imagery": [
         "photography",
@@ -212,7 +219,7 @@
         "product"
       ]
     },
-    "note": "ooo zabil. mne etot ochenj nravitsja.....https://www.rolls-roycemotorcars.com/en_US/home.html tut vse cvet, menu bokovoje, frozen glass, models, vs evse vse krugliej knoki k mestu video vpisivaetsja ochenj kruto kak ne otdeljnij a kak prodolzhenije backgrounda, posmotri.",
+    "note": "Everything works here—the colors, side menu, frosted glass, model presentation, and circular buttons all feel perfectly placed. The video is integrated beautifully: it doesn’t look like a separate block, but rather a natural continuation of the background. Take a loo The site feels like a complete, authored brand experience rather than a collection of individually designed sections. The restrained typography, cinematic imagery, side navigation, translucent surfaces and slow motion all speak the same visual language. I especially like how the video appears to continue the surrounding environment instead of sitting inside a conventional rectangular container. The interface supports the atmosphere without competing with the cars, which gives the experience confidence, continuity and a genuine sense of luxury.",
     "shots": {
       "full": "shots/rolls-roycemotorcars-com-en-us-home-html/full.jpg",
       "hero": "shots/rolls-roycemotorcars-com-en-us-home-html/hero.jpg",
@@ -238,7 +245,10 @@
       "navScrolled": "shots/rolls-roycemotorcars-com-en-us-home-html/nav-scrolled.jpg"
     },
     "extras": [],
-    "captureError": "partial evidence — desktop and mobile both captured with the side menu opened. Verified by measurement: backdrop-filter blur(150px) saturate(1.8) on the open menu pane (600x900 desktop, 390x664 mobile); three viewport-sized videos at object-fit cover with border-radius 0 and no mask-image; 3 pill controls and 0 circular controls at 1440x900. NOT preserved: menu transition timing and easing, video playback continuity, and any masking or compositing technique — none was found and none is claimed."
+    "captureError": "partial evidence — desktop and mobile both captured with the side menu opened. Verified by measurement: backdrop-filter blur(150px) saturate(1.8) on the open menu pane (600x900 desktop, 390x664 mobile); three viewport-sized videos at object-fit cover with border-radius 0 and no mask-image; 3 pill controls and 0 circular controls at 1440x900. NOT preserved: menu transition timing and easing, video playback continuity, and any masking or compositing technique — none was found and none is claimed.",
+    "works": "",
+    "weaknesses": "",
+    "unsorted": []
   },
   {
     "id": "porsche-com-usa",

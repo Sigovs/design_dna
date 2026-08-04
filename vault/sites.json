@@ -279,11 +279,7 @@
         "luxury-automotive",
         "product-storytelling",
         "rhythm-variation",
-        "structured-specification",
-        "upscaled-vdp",
-        "leasing-data",
-        "performance-data",
-        "premium-dealership"
+        "structured-specification"
       ],
       "risks": [
         "asset-dependency-risk",
@@ -299,25 +295,20 @@
         "air",
         "asymmetry",
         "bleed",
-        "dense-done-right",
-        "vehicle-detail-page",
-        "oversized-gallery",
-        "porsche-911-gt3",
-        "inventory-conversion"
+        "dense-done-right"
       ],
       "motion": [],
       "color": [
-        "dark",
         "neutral",
         "monochrome",
-        "bold-accent"
+        "bold-accent",
+        "dark"
       ],
       "imagery": [
         "photography",
         "art-direction",
-        "product",
         "scrim-text",
-        "automotive-photography"
+        "product"
       ]
     },
     "note": "This feels like an upscaled VDP rather than a conventional vehicle listing page. It retains all the necessary commercial information — price, leasing terms, mileage, specifications and equipment — but presents the car with the scale, pacing and visual confidence of a dedicated model experience.\n\nThe oversized imagery and restrained interface give the individual vehicle a sense of importance. Instead of placing everything inside a standard dealership template, the page allows the photography and the specific character of the GT3 Touring to shape the experience.",

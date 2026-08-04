@@ -163,7 +163,7 @@
   {
     "id": "polestar-com-us",
     "url": "https://www.polestar.com/us/",
-    "title": "polestar.com",
+    "title": "Polestar",
     "added": "2026-08-04",
     "rating": 2,
     "dialectStatus": "unreviewed",
@@ -179,11 +179,26 @@
     },
     "note": "TODO",
     "shots": {
-      "full": null,
-      "hero": null,
-      "mobile": null,
-      "strip": [],
-      "stripMobile": [],
+      "full": "shots/polestar-com-us/full.jpg",
+      "hero": "shots/polestar-com-us/hero.jpg",
+      "mobile": "shots/polestar-com-us/mobile.jpg",
+      "strip": [
+        "shots/polestar-com-us/strip-1.jpg",
+        "shots/polestar-com-us/strip-2.jpg",
+        "shots/polestar-com-us/strip-3.jpg",
+        "shots/polestar-com-us/strip-4.jpg",
+        "shots/polestar-com-us/strip-5.jpg",
+        "shots/polestar-com-us/strip-6.jpg",
+        "shots/polestar-com-us/strip-7.jpg"
+      ],
+      "stripMobile": [
+        "shots/polestar-com-us/strip-m-1.jpg",
+        "shots/polestar-com-us/strip-m-2.jpg",
+        "shots/polestar-com-us/strip-m-3.jpg",
+        "shots/polestar-com-us/strip-m-4.jpg",
+        "shots/polestar-com-us/strip-m-5.jpg",
+        "shots/polestar-com-us/strip-m-6.jpg"
+      ],
       "navScrolled": null
     },
     "kind": "site",
@@ -506,14 +521,28 @@
     },
     "note": "Everything works here—the colors, side menu, frosted glass, model presentation, and circular buttons all feel perfectly placed. The video is integrated beautifully: it doesn’t look like a separate block, but rather a natural continuation of the background. Take a loo The site feels like a complete, authored brand experience rather than a collection of individually designed sections. The restrained typography, cinematic imagery, side navigation, translucent surfaces and slow motion all speak the same visual language. I especially like how the video appears to continue the surrounding environment instead of sitting inside a conventional rectangular container. The interface supports the atmosphere without competing with the cars, which gives the experience confidence, continuity and a genuine sense of luxury.",
     "shots": {
-      "full": null,
-      "hero": null,
-      "mobile": null,
-      "strip": [],
-      "stripMobile": []
+      "full": "shots/rolls-roycemotorcars-com-en-us-home-html/full.jpg",
+      "hero": "shots/rolls-roycemotorcars-com-en-us-home-html/hero.jpg",
+      "mobile": "shots/rolls-roycemotorcars-com-en-us-home-html/mobile.jpg",
+      "strip": [
+        "shots/rolls-roycemotorcars-com-en-us-home-html/strip-1.jpg",
+        "shots/rolls-roycemotorcars-com-en-us-home-html/strip-2.jpg",
+        "shots/rolls-roycemotorcars-com-en-us-home-html/strip-3.jpg",
+        "shots/rolls-roycemotorcars-com-en-us-home-html/strip-4.jpg",
+        "shots/rolls-roycemotorcars-com-en-us-home-html/strip-5.jpg"
+      ],
+      "stripMobile": [
+        "shots/rolls-roycemotorcars-com-en-us-home-html/strip-m-1.jpg",
+        "shots/rolls-roycemotorcars-com-en-us-home-html/strip-m-2.jpg",
+        "shots/rolls-roycemotorcars-com-en-us-home-html/strip-m-3.jpg",
+        "shots/rolls-roycemotorcars-com-en-us-home-html/strip-m-4.jpg",
+        "shots/rolls-roycemotorcars-com-en-us-home-html/strip-m-5.jpg",
+        "shots/rolls-roycemotorcars-com-en-us-home-html/strip-m-6.jpg"
+      ],
+      "navScrolled": "shots/rolls-roycemotorcars-com-en-us-home-html/nav-scrolled.jpg"
     },
     "extras": [],
-    "captureError": null,
+    "captureError": "partial evidence — a consent dialog was still covering the page when the shots were taken, so every frame shows the dialog and not the site — no CONSENT_PATTERNS entry matched its buttons (\"Rolls-Royce PRE-OWNED COOKIES PRESSCLUB COMPLAINTS FIND A DEALER WHISP\")",
     "works": "The site succeeds because every element belongs to the same visual language. The side navigation preserves the cinematic composition, while the translucent surfaces add structure without separating the interface from the imagery. Circular controls complement the soft geometry of the system, and the restrained typography allows the models and art direction to remain dominant. Most importantly, the video, UI and background feel like one continuous environment rather than separate layers assembled on a page.",
     "weaknesses": "Some of the interface prioritizes atmosphere over immediate clarity. The circular controls and unconventional navigation are visually distinctive, but their purpose is not always obvious without interaction. Frosted-glass elements depend heavily on the brightness and complexity of the footage behind them, so legibility can become inconsistent. The experience also relies on heavy video, blur and motion, which may affect mobile performance. It is an exceptional brand experience, but occasionally less direct and usable than it is visually impressive.",
     "unsorted": []
@@ -553,11 +582,28 @@
     },
     "note": "MAYBE — An exceptionally disciplined global automotive platform that moves each vehicle between cinematic object of desire and precisely classified, configurable product. Full-viewport campaign imagery, minimal overlay typography, restrained navigation, image-led model cards, explicit powertrain and pricing information, direct configurator access, inventory search and Porsche Center discovery create a coherent progression from brand emotion to commercial action. A mature cross-platform design system provides unusually consistent components, themes and interaction patterns across a complex digital ecosystem. However, the homepage itself follows a conventional premium-automotive sequence, with much of its distinction dependent on iconic products, exceptional imagery and brand recognition rather than original composition. Preserve as a benchmark for automotive hierarchy, restraint, brand–commerce integration and system consistency—not as a primary reference for unconventional layout or expressive editorial structure.",
     "shots": {
-      "full": null,
-      "hero": null,
-      "mobile": null,
-      "strip": [],
-      "stripMobile": []
+      "full": "shots/porsche-com-usa/full.jpg",
+      "hero": "shots/porsche-com-usa/hero.jpg",
+      "mobile": "shots/porsche-com-usa/mobile.jpg",
+      "strip": [
+        "shots/porsche-com-usa/strip-1.jpg",
+        "shots/porsche-com-usa/strip-2.jpg",
+        "shots/porsche-com-usa/strip-3.jpg",
+        "shots/porsche-com-usa/strip-4.jpg",
+        "shots/porsche-com-usa/strip-5.jpg",
+        "shots/porsche-com-usa/strip-6.jpg",
+        "shots/porsche-com-usa/strip-7.jpg",
+        "shots/porsche-com-usa/strip-8.jpg"
+      ],
+      "stripMobile": [
+        "shots/porsche-com-usa/strip-m-1.jpg",
+        "shots/porsche-com-usa/strip-m-2.jpg",
+        "shots/porsche-com-usa/strip-m-3.jpg",
+        "shots/porsche-com-usa/strip-m-4.jpg",
+        "shots/porsche-com-usa/strip-m-5.jpg",
+        "shots/porsche-com-usa/strip-m-6.jpg"
+      ],
+      "navScrolled": null
     },
     "kind": "site",
     "source": "",
@@ -673,11 +719,28 @@
     },
     "note": "IN — A disciplined fashion-commerce homepage built from a strict four-column product grid repeatedly interrupted by paired, full-bleed editorial imagery. Its identity comes less from interface invention than from confident image sequencing, unusual object-based styling, controlled crops, oversized branding, and generous visual silence. Alternating model photography with isolated garments gives a conventional product catalogue deliberate rhythm, while the split hero and recurring two-image compositions keep commerce connected to a coherent art-directed world. However, microtype, understated calls to action, limited product storytelling, and heavy dependence on exceptional photography prevent it from becoming a complete commerce reference.",
     "shots": {
-      "full": null,
-      "hero": null,
-      "mobile": null,
-      "strip": [],
-      "stripMobile": []
+      "full": "shots/ruadh-com/full.jpg",
+      "hero": "shots/ruadh-com/hero.jpg",
+      "mobile": "shots/ruadh-com/mobile.jpg",
+      "strip": [
+        "shots/ruadh-com/strip-1.jpg",
+        "shots/ruadh-com/strip-2.jpg",
+        "shots/ruadh-com/strip-3.jpg",
+        "shots/ruadh-com/strip-4.jpg",
+        "shots/ruadh-com/strip-5.jpg",
+        "shots/ruadh-com/strip-6.jpg",
+        "shots/ruadh-com/strip-7.jpg",
+        "shots/ruadh-com/strip-8.jpg"
+      ],
+      "stripMobile": [
+        "shots/ruadh-com/strip-m-1.jpg",
+        "shots/ruadh-com/strip-m-2.jpg",
+        "shots/ruadh-com/strip-m-3.jpg",
+        "shots/ruadh-com/strip-m-4.jpg",
+        "shots/ruadh-com/strip-m-5.jpg",
+        "shots/ruadh-com/strip-m-6.jpg"
+      ],
+      "navScrolled": "shots/ruadh-com/nav-scrolled.jpg"
     },
     "kind": "site",
     "source": "",
@@ -953,7 +1016,7 @@
   {
     "id": "electrafilmworks-com",
     "url": "https://electrafilmworks.com/",
-    "title": "electrafilmworks.com",
+    "title": "Electra Filmworks",
     "added": "2026-07-25",
     "rating": 2,
     "dialectStatus": "in",
@@ -971,11 +1034,16 @@
     },
     "note": "IN — A disciplined film-led portfolio in which moving imagery becomes the primary interface rather than content placed inside a conventional layout.",
     "shots": {
-      "full": null,
-      "hero": null,
-      "mobile": null,
-      "strip": [],
-      "stripMobile": []
+      "full": "shots/electrafilmworks-com/full.jpg",
+      "hero": "shots/electrafilmworks-com/hero.jpg",
+      "mobile": "shots/electrafilmworks-com/mobile.jpg",
+      "strip": [
+        "shots/electrafilmworks-com/strip-1.jpg"
+      ],
+      "stripMobile": [
+        "shots/electrafilmworks-com/strip-m-1.jpg"
+      ],
+      "navScrolled": null
     },
     "kind": "site",
     "source": "",
@@ -1125,16 +1193,33 @@
     },
     "note": "MAYBE — A technically exceptional creative-studio showcase that unifies WebGL, DOM typography, scroll choreography and generated sound around a recurring system of charging, fragmentation and reassembly. The interactive three-part identity, hold-to-blast hero, responsive weld effects, exploding service typography, frame-scrubbed sequences and helix-to-grid work gallery demonstrate unusually coherent motion engineering rather than a collection of isolated effects. Its strongest value lies in synchronization, shared interaction states and the transformation of a brand symbol into a behavioral system. However, the visual language remains rooted in familiar creative-development conventions, spectacle frequently competes with studio content, and the experience carries substantial performance, accessibility and imitation risks. Preserve as a motion-systems and creative-development reference, not as a general compositional or commercial-site model.",
     "shots": {
-      "full": null,
-      "hero": null,
-      "mobile": null,
-      "strip": [],
-      "stripMobile": []
+      "full": "shots/trionn-com/full.jpg",
+      "hero": "shots/trionn-com/hero.jpg",
+      "mobile": "shots/trionn-com/mobile.jpg",
+      "strip": [
+        "shots/trionn-com/strip-1.jpg",
+        "shots/trionn-com/strip-2.jpg",
+        "shots/trionn-com/strip-3.jpg",
+        "shots/trionn-com/strip-4.jpg",
+        "shots/trionn-com/strip-5.jpg",
+        "shots/trionn-com/strip-6.jpg",
+        "shots/trionn-com/strip-7.jpg",
+        "shots/trionn-com/strip-8.jpg"
+      ],
+      "stripMobile": [
+        "shots/trionn-com/strip-m-1.jpg",
+        "shots/trionn-com/strip-m-2.jpg",
+        "shots/trionn-com/strip-m-3.jpg",
+        "shots/trionn-com/strip-m-4.jpg",
+        "shots/trionn-com/strip-m-5.jpg",
+        "shots/trionn-com/strip-m-6.jpg"
+      ],
+      "navScrolled": null
     },
     "kind": "site",
     "source": "",
     "extras": [],
-    "captureError": null,
+    "captureError": "partial evidence — 3 canvas element(s) — motion and WebGL state are not preserved by a static shot",
     "works": "Hero — не обычное видео или абстрактный 3D-object. Фирменный трёхчастный знак реагирует на курсор, прокрутку и удержание мыши, распадается и снова собирается.\nHold to Blast и Dare to touch the lines превращают первый экран в игровое исследование, а не пассивную презентацию.\nMotion построен как связанная система: один и тот же принцип распада, энергии и пересборки проходит через знак, typography, services и переходы.\nОчень сильная синхронизация WebGL + DOM typography + scroll + generated sound.\nServices — полноценная режиссированная последовательность: 371-frame object animation, распад заголовка, появление карточек по траекториям и переход от тёмной среды к светлой.\nWork gallery сначала существует как пространственная double helix, а затем разворачивается в обычную сетку. Хороший переход spectacle → usable content.\nSound не просто музыкальный фон: beep, charging, explosion и welding sounds реагируют на конкретные действия.\nУ сайта есть отдельная motion-логика для mobile и поддержка reduced motion — важный признак продуманной реализации.\nНесмотря на огромное количество технологий, настоящие заголовки остаются DOM-текстом, а не запекаются внутрь canvas.\nДля агентства сайт отлично продаёт именно creative development: посетитель сразу видит, что команда действительно умеет строить сложные интерактивные системы.",
     "weaknesses": "Главная проблема: motion здесь часто демонстрирует возможности технологии, а не раскрывает содержание студии.\n\nBlast, sparks, helix, exploding letters, frame sequence, stripe wipes — каждый эпизод хочет стать главным.\nСайт постоянно говорит: «посмотри, что мы технически умеем». Это убедительно для разработчика, но немного утомительно как бренд.\nЦентральная идея Designed to mean intention звучит правильно, однако опыт местами ощущается противоположно: эффектов больше, чем смысловой необходимости.\nВизуальная база без motion довольно знакомая: чёрный/белый, oversized grotesk, glowing 3D-object, microcopy, technical prompts.\nWork и реальные кейсы рискуют стать вторичными относительно механики самого портфолио.\nПользователю нужно научиться взаимодействовать с hero, хотя эти действия не помогают выбрать услугу или найти проект.\n371 отдельных кадров, Three.js, Lenis, GSAP, Swiper и Web Audio — огромная сложность для agency homepage.\nНа слабом устройстве или проблемном соединении experience может буквально исчезнуть — что и произошло при моей проверке.\nСинтезированный звук хорошо поддерживает взаимодействие, но многие посетители никогда его не включат.\nЭто опасный reference для Claude: он скопирует WebGL object + giant type + scroll effects, но не сможет воспроизвести инженерную связность оригинала.",
     "unsorted": []
@@ -1234,16 +1319,26 @@
     },
     "note": "The reference case for air as status: the landing page is one viewport tall and roughly three-quarters empty — a single magazine cover centred in white, nav above, one caption line below. Nothing competes, so the cover reads as an object rather than as content.\n\nCONTRADICTION worth keeping: this breaks skills/color-taste on two counts — the accent is a bright saturated turquoise, well above the chroma ceiling, and it IS the identity rather than a setting (nav, logo, rules, caption, all of it). It works because the accent is the *only* colour in an otherwise monochrome world, so the restraint has moved from the hue to the palette size. Evidence that the rule's real mechanism is \"one colour, ruthlessly\" rather than \"low chroma\" — flag for the next distillation run.\n\nAlso note the display face is a rounded geometric grotesque, not a serif. Editorial authority here comes from scale and space, not from a didone.\n\nOUT — The cover image has the right to exist as a standalone editorial composition.",
     "shots": {
-      "full": null,
-      "hero": null,
-      "mobile": null,
-      "strip": [],
-      "stripMobile": []
+      "full": "shots/thegentlewoman-co-uk/full.jpg",
+      "hero": "shots/thegentlewoman-co-uk/hero.jpg",
+      "mobile": "shots/thegentlewoman-co-uk/mobile.jpg",
+      "strip": [
+        "shots/thegentlewoman-co-uk/strip-1.jpg"
+      ],
+      "stripMobile": [
+        "shots/thegentlewoman-co-uk/strip-m-1.jpg",
+        "shots/thegentlewoman-co-uk/strip-m-2.jpg",
+        "shots/thegentlewoman-co-uk/strip-m-3.jpg",
+        "shots/thegentlewoman-co-uk/strip-m-4.jpg",
+        "shots/thegentlewoman-co-uk/strip-m-5.jpg",
+        "shots/thegentlewoman-co-uk/strip-m-6.jpg"
+      ],
+      "navScrolled": null
     },
     "kind": "site",
     "source": "",
     "extras": [],
-    "captureError": null,
+    "captureError": "partial evidence — document is 900px against a 900px viewport with content present — consistent with scroll-jacking or a one-screen page; the filmstrip below is the corroborating observation",
     "works": "Worth stealing: (1) the footer caption is the only sentence on the page and it carries the entire editorial message, sitting on a hairline rule with the pagination at the far right — metadata as composition; (2) the photography is black-and-white, which is what lets a single saturated accent work without the page becoming about colour.",
     "weaknesses": "As a website, the project fails. The desktop navigation is ugly, the footer is unresolved, and the initial visual idea never develops into a coherent web experience. One decent cover does not make this a design reference.",
     "unsorted": []

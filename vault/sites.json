@@ -96,16 +96,16 @@
     "tags": {
       "composition": [
         "active-negative-space",
-        "brand-architecture",
         "directed-eye",
         "dominant-mass",
-        "inventory-integration",
         "luxury-automotive",
-        "visual-silence"
+        "visual-silence",
+        "brand-architecture",
+        "inventory-integration"
       ],
       "risks": [
-        "narrative-dilution-risk",
-        "repeated-composition-risk"
+        "repeated-composition-risk",
+        "narrative-dilution-risk"
       ],
       "typography": [
         "big-type",
@@ -114,8 +114,8 @@
       ],
       "layout": [
         "air",
-        "asymmetry",
-        "bleed"
+        "bleed",
+        "asymmetry"
       ],
       "motion": [
         "restraint"
@@ -128,17 +128,34 @@
       "imagery": [
         "photography",
         "art-direction",
-        "product",
-        "scrim-text"
+        "scrim-text",
+        "product"
       ]
     },
     "note": "The site feels much more considered than a typical multi-brand dealership website. It successfully brings Porsche, Bentley and Lamborghini into one premium environment without allowing the individual brand identities to fragment the overall experience.\n\nI like the restrained typography, confident use of large imagery, generous spacing and editorial composition. The design feels sophisticated without relying on excessive decoration or predictable luxury clichés. It gives the dealership its own identity while still allowing the vehicles and manufacturer campaigns to remain visually dominant.",
     "shots": {
-      "full": null,
-      "hero": null,
-      "mobile": null,
-      "strip": [],
-      "stripMobile": []
+      "full": "shots/semlerpremium-dk/full.jpg",
+      "hero": "shots/semlerpremium-dk/hero.jpg",
+      "mobile": "shots/semlerpremium-dk/mobile.jpg",
+      "strip": [
+        "shots/semlerpremium-dk/strip-1.jpg",
+        "shots/semlerpremium-dk/strip-2.jpg",
+        "shots/semlerpremium-dk/strip-3.jpg",
+        "shots/semlerpremium-dk/strip-4.jpg",
+        "shots/semlerpremium-dk/strip-5.jpg",
+        "shots/semlerpremium-dk/strip-6.jpg",
+        "shots/semlerpremium-dk/strip-7.jpg",
+        "shots/semlerpremium-dk/strip-8.jpg"
+      ],
+      "stripMobile": [
+        "shots/semlerpremium-dk/strip-m-1.jpg",
+        "shots/semlerpremium-dk/strip-m-2.jpg",
+        "shots/semlerpremium-dk/strip-m-3.jpg",
+        "shots/semlerpremium-dk/strip-m-4.jpg",
+        "shots/semlerpremium-dk/strip-m-5.jpg",
+        "shots/semlerpremium-dk/strip-m-6.jpg"
+      ],
+      "navScrolled": null
     },
     "kind": "site",
     "source": "",

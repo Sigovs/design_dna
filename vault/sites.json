@@ -279,7 +279,11 @@
         "luxury-automotive",
         "product-storytelling",
         "rhythm-variation",
-        "structured-specification"
+        "structured-specification",
+        "upscaled-vdp",
+        "leasing-data",
+        "performance-data",
+        "premium-dealership"
       ],
       "risks": [
         "asset-dependency-risk",
@@ -295,7 +299,11 @@
         "air",
         "asymmetry",
         "bleed",
-        "dense-done-right"
+        "dense-done-right",
+        "vehicle-detail-page",
+        "oversized-gallery",
+        "porsche-911-gt3",
+        "inventory-conversion"
       ],
       "motion": [],
       "color": [
@@ -308,7 +316,8 @@
         "photography",
         "art-direction",
         "product",
-        "scrim-text"
+        "scrim-text",
+        "automotive-photography"
       ]
     },
     "note": "This feels like an upscaled VDP rather than a conventional vehicle listing page. It retains all the necessary commercial information — price, leasing terms, mileage, specifications and equipment — but presents the car with the scale, pacing and visual confidence of a dedicated model experience.\n\nThe oversized imagery and restrained interface give the individual vehicle a sense of importance. Instead of placing everything inside a standard dealership template, the page allows the photography and the specific character of the GT3 Touring to shape the experience.",
@@ -342,17 +351,7 @@
     "captureError": null,
     "works": "The strongest decision is treating one inventory vehicle as a significant product rather than a database entry. The page opens with pricing and essential vehicle data, then expands into an 18-image gallery, editorial description, selected highlights, detailed equipment, performance figures and related inventory.\n\nCommercial information remains accessible, but it does not dominate the visual presentation. Data is broken into deliberate groups instead of being compressed into one dense specification table. This gives the page rhythm and makes a large amount of information easier to scan.\n\nThe progression is particularly effective:\n\ndesire → visual inspection → story → highlights → complete data → related vehicles\n\nThis is highly relevant to premium dealer VDP design. It demonstrates that a functional inventory page can feel cinematic and bespoke without sacrificing price transparency or practical vehicle information.\n\nLESSON — the line to carry into our own work:\nA premium VDP should not hide vehicle data — it should give that data hierarchy, pacing and product-level art direction.",
     "weaknesses": "The experience becomes less distinctive as it moves deeper into specifications and the long equipment list. These sections return to a more conventional dealer-data presentation and do not fully sustain the visual authority of the opening gallery.\n\nSome information is also repeated: pricing and vehicle data appear in multiple areas. This may support different viewport states or sticky behavior, but it risks making the page feel longer than necessary.\n\nThe large gallery works because the photography is unusually strong and the car itself is exceptional. With inconsistent dealer photos, ordinary inventory or weak image sequencing, the same oversized treatment could magnify asset problems rather than create a premium experience.\n\nThe related-vehicle section also brings the page back toward a recognizable inventory grid. Functionally this is appropriate, but visually the transition from bespoke product story to standard listings could be handled with greater continuity.",
-    "unsorted": [
-      "upscaled-vdp",
-      "vehicle-detail-page",
-      "porsche-911-gt3",
-      "oversized-gallery",
-      "automotive-photography",
-      "leasing-data",
-      "performance-data",
-      "premium-dealership",
-      "inventory-conversion"
-    ]
+    "unsorted": []
   },
   {
     "id": "semlerpremium-dk-showroom",

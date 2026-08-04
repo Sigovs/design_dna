@@ -18,14 +18,40 @@ correct** — that is Alex's review, and the claims below are marked accordingly
 
 ---
 
-## Evidence inventory — counted from `vault/sites.json`, 2026-07-30
+## Evidence inventory — counted from `vault/sites.json`, 2026-08-04
 
 | Class | Count | Entry ids |
 |---|---|---|
-| **Usable `in`** (human-set) | **13** | `beings-co` (3) · `ciridae-com` (3) · `ruadh-com` (2) · `electrafilmworks-com` (2) · `thenewmobileworkforce-…-back-at-hq` (2) · `trionn-com` (2) · `kinncollective-co-uk` (2) · `augen-pro` (2) · `i-pinimg-…-46d9d54b` (2) · `organimo-com` (3) · `immersive-g-com` (3) · `rolls-roycemotorcars-…-home-html` (3) · `obys-agency` (2) |
+| **Usable `in`** (human-set) | **14** | `beings-co` (3) · `ciridae-com` (3) · `ruadh-com` (2) · `electrafilmworks-com` (2) · `thenewmobileworkforce-…-back-at-hq` (2) · `trionn-com` (2) · `kinncollective-co-uk` (2) · `augen-pro` (2) · `i-pinimg-…-46d9d54b` (2) · `organimo-com` (3) · `immersive-g-com` (3) · `rolls-roycemotorcars-…-home-html` (3) · `obys-agency` (2) · `mclaren-com-cars-gl-en` (2) |
 | **Usable `out`** (human-set) | **2** | `rmsothebys-com` (1) · `thegentlewoman-co-uk` (1) |
 | **Partial / contextual** (`hybrid`) | **1** | `porsche-com-usa` (2) |
-| **Not yet a judgement** (`unreviewed`) | **0** | — the library is fully reviewed |
+| **Not yet a judgement** (`unreviewed`) | **4** | `semlerpremium-dk` (2) · `semlerpremium-dk-showroom` (3) · `semlerpremium-dk-brands-porsche-911-gt3-…` (3) · `polestar-com-us` (2) |
+
+> **Counter refresh, 2026-08-04.** Five records added since the last count, and
+> the library is no longer fully reviewed. `mclaren-com-cars-gl-en` was added and
+> set `in` by Alex in the gallery, taking the usable `in` total from 13 to 14.
+> Four more arrived with his written judgement but **no dialect judgement**, so
+> `unreviewed` returns to the table after standing at zero: three pages of
+> **Semler Premium** — the homepage (2), the showroom SRP (3) and the 911 GT3
+> VDP (3) — and **Polestar United States** (2).
+>
+> **Three of those four are one design system.** The Semler ids are three pages
+> of one site. They are counted as three records and are **not** three
+> independent references; distillation must treat them as one. The warning is
+> repeated in each of their review sidecars.
+>
+> **Counted, not interpreted.** No claim below was reinterpreted, promoted,
+> weakened or removed, and none of the five is cited in A, B, C or D. Their
+> reasoning belongs to the next distillation pass.
+>
+> **One group crosses the arithmetic and is still not a candidate.**
+> `npm run distill` now reports `composition · OUT` at three records — Polestar
+> and two Semler pages — all three saying the same thing in Alex's own words: a
+> premium page whose opening authority dissolves into a run of functional
+> modules further down. Two of those three are Semler, so the independent count
+> is **two**, not three, and the threshold is not met. It is recorded here
+> because one more unrelated record would make it real, and because the failure
+> already has a name in the vocabulary: `narrative-dilution-risk`.
 
 > **One record removed, two restored, 2026-07-31.** A third commerce platform was
 > deleted from the vault and stays deleted. `porsche-com-usa` and

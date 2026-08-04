@@ -325,10 +325,16 @@ async function dismissConsent(page) {
   const found = await page.evaluate(({ groups, mark }) => {
     document.querySelectorAll(`[${mark}]`).forEach((n) => n.removeAttribute(mark));
 
+    /* Whitespace removed on BOTH sides, not merely collapsed. A per-character
+       label carries the source file's indentation between its letters, so even
+       textContent reads "D E C L I N E" — collapsing runs to single spaces
+       leaves the gaps and matches nothing. */
+    const bare = (s) => (s ?? '').replace(/\s+/g, '').toLowerCase();
+
     for (const words of groups) {
-      const choice = new RegExp(`^(?:${words.join('|')})$`, 'i');
+      const choice = new RegExp(`^(?:${words.map(bare).join('|')})$`, 'i');
       for (const el of document.querySelectorAll('button, a, [role="button"], span, div, li')) {
-        if (!choice.test((el.textContent ?? '').replace(/\s+/g, ' ').trim())) continue;
+        if (!choice.test(bare(el.textContent))) continue;
 
         const cs = getComputedStyle(el);
         if (cs.display === 'none' || cs.visibility === 'hidden') continue;

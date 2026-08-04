@@ -34,6 +34,40 @@
     "unsorted": []
   },
   {
+    "id": "hispanosuizacars-com",
+    "url": "https://www.hispanosuizacars.com/",
+    "title": "hispanosuizacars.com",
+    "added": "2026-08-04",
+    "rating": 2,
+    "dialectStatus": "unreviewed",
+    "dialects": [],
+    "tags": {
+      "composition": [],
+      "risks": [],
+      "typography": [],
+      "layout": [],
+      "motion": [],
+      "color": [],
+      "imagery": []
+    },
+    "note": "TODO",
+    "shots": {
+      "full": null,
+      "hero": null,
+      "mobile": null,
+      "strip": [],
+      "stripMobile": [],
+      "navScrolled": null
+    },
+    "kind": "site",
+    "source": "",
+    "extras": [],
+    "captureError": null,
+    "works": "",
+    "weaknesses": "",
+    "unsorted": []
+  },
+  {
     "id": "mclaren-com-cars-gl-en",
     "url": "https://www.mclaren.com/cars/gl_en",
     "title": "AUTOMOTIVE",

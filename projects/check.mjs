@@ -118,6 +118,43 @@ if (collisions.length) {
     + `${usable.length === 1 ? '' : 's'}\n`);
 }
 
+/* ── one axis at a time ────────────────────────────────────────────────────
+   A full collision needs ground AND display AND image to match, which is a high
+   bar and stayed silent across six records while `image: mixed` sat on every one
+   of them. An axis carrying the same value everywhere carries no information,
+   and a register that repeats on two of three axes is drift the collision test
+   cannot see. Same contract as above: reported, never judged. */
+const CONCENTRATION = 0.6;
+
+const concentrations = [];
+for (const axis of ['ground', 'display', 'image']) {
+  const counts = new Map();
+  for (const r of usable) {
+    const v = String(r.register[axis] ?? '').toLowerCase().trim();
+    if (!v || v === 'not recorded') continue;
+    if (!counts.has(v)) counts.set(v, []);
+    counts.get(v).push(r.slug);
+  }
+  const total = [...counts.values()].reduce((n, s) => n + s.length, 0);
+  for (const [value, slugs] of counts) {
+    if (slugs.length > 1 && slugs.length / total >= CONCENTRATION) {
+      concentrations.push({ axis, value, slugs, total });
+    }
+  }
+}
+
+if (concentrations.length) {
+  console.log(`⚠ ${concentrations.length} axis concentration${concentrations.length === 1 ? '' : 's'}`
+    + ` — one value on ${Math.round(CONCENTRATION * 100)}%+ of comparable records:\n`);
+  for (const c of concentrations) {
+    console.log(`  ${c.axis}: "${c.value}" on ${c.slugs.length} of ${c.total}`);
+    console.log(`    ${c.slugs.join(', ')}\n`);
+  }
+  console.log('  An axis with one value everywhere is not varying, and the collision');
+  console.log('  test above cannot report it: that test needs all three to match at');
+  console.log('  once. Whether this is a house signature or a habit is a human call.\n');
+}
+
 if (skipped) {
   console.log(`  ${skipped} record${skipped === 1 ? '' : 's'} not comparable — register partly "not recorded".`);
   console.log('  Incomparable records cannot reveal repetition; fill the register at close.\n');

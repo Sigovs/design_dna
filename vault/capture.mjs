@@ -309,30 +309,49 @@ async function dismissConsent(page) {
      Matched on exact visible text only. A node whose entire text IS "Accept" is
      an identified control, not empty space — this is not the blind fallback the
      gate policy above rules out. */
-  for (const pattern of CONSENT_PATTERNS) {
-    try {
-      const matches = page.getByText(pattern, { exact: true });
-      const count = Math.min(await matches.count(), 4);
-      for (let i = 0; i < count; i++) {
-        const control = matches.nth(i);
-        /* Hover-animated labels ship two copies of themselves, the second
-           opacity:0 and pointer-events:none. isVisible() says yes to both,
-           because neither is display:none or visibility:hidden, and the click
-           on the dead copy times out into the catch below — silently. TRIONN
-           kept its cookie bar across three captures exactly that way. */
-        const live = await control.evaluate((node) => {
-          const cs = getComputedStyle(node);
-          return cs.pointerEvents !== 'none' && Number(cs.opacity) > 0.05;
-        }).catch(() => false);
-        if (!live) continue;
-        if (!(await control.isVisible({ timeout: 300 }))) continue;
-        await control.click({ timeout: 2000 });
-        await page.waitForTimeout(400);
-        log('  · dismissed a consent dialog (unlabelled control, matched by exact text)');
-        return;
+  /* Last resort, and the fiddliest. getByText matches RENDERED text, so a label
+     whose letters are separate inline elements — TRIONN animates per character —
+     renders as "D E C L I N E" and matches nothing. The gaps are real to the
+     renderer and absent from textContent, so the match is done in the page
+     against textContent, and the element is only MARKED there. The click still
+     goes through a locator, with its actionability checks, rather than a
+     synthetic dispatch: this stays a click on a control we identified, not a
+     script poking at somebody's page.
+     Hover-animated labels also ship a second copy of themselves at opacity 0
+     with pointer-events none. Skipped, or the click lands on the dead one and
+     times out silently — which is how TRIONN kept its cookie bar for four
+     captures running. */
+  const MARK = 'data-vault-consent-control';
+  const found = await page.evaluate(({ groups, mark }) => {
+    document.querySelectorAll(`[${mark}]`).forEach((n) => n.removeAttribute(mark));
+
+    for (const words of groups) {
+      const choice = new RegExp(`^(?:${words.join('|')})$`, 'i');
+      for (const el of document.querySelectorAll('button, a, [role="button"], span, div, li')) {
+        if (!choice.test((el.textContent ?? '').replace(/\s+/g, ' ').trim())) continue;
+
+        const cs = getComputedStyle(el);
+        if (cs.display === 'none' || cs.visibility === 'hidden') continue;
+        if (cs.pointerEvents === 'none' || Number(cs.opacity) <= 0.05) continue;
+
+        const box = el.getBoundingClientRect();
+        if (box.width < 8 || box.height < 8) continue;
+        if (box.bottom <= 0 || box.top >= innerHeight) continue;
+
+        el.setAttribute(mark, '1');
+        return true;
       }
-    } catch { /* not present — the normal case */ }
-  }
+    }
+    return false;
+  }, { groups: CONSENT_CHOICES, mark: MARK });
+
+  if (!found) return;
+
+  try {
+    await page.locator(`[${MARK}]`).first().click({ timeout: 2000 });
+    await page.waitForTimeout(400);
+    log('  · dismissed a consent dialog (unlabelled control, matched on textContent)');
+  } catch { /* it moved or vanished between marking and clicking */ }
 }
 
 /* The failure that matters is not the wall — it is the wall going unrecorded. When

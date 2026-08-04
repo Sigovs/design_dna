@@ -30,11 +30,27 @@
     },
     "note": "TODO",
     "shots": {
-      "full": null,
-      "hero": null,
-      "mobile": null,
-      "strip": [],
-      "stripMobile": [],
+      "full": "shots/mclaren-com-cars-gl-en/full.jpg",
+      "hero": "shots/mclaren-com-cars-gl-en/hero.jpg",
+      "mobile": "shots/mclaren-com-cars-gl-en/mobile.jpg",
+      "strip": [
+        "shots/mclaren-com-cars-gl-en/strip-1.jpg",
+        "shots/mclaren-com-cars-gl-en/strip-2.jpg",
+        "shots/mclaren-com-cars-gl-en/strip-3.jpg",
+        "shots/mclaren-com-cars-gl-en/strip-4.jpg",
+        "shots/mclaren-com-cars-gl-en/strip-5.jpg",
+        "shots/mclaren-com-cars-gl-en/strip-6.jpg",
+        "shots/mclaren-com-cars-gl-en/strip-7.jpg",
+        "shots/mclaren-com-cars-gl-en/strip-8.jpg"
+      ],
+      "stripMobile": [
+        "shots/mclaren-com-cars-gl-en/strip-m-1.jpg",
+        "shots/mclaren-com-cars-gl-en/strip-m-2.jpg",
+        "shots/mclaren-com-cars-gl-en/strip-m-3.jpg",
+        "shots/mclaren-com-cars-gl-en/strip-m-4.jpg",
+        "shots/mclaren-com-cars-gl-en/strip-m-5.jpg",
+        "shots/mclaren-com-cars-gl-en/strip-m-6.jpg"
+      ],
       "navScrolled": null
     },
     "kind": "site",

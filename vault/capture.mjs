@@ -196,6 +196,14 @@ async function settle(page, url) {
   await dismissConsent(page);
   await passSafeGate(page);
 
+  /* One Escape before anything is shot. Side menus, newsletter modals and
+     lightboxes all answer to it; it is the browser's own dismissal rather than a
+     click on somebody else's page, and on a page with nothing open it does
+     nothing at all. Rolls-Royce was captured twice with its side menu standing
+     open, and Rùadh filed a newsletter popup across the middle of its hero. */
+  await page.keyboard.press('Escape').catch(() => {});
+  await page.waitForTimeout(300);
+
   // Walk the page to trigger lazy images, then return to the top for the hero.
   await page.evaluate(async () => {
     const step = window.innerHeight * 0.9;
@@ -265,12 +273,32 @@ async function limitationSignals(page) {
 
 async function dismissConsent(page) {
   for (const pattern of CONSENT_PATTERNS) {
+    for (const role of ['button', 'link']) {
+      try {
+        const control = page.getByRole(role, { name: pattern }).first();
+        if (await control.isVisible({ timeout: 400 })) {
+          await control.click({ timeout: 2000 });
+          await page.waitForTimeout(400);
+          log(`  · dismissed a consent dialog (${role})`);
+          return;
+        }
+      } catch { /* not present — the normal case */ }
+    }
+  }
+
+  /* Consent bars assembled from <div>/<span> carry no ARIA role, so getByRole
+     never sees them. TRIONN and The Gentlewoman both ship one, and both filed
+     their cookie bar into the hero.
+     Matched on exact visible text only. A node whose entire text IS "Accept" is
+     an identified control, not empty space — this is not the blind fallback the
+     gate policy above rules out. */
+  for (const pattern of CONSENT_PATTERNS) {
     try {
-      const btn = page.getByRole('button', { name: pattern }).first();
-      if (await btn.isVisible({ timeout: 800 })) {
-        await btn.click({ timeout: 2000 });
+      const control = page.getByText(pattern, { exact: true }).last();
+      if (await control.isVisible({ timeout: 300 })) {
+        await control.click({ timeout: 2000 });
         await page.waitForTimeout(400);
-        log('  · dismissed a consent dialog');
+        log('  · dismissed a consent dialog (unlabelled control, matched by exact text)');
         return;
       }
     } catch { /* not present — the normal case */ }

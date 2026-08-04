@@ -246,7 +246,7 @@
     },
     "extras": [],
     "captureError": "partial evidence — desktop and mobile both captured with the side menu opened. Verified by measurement: backdrop-filter blur(150px) saturate(1.8) on the open menu pane (600x900 desktop, 390x664 mobile); three viewport-sized videos at object-fit cover with border-radius 0 and no mask-image; 3 pill controls and 0 circular controls at 1440x900. NOT preserved: menu transition timing and easing, video playback continuity, and any masking or compositing technique — none was found and none is claimed.",
-    "works": "",
+    "works": "The site succeeds because every element belongs to the same visual language. The side navigation preserves the cinematic composition, while the translucent surfaces add structure without separating the interface from the imagery. Circular controls complement the soft geometry of the system, and the restrained typography allows the models and art direction to remain dominant. Most importantly, the video, UI and background feel like one continuous environment rather than separate layers assembled on a page.",
     "weaknesses": "Some of the interface prioritizes atmosphere over immediate clarity. The circular controls and unconventional navigation are visually distinctive, but their purpose is not always obvious without interaction. Frosted-glass elements depend heavily on the brightness and complexity of the footage behind them, so legibility can become inconsistent. The experience also relies on heavy video, blur and motion, which may affect mobile performance. It is an exceptional brand experience, but occasionally less direct and usable than it is visually impressive.",
     "unsorted": []
   },

@@ -15,7 +15,11 @@
         "concept-led-interface",
         "dominant-mass",
         "intentional-crop",
-        "rhythm-variation"
+        "rhythm-variation",
+        "mclaren",
+        "supercar",
+        "performance-automotive",
+        "product-storytelling"
       ],
       "risks": [
         "ambiguous-reading-order",
@@ -23,17 +27,30 @@
         "repeated-composition-risk"
       ],
       "typography": [
-        "commerce-editorial-alternation"
+        "commerce-editorial-alternation",
+        "oversized-typography",
+        "numbered-navigation"
       ],
       "layout": [
         "air",
         "grid-break",
         "bleed",
-        "dense-done-right"
+        "dense-done-right",
+        "campaign-led-design",
+        "hero-carousel",
+        "racing-heritage",
+        "model-presentation"
       ],
-      "motion": [],
-      "color": [],
-      "imagery": []
+      "motion": [
+        "cinematic-motion"
+      ],
+      "color": [
+        "papaya-orange"
+      ],
+      "imagery": [
+        "full-bleed-imagery",
+        "high-impact-art-direction"
+      ]
     },
     "note": "The site has real energy and unmistakably feels like McLaren. The dramatic full-screen imagery, oversized typography, sharp transitions and restrained use of Papaya Orange communicate speed, engineering and performance without relying on generic “luxury” styling.\n\nI especially like the opening carousel: the numbered navigation, compact headlines and full-bleed campaign imagery create a strong sense of momentum. The design allows each car and story to establish its own atmosphere while remaining recognizably part of the McLaren world.",
     "shots": {

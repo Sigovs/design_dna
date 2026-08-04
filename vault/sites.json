@@ -198,16 +198,24 @@
       "composition": [
         "active-negative-space",
         "dominant-mass",
-        "tonal-structure"
+        "tonal-structure",
+        "luxury-automotive",
+        "side-navigation"
       ],
       "risks": [],
       "typography": [],
       "layout": [
         "air",
-        "bleed"
+        "bleed",
+        "circular-controls",
+        "model-presentation",
+        "visual-continuity"
       ],
       "motion": [
-        "restraint"
+        "restraint",
+        "luxury-restraint",
+        "cinematic",
+        "immersive-brand-experience"
       ],
       "color": [
         "neutral",
@@ -216,7 +224,9 @@
       "imagery": [
         "photography",
         "art-direction",
-        "product"
+        "product",
+        "integrated-video",
+        "frosted-glass"
       ]
     },
     "note": "Everything works here—the colors, side menu, frosted glass, model presentation, and circular buttons all feel perfectly placed. The video is integrated beautifully: it doesn’t look like a separate block, but rather a natural continuation of the background. Take a loo The site feels like a complete, authored brand experience rather than a collection of individually designed sections. The restrained typography, cinematic imagery, side navigation, translucent surfaces and slow motion all speak the same visual language. I especially like how the video appears to continue the surrounding environment instead of sitting inside a conventional rectangular container. The interface supports the atmosphere without competing with the cars, which gives the experience confidence, continuity and a genuine sense of luxury.",

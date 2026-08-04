@@ -1,5 +1,51 @@
 [
   {
+    "id": "mclaren-com-cars-gl-en",
+    "url": "https://www.mclaren.com/cars/gl_en",
+    "title": "AUTOMOTIVE",
+    "added": "2026-08-04",
+    "rating": 3,
+    "dialectStatus": "in",
+    "dialects": [],
+    "tags": {
+      "composition": [
+        "active-negative-space",
+        "brief-derived-cultural-directory",
+        "compositional-resolution",
+        "concept-led-interface",
+        "dominant-mass",
+        "intentional-crop",
+        "rhythm-variation"
+      ],
+      "risks": [
+        "ambiguous-reading-order",
+        "decorative-information-legibility-risk",
+        "repeated-composition-risk"
+      ],
+      "typography": [],
+      "layout": [],
+      "motion": [],
+      "color": [],
+      "imagery": []
+    },
+    "note": "TODO",
+    "shots": {
+      "full": null,
+      "hero": null,
+      "mobile": null,
+      "strip": [],
+      "stripMobile": [],
+      "navScrolled": null
+    },
+    "kind": "site",
+    "source": "",
+    "extras": [],
+    "captureError": null,
+    "works": "",
+    "weaknesses": "",
+    "unsorted": []
+  },
+  {
     "id": "immersive-g-com",
     "kind": "site",
     "url": "https://immersive-g.com/",

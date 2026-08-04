@@ -4,7 +4,7 @@
     "url": "https://www.mclaren.com/cars/gl_en",
     "title": "AUTOMOTIVE",
     "added": "2026-08-04",
-    "rating": 3,
+    "rating": 2,
     "dialectStatus": "in",
     "dialects": [],
     "tags": {
@@ -22,8 +22,15 @@
         "decorative-information-legibility-risk",
         "repeated-composition-risk"
       ],
-      "typography": [],
-      "layout": [],
+      "typography": [
+        "commerce-editorial-alternation"
+      ],
+      "layout": [
+        "air",
+        "grid-break",
+        "bleed",
+        "dense-done-right"
+      ],
       "motion": [],
       "color": [],
       "imagery": []

@@ -86,6 +86,40 @@
     "unsorted": []
   },
   {
+    "id": "polestar-com-us",
+    "url": "https://www.polestar.com/us/",
+    "title": "polestar.com",
+    "added": "2026-08-04",
+    "rating": 2,
+    "dialectStatus": "unreviewed",
+    "dialects": [],
+    "tags": {
+      "composition": [],
+      "risks": [],
+      "typography": [],
+      "layout": [],
+      "motion": [],
+      "color": [],
+      "imagery": []
+    },
+    "note": "TODO",
+    "shots": {
+      "full": null,
+      "hero": null,
+      "mobile": null,
+      "strip": [],
+      "stripMobile": [],
+      "navScrolled": null
+    },
+    "kind": "site",
+    "source": "",
+    "extras": [],
+    "captureError": null,
+    "works": "",
+    "weaknesses": "",
+    "unsorted": []
+  },
+  {
     "id": "semlerpremium-dk",
     "url": "https://semlerpremium.dk/",
     "title": "Semler Premium",

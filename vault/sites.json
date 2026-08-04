@@ -1,5 +1,78 @@
 [
   {
+    "id": "semlerpremium-dk",
+    "url": "https://semlerpremium.dk/",
+    "title": "Semler Premium",
+    "added": "2026-08-04",
+    "rating": 2,
+    "dialectStatus": "unreviewed",
+    "dialects": [],
+    "tags": {
+      "composition": [
+        "active-negative-space",
+        "brand-architecture",
+        "directed-eye",
+        "dominant-mass",
+        "inventory-integration",
+        "luxury-automotive",
+        "visual-silence"
+      ],
+      "risks": [
+        "narrative-dilution-risk",
+        "repeated-composition-risk"
+      ],
+      "typography": [
+        "big-type",
+        "editorial",
+        "grotesque"
+      ],
+      "layout": [
+        "air",
+        "asymmetry",
+        "bleed"
+      ],
+      "motion": [
+        "restraint"
+      ],
+      "color": [
+        "neutral",
+        "monochrome",
+        "bold-accent"
+      ],
+      "imagery": [
+        "photography",
+        "art-direction",
+        "product",
+        "scrim-text"
+      ]
+    },
+    "note": "The site feels much more considered than a typical multi-brand dealership website. It successfully brings Porsche, Bentley and Lamborghini into one premium environment without allowing the individual brand identities to fragment the overall experience.\n\nI like the restrained typography, confident use of large imagery, generous spacing and editorial composition. The design feels sophisticated without relying on excessive decoration or predictable luxury clichés. It gives the dealership its own identity while still allowing the vehicles and manufacturer campaigns to remain visually dominant.",
+    "shots": {
+      "full": null,
+      "hero": null,
+      "mobile": null,
+      "strip": [],
+      "stripMobile": []
+    },
+    "kind": "site",
+    "source": "",
+    "extras": [],
+    "captureError": null,
+    "works": "The strongest decision is the separation between Semler Premium's identity and the identities of its three brands. The neutral visual foundation can accommodate the precision of Porsche, the elegance of Bentley and the intensity of Lamborghini without visibly favoring one of them.\n\nThe opening content has a calm, confident rhythm. Large headlines, concise messaging and full-width imagery create presence without crowding the screen with dealership promotions. The writing also reinforces a curated ownership experience rather than presenting the business merely as a place to purchase cars.\n\nThe information architecture is unusually complete for a premium dealer. Showroom inventory, individual brands, service booking, events, news, leasing and dealership information are all identifiable. This makes the experience aspirational while still supporting practical customer tasks.\n\nThe transition from brand storytelling into real inventory is valuable. It connects desire with an actionable showroom instead of separating the editorial experience from the commercial purpose of the site. Upcoming events, ownership services and specialist support also help position Semler Premium as a long-term relationship rather than a single transaction.",
+    "weaknesses": "The homepage becomes too long and tries to accommodate almost every part of the business. Brand introductions, Bentley campaigns, authorization messaging, service benefits, locations, events, Porsche promotion, inventory, news, workshop booking and leasing conversion all appear in one sequence. Individually these sections are useful, but together they weaken the page's central narrative.\n\nThe visual quality is not completely consistent. The more editorial sections feel carefully art-directed, while inventory cards, event listings, booking modules and the leasing form move closer to conventional dealership UI. The experience gradually shifts from a distinctive premium publication into a well-styled content portal.\n\nThere is also an inherent tension between the three manufacturers. Each brings its own imagery, tone and campaign language, so the site sometimes feels like a refined container for separate brand campaigns rather than one fully authored visual world.\n\nCompared with Rolls-Royce, the interface and media do not form the same continuous spatial experience. Semler Premium is more practical and commercially useful, but less immersive. Compared with McLaren, it has greater restraint and broader usability, but less energy and a less distinctive motion character.\n\nOverall, the site succeeds as a sophisticated premium dealer platform, but it does not fully sustain the clarity and visual authority of its strongest opening sections throughout the entire homepage.",
+    "unsorted": [
+      "porsche",
+      "bentley",
+      "lamborghini",
+      "multi-brand-dealership",
+      "premium-showroom",
+      "ownership-experience",
+      "events",
+      "scandinavian-design",
+      "automotive-retail"
+    ]
+  },
+  {
     "id": "mclaren-com-cars-gl-en",
     "url": "https://www.mclaren.com/cars/gl_en",
     "title": "AUTOMOTIVE",

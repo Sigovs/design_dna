@@ -674,7 +674,7 @@
       "navScrolled": "shots/rolls-roycemotorcars-com-en-us-home-html/nav-scrolled.jpg"
     },
     "extras": [],
-    "captureError": "partial evidence — a consent dialog was still covering the page when the shots were taken, so every frame shows the dialog and not the site — no CONSENT_PATTERNS entry matched its buttons (\"Rolls-Royce PRE-OWNED COOKIES PRESSCLUB COMPLAINTS FIND A DEALER WHISP\")",
+    "captureError": "partial evidence — the shots themselves are correct and the side menu is closed. NOT preserved by a static capture: menu transition timing and easing, video playback continuity, and any masking or compositing technique. Measured on the page at capture time: backdrop-filter blur(150px) saturate(1.8) on the menu pane when open (600x900 desktop, 390x664 mobile); three viewport-sized videos at object-fit cover with border-radius 0 and no mask-image; 3 pill controls and 0 circular controls at 1440x900.",
     "works": "The site succeeds because every element belongs to the same visual language. The side navigation preserves the cinematic composition, while the translucent surfaces add structure without separating the interface from the imagery. Circular controls complement the soft geometry of the system, and the restrained typography allows the models and art direction to remain dominant. Most importantly, the video, UI and background feel like one continuous environment rather than separate layers assembled on a page.",
     "weaknesses": "Some of the interface prioritizes atmosphere over immediate clarity. The circular controls and unconventional navigation are visually distinctive, but their purpose is not always obvious without interaction. Frosted-glass elements depend heavily on the brightness and complexity of the footage behind them, so legibility can become inconsistent. The experience also relies on heavy video, blur and motion, which may affect mobile performance. It is an exceptional brand experience, but occasionally less direct and usable than it is visually impressive.",
     "unsorted": []
@@ -1166,16 +1166,11 @@
     },
     "note": "IN — A disciplined film-led portfolio in which moving imagery becomes the primary interface rather than content placed inside a conventional layout.",
     "shots": {
-      "full": "shots/electrafilmworks-com/full.jpg",
-      "hero": "shots/electrafilmworks-com/hero.jpg",
-      "mobile": "shots/electrafilmworks-com/mobile.jpg",
-      "strip": [
-        "shots/electrafilmworks-com/strip-1.jpg"
-      ],
-      "stripMobile": [
-        "shots/electrafilmworks-com/strip-m-1.jpg"
-      ],
-      "navScrolled": null
+      "full": null,
+      "hero": null,
+      "mobile": null,
+      "strip": [],
+      "stripMobile": []
     },
     "kind": "site",
     "source": "",
@@ -1325,33 +1320,16 @@
     },
     "note": "MAYBE — A technically exceptional creative-studio showcase that unifies WebGL, DOM typography, scroll choreography and generated sound around a recurring system of charging, fragmentation and reassembly. The interactive three-part identity, hold-to-blast hero, responsive weld effects, exploding service typography, frame-scrubbed sequences and helix-to-grid work gallery demonstrate unusually coherent motion engineering rather than a collection of isolated effects. Its strongest value lies in synchronization, shared interaction states and the transformation of a brand symbol into a behavioral system. However, the visual language remains rooted in familiar creative-development conventions, spectacle frequently competes with studio content, and the experience carries substantial performance, accessibility and imitation risks. Preserve as a motion-systems and creative-development reference, not as a general compositional or commercial-site model.",
     "shots": {
-      "full": "shots/trionn-com/full.jpg",
-      "hero": "shots/trionn-com/hero.jpg",
-      "mobile": "shots/trionn-com/mobile.jpg",
-      "strip": [
-        "shots/trionn-com/strip-1.jpg",
-        "shots/trionn-com/strip-2.jpg",
-        "shots/trionn-com/strip-3.jpg",
-        "shots/trionn-com/strip-4.jpg",
-        "shots/trionn-com/strip-5.jpg",
-        "shots/trionn-com/strip-6.jpg",
-        "shots/trionn-com/strip-7.jpg",
-        "shots/trionn-com/strip-8.jpg"
-      ],
-      "stripMobile": [
-        "shots/trionn-com/strip-m-1.jpg",
-        "shots/trionn-com/strip-m-2.jpg",
-        "shots/trionn-com/strip-m-3.jpg",
-        "shots/trionn-com/strip-m-4.jpg",
-        "shots/trionn-com/strip-m-5.jpg",
-        "shots/trionn-com/strip-m-6.jpg"
-      ],
-      "navScrolled": null
+      "full": null,
+      "hero": null,
+      "mobile": null,
+      "strip": [],
+      "stripMobile": []
     },
     "kind": "site",
     "source": "",
     "extras": [],
-    "captureError": "partial evidence — 3 canvas element(s) — motion and WebGL state are not preserved by a static shot",
+    "captureError": null,
     "works": "Hero — не обычное видео или абстрактный 3D-object. Фирменный трёхчастный знак реагирует на курсор, прокрутку и удержание мыши, распадается и снова собирается.\nHold to Blast и Dare to touch the lines превращают первый экран в игровое исследование, а не пассивную презентацию.\nMotion построен как связанная система: один и тот же принцип распада, энергии и пересборки проходит через знак, typography, services и переходы.\nОчень сильная синхронизация WebGL + DOM typography + scroll + generated sound.\nServices — полноценная режиссированная последовательность: 371-frame object animation, распад заголовка, появление карточек по траекториям и переход от тёмной среды к светлой.\nWork gallery сначала существует как пространственная double helix, а затем разворачивается в обычную сетку. Хороший переход spectacle → usable content.\nSound не просто музыкальный фон: beep, charging, explosion и welding sounds реагируют на конкретные действия.\nУ сайта есть отдельная motion-логика для mobile и поддержка reduced motion — важный признак продуманной реализации.\nНесмотря на огромное количество технологий, настоящие заголовки остаются DOM-текстом, а не запекаются внутрь canvas.\nДля агентства сайт отлично продаёт именно creative development: посетитель сразу видит, что команда действительно умеет строить сложные интерактивные системы.",
     "weaknesses": "Главная проблема: motion здесь часто демонстрирует возможности технологии, а не раскрывает содержание студии.\n\nBlast, sparks, helix, exploding letters, frame sequence, stripe wipes — каждый эпизод хочет стать главным.\nСайт постоянно говорит: «посмотри, что мы технически умеем». Это убедительно для разработчика, но немного утомительно как бренд.\nЦентральная идея Designed to mean intention звучит правильно, однако опыт местами ощущается противоположно: эффектов больше, чем смысловой необходимости.\nВизуальная база без motion довольно знакомая: чёрный/белый, oversized grotesk, glowing 3D-object, microcopy, technical prompts.\nWork и реальные кейсы рискуют стать вторичными относительно механики самого портфолио.\nПользователю нужно научиться взаимодействовать с hero, хотя эти действия не помогают выбрать услугу или найти проект.\n371 отдельных кадров, Three.js, Lenis, GSAP, Swiper и Web Audio — огромная сложность для agency homepage.\nНа слабом устройстве или проблемном соединении experience может буквально исчезнуть — что и произошло при моей проверке.\nСинтезированный звук хорошо поддерживает взаимодействие, но многие посетители никогда его не включат.\nЭто опасный reference для Claude: он скопирует WebGL object + giant type + scroll effects, но не сможет воспроизвести инженерную связность оригинала.",
     "unsorted": []

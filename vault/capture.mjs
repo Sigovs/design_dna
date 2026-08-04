@@ -89,16 +89,24 @@ async function isChallengePage(page) {
    offer "necessary only".
    The list is English + the languages this vault actually collects in. It was
    English-only until a .dk site filed its cookie dialog as the hero. */
-const CONSENT_PATTERNS = [
-  /^(accept|accept all|allow all|agree|i agree|got it|ok|okay)$/i,
-  /^(accept all cookies|allow cookies|accept cookies)$/i,
-  /^(accepter alle|tillad alle|godta alle|godkänn alla|tillåt alla)$/i,
-  /^(alle akzeptieren|alles akzeptieren|zustimmen|alles accepteren|tout accepter)$/i,
-  /^(reject all|decline all|refuse all|necessary only|only necessary)$/i,
-  /^(afvis alle|kun nødvendige|avvis alle|avvisa alla|endast nödvändiga)$/i,
-  /^(alle ablehnen|nur notwendige|alles weigeren|alleen noodzakelijke|tout refuser)$/i,
-  /^(continue|understood|dismiss|close)$/i,
+const CONSENT_CHOICES = [
+  ['accept', 'accept all', 'allow all', 'agree', 'i agree', 'got it', 'ok', 'okay'],
+  ['accept all cookies', 'allow cookies', 'accept cookies'],
+  ['accepter alle', 'tillad alle', 'godta alle', 'godkänn alla', 'tillåt alla'],
+  ['alle akzeptieren', 'alles akzeptieren', 'zustimmen', 'alles accepteren', 'tout accepter'],
+  ['reject all', 'decline all', 'refuse all', 'decline', 'necessary only', 'only necessary'],
+  ['afvis alle', 'kun nødvendige', 'avvis alle', 'avvisa alla', 'endast nödvändiga'],
+  ['alle ablehnen', 'nur notwendige', 'alles weigeren', 'alleen noodzakelijke', 'tout refuser'],
+  ['continue', 'understood', 'dismiss', 'close'],
 ];
+
+const exactly = (words) => new RegExp(`^(?:${words.join('|')})$`, 'i');
+
+/* Tried in order, so accept wins where a wall offers both. */
+const CONSENT_PATTERNS = CONSENT_CHOICES.map(exactly);
+
+/* The same labels as one test, for recognising a wall rather than clicking one. */
+const CONSENT_CHOICE_TEXT = exactly(CONSENT_CHOICES.flat());
 
 /* Words that identify a consent wall in the languages above — used to recognise
    one that survived dismissal, never to click anything. */
@@ -220,6 +228,7 @@ async function settle(page, url) {
   } catch { /* lazy loaders that never idle are common; proceed */ }
 
   await page.waitForTimeout(700); // let entrance animations land
+  await settleIntro(page);        // and let an intro sequence finish
 
   // Freeze motion so shots are deterministic and hero isn't mid-transition.
   await page.addStyleTag({
@@ -294,8 +303,21 @@ async function dismissConsent(page) {
      gate policy above rules out. */
   for (const pattern of CONSENT_PATTERNS) {
     try {
-      const control = page.getByText(pattern, { exact: true }).last();
-      if (await control.isVisible({ timeout: 300 })) {
+      const matches = page.getByText(pattern, { exact: true });
+      const count = Math.min(await matches.count(), 4);
+      for (let i = 0; i < count; i++) {
+        const control = matches.nth(i);
+        /* Hover-animated labels ship two copies of themselves, the second
+           opacity:0 and pointer-events:none. isVisible() says yes to both,
+           because neither is display:none or visibility:hidden, and the click
+           on the dead copy times out into the catch below — silently. TRIONN
+           kept its cookie bar across three captures exactly that way. */
+        const live = await control.evaluate((node) => {
+          const cs = getComputedStyle(node);
+          return cs.pointerEvents !== 'none' && Number(cs.opacity) > 0.05;
+        }).catch(() => false);
+        if (!live) continue;
+        if (!(await control.isVisible({ timeout: 300 }))) continue;
         await control.click({ timeout: 2000 });
         await page.waitForTimeout(400);
         log('  · dismissed a consent dialog (unlabelled control, matched by exact text)');
@@ -313,9 +335,11 @@ async function dismissConsent(page) {
    Deliberately narrow: a large fixed or dialog-role block, carrying consent
    language, that holds a control. A cookie link in a footer is none of those. */
 async function survivingConsentWall(page) {
-  return page.evaluate((markers) => {
-    const re = new RegExp(markers, 'i');
-    const floor = window.innerWidth * window.innerHeight * 0.08;
+  return page.evaluate(({ markers, choices }) => {
+    const marker = new RegExp(markers, 'i');
+    const choice = new RegExp(choices, 'i');
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
 
     for (const el of document.querySelectorAll('body *')) {
       const style = getComputedStyle(el);
@@ -323,17 +347,53 @@ async function survivingConsentWall(page) {
       if (!pinned && el.getAttribute('role') !== 'dialog') continue;
       if (style.display === 'none' || style.visibility === 'hidden' || Number(style.opacity) === 0) continue;
 
+      /* Off-screen is not covering anything. */
       const box = el.getBoundingClientRect();
-      if (box.width * box.height < floor) continue;
+      if (box.bottom <= 0 || box.top >= vh || box.right <= 0 || box.left >= vw) continue;
+
+      /* A cookie bar is a wide thin strip, not a big block — TRIONN's is 4.8%
+         of the viewport and the first version of this check walked past it. */
+      const strip = box.width >= vw * 0.5 && box.height >= 28;
+      if (!strip && box.width * box.height < vw * vh * 0.06) continue;
 
       const text = (el.innerText ?? '').slice(0, 800);
-      if (!re.test(text)) continue;
-      if (!el.querySelector('button, [role="button"], input[type="submit"]')) continue;
+      if (!marker.test(text)) continue;
+
+      /* A footer that merely links to a cookie policy is not a wall, and
+         Rolls-Royce's fixed footer — which carries a COOKIES link — was
+         reported as one. A wall always asks for a decision, so the decision
+         control is what identifies it. */
+      const asks = [...el.querySelectorAll('button, a, [role="button"], span, div')]
+        .some((node) => choice.test((node.textContent ?? '').trim()));
+      if (!asks) continue;
 
       return text.replace(/\s+/g, ' ').trim().slice(0, 70);
     }
     return null;
-  }, CONSENT_MARKERS.source);
+  }, { markers: CONSENT_MARKERS.source, choices: CONSENT_CHOICE_TEXT.source });
+}
+
+/* Intro animations are not loading. networkidle fires while a page is still
+   playing one, and the shot lands on a holding screen — electrafilmworks ran a
+   five-second intro and filed a plain orange plate as its hero. So: wait until
+   the DOM stops changing, capped, then carry on. A page that was never animating
+   costs one extra second. */
+async function settleIntro(page, capMs = 8000) {
+  const signature = () => page
+    .evaluate(() => `${document.body?.innerText.length ?? 0}:${document.querySelectorAll('*').length}`)
+    .catch(() => '');
+
+  const deadline = Date.now() + capMs;
+  let last = await signature();
+  let stable = 0;
+
+  while (Date.now() < deadline) {
+    await page.waitForTimeout(700);
+    const now = await signature();
+    if (now === last && ++stable >= 2) return;
+    if (now !== last) { stable = 0; last = now; }
+  }
+  warn('the page was still changing when the wait ran out — shooting anyway');
 }
 
 /* -------------------------------------------------------------- capturing */

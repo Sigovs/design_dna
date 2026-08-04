@@ -230,11 +230,7 @@ async function settle(page, url) {
   await page.waitForTimeout(700); // let entrance animations land
   await settleIntro(page);        // and let an intro sequence finish
 
-  /* Second pass. TRIONN mounts its cookie bar after the hero animation, so the
-     first pass ran against a page that had no bar in it yet and found nothing
-     to dismiss — which is indistinguishable, from inside the first pass, from a
-     site that never had one. */
-  await dismissConsent(page);
+  await clearConsent(page);
   await page.keyboard.press('Escape').catch(() => {});
   await page.waitForTimeout(300);
 
@@ -404,6 +400,21 @@ async function survivingConsentWall(page) {
     }
     return null;
   }, { markers: CONSENT_MARKERS.source, choices: CONSENT_CHOICE_TEXT.source });
+}
+
+/* Act, then check, then act again. A consent bar mounts on its own schedule —
+   TRIONN's arrives after the hero animation — so a single attempt at a single
+   moment is a bet on when that happens, and the window moved between runs. This
+   ties the attempt to the test that reports the failure: keep going until the
+   detector says nothing is covering the page. Bounded, and free on a page that
+   never had a bar. */
+async function clearConsent(page, tries = 4) {
+  for (let attempt = 0; attempt < tries; attempt++) {
+    await dismissConsent(page);
+    if (!(await survivingConsentWall(page))) return;
+    await page.waitForTimeout(1200);
+  }
+  warn('a consent dialog is still up after four attempts');
 }
 
 /* Intro animations are not loading. networkidle fires while a page is still

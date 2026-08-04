@@ -57,10 +57,11 @@
       "hue": 240,
       "tags": [
         "air",
-        "grid-break",
-        "bleed",
         "asymmetry",
-        "dense-done-right"
+        "bleed",
+        "dense-done-right",
+        "grid-break",
+        "strict-grid"
       ]
     },
     "motion": {

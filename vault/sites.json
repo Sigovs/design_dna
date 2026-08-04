@@ -238,21 +238,48 @@
   {
     "id": "polestar-com-us",
     "url": "https://www.polestar.com/us/",
-    "title": "Polestar",
+    "title": "Polestar United States",
     "added": "2026-08-04",
     "rating": 2,
     "dialectStatus": "unreviewed",
     "dialects": [],
     "tags": {
-      "composition": [],
-      "risks": [],
-      "typography": [],
-      "layout": [],
+      "composition": [
+        "active-negative-space",
+        "conversion-first-hierarchy",
+        "directed-eye",
+        "dominant-mass",
+        "luxury-automotive",
+        "visual-silence"
+      ],
+      "risks": [
+        "asset-dependency-risk",
+        "narrative-dilution-risk",
+        "repeated-composition-risk"
+      ],
+      "typography": [
+        "big-type",
+        "editorial",
+        "grotesque"
+      ],
+      "layout": [
+        "air",
+        "bleed",
+        "strict-grid"
+      ],
       "motion": [],
-      "color": [],
-      "imagery": []
+      "color": [
+        "monochrome",
+        "neutral",
+        "dark"
+      ],
+      "imagery": [
+        "photography",
+        "art-direction",
+        "product"
+      ]
     },
-    "note": "TODO",
+    "note": "The site has a highly disciplined and immediately recognizable design language. The monochrome palette, precise typography, sharp grid, minimal controls and technical photography all reflect the same idea: performance expressed through reduction rather than visual aggression.\n\nI especially like that Polestar does not imitate conventional automotive luxury. There is almost no decorative styling, artificial glamour or unnecessary interface chrome. The cars are presented more like carefully engineered objects than lifestyle accessories. The result feels intelligent, contemporary and unmistakably Scandinavian.\n\nOverall — yes, I like it. A very strong example of a brand being modern, technical and premium without the standard luxury clichés. But the American homepage is noticeably weakened right now by the volume of discounts, leasing offers and practical EV blocks. Polestar's visual system is stronger than the composition of the homepage itself.",
     "shots": {
       "full": "shots/polestar-com-us/full.jpg",
       "hero": "shots/polestar-com-us/hero.jpg",
@@ -280,9 +307,20 @@
     "source": "",
     "extras": [],
     "captureError": null,
-    "works": "",
-    "weaknesses": "",
-    "unsorted": []
+    "works": "The strongest quality is the consistency between the product and the interface. The restrained color palette, geometric typography, strict alignment and generous negative space communicate the same precision seen in the vehicles themselves.\n\nHierarchy is exceptionally clear. Large imagery establishes the product, concise headlines explain the proposition, and direct calls to action make the next step obvious. Even within a highly minimal system, the website remains commercially functional: users can discover individual models, shop available inventory, configure a vehicle, compare offers, book a test drive and access ownership information without decoding an experimental interface.\n\nThe site also uses contrast intelligently. White and pale neutral spaces create a calm editorial rhythm, while darker sections and high-impact photography introduce weight without changing the underlying design language. Small accent details feel deliberate because the surrounding interface is so controlled.\n\nThe navigation is extensive but logically organized around models, pre-owned vehicles, shopping tools and ownership. This allows the site to support a large commercial ecosystem without making the main interface feel like a conventional dealership portal.\n\nUnlike Rolls-Royce, Polestar does not attempt to create one continuous cinematic world. Its strength is different: it makes information, product and commerce feel like parts of one precise design system.",
+    "weaknesses": "The homepage currently feels more transactional than aspirational. Large discounts, monthly lease prices, incentives and promotional disclaimers appear very early, shifting attention from design and product character toward immediate conversion. This may be commercially necessary in the U.S. market, but it weakens the brand's premium confidence.\n\nThe page also becomes increasingly conventional below the model presentations. Charging information, an EV savings calculator, ownership reassurance, service links and newsletter content are useful, but together they create a sequence of functional modules rather than a strong editorial narrative.\n\nThe minimalism can occasionally become too neutral. Because typography, buttons, spacing and section structures are deliberately repetitive, different models do not always receive sufficiently distinct visual personalities. The system remains coherent, but parts of the page can feel templated.\n\nCompared with Rolls-Royce, it has less atmosphere, spatial depth and emotional immersion. Compared with McLaren, it has less drama and kinetic energy. Polestar is more disciplined and usable than both, but also cooler and less emotionally memorable.\n\nThe design also depends heavily on exceptional art direction. If the same grid, typography and whitespace were applied with ordinary dealership photography, the result could feel empty rather than refined.\n\nOverall, Polestar is an excellent reference for disciplined brand systems, typography, hierarchy and product-led minimalism — but the current U.S. homepage does not fully preserve that authority once promotional and ownership content begins to dominate.",
+    "unsorted": [
+      "polestar",
+      "electric-vehicles",
+      "scandinavian-design",
+      "product-minimalism",
+      "technical-editorial",
+      "precision-typography",
+      "automotive-ecommerce",
+      "ev-ownership",
+      "direct-conversion",
+      "modern-automotive"
+    ]
   },
   {
     "id": "semlerpremium-dk",

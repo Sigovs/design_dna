@@ -230,6 +230,14 @@ async function settle(page, url) {
   await page.waitForTimeout(700); // let entrance animations land
   await settleIntro(page);        // and let an intro sequence finish
 
+  /* Second pass. TRIONN mounts its cookie bar after the hero animation, so the
+     first pass ran against a page that had no bar in it yet and found nothing
+     to dismiss — which is indistinguishable, from inside the first pass, from a
+     site that never had one. */
+  await dismissConsent(page);
+  await page.keyboard.press('Escape').catch(() => {});
+  await page.waitForTimeout(300);
+
   // Freeze motion so shots are deterministic and hero isn't mid-transition.
   await page.addStyleTag({
     content: `*,*::before,*::after{animation-duration:0s!important;animation-delay:0s!important;transition-duration:0s!important;transition-delay:0s!important;scroll-behavior:auto!important}`,
@@ -375,25 +383,30 @@ async function survivingConsentWall(page) {
 
 /* Intro animations are not loading. networkidle fires while a page is still
    playing one, and the shot lands on a holding screen — electrafilmworks ran a
-   five-second intro and filed a plain orange plate as its hero. So: wait until
-   the DOM stops changing, capped, then carry on. A page that was never animating
-   costs one extra second. */
-async function settleIntro(page, capMs = 8000) {
+   five-second intro and filed a plain orange plate as its hero.
+   Waiting for the DOM to go quiet is not enough on its own: an intro screen IS
+   quiet while it plays, so the first version of this call declared the plate
+   stable after 1.4s and shot it. Hence the floor — nothing is judged settled
+   before it has had time to hand over. */
+const INTRO_FLOOR_MS = 4200;
+const INTRO_CAP_MS = 9000;
+
+async function settleIntro(page) {
   const signature = () => page
     .evaluate(() => `${document.body?.innerText.length ?? 0}:${document.querySelectorAll('*').length}`)
     .catch(() => '');
 
-  const deadline = Date.now() + capMs;
+  const started = Date.now();
   let last = await signature();
   let stable = 0;
 
-  while (Date.now() < deadline) {
+  while (Date.now() - started < INTRO_CAP_MS) {
     await page.waitForTimeout(700);
     const now = await signature();
-    if (now === last && ++stable >= 2) return;
-    if (now !== last) { stable = 0; last = now; }
+    if (now !== last) { stable = 0; last = now; continue; }
+    stable += 1;
+    if (stable >= 2 && Date.now() - started >= INTRO_FLOOR_MS) return;
   }
-  warn('the page was still changing when the wait ran out — shooting anyway');
 }
 
 /* -------------------------------------------------------------- capturing */

@@ -83,12 +83,27 @@ async function isChallengePage(page) {
   return text.length < 1500 && CHALLENGE_MARKERS.some((re) => re.test(text));
 }
 
-/* Consent walls ruin hero shots. Best-effort dismissal, never fatal. */
+/* Consent walls ruin hero shots. Best-effort dismissal, never fatal.
+   Accept first — it is the one button every wall has, so it is the one that most
+   reliably clears the frame. Refusal follows as the fallback for walls that only
+   offer "necessary only".
+   The list is English + the languages this vault actually collects in. It was
+   English-only until a .dk site filed its cookie dialog as the hero. */
 const CONSENT_PATTERNS = [
   /^(accept|accept all|allow all|agree|i agree|got it|ok|okay)$/i,
   /^(accept all cookies|allow cookies|accept cookies)$/i,
+  /^(accepter alle|tillad alle|godta alle|godkänn alla|tillåt alla)$/i,
+  /^(alle akzeptieren|alles akzeptieren|zustimmen|alles accepteren|tout accepter)$/i,
+  /^(reject all|decline all|refuse all|necessary only|only necessary)$/i,
+  /^(afvis alle|kun nødvendige|avvis alle|avvisa alla|endast nödvändiga)$/i,
+  /^(alle ablehnen|nur notwendige|alles weigeren|alleen noodzakelijke|tout refuser)$/i,
   /^(continue|understood|dismiss|close)$/i,
 ];
+
+/* Words that identify a consent wall in the languages above — used to recognise
+   one that survived dismissal, never to click anything. */
+const CONSENT_MARKERS =
+  /cookie|consent|samtykke|personoplysninger|privatliv|personvern|integritet|datenschutz|einwilligung|toestemming/i;
 
 /* Intro gates that stand between the visitor and the page. Organimo shipped one —
    a "COMPLETE" button over an audio prompt — and the first capture filed the gate
@@ -260,6 +275,37 @@ async function dismissConsent(page) {
       }
     } catch { /* not present — the normal case */ }
   }
+}
+
+/* The failure that matters is not the wall — it is the wall going unrecorded. When
+   nothing above matches, every shot is still written and every one of them is a
+   photograph of the dialog rather than the site. The intro-gate note above records
+   this happening once already, silently; this is the same class of error, so it is
+   detected and filed instead of guessed at.
+   Deliberately narrow: a large fixed or dialog-role block, carrying consent
+   language, that holds a control. A cookie link in a footer is none of those. */
+async function survivingConsentWall(page) {
+  return page.evaluate((markers) => {
+    const re = new RegExp(markers, 'i');
+    const floor = window.innerWidth * window.innerHeight * 0.08;
+
+    for (const el of document.querySelectorAll('body *')) {
+      const style = getComputedStyle(el);
+      const pinned = style.position === 'fixed' || style.position === 'sticky';
+      if (!pinned && el.getAttribute('role') !== 'dialog') continue;
+      if (style.display === 'none' || style.visibility === 'hidden' || Number(style.opacity) === 0) continue;
+
+      const box = el.getBoundingClientRect();
+      if (box.width * box.height < floor) continue;
+
+      const text = (el.innerText ?? '').slice(0, 800);
+      if (!re.test(text)) continue;
+      if (!el.querySelector('button, [role="button"], input[type="submit"]')) continue;
+
+      return text.replace(/\s+/g, ' ').trim().slice(0, 70);
+    }
+    return null;
+  }, CONSENT_MARKERS.source);
 }
 
 /* -------------------------------------------------------------- capturing */
@@ -451,6 +497,11 @@ async function shoot(browser, entry, want = ALL_PARTS) {
         blocked.push('desktop hero');
         warn('a bot challenge answered instead of the site — hero not stored');
       } else {
+        const wall = await survivingConsentWall(heroPage);
+        if (wall) {
+          limits.push(`a consent dialog was still covering the page when the shots were taken, so every frame shows the dialog and not the site — no CONSENT_PATTERNS entry matched its buttons ("${wall}")`);
+          warn('a consent dialog survived dismissal — shots stored, limitation recorded');
+        }
         title = (await heroPage.title()) || title;
         await heroPage.screenshot({ path: join(dir, 'hero.jpg'), type: 'jpeg', quality: QUALITY.hero });
         shots.hero = `shots/${entry.id}/hero.jpg`;

@@ -1,155 +1,5 @@
 [
   {
-    "id": "semlerpremium-dk-showroom",
-    "url": "https://semlerpremium.dk/showroom/?leasingTypes=Flexleasing",
-    "title": "Semler Premium — Showroom SRP",
-    "added": "2026-08-04",
-    "rating": 3,
-    "dialectStatus": "unreviewed",
-    "dialects": [],
-    "tags": {
-      "composition": [
-        "active-negative-space",
-        "brand-architecture",
-        "conversion-first-hierarchy",
-        "curated-inventory",
-        "directed-eye",
-        "dominant-mass",
-        "editorial-inventory",
-        "luxury-automotive",
-        "visual-silence"
-      ],
-      "risks": [
-        "asset-dependency-risk",
-        "decorative-information-legibility-risk"
-      ],
-      "typography": [
-        "big-type",
-        "editorial",
-        "grotesque"
-      ],
-      "layout": [
-        "air",
-        "asymmetry",
-        "bleed",
-        "dense-done-right"
-      ],
-      "motion": [],
-      "color": [
-        "neutral",
-        "monochrome",
-        "bold-accent"
-      ],
-      "imagery": [
-        "photography",
-        "art-direction",
-        "product",
-        "scrim-text"
-      ]
-    },
-    "note": "This is an unusually refined showroom page. It performs the practical role of an SRP — filtering, sorting, comparing and opening inventory — but visually feels closer to a curated automotive editorial.\n\nThe generous vehicle photography, restrained typography, controlled spacing and minimal interface allow every car to retain its presence. The page does not overwhelm the inventory with badges, borders, promotional buttons or dense dealership metadata. It feels calm, expensive and exceptionally confident.\n\nWhat makes it especially strong is that the design does not attempt to disguise the inventory structure. It simply gives familiar SRP elements better hierarchy, scale and art direction.",
-    "shots": {
-      "full": null,
-      "hero": null,
-      "mobile": null,
-      "strip": [],
-      "stripMobile": []
-    },
-    "kind": "site",
-    "source": "",
-    "extras": [],
-    "captureError": null,
-    "works": "The vehicle cards are the strongest part of the experience. Photography receives most of the visual space, while location, model, derivative and price are arranged as a restrained information layer rather than a conventional dealer-card overlay.\n\nThe cards contain very little interface chrome. There are no competing CTAs, oversized price banners, financing badges or unnecessary borders. \"Quick View\" remains available, but it does not compete with the vehicle itself.\n\nThe restrained card design also allows very different brands — Porsche, Bentley, Ferrari, Lamborghini, Rolls-Royce, McLaren and others — to coexist without producing visual chaos. Semler provides a neutral premium frame while each vehicle carries its own character.\n\nThe filtering system is extensive but logically grouped. Users can narrow inventory by: price type and leasing structure; make and model; body type; monthly payment and initial payment; cash price; mileage and model year; fuel type, location and CO2 output. This is serious inventory functionality presented without making the entire page feel like a search form.\n\nThe overall density is particularly well judged. The images are large enough to create desire, but the page still operates as a browsable collection rather than a succession of oversized campaign sections. Sorting, filtering, pagination and Quick View preserve the efficiency expected from an SRP.\n\nThe page creates a natural bridge to Semler's upscaled VDP. The SRP presents each vehicle as something worth discovering; the VDP then expands it into a full editorial product experience. The two templates feel like stages of the same system rather than unrelated dealer pages.\n\nLESSON — the lines to carry into our own work:\nA premium SRP does not need to stop behaving like inventory. It needs to remove dealership noise, elevate the imagery and give comparison data a deliberate hierarchy.\nThe SRP creates desire at collection scale; the VDP expands that desire at product scale.",
-    "weaknesses": "The minimal presentation sometimes withholds information that comparison-oriented shoppers may want immediately. Mileage, year, drivetrain and other essential specifications are not always as prominent as the model and price, potentially requiring Quick View or entry into the VDP.\n\nPrice presentation is inherently complicated because the inventory mixes monthly leasing payments, cash prices, tax-inclusive prices and prices excluding registration tax. The typography is controlled, but users still need to read the qualifiers carefully before comparing vehicles.\n\nThe filter system is comprehensive, although its depth may become demanding on mobile. Long filter panels, numerical ranges and multiple leasing concepts require especially clear selected states, reset behavior and result feedback.\n\nThe large-format cards depend heavily on consistently excellent photography. Mixed crops, weak lighting or ordinary dealer images would become more noticeable at this scale and could quickly weaken the showroom quality.\n\nQuick View must also add genuine comparison value. If it merely repeats the card information or becomes an intermediate step before the VDP, it risks slowing down an otherwise direct browsing experience.\n\nOverall, these are mostly functional tensions rather than visual failures. This is one of the strongest examples of a premium automotive SRP because it preserves both desire and inventory utility.",
-    "unsorted": [
-      "premium-srp",
-      "automotive-showroom",
-      "upscaled-inventory",
-      "multi-brand-dealership",
-      "large-vehicle-cards",
-      "automotive-photography",
-      "advanced-filters",
-      "flexleasing",
-      "quick-view",
-      "premium-vdp-system"
-    ]
-  },
-  {
-    "id": "semlerpremium-dk-brands-porsche-911-gt3-11cec851-9b66-4905-a",
-    "url": "https://semlerpremium.dk/brands/porsche/911-gt3-11cec851-9b66-4905-a234-005f24fb800a/",
-    "title": "Semler Premium — Porsche 911 GT3 VDP",
-    "added": "2026-08-04",
-    "rating": 3,
-    "dialectStatus": "unreviewed",
-    "dialects": [],
-    "tags": {
-      "composition": [
-        "conversion-first-hierarchy",
-        "directed-eye",
-        "dominant-mass",
-        "editorial-inventory",
-        "luxury-automotive",
-        "product-storytelling",
-        "rhythm-variation",
-        "structured-specification"
-      ],
-      "risks": [
-        "asset-dependency-risk",
-        "narrative-dilution-risk"
-      ],
-      "typography": [
-        "big-type",
-        "commerce-editorial-alternation",
-        "editorial",
-        "grotesque"
-      ],
-      "layout": [
-        "air",
-        "asymmetry",
-        "bleed",
-        "dense-done-right"
-      ],
-      "motion": [],
-      "color": [
-        "dark",
-        "neutral",
-        "monochrome",
-        "bold-accent"
-      ],
-      "imagery": [
-        "photography",
-        "art-direction",
-        "product",
-        "scrim-text"
-      ]
-    },
-    "note": "This feels like an upscaled VDP rather than a conventional vehicle listing page. It retains all the necessary commercial information — price, leasing terms, mileage, specifications and equipment — but presents the car with the scale, pacing and visual confidence of a dedicated model experience.\n\nThe oversized imagery and restrained interface give the individual vehicle a sense of importance. Instead of placing everything inside a standard dealership template, the page allows the photography and the specific character of the GT3 Touring to shape the experience.",
-    "shots": {
-      "full": null,
-      "hero": null,
-      "mobile": null,
-      "strip": [],
-      "stripMobile": []
-    },
-    "kind": "site",
-    "source": "",
-    "extras": [],
-    "captureError": null,
-    "works": "The strongest decision is treating one inventory vehicle as a significant product rather than a database entry. The page opens with pricing and essential vehicle data, then expands into an 18-image gallery, editorial description, selected highlights, detailed equipment, performance figures and related inventory.\n\nCommercial information remains accessible, but it does not dominate the visual presentation. Data is broken into deliberate groups instead of being compressed into one dense specification table. This gives the page rhythm and makes a large amount of information easier to scan.\n\nThe progression is particularly effective:\n\ndesire → visual inspection → story → highlights → complete data → related vehicles\n\nThis is highly relevant to premium dealer VDP design. It demonstrates that a functional inventory page can feel cinematic and bespoke without sacrificing price transparency or practical vehicle information.\n\nLESSON — the line to carry into our own work:\nA premium VDP should not hide vehicle data — it should give that data hierarchy, pacing and product-level art direction.",
-    "weaknesses": "The experience becomes less distinctive as it moves deeper into specifications and the long equipment list. These sections return to a more conventional dealer-data presentation and do not fully sustain the visual authority of the opening gallery.\n\nSome information is also repeated: pricing and vehicle data appear in multiple areas. This may support different viewport states or sticky behavior, but it risks making the page feel longer than necessary.\n\nThe large gallery works because the photography is unusually strong and the car itself is exceptional. With inconsistent dealer photos, ordinary inventory or weak image sequencing, the same oversized treatment could magnify asset problems rather than create a premium experience.\n\nThe related-vehicle section also brings the page back toward a recognizable inventory grid. Functionally this is appropriate, but visually the transition from bespoke product story to standard listings could be handled with greater continuity.",
-    "unsorted": [
-      "upscaled-vdp",
-      "vehicle-detail-page",
-      "porsche-911-gt3",
-      "oversized-gallery",
-      "automotive-photography",
-      "leasing-data",
-      "performance-data",
-      "premium-dealership",
-      "inventory-conversion"
-    ]
-  },
-  {
     "id": "mclaren-com-cars-gl-en",
     "url": "https://www.mclaren.com/cars/gl_en",
     "title": "AUTOMOTIVE",
@@ -410,6 +260,185 @@
       "events",
       "scandinavian-design",
       "automotive-retail"
+    ]
+  },
+  {
+    "id": "semlerpremium-dk-brands-porsche-911-gt3-11cec851-9b66-4905-a",
+    "url": "https://semlerpremium.dk/brands/porsche/911-gt3-11cec851-9b66-4905-a234-005f24fb800a/",
+    "title": "Semler Premium — Porsche 911 GT3 VDP",
+    "added": "2026-08-04",
+    "rating": 3,
+    "dialectStatus": "unreviewed",
+    "dialects": [],
+    "tags": {
+      "composition": [
+        "conversion-first-hierarchy",
+        "directed-eye",
+        "dominant-mass",
+        "editorial-inventory",
+        "luxury-automotive",
+        "product-storytelling",
+        "rhythm-variation",
+        "structured-specification"
+      ],
+      "risks": [
+        "asset-dependency-risk",
+        "narrative-dilution-risk"
+      ],
+      "typography": [
+        "big-type",
+        "commerce-editorial-alternation",
+        "editorial",
+        "grotesque"
+      ],
+      "layout": [
+        "air",
+        "asymmetry",
+        "bleed",
+        "dense-done-right"
+      ],
+      "motion": [],
+      "color": [
+        "dark",
+        "neutral",
+        "monochrome",
+        "bold-accent"
+      ],
+      "imagery": [
+        "photography",
+        "art-direction",
+        "product",
+        "scrim-text"
+      ]
+    },
+    "note": "This feels like an upscaled VDP rather than a conventional vehicle listing page. It retains all the necessary commercial information — price, leasing terms, mileage, specifications and equipment — but presents the car with the scale, pacing and visual confidence of a dedicated model experience.\n\nThe oversized imagery and restrained interface give the individual vehicle a sense of importance. Instead of placing everything inside a standard dealership template, the page allows the photography and the specific character of the GT3 Touring to shape the experience.",
+    "shots": {
+      "full": "shots/semlerpremium-dk-brands-porsche-911-gt3-11cec851-9b66-4905-a/full.jpg",
+      "hero": "shots/semlerpremium-dk-brands-porsche-911-gt3-11cec851-9b66-4905-a/hero.jpg",
+      "mobile": "shots/semlerpremium-dk-brands-porsche-911-gt3-11cec851-9b66-4905-a/mobile.jpg",
+      "strip": [
+        "shots/semlerpremium-dk-brands-porsche-911-gt3-11cec851-9b66-4905-a/strip-1.jpg",
+        "shots/semlerpremium-dk-brands-porsche-911-gt3-11cec851-9b66-4905-a/strip-2.jpg",
+        "shots/semlerpremium-dk-brands-porsche-911-gt3-11cec851-9b66-4905-a/strip-3.jpg",
+        "shots/semlerpremium-dk-brands-porsche-911-gt3-11cec851-9b66-4905-a/strip-4.jpg",
+        "shots/semlerpremium-dk-brands-porsche-911-gt3-11cec851-9b66-4905-a/strip-5.jpg",
+        "shots/semlerpremium-dk-brands-porsche-911-gt3-11cec851-9b66-4905-a/strip-6.jpg",
+        "shots/semlerpremium-dk-brands-porsche-911-gt3-11cec851-9b66-4905-a/strip-7.jpg",
+        "shots/semlerpremium-dk-brands-porsche-911-gt3-11cec851-9b66-4905-a/strip-8.jpg"
+      ],
+      "stripMobile": [
+        "shots/semlerpremium-dk-brands-porsche-911-gt3-11cec851-9b66-4905-a/strip-m-1.jpg",
+        "shots/semlerpremium-dk-brands-porsche-911-gt3-11cec851-9b66-4905-a/strip-m-2.jpg",
+        "shots/semlerpremium-dk-brands-porsche-911-gt3-11cec851-9b66-4905-a/strip-m-3.jpg",
+        "shots/semlerpremium-dk-brands-porsche-911-gt3-11cec851-9b66-4905-a/strip-m-4.jpg",
+        "shots/semlerpremium-dk-brands-porsche-911-gt3-11cec851-9b66-4905-a/strip-m-5.jpg",
+        "shots/semlerpremium-dk-brands-porsche-911-gt3-11cec851-9b66-4905-a/strip-m-6.jpg"
+      ],
+      "navScrolled": null
+    },
+    "kind": "site",
+    "source": "",
+    "extras": [],
+    "captureError": null,
+    "works": "The strongest decision is treating one inventory vehicle as a significant product rather than a database entry. The page opens with pricing and essential vehicle data, then expands into an 18-image gallery, editorial description, selected highlights, detailed equipment, performance figures and related inventory.\n\nCommercial information remains accessible, but it does not dominate the visual presentation. Data is broken into deliberate groups instead of being compressed into one dense specification table. This gives the page rhythm and makes a large amount of information easier to scan.\n\nThe progression is particularly effective:\n\ndesire → visual inspection → story → highlights → complete data → related vehicles\n\nThis is highly relevant to premium dealer VDP design. It demonstrates that a functional inventory page can feel cinematic and bespoke without sacrificing price transparency or practical vehicle information.\n\nLESSON — the line to carry into our own work:\nA premium VDP should not hide vehicle data — it should give that data hierarchy, pacing and product-level art direction.",
+    "weaknesses": "The experience becomes less distinctive as it moves deeper into specifications and the long equipment list. These sections return to a more conventional dealer-data presentation and do not fully sustain the visual authority of the opening gallery.\n\nSome information is also repeated: pricing and vehicle data appear in multiple areas. This may support different viewport states or sticky behavior, but it risks making the page feel longer than necessary.\n\nThe large gallery works because the photography is unusually strong and the car itself is exceptional. With inconsistent dealer photos, ordinary inventory or weak image sequencing, the same oversized treatment could magnify asset problems rather than create a premium experience.\n\nThe related-vehicle section also brings the page back toward a recognizable inventory grid. Functionally this is appropriate, but visually the transition from bespoke product story to standard listings could be handled with greater continuity.",
+    "unsorted": [
+      "upscaled-vdp",
+      "vehicle-detail-page",
+      "porsche-911-gt3",
+      "oversized-gallery",
+      "automotive-photography",
+      "leasing-data",
+      "performance-data",
+      "premium-dealership",
+      "inventory-conversion"
+    ]
+  },
+  {
+    "id": "semlerpremium-dk-showroom",
+    "url": "https://semlerpremium.dk/showroom/?leasingTypes=Flexleasing",
+    "title": "Semler Premium — Showroom SRP",
+    "added": "2026-08-04",
+    "rating": 3,
+    "dialectStatus": "unreviewed",
+    "dialects": [],
+    "tags": {
+      "composition": [
+        "active-negative-space",
+        "brand-architecture",
+        "conversion-first-hierarchy",
+        "curated-inventory",
+        "directed-eye",
+        "dominant-mass",
+        "editorial-inventory",
+        "luxury-automotive",
+        "visual-silence"
+      ],
+      "risks": [
+        "asset-dependency-risk",
+        "decorative-information-legibility-risk"
+      ],
+      "typography": [
+        "big-type",
+        "editorial",
+        "grotesque"
+      ],
+      "layout": [
+        "air",
+        "asymmetry",
+        "bleed",
+        "dense-done-right"
+      ],
+      "motion": [],
+      "color": [
+        "neutral",
+        "monochrome",
+        "bold-accent"
+      ],
+      "imagery": [
+        "photography",
+        "art-direction",
+        "product",
+        "scrim-text"
+      ]
+    },
+    "note": "This is an unusually refined showroom page. It performs the practical role of an SRP — filtering, sorting, comparing and opening inventory — but visually feels closer to a curated automotive editorial.\n\nThe generous vehicle photography, restrained typography, controlled spacing and minimal interface allow every car to retain its presence. The page does not overwhelm the inventory with badges, borders, promotional buttons or dense dealership metadata. It feels calm, expensive and exceptionally confident.\n\nWhat makes it especially strong is that the design does not attempt to disguise the inventory structure. It simply gives familiar SRP elements better hierarchy, scale and art direction.",
+    "shots": {
+      "full": "shots/semlerpremium-dk-showroom/full.jpg",
+      "hero": "shots/semlerpremium-dk-showroom/hero.jpg",
+      "mobile": "shots/semlerpremium-dk-showroom/mobile.jpg",
+      "strip": [
+        "shots/semlerpremium-dk-showroom/strip-1.jpg",
+        "shots/semlerpremium-dk-showroom/strip-2.jpg",
+        "shots/semlerpremium-dk-showroom/strip-3.jpg"
+      ],
+      "stripMobile": [
+        "shots/semlerpremium-dk-showroom/strip-m-1.jpg",
+        "shots/semlerpremium-dk-showroom/strip-m-2.jpg",
+        "shots/semlerpremium-dk-showroom/strip-m-3.jpg",
+        "shots/semlerpremium-dk-showroom/strip-m-4.jpg",
+        "shots/semlerpremium-dk-showroom/strip-m-5.jpg",
+        "shots/semlerpremium-dk-showroom/strip-m-6.jpg"
+      ],
+      "navScrolled": null
+    },
+    "kind": "site",
+    "source": "",
+    "extras": [],
+    "captureError": null,
+    "works": "The vehicle cards are the strongest part of the experience. Photography receives most of the visual space, while location, model, derivative and price are arranged as a restrained information layer rather than a conventional dealer-card overlay.\n\nThe cards contain very little interface chrome. There are no competing CTAs, oversized price banners, financing badges or unnecessary borders. \"Quick View\" remains available, but it does not compete with the vehicle itself.\n\nThe restrained card design also allows very different brands — Porsche, Bentley, Ferrari, Lamborghini, Rolls-Royce, McLaren and others — to coexist without producing visual chaos. Semler provides a neutral premium frame while each vehicle carries its own character.\n\nThe filtering system is extensive but logically grouped. Users can narrow inventory by: price type and leasing structure; make and model; body type; monthly payment and initial payment; cash price; mileage and model year; fuel type, location and CO2 output. This is serious inventory functionality presented without making the entire page feel like a search form.\n\nThe overall density is particularly well judged. The images are large enough to create desire, but the page still operates as a browsable collection rather than a succession of oversized campaign sections. Sorting, filtering, pagination and Quick View preserve the efficiency expected from an SRP.\n\nThe page creates a natural bridge to Semler's upscaled VDP. The SRP presents each vehicle as something worth discovering; the VDP then expands it into a full editorial product experience. The two templates feel like stages of the same system rather than unrelated dealer pages.\n\nLESSON — the lines to carry into our own work:\nA premium SRP does not need to stop behaving like inventory. It needs to remove dealership noise, elevate the imagery and give comparison data a deliberate hierarchy.\nThe SRP creates desire at collection scale; the VDP expands that desire at product scale.",
+    "weaknesses": "The minimal presentation sometimes withholds information that comparison-oriented shoppers may want immediately. Mileage, year, drivetrain and other essential specifications are not always as prominent as the model and price, potentially requiring Quick View or entry into the VDP.\n\nPrice presentation is inherently complicated because the inventory mixes monthly leasing payments, cash prices, tax-inclusive prices and prices excluding registration tax. The typography is controlled, but users still need to read the qualifiers carefully before comparing vehicles.\n\nThe filter system is comprehensive, although its depth may become demanding on mobile. Long filter panels, numerical ranges and multiple leasing concepts require especially clear selected states, reset behavior and result feedback.\n\nThe large-format cards depend heavily on consistently excellent photography. Mixed crops, weak lighting or ordinary dealer images would become more noticeable at this scale and could quickly weaken the showroom quality.\n\nQuick View must also add genuine comparison value. If it merely repeats the card information or becomes an intermediate step before the VDP, it risks slowing down an otherwise direct browsing experience.\n\nOverall, these are mostly functional tensions rather than visual failures. This is one of the strongest examples of a premium automotive SRP because it preserves both desire and inventory utility.",
+    "unsorted": [
+      "premium-srp",
+      "automotive-showroom",
+      "upscaled-inventory",
+      "multi-brand-dealership",
+      "large-vehicle-cards",
+      "automotive-photography",
+      "advanced-filters",
+      "flexleasing",
+      "quick-view",
+      "premium-vdp-system"
     ]
   },
   {

@@ -233,6 +233,12 @@ async function settle(page, url) {
   await settleIntro(page);        // and let an intro sequence finish
 
   await clearConsent(page);
+
+  /* And the gate again, for the same reason the consent pass runs twice: HB Body
+     mounts its intro — and the SKIP INTRO control with it — after the first pass
+     has already looked and found nothing. */
+  await passSafeGate(page);
+
   await page.keyboard.press('Escape').catch(() => {});
   await page.waitForTimeout(300);
 
@@ -340,9 +346,12 @@ async function clickWhoseTextIs(page, groups, what) {
   const found = await page.evaluate(({ groups, mark }) => {
     document.querySelectorAll(`[${mark}]`).forEach((n) => n.removeAttribute(mark));
     const bare = (s) => (s ?? '').replace(/\s+/g, '').toLowerCase();
+    const viewport = innerWidth * innerHeight;
 
     for (const words of groups) {
       const choice = new RegExp(`^(?:${words.map(bare).join('|')})$`, 'i');
+      const candidates = [];
+
       for (const el of document.querySelectorAll('button, a, [role="button"], span, div, li')) {
         if (!choice.test(bare(el.textContent))) continue;
 
@@ -354,9 +363,24 @@ async function clickWhoseTextIs(page, groups, what) {
         if (box.width < 8 || box.height < 8) continue;
         if (box.bottom <= 0 || box.top >= innerHeight) continue;
 
-        el.setAttribute(mark, '1');
-        return true;
+        /* An ancestor inherits its child's text, so a full-screen wrapper around
+           one small button reads as that button and is FIRST in document order.
+           HB Body's is `div.frontpage-controls`, 1440x900, whose whole text is
+           "SKIP INTRO" — clicking it means clicking the centre of the viewport,
+           which is precisely the blind click the gate policy forbids, arrived at
+           by accident. A control is not the size of the page. */
+        if (box.width * box.height > viewport * 0.25) continue;
+
+        candidates.push({ el, area: box.width * box.height });
       }
+
+      if (!candidates.length) continue;
+
+      /* Smallest wins: the innermost element carrying exactly this text is the
+         control itself rather than a wrapper around it. */
+      candidates.sort((a, b) => a.area - b.area);
+      candidates[0].el.setAttribute(mark, '1');
+      return true;
     }
     return false;
   }, { groups, mark: MARK });

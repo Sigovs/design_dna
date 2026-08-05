@@ -18,6 +18,11 @@ register:
   display:    Plus Jakarta Sans
   accent:     not recorded
   image:      mixed
+  hero:       not recorded
+  symmetry:   not recorded
+  density:    not recorded
+  voices:     2
+  motion:     not recorded
 outcome:      not recorded
 ---
 

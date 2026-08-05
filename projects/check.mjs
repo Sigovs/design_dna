@@ -60,6 +60,23 @@ if (!files.length) {
   process.exit(0);
 }
 
+/* Written as prose and never compared for equality — a colour or a typeface name
+   carries detail no enum could hold, and that detail is worth more in the record
+   than it would be in a comparison. */
+const OPEN_AXES = ['ground', 'display', 'accent'];
+
+/* Compared, and therefore constrained. Each is an axis TASTE.md §2d already
+   requires three EXPLORE directions to differ on; until now the only one this
+   file could see was `image`. */
+const ENUM_AXES = {
+  image:    ['contained', 'bleed', 'mixed'],
+  hero:     ['image-led', 'type-led', 'object-led', 'split', 'index', 'none'],
+  symmetry: ['symmetric', 'asymmetric', 'centred'],
+  density:  ['sparse', 'measured', 'dense'],
+  voices:   ['1', '2', '3+'],
+  motion:   ['absent', 'restrained', 'choreographed'],
+};
+
 const records = [];
 const malformed = [];
 for (const f of files) {
@@ -67,8 +84,19 @@ for (const f of files) {
     const fm = parseFrontMatter(readFileSync(join(HERE, f), 'utf8'), f);
     const slug = fm.project || basename(f, '.md');
     const r = fm.register ?? {};
-    for (const k of ['ground', 'display', 'image']) {
+    for (const k of [...OPEN_AXES, ...Object.keys(ENUM_AXES)]) {
       if (!r[k]) malformed.push(`${f}: register.${k} missing (use "not recorded" if unknown)`);
+    }
+    /* Enumerated axes are validated; open ones are not. An unlisted value is
+       malformed rather than tolerated, because free text is what made `ground`
+       uncomparable in the first place — "#090c0d near-black with three darker
+       -green steps" and "near-black #0B0B0D" are the same decision and will
+       never match as strings. */
+    for (const [k, allowed] of Object.entries(ENUM_AXES)) {
+      const v = String(r[k] ?? '').toLowerCase().trim();
+      if (v && v !== 'not recorded' && !allowed.includes(v)) {
+        malformed.push(`${f}: register.${k} = "${r[k]}" — expected one of ${allowed.join(' | ')}`);
+      }
     }
     records.push({ file: f, slug, fm, register: r });
   } catch (err) {
@@ -78,12 +106,29 @@ for (const f of files) {
 
 console.log(`\nproject records — ${records.length} read\n`);
 
-const key = (r) => ['ground', 'display', 'image']
-  .map((k) => String(r.register[k] ?? '').toLowerCase().trim()).join(' | ');
+const AXES = Object.keys(ENUM_AXES);
+const val = (r, k) => String(r.register[k] ?? '').toLowerCase().trim();
 
-/* "not recorded" is not a value: it must never collide with itself. */
-const usable = records.filter((r) => !key(r).split('|').some((p) => p.trim() === 'not recorded'));
+/* The collision key is the ENUMERATED axes, not ground and display.
+   It used to be `ground | display | image`, and with two of those written as
+   prose it could almost never fire: "#090c0d near-black with three darker-green
+   steps to" and "near-black #0B0B0D" are the same decision and never match as
+   strings. A test that cannot fire is not a safeguard. */
+const key = (r) => AXES.map((k) => val(r, k)).join(' | ');
+
+/* "not recorded" is not a value: it must never match itself, on any axis. */
+const known = (r, k) => { const v = val(r, k); return v && v !== 'not recorded' ? v : null; };
+
+/* Fully comparable — every axis answered. Only these can produce an exact
+   collision, because a total match cannot be claimed over partial data. */
+const usable = records.filter((r) => AXES.every((k) => known(r, k)));
 const skipped = records.length - usable.length;
+
+/* Partially comparable is still comparable. A record with one unanswered axis
+   used to drop out of every test at once, which made the corpus punish honesty:
+   "not recorded" is the correct entry for something nobody can recover, and it
+   should cost that one axis rather than the whole record. */
+const MIN_SHARED = 4;
 
 const groups = new Map();
 for (const r of usable) {
@@ -95,7 +140,7 @@ for (const r of usable) {
 const collisions = [...groups.entries()].filter(([, rs]) => rs.length > 1);
 
 for (const r of records) {
-  const parts = ['ground', 'display', 'accent', 'image'].map((k) => `${k} ${r.register[k] ?? '—'}`);
+  const parts = [...OPEN_AXES, ...AXES].map((k) => `${k} ${r.register[k] ?? '—'}`);
   console.log(`  ${r.slug.padEnd(24)} ${r.fm.mandate ?? '—'}  ${parts.join(' · ')}`);
 }
 
@@ -127,11 +172,11 @@ if (collisions.length) {
 const CONCENTRATION = 0.6;
 
 const concentrations = [];
-for (const axis of ['ground', 'display', 'image']) {
+for (const axis of AXES) {
   const counts = new Map();
-  for (const r of usable) {
-    const v = String(r.register[axis] ?? '').toLowerCase().trim();
-    if (!v || v === 'not recorded') continue;
+  for (const r of records) {
+    const v = known(r, axis);
+    if (!v) continue;
     if (!counts.has(v)) counts.set(v, []);
     counts.get(v).push(r.slug);
   }
@@ -151,13 +196,66 @@ if (concentrations.length) {
     console.log(`    ${c.slugs.join(', ')}\n`);
   }
   console.log('  An axis with one value everywhere is not varying, and the collision');
-  console.log('  test above cannot report it: that test needs all three to match at');
+  console.log('  test above cannot report it: that test needs every axis to match at');
   console.log('  once. Whether this is a house signature or a habit is a human call.\n');
 }
 
+/* ── two projects at a time ────────────────────────────────────────────────
+   The collision test needs a total match and the concentration test looks at
+   one axis across everything. Neither sees the case in between, which is the
+   common one: two projects that are the same decision wearing a different
+   colour. TASTE.md §2d puts the bar exactly here — three EXPLORE directions
+   must differ STRUCTURALLY, and "three palettes on one layout are one
+   direction, not three". This reports the pairs that would fail that test. */
+const NEAR = 0.7;
+
+const pairs = [];
+for (let i = 0; i < records.length; i++) {
+  for (let j = i + 1; j < records.length; j++) {
+    const a = records[i];
+    const b = records[j];
+    /* Compared only where BOTH answered. An unanswered axis is not agreement. */
+    const shared = AXES.filter((k) => known(a, k) && known(b, k));
+    if (shared.length < MIN_SHARED) continue;
+    const same = shared.filter((k) => known(a, k) === known(b, k));
+    if (same.length / shared.length >= NEAR) {
+      pairs.push({ a, b, shared, same, differ: shared.filter((k) => !same.includes(k)) });
+    }
+  }
+}
+
+if (pairs.length) {
+  console.log(`⚠ ${pairs.length} near-identical pair${pairs.length === 1 ? '' : 's'}`
+    + ` — ${Math.round(NEAR * 100)}%+ of the axes both answered:\n`);
+  for (const p of pairs) {
+    console.log(`  ${p.a.slug}  ≈  ${p.b.slug}   (${p.same.length}/${p.shared.length} shared axes)`);
+    console.log(`    same:   ${p.same.map((k) => `${k} ${known(p.a, k)}`).join(' · ')}`);
+    console.log(`    differ: ${p.differ.length ? p.differ.map((k) => `${k} ${known(p.a, k)}/${known(p.b, k)}`).join(' · ') : '— nothing'}`);
+    const clients = [...new Set([p.a.fm.client, p.b.fm.client].map((c) => c ?? 'not recorded'))];
+    console.log(`    clients: ${clients.join(', ')}`
+      + (clients.length > 1 ? '  ← different clients, near-identical structure' : '  (same client)') + '\n');
+  }
+  console.log('  Reported, not judged — same contract as everything above. Two briefs');
+  console.log('  can legitimately arrive at one structure. They can also be one habit');
+  console.log('  applied twice, and only a human can tell which.\n');
+}
+
 if (skipped) {
-  console.log(`  ${skipped} record${skipped === 1 ? '' : 's'} not comparable — register partly "not recorded".`);
-  console.log('  Incomparable records cannot reveal repetition; fill the register at close.\n');
+  console.log(`  ${skipped} record${skipped === 1 ? '' : 's'} not fully comparable — register partly "not recorded".`);
+
+  /* Which axes, not just how many. "Fill the register" is not an instruction
+     anybody can act on; a named axis with a count is. */
+  const gaps = AXES
+    .map((k) => ({ axis: k, missing: records.filter((r) => !known(r, k)).length }))
+    .filter((g) => g.missing)
+    .sort((a, b) => b.missing - a.missing);
+
+  if (gaps.length) {
+    console.log(`  unanswered: ${gaps.map((g) => `${g.axis} (${g.missing}/${records.length})`).join(' · ')}`);
+  }
+  console.log(`  A pair needs ${MIN_SHARED} axes answered on BOTH sides before it can be compared`);
+  console.log('  at all. These are questions about a finished build, so they are cheapest\n'
+    + '  to answer at close and mostly unrecoverable later.\n');
 }
 
 if (malformed.length) {

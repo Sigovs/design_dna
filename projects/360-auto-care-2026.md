@@ -14,6 +14,11 @@ register:
   display:    "Archivo variable, 900 — heavy grotesque; expressive by mass, not by style"
   accent:     "#f47a17 safety orange, saturated"
   image:      mixed
+  hero:       not recorded
+  symmetry:   not recorded
+  density:    not recorded
+  voices:     3+                            # Archivo 900 display · Inter 400 body · mono index — all three named in §3
+  motion:     not recorded
 outcome:      shipped
 ---
 

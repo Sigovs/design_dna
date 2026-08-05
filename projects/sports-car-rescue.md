@@ -18,6 +18,11 @@ register:
   display:    Oswald
   accent:     rust #A8472A
   image:      mixed
+  hero:       not recorded
+  symmetry:   not recorded
+  density:    not recorded
+  voices:     3+
+  motion:     not recorded
 outcome:      not recorded
 ---
 

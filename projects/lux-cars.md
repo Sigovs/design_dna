@@ -18,6 +18,11 @@ register:
   display:    Inter
   accent:     red
   image:      mixed
+  hero:       not recorded
+  symmetry:   not recorded
+  density:    not recorded
+  voices:     1
+  motion:     not recorded
 outcome:      not recorded
 ---
 

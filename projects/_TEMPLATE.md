@@ -14,10 +14,21 @@ dialect_fit:  full | partial | override
 suspended:    [<dialect expressions switched off>]
 role:         MAIN | SUPPORT | ABSENT      # dimensionality ladder
 register:                                   # for self-similarity checks
+  # Open fields — written as prose, never compared for equality.
   ground:     <background colour>
   display:    <display typeface family>
   accent:     <accent colour>
+  # Enumerated fields — ONE of the listed values, or "not recorded".
+  # These are compared, so a value outside the list is a malformed record.
+  # They exist because TASTE.md §2d requires three EXPLORE directions to differ
+  # structurally, and until now the only structure this file recorded was a
+  # colour, a typeface and one image habit.
   image:      contained | bleed | mixed
+  hero:       image-led | type-led | object-led | split | index | none
+  symmetry:   symmetric | asymmetric | centred
+  density:    sparse | measured | dense
+  voices:     1 | 2 | 3+                    # distinct typographic voices (I8)
+  motion:     absent | restrained | choreographed
 outcome:      shipped | abandoned | superseded
 ---
 

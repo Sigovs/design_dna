@@ -119,10 +119,8 @@ const CONSENT_MARKERS =
    WHITELIST ONLY, and only a control whose text or accessible name matches. There
    is deliberately no click-on-empty-space fallback: an unidentified click on
    somebody else's page is an action with unknown consequences, not a read. */
-const SAFE_GATE_PATTERNS = [
-  /^complete$/i, /^enter$/i, /^begin$/i,
-  /^skip intro$/i, /^continue to site$/i,
-];
+const SAFE_GATE_WORDS = ['complete', 'enter', 'begin', 'skip intro', 'continue to site'];
+const SAFE_GATE_PATTERNS = SAFE_GATE_WORDS.map(exactly);
 
 /* ---------------------------------------------------------------- helpers */
 
@@ -263,7 +261,13 @@ async function passSafeGate(page) {
       }
     } catch { /* same */ }
   }
-  return false;
+
+  /* A gate built from a <div> has no role either. Oil Stain Lab's ENTER and HB
+     Body's SKIP INTRO both sat in the whitelist and were both walked past,
+     because `getByRole` could not see them — and both filed their gate as the
+     site. Same whitelist, same one action per visit. */
+  return clickWhoseTextIs(page, [SAFE_GATE_WORDS], 'intro gate')
+    .then(async (hit) => { if (hit) await page.waitForTimeout(1200); return hit; });
 }
 
 /* A SIGNAL, never a verdict. A document no taller than the viewport, on a page
@@ -299,32 +303,38 @@ async function dismissConsent(page) {
     }
   }
 
-  /* Consent bars assembled from <div>/<span> carry no ARIA role, so getByRole
-     never sees them. TRIONN and The Gentlewoman both ship one, and both filed
-     their cookie bar into the hero.
-     Matched on exact visible text only. A node whose entire text IS "Accept" is
-     an identified control, not empty space — this is not the blind fallback the
-     gate policy above rules out. */
-  /* Last resort, and the fiddliest. getByText matches RENDERED text, so a label
-     whose letters are separate inline elements — TRIONN animates per character —
-     renders as "D E C L I N E" and matches nothing. The gaps are real to the
-     renderer and absent from textContent, so the match is done in the page
-     against textContent, and the element is only MARKED there. The click still
-     goes through a locator, with its actionability checks, rather than a
-     synthetic dispatch: this stays a click on a control we identified, not a
-     script poking at somebody's page.
-     Hover-animated labels also ship a second copy of themselves at opacity 0
-     with pointer-events none. Skipped, or the click lands on the dead one and
-     times out silently — which is how TRIONN kept its cookie bar for four
-     captures running. */
-  const MARK = 'data-vault-consent-control';
+  await clickWhoseTextIs(page, CONSENT_CHOICES, 'consent dialog');
+}
+
+/* The whitelist route for controls that carry no ARIA role at all — a bar or a
+   gate assembled from <div>/<span>, which getByRole cannot see. TRIONN and The
+   Gentlewoman both ship a cookie bar like that; Oil Stain Lab ships an ENTER
+   gate like that.
+
+   Still whitelist-only: the element's ENTIRE text must be one of the given
+   labels. A node whose whole text is "Accept" or "Enter" is an identified
+   control, not empty space, so this is not the blind click-anywhere fallback the
+   gate policy rules out.
+
+   Two things it has to survive:
+
+   - getByText matches RENDERED text, and a label animated one character at a
+     time carries the source file's indentation between its letters, so it reads
+     "D E C L I N E". Whitespace is therefore stripped from BOTH sides rather
+     than collapsed, and the match runs against textContent inside the page.
+   - hover-animated labels ship a second copy of themselves at opacity 0 with
+     pointer-events none. isVisible() says yes to both; the click on the dead one
+     times out silently. TRIONN kept its cookie bar through four captures that
+     way.
+
+   The element is only MARKED in the page. The click still goes through a
+   locator with its actionability checks — a click on a control we identified,
+   not a script poking at somebody's page. */
+async function clickWhoseTextIs(page, groups, what) {
+  const MARK = 'data-vault-target';
+
   const found = await page.evaluate(({ groups, mark }) => {
     document.querySelectorAll(`[${mark}]`).forEach((n) => n.removeAttribute(mark));
-
-    /* Whitespace removed on BOTH sides, not merely collapsed. A per-character
-       label carries the source file's indentation between its letters, so even
-       textContent reads "D E C L I N E" — collapsing runs to single spaces
-       leaves the gaps and matches nothing. */
     const bare = (s) => (s ?? '').replace(/\s+/g, '').toLowerCase();
 
     for (const words of groups) {
@@ -345,15 +355,18 @@ async function dismissConsent(page) {
       }
     }
     return false;
-  }, { groups: CONSENT_CHOICES, mark: MARK });
+  }, { groups, mark: MARK });
 
-  if (!found) return;
+  if (!found) return false;
 
   try {
     await page.locator(`[${MARK}]`).first().click({ timeout: 2000 });
     await page.waitForTimeout(400);
-    log('  · dismissed a consent dialog (unlabelled control, matched on textContent)');
-  } catch { /* it moved or vanished between marking and clicking */ }
+    log(`  · ${what}: cleared an unlabelled control, matched on textContent`);
+    return true;
+  } catch {
+    return false; // it moved or vanished between marking and clicking
+  }
 }
 
 /* The failure that matters is not the wall — it is the wall going unrecorded. When

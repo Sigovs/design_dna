@@ -2,7 +2,7 @@
   {
     "id": "hbbody-com-en-home",
     "url": "https://hbbody.com/en/home/",
-    "title": "Home",
+    "title": "HB Body — Automotive Refinish",
     "added": "2026-08-04",
     "rating": 2,
     "dialectStatus": "unreviewed",
@@ -18,28 +18,11 @@
     },
     "note": "TODO",
     "shots": {
-      "full": "shots/hbbody-com-en-home/full.jpg",
-      "hero": "shots/hbbody-com-en-home/hero.jpg",
-      "mobile": "shots/hbbody-com-en-home/mobile.jpg",
-      "strip": [
-        "shots/hbbody-com-en-home/strip-1.jpg",
-        "shots/hbbody-com-en-home/strip-2.jpg",
-        "shots/hbbody-com-en-home/strip-3.jpg",
-        "shots/hbbody-com-en-home/strip-4.jpg",
-        "shots/hbbody-com-en-home/strip-5.jpg",
-        "shots/hbbody-com-en-home/strip-6.jpg",
-        "shots/hbbody-com-en-home/strip-7.jpg",
-        "shots/hbbody-com-en-home/strip-8.jpg"
-      ],
-      "stripMobile": [
-        "shots/hbbody-com-en-home/strip-m-1.jpg",
-        "shots/hbbody-com-en-home/strip-m-2.jpg",
-        "shots/hbbody-com-en-home/strip-m-3.jpg",
-        "shots/hbbody-com-en-home/strip-m-4.jpg",
-        "shots/hbbody-com-en-home/strip-m-5.jpg",
-        "shots/hbbody-com-en-home/strip-m-6.jpg"
-      ],
-      "navScrolled": null
+      "full": null,
+      "hero": null,
+      "mobile": null,
+      "strip": [],
+      "stripMobile": []
     },
     "kind": "site",
     "source": "",
@@ -52,7 +35,7 @@
   {
     "id": "hispanosuizacars-com",
     "url": "https://www.hispanosuizacars.com/",
-    "title": "hispanosuizacars.com",
+    "title": "Hispano Suiza",
     "added": "2026-08-04",
     "rating": 2,
     "dialectStatus": "unreviewed",
@@ -172,7 +155,7 @@
   {
     "id": "oilstainlab-com",
     "url": "https://www.oilstainlab.com/",
-    "title": "HF-11",
+    "title": "Oil Stain Lab — HF-11",
     "added": "2026-08-04",
     "rating": 2,
     "dialectStatus": "unreviewed",
@@ -188,28 +171,11 @@
     },
     "note": "TODO",
     "shots": {
-      "full": "shots/oilstainlab-com/full.jpg",
-      "hero": "shots/oilstainlab-com/hero.jpg",
-      "mobile": "shots/oilstainlab-com/mobile.jpg",
-      "strip": [
-        "shots/oilstainlab-com/strip-1.jpg",
-        "shots/oilstainlab-com/strip-2.jpg",
-        "shots/oilstainlab-com/strip-3.jpg",
-        "shots/oilstainlab-com/strip-4.jpg",
-        "shots/oilstainlab-com/strip-5.jpg",
-        "shots/oilstainlab-com/strip-6.jpg",
-        "shots/oilstainlab-com/strip-7.jpg",
-        "shots/oilstainlab-com/strip-8.jpg"
-      ],
-      "stripMobile": [
-        "shots/oilstainlab-com/strip-m-1.jpg",
-        "shots/oilstainlab-com/strip-m-2.jpg",
-        "shots/oilstainlab-com/strip-m-3.jpg",
-        "shots/oilstainlab-com/strip-m-4.jpg",
-        "shots/oilstainlab-com/strip-m-5.jpg",
-        "shots/oilstainlab-com/strip-m-6.jpg"
-      ],
-      "navScrolled": null
+      "full": null,
+      "hero": null,
+      "mobile": null,
+      "strip": [],
+      "stripMobile": []
     },
     "kind": "site",
     "source": "",
@@ -309,7 +275,7 @@
   {
     "id": "rimac-automobili-com-nevera",
     "url": "https://www.rimac-automobili.com/nevera/",
-    "title": "Nevera",
+    "title": "Rimac Nevera",
     "added": "2026-08-04",
     "rating": 2,
     "dialectStatus": "unreviewed",
@@ -359,7 +325,7 @@
   {
     "id": "rivian-com",
     "url": "https://rivian.com/",
-    "title": "Rivian: Electric Vehicles Designed For Adventure",
+    "title": "Rivian",
     "added": "2026-08-04",
     "rating": 2,
     "dialectStatus": "unreviewed",

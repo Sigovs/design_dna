@@ -38,7 +38,7 @@ own `PRINCIPLES` / `EXPRESSIONS` structure and are exempt from the domain table 
 | [cinematic-industrial](cinematic-industrial.md) | library | Light, scale and material consequence do the persuading — the subject staged as a physical object. |
 | [retro-futurist](retro-futurist.md) | library | A named period's idea of the future, run on present technology — borrowed logic, never borrowed artefacts. |
 | [expressive-poster](expressive-poster.md) | library | Type as image — one message, scale collisions, compression and release, aimed confrontation. |
-| [technical-luxury](technical-luxury.md) | library | Value demonstrated rather than asserted — specification, tolerance and provenance as the desirable content. |
+| [technical-luxury](technical-luxury.md) | **provisional** | Value demonstrated rather than asserted — specification, tolerance and provenance as the desirable content. |
 | [organic-tactile](organic-tactile.md) | library | Let the hand show — rhythm from authored variation, warmth from real material. |
 
 The rules live only in the dialect files. This index deliberately does not repeat
@@ -66,10 +66,27 @@ this brief's central idea, never because it is available.
 | Status | Count | What it asserts |
 |---|---|---|
 | confirmed | **2** | `auction-editorial`, distilled from Alex's own vault evidence · `immersive-authored-world`, authored ahead of evidence and since confirmed the other way round, by three human `in` judgements. Both are part of his demonstrated Design DNA |
-| provisional | **0** | — none outstanding |
-| library | **8** | Described decision methods available as inputs. **Zero** are evidence of Alex's taste |
+| provisional | **1** | `technical-luxury` — re-declared by Alex, two independent observations, one short of the test |
+| library | **7** | Described decision methods available as inputs. **Zero** are evidence of Alex's taste |
 
-So: **ten dialect files · two demonstrated · none hypothesised · eight described.**
+So: **ten dialect files · two demonstrated · one hypothesised · seven described.**
+
+> **`technical-luxury` re-declared provisional, 2026-08-05.** It was a library
+> dialect and could not be promoted at all until Alex claimed his own work decides
+> this way. He has, and he stated the claim as a decision rather than a look:
+>
+> > Technical luxury demonstrates value through engineering evidence, material
+> > specificity and visible performance consequences rather than relying primarily
+> > on status language or decorative futurism.
+>
+> **Two independent observations, not four records.** Semler Premium supplies
+> three of the four `in` records and is one design system, so it counts once;
+> Rimac Nevera is the second. `dialects:check` counts records and cannot see that,
+> which is exactly why the count it prints is not the number this rests on.
+>
+> **No automatic promotion on raw count.** The third support must be an unrelated
+> record carrying the governing logic above, not a fourth Semler page and not a
+> site that merely looks technical.
 
 > **Confirmed 2026-08-05.** `immersive-authored-world` reached its third `in`
 > record: `ruadh-com`, `electrafilmworks-com` and now `immersive-g-com`, whose
@@ -120,13 +137,16 @@ log it in the [distillation log](../vault/README.md#distillation-log).
 
 ### Current provisional dialects
 
-| Dialect | Created | Entries carrying it with status `in` | Needed |
+| Dialect | Declared | Independent observations | Needed |
 |---|---|---|---|
-| — | — | — | none provisional |
+| [technical-luxury](technical-luxury.md) | 2026-08-05 | **2** — Semler Premium (3 pages, one system, counted once) · Rimac Nevera | 1 more, unrelated to both |
 
-Counted from `vault/sites.json` by `npm run dialects:check`, which is why this table
-is not maintained by hand — it read 0 for days while two human judgements already
-existed, and the check is what caught up.
+**The column changed from records to OBSERVATIONS, and that is the point.**
+`npm run dialects:check` counts entries carrying the dialect and will print 4 for
+this row. Three of those four are one site. A promotion test run on the printed
+number would confirm a dialect on a single design system, which is the failure the
+distillation thresholds already forbid everywhere else — so this column is
+maintained by hand and the check's number is a floor, never a verdict.
 
 `immersive-authored-world` left this table on 2026-08-05 by the authored route:
 three entries carrying it with `in`. Nothing is provisional now, so the next

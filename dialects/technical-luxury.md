@@ -1,9 +1,42 @@
 # Dialect — technical-luxury
 
-> **Status: library.** An art direction available as an input to a Design Read —
-> not a claim about Alex's own taste, and not a house dialect. The only route to
-> `confirmed` is the evidence rule in
-> [vault/README.md](../vault/README.md#creating-a-new-dialect).
+> **Status: provisional, re-declared by Alex 2026-08-05.** It was a library
+> dialect — a described method, asserting nothing about his taste. He has now
+> claimed that his own work decides this way, and that claim is what the
+> promotion test measures.
+
+> ## ⚠ PROVISIONAL
+>
+> **The claim, in Alex's words:**
+>
+> > Technical luxury demonstrates value through engineering evidence, material
+> > specificity and visible performance consequences rather than relying
+> > primarily on status language or decorative futurism.
+>
+> That sentence is the governing logic, and it is deliberately not a style: it
+> separates this dialect from ordinary tech-minimalism on one side and from
+> cinematic automotive presentation on the other. A record resembling either of
+> those, without the evidence-over-assertion decision underneath, is not
+> confirmation.
+>
+> **Evidence at re-declaration — two independent observations:**
+>
+> | Observation | Records |
+> |---|---|
+> | Semler Premium | `semlerpremium-dk`, `semlerpremium-dk-showroom`, `semlerpremium-dk-brands-porsche-911-gt3-…` — **three pages of one site, counted as one** |
+> | Rimac Nevera | `rimac-automobili-com-nevera` |
+>
+> Four records, two observations. `npm run dialects:check` counts records and
+> cannot see that three of them are one design system, so the count it prints is
+> not the number that matters here.
+>
+> **Confirmed when a THIRD independent record carries it with `dialectStatus:
+> "in"`** — unrelated to Semler and to Rimac, and carrying the governing logic
+> above rather than the look. Until then it is a hypothesis with two supports,
+> usable when Alex selects it and not evidence of a demonstrated preference.
+>
+> **No automatic promotion on raw count.** Status is tracked in
+> [dialects/README.md](README.md).
 
 **Core thesis.** Value is demonstrated, not asserted: present engineering evidence —
 specification, tolerance, material, provenance — with enough compositional care that

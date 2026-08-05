@@ -63,7 +63,7 @@ design_dna/
 │   │   └── references/             # per-category judgment, audit rubric, implementation
 │   ├── motion-taste/SKILL.md       # I: reduced-motion, keyboard parity, no jank · D: crossfade, subtle hover
 │   └── anti-patterns/SKILL.md      # I: the universal failures · D: the trope bans
-├── dialects/                       # 2 confirmed · 8 library
+├── dialects/                       # 2 confirmed · 1 provisional · 7 library
 │   ├── README.md                   # index + confirmed / provisional / library status
 │   ├── HYBRID.md                   # style modes, Anchor/Contrast/Signature, CONTROL MAP, audit
 │   ├── _TEMPLATE.md                # the shared dialect shape
@@ -76,7 +76,7 @@ design_dna/
 │   ├── cinematic-industrial.md     # library — light, scale and material consequence persuade
 │   ├── retro-futurist.md           # library — a named period's idea of the future
 │   ├── expressive-poster.md        # library — type as image, one message, scale collisions
-│   ├── technical-luxury.md         # library — value demonstrated, not asserted
+│   ├── technical-luxury.md         # PROVISIONAL — value demonstrated, not asserted
 │   └── organic-tactile.md          # library — let the hand show
 ├── brief.mjs                       # npm run brief / brief:check — the brief compiler
 ├── art.mjs                         # npm run art / art:dry — compiled brief → generated imagery
@@ -194,12 +194,15 @@ dialect, distilled from the vault.
 [immersive-authored-world](dialects/immersive-authored-world.md) is **confirmed as
 of 2026-08-05** — the page as a staged spatial experience, author-created ahead of
 Vault evidence and confirmed the other way round, by three human-reviewed entries
-carrying it with `dialectStatus: "in"`. The other eight are **library**: described
-decision methods, available as inputs to a Read, asserting nothing about Alex's
-taste and carrying no route to `confirmed` of their own. See
+carrying it with `dialectStatus: "in"`.
+[technical-luxury](dialects/technical-luxury.md) is **provisional as of
+2026-08-05** — re-declared by Alex, who claims his own work decides this way, with
+two independent observations behind it and one to go. The other seven are
+**library**: described decision methods, available as inputs to a Read, asserting
+nothing about Alex's taste and carrying no route to `confirmed` of their own. See
 [dialects/README.md](dialects/README.md) for the index and the two original evidence
-rules. Selection is always a human decision; neither confirmed dialect is ever
-inferred or recommended, and confirmed is not a licence to reach for one.
+rules. Selection is always a human decision; no dialect is ever inferred or
+recommended, and confirmed is not a licence to reach for one.
 
 ```bash
 npm run dialects:check     # shape, indexes and vocabulary in sync

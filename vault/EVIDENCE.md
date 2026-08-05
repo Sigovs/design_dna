@@ -428,11 +428,87 @@ Confidence: High as a *negative* finding.
 
 ---
 
+## E · CANDIDATE TENSIONS
+
+*Territory where the vault has evidence and the skills have no rule at all —
+distinct from D, which records what is unknown or self-contradicting. Every group
+here was surfaced by `npm run distill` as `NO RULE COVERS THIS`, and every one is
+**below threshold**.*
+
+**These are not rules and must not be cited as taste.** They are held so that
+the next confirming record has somewhere to land instead of being noticed and
+forgotten. Promotion into `skills/` is the distillation ritual plus Alex, exactly
+as for everything else — the counter below is the whole basis for the wording,
+and one observation is a wording, not a finding.
+
+Recorded 2026-08-05, on Alex's instruction, after he declined to promote any of
+them.
+
+### E1 — Learning the mechanism before receiving the content
+
+> **An interface fails when the visitor must understand its mechanism before
+> receiving its content.**
+
+**2 independent observations.**
+
+- `electrafilmworks-com` (r2/in, weaknesses) — *"risks trapping the visitor behind
+  an unresolved preloader, preventing it from qualifying as a complete 3/3
+  reference."*
+- `thenewmobileworkforce-…-back-at-hq` (r2/in, weaknesses) — *"Navigation
+  эффектная, но требует изучения — пользователь сначала осваивает интерфейс, а
+  потом получает информацию."*
+
+Nearest existing rules are about discoverability and about motion earning its
+place; neither covers the cost of a mechanism that must be *learned* before the
+content arrives. One more unrelated record makes this a real candidate.
+
+### E2 — A mechanism demonstrating itself
+
+> **A mechanism earns its visibility only when demonstrating it also reveals
+> something about the subject.**
+
+**1 independent observation.**
+
+- `trionn-com` (r2/in, weaknesses) — *"Главная проблема: motion здесь часто
+  демонстрирует возможности технологии, а не раскрывает содержание студии."*
+
+One observation. The wording is provisional in the strongest sense: it was
+written from a single record and would very likely change on the second.
+
+### E3 — Where negative space stops reading as intention
+
+> **Negative space reads as luxury only when surrounding cues make its intention
+> unmistakable; without those cues, absence is interpreted as missing content.**
+
+**1 independent observation**, and the one that matters most, because it draws a
+boundary rather than adding a preference.
+
+- `augen-pro` (r2/in, weaknesses) — *"Некоторые viewport'ы настолько пустые, что
+  пользователь может решить, будто контент не загрузился."*
+
+**It does not overturn air-as-status.** `thegentlewoman-co-uk` is the reference
+case for exactly that — one viewport, three-quarters empty, the cover reading as
+an object — and its note already carries a recorded `CONTRADICTION`. The two sit
+on the same axis at opposite ends, and the axis has never been named.
+
+Alex's stated conditions for absence reading as intention rather than as failure:
+a strong compositional support · an obvious focal point · a deliberate
+typographic hierarchy · a sufficient signal of continuation or completion · no
+impression of a broken load. Absent those, it is not negative space but a loss of
+informational confidence.
+
+---
+
 ## How this file is used, and how it is not
 
 **A Design Read consults section A and C** — those are the levels with enough
-evidence to inform a decision. It **may cite B and D as open questions** and must
+evidence to inform a decision. It **may cite B, D and E as open questions** and must
 never present them as preferences.
+
+**Section E is the strictest case of that.** Those three are territory where no
+rule exists at all, which makes them the most tempting to quote and the least
+entitled to be quoted: two of them rest on a single record. An open tension may
+be raised in a Read as a question to answer; it may never be raised as an answer.
 
 **Nothing in this file overrides a skill.** If A-level interpretation collides with an
 invariant, the invariant wins; that is [§1](../TASTE.md#1-the-two-tiers) and it does

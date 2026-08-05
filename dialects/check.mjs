@@ -125,18 +125,43 @@ for (const name of known) {
    Alex re-declares the dialect `provisional`, which is the claim being tested.
    This reports the count as a decision waiting to be made, and never as a promotion. */
 const sites = JSON.parse(readFileSync(join(ROOT, 'vault', 'sites.json'), 'utf8'));
-const inCount = (slug) => sites.filter((e) =>
-  e.dialectStatus === 'in' && (e.dialects ?? []).includes(slug)).length;
+
+/* Records are not observations. Three pages of one site share art direction,
+   type and palette by construction, and confirming a dialect on them would
+   confirm it on a single design system — the failure the distillation
+   thresholds forbid everywhere else. `technical-luxury` is the live case:
+   four `in` records, three of them Semler Premium, two observations.
+   Collapsed by host, which is what makes them one site. */
+const host = (e) => { try { return new URL(e.url).hostname.replace(/^www\./, ''); } catch { return e.id; } };
+
+const carriers = (slug) => sites.filter((e) =>
+  e.dialectStatus === 'in' && (e.dialects ?? []).includes(slug));
 
 for (const r of rows) {
-  const n = inCount(r.slug);
+  const held = carriers(r.slug);
+  const n = held.length;
+  const sites_ = new Set(held.map(host));
+  const observations = sites_.size;
+
   if (r.status === 'library' && n) {
     console.log(`  · ${r.slug}: ${n} entr${n === 1 ? 'y' : 'ies'} carry it with "in".`
       + ' That is evidence about the entries, not a promotion — a library dialect has no'
       + ' promotion path until Alex re-declares it provisional.');
   }
   if (r.status === 'provisional') {
-    console.log(`  · ${r.slug}: ${n} of 3 "in" records toward confirmation (human judgements only).`);
+    const collapsed = n > observations;
+    console.log(`  · ${r.slug}: ${observations} independent observation${observations === 1 ? '' : 's'}`
+      + ` of 3 toward confirmation${collapsed ? ` — from ${n} records, collapsed by site` : ''}.`);
+    if (collapsed) {
+      const bySite = [...sites_].map((h) => `${h} ×${held.filter((e) => host(e) === h).length}`);
+      console.log(`      ${bySite.join(' · ')}`);
+    }
+    /* Deliberately never says "confirmable". The count is a floor; whether the
+       third observation carries the dialect's governing logic or merely looks
+       like it is a judgement, and this file cannot make it. */
+    if (observations >= 3) {
+      console.log('      threshold reached on count — confirmation is still Alex\'s call, on logic, not on arithmetic.');
+    }
   }
 }
 

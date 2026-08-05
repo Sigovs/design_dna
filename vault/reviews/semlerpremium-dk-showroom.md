@@ -117,3 +117,30 @@ inventory. They do not prove filter behaviour, sort behaviour, Quick View
 content, pagination, or how the grid holds with a different or emptier result
 set. Alex's judgements about the filtering system and about Quick View are
 user-supplied and stand on their own.
+
+## 2026-08-05 · JUDGEMENT
+
+- **action:** whole-record judgement set by Alex
+- **previous rating / dialectStatus:** **3 / unreviewed**
+- **current rating / dialectStatus:** **3 / in** — dialect `technical-luxury`
+- **rating:** unchanged. Alex judged status and dialect only.
+
+### Alex's judgement — verbatim
+
+> `in` · `technical-luxury`
+
+Given in conversation on 2026-08-05, after reviewing the record's shots alongside the
+agent observations below. He was asked for the whole-record status and the dialect
+separately, because the dialect assignment is what a confirmation count rests on.
+
+### Agent observations — not Alex's judgement
+
+| Layer | Observation | Source | Verdict |
+|---|---|---|---|
+| composition | Two grounds meet on a hard vertical — filter panel over a full-bleed monochrome landscape at left, inventory on white at right. | agent | unreviewed |
+| typography | The result count is set as display type rather than as a label, so the filter state reads as the headline. | agent | unreviewed |
+| imagery | Card imagery is the inventory's art direction rather than the site's — studio silver, a covered car and a blue Lamborghini in one row. | agent | unreviewed |
+| colour | A glass panel over photography carries the filter labels; legibility depends on that particular dark image staying dark. | agent | unreviewed |
+
+**Every row above is `agent` / `unreviewed`.** Alex gave a whole-record verdict,
+not layer verdicts, and a layer he did not judge stays unjudged.

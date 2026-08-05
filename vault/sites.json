@@ -5,7 +5,7 @@
     "title": "HB Body — Automotive Refinish",
     "added": "2026-08-04",
     "rating": 2,
-    "dialectStatus": "unreviewed",
+    "dialectStatus": "out",
     "dialects": [],
     "tags": {
       "composition": [
@@ -70,8 +70,10 @@
     "title": "Hispano Suiza",
     "added": "2026-08-04",
     "rating": 2,
-    "dialectStatus": "unreviewed",
-    "dialects": [],
+    "dialectStatus": "in",
+    "dialects": [
+      "cinematic-industrial"
+    ],
     "tags": {
       "composition": [
         "active-negative-space",
@@ -227,8 +229,10 @@
     "title": "Oil Stain Lab — HF-11",
     "added": "2026-08-04",
     "rating": 2,
-    "dialectStatus": "unreviewed",
-    "dialects": [],
+    "dialectStatus": "in",
+    "dialects": [
+      "expressive-poster"
+    ],
     "tags": {
       "composition": [
         "active-negative-space",
@@ -300,8 +304,10 @@
     "title": "Polestar United States",
     "added": "2026-08-04",
     "rating": 2,
-    "dialectStatus": "unreviewed",
-    "dialects": [],
+    "dialectStatus": "in",
+    "dialects": [
+      "swiss-editorial"
+    ],
     "tags": {
       "composition": [
         "active-negative-space",
@@ -387,8 +393,10 @@
     "title": "Rimac Nevera",
     "added": "2026-08-04",
     "rating": 2,
-    "dialectStatus": "unreviewed",
-    "dialects": [],
+    "dialectStatus": "in",
+    "dialects": [
+      "cinematic-industrial"
+    ],
     "tags": {
       "composition": [
         "directed-eye",
@@ -457,8 +465,10 @@
     "title": "Rivian",
     "added": "2026-08-04",
     "rating": 2,
-    "dialectStatus": "unreviewed",
-    "dialects": [],
+    "dialectStatus": "in",
+    "dialects": [
+      "swiss-editorial"
+    ],
     "tags": {
       "composition": [
         "conversion-first-hierarchy",
@@ -526,8 +536,10 @@
     "title": "Semler Premium",
     "added": "2026-08-04",
     "rating": 2,
-    "dialectStatus": "unreviewed",
-    "dialects": [],
+    "dialectStatus": "in",
+    "dialects": [
+      "technical-luxury"
+    ],
     "tags": {
       "composition": [
         "active-negative-space",
@@ -616,8 +628,10 @@
     "title": "Semler Premium — Porsche 911 GT3 VDP",
     "added": "2026-08-04",
     "rating": 3,
-    "dialectStatus": "unreviewed",
-    "dialects": [],
+    "dialectStatus": "in",
+    "dialects": [
+      "technical-luxury"
+    ],
     "tags": {
       "composition": [
         "conversion-first-hierarchy",
@@ -698,8 +712,10 @@
     "title": "Semler Premium — Showroom SRP",
     "added": "2026-08-04",
     "rating": 3,
-    "dialectStatus": "unreviewed",
-    "dialects": [],
+    "dialectStatus": "in",
+    "dialects": [
+      "technical-luxury"
+    ],
     "tags": {
       "composition": [
         "active-negative-space",

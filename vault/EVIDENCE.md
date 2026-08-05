@@ -22,10 +22,86 @@ correct** — that is Alex's review, and the claims below are marked accordingly
 
 | Class | Count | Entry ids |
 |---|---|---|
-| **Usable `in`** (human-set) | **14** | `beings-co` (3) · `ciridae-com` (3) · `ruadh-com` (2) · `electrafilmworks-com` (2) · `thenewmobileworkforce-…-back-at-hq` (2) · `trionn-com` (2) · `kinncollective-co-uk` (2) · `augen-pro` (2) · `i-pinimg-…-46d9d54b` (2) · `organimo-com` (3) · `immersive-g-com` (3) · `rolls-roycemotorcars-…-home-html` (3) · `obys-agency` (2) · `mclaren-com-cars-gl-en` (2) |
-| **Usable `out`** (human-set) | **2** | `rmsothebys-com` (1) · `thegentlewoman-co-uk` (1) |
+| **Usable `in`** (human-set) | **22** | `beings-co` (3) · `ciridae-com` (3) · `ruadh-com` (2) · `electrafilmworks-com` (2) · `thenewmobileworkforce-…-back-at-hq` (2) · `trionn-com` (2) · `kinncollective-co-uk` (2) · `augen-pro` (2) · `i-pinimg-…-46d9d54b` (2) · `organimo-com` (3) · `immersive-g-com` (3) · `rolls-roycemotorcars-…-home-html` (3) · `obys-agency` (2) · `mclaren-com-cars-gl-en` (2) · `semlerpremium-dk-showroom` (3) · `semlerpremium-dk-brands-porsche-911-gt3-…` (3) · `polestar-com-us` (2) · `semlerpremium-dk` (2) · `rimac-automobili-com-nevera` (2) · `rivian-com` (2) · `oilstainlab-com` (2) · `hispanosuizacars-com` (2) |
+| **Usable `out`** (human-set) | **3** | `rmsothebys-com` (1) · `thegentlewoman-co-uk` (1) · `hbbody-com-en-home` (2) |
 | **Partial / contextual** (`hybrid`) | **1** | `porsche-com-usa` (2) |
-| **Not yet a judgement** (`unreviewed`) | **9** | `semlerpremium-dk` (2) · `semlerpremium-dk-showroom` (3) · `semlerpremium-dk-brands-porsche-911-gt3-…` (3) · `polestar-com-us` (2) · `hbbody-com-en-home` (2) · `hispanosuizacars-com` (2) · `oilstainlab-com` (2) · `rimac-automobili-com-nevera` (2) · `rivian-com` (2) |
+| **Not yet a judgement** (`unreviewed`) | **0** | — every record in the vault now carries a human status. |
+
+> **`unreviewed` reaches zero, 2026-08-05, fourth pass.** `oilstainlab-com` →
+> **`expressive-poster`**, `hispanosuizacars-com` → **`cinematic-industrial`**,
+> `hbbody-com-en-home` → **`out`**. Every one of the 26 records now carries a
+> human status: **22 `in` · 3 `out` · 1 `hybrid` · 0 `unreviewed`**. The whole
+> automotive cluster that arrived on TODO notes has been judged.
+>
+> **`hbbody-com-en-home` is the informative one.** A manufacturer whose product is
+> colour opens on a nearly desaturated dark room whose only saturated element is a
+> gradient chat icon holding the compositional centre. Alex set it `out`, selecting
+> the reason *kept for its weaknesses*. It takes no dialect, and an empty
+> `dialects` array is the correct value there rather than a gap.
+>
+> **Dialect tallies after this pass, with the independence caveat applied.**
+> `auction-editorial` 3 and `immersive-authored-world` 3 — both already confirmed.
+> `technical-luxury` 3 records but **one** independent observation, all three being
+> Semler pages. `cinematic-industrial` 2 (Rimac, Hispano Suiza — independent),
+> `swiss-editorial` 2 (Polestar, Rivian — independent), `expressive-poster` 1
+> (Oil Stain Lab). **No dialect became confirmable in this pass**, and none was
+> promoted.
+>
+> **Five records now hold a status and no reasoning.** `hbbody-com-en-home`,
+> `hispanosuizacars-com`, `oilstainlab-com`, `rimac-automobili-com-nevera` and
+> `rivian-com` still read `note: TODO`. They count toward a tally and are **not
+> usable as references in a brief**: a reference whose note nobody can read teaches
+> an agent to copy pixels, which is the failure this layer exists to prevent. The
+> note is Alex's field and nothing has been written into it on his behalf. **This
+> is now the vault's largest single debt** — larger than the counter drift that
+> preceded it, because a wrong count is visible and an absent reason is not.
+
+> **Three more judgements, 2026-08-05, third pass.** `semlerpremium-dk` →
+> **`technical-luxury`**, `rimac-automobili-com-nevera` →
+> **`cinematic-industrial`**, `rivian-com` → **`swiss-editorial`**. All `in`,
+> ratings unchanged at 2. `unreviewed` falls 6 → 3, `in` rises 17 → 20.
+>
+> **`technical-luxury` now shows three `in` records and is still not
+> confirmable.** All three are Semler pages — a homepage, an SRP and a VDP from
+> one site. Under the distillation thresholds that is **one** independent
+> observation, not three, and the raw count is the trap this paragraph exists to
+> disarm. `swiss-editorial` holds two records that *are* independent (Polestar,
+> Rivian); `cinematic-industrial` holds one (Rimac).
+>
+> **Two of the three carry a classification with no reasoning.**
+> `rimac-automobili-com-nevera` and `rivian-com` still have `note: TODO`. Alex set
+> status and dialect but has not written why, and the note is his to write. They
+> count toward a dialect tally and are **not** usable as a reference in a brief
+> until he does — a reference whose note nobody can read teaches an agent to copy
+> pixels, which is the failure this whole layer exists to prevent.
+>
+> **Both captures are partial.** Rimac reports 2 canvas elements, Rivian 3;
+> motion and WebGL state are not preserved by a static shot, and the Rivian first
+> screen is a four-state carousel of which one frame was caught. Neither record's
+> temporal behaviour has been judged by anyone.
+
+> **Three judgements, 2026-08-05, second pass.** Alex reviewed
+> `semlerpremium-dk-showroom`, `semlerpremium-dk-brands-porsche-911-gt3-…` and
+> `polestar-com-us` against their shots and set all three `in`: the two Semler
+> pages to **`technical-luxury`**, Polestar to **`swiss-editorial`**. Ratings
+> unchanged (3 / 3 / 2). `unreviewed` falls 9 → 6, `in` rises 14 → 17. He was
+> asked for status and dialect as separate questions, because a dialect
+> assignment is what a confirmation count rests on and a guessed one confirms a
+> dialect falsely.
+>
+> **The two Semler records are one design system and count as one.** A showroom
+> SRP and a VDP from the same site share art direction, type and palette by
+> construction. Under the distillation thresholds, several pages of one design
+> system are not independent records — so `technical-luxury` holds **two `in`
+> records but one independent observation**, and is nowhere near confirmable.
+> `swiss-editorial` holds one. Both remain **library** dialects, usable as a
+> declared project method and never as a demonstrated preference of Alex's.
+>
+> **What these three do not settle.** Alex gave a whole-record verdict, not layer
+> verdicts. Every layer observation in the three sidecars is `agent` /
+> `unreviewed` — noticed, not judged. In particular the open question on the GT3
+> page, whether the centred inset is an intentional crop or a device seated on the
+> subject, is recorded and unanswered.
 
 > **Counter refresh, 2026-08-05, and the first dialect movement.** Five more
 > records arrived from the gallery — HB Body, Hispano Suiza, Oil Stain Lab, Rimac

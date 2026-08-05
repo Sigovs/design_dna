@@ -102,3 +102,29 @@ The record is one vehicle at one moment of one dealer's stock. It does not prove
 how the template holds for a car with fewer photographs, a plainer specification,
 or no video — which is exactly the failure mode Alex named. Gallery behaviour,
 sticky elements and any motion are not preserved by the shots.
+
+## 2026-08-05 · JUDGEMENT
+
+- **action:** whole-record judgement set by Alex
+- **previous rating / dialectStatus:** **3 / unreviewed**
+- **current rating / dialectStatus:** **3 / in** — dialect `technical-luxury`
+- **rating:** unchanged. Alex judged status and dialect only.
+
+### Alex's judgement — verbatim
+
+> `in` · `technical-luxury`
+
+Given in conversation on 2026-08-05, after reviewing the record's shots alongside the
+agent observations below. He was asked for the whole-record status and the dialect
+separately, because the dialect assignment is what a confirmation count rests on.
+
+### Agent observations — not Alex's judgement
+
+| Layer | Observation | Source | Verdict |
+|---|---|---|---|
+| composition | A lighter inset window over the same photograph, with the model name straddling the seam — one committed gesture rather than an accumulation. | agent | unreviewed |
+| composition | The inset sits centred and cuts the car at the rear haunch. Whether that is an intentional crop or a device seated on the subject is the open question. | agent | unreviewed |
+| typography | The spec bar stays quiet and the figures are tabular, so price and mileage align rather than compete. | agent | unreviewed |
+
+**Every row above is `agent` / `unreviewed`.** Alex gave a whole-record verdict,
+not layer verdicts, and a layer he did not judge stays unjudged.

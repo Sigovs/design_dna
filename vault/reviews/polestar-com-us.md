@@ -103,3 +103,29 @@ The record is one market's homepage at one moment of one campaign. The discounts
 Alex objects to are a US promotion, not a property of the design system, and the
 shots cannot separate the two. Motion, transitions and any route through the site
 are not preserved.
+
+## 2026-08-05 · JUDGEMENT
+
+- **action:** whole-record judgement set by Alex
+- **previous rating / dialectStatus:** **2 / unreviewed**
+- **current rating / dialectStatus:** **2 / in** — dialect `swiss-editorial`
+- **rating:** unchanged. Alex judged status and dialect only.
+
+### Alex's judgement — verbatim
+
+> `in` · `swiss-editorial`
+
+Given in conversation on 2026-08-05, after reviewing the record's shots alongside the
+agent observations below. He was asked for the whole-record status and the dialect
+separately, because the dialect assignment is what a confirmation count rests on.
+
+### Agent observations — not Alex's judgement
+
+| Layer | Observation | Source | Verdict |
+|---|---|---|---|
+| typography | Grotesque throughout; buttons are hairline outlines with no fill and no shadow. | agent | unreviewed |
+| imagery | The hero is a video still whose subject is ambiguous — arm, wheel and badge compete for the same read. | agent | unreviewed |
+| composition | The black promotional strip above the header speaks a different language from everything below it. | agent | unreviewed |
+
+**Every row above is `agent` / `unreviewed`.** Alex gave a whole-record verdict,
+not layer verdicts, and a layer he did not judge stays unjudged.

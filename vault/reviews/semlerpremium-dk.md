@@ -101,3 +101,27 @@ mobile view and both filmstrips, with no consent wall in frame. They do not prov
 motion, timing, transition behaviour, or any route through the site. Alex's
 judgements about flow, usability and motion character are preserved as
 user-supplied evidence and are neither corroborated nor weakened by the shots.
+
+## 2026-08-05 · JUDGEMENT
+
+- **action:** whole-record judgement set by Alex
+- **previous rating / dialectStatus:** **2 / unreviewed**
+- **current rating / dialectStatus:** **2 / in** — dialect `technical-luxury`
+- **rating:** unchanged.
+### Alex's judgement — verbatim
+
+> `in` · `technical-luxury`
+
+Given in conversation on 2026-08-05, against the record's shots and the agent
+observations below. Status and dialect were asked separately.
+
+### Agent observations — not Alex's judgement
+
+| Layer | Observation | Source | Verdict |
+|---|---|---|---|
+| composition | The same portrait inset device as the GT3 page, here holding video over a full-bleed still — one gesture reused across the site rather than a new one per page. | agent | unreviewed |
+| imagery | The background frame shows Bentley, Porsche and Lamborghini together head-on, and a legible registration plate sits in the lower left. | agent | unreviewed |
+| typography | The welcome sentence is set at body size over the busiest region of the photograph, bottom right. | agent | unreviewed |
+
+**Every row above is `agent` / `unreviewed`.** A layer Alex did not judge stays
+unjudged.

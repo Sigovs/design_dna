@@ -569,6 +569,7 @@ run of superficially similar pages.
 | Run date | Entries considered | Outcome |
 |---|---|---|
 | 2026-07-25 | `thegentlewoman-co-uk` | **First resolved case — rule upheld.** Counter-evidence dismissed; `color-taste` D2/D3 chroma rules stand unamended. See below. |
+| 2026-08-05 | `immersive-g-com`, `trionn-com`, `obys-agency` | **`immersive-authored-world` confirmed.** Its third `in` record landed on `immersive-g-com`, whose note calls it "цельный авторский digital-world" — the dialect's claim in Alex's own words. `trionn-com` was considered and **not** counted: its note opens `MAYBE`, and a maybe is `unreviewed`. `obys-agency` was not counted either: Alex's note describes composition and restraint, not a staged world. The house now has two confirmed dialects. |
 | — | — | Phase 2 shipped; no full distillation run yet. |
 
 #### First resolved case — the loop, end to end

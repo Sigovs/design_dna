@@ -1,29 +1,31 @@
 ---
 name: immersive-authored-world
-description: PROVISIONAL personal dialect — the page behaves as a staged spatial experience rather than a conventional document. One symbolic central event, layered depth, in-world typography and interface, motion that changes narrative state, controlled surrealism, atmospheric texture, and spectacle separated by silence. Load only when a Design Read explicitly selects it; never inferred or recommended automatically.
-status: provisional
+description: CONFIRMED personal dialect — the page behaves as a staged spatial experience rather than a conventional document. One symbolic central event, layered depth, in-world typography and interface, motion that changes narrative state, controlled surrealism, atmospheric texture, and spectacle separated by silence. Load only when a Design Read explicitly selects it; never inferred or recommended automatically.
+status: confirmed
 ---
 
 # Dialect — immersive-authored-world
 
-> **Status: provisional.** Author-created ahead of Vault evidence; keeps its own
-> shape, which predates [_TEMPLATE.md](_TEMPLATE.md). Promotion criteria are in
-> [the index](README.md#promotion-criteria).
+> **Status: confirmed, 2026-08-05.** Author-created ahead of Vault evidence and
+> confirmed the other way round — by three human-reviewed entries carrying it
+> with `dialectStatus: "in"`. Keeps its own shape, which predates
+> [_TEMPLATE.md](_TEMPLATE.md).
 
-> ## ⚠ PROVISIONAL
+> ## CONFIRMED — and how, which matters
 >
-> **Author-created ahead of sufficient Vault evidence.** This dialect was written
-> from intent, not distilled from references, which is the reverse of how
-> [vault/README.md](../vault/README.md#creating-a-new-dialect) says dialects
-> normally come into being.
+> **This dialect was written from intent, not distilled from references** — the
+> reverse of how [vault/README.md](../vault/README.md#creating-a-new-dialect)
+> says dialects normally come into being. That route carries its own test, and
+> the test has now been passed: `ruadh-com`, `electrafilmworks-com` and
+> `immersive-g-com` each carry it with `dialectStatus: "in"`, all three set by
+> Alex.
 >
-> **It is confirmed only when at least three human-reviewed Vault entries
-> explicitly carry `dialects: ["immersive-authored-world"]` with
-> `dialectStatus: "in"`.** Until then it is a working hypothesis about a way of
-> deciding — usable when Alex selects it, but not yet evidence-backed, and not a
-> precedent for creating further dialects this way.
+> **It is not a precedent for creating further dialects this way.** The authored
+> route stays the exception; the normal one is distillation from ≥3 references a
+> human set to `out`, sharing decision logic.
 >
-> Provisional status is tracked in [dialects/README.md](README.md).
+> **Confirmed still does not mean default.** Selection remains a human decision
+> in the Design Read, exactly as below.
 
 **The page may behave as a staged spatial experience rather than a conventional
 document.**

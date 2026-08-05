@@ -31,7 +31,7 @@ own `PRINCIPLES` / `EXPRESSIONS` structure and are exempt from the domain table 
 | Dialect | Status | One line |
 |---|---|---|
 | [auction-editorial](auction-editorial.md) | **confirmed** | The house dialect — restraint, hierarchy from space and scale, metadata composed as a record. |
-| [immersive-authored-world](immersive-authored-world.md) | **provisional** | The page as a staged spatial experience — one symbolic event, layered depth, in-world type and interface. |
+| [immersive-authored-world](immersive-authored-world.md) | **confirmed** | The page as a staged spatial experience — one symbolic event, layered depth, in-world type and interface. |
 | [brutalist-utility](brutalist-utility.md) | library | The structure of the thing is the design of the thing — exposed frame, hard ranks, controls as compositional material. |
 | [refined-elegance](refined-elegance.md) | library | Quality legible in proportion and interval before anything else — restraint *with* presence, not absence. |
 | [swiss-editorial](swiss-editorial.md) | library | A declared system carries the meaning — real grid, real scale, position as argument, information as designed objects. |
@@ -61,15 +61,26 @@ of deciding. Usable when Alex selects it explicitly; not evidence-backed.
 and carries no house authority.** A library dialect is selected because it expresses
 this brief's central idea, never because it is available.
 
-**Exact counts, as of 2026-07-30 — ten files, and only one of them is evidence:**
+**Exact counts, as of 2026-08-05 — ten files, and two of them are evidence:**
 
 | Status | Count | What it asserts |
 |---|---|---|
-| confirmed | **1** | `auction-editorial` — the only dialect distilled from Alex's own vault evidence, and the only one that is part of his demonstrated Design DNA |
-| provisional | **1** | `immersive-authored-world` — an author's hypothesis, **2 of 3** `in` records (`ruadh-com`, `electrafilmworks-com`) |
+| confirmed | **2** | `auction-editorial`, distilled from Alex's own vault evidence · `immersive-authored-world`, authored ahead of evidence and since confirmed the other way round, by three human `in` judgements. Both are part of his demonstrated Design DNA |
+| provisional | **0** | — none outstanding |
 | library | **8** | Described decision methods available as inputs. **Zero** are evidence of Alex's taste |
 
-So: **ten dialect files · one demonstrated · one hypothesised · eight described.**
+So: **ten dialect files · two demonstrated · none hypothesised · eight described.**
+
+> **Confirmed 2026-08-05.** `immersive-authored-world` reached its third `in`
+> record: `ruadh-com`, `electrafilmworks-com` and now `immersive-g-com`, whose
+> note calls it "цельный авторский digital-world, а не обычный агентский
+> portfolio-сайт" — the dialect's own claim in Alex's words. TRIONN was
+> considered and **not** counted: its note opens with `MAYBE`, and a maybe is
+> `unreviewed`, never forced into IN.
+>
+> The promotion itself is arithmetic — three human judgements, counted by
+> `npm run dialects:check`. What was not arithmetic is the three judgements, and
+> those were Alex's.
 
 > **The evidence rule is untouched, and there are exactly two of them.** The
 > [binding rule](../vault/README.md#creating-a-new-dialect) already distinguishes a
@@ -111,13 +122,16 @@ log it in the [distillation log](../vault/README.md#distillation-log).
 
 | Dialect | Created | Entries carrying it with status `in` | Needed |
 |---|---|---|---|
-| [immersive-authored-world](immersive-authored-world.md) | 2026-07-25 | **2** — `ruadh-com`, `electrafilmworks-com` | 1 more |
+| — | — | — | none provisional |
 
-Counted from `vault/sites.json` by `npm run dialects:check`, which is why this row
-is no longer maintained by hand — it read 0 for days while two human judgements
-already existed. **One more entry carrying it with `in` and it is confirmable**, and
-that tagging stays a human review action in the gallery, like every other
-`dialectStatus` decision.
+Counted from `vault/sites.json` by `npm run dialects:check`, which is why this table
+is not maintained by hand — it read 0 for days while two human judgements already
+existed, and the check is what caught up.
+
+`immersive-authored-world` left this table on 2026-08-05 by the authored route:
+three entries carrying it with `in`. Nothing is provisional now, so the next
+dialect to appear here will be one Alex declares — an agent may not put one here,
+and may not take one out except by counting.
 
 ---
 

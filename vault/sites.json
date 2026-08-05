@@ -788,7 +788,9 @@
     "added": "2026-07-30",
     "rating": 3,
     "dialectStatus": "in",
-    "dialects": [],
+    "dialects": [
+      "immersive-authored-world"
+    ],
     "tags": {
       "composition": [
         "dominant-mass",

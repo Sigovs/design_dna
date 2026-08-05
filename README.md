@@ -57,6 +57,7 @@ design_dna/
 │   ├── spacing-taste/SKILL.md      # I: hierarchy, tokens, internal<external · D: air-first, bottom-heavy
 │   ├── typography-taste/SKILL.md   # I: legible rank, optical correction · D: didone + grotesque + mono, spec plates
 │   ├── color-taste/SKILL.md        # I: AA, no hue-only meaning, scrims · D: neutral dark base, smoky accents
+│   ├── generated-imagery/SKILL.md  # cross-dialect · I: origin declared, never depicts the real thing, provenance, survives a phone photo
 │   ├── motion-judgment/            # cross-dialect · whether to move at all, and what for
 │   │   ├── SKILL.md                # I: declared role, one primary idea, subject over amount, stoppable frames
 │   │   └── references/             # per-category judgment, audit rubric, implementation
@@ -68,7 +69,7 @@ design_dna/
 │   ├── _TEMPLATE.md                # the shared dialect shape
 │   ├── check.mjs                   # npm run dialects:check — shape, indexes, vocab in sync
 │   ├── auction-editorial.md        # CONFIRMED — the house dialect, distilled from the vault
-│   ├── immersive-authored-world.md # PROVISIONAL — the page as a staged spatial experience
+│   ├── immersive-authored-world.md # CONFIRMED — the page as a staged spatial experience
 │   ├── brutalist-utility.md        # library — the structure of the thing is the design of it
 │   ├── refined-elegance.md         # library — quality legible in proportion and interval
 │   ├── swiss-editorial.md          # library — a declared system carries the meaning
@@ -78,6 +79,7 @@ design_dna/
 │   ├── technical-luxury.md         # library — value demonstrated, not asserted
 │   └── organic-tactile.md          # library — let the hand show
 ├── brief.mjs                       # npm run brief / brief:check — the brief compiler
+├── art.mjs                         # npm run art / art:dry — compiled brief → generated imagery
 ├── projects/                       # records of MY OWN work — the inward half of the loop
 │   ├── README.md                   # why, when to write, how it feeds distillation
 │   ├── _TEMPLATE.md                # front-matter + required sections, incl. exploration
@@ -85,6 +87,7 @@ design_dna/
 │   ├── requests/<slug>.txt         # the raw DESIGN request a brief was compiled from
 │   ├── briefs/_TEMPLATE.md         # the 14-section brief scaffold + provenance table
 │   ├── briefs/<slug>.md            # one compiled brief per project
+│   ├── art/<slug>/                 # generated imagery + prompts.md (images untracked)
 │   └── <project-slug>.md           # one per project, written at close
 ├── explore/                        # EXPLORE artifacts — three directions per brief
 │   └── README.md                   # the convention; artifacts are project-local
@@ -185,19 +188,18 @@ above an elegant services section is [U11](skills/anti-patterns/SKILL.md#invaria
 not a hybrid. Selection and combination live in
 [dialects/HYBRID.md](dialects/HYBRID.md).
 
-**Ten dialect files exist, and only one is evidence.** `auction-editorial` is
-**confirmed** — distilled from the vault, and the only dialect that is part of
-Alex's demonstrated DNA. `immersive-authored-world` is **provisional** — an author's
-hypothesis, 2 of 3 `in` records. The other eight are **library**: described decision
-methods, available as inputs to a Read, asserting nothing about Alex's taste and
-carrying no route to `confirmed` of their own. See
+**Ten dialect files exist, and two are evidence.**
+[auction-editorial](dialects/auction-editorial.md) is **confirmed** — the house
+dialect, distilled from the vault.
+[immersive-authored-world](dialects/immersive-authored-world.md) is **confirmed as
+of 2026-08-05** — the page as a staged spatial experience, author-created ahead of
+Vault evidence and confirmed the other way round, by three human-reviewed entries
+carrying it with `dialectStatus: "in"`. The other eight are **library**: described
+decision methods, available as inputs to a Read, asserting nothing about Alex's
+taste and carrying no route to `confirmed` of their own. See
 [dialects/README.md](dialects/README.md) for the index and the two original evidence
-rules. [auction-editorial](dialects/auction-editorial.md) is **confirmed** (the
-house dialect). [immersive-authored-world](dialects/immersive-authored-world.md) is
-**provisional**: the page as a staged spatial experience, author-created ahead of
-Vault evidence and confirmed only once ≥3 human-reviewed entries carry it with
-`dialectStatus: "in"`. Selection is always a human decision; a provisional dialect
-is never inferred or recommended.
+rules. Selection is always a human decision; neither confirmed dialect is ever
+inferred or recommended, and confirmed is not a licence to reach for one.
 
 ```bash
 npm run dialects:check     # shape, indexes and vocabulary in sync
@@ -252,6 +254,82 @@ hold, sections 12 (anti-patterns) and 13 (evidence) carry real content, and any
 `library` or `provisional` dialect is labelled as such wherever it is used. A brief
 is a **project artifact** — nothing in it becomes a permanent preference without Alex
 saying so.
+
+---
+
+## Generated art direction
+
+`art.mjs` turns a **compiled brief** into imagery. Same two-phase split as the brief
+compiler and the review loop, for the same reason: the script owns mechanics, the
+brief owns meaning.
+
+```bash
+npm run art:dry -- --brief projects/briefs/<slug>.md            # prompts only, nothing called
+npm run art -- --brief projects/briefs/<slug>.md --shots hero,detail --n 3
+npm run art -- --brief <file> --subject "a 1972 911 mid-restoration, cold workshop"
+npm run art -- --brief <file> --out "../Sports Car Rescue /assets/img/hero"
+```
+
+It reads §1 dialect, §3 art direction, §7 colour, §8 imagery and §12 prohibitions,
+strips the provenance markers, and assembles a prompt. **It never writes a direction
+of its own** — an unfilled scaffold is refused, because a plausible invented art
+direction is worse than no image: it looks like a decision.
+
+**Nothing dialect-specific is hardcoded.** The dialect arrives from the brief as
+text. A generator that assumed `auction-editorial` would quietly make every project
+resemble the last one — the exact convergence [projects/](projects/README.md) exists
+to detect.
+
+What *is* fixed is invariant-only, translated into language an image model acts on:
+one dominant mass, figure-ground separation at a glance, an intentional crop, a
+tonally calm region held for the headline so text stays legible without a scrim, and
+the anti-pattern bans — no baked-in type, no UI, no gradient wash, no neon rim light,
+no HDR crunch. Those hold on every brief, and repeating them in every brief is how
+they get forgotten in one.
+
+| Shot | Aspect | For |
+|---|---|---|
+| `hero` · `wide` | 16:9 | first screen, full-bleed band |
+| `portrait` | 4:5 | single subject beside text |
+| `detail` | 1:1 | material and surface close crop |
+| `mobile` | 9:16 | composed for 390px, not a crop of the desktop frame |
+
+Files land as `gen-<shot>-<n>.png` beside a `prompts.md` recording model, date and
+the exact prompt. **The `gen-` prefix travels with the file wherever it is copied.**
+Six months on, nobody can tell a generated hero from a photographer's frame by
+looking, and a synthetic asset must never be confusable with a client's in a build
+directory.
+
+> **A generated image is not evidence and never enters `vault/`.** The vault holds
+> other people's shipped work, judged. A generated frame is neither shipped nor
+> anyone's. It is a project artifact, like an EXPLORE direction.
+
+**Image generation is not in the Gemini API free tier.** Measured directly, not
+inferred: a brand-new key answers every image model with
+`GenerateRequestsPerDayPerProjectPerModel-FreeTier` — a daily allowance of zero —
+while text models on that same key answer normally. Generating needs billing
+enabled on the Google Cloud project; per-image cost is cents, not a subscription.
+Get a key at [aistudio.google.com/apikey](https://aistudio.google.com/apikey) and
+`export GEMINI_API_KEY=…` in `~/.zshrc`. `--model` switches models without editing
+the file.
+
+**The working route today is fal.ai, driven from the editor session.** `art:dry`
+writes `prompts.md`; the agent runs that prompt through the connected fal MCP and
+saves the frames with their `gen-` prefix. No second billing account, no leaving
+VS Code, and measured cost: `fal-ai/flux/schnell` at $0.003/megapixel for drafts,
+`fal-ai/flux-pro/v1.1-ultra` at $0.06 for a 2K final — with `raw: true`, which is
+the flag that stops it looking rendered.
+
+**Two constraints in the block were added from measured failures, not theory.**
+A reading-room subject returned hundreds of pseudo-lettered book spines on both a
+draft and a flagship model — a text ban does not survive a subject built of text,
+so the block now moves the subject instead. And flagship models add cinematic matte
+bars unprompted, which are dead pixels inside a full-bleed hero, so the block
+demands an edge-to-edge frame. Both fixes verified on regeneration.
+
+One standing caution the tool prints after every hero: **a generated hero raises the
+project's asset dependency.** The composition still has to survive an ordinary client
+photograph, and if it only works on the generated frame it is not finished.
 
 ---
 
@@ -522,6 +600,13 @@ while it is honest.
    removed, the reader keeps control of pacing, comprehension never waits on
    choreography, mobile choreography is authored rather than inherited, and reduced
    motion delivers the same meaning rather than a disabled interface.
+   **Synthetic imagery is governed before it exists** — the origin of every image
+   position is declared before a prompt does, the prompt is derived from the brief
+   rather than typed from taste, nothing generated ever depicts a real product,
+   premises or person, no type or interface is baked into a frame, the region text
+   will sit over is held at generation instead of rescued with a scrim, provenance
+   stays on the file permanently, the composition still reads with an ordinary
+   photograph in place, and a mobile frame is composed rather than cropped.
 3. **Dialects are chosen, never assumed — and the house one is auction-editorial.**
    A second, **provisional** dialect exists
    ([immersive-authored-world](dialects/immersive-authored-world.md): the page as a

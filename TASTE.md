@@ -532,6 +532,7 @@ its own `yields when:`.
 | [spacing-taste](skills/spacing-taste/SKILL.md) | Spatial hierarchy is deliberate; spacing is tokenised; internal gaps < external gaps. | Air-first — generous space, bottom-heavy composition, whitespace as a status signal. |
 | [typography-taste](skills/typography-taste/SKILL.md) | Hierarchy is legible; roles are bounded and distinct from voices; type is optically corrected at every size; functional text never below 14px. | Editorial contrast — expressive display + quiet grotesque + mono, italic signature word, spec plates. |
 | [color-taste](skills/color-taste/SKILL.md) | AA verified every change; never meaning by hue alone; legibility fixed at the background layer. | Chromatic restraint — neutral dark base, smoky desaturated accents used as a setting. |
+| [generated-imagery](skills/generated-imagery/SKILL.md) | **Cross-dialect.** Origin declared before generation; the prompt derived from the brief, never typed from taste; nothing synthetic depicts a real product, place or person; no type, UI or logo inside the frame; the reading zone held at generation rather than patched with a scrim afterwards; provenance travelling with the file permanently; the composition surviving an ordinary photograph; mobile frames authored rather than cropped. | **None.** Whether an image may be synthetic is not an aesthetic position, and a preferred generated look would be the AI-default arriving through the back door. |
 | [motion-judgment](skills/motion-judgment/SKILL.md) | **Cross-dialect.** Role declared before effect; one primary temporal idea per viewport; the subject decides rather than the amount; every stoppable frame is a designed frame; the static build stands alone; the user keeps the transport; comprehension never waits on choreography; mobile authored separately; reduced motion preserves meaning. Contains the MOTION READ and PLAN; routes to `references/` for category judgment, the audit rubric and implementation. | **None.** Whether to move is not a taste position — the house motion feel lives in `motion-taste`. |
 | [motion-taste](skills/motion-taste/SKILL.md) | Reduced-motion path for everything; state changes perceivable with keyboard parity; no jank. | Calm and physical — crossfade over travel, subtle hover, motion never as identity. |
 | [anti-patterns](skills/anti-patterns/SKILL.md) | The five universal failure modes, controlled-irregularity legibility, uncounted persistent overlays, competing art directions inside one page, and undiscoverable task-relevant routes. | The trope bans — AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, template anonymity. |
@@ -549,6 +550,12 @@ path decide what the spacing is *for*; dimensionality sits just under it because
 declared role decides what the composition is made of; motion is last because motion
 is seasoning.
 
+**`generated-imagery` binds whenever a model produced any part of a shipping
+image** — generated, upscaled, extended, generatively filled. It sits outside the
+conflict order because it has no dialect tier: it decides whether an image may be
+synthetic, what it may claim, and what must be true of it. What it should then look
+like comes from the dialect already selected.
+
 **`motion-judgment` decides before `motion-taste` executes.** Whether a thing should
 move, and what for, is settled in the MOTION READ; how it then behaves — duration
 scale, easing, reduced-motion path, hover feel — belongs to `motion-taste`. The
@@ -565,7 +572,7 @@ live only in the dialect files.
 | Dialect | Status | What it is |
 |---|---|---|
 | [auction-editorial](dialects/auction-editorial.md) | confirmed | The house dialect. Split into **PRINCIPLES** (compositional logic and decision tendencies) and **EXPRESSIONS** (optional visual manifestations). The expressions are not a checklist — a design can belong to this dialect while using few of them. |
-| [immersive-authored-world](dialects/immersive-authored-world.md) | **provisional** | The page as a staged spatial experience rather than a document: one symbolic central event, layered depth, typography and interface belonging to the world, motion that changes narrative state, spectacle separated by silence. Carries a strict effect hierarchy and an INVARIANT COMPLIANCE section. |
+| [immersive-authored-world](dialects/immersive-authored-world.md) | confirmed | The page as a staged spatial experience rather than a document: one symbolic central event, layered depth, typography and interface belonging to the world, motion that changes narrative state, spectacle separated by silence. Carries a strict effect hierarchy and an INVARIANT COMPLIANCE section. |
 
 **Selection and combination are governed by
 [dialects/HYBRID.md](dialects/HYBRID.md)** — the three style modes, the
@@ -584,10 +591,11 @@ own: it was authored, so only the authored route could ever apply, and only afte
 Alex re-declares it `provisional`. See
 [dialects/README.md](dialects/README.md#status-what-each-one-means-and-what-it-authorises).
 
-**Neither of the two below is a default, and neither is ever inferred.** `immersive-authored-world`
-is additionally **provisional** — author-created ahead of Vault evidence, confirmed
-only once ≥3 human-reviewed entries carry it with `dialectStatus: "in"`. Select it
-only when Alex names it; never recommend it because a brief sounds creative.
+**Neither of the two below is a default, and neither is ever inferred.**
+`immersive-authored-world` was author-created ahead of Vault evidence and
+**confirmed on 2026-08-05**, by three human-reviewed entries carrying it with
+`dialectStatus: "in"`. Confirmed is not a licence to reach for it: select it only
+when Alex names it, and never recommend it because a brief sounds creative.
 
 New dialects are not invented casually. The evidence route is the norm — one may be
 proposed out of the vault under the rule in

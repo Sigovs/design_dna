@@ -96,7 +96,7 @@
     "rating": 2,
     "dialectStatus": "in",
     "dialects": [
-      "cinematic-industrial"
+      "immersive-authored-world"
     ],
     "tags": {
       "composition": [
@@ -454,7 +454,7 @@
     "rating": 2,
     "dialectStatus": "in",
     "dialects": [
-      "cinematic-industrial"
+      "technical-luxury"
     ],
     "tags": {
       "composition": [
@@ -544,10 +544,8 @@
     "title": "Rivian",
     "added": "2026-08-04",
     "rating": 2,
-    "dialectStatus": "in",
-    "dialects": [
-      "swiss-editorial"
-    ],
+    "dialectStatus": "out",
+    "dialects": [],
     "tags": {
       "composition": [
         "conversion-first-hierarchy",

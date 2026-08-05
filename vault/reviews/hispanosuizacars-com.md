@@ -91,3 +91,20 @@ Queued in `unsorted`, his wording kept: *Hyperlux* · *Electric Hypercar* · *Su
 animated performance counters (`motion` has no term for a counter), and the
 factual copy error on the Carmen Sagrera page, which is a content-quality failure
 rather than a design one. Neither was forced into an approximate tag.
+
+## 2026-08-05 · RECLASSIFICATION
+
+- **action:** Alex re-read the classification **against the note**, not the hero shot
+- **previous dialectStatus / dialects:** **in · cinematic-industrial**
+- **current dialectStatus / dialects:** **in · immersive-authored-world**
+- **rating:** unchanged at 2
+
+### Alex's reasoning — verbatim
+
+> Там решает не физическая достоверность автомобиля через свет и материал, а создание отдельного сюрреалистического мира: культурные слои, наследие, fashion-film, типографика как часть сцены, controlled surrealism, мифология владения.
+
+### Why this supersedes the earlier assignment
+
+The first assignment was made from a single hero screenshot, before this record's
+note existed. The note carries decision logic; a hero shot carries surface. Where
+the two disagree the note governs, and here they disagreed.

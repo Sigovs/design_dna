@@ -12,7 +12,7 @@
  * mistake as a vault that promoted its own patterns.
  */
 
-import { readFileSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
@@ -136,11 +136,42 @@ if (mismatches.length !== documented.length) {
   console.log(`  ${mismatches.length} note/status mismatches, all documented and none repaired`);
 }
 
-/* 5 · the provisional dialect's count is stated in one place only */
-const provIn = sites.filter((e) => e.dialectStatus === 'in' && (e.dialects ?? []).includes('immersive-authored-world'));
-console.log(`  immersive-authored-world: ${provIn.length} of 3 "in" records (${provIn.map((e) => e.id).join(', ')})`);
-if (provIn.length >= 3) {
-  console.log('  ! that is confirmable — a HUMAN decision, never automatic');
+/* 5 · which dialects are approaching confirmation, and which already got there.
+      This used to name immersive-authored-world alone and print "N of 3" for it
+      forever — including after it was confirmed, so the check kept proposing a
+      decision that had already been made. The threshold belongs to any dialect
+      that has not been confirmed yet, and the confirmed ones want a count, not a
+      prompt. Status is read from the dialect file rather than hardcoded, so this
+      cannot go stale again. */
+/* Read from the dialects/ index table, not from each dialect's front matter:
+   only one of the ten files carries a `status:` key, so front matter would report
+   a confirmed dialect as unknown and prompt to confirm it again. The index is the
+   surface `npm run dialects:check` already keeps honest. */
+const dialectIndex = (() => {
+  const file = join(dirname(VAULT), 'dialects', 'README.md');
+  if (!existsSync(file)) return new Map();
+  const rows = readFileSync(file, 'utf8').matchAll(/^\|\s*\[([a-z-]+)\]\([^)]*\)\s*\|\s*\**([a-z]+)\**\s*\|/gm);
+  return new Map([...rows].map((m) => [m[1], m[2]]));
+})();
+const dialectStatusOf = (name) => dialectIndex.get(name) ?? null;
+
+const perDialect = new Map();
+for (const e of sites) {
+  if (e.dialectStatus !== 'in') continue;
+  for (const d of e.dialects ?? []) {
+    if (!perDialect.has(d)) perDialect.set(d, []);
+    perDialect.get(d).push(e.id);
+  }
+}
+for (const [d, ids] of [...perDialect].sort((a, b) => b[1].length - a[1].length)) {
+  const st = dialectStatusOf(d);
+  console.log(`  ${d}: ${ids.length} "in" record${ids.length === 1 ? '' : 's'}${st ? ` · ${st}` : ''}`);
+  /* Raw count, never independence — several pages of one design system are one
+     observation, and only a human can see that. Said out loud so the number is
+     not mistaken for the threshold it resembles. */
+  if (st !== 'confirmed' && ids.length >= 3) {
+    console.log('  ! that reaches 3 by raw count — confirmable only if they are independent, and only by a human');
+  }
 }
 
 console.log('');

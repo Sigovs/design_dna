@@ -114,3 +114,27 @@ Queued in `unsorted`: *Electric Adventure Vehicle* · *Outdoor Technology* · *F
 *Rounded Interface* stayed in `unsorted` deliberately. Component geometry is a real,
 checkable property and none of the six categories is its home; inventing one is a
 human decision made by editing `vocab.json`, not a side effect of filing a note.
+
+## 2026-08-05 · RECLASSIFICATION
+
+- **action:** Alex re-read the classification **against the note**, not the hero shot
+- **previous dialectStatus / dialects:** **in · swiss-editorial**
+- **current dialectStatus / dialects:** **out · (none)**
+- **rating:** unchanged at 2
+
+### Alex's reasoning — verbatim
+
+> Основной принцип — human-centered technology, adventure as participation, approachable premium. Ни один сохранённый диалект полноценно этого не покрывает. swiss-editorial здесь был прочитан по поверхности: чистая типографика, модульность, порядок. Но решения Rivian принимаются не ради власти сетки и типографической системы. Не переносить автоматически в organic-tactile.
+
+### Why this supersedes the earlier assignment
+
+The first assignment was made from a single hero screenshot, before this record's
+note existed. The note carries decision logic; a hero shot carries surface. Where
+the two disagree the note governs, and here they disagreed.
+
+**`out` is not a rejection.** In Alex's words: *"out здесь не означает «плохой
+сайт» или «мне не нравится». Это означает: сайт нравится, но его decision logic
+пока не описана существующими диалектами."* The record stays as the raw material a
+future dialect is built from — and he ruled out filing it under
+`organic-tactile` by default, because a near-fit assigned for tidiness is how a
+dialect stops meaning anything.

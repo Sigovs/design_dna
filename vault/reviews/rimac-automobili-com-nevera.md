@@ -105,3 +105,20 @@ Queued in `unsorted`: *Electric Hypercar* · *Technical Storytelling* · *Perfor
 **One weakness has no term and stays in prose:** the momentary ambiguity over
 whether Nevera or Nevera R is being presented. That is ambiguity of *subject*,
 not of reading order, and `ambiguous-reading-order` means something else.
+
+## 2026-08-05 · RECLASSIFICATION
+
+- **action:** Alex re-read the classification **against the note**, not the hero shot
+- **previous dialectStatus / dialects:** **in · cinematic-industrial**
+- **current dialectStatus / dialects:** **in · technical-luxury**
+- **rating:** unchanged at 2
+
+### Alex's reasoning — verbatim
+
+> Ценность доказывается цифрами, конструкцией, производством, материалами и связью каждой спецификации с performance benefit. Именно: value demonstrated rather than asserted. Cinematic photography там поддерживает систему, но не определяет её.
+
+### Why this supersedes the earlier assignment
+
+The first assignment was made from a single hero screenshot, before this record's
+note existed. The note carries decision logic; a hero shot carries surface. Where
+the two disagree the note governs, and here they disagreed.

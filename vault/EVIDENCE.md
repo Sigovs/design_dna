@@ -22,10 +22,49 @@ correct** — that is Alex's review, and the claims below are marked accordingly
 
 | Class | Count | Entry ids |
 |---|---|---|
-| **Usable `in`** (human-set) | **22** | `beings-co` (3) · `ciridae-com` (3) · `ruadh-com` (2) · `electrafilmworks-com` (2) · `thenewmobileworkforce-…-back-at-hq` (2) · `trionn-com` (2) · `kinncollective-co-uk` (2) · `augen-pro` (2) · `i-pinimg-…-46d9d54b` (2) · `organimo-com` (3) · `immersive-g-com` (3) · `rolls-roycemotorcars-…-home-html` (3) · `obys-agency` (2) · `mclaren-com-cars-gl-en` (2) · `semlerpremium-dk-showroom` (3) · `semlerpremium-dk-brands-porsche-911-gt3-…` (3) · `polestar-com-us` (2) · `semlerpremium-dk` (2) · `rimac-automobili-com-nevera` (2) · `rivian-com` (2) · `oilstainlab-com` (2) · `hispanosuizacars-com` (2) |
-| **Usable `out`** (human-set) | **3** | `rmsothebys-com` (1) · `thegentlewoman-co-uk` (1) · `hbbody-com-en-home` (2) |
+| **Usable `in`** (human-set) | **21** | `beings-co` (3) · `ciridae-com` (3) · `ruadh-com` (2) · `electrafilmworks-com` (2) · `thenewmobileworkforce-…-back-at-hq` (2) · `trionn-com` (2) · `kinncollective-co-uk` (2) · `augen-pro` (2) · `i-pinimg-…-46d9d54b` (2) · `organimo-com` (3) · `immersive-g-com` (3) · `rolls-roycemotorcars-…-home-html` (3) · `obys-agency` (2) · `mclaren-com-cars-gl-en` (2) · `semlerpremium-dk-showroom` (3) · `semlerpremium-dk-brands-porsche-911-gt3-…` (3) · `polestar-com-us` (2) · `semlerpremium-dk` (2) · `rimac-automobili-com-nevera` (2) · `oilstainlab-com` (2) · `hispanosuizacars-com` (2) |
+| **Usable `out`** (human-set) | **4** | `rmsothebys-com` (1) · `thegentlewoman-co-uk` (1) · `hbbody-com-en-home` (2) · `rivian-com` (2) |
 | **Partial / contextual** (`hybrid`) | **1** | `porsche-com-usa` (2) |
 | **Not yet a judgement** (`unreviewed`) | **0** | — every record in the vault now carries a human status. |
+
+> **The three contested assignments are resolved, 2026-08-05, sixth pass — read
+> against the notes this time, not the hero shots.** Alex's re-reading:
+> `hispanosuizacars-com` `cinematic-industrial` → **`immersive-authored-world`**,
+> still `in`, because what governs there is the construction of a surreal cultural
+> world and heritage used as material, not an object made convincing by light.
+> `rimac-automobili-com-nevera` `cinematic-industrial` → **`technical-luxury`**,
+> still `in`, because value is proved by data, construction, manufacturing and the
+> link from every specification to a performance benefit — cinematic presentation
+> supports that system rather than governing it. `rivian-com` leaves
+> `swiss-editorial` for **`out`** with no dialect assigned. Inventory moves to
+> **21 `in` · 4 `out` · 1 `hybrid` · 0 `unreviewed`**.
+>
+> **`cinematic-industrial` now holds zero `in` records.** It lost both, and they
+> were its entire evidence. That is not a fault — it is a `library` dialect, a
+> method available to a project, never a demonstrated preference of Alex's — but
+> nothing in this vault currently evidences it, and any brief selecting it must say
+> so as a method rather than cite the vault.
+>
+> **`immersive-authored-world` reaches four.** It was already confirmed earlier
+> today at three, so Hispano Suiza strengthens a confirmed dialect rather than
+> triggering a decision. **The tally stated in the fourth-pass block below —
+> `auction-editorial` 3 and `immersive-authored-world` 3 — is superseded by this
+> one**; that block is left as written because it records what was true when it was
+> written.
+>
+> **`technical-luxury` reaches two independent observations.** Four records, but
+> three of them are Semler pages counting as one, plus Rimac. One short of the
+> threshold, and the first time that dialect has had evidence from more than a
+> single site. `swiss-editorial` falls back to one (Polestar).
+>
+> **`out` is explicitly not rejection here**, in Alex's words: *"out здесь не
+> означает «плохой сайт» или «мне не нравится». Это означает: сайт нравится, но его
+> decision logic пока не описана существующими диалектами."* Both `rivian-com` and
+> `hbbody-com-en-home` are liked and neither fits. He also refused to file Rivian
+> under `organic-tactile` for tidiness — **a near-fit assigned to empty the queue is
+> how a dialect stops meaning anything.** Two named characters now sit outside the
+> ten: *Human-Centered EV / Adventure Technology* and *Industrial Editorial /
+> Layered Scroll Architecture*.
 
 > **The note debt is cleared, 2026-08-05, fifth pass — and it produced a finding
 > larger than itself.** Alex wrote full reasoning for all five records that held a

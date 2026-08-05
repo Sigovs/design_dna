@@ -18,14 +18,32 @@ correct** — that is Alex's review, and the claims below are marked accordingly
 
 ---
 
-## Evidence inventory — counted from `vault/sites.json`, 2026-08-04
+## Evidence inventory — counted from `vault/sites.json`, 2026-08-05
 
 | Class | Count | Entry ids |
 |---|---|---|
 | **Usable `in`** (human-set) | **14** | `beings-co` (3) · `ciridae-com` (3) · `ruadh-com` (2) · `electrafilmworks-com` (2) · `thenewmobileworkforce-…-back-at-hq` (2) · `trionn-com` (2) · `kinncollective-co-uk` (2) · `augen-pro` (2) · `i-pinimg-…-46d9d54b` (2) · `organimo-com` (3) · `immersive-g-com` (3) · `rolls-roycemotorcars-…-home-html` (3) · `obys-agency` (2) · `mclaren-com-cars-gl-en` (2) |
 | **Usable `out`** (human-set) | **2** | `rmsothebys-com` (1) · `thegentlewoman-co-uk` (1) |
 | **Partial / contextual** (`hybrid`) | **1** | `porsche-com-usa` (2) |
-| **Not yet a judgement** (`unreviewed`) | **4** | `semlerpremium-dk` (2) · `semlerpremium-dk-showroom` (3) · `semlerpremium-dk-brands-porsche-911-gt3-…` (3) · `polestar-com-us` (2) |
+| **Not yet a judgement** (`unreviewed`) | **9** | `semlerpremium-dk` (2) · `semlerpremium-dk-showroom` (3) · `semlerpremium-dk-brands-porsche-911-gt3-…` (3) · `polestar-com-us` (2) · `hbbody-com-en-home` (2) · `hispanosuizacars-com` (2) · `oilstainlab-com` (2) · `rimac-automobili-com-nevera` (2) · `rivian-com` (2) |
+
+> **Counter refresh, 2026-08-05, and the first dialect movement.** Five more
+> records arrived from the gallery — HB Body, Hispano Suiza, Oil Stain Lab, Rimac
+> Nevera and Rivian — all automotive, all `unreviewed`, all still on a `TODO`
+> note. `unreviewed` therefore goes from 4 to 9. They are captured and tagged and
+> count for nothing until Alex writes the note and sets the status, which is
+> correct rather than a gap.
+>
+> **`immersive-g-com` gained `dialects: ["immersive-authored-world"]`**, its third
+> `in` record, and the dialect is now **confirmed** — see the
+> [distillation log](README.md#distillation-log). The `in` total is unchanged at
+> 14: that entry was already `in`, it simply never said what it was in. Eight of
+> the fourteen still do not.
+>
+> **The unreviewed nine are the automotive cluster**, and they are the raw
+> material for the only route to a new dialect: ≥3 records Alex sets to `out`
+> sharing decision logic. Two `out` records exist today, an auction house and a
+> fashion magazine, and they share none.
 
 > **Counter refresh, 2026-08-04.** Five records added since the last count, and
 > the library is no longer fully reviewed. `mclaren-com-cars-gl-en` was added and

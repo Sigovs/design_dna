@@ -65,6 +65,22 @@ correct** — that is Alex's review, and the claims below are marked accordingly
 > how a dialect stops meaning anything.** Two named characters now sit outside the
 > ten: *Human-Centered EV / Adventure Technology* and *Industrial Editorial /
 > Layered Scroll Architecture*.
+>
+> **Each of those rests on exactly one record — 1 of 3, not 2 of 3.**
+> *Human-Centered EV* is `rivian-com` alone; *Industrial Editorial* is
+> `hbbody-com-en-home` alone. The vault's only other `out` records are
+> `rmsothebys-com` and `thegentlewoman-co-uk`, both rating 1 and neither related to
+> either character. Written down because the miscount is the failure a raw tally
+> always invites: at "2 of 3" the next single record would read as confirmation
+> while only two observations existed. **Two more independent records are needed for
+> each — different brands, not more pages of Rivian or HB Body.**
+>
+> **They are not to be merged.** Both are human and applied in orientation, and
+> that resemblance is the trap. Their governing logic differs: one makes technology
+> desirable by expanding what a person can do, the other makes an industrial product
+> desirable by showing its result before explaining it. Collapsing them would
+> manufacture a dialect out of a shared mood. The next independent record decides
+> whether either is a repeating pattern or simply one brand's strong idea.
 
 > **The note debt is cleared, 2026-08-05, fifth pass — and it produced a finding
 > larger than itself.** Alex wrote full reasoning for all five records that held a

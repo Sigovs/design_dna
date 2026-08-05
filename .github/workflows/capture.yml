@@ -51,16 +51,36 @@ jobs:
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
 
+      # Kept out of `run:`'s implicit `set -e` so the exit code is ours to decide.
+      # The script records every per-entry failure on the entry itself, so a run
+      # that dies here has still done real work — and until this step stopped
+      # taking the whole job down with it, that work was thrown away.
       - name: Capture missing shots
+        id: capture
+        continue-on-error: true
         run: |
+          set -o pipefail
           if [ "${{ github.event.inputs.insecure }}" = "true" ]; then
-            node vault/capture.mjs capture-missing --insecure
+            node vault/capture.mjs capture-missing --insecure 2>&1 | tee capture.log
           else
-            node vault/capture.mjs capture-missing
+            node vault/capture.mjs capture-missing 2>&1 | tee capture.log
           fi
 
+      # The run log needs a token to read, which is no use when the person
+      # debugging is looking at the repository rather than the Actions tab.
+      - name: Publish the capture log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: capture-log
+          path: capture.log
+          if-no-files-found: warn
+          retention-days: 14
+
       - name: Commit new shots
+        if: always()
         run: |
+          rm -f capture.log
           if git diff --quiet -- vault/; then
             echo "no new shots — nothing to commit"
             exit 0
@@ -99,3 +119,12 @@ jobs:
             "
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
+
+      # Last, so that everything above — the commit especially — has already run.
+      # The run still goes red when a capture failed, because a red run is
+      # information, but it goes red having kept the shots it did take.
+      - name: Fail the run if any capture failed
+        if: steps.capture.outcome == 'failure'
+        run: |
+          echo "capture-missing exited non-zero — see the capture-log artifact."
+          exit 1

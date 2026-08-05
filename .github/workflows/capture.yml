@@ -8,6 +8,13 @@ on:
     branches: [master]
     paths:
       - 'vault/sites.json'
+      # The tool that takes the shots was outside the trigger that takes the
+      # shots: fixing a capture bug never re-ran the capture, so the fix sat
+      # in the repository proving nothing until somebody happened to add an
+      # entry. Both of these belong here for the same reason — a change to
+      # either one is a claim about the shots, and a claim is worth testing.
+      - 'vault/capture.mjs'
+      - '.github/workflows/capture.yml'
   workflow_dispatch:
     inputs:
       insecure:

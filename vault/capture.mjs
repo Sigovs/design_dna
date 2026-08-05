@@ -120,7 +120,11 @@ const CONSENT_MARKERS =
    is deliberately no click-on-empty-space fallback: an unidentified click on
    somebody else's page is an action with unknown consequences, not a read. */
 const SAFE_GATE_WORDS = ['complete', 'enter', 'begin', 'skip intro', 'continue to site'];
-const SAFE_GATE_PATTERNS = SAFE_GATE_WORDS.map(exactly);
+/* One pattern per word, so each is tried in its own turn — and `exactly` takes a
+   LIST, which `.map(exactly)` would not give it: map hands the callback a string
+   and the index. That mistake threw at import and killed every capture today
+   before the first page loaded. */
+const SAFE_GATE_PATTERNS = SAFE_GATE_WORDS.map((word) => exactly([word]));
 
 /* ---------------------------------------------------------------- helpers */
 

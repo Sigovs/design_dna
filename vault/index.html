@@ -1725,6 +1725,15 @@ async function boot() {
   $('#skeleton').hidden = true;        // hand off from skeleton to real content
   wire();
 
+  /* Deep link. A bad or stale id opens nothing rather than erroring — the hash
+     is somebody's bookmark, not an instruction the page has to obey. */
+  const fromHash = () => {
+    const id = decodeURIComponent(location.hash.slice(1));
+    if (id && id !== openId && entries.some((e) => e.id === id)) openDetail(id);
+  };
+  addEventListener('hashchange', fromHash);
+  fromHash();
+
   if (!store.available) {
     toast('Private browsing: edits and your token stay in memory for this session only.', 'warn', 8000);
   }
@@ -2365,6 +2374,11 @@ function openDetail(id, { editNote = false, showNote = false, restoreScroll = nu
   const entry = entries.find((e) => e.id === id);
   if (!entry) return;
   openId = id;
+  /* The address bar is the only way to hand somebody a specific entry. Without
+     it "open Immersive Garden and tick the dialect" is a treasure hunt through
+     a grid. replaceState rather than push: opening ten records in a row should
+     not bury the gallery ten steps back. */
+  try { history.replaceState(null, '', `#${id}`); } catch { /* file:// */ }
   $('#detail-id').textContent = entry.id;
   const body = $('#detail-body');
   body.textContent = '';
@@ -2446,6 +2460,7 @@ function openDetail(id, { editNote = false, showNote = false, restoreScroll = nu
 function closeDetail() {
   closeOverlay('#detail');
   openId = null;
+  try { history.replaceState(null, '', location.pathname + location.search); } catch { /* file:// */ }
 }
 
 function editForm(entry) {

@@ -40,3 +40,54 @@ unjudged.
 The `note` field still reads `TODO`. Alex set the status and dialect
 but has not written why in his own words, and **the note is his, so nothing here
 fills it in.**
+
+## 2026-08-05 · NOTE
+
+- **action:** Alex wrote the record's reasoning; `note`, `works` and `weaknesses` filled
+- **rating:** unchanged at **2**. He called the opening very strong and then
+  listed substantial weaknesses; nothing in the text is the word *reference*, and a
+  rating is his to state rather than mine to infer twice in a row.
+- **dialectStatus:** unchanged, `in` · `cinematic-industrial` — **but see below**
+
+### Alex's note — verbatim, never edited
+
+Split at his own headings (NOTE / WORKS / DOESN'T). Nothing merged or rephrased.
+
+### An open classification question this note raises
+
+He closed with: *"Для Design DNA я бы сохранил его как **Surreal Hyperlux /
+Heritage Reimagined**."* That names a character this vault has no dialect for.
+
+The record currently sits `in` · `cinematic-industrial`, set earlier today. **Those
+two statements pull in opposite directions**, and the consequence is structural
+rather than cosmetic: a record filed `in` under an existing dialect is no longer
+available as raw material for a new one. `out` is the status that keeps it
+available — *"the most valuable kind of entry ... the only raw material from which
+a new dialect can be built."*
+
+Nothing was changed. `dialectStatus` is a whole-record field only Alex sets, and
+he has not said which reading he meant.
+
+### A distillation candidate, recorded and not promoted
+
+*"Heritage feels contemporary when it is used as creative material, not displayed
+as a historical archive."*
+
+That is a transferable principle stated in his own words, and it is the kind of
+claim `EVIDENCE.md` exists to hold. It is **not** written there: promotion runs
+through the distillation ritual, and one record is one record.
+
+### Tags
+
+Placed on existing terms: `product-storytelling`, `supercar`,
+`narrative-dilution-risk`. The last is earned twice over — the homepage reading as
+a succession of campaign frames, and the typography art-directed per frame rather
+than for continuous reading. `decorative-information-legibility-risk` was already
+on the record and his note confirms it rather than adding it.
+
+Queued in `unsorted`, his wording kept: *Hyperlux* · *Electric Hypercar* · *Surreal Art Direction* · *Fashion Editorial* · *Cinematic Brand Experience* · *Automotive Heritage* · *Manifesto Design* · *Experimental Typography* · *Full-Bleed Video* · *Private Ownership* · *Family Legacy* · *Cultural Luxury* · *Museum-Like Experience*.
+
+**Two things he described have no term in the vocabulary** and stay in prose: the
+animated performance counters (`motion` has no term for a counter), and the
+factual copy error on the Carmen Sagrera page, which is a content-quality failure
+rather than a design one. Neither was forced into an approximate tag.

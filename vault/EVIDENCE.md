@@ -27,6 +27,49 @@ correct** — that is Alex's review, and the claims below are marked accordingly
 | **Partial / contextual** (`hybrid`) | **1** | `porsche-com-usa` (2) |
 | **Not yet a judgement** (`unreviewed`) | **0** | — every record in the vault now carries a human status. |
 
+> **The note debt is cleared, 2026-08-05, fifth pass — and it produced a finding
+> larger than itself.** Alex wrote full reasoning for all five records that held a
+> status and no note: `oilstainlab-com`, `hispanosuizacars-com`,
+> `rimac-automobili-com-nevera`, `rivian-com`, `hbbody-com-en-home`. Every one now
+> carries `note`, `works` and `weaknesses` in his own words, split at his own
+> headings and not edited. **No record in the vault reads `TODO` any more.**
+> `oilstainlab-com` rose 2 → 3 on his sentence *"я бы сохранил его как очень
+> сильный reference"*; the other four keep their ratings, because praise is not
+> the word *reference* and a rating is his to state.
+>
+> **Three of the five notes contradict the dialect the record was filed under.**
+> `hispanosuizacars-com` and `rimac-automobili-com-nevera` were both filed
+> `cinematic-industrial`; the first is described as surreal heritage-as-material,
+> the second as *"engineered rather than merely styled"* with a principle that is
+> `technical-luxury`'s premise. `rivian-com` was filed `swiss-editorial` and his
+> note says in as many words that it has **less** typographic discipline and
+> editorial restraint than Polestar — the other record of that dialect.
+>
+> **The cause is procedural.** The dialect assignments were collected before the
+> notes existed, from one hero screenshot each. A hero shot shows surface; a note
+> carries decision logic, and decision logic is what a dialect *is*. Asking in that
+> order built the classifications on the weaker evidence. Nothing has been
+> reassigned — only Alex sets `dialectStatus` and `dialects` — but until he
+> re-reads those three, **`cinematic-industrial`'s two independent records and
+> `swiss-editorial`'s two are both in question**, and those are the entire
+> independent evidence for either.
+>
+> **A reason was recorded that was never his.** `hbbody-com-en-home` was set `out`
+> from an option whose wording carried the agent's reading — *a colour
+> manufacturer with no colour on the first screen*. His note says the opposite and
+> praises the colour concept explicitly. The status survives on other grounds; the
+> reason did not, and the correction is appended to that record's sidecar rather
+> than replacing the original. **The lesson is about method: an option label that
+> carries the agent's judgement collects a verdict honestly and a reason
+> dishonestly.**
+>
+> **Nine transferable principles were stated and none was promoted.** They sit in
+> the five sidecars as distillation candidates. The strongest is general rather
+> than site-specific — *"the strongest scroll effect does not animate objects
+> inside the layout, it changes how the layout occupies space"* — and it belongs
+> next to `motion-judgment`'s subject-over-amount rule if a second record supports
+> it. Promotion runs through the ritual; one record is one record.
+
 > **`unreviewed` reaches zero, 2026-08-05, fourth pass.** `oilstainlab-com` →
 > **`expressive-poster`**, `hispanosuizacars-com` → **`cinematic-industrial`**,
 > `hbbody-com-en-home` → **`out`**. Every one of the 26 records now carries a

@@ -10,28 +10,39 @@
     "tags": {
       "composition": [
         "directed-eye",
-        "dominant-mass"
+        "dominant-mass",
+        "product-storytelling",
+        "structured-specification",
+        "tonal-structure"
       ],
-      "risks": [],
+      "risks": [
+        "repeated-composition-risk"
+      ],
       "typography": [
         "big-type",
         "grotesque"
       ],
       "layout": [
-        "bleed"
+        "asymmetry",
+        "bleed",
+        "chapter-navigation"
       ],
-      "motion": [],
+      "motion": [
+        "restraint",
+        "sticky-layering"
+      ],
       "color": [
         "dark",
         "bold-accent"
       ],
       "imagery": [
+        "art-direction",
         "photography",
         "product",
         "scrim-text"
       ]
     },
-    "note": "TODO",
+    "note": "Да — этот сайт мне тоже очень нравится. Причём здесь сильна не одна эффектная деталь: вся главная построена как цельная industrial-editorial система. А scroll-overlays — её главный пространственный приём.\n\nHB BODY показывает, как сделать сайт промышленного производителя одновременно техническим, эмоциональным и современным. Он не маскируется под luxury-бренд и не выглядит как скучный B2B-каталог.\n\nThe HB BODY website transforms an industrial automotive-refinishing company into a confident, visually expressive brand.\n\nWhat stands out most is its spatial scroll composition. Large image-led sections remain visually present while the following content layers move over them. This creates depth, continuity and a sense that the page is being physically assembled as the visitor scrolls.\n\nThe overlay effect is especially successful because it is not added as isolated animation. It controls the relationship between sections, allowing one chapter to remain in memory while the next one arrives.\n\nThe rest of the design supports the same idea: oversized typography, strong imagery, restrained industrial colors, numbered chapters, precise data and deliberately asymmetric layouts.\n\nЯ бы сохранил его как: Industrial Editorial / Layered Scroll Architecture.\n\nГлавные переносимые принципы:\n— An industrial website becomes desirable when it visualizes the result of the product before explaining the product itself.\n— Let the next section cover the previous one before asking the visitor to forget it.\n— Use sticky overlays to connect chapters—not merely to make scrolling look expensive.\n\nИменно для моих automotive-сайтов отсюда стоит брать логику перехода между cinematic и informational sections. Например: hero остаётся pinned, а inventory-intro накрывает его светлой панелью; затем SRP уже отпускается в нормальный flow. Или большой visual удерживается сзади, пока поверх последовательно появляются heritage, technology и CTA. Но не надо превращать весь dealer homepage в десять sticky-screen — двух сильных overlay-переходов будет достаточно.",
     "shots": {
       "full": "shots/hbbody-com-en-home/full.jpg",
       "hero": "shots/hbbody-com-en-home/hero.jpg",
@@ -60,9 +71,22 @@
     "source": "",
     "extras": [],
     "captureError": null,
-    "works": "",
-    "weaknesses": "",
-    "unsorted": []
+    "works": "WALKTHROUGH — SECTION BY SECTION\n\n1. Opening / Hero. The opening does not immediately resemble a product-distribution website. It behaves more like an automotive campaign: large visual field; minimal interface competing with the media; bold, direct typography; industrial imagery treated cinematically; motion establishing confidence before detailed information appears. This is important for HB BODY because paint, primers and refinishing materials are visually difficult products. Instead of opening with cans and technical categories, the site first establishes the emotional outcome: vehicles, surfaces, color and finish. The company sells chemicals, but the interface sells transformation.\n\n2. About / Brand introduction. The transition into the company story is where the overlay system becomes especially effective. A lighter editorial content surface arrives over a more immersive visual layer. This creates two simultaneous readings: the underlying image preserves atmosphere; the foreground panel introduces structured information. The page therefore avoids the familiar hard reset between \"hero\" and \"about us.\" The chapter numbering—01 ABOUT US, 02 PRODUCTS—also helps. It makes the homepage feel deliberately authored rather than assembled from CMS blocks.\n\n3. Company data. The facts—75 export destinations, 40+ years, 90% of products exported, 270 tons of daily capacity and 290 employees—provide strong industrial credibility. Design-wise, the numbers work because they interrupt the narrative with proof. The pattern is: atmosphere → explanation → measurable evidence. That is a very useful rhythm for premium and technical websites.\n\n4. Product categories. The product section successfully avoids looking like a conventional ecommerce grid. Categories such as Clear Coats and Mix Systems are treated as large visual territories rather than small cards crowded with SKUs. The hierarchy moves from category → family/series → individual product. That is the correct information architecture for a professional range this broad.\n\n5. Brand and editorial content. News, education, restoration stories, motorsport and training broaden the company beyond manufacturing. HB BODY presents itself as part of automotive culture, not simply a supplier. This is credible because the supporting ecosystem is real.\n\nWHY THE SCROLL OVERLAYS WORK — работает комбинация нескольких вещей.\n\n1. Sections behave like physical layers. Новый блок не просто появляется после предыдущего. Он частично закрывает его. Поэтому браузерная плоскость начинает ощущаться почти как стопка печатных листов или панелей.\n\n2. The previous visual remains in memory. Фотография не исчезает мгновенно за границей viewport. Пока следующий foreground-layer въезжает поверх неё, связь между двумя главами сохраняется.\n\n3. The overlay has visual mass. Белые или светлые панели имеют достаточно собственного пространства, плотности и ясные границы. Это не маленькие floating cards — это почти новая страница, физически накрывающая предыдущую.\n\n4. Motion is architectural. Эффект не пытается развлекать пользователя отдельными вращениями, параллаксами и многочисленными reveal-анимациями. Основное движение меняет пространственную структуру страницы. The strongest scroll effect does not animate objects inside the layout—it changes how the layout occupies space.\n\n5. Contrast makes the layering readable. Dark media sections and pale information surfaces создают очевидное разделение depth-planes. Если бы все секции имели одинаковый фон и контраст, sticky layering почти не ощущался бы.\n\nWHAT WORKS. Промышленный бренд выглядит эмоционально, но не притворяется luxury. Scroll overlays создают настоящий spatial continuity. Typography работает как часть композиции. Нумерация превращает длинную homepage в понятные главы. Большие изображения не являются фоном — они несут продуктовую идею. Статистика доказывает масштаб компании. Product catalog встроен в brand experience. Асимметрия придаёт странице authored quality. Color используется концептуально: для производителя покрытий цвет становится частью идентичности. Motion поддерживает структуру, а не украшает каждый элемент.\n\nFRONT-END READING. С технической точки зрения эффект, вероятнее всего, построен вокруг комбинации: full-viewport или near-viewport media sections; position: sticky; controlled top offsets; distinct stacking contexts and z-index; foreground panels with their own backgrounds; clip/overflow management; scroll-progress-based transforms for selected transitions; restrained easing rather than abrupt pinning.\n\nЯ бы не применял position: sticky ко всем секциям подряд. Это легко ломает длинный контент и мобильный scroll. Лучше использовать эффект как отдельный component pattern: immersive scene остаётся sticky → foreground chapter движется поверх сцены → normal content отпускает sticky state. На mobile нужно уменьшать продолжительность pinning либо полностью переводить некоторые переходы в обычный flow. Иначе эффект начинает ощущаться как сопротивление скроллу.\n\nТакже обязательны: prefers-reduced-motion; отсутствие scroll hijacking; стабильная высота до загрузки media; контроль GPU-heavy transforms; проверка Safari; осторожность с overflow на родительских контейнерах; сохранение нормального document order для accessibility.",
+    "weaknesses": "Главная опасность — слишком много одинаково сильных приёмов. Когда почти каждая глава крупная, контрастная и пространственно активная, страница теряет тихие участки. Overlay должен оставаться событием, а не становиться стандартным переходом между всеми блоками.\n\nЕсть и другие напряжения: эффектная homepage-система не всегда полностью переносится на более утилитарные внутренние страницы; глубокий ассортимент всё равно требует более традиционной каталожной логики; часть copy остаётся типичным corporate language; одинаковая глава-нумерация может сделать разные типы контента слишком системными; большие поверхности и layered transitions зависят от высокой производительности; на небольших ноутбуках foreground-панель может перекрывать предыдущую сцену слишком быстро; без правильной art direction этот паттерн станет просто стопкой прямоугольников.\n\nThe weaker editorial moments return to a more familiar corporate news-grid structure and lose some of the opening's spatial confidence.\n\nThe limitation on the statistics is that several similarly treated figures can begin to feel like a data wall. One or two primary numbers could receive dramatically more scale, while supporting figures remain quieter.\n\nГлавная слабость: the site creates exceptional continuity between its major chapters, but the repeated intensity of those chapters leaves limited room for visual silence.",
+    "unsorted": [
+      "Industrial Branding",
+      "Layered Scroll",
+      "Sticky Overlays",
+      "Spatial Composition",
+      "Editorial B2B",
+      "Product Ecosystem",
+      "Manufacturing Data",
+      "Automotive Culture",
+      "Color Systems",
+      "Scroll Choreography",
+      "Industrial Photography",
+      "Automotive Refinish"
+    ]
   },
   {
     "id": "hispanosuizacars-com",
@@ -80,10 +104,13 @@
         "directed-eye",
         "dominant-mass",
         "luxury-automotive",
+        "product-storytelling",
+        "supercar",
         "visual-silence"
       ],
       "risks": [
-        "decorative-information-legibility-risk"
+        "decorative-information-legibility-risk",
+        "narrative-dilution-risk"
       ],
       "typography": [
         "big-type",
@@ -105,7 +132,7 @@
         "scrim-text"
       ]
     },
-    "note": "TODO",
+    "note": "В целом — цепляет, и очень сильно в начале. Hispano Suiza выглядит как настоящий digital fashion film: необычный, чувственный, немного сюрреалистичный. Но есть заметный разрыв между великолепной арт-дирекцией и менее совершенной информационной системой. Сайт умеет создать миф вокруг марки лучше, чем подробно и последовательно раскрыть продукт.\n\nThe site immediately feels rare, theatrical and highly authored. It avoids the predictable visual language of both traditional luxury and aggressive hypercar marketing. Instead, it creates a surreal world built around sculpture, movement, heritage and exclusivity.\n\nThe strongest impression comes from the art direction. Cars, people, architecture, historic references and abstract imagery are combined almost like a fashion film or museum installation. The experience does not simply say that Hispano Suiza is exclusive—it creates the feeling that the visitor has entered a private and slightly mysterious cultural world.\n\nI especially like the tension between past and future. The typography, archival material and references to the company's 1904 origins establish heritage, while the cinematic imagery and unconventional compositions make the brand feel contemporary rather than nostalgic.\n\nДля Design DNA я бы сохранил его как Surreal Hyperlux / Heritage Reimagined.\n\nГлавный переносимый принцип: Heritage feels contemporary when it is used as creative material, not displayed as a historical archive.\n\nА брать отсюда стоит арт-дирекцию, соединение прошлого с будущим и ощущение закрытого мира. Не стоит брать фрагментарность повествования и переносить campaign-level эффектность на страницы, где человеку уже нужны ясность, доверие и точная информация.",
     "shots": {
       "full": "shots/hispanosuizacars-com/full.jpg",
       "hero": "shots/hispanosuizacars-com/hero.jpg",
@@ -133,9 +160,23 @@
     "source": "",
     "extras": [],
     "captureError": null,
-    "works": "",
-    "weaknesses": "",
-    "unsorted": []
+    "works": "The opening is excellent. The fragmented \"The No / Manifesto,\" large cinematic media and \"House of Pioneers\" language introduce attitude before products. Like Oilstainlab, the site understands that a rare vehicle first needs a mythology—but Hispano Suiza expresses it with elegance and seduction rather than aggression.\n\nThe combination of typography and imagery is particularly effective. Headlines are treated as part of the composition, not simply placed above content. Scale changes, vertical positioning and generous negative space create a sophisticated editorial rhythm.\n\nThe transitions between fashion, architecture, historical cars and contemporary hypercars give the brand cultural depth. Hispano Suiza is presented not only as a manufacturer, but as a family legacy, design house and private membership world.\n\nThe restrained interface allows the imagery to dominate. Navigation does not feel like a conventional automotive mega-menu, and the three Carmen models remain part of a larger brand narrative rather than immediately becoming a product grid.\n\nThe phrase \"The pleasure of belonging to the unique\" is translated successfully into the experience. Ownership is positioned as access to a private world, not simply possession of an expensive car.\n\nThe model pages also have strong raw material: animated performance numbers, technical information, large galleries, engineering details and historical inspiration. Carmen, for example, connects its electric powertrain and technical construction to the 1938 Dubonnet Xenia instead of presenting specifications without context.",
+    "weaknesses": "The homepage is more powerful as a sequence of impressions than as a clearly constructed story. \"Manifesto,\" \"House of Pioneers,\" \"Belonging to the Unique,\" model moments, racing heritage and family history are all relevant, but their relationship is not always immediately clear. The experience feels beautifully directed, yet slightly fragmented.\n\nSome of the mystery comes from withholding context. The visitor receives evocative statements before understanding what makes the current cars genuinely important. For a brand with relatively low recognition, this is riskier than it would be for Rolls-Royce or Ferrari. Mystery should create curiosity, but the site occasionally assumes that the visitor already understands the significance of Hispano Suiza.\n\nThe typography is visually beautiful but not consistently communicative. Fragmented headlines, unusual line breaks, widely separated words and oversized compositions sometimes feel art-directed for an individual frame rather than designed for continuous reading.\n\nThe model pages do not fully sustain the authority of the homepage. Strong images, performance counters and technical sections are present, but the sequencing becomes less refined and occasionally feels like accumulated content rather than one precisely paced product narrative.\n\nThere are also visible content-quality issues. The Carmen Sagrera page includes copy referring to the Carmen Boulogne, which weakens trust on exactly the kind of ultra-exclusive product page where every detail should feel immaculate. Its historical and launch information also appears layered together instead of fully rewritten into a definitive Sagrera story.\n\nCompared with Rolls-Royce, Hispano Suiza has more visual surprise but less systemic continuity. Rolls-Royce makes interface, media and interaction feel like one controlled environment; Hispano Suiza feels more like a succession of exceptional campaign frames.\n\nCompared with McLaren, it is more artistic and exclusive, but less direct in communicating the models. Compared with Oilstainlab, it has greater elegance and restraint, although both sometimes prioritize mythology over understanding.\n\nThe central weakness is: it creates an exceptional world around the brand, but the product experience inside that world is not always equally resolved.",
+    "unsorted": [
+      "Hyperlux",
+      "Electric Hypercar",
+      "Surreal Art Direction",
+      "Fashion Editorial",
+      "Cinematic Brand Experience",
+      "Automotive Heritage",
+      "Manifesto Design",
+      "Experimental Typography",
+      "Full-Bleed Video",
+      "Private Ownership",
+      "Family Legacy",
+      "Cultural Luxury",
+      "Museum-Like Experience"
+    ]
   },
   {
     "id": "mclaren-com-cars-gl-en",
@@ -228,7 +269,7 @@
     "url": "https://www.oilstainlab.com/",
     "title": "Oil Stain Lab — HF-11",
     "added": "2026-08-04",
-    "rating": 2,
+    "rating": 3,
     "dialectStatus": "in",
     "dialects": [
       "expressive-poster"
@@ -238,12 +279,15 @@
         "active-negative-space",
         "directed-eye",
         "dominant-mass",
+        "intentional-crop",
+        "product-storytelling",
         "structured-specification",
         "supercar",
         "visual-silence"
       ],
       "risks": [
-        "asset-dependency-risk"
+        "asset-dependency-risk",
+        "narrative-dilution-risk"
       ],
       "typography": [
         "big-type",
@@ -254,10 +298,16 @@
         "air",
         "bleed"
       ],
-      "motion": [],
+      "motion": [
+        "drag-interaction",
+        "kinetic-type",
+        "mechanical-sound",
+        "state-transition"
+      ],
       "color": [
-        "neutral",
-        "monochrome"
+        "dark",
+        "monochrome",
+        "neutral"
       ],
       "imagery": [
         "photography",
@@ -265,7 +315,7 @@
         "art-direction"
       ]
     },
-    "note": "TODO",
+    "note": "В целом — да, цепляет сильно, но не как чистый luxury-сайт. Это скорее digital manifesto / automotive fever dream. У него настоящий характер, и он почти физически передаёт безумие машины. Но иногда сайт настолько занят демонстрацией собственной креативности, что автомобиль и информация становятся вторичными.\n\nThe site immediately feels dangerous, obsessive and unconventional. It does not present the HF-11 as a polished luxury object; it presents it as a machine created by people who have gone slightly too far—and that attitude is embedded into every part of the experience.\n\nThe strongest quality is the complete alignment between product, language and interaction. Fragmented typography, aggressive cropping, drag-based exploration, mechanical sound, distorted transitions and unconventional navigation all express the same idea of controlled chaos. The interface does not merely describe the brand's \"maniac\" identity; it behaves like it.\n\nIt feels closer to an experimental automotive film, fashion editorial or interactive art piece than a conventional car website—and that makes it extremely memorable.\n\nДля нашего Design DNA я бы сохранил его как очень сильный reference, но не как template. Брать отсюда стоит смелость, характер, связь motion с продуктом и драматическую подачу характеристик. Не стоит переносить целиком навигационную сложность, постоянную типографическую агрессию и бесконечный register «madness».",
     "shots": {
       "full": "shots/oilstainlab-com/full.jpg",
       "hero": "shots/oilstainlab-com/hero.jpg",
@@ -294,9 +344,18 @@
     "source": "",
     "extras": [],
     "captureError": null,
-    "works": "",
-    "weaknesses": "",
-    "unsorted": []
+    "works": "The opening creates intrigue immediately. Words such as \"Bespoke,\" \"Myth,\" \"Chaos\" and \"Maniac\" establish the emotional world before the vehicle is fully explained. The visitor enters the brand through attitude rather than specifications.\n\nThe typography is particularly strong. Widely spaced letters, abrupt changes in scale, cropped words and repeated phrases create rhythm and tension. It feels mechanical and slightly unstable, which suits the HF-11 much better than a refined corporate type system would.\n\nThe art direction is fearless. Extreme vehicle details, black space, hard contrast and unusual compositions make the car feel rare and almost forbidden. The photography is not simply showing the product—it is building mythology around it.\n\nInteraction is also used as characterization. Dragging, discovering, opening the gallery, activating engine sound and moving between chapters makes the visitor participate in the experience. The site feels deliberately less passive than a standard scrolling product page.\n\nThe specifications—1,950 lbs, 3.2 seconds, 12,000 rpm and 650 hp—are presented as dramatic visual moments rather than rows in a table. Practical information becomes part of the storytelling.\n\nMost importantly, it possesses something many expensive automotive websites lack: a genuinely recognizable personality. If the logo disappeared, the experience would still feel specific to Oilstainlab.",
+    "weaknesses": "The site occasionally crosses the line from authored chaos into unnecessary friction. Navigation and interaction are intentionally unconventional, but the visitor must repeatedly discover how the interface works. \"DRAG,\" chapter names and experimental controls create curiosity, yet they also increase cognitive load.\n\nTypography sometimes becomes too mannered. Extreme letter spacing, fragmented words, repetition and unusual capitalization create character initially, but the technique is used so frequently that it begins to lose impact. What starts as tension can become visual noise.\n\nThe copy has the same problem. \"Maniacs,\" \"madness,\" \"psycho,\" \"chaos,\" \"demons\" and \"insanity\" establish a powerful voice, but the language pushes the same attitude almost continuously. After a while, the rebellion feels slightly overperformed. A few calm, precise moments would make the aggressive passages feel stronger.\n\nThe car itself is sometimes withheld for too long or shown too abstractly. That creates mystery, but this is still a highly specialized product requiring trust. Buyers eventually need a clearer understanding of engineering, construction, options, ownership and credibility—not only mythology.\n\nThe About content is conceptually strong but text-heavy and repetitive. The visual experience promises constant discovery, while portions of the narrative return to long manifesto-style paragraphs. This slows the experience without providing the calm editorial clarity found on Rolls-Royce.\n\nCompared with McLaren, Oilstainlab is more original and emotionally raw, but less immediately understandable. Compared with Rolls-Royce, it has more personality and experimental courage, but significantly less restraint, continuity and usability.\n\nThe central weakness is: it successfully makes you feel the madness—but sometimes makes you work too hard to understand the machine.",
+    "unsorted": [
+      "Experimental Automotive",
+      "Hypercar",
+      "Digital Manifesto",
+      "Controlled Chaos",
+      "Brutalist Typography",
+      "Automotive Mythology",
+      "Anti-Luxury",
+      "Custom Vehicle"
+    ]
   },
   {
     "id": "polestar-com-us",
@@ -402,22 +461,30 @@
         "directed-eye",
         "dominant-mass",
         "luxury-automotive",
+        "product-storytelling",
+        "structured-specification",
         "supercar"
       ],
       "risks": [
-        "asset-dependency-risk"
+        "asset-dependency-risk",
+        "narrative-dilution-risk"
       ],
       "typography": [
         "big-type",
         "grotesque"
       ],
       "layout": [
-        "bleed"
+        "bleed",
+        "chapter-navigation"
       ],
-      "motion": [],
+      "motion": [
+        "drag-interaction",
+        "restraint"
+      ],
       "color": [
-        "neutral",
-        "monochrome"
+        "dark",
+        "monochrome",
+        "neutral"
       ],
       "imagery": [
         "photography",
@@ -426,7 +493,7 @@
         "scrim-text"
       ]
     },
-    "note": "TODO",
+    "note": "В целом — очень сильная product page, особенно в том, как она превращает инженерию и цифры в визуальное представление. Rimac ощущается технологичным, серьёзным и уверенным — без театральности Hispano Suiza и намеренного безумия Oilstainlab.\n\nНо страница слишком длинная и равномерно интенсивная. В начале она создаёт ощущение Hypercar 2.0, а ближе к концу превращается в красиво оформленную техническую документацию.\n\nThe Nevera page feels engineered rather than merely styled. Its visual language is precise, technical and performance-driven, reflecting the same systems-thinking that defines the vehicle itself.\n\nI especially like how the experience moves between cinematic automotive imagery and extremely specific engineering information. The car is presented as both an emotional object and a technological achievement. Performance numbers, torque-vectoring systems, production processes and structural components all contribute to the same product narrative.\n\nUnlike many electric vehicle websites, it does not rely on sustainability messaging or soft futuristic minimalism. Electricity is presented as a more advanced method of achieving extreme performance.\n\nДля Design DNA я бы сохранил её как Engineering-Led Product Storytelling / Technical Hypercar Experience.\n\nГлавный переносимый принцип: Technical information becomes compelling when every specification is connected to a visible performance benefit.\n\nИ ещё один важный вывод: Numbers can create emotion—but only when hierarchy turns them into moments rather than rows of data.",
     "shots": {
       "full": "shots/rimac-automobili-com-nevera/full.jpg",
       "hero": "shots/rimac-automobili-com-nevera/hero.jpg",
@@ -455,9 +522,21 @@
     "source": "",
     "extras": [],
     "captureError": "partial evidence — 2 canvas element(s) — motion and WebGL state are not preserved by a static shot",
-    "works": "",
-    "weaknesses": "",
-    "unsorted": []
+    "works": "The opening establishes the product clearly and quickly. \"Welcome to Hypercar 2.0\" gives the Nevera a distinct position: this is not simply an electric alternative to an existing hypercar, but a proposed new generation of the category.\n\nThe performance presentation is exceptionally effective. Figures such as 1,914 hp, 0–100 km/h in 1.81 seconds and a 412 km/h top speed are treated as major visual moments rather than entries in a specification table. The numbers create drama while simultaneously providing evidence.\n\nThe relationship between technology and benefit is also strong. Four independent motors, real-time torque vectoring, the structural battery pack and carbon-fibre monocoque are not introduced as disconnected technical features. Each explains how the vehicle achieves its speed, control or structural performance.\n\nThe production section adds credibility. Machining, composites, paint, upholstery, component manufacturing and final assembly show that Rimac is not simply packaging external technology. \"From bytes to bolts\" becomes a convincing brand principle because the page demonstrates what is actually developed and manufactured in-house.\n\nThe chapter-based navigation is valuable on such a long page. Intro, Performance, Experience Electric, Design, Engineering, Production, Specifications and Enquiry provide a visible structure and let the visitor move directly to a particular layer of the story.\n\nVisually, the design succeeds because it is restrained around very complex content. The interface does not compete with the vehicle. Dark surfaces, large media, technical typography and controlled motion create a futuristic atmosphere without resorting to sci-fi decoration.\n\nThe page also balances mythology and proof better than Hispano Suiza or Oilstainlab. The name's connection to a Croatian Mediterranean storm establishes emotion and provenance, but the experience quickly returns to engineering evidence.",
+    "weaknesses": "The greatest weakness is length and repetition. Performance, technology, engineering and technical specifications naturally overlap, but the page does not always distinguish their roles clearly enough. Similar ideas—power, control, carbon construction and in-house development—are explained multiple times at different levels of detail.\n\nAfter the strongest cinematic and interactive sections, the experience gradually becomes a long technical archive. The complete specification area is useful, but eleven expandable categories produce a heavy ending. It feels closer to product documentation than the conclusion of a precisely paced brand story.\n\nThe page also maintains nearly the same serious technical register throughout. There are few quiet or emotionally human moments showing ownership, interior experience, material tactility or what it actually feels like to live with the car. The visitor understands what the Nevera can do more clearly than why they might form an emotional attachment to it.\n\nThe distinction between Nevera and Nevera R could be clearer. Both sets of extraordinary performance figures appear within the same experience, creating comparison value but also momentary ambiguity about which vehicle is currently being presented.\n\nSome interactions—dragging galleries, opening chapters and expanding extensive specifications—add exploration, but they also make the visitor work through a substantial amount of content. The interface is clearer than Oilstainlab, although not always as effortless as its disciplined appearance initially suggests.\n\nCompared with McLaren, Rimac communicates engineering with greater depth and authority but has less campaign energy and emotional variation. Compared with Hispano Suiza, it is far more coherent and credible, but less seductive and culturally rich.\n\nThe central weakness is: the page proves that the Nevera is an extraordinary machine, but it explains the machine more completely than it creates desire for ownership.",
+    "unsorted": [
+      "Electric Hypercar",
+      "Technical Storytelling",
+      "Performance Data",
+      "Engineering-Led Design",
+      "Interactive Specifications",
+      "In-House Production",
+      "Carbon Monocoque",
+      "Torque Vectoring",
+      "Cinematic Automotive",
+      "Technology Visualization",
+      "Hypercar 2.0"
+    ]
   },
   {
     "id": "rivian-com",
@@ -473,9 +552,13 @@
       "composition": [
         "conversion-first-hierarchy",
         "directed-eye",
-        "dominant-mass"
+        "dominant-mass",
+        "product-storytelling"
       ],
-      "risks": [],
+      "risks": [
+        "narrative-dilution-risk",
+        "repeated-composition-risk"
+      ],
       "typography": [
         "big-type",
         "floating-capsule-navigation",
@@ -487,9 +570,10 @@
       ],
       "motion": [],
       "color": [
-        "neutral",
+        "bold-accent",
         "dark",
-        "bold-accent"
+        "neutral",
+        "warm"
       ],
       "imagery": [
         "photography",
@@ -497,7 +581,7 @@
         "scrim-text"
       ]
     },
-    "note": "TODO",
+    "note": "В целом — очень нравится. Rivian сделал редкую вещь: современный EV-бренд, который не выглядит ни стерильно-технологичным, как многие конкуренты, ни агрессивно-performance. Сайт ощущается умным, дружелюбным, немного playful и действительно outdoor-oriented.\n\nНо есть и слабость: визуальная система прекрасна, а homepage временами слишком старается одновременно продать машины, технологию, приключения, аксессуары и образ жизни. Из-за этого сильный бренд постепенно превращается в длинную коммерческую витрину.\n\nThe site feels optimistic, capable and distinctly human. Rivian avoids both conventional automotive aggression and the cold minimalism commonly associated with electric vehicles. Its combination of natural landscapes, warm photography, friendly typography and precise product interface creates a recognizable world built around exploration rather than status.\n\nI especially like the balance between advanced technology and physical adventure. Software, charging, performance and vehicle intelligence are presented as tools that make it easier to go somewhere—not as abstract innovation for its own sake.\n\nThe experience feels premium, but approachable. Rivian does not position ownership as admission to an exclusive social class. It presents the vehicle as an invitation to participate.\n\nДля Design DNA я бы сохранил его как Human-Centered EV / Adventure Technology.\n\nГлавный переносимый принцип: Technology feels more desirable when it expands what people can do instead of asking them to admire the technology itself.\n\nИ ещё один очень сильный принцип: A premium brand can feel aspirational without using exclusivity as its primary language.",
     "shots": {
       "full": "shots/rivian-com/full.jpg",
       "hero": "shots/rivian-com/hero.jpg",
@@ -526,9 +610,24 @@
     "source": "",
     "extras": [],
     "captureError": "partial evidence — 3 canvas element(s) — motion and WebGL state are not preserved by a static shot",
-    "works": "",
-    "weaknesses": "",
-    "unsorted": []
+    "works": "The strongest quality is the consistency between brand character and interface behavior. Rounded controls, soft neutral colors, generous photography and direct conversational copy reflect the approachable personality of the vehicles themselves.\n\nThe art direction is unusually coherent. Vehicles appear in forests, deserts, mountains, campsites and ordinary family situations, but the imagery rarely feels like generic outdoor advertising. The compositions are clean, contemporary and carefully controlled. Nature provides emotion while the vehicles remain the unmistakable focal point.\n\nRivian also gives each model a clear role: R1S is the large adventure SUV; R1T is the capable electric truck; R2 broadens the brand into a more accessible everyday vehicle; R3 introduces a smaller, more playful personality. The design language remains consistent across these models without making them feel interchangeable.\n\nThe site is particularly good at translating engineering into everyday usefulness. Range, acceleration, storage, towing, ground clearance, charging, mobile-app controls and software updates are connected to actual ownership situations. Technology feels enabling rather than intimidating.\n\nCommerce is integrated cleanly. Visitors can configure a vehicle, browse available inventory, reserve an upcoming model, schedule a demo drive, compare vehicles and explore trade-in or charging information without leaving the branded environment.\n\nThe individual product pages are especially strong when they combine large media with concrete demonstrations: folding seats, storage compartments, phone controls, lighting, Gear Guard and off-road geometry. Even detailed dimensions are treated visually rather than buried entirely inside specification tables.\n\nCompared with Polestar, Rivian feels warmer, more emotional and more culturally complete. Polestar communicates precision through reduction; Rivian communicates capability through participation.",
+    "weaknesses": "The homepage can feel overly modular. Vehicle campaigns, technology, performance, charging, accessories, ownership tools and lifestyle stories are assembled into a polished sequence, but not always into one decisive narrative. The modules are consistently attractive, yet the page sometimes feels like a sophisticated content system rather than a singular authored experience.\n\nThe visual friendliness can also soften the vehicles too much. Rivians offer serious acceleration, towing and off-road capability, but the warm lifestyle photography and rounded UI occasionally make the experience feel more recreational than formidable.\n\nThere is a similar tension between adventure and commerce. Once pricing, inventory, reservations, offers and demo-drive prompts accumulate, the freedom promised by the imagery becomes surrounded by conversion mechanics. Rivian handles this more elegantly than most automotive sites, but the transition is still visible.\n\nThe newer R2 presentation contains an enormous amount of material: software, mobile features, security, dimensions, trims, wheels, interiors, drive modes, ownership actions and locations. The information is thoughtfully designed, but the total experience becomes long and somewhat repetitive. Individual modules remain strong while the overall pacing loses tension.\n\nThe system also depends on illustration-like iconography, rounded components and friendly copy so consistently that different sections can begin to feel tonally similar. More contrast between quiet lifestyle moments, technical proof and high-performance sequences would strengthen the rhythm.\n\nCompared with Rimac, Rivian makes technology far easier to understand and relate to, but it lacks the same sense of engineering revelation. Compared with Polestar, it has more warmth and personality, but slightly less typographic discipline and editorial restraint.\n\nThe central weakness is: Rivian has created an exceptionally coherent brand world, but the website sometimes turns that world into a sequence of beautifully designed modules rather than one continuously building story.",
+    "unsorted": [
+      "Electric Adventure Vehicle",
+      "Outdoor Technology",
+      "Friendly Futurism",
+      "Lifestyle Automotive",
+      "Product Ecosystem",
+      "Warm Minimalism",
+      "Natural Art Direction",
+      "Rounded Interface",
+      "EV Commerce",
+      "Product Demonstration",
+      "Software-Defined Vehicle",
+      "Adventure Gear",
+      "Accessible Premium",
+      "Human-Centered Technology"
+    ]
   },
   {
     "id": "semlerpremium-dk",

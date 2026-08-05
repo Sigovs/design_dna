@@ -37,6 +37,30 @@
 >
 > **No automatic promotion on raw count.** Status is tracked in
 > [dialects/README.md](README.md).
+>
+> ### Searched 2026-08-05, and not found
+>
+> The remaining 22 records were read against the chain Alex set — **technical
+> fact → observable consequence → demonstrated value** — rather than against
+> technical appearance. None carries it. The near misses are recorded so the
+> next pass does not repeat the search:
+>
+> | Record | Why not |
+> |---|---|
+> | `oilstainlab-com` (r3, `in` expressive-poster) | The spec plate is real — 1,950 lb, 3.2s, 12,000 rpm, 650 hp — but Alex's own note calls the site a *"digital manifesto / automotive fever dream"* with *"драматическая подача характеристик"*. Specification as **drama**, not as proof. Value asserted through attitude. |
+> | `hispanosuizacars-com` (r2, `in` immersive-authored-world) | Explicitly builds mythology: *"умеет создать миф вокруг марки лучше, чем подробно раскрыть продукт"*. The opposite of demonstration. |
+> | `mclaren-com-cars-gl-en` (r2, `in`, no dialect) | *"scale and performance"* — the cars are made to **feel** powerful by photography and type size. Feeling, not consequence. No fact is followed to an effect. |
+> | `augen-pro` (r2, `in`, no dialect) | Small technical captions and clinical whitespace, but the described mechanism is blur as a semantic device and a fictional world — an immersive register, not an evidential one. |
+> | `hbbody-com-en-home` (r2, **`out`**) | The closest logic in the vault: *"an industrial website becomes desirable when it visualizes the result of the product before explaining the product"* — chemicals shown as surface and finish. But `out` means outside every stored dialect, so it cannot carry one by definition. |
+>
+> **The nearest miss is `porsche-com-usa`**, and it is worth naming precisely.
+> Its record describes *"precisely classified, configurable product"* with
+> *"explicit powertrain and pricing information"* — specification treated as
+> content, which is this dialect's first decision. It is `hybrid`, and the
+> promotion test counts `in` only. If Alex ever judges it `in` against this
+> governing logic, that is the third observation. **An agent may not make that
+> move**, and the record is not to be re-read hopefully because a dialect needs
+> a third support.
 
 **Core thesis.** Value is demonstrated, not asserted: present engineering evidence —
 specification, tolerance, material, provenance — with enough compositional care that

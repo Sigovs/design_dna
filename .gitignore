@@ -45,6 +45,14 @@ contact-sheet*
 !vault/shots/**
 !explore/**/*.png
 
+# ── generated art ─────────────────────────────────────────────────────────
+# Project artefacts, not evidence — see skills/generated-imagery (GI6). The
+# prompt is the part that survives, so prompts.md stays tracked and the frames
+# do not. `*.png` is already caught by the rule above; these are not.
+projects/art/**/*.jpg
+projects/art/**/*.jpeg
+projects/art/**/*.webp
+
 # ── client and implementation work ────────────────────────────────────────
 # This repository holds the taste system, not the sites it is used on.
 homepage/

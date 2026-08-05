@@ -56,6 +56,7 @@ design_dna/
 │   ├── dimensionality/SKILL.md     # role-gated · I: removability, first read, budget, per-frame AA, one depth idea
 │   ├── spacing-taste/SKILL.md      # I: hierarchy, tokens, internal<external · D: air-first, bottom-heavy
 │   ├── typography-taste/SKILL.md   # I: legible rank, optical correction, icons as glyphs · D: didone + grotesque + mono
+│   ├── design-dna/SKILL.md         # the entry point — no rules, routes to TASTE.md (globally symlinked)
 │   ├── color-taste/SKILL.md        # I: AA, no hue-only meaning, scrims · D: neutral dark base, smoky accents
 │   ├── generated-imagery/SKILL.md  # cross-dialect · I: origin declared, never depicts the real thing, provenance, survives a phone photo
 │   ├── motion-judgment/            # cross-dialect · whether to move at all, and what for

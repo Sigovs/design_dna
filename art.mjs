@@ -229,6 +229,79 @@ for (const k of shotKeys) if (!(k in SHOTS)) die(`unknown shot "${k}". One of: $
 
 const outDir = resolve(flag('--out', join(ROOT, 'projects', 'art', slug)));
 
+/* ── adopt ──────────────────────────────────────────────────────────────────
+   The other half of --dry-run, and the half that was missing.
+
+   Without billing, the whole tool is: write the prompt, paste it into whatever
+   can generate — the Gemini app, a subscription anyone already pays for — and
+   save the frame by hand. At that moment every mechanical guarantee this file
+   makes stops applying. GI6 says the `gen-` prefix and the sidecar travel with
+   the file permanently, and a rule that only holds when the script happens to
+   be the one writing the file is a rule that holds on the easy path only.
+
+   So: hand it the file you saved and it becomes a legitimate artefact —
+   renamed, filed beside its prompt, and recorded as adopted rather than
+   generated here, because claiming this script produced it would be a lie in
+   the one document whose whole job is provenance.
+
+     npm run art -- --brief <file> --adopt ~/Downloads/x.png --shot hero
+                    [--model-used "gemini app · nano banana pro"]           */
+const adopt = flag('--adopt');
+if (adopt) {
+  const shot = flag('--shot');
+  if (!shot) die('--adopt needs --shot <name> — which position this frame fills.');
+  if (!SHOTS[shot]) die(`unknown shot "${shot}". Known: ${Object.keys(SHOTS).join(', ')}`);
+  if (!existsSync(adopt)) die(`file not found: ${adopt}`);
+
+  mkdirSync(outDir, { recursive: true });
+  const ext = (adopt.match(/\.([a-z0-9]+)$/i)?.[1] ?? 'jpg').toLowerCase();
+
+  let n = 1;
+  while (existsSync(join(outDir, `gen-${shot}-${n}.${ext}`))) n++;
+  const name = `gen-${shot}-${n}.${ext}`;
+  writeFileSync(join(outDir, name), readFileSync(adopt));
+
+  /* The prompt is quoted from prompts.md rather than rebuilt, so the record
+     shows what was actually pasted — a rebuild months later would silently
+     substitute today's brief for the one the image came from. */
+  const file = join(outDir, 'prompts.md');
+  const existing = existsSync(file) ? readFileSync(file, 'utf8') : '';
+  /* Sliced rather than matched. JavaScript has no `\z`, so the obvious
+     "up to the next heading or end of string" lookahead silently matches a
+     literal z and finds nothing — which it did, quietly, on the first run. */
+  const heading = existing.split('\n').findIndex((l) => l.startsWith(`## ${shot} `) || l.trim() === `## ${shot}`);
+  let quoted = null;
+  if (heading > -1) {
+    const rest = existing.split('\n').slice(heading + 1);
+    const end = rest.findIndex((l) => l.startsWith('## '));
+    const body = (end > -1 ? rest.slice(0, end) : rest).join('\n');
+    quoted = body.match(/```\n([\s\S]*?)\n```/)?.[1] ?? null;
+  }
+
+  const used = flag('--model-used', 'not recorded');
+  writeFileSync(file, (existing || `# Generated art — ${slug}\n`) + [
+    ``,
+    `## ${name} — ADOPTED`,
+    ``,
+    `Adopted ${new Date().toISOString().slice(0, 10)} from \`${adopt}\`, generated outside this script.`,
+    `Model as declared: \`${used}\`. Position: \`${shot}\`.`,
+    ``,
+    quoted
+      ? `Prompt, quoted from the \`${shot}\` block above — this is what the frame was asked to be:\n\n\`\`\`\n${quoted}\n\`\`\``
+      : `> **No prompt for \`${shot}\` in this file.** GI6 wants the exact prompt and it is not\n`
+        + `> recoverable from the image. Run \`--dry-run\` first, or paste the prompt in here by hand.`,
+    ``,
+  ].join('\n'));
+
+  console.log(`\nadopted → ${join(outDir, name)}`);
+  console.log(`prompts.md updated${quoted ? '' : '   (no prompt found for this shot — see the note written there)'}`);
+  if (used === 'not recorded') {
+    console.log('\nnote — model recorded as "not recorded". Pass --model-used "<what you used>"');
+    console.log('       so the sidecar says where the frame came from while anyone still remembers.');
+  }
+  process.exit(0);
+}
+
 if (DRY) {
   const built = shotKeys.map((k) => ({ k, p: buildPrompt(k) }));
   for (const { k, p } of built) {

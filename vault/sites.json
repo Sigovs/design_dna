@@ -8,13 +8,28 @@
     "dialectStatus": "unreviewed",
     "dialects": [],
     "tags": {
-      "composition": [],
+      "composition": [
+        "directed-eye",
+        "dominant-mass"
+      ],
       "risks": [],
-      "typography": [],
-      "layout": [],
+      "typography": [
+        "big-type",
+        "grotesque"
+      ],
+      "layout": [
+        "bleed"
+      ],
       "motion": [],
-      "color": [],
-      "imagery": []
+      "color": [
+        "dark",
+        "bold-accent"
+      ],
+      "imagery": [
+        "photography",
+        "product",
+        "scrim-text"
+      ]
     },
     "note": "TODO",
     "shots": {
@@ -58,13 +73,35 @@
     "dialectStatus": "unreviewed",
     "dialects": [],
     "tags": {
-      "composition": [],
-      "risks": [],
-      "typography": [],
-      "layout": [],
+      "composition": [
+        "active-negative-space",
+        "directed-eye",
+        "dominant-mass",
+        "luxury-automotive",
+        "visual-silence"
+      ],
+      "risks": [
+        "decorative-information-legibility-risk"
+      ],
+      "typography": [
+        "big-type",
+        "display-serif"
+      ],
+      "layout": [
+        "air",
+        "bleed"
+      ],
       "motion": [],
-      "color": [],
-      "imagery": []
+      "color": [
+        "dark",
+        "smoky",
+        "bold-accent"
+      ],
+      "imagery": [
+        "photography",
+        "art-direction",
+        "scrim-text"
+      ]
     },
     "note": "TODO",
     "shots": {
@@ -193,13 +230,36 @@
     "dialectStatus": "unreviewed",
     "dialects": [],
     "tags": {
-      "composition": [],
-      "risks": [],
-      "typography": [],
-      "layout": [],
+      "composition": [
+        "active-negative-space",
+        "directed-eye",
+        "dominant-mass",
+        "structured-specification",
+        "supercar",
+        "visual-silence"
+      ],
+      "risks": [
+        "asset-dependency-risk"
+      ],
+      "typography": [
+        "big-type",
+        "editorial",
+        "grotesque"
+      ],
+      "layout": [
+        "air",
+        "bleed"
+      ],
       "motion": [],
-      "color": [],
-      "imagery": []
+      "color": [
+        "neutral",
+        "monochrome"
+      ],
+      "imagery": [
+        "photography",
+        "product",
+        "art-direction"
+      ]
     },
     "note": "TODO",
     "shots": {
@@ -330,13 +390,33 @@
     "dialectStatus": "unreviewed",
     "dialects": [],
     "tags": {
-      "composition": [],
-      "risks": [],
-      "typography": [],
-      "layout": [],
+      "composition": [
+        "directed-eye",
+        "dominant-mass",
+        "luxury-automotive",
+        "supercar"
+      ],
+      "risks": [
+        "asset-dependency-risk"
+      ],
+      "typography": [
+        "big-type",
+        "grotesque"
+      ],
+      "layout": [
+        "bleed"
+      ],
       "motion": [],
-      "color": [],
-      "imagery": []
+      "color": [
+        "neutral",
+        "monochrome"
+      ],
+      "imagery": [
+        "photography",
+        "product",
+        "art-direction",
+        "scrim-text"
+      ]
     },
     "note": "TODO",
     "shots": {
@@ -380,13 +460,32 @@
     "dialectStatus": "unreviewed",
     "dialects": [],
     "tags": {
-      "composition": [],
+      "composition": [
+        "conversion-first-hierarchy",
+        "directed-eye",
+        "dominant-mass"
+      ],
       "risks": [],
-      "typography": [],
-      "layout": [],
+      "typography": [
+        "big-type",
+        "floating-capsule-navigation",
+        "grotesque"
+      ],
+      "layout": [
+        "air",
+        "bleed"
+      ],
       "motion": [],
-      "color": [],
-      "imagery": []
+      "color": [
+        "neutral",
+        "dark",
+        "bold-accent"
+      ],
+      "imagery": [
+        "photography",
+        "product",
+        "scrim-text"
+      ]
     },
     "note": "TODO",
     "shots": {
@@ -1405,13 +1504,30 @@
       "immersive-authored-world"
     ],
     "tags": {
-      "composition": [],
+      "composition": [
+        "active-negative-space",
+        "directed-eye",
+        "dominant-mass"
+      ],
       "risks": [],
-      "typography": [],
-      "layout": [],
+      "typography": [
+        "grotesque",
+        "mono-details"
+      ],
+      "layout": [
+        "air",
+        "bleed"
+      ],
       "motion": [],
-      "color": [],
-      "imagery": []
+      "color": [
+        "dark",
+        "bold-accent"
+      ],
+      "imagery": [
+        "photography",
+        "art-direction",
+        "scrim-text"
+      ]
     },
     "note": "IN — A disciplined film-led portfolio in which moving imagery becomes the primary interface rather than content placed inside a conventional layout.",
     "shots": {
@@ -1564,12 +1680,27 @@
     "dialectStatus": "in",
     "dialects": [],
     "tags": {
-      "composition": [],
+      "composition": [
+        "active-negative-space",
+        "dominant-mass",
+        "visual-silence"
+      ],
       "risks": [],
-      "typography": [],
-      "layout": [],
+      "typography": [
+        "big-type",
+        "grotesque",
+        "mono-details"
+      ],
+      "layout": [
+        "air",
+        "bleed"
+      ],
       "motion": [],
-      "color": [],
+      "color": [
+        "dark",
+        "monochrome",
+        "bold-accent"
+      ],
       "imagery": []
     },
     "note": "MAYBE — A technically exceptional creative-studio showcase that unifies WebGL, DOM typography, scroll choreography and generated sound around a recurring system of charging, fragmentation and reassembly. The interactive three-part identity, hold-to-blast hero, responsive weld effects, exploding service typography, frame-scrubbed sequences and helix-to-grid work gallery demonstrate unusually coherent motion engineering rather than a collection of isolated effects. Its strongest value lies in synchronization, shared interaction states and the transformation of a brand symbol into a behavioral system. However, the visual language remains rooted in familiar creative-development conventions, spectacle frequently competes with studio content, and the experience carries substantial performance, accessibility and imitation risks. Preserve as a motion-systems and creative-development reference, not as a general compositional or commercial-site model.",

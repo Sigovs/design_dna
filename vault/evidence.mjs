@@ -42,10 +42,18 @@ try {
      those. */
   const dirty = execFileSync('git', ['-C', dirname(VAULT), 'status', '--porcelain', '--', 'vault/sites.json'], { encoding: 'utf8' }).trim() !== '';
 
+  /* Committing is not publishing. Judgements made here and committed but not
+     yet pushed leave the file clean while origin still holds the old copy —
+     which reads exactly like "local is behind" and sends the check back to
+     stale data. Unpushed commits are the second half of the same signal. */
+  const unpushed = Number(execFileSync('git', ['-C', dirname(VAULT), 'rev-list', '--count', 'origin/master..HEAD'], { encoding: 'utf8' }).trim()) || 0;
+  const ahead = dirty || unpushed > 0;
+
   if (JSON.stringify(remote) === JSON.stringify(local)) {
     source = 'local working copy, identical to origin/master';
-  } else if (dirty) {
-    source = `local working copy — UNCOMMITTED edits present, so local is ahead of origin/master (${countIn(local)} vs ${countIn(remote)} "in"). Commit before trusting origin again`;
+  } else if (ahead) {
+    const why = dirty ? 'UNCOMMITTED edits' : `${unpushed} unpushed commit${unpushed > 1 ? 's' : ''}`;
+    source = `local working copy — ${why}, so local is ahead of origin/master (${countIn(local)} vs ${countIn(remote)} "in"). Push before trusting origin again`;
   } else {
     sites = remote;
     source = `origin/master (canonical) — the local copy is behind: ${countIn(local)} vs ${countIn(remote)} "in" entries. Run npm run sync`;

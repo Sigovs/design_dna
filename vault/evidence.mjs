@@ -31,11 +31,24 @@ let source = 'local working copy';
 try {
   const remote = JSON.parse(execFileSync('git', ['-C', dirname(VAULT), 'show', 'origin/master:vault/sites.json'], { encoding: 'utf8' }));
   const countIn = (a) => a.filter((e) => e.dialectStatus === 'in').length;
-  if (JSON.stringify(remote) !== JSON.stringify(local)) {
+
+  /* DIFFERENT IS NOT THE SAME AS BEHIND. "local ≠ origin" has two causes that
+     look identical from the content alone: the gallery wrote a judgement to
+     origin from a phone (local is behind), or someone judged records here and
+     has not committed yet (local is AHEAD). Preferring origin in both cases
+     validates a freshly-edited EVIDENCE.md against stale data and reports a
+     mismatch that does not exist — a drift checker quietly checking the wrong
+     copy. Uncommitted changes to the file settle it: nobody's phone produces
+     those. */
+  const dirty = execFileSync('git', ['-C', dirname(VAULT), 'status', '--porcelain', '--', 'vault/sites.json'], { encoding: 'utf8' }).trim() !== '';
+
+  if (JSON.stringify(remote) === JSON.stringify(local)) {
+    source = 'local working copy, identical to origin/master';
+  } else if (dirty) {
+    source = `local working copy — UNCOMMITTED edits present, so local is ahead of origin/master (${countIn(local)} vs ${countIn(remote)} "in"). Commit before trusting origin again`;
+  } else {
     sites = remote;
     source = `origin/master (canonical) — the local copy is behind: ${countIn(local)} vs ${countIn(remote)} "in" entries. Run npm run sync`;
-  } else {
-    source = 'local working copy, identical to origin/master';
   }
 } catch {
   source = 'local working copy (origin unreachable)';

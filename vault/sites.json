@@ -18,11 +18,28 @@
     },
     "note": "TODO",
     "shots": {
-      "full": null,
-      "hero": null,
-      "mobile": null,
-      "strip": [],
-      "stripMobile": []
+      "full": "shots/hbbody-com-en-home/full.jpg",
+      "hero": "shots/hbbody-com-en-home/hero.jpg",
+      "mobile": "shots/hbbody-com-en-home/mobile.jpg",
+      "strip": [
+        "shots/hbbody-com-en-home/strip-1.jpg",
+        "shots/hbbody-com-en-home/strip-2.jpg",
+        "shots/hbbody-com-en-home/strip-3.jpg",
+        "shots/hbbody-com-en-home/strip-4.jpg",
+        "shots/hbbody-com-en-home/strip-5.jpg",
+        "shots/hbbody-com-en-home/strip-6.jpg",
+        "shots/hbbody-com-en-home/strip-7.jpg",
+        "shots/hbbody-com-en-home/strip-8.jpg"
+      ],
+      "stripMobile": [
+        "shots/hbbody-com-en-home/strip-m-1.jpg",
+        "shots/hbbody-com-en-home/strip-m-2.jpg",
+        "shots/hbbody-com-en-home/strip-m-3.jpg",
+        "shots/hbbody-com-en-home/strip-m-4.jpg",
+        "shots/hbbody-com-en-home/strip-m-5.jpg",
+        "shots/hbbody-com-en-home/strip-m-6.jpg"
+      ],
+      "navScrolled": null
     },
     "kind": "site",
     "source": "",

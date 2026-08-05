@@ -1,6 +1,6 @@
 ---
 name: typography-taste
-description: Typography rules in two tiers — INVARIANT (legible hierarchy, bounded type roles, body-length text built for sustained reading, optical correction at every size, a 14px floor under functional text, roles distinguished from voices, tabular figures for aligned data, tracked and short uppercase, intentional line breaks) and DIALECT (auction-editorial's didone display + quiet grotesque + mono, italic signature word, mono micro-labels, spec plates, each with a yields-when). Use before choosing typefaces, setting type scales, writing headings, or laying out any data, label, or caption.
+description: Typography rules in two tiers — INVARIANT (legible hierarchy, bounded type roles, body-length text built for sustained reading, optical correction at every size, a 14px floor under functional text, roles distinguished from voices, icons treated as glyphs — one set, stroke matched, sized optically, never meaning alone — tabular figures for aligned data, tracked and short uppercase, intentional line breaks) and DIALECT (auction-editorial's didone display + quiet grotesque + mono, italic signature word, mono micro-labels, spec plates, each with a yields-when). Use before choosing typefaces, setting type scales, writing headings, or laying out any data, label, or caption.
 ---
 
 # Typography Taste
@@ -226,6 +226,62 @@ seven of them are [anti-patterns U11](../anti-patterns/SKILL.md#invariant).
 place to lose coherence, because the reader uses typographic consistency to know
 what kind of thing they are reading. When the voice changes without a reason, the
 cue stops working everywhere, not just where it changed.
+
+---
+
+### I9 — An icon is a glyph, and lives under the glyph rules
+
+Icons appeared in this system only as bans — icon-only navigation, icons for
+concepts that don't need them, emoji-as-icon-system — and as a 3:1 contrast target
+in [color-taste](../color-taste/SKILL.md#invariant). A rule that only says *no*
+gets re-litigated on every project, which is why this exists.
+
+**One set per project, and an aggregator is not a set.** Two icon sets on one page
+is [I8](#invariant) in pictures: a second voice with no systemic purpose. A library
+that offers two hundred thousand glyphs from ninety families has not made the
+decision — it has moved it into the page, one icon at a time. Choose the set once,
+name it in the project record beside the typefaces, and draw the missing icon in
+that set's grid rather than borrowing one that nearly matches.
+
+**Stroke weight is matched to the type it sits with, not to the icon set's
+default.** A 2px stroke next to a 400-weight grotesque reads heavier than the
+words; the same stroke next to a 700-weight display reads thinner. The icon is a
+glyph in that line of text and must carry the same colour of ink. Scale the stroke,
+or change the weight of the text, but do not ship the mismatch.
+
+**Sized optically, never nominally.** An icon set is drawn on a grid with its own
+padding, so nominal parity is not visual parity: a 24px icon beside 16px text is
+usually too big, and a 16px icon beside 16px text is usually too small. Match the
+icon's *drawn* height to the cap height or x-height of its neighbour and then nudge
+by eye — the same procedure as [I3](#invariant), for the same reason.
+
+**Never the only carrier of meaning.** An icon may accompany a label, replace one
+whose convention is genuinely established (search, close, menu, play, external
+link, back), or repeat a meaning stated in text nearby. Anything else gets the
+word. This is the same rule colour follows in
+[color-taste](../color-taste/SKILL.md#invariant) — meaning is never carried by one
+channel alone — and it is what
+[anti-patterns](../anti-patterns/SKILL.md#invariant) already bans from the other
+side.
+
+**An icon is earned by repetition or by constraint, not by decoration.** If a
+concept appears once and there is room for a word, it gets the word. Icons pay for
+themselves in lists that repeat, in controls that recur, and where space genuinely
+forbids text. The three-icon feature row exists because a section looked empty, and
+that is not a reason.
+
+*Why:* every one of these is a consistency cue the reader uses without noticing.
+Mixed sets, mismatched strokes and nominal sizing all read as carelessness before
+they read as anything else — and unlike a typeface, an icon is small enough that
+the mistake is usually shipped rather than seen.
+
+> **Non-normative, and deliberately not a rule.** If no set is already chosen and
+> nothing in the brief decides it: a single geometric set on a uniform grid with
+> one stroke weight — Lucide is the common one — costs nothing, works offline and
+> is easy to draw into. It is recorded here so the question has a default answer,
+> not because the set is taste. **A library name is never a direction**
+> ([TASTE.md §2](../../TASTE.md#2-the-design-read)), and the choice belongs in the
+> project record beside the build, not in a Design Read.
 
 ---
 

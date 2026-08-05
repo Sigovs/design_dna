@@ -67,6 +67,7 @@ The invariants, by domain — full text in the linked skills:
 | Line breaks are intentional and compositionally resolved | [typography](skills/typography-taste/SKILL.md#invariant) |
 | **Functional text has a floor** — information a visitor must read is never below 14px; below the floor, type is decoration and carries nothing | [typography](skills/typography-taste/SKILL.md#invariant) |
 | **A role is not a voice** — many functional roles are served by few typographic voices; each additional voice states the systemic job the existing ones cannot do | [typography](skills/typography-taste/SKILL.md#invariant) |
+| **An icon is a glyph** — one set per project, stroke matched to its neighbouring type, sized optically rather than nominally, never the only carrier of meaning, and earned by repetition or constraint rather than by decoration | [typography](skills/typography-taste/SKILL.md#invariant) |
 | Accessible contrast — WCAG AA as a contract, verified on every palette change | [color](skills/color-taste/SKILL.md#invariant) |
 | **The accent is derived from something the project contains, the derivation is stated, and the result is then judged where it lands** | [color](skills/color-taste/SKILL.md#invariant) |
 | Reduced-motion paths — every animation has a complete static equivalent | [motion](skills/motion-taste/SKILL.md#invariant) |

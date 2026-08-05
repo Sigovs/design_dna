@@ -55,7 +55,7 @@ design_dna/
 │   │   └── references/             # the academic method, routed to per task (not loaded wholesale)
 │   ├── dimensionality/SKILL.md     # role-gated · I: removability, first read, budget, per-frame AA, one depth idea
 │   ├── spacing-taste/SKILL.md      # I: hierarchy, tokens, internal<external · D: air-first, bottom-heavy
-│   ├── typography-taste/SKILL.md   # I: legible rank, optical correction · D: didone + grotesque + mono, spec plates
+│   ├── typography-taste/SKILL.md   # I: legible rank, optical correction, icons as glyphs · D: didone + grotesque + mono
 │   ├── color-taste/SKILL.md        # I: AA, no hue-only meaning, scrims · D: neutral dark base, smoky accents
 │   ├── generated-imagery/SKILL.md  # cross-dialect · I: origin declared, never depicts the real thing, provenance, survives a phone photo
 │   ├── motion-judgment/            # cross-dialect · whether to move at all, and what for
@@ -63,7 +63,7 @@ design_dna/
 │   │   └── references/             # per-category judgment, audit rubric, implementation
 │   ├── motion-taste/SKILL.md       # I: reduced-motion, keyboard parity, no jank · D: crossfade, subtle hover
 │   └── anti-patterns/SKILL.md      # I: the universal failures · D: the trope bans
-├── dialects/                       # 1 confirmed · 1 provisional · 8 library
+├── dialects/                       # 2 confirmed · 8 library
 │   ├── README.md                   # index + confirmed / provisional / library status
 │   ├── HYBRID.md                   # style modes, Anchor/Contrast/Signature, CONTROL MAP, audit
 │   ├── _TEMPLATE.md                # the shared dialect shape
@@ -608,10 +608,11 @@ while it is honest.
    stays on the file permanently, the composition still reads with an ordinary
    photograph in place, and a mobile frame is composed rather than cropped.
 3. **Dialects are chosen, never assumed — and the house one is auction-editorial.**
-   A second, **provisional** dialect exists
+   A second **confirmed** dialect exists
    ([immersive-authored-world](dialects/immersive-authored-world.md): the page as a
-   staged spatial experience), author-created ahead of Vault evidence and usable
-   only when explicitly selected.
+   staged spatial experience) — author-created ahead of Vault evidence and confirmed
+   the other way round on 2026-08-05, once three records carried a human `in`
+   judgement. It is still selected explicitly, never assumed.
    Its principles are compositional: subtract before adding, hierarchy from space
    and scale before ornament, metadata composed rather than appended, one committed
    gesture over continuous novelty, mass above centre with a deeper field below,

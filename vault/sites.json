@@ -1,5 +1,118 @@
 [
   {
+    "id": "lapz-io",
+    "kind": "site",
+    "url": "https://www.lapz.io/",
+    "source": "",
+    "title": "Lapz: Watch F1® Races in Apple Vision Pro",
+    "added": "2026-08-06",
+    "rating": 2,
+    "dialectStatus": "unreviewed",
+    "dialects": [],
+    "tags": {
+      "composition": [],
+      "risks": [],
+      "typography": [
+        "big-type",
+        "grotesque"
+      ],
+      "layout": [
+        "bleed"
+      ],
+      "motion": [],
+      "color": [
+        "dark",
+        "monochrome"
+      ],
+      "imagery": [
+        "product"
+      ]
+    },
+    "note": "Тут мне нравится, как footer выполнен — с большим текстом.",
+    "shots": {
+      "full": "shots/lapz-io/full.jpg",
+      "hero": "shots/lapz-io/hero.jpg",
+      "mobile": "shots/lapz-io/mobile.jpg",
+      "strip": [
+        "shots/lapz-io/strip-1.jpg",
+        "shots/lapz-io/strip-2.jpg",
+        "shots/lapz-io/strip-3.jpg",
+        "shots/lapz-io/strip-4.jpg",
+        "shots/lapz-io/strip-5.jpg",
+        "shots/lapz-io/strip-6.jpg",
+        "shots/lapz-io/strip-7.jpg",
+        "shots/lapz-io/strip-8.jpg"
+      ],
+      "stripMobile": [
+        "shots/lapz-io/strip-m-1.jpg",
+        "shots/lapz-io/strip-m-2.jpg",
+        "shots/lapz-io/strip-m-3.jpg",
+        "shots/lapz-io/strip-m-4.jpg",
+        "shots/lapz-io/strip-m-5.jpg",
+        "shots/lapz-io/strip-m-6.jpg"
+      ],
+      "navScrolled": null
+    },
+    "extras": [],
+    "captureError": null
+  },
+  {
+    "id": "morningstar-ventures",
+    "kind": "site",
+    "url": "https://morningstar.ventures/",
+    "source": "",
+    "title": "Morningstar Ventures",
+    "added": "2026-08-06",
+    "rating": 2,
+    "dialectStatus": "unreviewed",
+    "dialects": [],
+    "tags": {
+      "composition": [],
+      "risks": [],
+      "typography": [
+        "grotesque"
+      ],
+      "layout": [
+        "bleed"
+      ],
+      "motion": [],
+      "color": [
+        "dark",
+        "monochrome"
+      ],
+      "imagery": [
+        "art-direction"
+      ]
+    },
+    "note": "Этот мне очень нравится. Очень сдержанный, для портфолио вообще огонь. Интересуют анимация, motion, шрифты, работы, меню/навигация, переходы.",
+    "shots": {
+      "full": "shots/morningstar-ventures/full.jpg",
+      "hero": "shots/morningstar-ventures/hero.jpg",
+      "mobile": "shots/morningstar-ventures/mobile.jpg",
+      "strip": [
+        "shots/morningstar-ventures/strip-1.jpg",
+        "shots/morningstar-ventures/strip-2.jpg",
+        "shots/morningstar-ventures/strip-3.jpg",
+        "shots/morningstar-ventures/strip-4.jpg",
+        "shots/morningstar-ventures/strip-5.jpg",
+        "shots/morningstar-ventures/strip-6.jpg",
+        "shots/morningstar-ventures/strip-7.jpg",
+        "shots/morningstar-ventures/strip-8.jpg"
+      ],
+      "stripMobile": [
+        "shots/morningstar-ventures/strip-m-1.jpg",
+        "shots/morningstar-ventures/strip-m-2.jpg",
+        "shots/morningstar-ventures/strip-m-3.jpg",
+        "shots/morningstar-ventures/strip-m-4.jpg",
+        "shots/morningstar-ventures/strip-m-5.jpg",
+        "shots/morningstar-ventures/strip-m-6.jpg"
+      ],
+      "navScrolled": null
+    },
+    "extras": [],
+    "captureError": "partial evidence — 1 canvas element(s) — motion and WebGL state are not preserved by a static shot"
+  },
+  {
     "id": "hbbody-com-en-home",
     "url": "https://hbbody.com/en/home/",
     "title": "HB Body — Automotive Refinish",

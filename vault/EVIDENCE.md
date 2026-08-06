@@ -25,7 +25,27 @@ correct** — that is Alex's review, and the claims below are marked accordingly
 | **Usable `in`** (human-set) | **21** | `beings-co` (3) · `ciridae-com` (3) · `ruadh-com` (2) · `electrafilmworks-com` (2) · `thenewmobileworkforce-…-back-at-hq` (2) · `trionn-com` (2) · `kinncollective-co-uk` (2) · `augen-pro` (2) · `i-pinimg-…-46d9d54b` (2) · `organimo-com` (3) · `immersive-g-com` (3) · `rolls-roycemotorcars-…-home-html` (3) · `obys-agency` (2) · `mclaren-com-cars-gl-en` (2) · `semlerpremium-dk-showroom` (3) · `semlerpremium-dk-brands-porsche-911-gt3-…` (3) · `polestar-com-us` (2) · `semlerpremium-dk` (2) · `rimac-automobili-com-nevera` (2) · `oilstainlab-com` (2) · `hispanosuizacars-com` (2) |
 | **Usable `out`** (human-set) | **4** | `rmsothebys-com` (1) · `thegentlewoman-co-uk` (1) · `hbbody-com-en-home` (2) · `rivian-com` (2) |
 | **Partial / contextual** (`hybrid`) | **1** | `porsche-com-usa` (2) |
-| **Not yet a judgement** (`unreviewed`) | **0** | — every record in the vault now carries a human status. |
+| **Not yet a judgement** (`unreviewed`) | **2** | `morningstar-ventures` (2) · `lapz-io` (2) — captured 2026-08-06, Alex's comment recorded, status not yet set. |
+
+> **Two records added, 2026-08-06.** `morningstar-ventures` (Alex: *"очень
+> сдержанный, для портфолио вообще огонь"*) and `lapz-io` (*"нравится, как footer
+> выполнен — с большим текстом"*). Both captured 17/17, both hold his comment
+> verbatim as the `note`, both **`unreviewed`** — the comment is an overall
+> reaction and a status is his to set. `unreviewed` returns to the table at 2
+> after one day at zero. 28 records total.
+>
+> **Both were checked live for a reduced-motion path and neither has one.** No
+> `prefers-reduced-motion` rule exists in any stylesheet on either page —
+> Morningstar runs a canvas, Lapz runs four videos. That is an invariant in
+> `motion-taste`, and it is recorded here as an observation about the references,
+> not as a verdict on them: **a reference may fail an invariant and still be worth
+> keeping**, provided the failure is written down rather than absorbed.
+>
+> **What was asked about and not answered.** Alex named menu, navigation and
+> transitions on Morningstar. None of it was verified: no menu trigger was found
+> in the live window and the pass stopped rather than clicking at a guessed
+> position. The canvas means the static shots cannot answer it either. Marked
+> `not verified` in the sidecar rather than described from the screenshots.
 
 > **The three contested assignments are resolved, 2026-08-05, sixth pass — read
 > against the notes this time, not the hero shots.** Alex's re-reading:

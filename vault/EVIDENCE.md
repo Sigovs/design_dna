@@ -25,8 +25,25 @@ correct** — that is Alex's review, and the claims below are marked accordingly
 | **Usable `in`** (human-set) | **21** | `beings-co` (3) · `ciridae-com` (3) · `ruadh-com` (2) · `electrafilmworks-com` (2) · `thenewmobileworkforce-…-back-at-hq` (2) · `trionn-com` (2) · `kinncollective-co-uk` (2) · `augen-pro` (2) · `i-pinimg-…-46d9d54b` (2) · `organimo-com` (3) · `immersive-g-com` (3) · `rolls-roycemotorcars-…-home-html` (3) · `obys-agency` (2) · `mclaren-com-cars-gl-en` (2) · `semlerpremium-dk-showroom` (3) · `semlerpremium-dk-brands-porsche-911-gt3-…` (3) · `polestar-com-us` (2) · `semlerpremium-dk` (2) · `rimac-automobili-com-nevera` (2) · `oilstainlab-com` (2) · `hispanosuizacars-com` (2) |
 | **Usable `out`** (human-set) | **4** | `rmsothebys-com` (1) · `thegentlewoman-co-uk` (1) · `hbbody-com-en-home` (2) · `rivian-com` (2) |
 | **Partial / contextual** (`hybrid`) | **1** | `porsche-com-usa` (2) |
-| **Not yet a judgement** (`unreviewed`) | **2** | `morningstar-ventures` (2) · `lapz-io` (2) — captured 2026-08-06, Alex's comment recorded, status not yet set. |
+| **Not yet a judgement** (`unreviewed`) | **5** | `morningstar-ventures` (2) · `lapz-io` (2) · `rekorderstudios-com` (2) · `eco-com` (2) · `mugenstudio-framer-website` (2) — all captured 2026-08-06, statuses not yet set. |
 
+> **Five records added, 2026-08-06.** `morningstar-ventures`, `lapz-io`,
+> `rekorderstudios-com`, `eco-com`, `mugenstudio-framer-website` — 31 records
+> total, `unreviewed` back to 5. Four carry Alex's reason verbatim as the `note`;
+> `rekorderstudios-com` was sent **without a stated reason** and its note stays
+> `TODO` rather than carrying an agent-written justification in his voice.
+>
+> **`eco-com` was added for *storytelling* by name** — the second pending rule
+> candidate, the one with no home in the DNA at all. It is the seventh sightline
+> on that pattern and was added knowingly. He also named *чистота*, which was
+> **not** tagged: the vocabulary has no term for it and the nearest merit tags
+> mean something narrower.
+>
+> **`mugenstudio-framer-website` carries a flaw that is the platform's, not the
+> studio's** — a Polar purchase widget overlaps the body paragraph and truncates
+> it mid-line, beside a "Made in Framer" badge. Separated in the sidecar so the
+> record is never cited for furniture nobody designed.
+>
 > **Two records added, 2026-08-06.** `morningstar-ventures` (Alex: *"очень
 > сдержанный, для портфолио вообще огонь"*) and `lapz-io` (*"нравится, как footer
 > выполнен — с большим текстом"*). Both captured 17/17, both hold his comment

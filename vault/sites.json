@@ -1,5 +1,65 @@
 [
   {
+    "id": "eco-com",
+    "kind": "site",
+    "url": "https://eco.com/",
+    "source": "",
+    "title": "Eco: The Stablecoin Network That Makes Money Programmable",
+    "added": "2026-08-06",
+    "rating": 2,
+    "dialectStatus": "unreviewed",
+    "dialects": [],
+    "tags": {
+      "composition": [],
+      "risks": [],
+      "typography": [
+        "big-type",
+        "grotesque",
+        "mono-details"
+      ],
+      "layout": [
+        "bleed"
+      ],
+      "motion": [],
+      "color": [
+        "dark",
+        "neutral"
+      ],
+      "imagery": [
+        "art-direction",
+        "photography",
+        "scrim-text"
+      ]
+    },
+    "note": "Добавляем за чистоту и storytelling.",
+    "shots": {
+      "full": "shots/eco-com/full.jpg",
+      "hero": "shots/eco-com/hero.jpg",
+      "mobile": "shots/eco-com/mobile.jpg",
+      "strip": [
+        "shots/eco-com/strip-1.jpg",
+        "shots/eco-com/strip-2.jpg",
+        "shots/eco-com/strip-3.jpg",
+        "shots/eco-com/strip-4.jpg",
+        "shots/eco-com/strip-5.jpg",
+        "shots/eco-com/strip-6.jpg",
+        "shots/eco-com/strip-7.jpg",
+        "shots/eco-com/strip-8.jpg"
+      ],
+      "stripMobile": [
+        "shots/eco-com/strip-m-1.jpg",
+        "shots/eco-com/strip-m-2.jpg",
+        "shots/eco-com/strip-m-3.jpg",
+        "shots/eco-com/strip-m-4.jpg",
+        "shots/eco-com/strip-m-5.jpg",
+        "shots/eco-com/strip-m-6.jpg"
+      ],
+      "navScrolled": "shots/eco-com/nav-scrolled.jpg"
+    },
+    "extras": [],
+    "captureError": null
+  },
+  {
     "id": "lapz-io",
     "kind": "site",
     "url": "https://www.lapz.io/",
@@ -111,6 +171,121 @@
     },
     "extras": [],
     "captureError": "partial evidence — 1 canvas element(s) — motion and WebGL state are not preserved by a static shot"
+  },
+  {
+    "id": "mugenstudio-framer-website",
+    "kind": "site",
+    "url": "https://mugenstudio.framer.website/",
+    "source": "",
+    "title": "Mugen Design Studio Framer Template",
+    "added": "2026-08-06",
+    "rating": 2,
+    "dialectStatus": "unreviewed",
+    "dialects": [],
+    "tags": {
+      "composition": [],
+      "risks": [],
+      "typography": [
+        "big-type",
+        "grotesque",
+        "oversized-grotesk"
+      ],
+      "layout": [
+        "bleed"
+      ],
+      "motion": [],
+      "color": [
+        "dark",
+        "monochrome"
+      ],
+      "imagery": [
+        "photography"
+      ]
+    },
+    "note": "Тут двойное меню — header и hamburger, мне нравится этот вариант. Ну и вообще эстетический порядок мне нравится.",
+    "shots": {
+      "full": "shots/mugenstudio-framer-website/full.jpg",
+      "hero": "shots/mugenstudio-framer-website/hero.jpg",
+      "mobile": "shots/mugenstudio-framer-website/mobile.jpg",
+      "strip": [
+        "shots/mugenstudio-framer-website/strip-1.jpg",
+        "shots/mugenstudio-framer-website/strip-2.jpg",
+        "shots/mugenstudio-framer-website/strip-3.jpg",
+        "shots/mugenstudio-framer-website/strip-4.jpg",
+        "shots/mugenstudio-framer-website/strip-5.jpg",
+        "shots/mugenstudio-framer-website/strip-6.jpg",
+        "shots/mugenstudio-framer-website/strip-7.jpg",
+        "shots/mugenstudio-framer-website/strip-8.jpg"
+      ],
+      "stripMobile": [
+        "shots/mugenstudio-framer-website/strip-m-1.jpg",
+        "shots/mugenstudio-framer-website/strip-m-2.jpg",
+        "shots/mugenstudio-framer-website/strip-m-3.jpg",
+        "shots/mugenstudio-framer-website/strip-m-4.jpg",
+        "shots/mugenstudio-framer-website/strip-m-5.jpg",
+        "shots/mugenstudio-framer-website/strip-m-6.jpg"
+      ],
+      "navScrolled": null
+    },
+    "extras": [],
+    "captureError": null
+  },
+  {
+    "id": "rekorderstudios-com",
+    "kind": "site",
+    "url": "https://www.rekorderstudios.com/",
+    "source": "",
+    "title": "Rekorder Studios",
+    "added": "2026-08-06",
+    "rating": 2,
+    "dialectStatus": "unreviewed",
+    "dialects": [],
+    "tags": {
+      "composition": [],
+      "risks": [],
+      "typography": [
+        "display-serif",
+        "mono-details"
+      ],
+      "layout": [
+        "bleed"
+      ],
+      "motion": [],
+      "color": [
+        "neutral"
+      ],
+      "imagery": [
+        "art-direction",
+        "photography"
+      ]
+    },
+    "note": "TODO",
+    "shots": {
+      "full": "shots/rekorderstudios-com/full.jpg",
+      "hero": "shots/rekorderstudios-com/hero.jpg",
+      "mobile": "shots/rekorderstudios-com/mobile.jpg",
+      "strip": [
+        "shots/rekorderstudios-com/strip-1.jpg",
+        "shots/rekorderstudios-com/strip-2.jpg",
+        "shots/rekorderstudios-com/strip-3.jpg",
+        "shots/rekorderstudios-com/strip-4.jpg",
+        "shots/rekorderstudios-com/strip-5.jpg",
+        "shots/rekorderstudios-com/strip-6.jpg",
+        "shots/rekorderstudios-com/strip-7.jpg",
+        "shots/rekorderstudios-com/strip-8.jpg"
+      ],
+      "stripMobile": [
+        "shots/rekorderstudios-com/strip-m-1.jpg",
+        "shots/rekorderstudios-com/strip-m-2.jpg",
+        "shots/rekorderstudios-com/strip-m-3.jpg",
+        "shots/rekorderstudios-com/strip-m-4.jpg",
+        "shots/rekorderstudios-com/strip-m-5.jpg",
+        "shots/rekorderstudios-com/strip-m-6.jpg"
+      ],
+      "navScrolled": null
+    },
+    "extras": [],
+    "captureError": null
   },
   {
     "id": "hbbody-com-en-home",

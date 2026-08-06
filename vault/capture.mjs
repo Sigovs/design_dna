@@ -131,6 +131,31 @@ const SAFE_GATE_PATTERNS = SAFE_GATE_WORDS.map((word) => exactly([word]));
 const log = (...a) => console.log(...a);
 const warn = (...a) => console.warn('  !', ...a);
 
+/**
+ * Launch a browser, with the bundled chromium preferred and the system Chrome
+ * as the fallback.
+ *
+ * Playwright resolved to 1.62 under `^1.49.0`, and 1.62 no longer publishes a
+ * chromium build for mac13-arm64 — `playwright install chromium` answers
+ * "does not support chromium on mac13-arm64" and the cache stays empty. Every
+ * capture then dies at launch, which reads like a broken vault rather than a
+ * missing binary.
+ *
+ * The fallback is a channel, not another download: Google Chrome is already
+ * installed on this machine. Preferring the bundled browser keeps CI and any
+ * other machine on the pinned, reproducible binary; pinning the dependency
+ * instead would hold the whole repo back for one operating system.
+ */
+async function launchBrowser(opts = {}) {
+  try {
+    return await chromium.launch(opts);
+  } catch (e) {
+    if (!/Executable doesn't exist|does not support|please run the following/i.test(e.message)) throw e;
+    warn('bundled chromium unavailable here — falling back to the system Google Chrome');
+    return await chromium.launch({ ...opts, channel: 'chrome' });
+  }
+}
+
 function slugify(url) {
   const u = new URL(url);
   const host = u.hostname.replace(/^www\./, '');
@@ -915,7 +940,7 @@ async function cmdAdd(url) {
   };
 
   log(`\nadding ${entry.id} — understood as ${isImage ? 'a direct image URL' : 'a page to capture'}`);
-  const browser = await chromium.launch();
+  const browser = await launchBrowser();
   try {
     if (isImage) {
       const rel = `shots/${entry.id}/hero.jpg`;
@@ -949,7 +974,7 @@ async function cmdRecapture(id) {
   }
 
   log(`\nreshooting ${entry.id}`);
-  const browser = await chromium.launch();
+  const browser = await launchBrowser();
   try {
     const { title, shots, blocked, limits } = await shoot(browser, entry);
     entry.shots = shots;
@@ -998,7 +1023,7 @@ async function cmdCaptureMissing() {
     log(`  · ${e.id} (${bits.join(' + ')})`);
   });
 
-  const browser = await chromium.launch();
+  const browser = await launchBrowser();
   const failed = [];
   try {
     for (const entry of todo) {

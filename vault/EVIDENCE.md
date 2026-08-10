@@ -35,7 +35,7 @@ correct** — that is Alex's review, and the claims below are marked accordingly
 > falls 4 → 3.
 >
 > **A rule candidate crossed the threshold, and how it crossed is the lesson.**
-> The `device-over-content` theme — *the mechanism demonstrating itself instead of
+> The *device-over-content* theme in `distill.mjs` — *the mechanism demonstrating itself instead of
 > revealing the content* — now stands at **three independent sites** (`lapz-io`,
 > `morningstar-ventures`, `trionn-com`) and **no rule covers it**. The distiller
 > first reported one. Alex had written the failure twice in English —

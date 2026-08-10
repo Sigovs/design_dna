@@ -123,20 +123,34 @@
     "source": "",
     "title": "Morningstar Ventures",
     "added": "2026-08-06",
-    "rating": 2,
-    "dialectStatus": "unreviewed",
-    "dialects": [],
+    "rating": 3,
+    "dialectStatus": "in",
+    "dialects": [
+      "immersive-authored-world"
+    ],
     "tags": {
-      "composition": [],
-      "risks": [],
+      "composition": [
+        "responsive-recomposition",
+        "visual-silence"
+      ],
+      "risks": [
+        "decorative-information-legibility-risk",
+        "repeated-composition-risk"
+      ],
       "typography": [
+        "big-type",
         "grotesque"
       ],
       "layout": [
         "bleed"
       ],
-      "motion": [],
+      "motion": [
+        "restraint",
+        "scroll-reveal",
+        "state-transition"
+      ],
       "color": [
+        "bold-accent",
         "dark",
         "monochrome"
       ],
@@ -144,7 +158,7 @@
         "art-direction"
       ]
     },
-    "note": "Этот мне очень нравится. Очень сдержанный, для портфолио вообще огонь. Интересуют анимация, motion, шрифты, работы, меню/навигация, переходы.",
+    "note": "Morningstar Ventures — Immersive Portfolio.\n\nЭтот мне очень нравится. Очень сдержанный, для портфолио вообще огонь.\n\nMorningstar Ventures is an unusually controlled portfolio site. It uses expressive motion, a fractured 3D sphere, grain, bloom and oversized typography, yet the result still feels restrained because all of those elements belong to the same visual world.\n\nThe site does not introduce a new aesthetic device for every section. It preserves one atmosphere while changing what the page needs to communicate. This makes the experience feel authored rather than assembled from unrelated Web3 modules.\n\nWhat makes it especially strong is the relationship between spectacle and structure. The visual world creates identity, while navigation, portfolio filters, project cards, mission content and the closing invitation remain recognisable and usable.\n\nKEY DESIGN DNA PRINCIPLES\n\n— Restraint does not require fewer effects. It requires every effect to obey the same visual world.\n— Keep the world constant while each section changes its informational job.\n— A scroll transition is only complete when every frame at which the user can stop still works as a composition.\n— Motion should advance the page's argument, not merely make the visitor advance an animation.",
     "shots": {
       "full": "shots/morningstar-ventures/full.jpg",
       "hero": "shots/morningstar-ventures/hero.jpg",
@@ -170,7 +184,22 @@
       "navScrolled": null
     },
     "extras": [],
-    "captureError": "partial evidence — 1 canvas element(s) — motion and WebGL state are not preserved by a static shot"
+    "captureError": "partial evidence — 1 canvas element(s) — motion and WebGL state are not preserved by a static shot",
+    "works": "The hero is the strongest part of the experience. One dark sculptural object carries most of the visual weight, while the headline, chapter rail and circular scroll prompt form a clear supporting hierarchy. The composition feels cinematic without becoming crowded.\n\nColour is used with exceptional discipline. The near-black monochrome palette creates the environment, while electric blue is reserved for active states, progress, project status and conversion. Because the accent is rare, it reads as information rather than decoration.\n\nThe typography is economical. Punta supplies the large display voice and Simplon handles functional reading text. Scale, weight and placement create contrast without introducing multiple fashionable type treatments.\n\nThe full-screen menu is a particularly strong extension of that system. Five large destinations, small numerical indices, a restrained version of the brand symbol and one compact update form create a complete navigation state with almost no conventional interface chrome. It feels like another chapter of the site rather than a panel placed over it.\n\nThe portfolio section handles a large quantity of content without abandoning the site's atmosphere. Search, filters and a dense field of company marks become an intentional information surface rather than a generic grid.\n\nThe following sections do not simply repeat the same module. Projects changes to explanatory cards, Mission becomes a focused text argument, and Events creates a quieter closing chapter. The visual world remains constant, but every section performs a different informational job.\n\nMobile is recomposed rather than simply reduced. The hero typography forms a tighter central mass, projects move into a single-column sequence and the mission artwork changes position to support the narrower reading path. The identity survives while density and pacing change.",
+    "weaknesses": "The motion is strongest at its settled states and less convincing between them. During ordinary scrolling, the page can stop on long transitional frames where the outgoing text is heavily blurred and the incoming content is still faint or invisible. The user controls the scroll, but not every stoppable frame works as a complete composition.\n\nThe page also requires considerable scroll distance to move through a relatively small number of content states. The chapter rail and circular scroll prompt make the transport understandable, although there are moments when the visitor appears to be advancing the animation rather than advancing the argument.\n\nThe smallest body copy is fragile. Some mission and event text must compete with grain, motion and low-contrast surroundings. The typography is visually elegant, but quiet text that carries real information needs greater reading authority.\n\nThe portfolio proves breadth but gives limited character to individual investments. A large field of monochrome logos makes very different companies feel visually equivalent. The later Projects cards provide considerably more context and a clearer reason to care.\n\nThe navigation labels do not completely match the homepage structure. The menu presents Home, Portfolio, Products, Our Team and Mission, while the observed page sequence includes About, Portfolio, Projects, Mission, Events and Newsletter. The visual language feels more resolved than the information architecture.\n\nThe experience also needs a deliberate reduced-motion path. Comprehension depends heavily on blur, opacity and scroll-linked transitions, making an accessible static alternative especially important.\n\nOverall, these are tensions created by an ambitious experience rather than evidence that the direction is wrong. Morningstar is exceptionally good at building a singular atmosphere, but occasionally asks content and usability to wait for that atmosphere to perform.",
+    "unsorted": [
+      "Immersive Portfolio",
+      "Venture Capital",
+      "Authored World",
+      "WebGL",
+      "3D Art Direction",
+      "Electric Blue Accent",
+      "Full-Screen Menu",
+      "Scroll Choreography",
+      "Portfolio Filters",
+      "Restrained UI",
+      "Cinematic Web Design"
+    ]
   },
   {
     "id": "mugenstudio-framer-website",

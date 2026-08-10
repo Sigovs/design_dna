@@ -22,10 +22,32 @@ correct** — that is Alex's review, and the claims below are marked accordingly
 
 | Class | Count | Entry ids |
 |---|---|---|
-| **Usable `in`** (human-set) | **21** | `beings-co` (3) · `ciridae-com` (3) · `ruadh-com` (2) · `electrafilmworks-com` (2) · `thenewmobileworkforce-…-back-at-hq` (2) · `trionn-com` (2) · `kinncollective-co-uk` (2) · `augen-pro` (2) · `i-pinimg-…-46d9d54b` (2) · `organimo-com` (3) · `immersive-g-com` (3) · `rolls-roycemotorcars-…-home-html` (3) · `obys-agency` (2) · `mclaren-com-cars-gl-en` (2) · `semlerpremium-dk-showroom` (3) · `semlerpremium-dk-brands-porsche-911-gt3-…` (3) · `polestar-com-us` (2) · `semlerpremium-dk` (2) · `rimac-automobili-com-nevera` (2) · `oilstainlab-com` (2) · `hispanosuizacars-com` (2) |
+| **Usable `in`** (human-set) | **22** | `beings-co` (3) · `ciridae-com` (3) · `ruadh-com` (2) · `electrafilmworks-com` (2) · `thenewmobileworkforce-…-back-at-hq` (2) · `trionn-com` (2) · `kinncollective-co-uk` (2) · `augen-pro` (2) · `i-pinimg-…-46d9d54b` (2) · `organimo-com` (3) · `immersive-g-com` (3) · `rolls-roycemotorcars-…-home-html` (3) · `obys-agency` (2) · `mclaren-com-cars-gl-en` (2) · `semlerpremium-dk-showroom` (3) · `semlerpremium-dk-brands-porsche-911-gt3-…` (3) · `polestar-com-us` (2) · `semlerpremium-dk` (2) · `rimac-automobili-com-nevera` (2) · `oilstainlab-com` (2) · `hispanosuizacars-com` (2) · `morningstar-ventures` (3) |
 | **Usable `out`** (human-set) | **4** | `rmsothebys-com` (1) · `thegentlewoman-co-uk` (1) · `hbbody-com-en-home` (2) · `rivian-com` (2) |
 | **Partial / contextual** (`hybrid`) | **1** | `porsche-com-usa` (2) |
-| **Not yet a judgement** (`unreviewed`) | **5** | `morningstar-ventures` (2) · `lapz-io` (2) · `rekorderstudios-com` (2) · `eco-com` (2) · `mugenstudio-framer-website` (2) — all captured 2026-08-06, statuses not yet set. |
+| **Not yet a judgement** (`unreviewed`) | **4** | `lapz-io` (2) · `rekorderstudios-com` (2) · `eco-com` (2) · `mugenstudio-framer-website` (2) — all captured 2026-08-06, statuses not yet set. |
+
+> **`morningstar-ventures` judged, 2026-08-10 — note first, then status, then
+> dialect.** Alex wrote a full note and set **rating 3 · `in` ·
+> `immersive-authored-world`**, which becomes that dialect's fifth record. It was
+> confirmed at three on 2026-08-05, so this strengthens rather than triggers.
+> `in` rises 21 → 22, `unreviewed` falls 5 → 4.
+>
+> **Two of his four stated principles are not new, and that is the finding.**
+> *"A scroll transition is only complete when every frame at which the user can
+> stop still works as a composition"* restates **`motion-judgment` MJ4**, reached
+> from the site rather than from the rules — a confirming recurrence, evidence the
+> rule earns its place. *"Keep the world constant while each section changes its
+> informational job"* is the **positive statement of the second pending rule
+> candidate**. Every earlier sighting of that pattern was a complaint recorded as
+> `narrative-dilution-risk`; this is the first time it has been written as a
+> principle, and by Alex. A rule is far easier to author from a stated positive
+> than from a pile of negatives.
+>
+> **The 2026-08-06 debt is closed.** The menu, navigation and transitions that
+> pass marked `not verified` are now described by Alex from his own viewing. He
+> also independently asked for a reduced-motion path — the absence this vault had
+> already verified by walking every stylesheet rule.
 
 > **Five records added, 2026-08-06.** `morningstar-ventures`, `lapz-io`,
 > `rekorderstudios-com`, `eco-com`, `mugenstudio-framer-website` — 31 records

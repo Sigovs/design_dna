@@ -146,7 +146,18 @@ const THEMES = [
   {
     key: 'empty-reads-as-broken',
     label: 'emptiness read as a loading failure',
-    patterns: [/будто контент не загруз/i, /контент не загруз/i, /настолько пуст/i, /looks like .*not loaded/i, /content failed to load/i],
+    patterns: [
+      /будто контент не загруз/i, /контент не загруз/i, /настолько пуст/i,
+      /looks like .*not loaded/i, /content failed to load/i,
+      /* Added 2026-08-10. Same failure, different register: a deliberate
+         composition read as a fault. Alex wrote "appear like rendering errors
+         rather than deliberate typography" and "resemble missing content or a
+         rendering error" — neither matched a pattern written around loading. */
+      /(rendering|render) errors?/i,
+      /resembl\w+ missing content/i,
+      /(appear|look|read)\w* like (a )?(mistake|fault|bug|broken)/i,
+      /выглядит как (ошибк|сбой|баг)/i,
+    ],
     covered: null,
   },
   {

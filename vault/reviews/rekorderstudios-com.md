@@ -76,3 +76,88 @@ Every row is `agent` / `unreviewed`.
 what he liked. The `note` therefore stays `TODO` rather than carrying an
 agent-written justification in his voice — the note is his field, and a record that
 looks reasoned but is not is worse than one that is visibly owed.
+
+## 2026-08-10 · NOTE — the owed reasoning, written
+
+- **action:** `note`, `works` and `weaknesses` filled from Alex's written note, verbatim
+- **rating / dialectStatus:** unchanged at **2 / unreviewed** — his to set
+
+**The debt recorded on 2026-08-06 is closed.** This record was added without a
+stated reason and its note was deliberately left `TODO` rather than filled with
+an agent-written justification in his voice. It now carries his own.
+
+### Alex's note — verbatim, never edited
+
+Twelve principles under KEY DESIGN DNA PRINCIPLES, kept at the end of the `note`
+field in his wording.
+
+### What this record confirms, and what it moves
+
+**MJ4 for the third time, on a third unrelated site.** *"...especially when a
+visitor stops midway through a scroll transition."* He has now reached
+`motion-judgment` MJ4 from the material on Morningstar, Lapz and Rekorder — three
+sites, three independent arrivals, never from reading the rules.
+
+**Reduced motion, fourth consecutive request.** *"...should all have clear static
+and reduced-motion equivalents."*
+
+**The section-job candidate stated positively for the third time.** *"Let each
+section change compositional behavior while preserving the same cultural voice"*
+— the same shape as Morningstar's *"keep the world constant while each section
+changes its informational job"* and Lapz's *"do not let a powerful demonstration
+substitute for information architecture."* Three positive statements now, against
+six records that only recorded the failure as `narrative-dilution-risk`.
+
+**A second sighting for `empty-reads-as-broken`.** *"...can appear like rendering
+errors rather than deliberate typography."* `augen-pro` was the only other one.
+Still below threshold at two.
+
+**Confirming an existing rule three times over:** asset dependence on
+art-directed photography (C17), monospaced labels too quiet to scan (typography
+I7), and mobile that cannot be reduced proportionally (C12).
+
+### A cluster with no theme yet — CTA paths that do not differ
+
+Two of his principles are about the same thing: *"Every primary CTA must describe
+a meaningfully different path"* and *"Repeating a CTA does not advance conversion
+unless the preceding section has added a new reason or greater confidence to
+act."* `anti-patterns` D6 bans **more than one primary CTA repeated in a grid**;
+this is a different claim — three CTAs that are genuinely different actions but
+are not distinguished, so the visitor cannot choose. Not tagged, no term exists.
+
+### Tags
+
+On existing terms: `rhythm-variation` (his scale change breaking evenly spaced
+modules), `editorial`, `floating-capsule-navigation` (the black control
+independent of the page beneath), `asymmetry`, `grid-break`. Four risks, each
+earned by a named weakness: `ambiguous-reading-order`,
+`decorative-information-legibility-risk`, `asset-dependency-risk`,
+`mobile-recomposition-risk`.
+
+**`intentional-crop` was deliberately NOT applied.** He praises the cropping and
+then warns it can read as a rendering error. A composition tag means the quality
+is present and confirmed; a contested one is not confirmed.
+
+Queued in `unsorted`: *Recording Studio* · *Music Production* · *Creative Community* · *Amsterdam* · *Organic Image Masks* · *Irregular Layout* · *Expressive Typography* · *Typographic Contrast* · *Creative Workspace* · *Studio Booking* · *Artist Community* · *Interior Photography* · *Portrait Collage* · *Persistent Navigation* · *Cultural Branding* · *Community-Led Brand* · *Editorial Commerce*.
+
+## 2026-08-10 · JUDGEMENT
+
+- **action:** whole-record judgement set by Alex, after his note existed
+- **previous rating / dialectStatus:** **2 / unreviewed**
+- **current rating / dialectStatus:** **3 / in** — dialect `organic-tactile`
+
+### Alex's judgement — verbatim
+
+> `in` · `organic-tactile` · rating **3**
+
+### `organic-tactile` gets its first record
+
+The dialect has sat in the library since it was written, carried by nobody. This
+is its first `in` record, and at rating 3.
+
+The alternative on the table was `auction-editorial`, and the reason it lost is
+worth keeping: the type system is close — serif display, italic, mono labels —
+but a dialect is decision logic, not a font list. `auction-editorial`'s subject is
+the singular lot composed as a record. Rekorder's subject is a community, and its
+governing move is authored irregularity — organic masks, cropped letters, warmth
+from real people. Matching expressions is not matching logic.

@@ -298,18 +298,31 @@
     "source": "",
     "title": "Rekorder Studios",
     "added": "2026-08-06",
-    "rating": 2,
-    "dialectStatus": "unreviewed",
-    "dialects": [],
+    "rating": 3,
+    "dialectStatus": "in",
+    "dialects": [
+      "organic-tactile"
+    ],
     "tags": {
-      "composition": [],
-      "risks": [],
+      "composition": [
+        "rhythm-variation"
+      ],
+      "risks": [
+        "ambiguous-reading-order",
+        "asset-dependency-risk",
+        "decorative-information-legibility-risk",
+        "mobile-recomposition-risk"
+      ],
       "typography": [
         "display-serif",
+        "editorial",
+        "floating-capsule-navigation",
         "mono-details"
       ],
       "layout": [
-        "bleed"
+        "asymmetry",
+        "bleed",
+        "grid-break"
       ],
       "motion": [],
       "color": [
@@ -320,7 +333,7 @@
         "photography"
       ]
     },
-    "note": "TODO",
+    "note": "Rekorder Studios — Creative Studio Community.\n\nRekorder Studios is an unusually expressive website for a recording facility. Instead of presenting the business as a collection of rentable rooms and technical specifications, it presents Rekorder as a creative habitat: a carefully designed physical environment populated by musicians, producers, songwriters and other distinctive personalities.\n\nThe central proposition is captured immediately in the hero: \"Carefully crafted studios and a community of colourful characters.\" That sentence gives equal importance to the space and the people. This becomes the governing logic of the entire page. Studio interiors demonstrate professional credibility, while portraits, communal spaces and deliberately playful typography communicate culture and belonging.\n\nWhat makes the site especially strong is that its visual irregularity feels appropriate to the subject. Organic image masks, oversized cropped letters, shifting editorial compositions and collisions between serif, italic and monospaced typography create the energy of an independent music publication rather than a conventional commercial property website.\n\nKEY DESIGN DNA PRINCIPLES\n\n— When the physical product and the people around it are equally valuable, the website must prove both environment and belonging.\n— A strong headline can establish the complete argument of a page when every following section proves a different part of it.\n— Editorial irregularity feels intentional when typography, imagery and spacing share one consistent attitude.\n— Keep the interface neutral when the content needs to accommodate many different colours, personalities and physical environments.\n— Community should not be presented as decoration around a product. Show how it changes the value of participating.\n— A distinctive visual identity cannot replace clear choice architecture. Every primary CTA must describe a meaningfully different path.\n— Repeating a CTA does not advance conversion unless the preceding section has added a new reason or greater confidence to act.\n— Atmosphere creates desire for a space; specifications help the visitor decide which version of that space they need.\n— If people are the proof of a community, give them enough identity to become evidence rather than imagery.\n— Expressive cropping should create tension without making deliberate composition resemble missing content or a rendering error.\n— Let each section change compositional behavior while preserving the same cultural voice.\n— A creative business should feel creatively inhabited, not merely creatively decorated.",
     "shots": {
       "full": "shots/rekorderstudios-com/full.jpg",
       "hero": "shots/rekorderstudios-com/hero.jpg",
@@ -346,7 +359,28 @@
       "navScrolled": null
     },
     "extras": [],
-    "captureError": null
+    "captureError": null,
+    "works": "The hero establishes a distinctive identity immediately. A close portrait wearing headphones occupies almost the entire viewport, but the image is contained within a soft, irregular shape rather than a predictable rectangle. This gives the composition personality without requiring elaborate 3D effects or cinematic spectacle.\n\nThe headline is both expressive and strategically precise. \"Carefully crafted studios\" communicates the quality of the physical product, while \"a community of colourful characters\" introduces the emotional and social reason to choose Rekorder over another recording facility. The copy is not merely decorative branding; it establishes the two arguments the rest of the page must prove.\n\nThe typography successfully combines different voices. Large serif type gives the site cultural confidence, italics introduce warmth and human emphasis, while small monospaced labels provide a technical counterpoint. This mixture reflects the business itself: acoustically precise spaces inhabited by expressive people.\n\nThe persistent navigation element is particularly memorable. The Rekorder wordmark sits inside a compact black horizontal control that remains visually independent from the page beneath it. It feels closer to a piece of recording equipment or a physical label than to a conventional website header.\n\nThe restrained neutral background gives the imagery considerable freedom. Interior photographs introduce violet, amber and blue light, while portraits bring a much broader range of colour. Because the interface itself remains mostly cream and black, these variations enrich the site without fragmenting its identity.\n\nThe About section avoids relying entirely on abstract brand language. It defines Rekorder as a playground dedicated to the creative process, but quickly supports that idea with specific claims about isolation, acoustics, adaptable rooms and available services.\n\nThe transition into \"What We Offer\" is especially effective. The composition becomes more functional without suddenly changing design language. A clear service statement is paired with large studio photography, and smaller images overlap the primary frame like material assembled on an editorial artboard.\n\nThe site understands that recording studios are highly visual products. Instead of describing acoustics and equipment through dense technical tables, it gives the rooms enough scale to establish atmosphere, finish quality and working conditions. Visitors can imagine occupying the spaces before examining detailed requirements.\n\nThe oversized cropped typography used around the Studios section introduces a strong change in scale. It prevents the long page from becoming a succession of evenly spaced image-and-copy modules. The composition becomes more architectural precisely when the content discusses the physical studios.\n\nThe Community section changes the emotional register. Warm portrait photography, dark backgrounds and the statement \"We are here to help you hit that high\" shift the page from facilities to creative motivation. This makes community feel like a meaningful part of the offer rather than a lifestyle claim inserted beside technical services.\n\nThe portrait field near the end is one of the strongest expressions of the brand. Different people appear inside irregular organic crops surrounding the enormous word \"producers.\" The composition turns the community into the visual subject and avoids the artificial uniformity of a conventional testimonial grid or team carousel.\n\nThe page also creates useful repetition without becoming completely repetitive. \"Book now,\" community language, studio imagery and organic shapes return throughout the experience, but they are recomposed at different scales rather than copied as identical modules.\n\nThe overall tone is particularly well judged for the audience. Rekorder feels professional enough to trust with serious production work, but not so corporate that an independent musician would feel they were entering an anonymous commercial facility.",
+    "weaknesses": "The strongest weakness is the relationship between identity and conversion. The site clearly communicates what Rekorder feels like, but the difference between its primary actions is initially unclear.\n\nThe hero presents Join Waitlist, Apply Now and Book Now. These appear to represent different types of engagement, but their meaning is not immediately explained. A visitor should understand whether they are booking a single session, applying for a permanent studio, joining a residency or requesting membership before selecting an action.\n\nThe site would benefit from a dedicated choice architecture that clearly distinguishes one-time or short-term studio booking; permanent studio availability; community or residency applications; additional production services.\n\nThe current repetition of \"Book now\" maintains conversion visibility, but it does not add new decision-making information. Repeating a CTA is useful only when the content around it helps the visitor become more prepared to act.\n\nThe page talks about state-of-the-art studios, supreme isolation and adaptable technical setups, yet provides little scannable technical evidence. Musicians and producers evaluating a studio may want to compare room sizes, equipment, monitoring, consoles, instruments, acoustic treatment, capacity and supported session types. The design does not need to become a dense equipment catalogue, but each studio deserves a concise identity and a reason to choose it. At present, the rooms contribute strongly to atmosphere while remaining difficult to distinguish functionally.\n\nThe editorial asymmetry is often exciting, but some compositions approach accidental imbalance. Large empty fields, heavily cropped initial letters and text beginning beyond the visible frame can appear like rendering errors rather than deliberate typography — especially when a visitor stops midway through a scroll transition.\n\nThe small monospaced labels are conceptually appropriate but frequently too quiet. Their size and low visual authority make section identification, address information and secondary actions harder to scan than necessary.\n\nThe persistent header is visually distinctive, although its information architecture is extremely limited. The centered Rekorder element behaves more like a brand object than an obvious navigation system. First-time visitors may not immediately understand how to reach studios, facilities, booking information, pricing or FAQs.\n\nThe homepage gives community considerable visual importance but provides limited evidence of how that community operates. It mentions lunches, meetings, writing camps and release events, yet these remain abstract. Real examples, recurring programming, member stories or recent collaborations would make the social proposition more credible.\n\nThe gallery of portraits is expressive, but the people remain largely anonymous. Names, disciplines, short quotations or project associations could turn the composition from a mood board into proof of an active professional network.\n\nThe FAQ is useful because it finally explains important distinctions, including day sessions and the waitlist for permanent spots. However, this information arrives very late. Critical conversion logic should not depend on visitors reaching the FAQ.\n\nThe site also depends heavily on excellent art-directed photography. The irregular masks and editorial layouts magnify the character of every image. If future content introduces inconsistent lighting, generic event photography or poorly composed studio shots, the entire system could quickly become less coherent.\n\nMobile requires especially careful handling. Large cropped typography, floating portraits, overlapping image fields and a persistent central header cannot simply be reduced proportionally. The mobile composition needs its own controlled hierarchy so that expressive cropping does not become missing information.\n\nAccessibility also needs deliberate consideration. Small type, unusual reading paths, italic display text, image-dependent storytelling and scroll-triggered reveals should all have clear static and reduced-motion equivalents.\n\nOverall, the weaknesses are mostly failures of product explanation rather than failures of art direction. Rekorder has built a convincing cultural identity. The next step is to give booking options, studio differences and community participation the same degree of authorship as the visual world.",
+    "unsorted": [
+      "Recording Studio",
+      "Music Production",
+      "Creative Community",
+      "Amsterdam",
+      "Organic Image Masks",
+      "Irregular Layout",
+      "Expressive Typography",
+      "Typographic Contrast",
+      "Creative Workspace",
+      "Studio Booking",
+      "Artist Community",
+      "Interior Photography",
+      "Portrait Collage",
+      "Persistent Navigation",
+      "Cultural Branding",
+      "Community-Led Brand",
+      "Editorial Commerce"
+    ]
   },
   {
     "id": "hbbody-com-en-home",

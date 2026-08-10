@@ -22,10 +22,37 @@ correct** — that is Alex's review, and the claims below are marked accordingly
 
 | Class | Count | Entry ids |
 |---|---|---|
-| **Usable `in`** (human-set) | **22** | `beings-co` (3) · `ciridae-com` (3) · `ruadh-com` (2) · `electrafilmworks-com` (2) · `thenewmobileworkforce-…-back-at-hq` (2) · `trionn-com` (2) · `kinncollective-co-uk` (2) · `augen-pro` (2) · `i-pinimg-…-46d9d54b` (2) · `organimo-com` (3) · `immersive-g-com` (3) · `rolls-roycemotorcars-…-home-html` (3) · `obys-agency` (2) · `mclaren-com-cars-gl-en` (2) · `semlerpremium-dk-showroom` (3) · `semlerpremium-dk-brands-porsche-911-gt3-…` (3) · `polestar-com-us` (2) · `semlerpremium-dk` (2) · `rimac-automobili-com-nevera` (2) · `oilstainlab-com` (2) · `hispanosuizacars-com` (2) · `morningstar-ventures` (3) |
+| **Usable `in`** (human-set) | **23** | `beings-co` (3) · `ciridae-com` (3) · `ruadh-com` (2) · `electrafilmworks-com` (2) · `thenewmobileworkforce-…-back-at-hq` (2) · `trionn-com` (2) · `kinncollective-co-uk` (2) · `augen-pro` (2) · `i-pinimg-…-46d9d54b` (2) · `organimo-com` (3) · `immersive-g-com` (3) · `rolls-roycemotorcars-…-home-html` (3) · `obys-agency` (2) · `mclaren-com-cars-gl-en` (2) · `semlerpremium-dk-showroom` (3) · `semlerpremium-dk-brands-porsche-911-gt3-…` (3) · `polestar-com-us` (2) · `semlerpremium-dk` (2) · `rimac-automobili-com-nevera` (2) · `oilstainlab-com` (2) · `hispanosuizacars-com` (2) · `morningstar-ventures` (3) · `rekorderstudios-com` (3) |
 | **Usable `out`** (human-set) | **5** | `rmsothebys-com` (1) · `thegentlewoman-co-uk` (1) · `hbbody-com-en-home` (2) · `rivian-com` (2) · `lapz-io` (3) |
 | **Partial / contextual** (`hybrid`) | **1** | `porsche-com-usa` (2) |
-| **Not yet a judgement** (`unreviewed`) | **3** | `rekorderstudios-com` (2) · `eco-com` (2) · `mugenstudio-framer-website` (2) — all captured 2026-08-06, statuses not yet set. |
+| **Not yet a judgement** (`unreviewed`) | **2** | `eco-com` (2) · `mugenstudio-framer-website` (2) — all captured 2026-08-06, statuses not yet set. |
+
+> **`rekorderstudios-com` judged, 2026-08-10 — and the note debt is gone.** This
+> record was added on 2026-08-06 without a stated reason and its note was left
+> `TODO` rather than filled with an agent-written justification in Alex's voice.
+> He has now written it. **No record in the vault reads `TODO`.** Set **rating 3 ·
+> `in` · `organic-tactile`** — the **first record that dialect has ever carried**,
+> and at rating 3. `in` rises 22 → 23, `unreviewed` falls 3 → 2.
+>
+> **Why not `auction-editorial`, which was the other candidate.** The type system
+> is close — serif display, italic, mono labels — but a dialect is decision logic,
+> not a font list. `auction-editorial`'s subject is the singular lot composed as a
+> record; Rekorder's subject is a community, and its governing move is authored
+> irregularity. Matching expressions is not matching logic, and the distinction is
+> worth keeping because it is the one a font list would get wrong.
+>
+> **MJ4 for the third time, on a third unrelated site**, and **reduced motion
+> requested for the fourth consecutive record.** Three independent arrivals at the
+> same invariant, none of them from reading the rules.
+>
+> **The section-job candidate now has three positive statements**, from
+> Morningstar, Lapz and Rekorder, against six records that only ever recorded the
+> failure as `narrative-dilution-risk`.
+>
+> **A cluster with no theme: CTAs that do not describe different paths.**
+> `anti-patterns` D6 bans one primary CTA repeated in a grid. Alex names something
+> else — several genuinely different actions left undistinguished, so the visitor
+> cannot choose. One record, recorded in prose.
 
 > **`lapz-io` judged, 2026-08-10 — `out` at rating 3, the first of its kind.**
 > `out` is not rejection: it is the only raw material a new dialect is built from,

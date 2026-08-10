@@ -81,3 +81,82 @@ type. Stated as likely rather than certain: the element itself was not inspected
 
 **Also verified: no `prefers-reduced-motion` rule in any stylesheet**, with four
 autoplaying video elements on the page.
+
+## 2026-08-10 · NOTE — Alex's full reasoning
+
+- **action:** `note`, `works` and `weaknesses` filled from Alex's written note, verbatim
+- **rating / dialectStatus:** unchanged at **2 / unreviewed** — his to set
+
+### Alex's note — verbatim, never edited
+
+Split at his own headings. The eight principles under KEY DESIGN DNA PRINCIPLES
+are kept at the end of the `note` field in his wording.
+
+### The same two findings as morningstar-ventures, on an unrelated site
+
+**MJ4, reached from the site for the second time.** *"Because scrolling is
+user-controlled, every stoppable state needs enough compositional authority to
+survive as a frame"*, and as a principle: *"The more explanation motion carries,
+the more carefully every stoppable frame must be composed."* On
+`morningstar-ventures` he wrote the same thing in different words. Two unrelated
+sites, the same conclusion, neither derived from the rules — `motion-judgment`
+MJ4 is earning its place rather than sitting in the file.
+
+**The animation-instead-of-argument failure, almost word for word.** Here:
+*"The visitor sometimes appears to be advancing an animation rather than learning
+something new about Lapz."* On Morningstar: *"the visitor appears to be advancing
+the animation rather than advancing the argument."* That is the
+`device-over-content` theme in `distill.mjs`, which **no rule covers** and which
+this record takes to a third independent site.
+
+**And the information-architecture candidate again, stated positively:**
+*"Do not let a powerful demonstration substitute for information architecture.
+Extract each visible capability into a clear product argument."* Same shape as
+Morningstar's *"keep the world constant while each section changes its
+informational job"* — every section owing a job no other section does.
+
+**Reduced motion, third request.** He asks for it here as well. Verified absent on
+this page on 2026-08-06 by walking every stylesheet rule.
+
+### Tags
+
+On existing terms: `dominant-mass` (his "the main race feed remains the visual
+anchor"), `product-storytelling`, `structured-specification`, `scroll-reveal`,
+`restraint`. Risks: `decorative-information-legibility-risk` for objects and text
+approaching invisibility on ordinary displays, `narrative-dilution-risk` for a
+homepage whose argument lives inside the sequence instead of the page.
+
+**Not tagged, no term exists:** the performance responsibility of heavy video and
+scroll-linked motion, the uncertain availability state behind the CTA, and the
+uncaptioned interior gallery. Left in his prose.
+
+He also used *Technical Luxury* as a tag. That is a **dialect name**, not a tag,
+and it is not written into `dialects` — that field is set by the status question,
+by him, and never inferred from a word in a tag list.
+
+Queued in `unsorted`: *Spatial Computing* · *Apple Vision Pro* · *Formula 1* · *Motorsport Experience* · *AR Interface* · *Immersive Product Demo* · *Spatial UI* · *Race Visualization* · *Live Timing* · *Multi-Screen Experience* · *3D Circuit* · *Cinematic Hero* · *Scroll Choreography* · *RealityKit* · *SwiftUI* · *TestFlight* · *Spatial Entertainment* · *Restrained UI*.
+
+## 2026-08-10 · JUDGEMENT
+
+- **action:** whole-record judgement set by Alex, after his note existed
+- **previous rating / dialectStatus:** **2 / unreviewed**
+- **current rating / dialectStatus:** **3 / out** — no dialect, which is the correct
+  and required value for `out` rather than a gap
+
+### Alex's judgement — verbatim
+
+> `out` · rating **3**
+
+### The first rating-3 `out` record in the vault
+
+`out` is not rejection — the vault README calls it the most valuable kind of
+entry: evidence that good work exists outside every stored dialect, and the only
+raw material a new dialect can be built from. Until now the four `out` records
+were two rating-1 and two rating-2. **This is the first at rating 3**, which
+carries real weight under the threshold rule: two independent rating-3 records
+sharing decision logic clears the bar.
+
+Recorded and not acted on: he used *Technical Luxury* among his tags and then set
+the record `out`. The two are not the same statement — a tag is vocabulary, a
+dialect is a whole-record judgement — and the judgement is what governs. Nothing
+was written into `dialects`.

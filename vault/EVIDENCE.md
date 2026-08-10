@@ -23,9 +23,34 @@ correct** — that is Alex's review, and the claims below are marked accordingly
 | Class | Count | Entry ids |
 |---|---|---|
 | **Usable `in`** (human-set) | **22** | `beings-co` (3) · `ciridae-com` (3) · `ruadh-com` (2) · `electrafilmworks-com` (2) · `thenewmobileworkforce-…-back-at-hq` (2) · `trionn-com` (2) · `kinncollective-co-uk` (2) · `augen-pro` (2) · `i-pinimg-…-46d9d54b` (2) · `organimo-com` (3) · `immersive-g-com` (3) · `rolls-roycemotorcars-…-home-html` (3) · `obys-agency` (2) · `mclaren-com-cars-gl-en` (2) · `semlerpremium-dk-showroom` (3) · `semlerpremium-dk-brands-porsche-911-gt3-…` (3) · `polestar-com-us` (2) · `semlerpremium-dk` (2) · `rimac-automobili-com-nevera` (2) · `oilstainlab-com` (2) · `hispanosuizacars-com` (2) · `morningstar-ventures` (3) |
-| **Usable `out`** (human-set) | **4** | `rmsothebys-com` (1) · `thegentlewoman-co-uk` (1) · `hbbody-com-en-home` (2) · `rivian-com` (2) |
+| **Usable `out`** (human-set) | **5** | `rmsothebys-com` (1) · `thegentlewoman-co-uk` (1) · `hbbody-com-en-home` (2) · `rivian-com` (2) · `lapz-io` (3) |
 | **Partial / contextual** (`hybrid`) | **1** | `porsche-com-usa` (2) |
-| **Not yet a judgement** (`unreviewed`) | **4** | `lapz-io` (2) · `rekorderstudios-com` (2) · `eco-com` (2) · `mugenstudio-framer-website` (2) — all captured 2026-08-06, statuses not yet set. |
+| **Not yet a judgement** (`unreviewed`) | **3** | `rekorderstudios-com` (2) · `eco-com` (2) · `mugenstudio-framer-website` (2) — all captured 2026-08-06, statuses not yet set. |
+
+> **`lapz-io` judged, 2026-08-10 — `out` at rating 3, the first of its kind.**
+> `out` is not rejection: it is the only raw material a new dialect is built from,
+> and until now the four `out` records were two rating-1 and two rating-2. A
+> rating-3 `out` carries real weight, since two independent rating-3 records
+> sharing decision logic clears the threshold. `out` rises 4 → 5, `unreviewed`
+> falls 4 → 3.
+>
+> **A rule candidate crossed the threshold, and how it crossed is the lesson.**
+> The `device-over-content` theme — *the mechanism demonstrating itself instead of
+> revealing the content* — now stands at **three independent sites** (`lapz-io`,
+> `morningstar-ventures`, `trionn-com`) and **no rule covers it**. The distiller
+> first reported one. Alex had written the failure twice in English —
+> *"advancing an animation rather than learning something new"*, *"advancing the
+> animation rather than advancing the argument"* — and every pattern in that theme
+> was Russian and phrased differently. The lexicon finding only what it was
+> already taught, demonstrated live. Patterns widened; threshold met.
+>
+> **MJ4 reached from the material for the second time.** On two unrelated sites
+> Alex independently concluded that every frame a visitor can stop on must work as
+> a composition. That is `motion-judgment` MJ4, and neither statement came from
+> reading the rules — a confirming recurrence, evidence the rule earns its place.
+>
+> **Reduced motion requested a third time.** Verified absent on this page on
+> 2026-08-06 by walking every stylesheet rule.
 
 > **`morningstar-ventures` judged, 2026-08-10 — note first, then status, then
 > dialect.** Alex wrote a full note and set **rating 3 · `in` ·

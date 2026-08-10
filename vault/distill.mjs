@@ -130,6 +130,16 @@ const THEMES = [
     patterns: [
       /демонстрир\w+ (возможности|технолог)/i, /посмотри, что мы/i, /не раскрывает содержан/i,
       /demonstrat\w+ the (technology|capability)/i, /утомитель/i,
+      /* Added 2026-08-10. Alex reached this failure twice in English, on two
+         unrelated sites, in wording none of the patterns above could match:
+         "advancing an animation rather than learning something new" and
+         "advancing the animation rather than advancing the argument". The run
+         reported one site while three were in the data — the lexicon finding
+         only what it was taught, demonstrated live. */
+      /advanc\w+ (the |an )?animation/i,
+      /confus\w+ (cinematic )?duration with (informational )?progress/i,
+      /scroll(ing)? (distance|length)[^.]{0,40}(few|small number|little)/i,
+      /продвига\w+ анимацию/i,
     ],
     covered: null,
   },

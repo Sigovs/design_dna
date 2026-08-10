@@ -66,12 +66,19 @@
     "source": "",
     "title": "Lapz: Watch F1® Races in Apple Vision Pro",
     "added": "2026-08-06",
-    "rating": 2,
-    "dialectStatus": "unreviewed",
+    "rating": 3,
+    "dialectStatus": "out",
     "dialects": [],
     "tags": {
-      "composition": [],
-      "risks": [],
+      "composition": [
+        "dominant-mass",
+        "product-storytelling",
+        "structured-specification"
+      ],
+      "risks": [
+        "decorative-information-legibility-risk",
+        "narrative-dilution-risk"
+      ],
       "typography": [
         "big-type",
         "grotesque"
@@ -79,7 +86,10 @@
       "layout": [
         "bleed"
       ],
-      "motion": [],
+      "motion": [
+        "restraint",
+        "scroll-reveal"
+      ],
       "color": [
         "dark",
         "monochrome"
@@ -88,7 +98,7 @@
         "product"
       ]
     },
-    "note": "Тут мне нравится, как footer выполнен — с большим текстом.",
+    "note": "Lapz — Spatial F1 Viewing for Apple Vision Pro.\n\nТут мне нравится, как footer выполнен — с большим текстом.\n\nLapz is a strong example of a product website that uses cinematic presentation to explain a genuinely spatial product. Instead of describing augmented-reality motorsport through feature lists, the site gradually reconstructs the experience: the race broadcast remains visible, additional camera feeds surround it, timing information becomes part of the environment, and a three-dimensional circuit occupies the physical space in front of the viewer.\n\nThis is important because Lapz is not selling another streaming interface. It is proposing a different relationship between the spectator and the race. The website makes that difference visible before attempting to explain it technically.\n\nWhat makes the execution especially effective is its visual restraint. The site borrows from Formula 1, Apple Vision Pro and high-end automotive presentation without becoming a collage of racing clichés. Black space, controlled white typography, subtle red signals and carefully lit renders create a focused environment in which the product remains the primary spectacle.\n\nKEY DESIGN DNA PRINCIPLES\n\n— When a product changes the user's spatial relationship to familiar content, demonstrate the new relationship before listing its features.\n— Preserve the familiar core of an experience while using the new medium to extend what can exist around it.\n— A spatial product should be shown as a system of relationships, not as a collection of floating screens.\n— Cinematic duration is justified only when each stage reveals a new product truth.\n— The more explanation motion carries, the more carefully every stoppable frame must be composed.\n— Product spectacle should create questions that the following sections deliberately answer.\n— Do not let a powerful demonstration substitute for information architecture. Extract each visible capability into a clear product argument.\n— A new platform becomes credible when the website shows not only what the experience looks like, but how it behaves in ordinary use.",
     "shots": {
       "full": "shots/lapz-io/full.jpg",
       "hero": "shots/lapz-io/hero.jpg",
@@ -114,7 +124,29 @@
       "navScrolled": null
     },
     "extras": [],
-    "captureError": null
+    "captureError": null,
+    "works": "The opening scene immediately establishes the emotional territory. The viewer follows a Formula car through a dark tunnel rather than encountering a conventional product screenshot or generic lifestyle image. Tunnel lights create natural perspective, speed and directional rhythm, while the restrained monochrome treatment avoids the loud sponsor-heavy language normally associated with motorsport.\n\nThe hero's central claim — \"Watch Motorsports in AR\" — is extremely direct. It identifies both the subject and the transformation without requiring the visitor to decode a conceptual campaign line. The supporting statement remains secondary, allowing the moving environment to demonstrate the emotional promise.\n\nThe long hero sequence is most successful when it transitions from cinematic racing imagery into a representation of the actual viewing experience. The product is not introduced as an isolated headset screen. It is staged as a complete spatial arrangement containing the main broadcast, alternate onboard cameras, race timing and a three-dimensional circuit model.\n\nThis makes the demonstration unusually persuasive. Each interface element occupies a position that explains its role: the main race feed remains the visual anchor; secondary cameras create simultaneous perspectives; timing data supports live race comprehension; the circuit model gives the viewer spatial awareness of the complete event; the room-scale composition communicates why the product belongs on Vision Pro.\n\nThe product demonstration also preserves familiar broadcast conventions. Lapz does not discard television coverage simply because the platform is spatial. The main feed remains recognisable while the surrounding environment adds information and control. The new interaction model extends an understood behaviour rather than forcing the user to relearn motorsport viewing from the beginning.\n\nThe compositing of interface and environment is especially strong. The UI does not feel pasted onto a promotional render. Screens, track models, shadows and interior surfaces share a consistent perspective and lighting logic, making the experience appear plausible rather than speculative.\n\nThe dark palette is disciplined. Nearly all visual energy comes from light, screen content and a small amount of racing red. This gives the interface and track model greater presence while preserving the immersive quality of the scenes.\n\nThe site also benefits from having one clear technological destination. \"Created for Vision Pro\" is presented as a major product fact rather than buried among compatibility details. SwiftUI and RealityKit are mentioned afterwards as supporting evidence, giving technically informed visitors confidence without turning the homepage into developer documentation.\n\nThe interior renders extend the idea beyond a single idealised setup. They show how the experience can inhabit different viewing environments and demonstrate that the spatial interface is not tied to one fixed screen arrangement. This helps translate an abstract AR concept into something that feels usable in an actual room.\n\nThe Forbes quotation is exceptionally strong social proof because it validates the central product proposition rather than offering generic praise. \"The best reason yet to buy a Vision Pro\" positions Lapz as a platform-defining experience and directly addresses the larger question of why someone would want the hardware.\n\nThe final wireframe Formula car is a good visual bridge into conversion. It preserves the racing subject while changing from cinematic realism to a more technical, future-facing representation. The CTA therefore feels like the conclusion of the same visual story rather than a generic acquisition panel attached to the bottom of the page.",
+    "weaknesses": "The site communicates the concept more successfully than it communicates the complete product. Visitors understand that Lapz creates a spatial motorsport environment, but they receive relatively little information about everyday use.\n\nImportant questions remain underexplained: which races and motorsport series are supported; whether live timing and camera feeds require separate subscriptions; how users arrange, resize or replace screens; which parts of the experience are interactive; whether races can be watched live, replayed or both; what the current TestFlight version includes; how reliable the data and video synchronisation is.\n\nThe immersive hero sequence carries too much of the explanatory burden. It occupies several viewport lengths, while the remainder of the homepage contains comparatively little product development. The sequence creates anticipation, but the page does not fully convert that anticipation into a structured account of capabilities, interaction and value.\n\nSome scroll states are much stronger than others. At its best, the sequence reveals a complete racing environment. Between those moments, the visitor can stop on very dark or visually incomplete frames where neither the cinematic scene nor the next product state has fully arrived. Because scrolling is user-controlled, every stoppable state needs enough compositional authority to survive as a frame.\n\nThe site occasionally confuses cinematic duration with informational progression. A large amount of scrolling is required to reveal a relatively small number of product ideas. The visitor sometimes appears to be advancing an animation rather than learning something new about Lapz.\n\nThe page relies heavily on darkness, subtle fades and low-contrast rendering. This produces a premium atmosphere, but some objects and supporting text approach invisibility on ordinary displays. The Vision Pro render is especially dark in certain states, reducing the clarity of a section intended to establish platform compatibility.\n\nThe interior gallery is visually convincing but editorially underdeveloped. The renders show different room-scale configurations, yet there are no captions identifying what has changed or why each arrangement is useful. Without explanation, multiple scenes can feel like variations of the same demonstration rather than distinct product evidence.\n\nThe homepage has almost no explicit interface hierarchy outside the cinematic sequence. Individual capabilities such as track positioning, camera selection, live telemetry and screen arrangement deserve their own focused moments. A visitor should be able to understand the product by scanning the page, not only by completing the scroll choreography.\n\nThe navigation prioritises Updates, Roadmap, Community and Donate, but does not provide direct access to product features, compatibility, setup or frequently asked questions. This makes the project feel open and community-driven, although it weakens the information architecture for first-time visitors evaluating the app.\n\nThe conversion path is also uncertain. \"Download\" and \"Get the TestFlight\" appear as primary actions, but the current availability state is not explained clearly enough. If access is limited, paused or conditional, the CTA should communicate that state rather than behaving like an ordinary download button.\n\nThe social section is functional but visually much more generic than the product experience above it. Discord and X are placed in a conventional two-column layout that could belong to almost any technology project. After such a specific spatial presentation, the closing community module feels comparatively un-authored.\n\nThe large amount of high-resolution video, layered imagery and scroll-linked motion also creates an obvious performance responsibility. The experience needs careful loading behaviour, reduced-motion support and a meaningful static fallback. A site promoting advanced hardware should feel technically precise even on devices that cannot reproduce its full cinematic treatment.\n\nOverall, Lapz has a compelling product, a convincing visual world and an excellent central demonstration. Its weakness is not lack of spectacle; it is that the spectacle contains more product intelligence than the surrounding information architecture. The next step would be to extract that intelligence into clearer, individually legible product arguments.",
+    "unsorted": [
+      "Spatial Computing",
+      "Apple Vision Pro",
+      "Formula 1",
+      "Motorsport Experience",
+      "AR Interface",
+      "Immersive Product Demo",
+      "Spatial UI",
+      "Race Visualization",
+      "Live Timing",
+      "Multi-Screen Experience",
+      "3D Circuit",
+      "Cinematic Hero",
+      "Scroll Choreography",
+      "RealityKit",
+      "SwiftUI",
+      "TestFlight",
+      "Spatial Entertainment",
+      "Restrained UI"
+    ]
   },
   {
     "id": "morningstar-ventures",

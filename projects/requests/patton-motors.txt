@@ -1,0 +1,28 @@
+Patton Motors — Pompano Beach, Florida. Collector-car dealer with four
+businesses on one site: live auctions with a clock, a floor of about forty cars,
+sell & consign, and a physical room open Saturdays 9–1.
+
+REDESIGN of pattonmotors.com. Static mockup over the AAN WordPress theme, no
+build step; everything written is an override on a compiled style.css.
+
+The business's own sentence, taken off their About page where it was buried:
+"a bohemian car place". It is the one line no competitor can say and it covers
+auctions, floor and room at once. It carries through untouched.
+
+What exists: a full-bleed video hero and a band of four routes. Nothing below
+that. Three passes have already gone into the hero alone.
+
+What is needed: the whole page, in one pass, all the way down. Order already
+settled — hero, routes, auctions, the floor, sell & consign, why Patton, footer.
+Auctions above inventory because a thing with a clock outranks a thing without
+one.
+
+Auction cards and inventory cards are the same component, distinguished by the
+data plate: state + bid + time versus asking price. A car on the block leaves
+the floor. Bids, counts and closing times are sample data and must be marked as
+such.
+
+Alex wants alternating section grounds and scroll overlays, used sparingly.
+
+No commissioned photography. Imagery is the dealer's own inventory frames, of
+uneven quality.

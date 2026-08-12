@@ -543,8 +543,12 @@ Confidence: High as a *negative* finding.
 
 *Territory where the vault has evidence and the skills have no rule at all —
 distinct from D, which records what is unknown or self-contradicting. Every group
-here was surfaced by `npm run distill` as `NO RULE COVERS THIS`, and every one is
-**below threshold**.*
+here was surfaced by `npm run distill` as `NO RULE COVERS THIS`.*
+
+**One of them is no longer below threshold.** E2 stood at one observation when
+this section was written and stands at three now — see its counter. Being over
+threshold changes nothing on its own: it makes the group eligible for the
+distillation ritual, and promotion is still the ritual plus Alex.
 
 **These are not rules and must not be cited as taste.** They are held so that
 the next confirming record has somewhere to land instead of being noticed and
@@ -578,13 +582,32 @@ content arrives. One more unrelated record makes this a real candidate.
 > **A mechanism earns its visibility only when demonstrating it also reveals
 > something about the subject.**
 
-**1 independent observation.**
+**3 independent observations — over threshold since 2026-08-10.** Two of them are
+rating 3, so it clears both bars in the threshold rule rather than only the
+count.
 
 - `trionn-com` (r2/in, weaknesses) — *"Главная проблема: motion здесь часто
   демонстрирует возможности технологии, а не раскрывает содержание студии."*
+- `morningstar-ventures` (r3/in, weaknesses) — *"there are moments when the
+  visitor appears to be advancing the animation rather than advancing the
+  argument."* Stated positively in the same record's note: *"Motion should
+  advance the page's argument, not merely make the visitor advance an
+  animation."*
+- `lapz-io` (r3/out, weaknesses) — *"The visitor sometimes appears to be
+  advancing an animation rather than learning something new about Lapz."*
 
-One observation. The wording is provisional in the strongest sense: it was
-written from a single record and would very likely change on the second.
+**The wording above is still the one written from a single record**, and it is
+the weakest part of the group: it says a mechanism must *reveal something about
+the subject*, while all three records say something narrower and sharper — the
+motion must advance the **argument**, and a demonstration must not stand in for
+information architecture. Two of the three are Alex's own phrasing and one is
+already positive, which is the easier material to author a rule from.
+
+**Nothing here is promoted.** The distillation ritual has not run since
+2026-07-30, this group is one of its inputs, and the rewording belongs to that
+run with Alex present — not to whoever next reads this file. Synced from the
+inventory above on 2026-08-11; the count in this section had been left at one
+while the log recorded three.
 
 ### E3 — Where negative space stops reading as intention
 

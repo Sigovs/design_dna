@@ -45,6 +45,12 @@ contact-sheet*
 !vault/shots/**
 !explore/**/*.png
 
+# The browser tool's own scratch directory — page snapshots, console logs and
+# capture probes. Same reasoning as the block above: reproducible from the page
+# they were taken of. The rule already covered its .png and .log files, so the
+# directory kept showing up as one stray untracked entry carrying .yml.
+.playwright-mcp/
+
 # ── generated art ─────────────────────────────────────────────────────────
 # Project artefacts, not evidence — see skills/generated-imagery (GI6). The
 # prompt is the part that survives, so prompts.md stays tracked and the frames

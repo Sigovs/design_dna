@@ -1,6 +1,6 @@
 ---
 name: color-taste
-description: Colour rules in two tiers — INVARIANT (WCAG AA verified on every palette change, never meaning by hue alone, visible focus states, legibility over imagery fixed at the background layer against worst-case regions) and DIALECT (auction-editorial's neutral dark-first base, smoky desaturated tones, accent as a setting, banned overused palettes, near-white/ink over photography, each with a yields-when). Use before defining any palette, colour token, accent, gradient, background, or text-over-image treatment.
+description: Colour rules in two tiers — INVARIANT (WCAG AA verified on every palette change, never meaning by hue alone, visible focus states, legibility over imagery fixed at the background layer against worst-case regions, contrast measured on the composited render rather than on the tokens) and DIALECT (auction-editorial's neutral dark-first base, smoky desaturated tones, accent as a setting, banned overused palettes, near-white/ink over photography, each with a yields-when). Use before defining any palette, colour token, accent, gradient, background, or text-over-image treatment.
 ---
 
 # Colour Taste
@@ -113,6 +113,37 @@ the clearest unoccupied chromatic territory and taking the accent there, which i
 the only route of the three that produces a colour that both belongs and does not
 compete.
 
+### I6 — Contrast is measured on the composited render, not on the tokens
+
+A palette that passes as a table of values still fails on the page. Two things
+break the correspondence, and both were found by measuring rather than by reading:
+
+- **Translucent layers.** A tint over a ground makes a *third* colour, and that is
+  the one the text sits on. Reading `rgba(20,20,19,.055)` as if it were its own RGB
+  is not a rounding error, it inverts the answer.
+- **The glyph's own pixels.** Text over a photograph must be measured where the
+  strokes actually land. A bounding box includes the gaps between words and the
+  end of every line, so it reports the worst pixel in a rectangle the text does
+  not occupy.
+
+**Method.** Screenshot the page twice — once with the text layer hidden, once with
+it visible — diff the two to find the pixels the glyphs cover, and measure those
+against the ground beneath them. Composite every translucent layer between the text
+and its first opaque ancestor before comparing.
+
+*Why:* the point of [I1](#invariant) is that contrast is a contract rather than an
+intention. A contract checked against the wrong artefact is not checked.
+
+> **Evidence — measured on the author's own work, 360 Auto Care, 2026-07-30/31.**
+> Two failures of two different kinds. A hero lead measured **2.06:1 against its
+> bounding box and 4.12:1 against its actual glyph pixels** — the rectangle
+> included a bright lamp the text never crossed; the true figure was still under
+> AA, so the fix stood, but the number that would have justified it was wrong by a
+> factor of two. Separately, an ink solved to **4.95:1 against the bare ground fell
+> to 4.46:1** once the 5.5% tint of the chip it sat inside was composited — four
+> hundredths under the floor, passing every check made against the tokens. On the
+> same page a sweep of all 155 rendered text elements found the token table clean
+> and the render not.
 ---
 
 ## DIALECT

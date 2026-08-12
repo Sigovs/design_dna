@@ -1,6 +1,6 @@
 ---
 name: anti-patterns
-description: Failure modes in two tiers — INVARIANT universal failures (weak hierarchy, inaccessible contrast, gratuitous motion, arbitrary spacing, inconsistent tokens, uncounted persistent overlays, competing art directions inside one page, horizontal page scroll, content parity across viewports, controlled irregularity that stops being legible or intentional, depth cues incoherent with the spatial model they imply, and task-relevant routes that cannot be discovered without hover, completed animation or guessing) and DIALECT trope bans (AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, underlined nav, repeated primary CTAs, imagery hidden on mobile, the default Spline aesthetic, ambient motion behind body copy, template anonymity — each with a yields-when). Use as the final gate before shipping any visual work, and whenever choosing between a container and open air.
+description: Failure modes in two tiers — INVARIANT universal failures (weak hierarchy, inaccessible contrast, gratuitous motion, arbitrary spacing, inconsistent tokens, uncounted persistent overlays, competing art directions inside one page, horizontal page scroll, content parity across viewports, controlled irregularity that stops being legible or intentional, depth cues incoherent with the spatial model they imply, task-relevant routes that cannot be discovered without hover, completed animation or guessing, opaque surfaces that cross live content, and expansions that move the list they live in) and DIALECT trope bans (AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, underlined nav, repeated primary CTAs, imagery hidden on mobile, the default Spline aesthetic, ambient motion behind body copy, template anonymity — each with a yields-when). Use as the final gate before shipping any visual work, and whenever choosing between a container and open air.
 ---
 
 # Anti-Patterns
@@ -335,6 +335,63 @@ design may breach several:
 *Authored judgment, 2026-07-31* `[J]`. This rule rests on no vault record and is not
 evidence of a demonstrated preference.
 
+### U13 — An opaque surface that crosses live content
+
+A bar that becomes solid while content is still travelling under it draws a hard
+edge through whatever it happens to be crossing. On a full-height hero this is a
+straight line through the middle of a letterform for the entire length of the
+scroll, and it reads as a rendering fault rather than as a header.
+
+The state is doing two jobs and has to be split:
+
+- **has the page moved** — tightens the bar, contracts the mark. Changes no ground,
+  so it may fire immediately.
+- **has the header left the section it opened over** — the only thing that turns the
+  ground opaque. Until then the bar keeps its scrim, which is what was carrying the
+  navigation over the picture in the first place.
+
+The threshold is the opened section's height less the header's: the exact position
+where their bottom edges meet. Past it the header is over the next section and an
+opaque ground is correct.
+
+*Why:* the scrim is not a weaker version of the solid state, it is the state that
+belongs over an image. Replacing it early trades a legible header for a broken one.
+
+> **Evidence — measured on the author's own work, 360 Auto Care, 2026-07-31.**
+> Present on all three pages of one project at once: the header went solid at 32px
+> on two and at 6px on the third, and the hero headline was sliced through a
+> letterform on every one. It had shipped, and was reported as the page "glitching
+> on scroll" — the fault was assumed to be the animation, and frame pacing was
+> clean at 18ms. Thresholds after the split: 804px, 867px, 896px.
+
+### U14 — An expansion that moves the list it lives in
+
+Hover-to-open, accordion rows, anything that reveals detail in place: if opening one
+item changes the height of the list **above** the pointer, a different item slides
+under a cursor that never moved. The browser correctly reports that as a pointer
+entering it, that item opens, and it reflows again.
+
+**No event filter fixes this,** and two plausible ones are worth naming because both
+look correct:
+
+- *ignore an entry with no preceding pointer move* — the boundary events are
+  dispatched **before** the move that caused them, so this discards the real hover
+  and keeps nothing.
+- *ignore an entry at unchanged coordinates* — a pointer sweeping the list is
+  genuinely moving during the reflow, so intent and artefact become
+  indistinguishable by position.
+
+The fix is to stop reflowing: the open item's detail goes out of flow into reserved
+room, so the rows never move and a hover always selects the item the pointer is
+over. Verify as zero layout shift across every open state, not by eye.
+
+*Why:* this is a correctness failure wearing the clothes of a taste one. The
+component looks right in a screenshot and cannot be operated.
+
+> **Evidence — measured on the author's own work, 360 Auto Care, 2026-07-30.**
+> A six-row service index: hovering row six settled on row four after a visible
+> oscillation. Both filters above were built and measured before the cause was
+> understood.
 ---
 
 ## DIALECT

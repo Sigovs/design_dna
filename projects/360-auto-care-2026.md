@@ -1,10 +1,15 @@
 ---
 project:      360-auto-care-2026
 client:       360 Auto Care Inc (Lynbrook, New York)
-date:         2026-07-29
+date:         2026-08-12
 mandate:      REDESIGN
 carried:      [company name, service taxonomy, Lynbrook locality, brief's dark palette tokens, brief's headline and supporting copy]
-dialect:      [partial: auction-editorial principles + brief-derived register]
+delivery:     BUILD
+style_mode:   DIRECTED HYBRID
+dialect:      [auction-editorial]
+anchor:       auction-editorial
+contrast:     not recorded
+signature:    not recorded
 dialect_fit:  partial
 suspended:    [desaturated accent under chroma 0.08, serif display face, italic signature word]
 adopted_late: [stress word as a weight drop rather than an italic]
@@ -14,11 +19,11 @@ register:
   display:    "Archivo variable, 900 — heavy grotesque; expressive by mass, not by style"
   accent:     "#f47a17 safety orange, saturated"
   image:      mixed
-  hero:       not recorded
-  symmetry:   not recorded
-  density:    not recorded
-  voices:     3+                            # Archivo 900 display · Inter 400 body · mono index — all three named in §3
-  motion:     not recorded
+  hero:       split
+  symmetry:   asymmetric
+  density:    measured
+  voices:     3+
+  motion:     restrained
 outcome:      shipped
 ---
 

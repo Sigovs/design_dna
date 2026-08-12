@@ -1,6 +1,6 @@
 ---
 name: typography-taste
-description: Typography rules in two tiers — INVARIANT (legible hierarchy, bounded type roles, body-length text built for sustained reading, optical correction at every size, a 14px floor under functional text, roles distinguished from voices, icons treated as glyphs — one set, stroke matched, sized optically, never meaning alone — tabular figures for aligned data, tracked and short uppercase, intentional line breaks) and DIALECT (auction-editorial's didone display + quiet grotesque + mono, italic signature word, mono micro-labels, spec plates, each with a yields-when). Use before choosing typefaces, setting type scales, writing headings, or laying out any data, label, or caption.
+description: Typography rules in two tiers — INVARIANT (legible hierarchy, bounded type roles, body-length text built for sustained reading, optical correction at every size, a 14px floor under functional text, roles distinguished from voices, icons treated as glyphs — one set, stroke matched, sized optically, never meaning alone — tabular figures for aligned data, tracked and short uppercase, intentional line breaks, and a display face verified in the render at the sizes the page sets) and DIALECT (auction-editorial's didone display + quiet grotesque + mono, italic signature word, mono micro-labels, spec plates, each with a yields-when). Use before choosing typefaces, setting type scales, writing headings, or laying out any data, label, or caption.
 ---
 
 # Typography Taste
@@ -285,6 +285,36 @@ the mistake is usually shipped rather than seen.
 
 ---
 
+### I10 — A display face is verified in the render, at the sizes the page sets
+
+**A typeface is not chosen, it is proved.** Before a display face is adopted, set
+the page's own strings — its digits, its hyphenated phone number, its shortest
+label — at the sizes the page actually renders, on every ground it uses, and look
+at the result. Compare candidates side by side in one image rather than one after
+another.
+
+The failure this prevents is invisible at the size you naturally check. A face is
+picked on a 68px headline, where it is flawless, and it is the 26px rating and the
+11px caption that break.
+
+**Where the display ranks live below roughly 40px, a high-contrast face is out.** A
+didone's hairlines fall under one device pixel there and antialias to about 15%
+grey, so parts of letters simply stop being drawn. That is not a taste question and
+no amount of tracking or weight fixes it.
+
+*Why:* the damage is not that it looks worse. It is that the page starts stating
+things that are false, and nothing in the markup is wrong, so nothing flags it.
+
+> **Evidence — measured on the author's own work, 360 Auto Care, 2026-07-30.**
+> Bodoni Moda was adopted for a display rank spanning 26–68px and verified at the
+> hero. At 26px it rendered the shop's review score **"4.8" as "1.8"** — the 4 loses
+> its diagonal and its crossbar — and rendered the phone number "820-0360" as
+> "820 0360", the hyphen gone entirely. Both had shipped. The fault was first
+> misread as a CSS defect and cost several rounds — synthetic bold, stale
+> composited tiles, pseudo-elements, `text-wrap: balance` were all tested and
+> cleared — before a 4× zoom showed the "ghosting" was the letters' own hairlines.
+> Newsreader, the same editorial register at moderate contrast, held every stroke
+> at 26px on both grounds.
 ## DIALECT
 
 *auction-editorial — strong defaults, each with a stated exit.*

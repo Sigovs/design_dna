@@ -68,14 +68,18 @@ The invariants, by domain — full text in the linked skills:
 | **Functional text has a floor** — information a visitor must read is never below 14px; below the floor, type is decoration and carries nothing | [typography](skills/typography-taste/SKILL.md#invariant) |
 | **A role is not a voice** — many functional roles are served by few typographic voices; each additional voice states the systemic job the existing ones cannot do | [typography](skills/typography-taste/SKILL.md#invariant) |
 | **An icon is a glyph** — one set per project, stroke matched to its neighbouring type, sized optically rather than nominally, never the only carrier of meaning, and earned by repetition or constraint rather than by decoration | [typography](skills/typography-taste/SKILL.md#invariant) |
+| **A display face is verified in the render** — the page's own strings at the sizes the page sets, on every ground; below roughly 40px a high-contrast face stops being drawn | [typography](skills/typography-taste/SKILL.md#invariant) |
 | Accessible contrast — WCAG AA as a contract, verified on every palette change | [color](skills/color-taste/SKILL.md#invariant) |
 | **The accent is derived from something the project contains, the derivation is stated, and the result is then judged where it lands** | [color](skills/color-taste/SKILL.md#invariant) |
+| **Contrast is measured on the composited render** — translucent layers composited, and text over imagery measured at the pixels its glyphs actually cover | [color](skills/color-taste/SKILL.md#invariant) |
 | Reduced-motion paths — every animation has a complete static equivalent | [motion](skills/motion-taste/SKILL.md#invariant) |
 | **Controlled irregularity must remain legible and intentional.** | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
 | **Depth cues are coherent with the spatial model they imply** — interface elevation matches real layering; atmospheric and illustrative depth may be non-literal when intentional and not misleading | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
 | Universal failure modes — weak hierarchy, inaccessible contrast, gratuitous motion, arbitrary spacing, inconsistent tokens | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
 | **Anything permanently on screen is part of the composition** — sticky, floating and consent layers are counted in the mass scheme; one overlay over content at a time | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
 | **Competing art directions inside one page** — sections that stop belonging to one authored language, however good each is alone | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
+| **An opaque surface that crosses live content** — a bar going solid while content still travels under it cuts a hard edge through it; split "the page moved" from "the header left the section" | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
+| **An expansion that moves the list it lives in** — hover- or click-to-open that reflows above the pointer; no event filter fixes it, only taking the detail out of flow | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
 
 ### DIALECT
 

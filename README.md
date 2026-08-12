@@ -567,16 +567,19 @@ while it is honest.
    hierarchy with internal gaps smaller than external; rhythm and optical balance;
    legible rank; body-length text built for sustained reading; line breaks that read
    as chosen; a 14px floor under every piece of functional text, below which type is
-   decoration and carries no information; typographic roles kept distinct from
+   decoration and carries no information; a display face proved in the render at
+   every size the page sets it, not at the size it was chosen at; typographic roles kept distinct from
    typographic voices, each voice justified by a job the others cannot do; every value from a documented token scale;
-   WCAG AA verified on every palette change; a complete static path for every
+   WCAG AA verified on every palette change, measured on the composited render
+   rather than on the token table; a complete static path for every
    animation; depth cues coherent with the spatial model they imply; controlled
    irregularity that stays legible and intentional; every permanently-visible
    layer — sticky, floating, consent — counted in the composition rather than added
-   on top of it, one over content at a time; one page reading as one authored
+   on top of it, one over content at a time, and never going opaque while live
+   content is still travelling under it; one page reading as one authored
    language rather than as several art directions sharing a URL; and every
    task-relevant route findable without hover, a completed animation or guesswork,
-   and legible before the visitor commits to it.
+   legible before the visitor commits to it, and not moving the list it opens in.
    **Composition is the cross-dialect layer inside this tier** — the page
    describable as 3–7 major masses before any component is named, a compositional
    centre that is decided rather than inherited, a dominant with subordinates and

@@ -18,11 +18,11 @@ register:
   display:    Bentley (client typeface)
   accent:     not recorded
   image:      mixed
-  hero:       not recorded
-  symmetry:   not recorded
-  density:    not recorded
+  hero:       image-led
+  symmetry:   centred
+  density:    measured
   voices:     1
-  motion:     not recorded
+  motion:     restrained
 outcome:      not recorded
 ---
 

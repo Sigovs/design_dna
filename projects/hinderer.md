@@ -18,11 +18,11 @@ register:
   display:    Degular
   accent:     bronze #a86537
   image:      mixed
-  hero:       not recorded
-  symmetry:   not recorded
-  density:    not recorded
+  hero:       type-led
+  symmetry:   symmetric
+  density:    measured
   voices:     3+
-  motion:     not recorded
+  motion:     restrained
 outcome:      not recorded
 ---
 

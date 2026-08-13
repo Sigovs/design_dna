@@ -18,11 +18,11 @@ register:
   display:    Plus Jakarta Sans
   accent:     not recorded
   image:      mixed
-  hero:       not recorded
-  symmetry:   not recorded
-  density:    not recorded
+  hero:       image-led
+  symmetry:   asymmetric
+  density:    measured
   voices:     2
-  motion:     not recorded
+  motion:     choreographed
 outcome:      not recorded
 ---
 
@@ -56,6 +56,13 @@ decision reconstructed from its outcome is not a decision — it is a descriptio
 ## 3b. Exploration, if one ran
 
 not recorded.
+
+*Register provenance — `hero`, `symmetry`, `density` and `motion` were read off the
+built homepage (served locally, scrolled to fire every reveal) on 2026-08-13 rather
+than stated by Alex, at his instruction. `motion` is the one judgement call: the page
+reveals section content sequentially on scroll through an IntersectionObserver, which
+was read as choreography rather than as restraint. Everything else on this record
+still reads `not recorded`.*
 
 ## 4. Environment knowledge
 

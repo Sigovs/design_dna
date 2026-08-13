@@ -18,11 +18,11 @@ register:
   display:    Oswald
   accent:     rust #A8472A
   image:      mixed
-  hero:       not recorded
-  symmetry:   not recorded
-  density:    not recorded
+  hero:       image-led
+  symmetry:   centred
+  density:    dense
   voices:     3+
-  motion:     not recorded
+  motion:     choreographed
 outcome:      not recorded
 ---
 
@@ -49,6 +49,16 @@ not recorded.
 not recorded — though the presence of `index`, `index2` and `index3` alongside a
 `styleguide.html` is consistent with more than one direction having been built.
 Consistent with is not evidence of, and nothing is claimed.
+
+*Register provenance — `hero`, `symmetry`, `density` and `motion` were read off the
+built page (`index4.html`, served locally and scrolled to fire every reveal) on
+2026-08-13 rather than stated by Alex, at his instruction. `density` is the call
+worth naming: sixteen marque cards sit in a single viewport and the rescued grid
+runs to seventeen more, which is the densest of the six records even though each
+card is individually airy. `motion` follows the register's own wording — 58
+`data-reveal` targets with per-element staggered delays (`--buy-step` + 70/110/150ms)
+is a sequential reveal system, not a hover. Everything else on this record still
+reads `not recorded`.*
 
 ## 4. Environment knowledge
 

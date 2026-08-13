@@ -18,11 +18,11 @@ register:
   display:    Inter
   accent:     red
   image:      mixed
-  hero:       not recorded
-  symmetry:   not recorded
-  density:    not recorded
+  hero:       image-led
+  symmetry:   asymmetric
+  density:    measured
   voices:     1
-  motion:     not recorded
+  motion:     restrained
 outcome:      not recorded
 ---
 
@@ -49,6 +49,11 @@ not recorded.
 not recorded. `index`, `index2`, `index3` and `index4` exist side by side, which
 is consistent with several whole-page variants having been built; which one is
 current is not recorded.
+
+*Register provenance — `hero`, `symmetry`, `density` and `motion` were read off the
+built page (`index4.html`, served locally, scrolled to load every section) on
+2026-08-13, not stated by Alex, and he confirmed them. Everything else on this
+record still reads `not recorded`.*
 
 ## 4. Environment knowledge
 

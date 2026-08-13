@@ -579,15 +579,19 @@ while it is honest.
    content is still travelling under it; one page reading as one authored
    language rather than as several art directions sharing a URL; and every
    task-relevant route findable without hover, a completed animation or guesswork,
-   legible before the visitor commits to it, and not moving the list it opens in.
+   legible before the visitor commits to it, distinguishable from the route beside
+   it, and not moving the list it opens in.
    **Composition is the cross-dialect layer inside this tier** — the page
    describable as 3–7 major masses before any component is named, a compositional
    centre that is decided rather than inherited, a dominant with subordinates and
    support, unity, tonal structure before colour, actively shaped negative space,
    optically judged balance, a directed eye path, rhythm with felt variation, mass
    relationships chosen as ratios, committed edges and crops, tension with
-   counterweight, sections that resolve, a declared asset dependency that still
-   holds when the photography is ordinary, a first screen that says what the thing
+   counterweight, sections that resolve, a page that holds its standard to its last
+   mass with an ending that is designed rather than left over, a declared asset
+   dependency — on an exceptional asset or on a condition — that separates an
+   authored constraint from an operational risk and survives the variation its own
+   use guarantees, a first screen that says what the thing
    is (or a Read that declares the withholding), and a governing idea
    re-established at every breakpoint. Its **Read and Plan run after the dialect declaration and
    before any grid, component or surface styling**, and they judge relationships,

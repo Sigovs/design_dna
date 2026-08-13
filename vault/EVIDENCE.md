@@ -632,11 +632,19 @@ motion must advance the **argument**, and a demonstration must not stand in for
 information architecture. Two of the three are Alex's own phrasing and one is
 already positive, which is the easier material to author a rule from.
 
-**Nothing here is promoted.** The distillation ritual has not run since
-2026-07-30, this group is one of its inputs, and the rewording belongs to that
-run with Alex present — not to whoever next reads this file. Synced from the
-inventory above on 2026-08-11; the count in this section had been left at one
-while the log recorded three.
+**Nothing here is promoted.** Synced from the inventory above on 2026-08-11; the
+count in this section had been left at one while the log recorded three.
+
+**Carried out of the 2026-08-13 run, unresolved and named as such.** That run
+proposed four amendments and this group was not among them. The reason is not that
+the evidence is thin — three records, two of them rating 3, and no rule covers it —
+but that the sentence above was written from `trionn-com` alone and all three
+records say something narrower: the motion must advance the **argument**, and a
+demonstration must not stand in for information architecture. Rewording a candidate
+is a different act from promoting one, and doing it inside a run that was already
+proposing four rules would have buried the decision. **This is the first item for
+the next run**, and the honest state is that it has been over threshold since
+2026-08-10 with no rule written.
 
 ### E3 — Where negative space stops reading as intention
 

@@ -86,6 +86,30 @@ intention*. A page can declare intent and still animate without it.
 A band-4 or band-5 effect that draws attention away from band 1 has been promoted
 by accident and must be reduced or cut.
 
+**Continuity between chapters is structural work, not decoration.** Motion that
+carries one section into the next — an overlay holding the outgoing chapter while
+the incoming one arrives, a film that continues the surrounding environment instead
+of sitting inside a rectangle — is band 2 doing exactly its job.
+
+**Repetition alone does not remove a transition from band 2.** A device used at
+every seam may be the page's grammar, telling the visitor that a state or a chapter
+has changed. It leaves the structural band when the same device is applied
+regardless of what relationship the seam needs to express — when it no longer
+clarifies continuity, contrast, hierarchy or change and survives only as a
+signature effect.
+
+`vault/rolls-roycemotorcars-com-en-us-home-html` (3, in) — *"the video, UI and
+background feel like one continuous environment rather than separate layers"*;
+`vault/organimo-com` (3, in) — *"motion and transitions support the page flow and
+connect the large sections instead of behaving like isolated effects"*;
+`vault/immersive-g-com` (3, in) — interaction driving the visual narrative rather
+than triggering decorative animation; `vault/morningstar-ventures` (3, in) —
+*"motion should advance the page's argument, not merely make the visitor advance an
+animation."* `vault/hbbody-com-en-home` (2, out) records Alex's own preference on
+the amplitude, and it is a preference rather than a universal limit: *"Overlay
+должен оставаться событием, а не становиться стандартным переходом между всеми
+блоками."*
+
 *Why it's invariant:* attention is not divisible. Two things competing to be
 noticed first means neither is, and the page reads as busy rather than as authored.
 This is [C1](../academic-composition/SKILL.md#invariant) in the time dimension: a

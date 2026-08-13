@@ -1,6 +1,6 @@
 ---
 name: anti-patterns
-description: Failure modes in two tiers — INVARIANT universal failures (weak hierarchy, inaccessible contrast, gratuitous motion, arbitrary spacing, inconsistent tokens, uncounted persistent overlays, competing art directions inside one page, horizontal page scroll, content parity across viewports, controlled irregularity that stops being legible or intentional, depth cues incoherent with the spatial model they imply, task-relevant routes that cannot be discovered without hover, completed animation or guessing, opaque surfaces that cross live content, and expansions that move the list they live in) and DIALECT trope bans (AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, underlined nav, repeated primary CTAs, imagery hidden on mobile, the default Spline aesthetic, ambient motion behind body copy, template anonymity — each with a yields-when). Use as the final gate before shipping any visual work, and whenever choosing between a container and open air.
+description: Failure modes in two tiers — INVARIANT universal failures (weak hierarchy, inaccessible contrast, gratuitous motion, arbitrary spacing, inconsistent tokens, uncounted persistent overlays, competing art directions inside one page, horizontal page scroll, content parity across viewports, controlled irregularity that stops being legible or intentional, depth cues incoherent with the spatial model they imply, task-relevant routes that cannot be discovered without hover, completed animation or guessing or told apart from the route beside them, opaque surfaces that cross live content, and expansions that move the list they live in) and DIALECT trope bans (AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, underlined nav, repeated primary CTAs, imagery hidden on mobile, the default Spline aesthetic, ambient motion behind body copy, template anonymity — each with a yields-when). Use as the final gate before shipping any visual work, and whenever choosing between a container and open air.
 ---
 
 # Anti-Patterns
@@ -294,6 +294,11 @@ Symptoms:
 - **A gesture with no visible cue** as the only path to something task-relevant.
 - **An unexplained entry into a nested level** — the level below is fine, the way
   into it is not.
+- **Parallel routes that are visible, labelled, and still not distinguishable** —
+  several calls to action side by side whose difference the visitor cannot state
+  before choosing. Discovery succeeded and the choice still cannot be made. This is
+  the failure arriving from the opposite direction, and it is the one this list
+  previously missed, because every other symptom here is concealment.
 
 *Why it's universal:* a route the visitor cannot find has the same value as a route
 that does not exist, and the cost is invisible in review — the designer knows where
@@ -306,6 +311,21 @@ amount of looking fixes it: there is nothing on screen to look at.
   locate the entry?
 - Can keyboard and touch users reveal the same route?
 - Before committing, can they understand its destination or function?
+- **Can they say how this route differs from the one beside it?**
+
+**Two routes may be genuinely parallel and still legitimate** — the test is
+separated roles, not reduced count. `vault/mugenstudio-framer-website` (2, in) runs
+a persistent header and a hamburger at the same time and Alex approves it precisely
+because the roles are split: *"эти два меню не выглядят ненужным дублированием,
+потому что выполняют разные функции"*, the header carrying orientation and the
+hamburger the full structure. He also names the condition that voids it — if the
+hamburger repeats what the header already shows, the justification for the second
+level disappears. The failures sit on the same axis: `vault/rekorderstudios-com`
+(3, in) — *"the difference between its primary actions is initially unclear"*, on
+Join Waitlist / Apply Now / Book Now; `vault/semlerpremium-dk-showroom` (3, in) —
+*"Quick View must add genuine comparison value"*; `vault/rmsothebys-com` (1, out) —
+*"`VIEW LOT` … reads as prose, not as an action"*; `vault/morningstar-ventures`
+(3, in) — menu labels that do not match the page's own sequence.
 
 **Unconventional presentation stays legal.** Numbers, spatial maps, experimental
 navigation models and icons are all permitted when their navigational function can

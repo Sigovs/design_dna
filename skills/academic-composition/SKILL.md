@@ -1,6 +1,6 @@
 ---
 name: academic-composition
-description: Classical academic composition translated into digital art direction, interface design, responsive design, and visual critique — in two tiers. INVARIANT (dominant/subordinate/support hierarchy, unity and subordination, tonal structure before colour, figure-ground clarity, optical over mathematical balance, directed eye movement, rhythm with variation, proportion relationships, intentional edges and crops, tension with counterweight, compositional resolution, responsive recomposition, the dominant being the subject rather than the device presenting it, the means of the visitor's task surviving the composition, major masses established before components, a decided compositional centre, a declared asset dependency that survives an ordinary asset, and a first screen that identifies what it is) and DIALECT (auction-editorial's composed asymmetry and downward exhale, with yields-when). Contains the COMPOSITION READ and COMPOSITION PLAN that run after dialect selection and before any grid, component or surface styling decision, and routes to references/ for the academic method behind each stage. Use before laying out any full page or substantial section, when art-directing imagery, and when critiquing a design.
+description: Classical academic composition translated into digital art direction, interface design, responsive design, and visual critique — in two tiers. INVARIANT (dominant/subordinate/support hierarchy, unity and subordination, tonal structure before colour, figure-ground clarity, optical over mathematical balance, directed eye movement, rhythm with variation, proportion relationships, intentional edges and crops, tension with counterweight, compositional resolution, a page that holds its standard to its last mass, responsive recomposition, the dominant being the subject rather than the device presenting it, the means of the visitor's task surviving the composition, major masses established before components, a decided compositional centre, a declared asset dependency that survives an ordinary asset, and a first screen that identifies what it is) and DIALECT (auction-editorial's composed asymmetry and downward exhale, with yields-when). Contains the COMPOSITION READ and COMPOSITION PLAN that run after dialect selection and before any grid, component or surface styling decision, and routes to references/ for the academic method behind each stage. Use before laying out any full page or substantial section, when art-directing imagery, and when critiquing a design.
 ---
 
 # Academic Composition
@@ -464,8 +464,29 @@ Depth:
 ### C17 — The composition declares what it depends on
 
 **When a composition's identity is carried by one class of asset — the photography,
-the film, the artwork, the one exceptional hero frame — the Read names that
-dependency, and the composition must hold when the asset is ordinary.**
+the film, the artwork, the one exceptional hero frame — or by one condition holding
+— the exact sequence of sections, the motion between them, the content arriving at
+the length and volume it was designed for — the Read names that dependency,
+distinguishes an authored constraint from an operational risk, and tests the
+composition against the plausible variation the system is expected to survive.**
+
+**An authored constraint is legitimate; an operational risk is a defect.** A
+landing page with a fixed, authored sequence may depend on its section order —
+reordering the chapters of a piece of storytelling is not a variation it promised
+to survive, and a system that breaks under an arbitrary rearrangement of its own
+argument has not failed. A template, a CMS-driven page or a commercial site that
+will grow is making the opposite promise, and must hold under the variation it will
+actually meet: longer text, more or fewer cards, ordinary asset quality, a
+different content mix. The test is not whether the composition survives having its
+intent dismantled; it is whether it survives the variation its own use guarantees.
+
+`vault/eco-com` (2, in) is the authored case — *"такая система сильно зависит от
+точного ритма, motion и порядка секций"* — and it is declared rather than fixed.
+`vault/mugenstudio-framer-website` (2, in) is the operational one: a Framer template
+advertises reuse, so robustness to real client content is part of what it is
+claiming, and *"при небольшом изменении контента или более слабых изображениях
+композиция может легко развалиться"* is therefore a defect rather than a
+constraint.
 
 Name, in the Read: *what carries the identity*, and *what carries it if that
 degrades*. If the honest answer to the second is "nothing", the composition is not
@@ -533,6 +554,60 @@ have found a talent directory or a social campaign.
 > объясняет, что именно делает компания."*
 
 ---
+
+### C19 — The page holds its standard to the last mass
+
+**A page is composed to its end. The masses after the opening are held to the
+standard the opening set, and the final mass is a designed ending rather than the
+place the remaining content went.**
+
+This does not ask the later sections to be as expressive as the first — pace
+falls, and C7 requires that it can. It asks that they still be composed: ranked,
+related, resolved. **Convention is permitted; formlessness is not.** A
+specification archive, a related-inventory grid, a disclaimer and a footer are all
+legitimate masses, and each is still a mass with a dominant, an interval and an
+ending.
+
+The check is one question asked at the bottom of the page rather than the top:
+**name the last three masses and say what each hands to the next.** If the honest
+answer for any of them is "it is where the remaining content went", the page is
+unfinished there.
+
+*Why it's universal:* attention at the top is bought by the design; attention at
+the bottom is spent by the visitor, and an uncomposed mass is the one place no
+aesthetic earns that back. A utilitarian or documentation page may be calm, dense
+and conventional and still satisfy this rule — its last masses are ranked,
+connected and finished. What the rule forbids is not restraint but formlessness,
+which is why it does not impose an editorial register on page types that do not
+want one.
+
+It is also the failure that hides from review — sections are examined one at a
+time, the page is never examined as one object, and the decay is only visible in a
+full-page capture.
+
+*Boundary with C11:* C11 governs a single seam — does this section hand over to the
+next. C19 governs the sequence — does the standard survive the length of the page.
+A page can pass every seam and still arrive at a formless tail.
+
+> **Evidence — distilled from the vault, 2026-08-13.** Ten records, `in` and `out`
+> alike, one of them rating 3: `vault/semlerpremium-dk-brands-porsche-911-gt3-…`
+> (3, in) — *"becomes less distinctive as it moves deeper into specifications …
+> does not fully sustain the visual authority of the opening gallery"*;
+> `vault/polestar-com-us` (2, in) — *"a sequence of functional modules rather than a
+> strong editorial narrative"*; `vault/mclaren-com-cars-gl-en` (2, in) — *"the
+> transition from cinematic brand experience to corporate content feed is
+> noticeable"*; `vault/rimac-automobili-com-nevera` (2, in) — *"gradually becomes a
+> long technical archive … a heavy ending"*; `vault/hispanosuizacars-com` (2, in) —
+> *"the model pages do not fully sustain the authority of the homepage"*;
+> `vault/semlerpremium-dk` (2, in) — *"does not fully sustain the clarity and visual
+> authority of its strongest opening sections"*; `vault/rivian-com` (2, out) — *"a
+> sequence of beautifully designed modules rather than one continuously building
+> story"*; `vault/hbbody-com-en-home` (2, out) — *"the weaker editorial moments
+> return to a more familiar corporate news-grid structure"*; `vault/rmsothebys-com`
+> (1, out) — *"the initial visual idea never develops"*;
+> `vault/thegentlewoman-co-uk` (1, out) — *"one decent cover does not make this a
+> reference"*. The full-page capture of `polestar-com-us` shows it plainly: one
+> authored typographic event, then a disclaimer wall and a link farm.
 
 ## COMPOSITION READ
 

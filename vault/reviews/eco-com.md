@@ -81,3 +81,95 @@ added knowingly.
 He also named *чистота*. Nothing here was tagged for it: the vault has no term for
 cleanliness, and the nearest merit tags — `visual-silence`, `air` — mean something
 narrower. Left in his words rather than mapped onto an approximate tag.
+
+## 2026-08-13 · the full note round
+
+- **action:** Alex wrote the full reasoning. `note` expanded, `works` and
+  `weaknesses` filled from empty, tags assigned from his sentences.
+- **rating / dialectStatus:** **2 / unreviewed — unchanged and untouched.** The
+  note round is deliberately separate from the status round; both are his.
+
+### Alex's comment — verbatim, never edited
+
+> В целом сайт нравится за чистоту и последовательный storytelling. Он объясняет
+> довольно абстрактную тему programmable money через очень простую визуальную
+> систему и постепенно раскрывает идею по мере скролла, не перегружая страницу
+> криптовалютными клише, сложными схемами и интерфейсным шумом.
+>
+> Хорошо работает то, что каждая секция продолжает предыдущую и ощущается частью
+> одного рассказа, а не отдельным маркетинговым блоком. Много воздуха, крупная
+> типографика, ограниченная палитра и простые графические элементы помогают
+> удерживать внимание на одной мысли за раз. Особенно нравится чистая композиция
+> и то, как сложная финансовая тема становится визуально доступной и почти
+> дружелюбной. Страница длинная, но последовательность кадров создаёт понятный
+> ритм и ведёт пользователя дальше. Навигация после скролла остаётся компактной и
+> не разрушает визуальную чистоту. Mobile тоже сохраняет характер desktop-версии,
+> а не выглядит просто механически сжатой копией.
+>
+> При этом местами сайт слишком сильно полагается на storytelling и крупные
+> заявления. Некоторые секции визуально красивые, но дают мало новой конкретной
+> информации о самом продукте. Из-за большого количества воздуха и
+> последовательных reveal-состояний простая мысль иногда занимает слишком много
+> скролла. Чистота временами приближается к информационной пустоте: пользователю
+> может быть понятно, какое ощущение Eco хочет создать, но не сразу понятно, как
+> сеть работает, для кого она предназначена и чем практически отличается от
+> других stablecoin-проектов. Также такая система сильно зависит от точного
+> ритма, motion и порядка секций — без них отдельные кадры могут выглядеть
+> слишком простыми.
+
+### Confirmed changes to the record
+
+- `note` — replaced by his first paragraph. The 2026-08-06 one-liner stands above
+  in this file and was not edited.
+- `works` — filled from empty, his second paragraph verbatim.
+- `weaknesses` — filled from empty, his third paragraph verbatim.
+- tags — each assigned from a sentence he wrote, listed with its source below.
+
+### Layer judgements
+
+| Layer | Observation | Source | Judgement | Evidence limit |
+|---|---|---|---|---|
+| composition | *"каждая секция продолжает предыдущую и ощущается частью одного рассказа, а не отдельным маркетинговым блоком"*; *"чистая композиция"* | Alex | IN | |
+| composition | *"Mobile тоже сохраняет характер desktop-версии, а не выглядит просто механически сжатой копией"* | Alex | IN | |
+| hierarchy | *"помогают удерживать внимание на одной мысли за раз"* | Alex | IN | |
+| typography | *"крупная типографика"*, named among what works | Alex | IN | |
+| colour | *"ограниченная палитра"*, named among what works | Alex | IN | |
+| spacing / density | *"Много воздуха"* — named as part of what holds the attention | Alex | IN | |
+| spacing / density | *"Из-за большого количества воздуха… простая мысль иногда занимает слишком много скролла"*; *"чистота временами приближается к информационной пустоте"* | Alex | OUT | the same layer he approves above — the cost, not a reversal |
+| interaction | *"Навигация после скролла остаётся компактной и не разрушает визуальную чистоту"* | Alex | IN | |
+| motion | *"сильно зависит от точного ритма, motion и порядка секций — без них отдельные кадры могут выглядеть слишком простыми"* | Alex | contextual | a dependency he names, not a verdict on the motion itself |
+
+`imagery` and `design dialect` stay out of the table: he did not speak to either,
+and an empty row is a claim.
+
+### Tags assigned, and the sentence each came from
+
+| Tag | His words |
+|---|---|
+| `composition: product-storytelling` | *"последовательный storytelling"*, *"часть одного рассказа"* |
+| `composition: directed-eye` | *"последовательность кадров создаёт понятный ритм и ведёт пользователя дальше"* |
+| `composition: responsive-recomposition` | *"Mobile сохраняет характер desktop-версии"* |
+| `layout: air` | *"Много воздуха"* — his own word, so the 2026-08-06 decision not to map *чистота* onto an approximate tag is not breached |
+| `motion: scroll-reveal` | *"последовательных reveal-состояний"* |
+| `risks: narrative-dilution-risk` | *"слишком сильно полагается на storytelling… дают мало новой конкретной информации о самом продукте"* |
+| `risks: asset-dependency-risk` | *"сильно зависит от точного ритма, motion и порядка секций"* |
+
+**`narrative-dilution-risk` now stands at nine records.** The 2026-08-06 entry
+above predicted this one would be the next sighting and left the tag off until he
+had written the reason himself. He has, in almost the theme's own words.
+
+### One observation for the ritual — agent, not Alex's judgement
+
+**§E3 may have gained its second independent observation.** E3 in `EVIDENCE.md`
+is *"negative space reads as luxury only when surrounding cues make its intention
+unmistakable; without those cues, absence is interpreted as missing content"*, and
+it has stood at one observation (`augen-pro`) since 2026-08-05. Alex's line here —
+*"чистота временами приближается к информационной пустоте… не сразу понятно, как
+сеть работает"* — is absence read as missing content, arrived at independently on
+an unrelated site.
+
+It is **not** recorded as a second observation. The two are not obviously the same
+failure: `augen-pro`'s emptiness reads as a page that failed to load, Eco's reads
+as a page that loaded and said little. Whether that is one axis or two is a
+distillation question, and it is filed here so the ritual has to answer it rather
+than miss it.

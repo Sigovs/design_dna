@@ -635,16 +635,28 @@ already positive, which is the easier material to author a rule from.
 **Nothing here is promoted.** Synced from the inventory above on 2026-08-11; the
 count in this section had been left at one while the log recorded three.
 
-**Carried out of the 2026-08-13 run, unresolved and named as such.** That run
-proposed four amendments and this group was not among them. The reason is not that
-the evidence is thin — three records, two of them rating 3, and no rule covers it —
-but that the sentence above was written from `trionn-com` alone and all three
-records say something narrower: the motion must advance the **argument**, and a
-demonstration must not stand in for information architecture. Rewording a candidate
-is a different act from promoting one, and doing it inside a run that was already
-proposing four rules would have buried the decision. **This is the first item for
-the next run**, and the honest state is that it has been over threshold since
-2026-08-10 with no rule written.
+**PROMOTED 2026-08-13 — this candidate is closed.** It became
+[motion-judgment MJ10](../skills/motion-judgment/SKILL.md#invariant), *a device
+earns its advance by what it delivers*, at INVARIANT tier, on Alex's approval.
+
+Two things changed on the way out of this section, and both are the reason it took
+a second sitting rather than riding along with the four amendments of the same day.
+**The count was wrong at three:** reading every record turned up five, three of them
+rating 3 — `oilstainlab-com` (*"настолько занят демонстрацией собственной
+креативности, что автомобиль и информация становятся вторичными"*) and
+`hispanosuizacars-com` (*"prioritize mythology over understanding"*) were carrying
+the same theme in prose and had never been tagged for it. **And the wording above
+was wrong in kind:** written from `trionn-com` alone, it asked a mechanism to
+*reveal something about the subject*, which is vague enough to argue with. All five
+records say something narrower and checkable — the motion must advance the
+**argument**, each stage must deliver a truth the last one did not, and a
+demonstration may precede an explanation but never replace it. The removal test in
+the rule is the part that makes it usable: take the device out, and if only the
+spectacle goes, the device was carrying ambition rather than content.
+
+Left here as the record of how a candidate is supposed to die: not by being
+promoted in the words it was first written in, but by being rewritten once enough
+records exist to say what it actually is.
 
 ### E3 — Where negative space stops reading as intention
 

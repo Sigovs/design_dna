@@ -97,3 +97,21 @@ The Models experience was not traversed — model names were read from the menu,
 from a models page. Menu transition timing and easing, video playback continuity,
 and any compositing or masking technique are not preserved; **no mask was found and
 none is claimed.** Circular controls were not observed at the captured viewport.
+
+## 2026-08-13 · three scroll frames recovered
+
+- **action:** `shots.strip` extended from 5 frames to 8. No judgement field touched;
+  rating and `dialectStatus` unchanged.
+- **provenance:** `strip-6.jpg`, `strip-7.jpg`, `strip-8.jpg` came from
+  `design_dna.stale-copy-2026-08-05/`, a snapshot of this repository that had been
+  sitting untracked inside the Sports Car Rescue project. They are byte-identical to
+  the originals (md5 `724059fa…`, `1558e683…`, `d4ce1a4c…`) and were produced by the
+  same capture run as frames 1–5 — the current record referenced five while the
+  snapshot held eight.
+- **why it matters:** the strip is read as a sequence and the order is the evidence
+  ([TASTE.md §6d](../../TASTE.md#6-vault-hook--the-vaultdesign-loop)). A scroll
+  sequence truncated at frame 5 shows the opening and not the resolution, which is
+  exactly the axis this record is cited for — a continuous environment held to the
+  end of the page.
+
+**The snapshot was deleted after this transfer.** It carried nothing else unique.

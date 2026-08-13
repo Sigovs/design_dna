@@ -572,7 +572,9 @@ while it is honest.
    typographic voices, each voice justified by a job the others cannot do; every value from a documented token scale;
    WCAG AA verified on every palette change, measured on the composited render
    rather than on the token table; a complete static path for every
-   animation; depth cues coherent with the spatial model they imply; controlled
+   animation; a device that spends the visitor's advance — a pinned scene, a staged
+   reveal, a scroll-linked sequence — returning it as understanding rather than as
+   spectacle; depth cues coherent with the spatial model they imply; controlled
    irregularity that stays legible and intentional; every permanently-visible
    layer — sticky, floating, consent — counted in the composition rather than added
    on top of it, one over content at a time, and never going opaque while live

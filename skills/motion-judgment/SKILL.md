@@ -1,6 +1,6 @@
 ---
 name: motion-judgment
-description: How to decide whether a page should move at all, what earns movement, and what must stay still — nine invariants (MJ1–MJ9) covering declared role before effect, one primary temporal idea per viewport, the subject deciding rather than the amount, every stoppable frame being a designed frame, the static build standing alone, the user keeping the transport, comprehension never waiting on choreography, separately authored mobile, and reduced motion that preserves meaning. Contains the MOTION READ and MOTION PLAN, a five-level motion hierarchy, camera vocabulary, and routes to references/ for per-category judgment, the audit rubric and framework-neutral implementation. Use before proposing any animation, scroll effect, transition, hover treatment or loading choreography, and when auditing motion that already exists.
+description: How to decide whether a page should move at all, what earns movement, and what must stay still — ten invariants (MJ1–MJ10) covering declared role before effect, one primary temporal idea per viewport, the subject deciding rather than the amount, every stoppable frame being a designed frame, the static build standing alone, the user keeping the transport, comprehension never waiting on choreography, separately authored mobile, reduced motion that preserves meaning, and a device earning the advance it consumes. Contains the MOTION READ and MOTION PLAN, a five-level motion hierarchy, camera vocabulary, and routes to references/ for per-category judgment, the audit rubric and framework-neutral implementation. Use before proposing any animation, scroll effect, transition, hover treatment or loading choreography, and when auditing motion that already exists.
 ---
 
 # Motion Judgment
@@ -210,7 +210,9 @@ scroll away. No hijacking, no forced pacing, no section that cannot be left, no
 sequence that must be watched to completion.
 
 Scroll distance is budgeted against narrative change: a long pin that advances the
-story by one line is a page that has stopped.
+story by one line is a page that has stopped. **That budget is now its own rule —
+see [MJ10](#invariant), which owns what the advance buys.** MJ6 owns the agency:
+whether the visitor still controls the transport at all.
 
 *Why it's invariant:* the scrollbar is the one control every visitor already knows.
 Removing it to deliver choreography trades the whole audience's agency for one
@@ -307,6 +309,63 @@ Floor: [motion-taste I1](../motion-taste/SKILL.md#invariant) and
 [dimensionality DM4](../dimensionality/SKILL.md#invariant).
 
 ---
+
+### MJ10 — A device earns its advance by what it delivers
+
+**A device that consumes the visitor's advance — a scroll-linked sequence, a staged
+reveal, a drag exploration, a chapter transition, a pinned scene — is justified by
+what each of its stages tells them about the subject, never by what it demonstrates
+about itself.**
+
+Three obligations:
+
+- **Every stage delivers a truth the previous stage did not.** Two stages saying the
+  same thing at different intensities are one stage and a repetition.
+- **A demonstration may precede an explanation and may not replace one.** Showing
+  before telling is a legitimate order; showing *instead of* telling is the failure.
+- **The removal test.** Take the device out. If what disappears is the spectacle, and
+  nothing about the subject becomes harder to understand, the device was carrying the
+  page's ambition rather than its content.
+
+**Scope — it applies to devices that spend the visitor's progress**, not to feedback.
+A 200 ms hover fade costs nothing and owes nothing; four viewports of pinned scroll
+cost real advance and owe a return in proportion. **Where the mechanism itself is the
+subject** — a motion showreel, an engine demonstration, a spatial product — the rule
+does not soften, it resolves: each stage must still reveal something new *about the
+mechanism*.
+
+*Why it's invariant:* the rule is not about how much a page moves or how expressive
+it is allowed to be. It is about whether attention the visitor has already spent
+comes back as understanding, and that exchange holds for every audience and every
+register. It bans neither spectacle nor long choreography — the strongest
+demonstration in the vault is rated 3 and the complaint against it is not that it is
+too much, but that it stood in for the architecture.
+
+**Boundaries.** [MJ6](#invariant) owns agency — whether the transport is still the
+visitor's. [MJ7](#invariant) owns delay — comprehension waiting on choreography.
+[MJ4](#invariant) owns the single frame; this rule owns the sequence of them.
+[MJ5](#invariant) requires the static build to stand alone; this rule asks the
+converse question — if it stands entirely alone, what did the device add.
+[C13](../academic-composition/SKILL.md#invariant) owns the spatial case, where the
+device takes the dominant's place; a device can be modest in size and still consume
+the whole scroll. [DM1](../dimensionality/SKILL.md#invariant) is not in conflict: it
+forbids a scene *gating* content, this rule requires the scene to *contribute*, and
+the scope clause above keeps it away from micro-feedback.
+
+> **Evidence — distilled from the vault, 2026-08-13.** Five records, three of them
+> rating 3, and the group had been over threshold since 2026-08-10 without a rule:
+> `vault/lapz-io` (3, out) — *"Do not let a powerful demonstration substitute for
+> information architecture"*, and *"the visitor sometimes appears to be advancing an
+> animation rather than learning something new"*;
+> `vault/morningstar-ventures` (3, in) — *"advancing the animation rather than
+> advancing the argument"*, stated positively in the same record as *"motion should
+> advance the page's argument"*; `vault/oilstainlab-com` (3, in) — *"сайт настолько
+> занят демонстрацией собственной креативности, что автомобиль и информация
+> становятся вторичными"*; `vault/trionn-com` (2, in) — *"motion здесь часто
+> демонстрирует возможности технологии, а не раскрывает содержание студии"*;
+> `vault/hispanosuizacars-com` (2, in) — *"both sometimes prioritize mythology over
+> understanding"*. Four of the five are `in`, so this is the standing cost of
+> ambitious motion rather than a complaint about bad work.
 
 ## MOTION READ
 

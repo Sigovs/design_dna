@@ -111,7 +111,14 @@ if (promotable.length) promotable.forEach(([k, n]) => console.log(`     ${n}×  
 
 /* ── 3 · is the ritual overdue ────────────────────────────────────────────── */
 const readme = readFileSync(join(VAULT, 'README.md'), 'utf8');
-const runs = [...readme.matchAll(/^### (\d{4}-\d{2}-\d{2})/gm)].map((m) => m[1]).sort();
+/* Two formats, because the log has used both. Headings came first; the log is now
+   a table, and a table row was invisible to the heading pattern — which meant every
+   run recorded since the table appeared left this reporting the same stale date and
+   telling Alex the ritual was overdue on the day he had just run it. */
+const runs = [
+  ...[...readme.matchAll(/^### (\d{4}-\d{2}-\d{2})/gm)].map((m) => m[1]),
+  ...[...readme.matchAll(/^\|\s*(\d{4}-\d{2}-\d{2})\s*\|/gm)].map((m) => m[1]),
+].sort();
 const last = runs.at(-1);
 const added = sites.map((e) => e.added).filter(Boolean).sort();
 const newest = added.at(-1);

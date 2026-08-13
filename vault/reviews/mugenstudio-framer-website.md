@@ -77,3 +77,122 @@ widget are template and payment furniture, and the second one **overlaps the bod
 copy and truncates it**. That is a persistent layer added on top of a composition
 rather than counted into it. Anything transferable here is the double navigation
 and the stacked wordmark; the overlays are not part of the design being admired.
+
+## 2026-08-13 · the full note round
+
+- **action:** Alex wrote the full reasoning. `note` expanded, `works` and
+  `weaknesses` filled from empty, tags assigned from his sentences.
+- **rating / dialectStatus:** **2 / unreviewed — unchanged and untouched.**
+- **evidence limit, stated by Alex himself:** this is a Framer template, not a
+  confirmed client site. His own weighting is quoted in the note field and is not
+  an agent's caveat.
+
+### Alex's comment — verbatim, never edited
+
+> В целом сайт нравится за очень собранный эстетический порядок. Несмотря на
+> крупную типографику, наложения, асимметрию и большое количество визуальных
+> элементов, композиция не ощущается хаотичной. Всё подчинено одной строгой
+> системе: чёрно-белая палитра, тонкая сетка, единая геометрия, контролируемые
+> отступы и ясное разделение между крупным имиджевым слоем и маленькой
+> функциональной информацией. Сайт продаёт дизайн-студию не через декоративную
+> креативность, а через ощущение уверенного визуального контроля.
+>
+> Особенно нравится двойная система навигации: в header сразу вынесены несколько
+> наиболее полезных ориентиров — логотип, локация и время, быстрый переход к
+> работам, — а hamburger оставляет доступ к полной структуре сайта. Здесь эти два
+> меню не выглядят ненужным дублированием, потому что выполняют разные функции.
+> Header постоянно даёт контекст и быстрый доступ к главному, не превращаясь в
+> стандартную полосу ссылок, а hamburger сохраняет чистоту композиции и открывает
+> менее частые направления только по запросу. Хорошо работает и общий контраст
+> масштабов: огромный MUGEN STUDIO создаёт узнаваемость и характер, а небольшие
+> служебные подписи, карточка менеджера, рейтинг и CTA добавляют конкретику.
+> Карточка с реальным человеком, ценой и возможностью сразу назначить звонок
+> особенно полезна: она приземляет абстрактную эстетику и показывает, как
+> начинается работа со студией. Desktop выглядит как тщательно собранный постер,
+> а mobile не просто сжимает его, а перестраивает элементы в понятную вертикальную
+> последовательность, сохраняя типографический характер и иерархию.
+>
+> При этом hero находится близко к визуальной перегрузке. Огромный заголовок,
+> портретная карточка, длинный абзац, рейтинг, навигация и несколько плавающих
+> элементов одновременно претендуют на внимание. Пока их удерживает строгая
+> сетка, но при небольшом изменении контента или более слабых изображениях
+> композиция может легко развалиться. Часть мелкого текста и служебных элементов
+> теряется на тёмном детализированном фоне. Двойная навигация работает только
+> потому, что между двумя уровнями есть ясное разделение ролей; если hamburger
+> повторяет те же ссылки, что уже видны в header, система станет избыточной. На
+> mobile исчезновение части контекстной навигации делает верх страницы чище, но
+> одновременно уменьшает пользу самой идеи двойного меню.
+>
+> Важно и то, что это Framer-шаблон, а не подтверждённый клиентский сайт студии.
+> Поэтому его можно считать сильным референсом композиции, типографической
+> иерархии, адаптивной перекомпоновки и организации навигации, но он имеет меньший
+> вес как доказательство реальной продуктовой архитектуры. Контент выглядит
+> специально подобранным под макет и не показывает, насколько система выдержит
+> реальные кейсы, разные объёмы текста, подробные услуги и рост сайта. Кроме того,
+> видимые элементы продажи шаблона — Unlock from $129 и Made in Framer — нарушают
+> ту самую эстетическую чистоту, ради которой сайт хочется сохранить.
+
+### Confirmed changes to the record
+
+- `note` — his first and fourth paragraphs, kept whole. The fourth is in `note`
+  rather than in `weaknesses` because it qualifies **what the whole record may be
+  cited for**, not one layer of the design. Its closing clause is also a weakness
+  and is cross-referenced rather than duplicated.
+- `works` — filled from empty, his second paragraph verbatim.
+- `weaknesses` — filled from empty, his third paragraph verbatim.
+- `kind` — left at `site`. See the limitation below.
+
+### Layer judgements
+
+| Layer | Observation | Source | Judgement | Evidence limit |
+|---|---|---|---|---|
+| composition | *"Несмотря на крупную типографику, наложения, асимметрию… композиция не ощущается хаотичной. Всё подчинено одной строгой системе"* | Alex | IN | |
+| composition | *"mobile не просто сжимает его, а перестраивает элементы в понятную вертикальную последовательность"* | Alex | IN | |
+| composition | *"hero находится близко к визуальной перегрузке… при небольшом изменении контента или более слабых изображениях композиция может легко развалиться"* | Alex | OUT | holds on this content; he states it may not hold on other content |
+| hierarchy | *"ясное разделение между крупным имиджевым слоем и маленькой функциональной информацией"*; the scale contrast between the wordmark and the service copy | Alex | IN | |
+| typography | *"сохраняя типографический характер и иерархию"* on mobile | Alex | IN | |
+| colour | *"чёрно-белая палитра"* named as part of the one strict system | Alex | IN | |
+| spacing / density | *"тонкая сетка, единая геометрия, контролируемые отступы"* | Alex | IN | |
+| interaction | The double navigation, **with his reason**: *"эти два меню не выглядят ненужным дублированием, потому что выполняют разные функции"* | Alex | IN | |
+| interaction | *"если hamburger повторяет те же ссылки, что уже видны в header, система станет избыточной"*; on mobile the disappearing contextual row *"уменьшает пользу самой идеи двойного меню"* | Alex | OUT | the condition on the row above, in his words |
+| imagery | *"Часть мелкого текста и служебных элементов теряется на тёмном детализированном фоне"* | Alex | OUT | |
+| risks | The template's own furniture — *"Unlock from $129 и Made in Framer — нарушают ту самую эстетическую чистоту"* | Alex | OUT | confirms the 2026-08-06 agent row above, which was `agent`/`unreviewed` |
+
+`motion` stays out of the table: he did not speak to it and nothing was verified.
+
+### Tags assigned, and the sentence each came from
+
+| Tag | His words |
+|---|---|
+| `composition: dominant-mass` | *"огромный MUGEN STUDIO создаёт узнаваемость и характер, а небольшие служебные подписи… добавляют конкретику"* |
+| `composition: responsive-recomposition` | *"mobile не просто сжимает его, а перестраивает элементы"* |
+| `layout: strict-grid` | *"тонкая сетка"*, *"Пока их удерживает строгая сетка"* |
+| `layout: asymmetry` | *"наложения, асимметрию"* |
+| `risks: asset-dependency-risk` | *"при небольшом изменении контента или более слабых изображениях композиция может легко развалиться"* |
+| `risks: decorative-information-legibility-risk` | *"Часть мелкого текста… теряется на тёмном детализированном фоне"* |
+| `risks: mobile-recomposition-risk` | *"На mobile исчезновение части контекстной навигации… уменьшает пользу самой идеи двойного меню"* |
+
+### Limitations and observations — agent, not Alex's judgement
+
+**The schema has no way to say "template".** `kind` is a real field and every one
+of the 31 records carries `site`; there is no documented vocabulary for a second
+value, and `vocab.json` does not govern this field. Alex's weighting therefore
+lives in prose in `note`, where a reader will find it and a script will not. This
+is the first record where the distinction changes what the evidence proves, and it
+is filed as a question rather than answered by inventing an enum value.
+
+**The double-navigation statement is unusually rule-shaped, and it arrived with
+its own exit.** He did not say *two menus are good*; he said they are justified by
+**separated roles**, and named the condition that voids it — a hamburger repeating
+what the header already shows. A claim that carries its own falsifier is the
+cheapest kind to promote later.
+
+**Possible axis, filed for the ritual and not counted:** this may be the positive
+end of the cluster `rekorderstudios-com` sits at the negative end of, where several
+genuinely different actions were left undistinguished so the visitor could not
+choose. Mugen is praised for the opposite — two levels of navigation whose roles are
+separated enough that the duplication reads as intent. Whether *routes must be
+distinguished by the job they do* is one axis with two ends, or two unrelated
+observations, is a distillation question. `anti-patterns` U12 covers routes that
+cannot be **found**; neither rule covers routes that can be found and cannot be
+**told apart**.

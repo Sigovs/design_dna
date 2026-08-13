@@ -226,7 +226,7 @@ Runs after a build, alongside the [critique panel](../TASTE.md#2b-the-critique-p
 The composition critic's fourth standing question calls it.
 
 1. Does the whole page express **one** central idea?
-2. Can the **Anchor** still be identified from the artefact alone?
+2. Can the **Anchor** still be identified from the artefact alone? **(Blocking.)**
 3. Is the **Contrast** present as productive tension, or as interruption?
 4. Is the **Signature** still doing one job, in one place, at one scale?
 5. Are responsibilities **consistent across sections** — same owner per domain?
@@ -236,6 +236,21 @@ The composition critic's fourth standing question calls it.
    relationship?
 9. **What would be strengthened** by that cut?
 10. **What would be lost?**
+
+**Question 2 is a gate, not an enquiry.** The Anchor must be nameable from the
+**rendered artefact alone** — screenshots, no Design Read, no notes, no citations.
+A declared percentage, a stated intent and a list of responsibilities are not
+evidence that the Anchor arrived; they are evidence that it was planned. **If an
+independent reviewer cannot name the dominant visual language from the screenshots,
+the Anchor has failed**, and the delivery is blocked until either the artefact
+carries it or the Read is rewritten to declare what the page actually became.
+
+The failure is quiet, which is why it needs a gate: the Contrast partner takes over
+one domain at a time, every step is defensible on its own, and the declaration keeps
+saying 65/35 long after the page stopped meaning it.
+`[R site:chicago-motor-cars-concept-2]` — `auction-editorial` declared as Anchor at
+~65%, and the delivered page read as an inventory registry, its contrast and ledger
+logic having become the dominant language.
 
 **Questions 7 and 8 may not be answered by reflex.** "Simplify" is not a finding.
 Each removal is argued both ways, and *keep it* is a legitimate verdict said

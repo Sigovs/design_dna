@@ -1,6 +1,6 @@
 ---
 name: academic-composition
-description: Classical academic composition translated into digital art direction, interface design, responsive design, and visual critique — in two tiers. INVARIANT (dominant/subordinate/support hierarchy, unity and subordination, tonal structure before colour, figure-ground clarity, optical over mathematical balance, directed eye movement, rhythm with variation, proportion relationships, intentional edges and crops, tension with counterweight, compositional resolution, a page that holds its standard to its last mass, responsive recomposition, the dominant being the subject rather than the device presenting it, the means of the visitor's task surviving the composition, major masses established before components, a decided compositional centre, a declared asset dependency that survives an ordinary asset, and a first screen that identifies what it is) and DIALECT (auction-editorial's composed asymmetry and downward exhale, with yields-when). Contains the COMPOSITION READ and COMPOSITION PLAN that run after dialect selection and before any grid, component or surface styling decision, and routes to references/ for the academic method behind each stage. Use before laying out any full page or substantial section, when art-directing imagery, and when critiquing a design.
+description: Classical academic composition translated into digital art direction, interface design, responsive design, and visual critique — in two tiers. INVARIANT (dominant/subordinate/support hierarchy, unity and subordination, tonal structure before colour, figure-ground clarity, optical over mathematical balance, directed eye movement, rhythm with variation, proportion relationships, intentional edges and crops, tension with counterweight, compositional resolution, a page that holds its standard to its last mass, responsive recomposition, the dominant being the subject rather than the device presenting it, the means of the visitor's task surviving the composition, major masses established before components, a decided compositional centre, a declared asset dependency that survives an ordinary asset, operational truth kept from outranking the buyer's motivation, and a first screen that identifies what it is) and DIALECT (auction-editorial's composed asymmetry and downward exhale, with yields-when). Contains the COMPOSITION READ and COMPOSITION PLAN that run after dialect selection and before any grid, component or surface styling decision, and routes to references/ for the academic method behind each stage. Use before laying out any full page or substantial section, when art-directing imagery, and when critiquing a design.
 ---
 
 # Academic Composition
@@ -608,6 +608,47 @@ A page can pass every seam and still arrive at a formless tail.
 > `vault/thegentlewoman-co-uk` (1, out) — *"one decent cover does not make this a
 > reference"*. The full-page capture of `polestar-com-us` shows it plainly: one
 > authored typographic event, then a disclaimer wall and a link farm.
+
+### C20 — Operational truth does not outrank the buyer's motivation
+
+**A composition may organise its supporting content around what is operationally
+true — locations, logistics, process, structure, metadata, filters, inventory
+administration. It may not let that material displace the buyer's primary
+motivation as the page's dominant subject, unless the brief explicitly requires
+it.**
+
+For **luxury, performance and collector products** the check is explicit: verify,
+from the rendered page, that **product desire, rarity, status, fantasy or
+experience visibly outrank addresses, logistics, filters, metadata and internal
+business structure.** Not "are both present" — which outranks which, at first
+glance, without reading.
+
+**The trap this rule names is not laziness, it is the appetite for the verifiable.**
+Operational facts are distinctive, checkable and safe to assert; desire is none of
+those. A system that prefers what it can prove will reliably promote the true and
+dull over the desirable and true, and will produce a competent registry of a
+business that sells something people want.
+
+*Why it's universal:* the visitor arrived with a motivation, and a composition that
+ranks the organisation's own structure above it has inverted the only hierarchy the
+page exists to serve. This holds for a dealership, a gallery, a clinic and a
+university — the operational layer is how the promise is kept, never the promise.
+
+*Boundary with [C13](#invariant):* C13 forbids the **device** presenting the
+subject from taking the subject's place. C20 forbids a **true and relevant piece of
+content** from taking it. C13 catches a mechanism; C20 catches a proposition, and a
+page can pass C13 while failing C20 — the artefact below cites C13 in its own markup
+while doing exactly that.
+
+> **Evidence — a negative project record, 2026-08-13.**
+> `projects/chicago-motor-cars-concept-2` — a dealership of rare and
+> multimillion-dollar exotics, delivered so that *"four physical rooms"* became the
+> central brand proposition and *"locations, addresses and inventory administration
+> displaced the automobiles as the dominant emotional subject."* Its opening mass is
+> annotated in its own source as *"Dominant = the photographic plate and its room
+> caption … the subject is the room (C13)"*. Rejected outright: *"it did not create
+> aspiration, seduction, excitement, prestige or purchase desire."* The record is
+> explicit that neither the light ground nor the location concept is the fault.
 
 ## COMPOSITION READ
 

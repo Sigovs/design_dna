@@ -347,6 +347,22 @@ A rejection must carry its reason in the same row. A deferral must say what it i
 waiting on. "Accept" without a corresponding change in the work is a lie the next
 run will inherit.
 
+**A defer on the core blocks delivery.** When the point concerns the **central
+proposition, the dominant composition, the Anchor, customer desire or perceived
+value**, `defer` is not available. Those are the load-bearing decisions, and a
+build cannot proceed past an unresolved objection to what the page fundamentally
+is. Resolve it — accept it and change the work, or reject it with a reason that
+survives being read next to the artefact.
+
+**It may not be converted into "the client can decide later" or "Alex's call".**
+Handing the core objection to the human at delivery is the same failure wearing a
+courtesy: the work ships, the objection is unanswered, and the reviewer is asked to
+adjudicate a concept the panel already doubted.
+`[R site:chicago-motor-cars-concept-2]` — the Contrarian said *"the room index is
+an idea about the business, not an idea the buyer has"*, the disposition read
+*"defer — and it is Alex's call, not mine"*, and the concept shipped and was
+rejected outright.
+
 **Rules for the read**
 - `<deliverable>` is the artefact, not the task ("landing hero", not "some HTML").
 - `<audience>` is who judges it, and it sets the tolerance for expressiveness.
@@ -390,6 +406,22 @@ addition.** Remove it, or find the job it is actually doing and say that instead
 > **When several solutions are viable, choose the one that expresses the central
 > idea most clearly. Quietness and loudness have no value by themselves; both have
 > to be justified by the idea.**
+
+#### Coherence is not quality
+
+**Internal consistency, originality, evidence, accessibility and technical
+correctness are necessary and cannot establish visual quality. A coherent weak idea
+is still a weak design.**
+
+Every one of those is checkable, which is exactly why a build can pass all of them
+and be worthless: the checks answer *is this system intact*, and none of them
+answers *is this any good*. A page whose tokens are disciplined, whose contrast is
+measured on the composited render, whose provenance is complete and whose rationale
+is internally airtight has demonstrated competence and nothing else.
+
+**Treat a clean sweep of the verifiable as the start of the judgement, not the end
+of it** — and when a report can show every check passing, ask what the checks did
+not look at. `[R site:chicago-motor-cars-concept-2]`.
 
 This is not a preference for restraint. A loud, dense, saturated, high-contrast
 answer is the correct answer whenever it expresses the idea more clearly than a
@@ -863,7 +895,55 @@ drive two concrete decisions, is in
 
 ---
 
-## 7. Report format
+## 7. Delivery gates and report format
+
+### 7a. The delivery gates — run before the report is written
+
+**Two of the six gates live here. The other four are rules in their own places and
+are listed at the end of this section.**
+
+#### The explanation-free desirability gate
+
+**Before delivery, look only at the rendered screenshots.** Hide the Design Read,
+the rationale, the vault citations, the audit results and the implementation notes.
+Judge what a visitor gets, which is the pixels and nothing else.
+
+**Delivery is blocked unless every answer is clearly yes:**
+
+1. Does the product feel **desirable before the concept is explained**?
+2. Does **perceived value match the category and the price**?
+3. Is the **dominant visual mass the thing the customer wants**?
+4. Does the page keep its **emotional force without annotations or rationale**?
+5. Would you **present these screenshots alone**, with confidence?
+
+A hesitant yes is a no. The gate exists because the author is the one person on
+earth who cannot see the page without its explanation attached.
+
+#### The rationale-dependency warning
+
+**If the defence of a design is materially stronger than the rendered design, treat
+that as evidence against delivery.** The length and sophistication of the
+explanation never compensate for weak screenshots — and a long, well-argued report
+attached to a weak artefact is a signal that the argument has been doing the work
+the design was supposed to do.
+
+The test is comparative and blunt: *is the writing better than the thing?* When the
+honest answer is yes, the artefact is not ready, however good the writing is.
+
+`[R site:chicago-motor-cars-concept-2]` — recorded from a build that passed
+contrast, responsiveness, provenance, accessibility, token consistency and its own
+internal rationale, and was rejected outright on the screenshots.
+
+#### The other four gates, and where they live
+
+| Gate | Where it binds |
+|---|---|
+| **Core-defer blocking** — no `defer` on the central proposition, dominant composition, Anchor, customer desire or perceived value | [§2b](#2b-the-critique-panel) |
+| **Buyer-desire hierarchy** — operational truth may organise support and may not displace the buyer's motivation | [C20](skills/academic-composition/SKILL.md#invariant) |
+| **Anchor visibility** — the Anchor is identifiable from the rendered artefact alone | [HYBRID](dialects/HYBRID.md#the-page-wide-dialect-audit) |
+| **Coherence is not quality** — the verifiable checks cannot establish that the work is good | [§2c](#2c-selection-coherence-and-device-discipline) |
+
+### 7b. Report format
 
 End any visual work with:
 

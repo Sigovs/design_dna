@@ -559,6 +559,14 @@ The canonical summary of what the two tiers add up to. **If a change to
 same commit** — this is the surface Alex reads to catch drift, so it is only useful
 while it is honest.
 
+0. **Delivery is gated on the screenshots, not on the reasoning.** Before anything
+   ships, the rendered frames are judged with the Design Read, the rationale and the
+   audits hidden: the product reads as desirable before it is explained, perceived
+   value matches the category, the dominant mass is what the customer wants, and the
+   Anchor is nameable from the frames alone. A `defer` on the central proposition,
+   the dominant, the Anchor, desire or perceived value blocks delivery outright. If
+   the defence is stronger than the artefact, that is evidence against shipping —
+   and passing every verifiable check establishes competence, never quality.
 1. **Two tiers, and the tier decides everything.** Invariants are universal
    quality laws and never yield; dialect rules are aesthetic positions, each with a
    stated `yields when:`. Yielding for a stated reason is correct practice —
@@ -594,8 +602,9 @@ while it is honest.
    dependency — on an exceptional asset or on a condition — that separates an
    authored constraint from an operational risk and survives the variation its own
    use guarantees, a first screen that says what the thing
-   is (or a Read that declares the withholding), and a governing idea
-   re-established at every breakpoint. Its **Read and Plan run after the dialect declaration and
+   is (or a Read that declares the withholding), operational truth that organises
+   the supporting content without displacing what the buyer actually came for, and
+   a governing idea re-established at every breakpoint. Its **Read and Plan run after the dialect declaration and
    before any grid, component or surface styling**, and they judge relationships,
    not compliance with a preferred look.
    **Constructed depth is role-gated before it is anything else** — every read

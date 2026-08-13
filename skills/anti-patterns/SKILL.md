@@ -611,8 +611,16 @@ structure.
 
 ## The gate
 
+**Before any of it — the delivery gates** ([TASTE.md §7a](../../TASTE.md#7-delivery-gates-and-report-format))
+- [ ] Screenshots reviewed with the Design Read, rationale and audits hidden — and the product reads as desirable before it is explained.
+- [ ] Perceived value matches the category and price; the dominant mass is the thing the customer wants.
+- [ ] The defence is not stronger than the artefact.
+- [ ] No `defer` left standing on the central proposition, dominant, Anchor, desire or perceived value.
+- [ ] The Anchor is nameable from the screenshots alone.
+
 **Invariant — must all pass**
 - [ ] Hierarchy unambiguous; emphasis encodes ranking truthfully.
+- [ ] Operational truth — locations, logistics, filters, metadata — does not outrank the buyer's motivation (C20).
 - [ ] All contrast meets AA; no hue-only meaning; focus visible.
 - [ ] No motion without a job; reduced-motion path everywhere; no layout animation.
 - [ ] Spacing deliberate; internal gaps < external; gutters never zero.

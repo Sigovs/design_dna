@@ -196,3 +196,31 @@ distinguished by the job they do* is one axis with two ends, or two unrelated
 observations, is a distillation question. `anti-patterns` U12 covers routes that
 cannot be **found**; neither rule covers routes that can be found and cannot be
 **told apart**.
+
+## 2026-08-13 · the status round
+
+- **action:** Alex set the record. **rating 2 · `in` · `expressive-poster`.**
+- **previous:** 2 / `unreviewed` / no dialect.
+
+### Alex's verdict — verbatim, never edited
+
+> Rating: **2** · Status: **in** · Dialect: **expressive-poster**
+>
+> Здесь типографика работает как изображение: огромный масштаб, столкновение
+> надписей с портретом и интерфейсом, сильная фронтальная композиция и управляемое
+> визуальное давление. Но оставляю рейтинг 2, потому что это шаблон: он
+> подтверждает композиционный приём, однако не доказывает, что система выдерживает
+> реальный клиентский контент и полноценную архитектуру сайта.
+
+### What this changes
+
+- `expressive-poster` goes from one record to two, `oilstainlab-com` (3) and this
+  one (2). It stays `library` and is **not** approaching confirmation: the bar is
+  3 human-approved records or 2 at rating 3, and a library dialect has no evidence
+  route regardless. The counter is not a threshold.
+- **The dialect was assigned on decision logic, not on resemblance** — *"типографика
+  работает как изображение"*, type at poster scale colliding with the portrait and
+  the interface. Not "the page is loud".
+- The template caveat he wrote in the note round is now also the stated reason for
+  the rating, so the two agree: strong evidence of a compositional device, weak
+  evidence of a system under real content.

@@ -7,8 +7,10 @@
     "title": "Eco: The Stablecoin Network That Makes Money Programmable",
     "added": "2026-08-06",
     "rating": 2,
-    "dialectStatus": "unreviewed",
-    "dialects": [],
+    "dialectStatus": "in",
+    "dialects": [
+      "refined-elegance"
+    ],
     "tags": {
       "composition": [
         "product-storytelling",
@@ -253,8 +255,10 @@
     "title": "Mugen Design Studio Framer Template",
     "added": "2026-08-06",
     "rating": 2,
-    "dialectStatus": "unreviewed",
-    "dialects": [],
+    "dialectStatus": "in",
+    "dialects": [
+      "expressive-poster"
+    ],
     "tags": {
       "composition": [
         "dominant-mass",

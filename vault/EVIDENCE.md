@@ -22,10 +22,39 @@ correct** — that is Alex's review, and the claims below are marked accordingly
 
 | Class | Count | Entry ids |
 |---|---|---|
-| **Usable `in`** (human-set) | **23** | `beings-co` (3) · `ciridae-com` (3) · `ruadh-com` (2) · `electrafilmworks-com` (2) · `thenewmobileworkforce-…-back-at-hq` (2) · `trionn-com` (2) · `kinncollective-co-uk` (2) · `augen-pro` (2) · `i-pinimg-…-46d9d54b` (2) · `organimo-com` (3) · `immersive-g-com` (3) · `rolls-roycemotorcars-…-home-html` (3) · `obys-agency` (2) · `mclaren-com-cars-gl-en` (2) · `semlerpremium-dk-showroom` (3) · `semlerpremium-dk-brands-porsche-911-gt3-…` (3) · `polestar-com-us` (2) · `semlerpremium-dk` (2) · `rimac-automobili-com-nevera` (2) · `oilstainlab-com` (2) · `hispanosuizacars-com` (2) · `morningstar-ventures` (3) · `rekorderstudios-com` (3) |
+| **Usable `in`** (human-set) | **25** | `beings-co` (3) · `ciridae-com` (3) · `ruadh-com` (2) · `electrafilmworks-com` (2) · `thenewmobileworkforce-…-back-at-hq` (2) · `trionn-com` (2) · `kinncollective-co-uk` (2) · `augen-pro` (2) · `i-pinimg-…-46d9d54b` (2) · `organimo-com` (3) · `immersive-g-com` (3) · `rolls-roycemotorcars-…-home-html` (3) · `obys-agency` (2) · `mclaren-com-cars-gl-en` (2) · `semlerpremium-dk-showroom` (3) · `semlerpremium-dk-brands-porsche-911-gt3-…` (3) · `polestar-com-us` (2) · `semlerpremium-dk` (2) · `rimac-automobili-com-nevera` (2) · `oilstainlab-com` (2) · `hispanosuizacars-com` (2) · `morningstar-ventures` (3) · `rekorderstudios-com` (3) · `eco-com` (2) · `mugenstudio-framer-website` (2) |
 | **Usable `out`** (human-set) | **5** | `rmsothebys-com` (1) · `thegentlewoman-co-uk` (1) · `hbbody-com-en-home` (2) · `rivian-com` (2) · `lapz-io` (3) |
 | **Partial / contextual** (`hybrid`) | **1** | `porsche-com-usa` (2) |
-| **Not yet a judgement** (`unreviewed`) | **2** | `eco-com` (2) · `mugenstudio-framer-website` (2) — all captured 2026-08-06, statuses not yet set. |
+| **Not yet a judgement** (`unreviewed`) | **0** | — **every record in the vault now carries a human judgement.** First time this has been true. |
+
+> **The last two records judged, 2026-08-13 — the vault has no unjudged entry
+> left.** `eco-com` **2 · `in` · `refined-elegance`** and
+> `mugenstudio-framer-website` **2 · `in` · `expressive-poster`**, both after a
+> full note round written the day before. `in` rises 23 → 25, `unreviewed` falls
+> 2 → 0.
+>
+> **Both were held at 2 for the same kind of reason, stated by Alex in each
+> case** — and the reasons are worth keeping, because a rating is otherwise
+> unfalsifiable. Eco: *"информационная пустота и зависимость от storytelling не
+> позволяют системе уверенно опираться на него целиком."* Mugen: *"это шаблон: он
+> подтверждает композиционный приём, однако не доказывает, что система выдерживает
+> реальный клиентский контент и полноценную архитектуру сайта."* In both, the
+> composition is admired and the **evidence** is what falls short — which is a
+> rating-2 argument rather than a criticism of the work.
+>
+> **`refined-elegance` has its first record ever**, and `expressive-poster` its
+> second. Neither is promoted by it: both are `library`, and a library dialect has
+> no evidence route to `provisional` — only Alex re-declaring it does that
+> ([dialects/README.md](../dialects/README.md#status-what-each-one-means-and-what-it-authorises)).
+> Worth stating plainly because the counter now shows two records against
+> `expressive-poster` and a counter is easy to mistake for a threshold.
+>
+> **A dialect assignment is not a resemblance.** Mugen went to
+> `expressive-poster` on the ground Alex named — *"типографика работает как
+> изображение"*, type at poster scale colliding with portrait and interface — not
+> because the page is loud. Eco went to `refined-elegance` for proportion,
+> interval and discipline giving a complex product a calm presence, not because it
+> is quiet.
 
 > **`rekorderstudios-com` judged, 2026-08-10 — and the note debt is gone.** This
 > record was added on 2026-08-06 without a stated reason and its note was left

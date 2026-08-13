@@ -552,6 +552,21 @@ and Alex approves before it exists. The full rule is in
 
 ---
 
+## Design DNA works at page scale
+
+Design DNA does not treat sections as isolated design exercises.
+
+For existing pages, the whole rendered page is the primary design object. New
+sections are judged through scroll flow, neighbouring chapters, the existing visual
+grammar and the reduced full-page read. **Local novelty never outranks page-level
+coherence.**
+
+The rule is [C21](skills/academic-composition/SKILL.md#invariant), its failure mode
+is [U15](skills/anti-patterns/SKILL.md#invariant), and the procedure that enforces
+it lives in the entry-point skill so that it loads even when nothing else does.
+
+---
+
 ## The taste in five lines
 
 The canonical summary of what the two tiers add up to. **If a change to
@@ -603,8 +618,9 @@ while it is honest.
    authored constraint from an operational risk and survives the variation its own
    use guarantees, a first screen that says what the thing
    is (or a Read that declares the withholding), operational truth that organises
-   the supporting content without displacing what the buyer actually came for, and
-   a governing idea re-established at every breakpoint. Its **Read and Plan run after the dialect declaration and
+   the supporting content without displacing what the buyer actually came for, the
+   page rather than the section treated as the composition, and a governing idea
+   re-established at every breakpoint. Its **Read and Plan run after the dialect declaration and
    before any grid, component or surface styling**, and they judge relationships,
    not compliance with a preferred look.
    **Constructed depth is role-gated before it is anything else** — every read

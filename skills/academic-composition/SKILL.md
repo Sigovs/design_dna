@@ -1,6 +1,6 @@
 ---
 name: academic-composition
-description: Classical academic composition translated into digital art direction, interface design, responsive design, and visual critique — in two tiers. INVARIANT (dominant/subordinate/support hierarchy, unity and subordination, tonal structure before colour, figure-ground clarity, optical over mathematical balance, directed eye movement, rhythm with variation, proportion relationships, intentional edges and crops, tension with counterweight, compositional resolution, a page that holds its standard to its last mass, responsive recomposition, the dominant being the subject rather than the device presenting it, the means of the visitor's task surviving the composition, major masses established before components, a decided compositional centre, a declared asset dependency that survives an ordinary asset, operational truth kept from outranking the buyer's motivation, and a first screen that identifies what it is) and DIALECT (auction-editorial's composed asymmetry and downward exhale, with yields-when). Contains the COMPOSITION READ and COMPOSITION PLAN that run after dialect selection and before any grid, component or surface styling decision, and routes to references/ for the academic method behind each stage. Use before laying out any full page or substantial section, when art-directing imagery, and when critiquing a design.
+description: Classical academic composition translated into digital art direction, interface design, responsive design, and visual critique — in two tiers. INVARIANT (dominant/subordinate/support hierarchy, unity and subordination, tonal structure before colour, figure-ground clarity, optical over mathematical balance, directed eye movement, rhythm with variation, proportion relationships, intentional edges and crops, tension with counterweight, compositional resolution, a page that holds its standard to its last mass, responsive recomposition, the dominant being the subject rather than the device presenting it, the means of the visitor's task surviving the composition, major masses established before components, a decided compositional centre, a declared asset dependency that survives an ordinary asset, operational truth kept from outranking the buyer's motivation, the page — not the section — being the composition, and a first screen that identifies what it is) and DIALECT (auction-editorial's composed asymmetry and downward exhale, with yields-when). Contains the COMPOSITION READ and COMPOSITION PLAN that run after dialect selection and before any grid, component or surface styling decision, and routes to references/ for the academic method behind each stage. Use before laying out any full page or substantial section, when art-directing imagery, and when critiquing a design.
 ---
 
 # Academic Composition
@@ -649,6 +649,56 @@ while doing exactly that.
 > caption … the subject is the room (C13)"*. Rejected outright: *"it did not create
 > aspiration, seduction, excitement, prestige or purchase desire."* The record is
 > explicit that neither the light ground nor the location concept is the fault.
+
+### C21 — The page is the composition
+
+**A section is not an autonomous poster.** Its success depends on what precedes it,
+what follows it, and **what visual devices the page has already spent.**
+
+**Read a long page at two scales:**
+
+1. **CLOSE** — craft, hierarchy, typography, image, interaction.
+2. **DISTANT** — rhythm, density, tonal sequence, repetition, pacing.
+
+**A strong local composition that damages the distant read is a failed
+composition.** Prefer **continuity with variation** over novelty by section.
+
+The question is not *"is this section interesting?"* The question is **"does this
+make the whole page better?"**
+
+**Novelty is judged at page level.** A page does not owe every section its own
+layout gimmick, button system, image treatment, edge geometry, colour world,
+motion language, typographic trick or interaction model — and a page with eight
+individually "unique" sections usually has no identity. Develop the grammar the
+page already has before introducing another one.
+
+**Scroll flow is part of the composition.** What the visitor just saw, what they
+see now and what they will see next are one sequence, and the transition between
+chapters is designed rather than inherited.
+
+*Why it's universal:* a visitor experiences a page as one object in time, never as
+a gallery of independent compositions, so a section optimised in isolation is
+optimised against something nobody sees. This holds for any long-form page in any
+aesthetic — an editorial feature, a documentation page, a product tour, a
+dealership homepage.
+
+*Boundary with the neighbours:* [C7](#invariant) governs rhythm **within** an
+established pattern; C21 governs whether a new section belongs to that pattern at
+all. [C19](#invariant) asks whether the standard survives to the last mass; C21
+asks whether each mass belongs to the same object. [U11](../anti-patterns/SKILL.md#invariant)
+names competing art directions as a page-level defect; C21 is the positive rule
+that prevents them arriving one section at a time, and
+[U15](../anti-patterns/SKILL.md#invariant) is the specific failure mode.
+
+**The procedure that enforces this** — full-page inspection, previous/current/next,
+the closest approved sibling, the rhythm read and the reduced full-page read — is
+in [design-dna](../design-dna/SKILL.md), because it must run in sessions where this
+file is never opened.
+
+*Authored judgment, 2026-08-13* `[J]`, from Alex's own observation across projects:
+a request to build one section is repeatedly read as licence to invent a small
+separate website inside a page. It rests on no single vault record and is not
+evidence of a demonstrated preference.
 
 ## COMPOSITION READ
 

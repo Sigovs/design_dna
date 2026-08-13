@@ -1,13 +1,19 @@
 ---
 name: design-dna
-description: Alex's design taste system — the entry point. Load this FIRST, before any visual, design, UI, layout, CSS, typography, colour, spacing, imagery or motion work, in any project and any stack, including redesigns, landing pages, dealership and automotive sites, components, slide decks, diagrams and Figma output. It routes to TASTE.md (the manifest with the two-tier model, the Design Read, the delivery modes and the dialect index) and to whichever taste skill the task needs. If a project's own CLAUDE.md states a design direction, this still applies — a project direction is executed inside these invariants, never instead of them.
+description: Alex's design taste system — the entry point. Load this FIRST, before any visual, design, UI, layout, CSS, typography, colour, spacing, imagery or motion work, in any project and any stack, including redesigns, landing pages, dealership and automotive sites, components, slide decks, diagrams and Figma output. It routes to TASTE.md (the manifest with the two-tier model, the Design Read, the delivery modes and the dialect index) and to whichever taste skill the task needs, and it carries one mandatory rule of its own: a section is never designed or critiqued as an isolated composition when it belongs to an existing page. If a project's own CLAUDE.md states a design direction, this still applies — a project direction is executed inside these invariants, never instead of them.
 ---
 
 # Design DNA — the entry point
 
-**This skill carries no rules of its own.** Every rule lives in `TASTE.md` and in
-the taste skills beside it. This file exists for one reason: the rules are in a
-file, and a file only binds if something opens it.
+**This skill carries exactly one rule of its own, and everything else lives in
+`TASTE.md` and in the taste skills beside it.** This file exists for one reason:
+the rules are in a file, and a file only binds if something opens it.
+
+The exception is deliberate and is the section at the bottom, **PAGE-AS-OBJECT**.
+It is here rather than only in the skills because it governs *when the other rules
+get read at all* — a request to build one section is the case where an agent
+reaches for none of them, and the one surface guaranteed to load in every session
+is this one.
 
 `CLAUDE.md` is loaded into a session automatically. `TASTE.md` is not — it has to
 be read on purpose, and an agent that skips it produces work that looks finished
@@ -68,10 +74,55 @@ and optional unless the order is written down.
 
 ---
 
-## Why this is not a rule file
+## PAGE-AS-OBJECT — MANDATORY CONTEXT RULE
+
+**Never design or critique a section as an isolated composition when it belongs to
+an existing page. The PAGE is the primary composition; a SECTION is a local event
+inside it.**
+
+This section is the **procedure only**. The invariant it enforces is
+[C21](../academic-composition/SKILL.md#invariant), the failure it prevents is
+[U15](../anti-patterns/SKILL.md#invariant), and the reasoning for both lives there,
+not here.
+
+### Before any major visual decision on a section of an existing page
+
+1. **Inspect the whole rendered page** — a full-page render, or a scaled full-page
+   screenshot for a long page.
+2. **Inspect the section immediately before it, and the one immediately after it**
+   where it exists.
+3. **Identify the closest approved sibling section** already on the page.
+4. **Read the page-level rhythm and write down what you found:** tonal rhythm ·
+   light/dark sequence · density · image scale · subject distance · typographic
+   hierarchy · component language · edge and radius language · motion amplitude ·
+   pacing · **which gestures the page has already spent**.
+5. **Decide what the section must continue** before deciding what it may introduce.
+
+### Before calling the section complete
+
+6. **Inspect it in three-chapter context** — PREVIOUS → CURRENT → NEXT, judged as
+   one sequence.
+7. **Take the reduced full-page read** — the whole page as one object, at a scale
+   where rhythm and repetition are visible and craft is not.
+8. **Reject a locally strong section that weakens the whole page.** That outcome is
+   a failed section, not a trade-off, and no isolated screenshot approves it.
+
+### Order of authority for an established design
+
+1. explicit user direction
+2. the current approved whole-page composition
+3. the closest approved sibling sections
+4. the existing design system and components
+5. Design DNA principles
+6. new local invention
+
+---
+
+## Why this file is otherwise not a rule file
 
 Repo convention is that every rule under `skills/` sits in an `## INVARIANT` or
-`## DIALECT` section. Nothing here is a rule, so neither section exists — this is
-a loader, and giving it rules would put taste in two places at once. Anything that
-reads like guidance above is a restatement of `TASTE.md`, and `TASTE.md` is the
-version that governs.
+`## DIALECT` section. Apart from the mandatory context rule above — which is a
+procedure, not a taste position — nothing here is a rule: this is a loader, and
+giving it taste would put taste in two places at once. Anything else that reads
+like guidance is a restatement of `TASTE.md`, and `TASTE.md` is the version that
+governs.

@@ -1,6 +1,6 @@
 ---
 name: anti-patterns
-description: Failure modes in two tiers — INVARIANT universal failures (weak hierarchy, inaccessible contrast, gratuitous motion, arbitrary spacing, inconsistent tokens, uncounted persistent overlays, competing art directions inside one page, horizontal page scroll, content parity across viewports, controlled irregularity that stops being legible or intentional, depth cues incoherent with the spatial model they imply, task-relevant routes that cannot be discovered without hover, completed animation or guessing or told apart from the route beside them, opaque surfaces that cross live content, and expansions that move the list they live in) and DIALECT trope bans (AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, underlined nav, repeated primary CTAs, imagery hidden on mobile, the default Spline aesthetic, ambient motion behind body copy, template anonymity — each with a yields-when). Use as the final gate before shipping any visual work, and whenever choosing between a container and open air.
+description: Failure modes in two tiers — INVARIANT universal failures (weak hierarchy, inaccessible contrast, gratuitous motion, arbitrary spacing, inconsistent tokens, uncounted persistent overlays, competing art directions inside one page, horizontal page scroll, content parity across viewports, controlled irregularity that stops being legible or intentional, depth cues incoherent with the spatial model they imply, task-relevant routes that cannot be discovered without hover, completed animation or guessing or told apart from the route beside them, opaque surfaces that cross live content, expansions that move the list they live in, and sections designed as independent microsites) and DIALECT trope bans (AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, underlined nav, repeated primary CTAs, imagery hidden on mobile, the default Spline aesthetic, ambient motion behind body copy, template anonymity — each with a yields-when). Use as the final gate before shipping any visual work, and whenever choosing between a container and open air.
 ---
 
 # Anti-Patterns
@@ -412,6 +412,44 @@ component looks right in a screenshot and cannot be operated.
 > A six-row service index: hovering row six settled on row four after a visible
 > oscillation. Both filters above were built and measured before the cause was
 > understood.
+---
+
+### U15 — Section-as-microsite
+
+**Each new section is treated as an independent art-direction exercise instead of
+as a chapter of the page it belongs to.**
+
+Symptoms:
+
+- a **new visual grammar every chapter**;
+- **unexplained changes in button language**;
+- **unrelated colour worlds**;
+- **new image treatments** with no page-level reason;
+- isolated **"hero" compositions deep inside the page**;
+- a scroll rhythm that reads as **a portfolio of unrelated concepts**;
+- **individual screenshots that look stronger than the full page** — the
+  diagnostic symptom, and the one that survives review, because every section is
+  approved on its own screenshot.
+
+**Correction: zoom out.** Re-read the entire page as one object, find the closest
+approved visual relative, and continue the system before adding a new gesture.
+
+*Why it's universal:* the reader builds one model of the page and uses it to
+interpret everything after; a section that starts a new model spends that
+understanding, and the cost lands on the sections that follow rather than on the
+one that caused it. The rule holds in any aesthetic — a maximalist page can be one
+authored object, and a minimal one can be eight.
+
+**Distinct from [U11](#invariant), which it produces.** U11 names the finished
+state: competing art directions inside one page. U15 names **how a page arrives
+there** — one locally defensible section at a time, each approved in isolation.
+The positive rule is [C21](../academic-composition/SKILL.md#invariant) and the
+procedure that enforces it is in [design-dna](../design-dna/SKILL.md).
+
+*Authored judgment, 2026-08-13* `[J]`, from Alex's recurring observation that a
+request to build one section is read as permission to invent a small separate
+website inside a page. It rests on no vault record.
+
 ---
 
 ## DIALECT

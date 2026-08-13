@@ -58,6 +58,7 @@ The invariants, by domain — full text in the linked skills:
 | **Major masses before components** — the page is describable as 3–7 masses before any card, column or grid is named | [composition](skills/academic-composition/SKILL.md#invariant) |
 | **The compositional centre is decided, not inherited** — semantic, optical, geometric and centre-of-action are distinguished, and one is declared to govern | [composition](skills/academic-composition/SKILL.md#invariant) |
 | **The composition declares what it depends on** — an identity carried by one class of asset, or by one condition holding, names the dependency, separates an authored constraint from an operational risk, and survives the plausible variation its own use guarantees | [composition](skills/academic-composition/SKILL.md#invariant) |
+| **The page is the composition** — a section is a local event inside it, judged in scroll context and at two scales; a strong local composition that damages the distant read has failed | [composition](skills/academic-composition/SKILL.md#invariant) |
 | **The page holds its standard to the last mass** — the masses after the opening stay ranked, connected and resolved, and the ending is designed rather than left over | [composition](skills/academic-composition/SKILL.md#invariant) |
 | **The first screen identifies what this is** — or the Read declares that withholding it is the subject | [composition](skills/academic-composition/SKILL.md#invariant) |
 | Intentional spatial hierarchy — grouping and separation are decided, never inherited | [spacing](skills/spacing-taste/SKILL.md#invariant) |
@@ -78,6 +79,7 @@ The invariants, by domain — full text in the linked skills:
 | **Controlled irregularity must remain legible and intentional.** | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
 | **Depth cues are coherent with the spatial model they imply** — interface elevation matches real layering; atmospheric and illustrative depth may be non-literal when intentional and not misleading | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
 | Universal failure modes — weak hierarchy, inaccessible contrast, gratuitous motion, arbitrary spacing, inconsistent tokens | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
+| **Section-as-microsite** — a page arriving at competing art directions one locally defensible chapter at a time | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
 | **Anything permanently on screen is part of the composition** — sticky, floating and consent layers are counted in the mass scheme; one overlay over content at a time | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
 | **Competing art directions inside one page** — sections that stop belonging to one authored language, however good each is alone | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
 | **An opaque surface that crosses live content** — a bar going solid while content still travels under it cuts a hard edge through it; split "the page moved" from "the header left the section" | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
@@ -238,6 +240,22 @@ composition is made of. Its three answers and their obligations are in
 it changes the dominant, the eye path, and usually the dialect. Demotion never does.
 
 ### 2a. The Composition Read and Plan
+
+> **THE PAGE IS THE COMPOSITION.** A section is only a local event inside it.
+>
+> When the work is a section of a page that already exists, the page is the object
+> being designed and the section is a chapter of it. Read it in scroll context —
+> previous, current, next — and at two scales: **close** for craft, hierarchy,
+> typography and interaction, **distant** for rhythm, density, tonal sequence and
+> pacing. **A strong local composition that damages the distant read is a failed
+> composition**, and the question is never *is this section interesting* but *does
+> this make the whole page better*.
+>
+> The invariant is [C21](skills/academic-composition/SKILL.md#invariant), the
+> failure mode is [U15](skills/anti-patterns/SKILL.md#invariant), and the mandatory
+> procedure — full-page inspection, previous/current/next, closest approved
+> sibling, the rhythm read, the reduced full-page read before approval — is in
+> [design-dna](skills/design-dna/SKILL.md), which loads in every session.
 
 **After the dialect declaration and before typography, colour, effects, motion,
 grid, components, or any other structural or surface decision**, run the

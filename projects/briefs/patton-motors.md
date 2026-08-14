@@ -62,7 +62,6 @@ evidence completeness → rating. **It orders the list. The agent selects.**
 
 | Record | Rating | Status | Term hits | Approved layers | Alex's layer verdicts |
 |---|---|---|---|---|---|
-| `rekorderstudios-com` | 3 | in | 26 | — | — |
 | `semlerpremium-dk-showroom` | 3 | in | 21 | 7 | composition:IN, composition:IN, hierarchy:IN, typography:IN, spacing / density:IN, imagery:IN, imagery:OUT, interaction:IN, interaction:OUT |
 | `polestar-com-us` | 2 | in | 19 | 8 | composition:IN, composition:IN, composition:OUT, composition:OUT, hierarchy:IN, hierarchy:OUT, typography:IN, layout:IN, colour:IN, imagery:IN, imagery:OUT, interaction:IN |
 | `morningstar-ventures` | 3 | in | 18 | — | — |
@@ -101,6 +100,17 @@ evidence completeness → rating. **It orders the list. The agent selects.**
 | `thegentlewoman-co-uk` | 1 | out | 19 | 5 | composition:IN, composition:OUT, typography:IN, colour:IN, imagery:IN, spacing / density:IN, interaction:OUT |
 | `rivian-com` | 2 | out | 13 | — | — |
 | `rmsothebys-com` | 1 | out | 12 | 3 | composition:IN, composition:OUT, composition:OUT, typography:IN, typography:OUT, colour:IN, imagery:OUT, interaction:OUT |
+
+## Exclusions — explicit project verdicts, applied before ranking
+
+**A record listed here was barred from this project by Alex. The bar is absolute:
+it is applied before any ranking, so no axis can return it — not rating, not
+compositional operation, not sector relevance, and not an axis added later. Its
+standing everywhere else is untouched.**
+
+| Record | Verdict | Reason |
+|---|---|---|
+| `rekorderstudios-com` | Alex, 2026-08-13 | Explicitly excluded from Patton Motors. It entered this brief by accident and must not be used as evidence, direction, compositional source or retrieval candidate for this project. Rating 3 and `in` everywhere else. |
 
 ## Dialects available
 
@@ -156,10 +166,16 @@ passes and nothing says why the page looks the way it does `[A]`.
   palette applied consistently and video treated as continuous environment rather
   than a media block `[R site:rolls-roycemotorcars-com-en-us-home-html]`.
   `mclaren-com-cars-gl-en` — campaign energy against a disciplined system `[R site:mclaren-com-cars-gl-en]`.
-  `rekorderstudios-com` — rating 3, `organic-tactile`. Borrowed for **one thing
-  only**: how a mono micro-plate carries address, hours and contact as a technical
-  counterpoint. Patton has a physical room open Saturdays 9–1 and that fact deserves
-  the same treatment `[R site:rekorderstudios-com]`.
+  `ciridae-com` — rating 3, `in`. Borrowed for **one thing only**: how restrained
+  metadata on fine horizontal rules works as a technical counterpoint to a large
+  editorial voice — *"restrained sans-serif metadata, numbered structures, and fine
+  horizontal rules turn a technically complex platform into a calm and credible
+  system."* Patton has a physical room open Saturdays 9–1, and that fact wants the
+  same treatment: a plate, ruled, quiet, beside the loud thing rather than inside it
+  `[R site:ciridae-com]`.
+
+  *Replaced the record originally cited here on 2026-08-13. See Exclusions above —
+  the substitution was made on the compositional operation, not on the category.*
 
 - **Contextual** (max 3 · `hybrid`, named layer only):
   `porsche-com-usa` — inventory integration only. Not an overall endorsement `[R site:porsche-com-usa]`.

@@ -44,6 +44,26 @@ const claimIds = new Set([
   ...[...evidenceDoc.matchAll(/^- \*\*(D\d+) · /gm)].map((m) => m[1]),
 ]);
 
+/* ── project-scoped exclusions ─────────────────────────────────────────────
+   A record Alex has barred from ONE project. Precedence is absolute and the
+   filter runs before ranking, so no axis can return it — not rating, not sector
+   relevance, and not the compositional-operation axis added on 2026-08-13.
+
+   The failure this prevents happened: `rekorderstudios-com` was excluded from
+   Patton Motors, and re-ranking by compositional behaviour walked it straight
+   back to the top of that brief's candidates. An exclusion that only outranks
+   the axes that existed when it was written is not an exclusion.
+
+   Scope is one project. The record keeps its rating, its status and its full
+   value everywhere else — a global judgement belongs in sites.json, not here. */
+const EXCLUSIONS = (() => {
+  const f = join(ROOT, 'projects/exclusions.json');
+  if (!existsSync(f)) return new Map();
+  const raw = JSON.parse(readFileSync(f, 'utf8'));
+  return new Map(Object.entries(raw).filter(([k]) => !k.startsWith('_')));
+})();
+const exclusionsFor = (slug) => EXCLUSIONS.get(slug) ?? [];
+
 /* Layer verdicts Alex set, read from the review sidecars. */
 function layers() {
   const dir = join(VAULT, 'reviews');
@@ -78,6 +98,23 @@ const SECTIONS = ['Dialect', 'References', 'Art direction', 'Composition and hie
   'Motion and interaction', 'Component guidance', 'Anti-patterns', 'Evidence', 'Implementation prompt'];
 
 function check(file) {
+  /* Project exclusions are checked first, because a brief that cites an excluded
+     record is wrong no matter how well-formed the rest of it is. */
+  {
+    const slug = basename(file).replace(/\.md$/, '').replace(/-\d{4}-\d{2}-\d{2}$/, '');
+    /* Strip ONLY the exclusions block itself — where the id is supposed to appear —
+       and check everything else. Splitting at the heading and keeping the part
+       above it silently exempted the reference sections, which come after. */
+    const body = readFileSync(file, 'utf8').replace(/^## Exclusions[\s\S]*?(?=^## )/m, '');
+    const bad = exclusionsFor(slug).filter((x) => new RegExp(`\\b${x.id}\\b`).test(body));
+    if (bad.length) {
+      console.error(`\n✗ ${basename(file)} cites a record excluded from this project by explicit verdict:`);
+      for (const x of bad) console.error(`    ${x.id} — ${x.by}, ${x.date}: ${x.reason}`);
+      console.error('');
+      process.exit(1);
+    }
+  }
+
   const doc = readFileSync(file, 'utf8');
   const bad = [];
   const say = (s) => bad.push(s);
@@ -188,7 +225,19 @@ const score = (e) => {
 };
 const rank = (a, b) => { const x = score(a), y = score(b); for (let i = 0; i < x.length; i++) if (y[i] !== x[i]) return y[i] - x[i]; return a.id.localeCompare(b.id); };
 
-const pool = (status) => sites.filter((e) => e.dialectStatus === status).sort(rank);
+/* The slug identifies the PROJECT, so it comes from the request when there is
+   one. Deriving it from the output filename made the exclusion miss the moment a
+   brief was compiled to a different name — which is exactly the accident this
+   whole mechanism exists to prevent. */
+const slug = (inputFile ? basename(inputFile).replace(/\.[a-z]+$/i, '') : basename(out).replace(/\.md$/, ''))
+  .replace(/-\d{4}-\d{2}-\d{2}$/, '');
+const excluded = exclusionsFor(slug);
+const excludedIds = new Set(excluded.map((x) => x.id));
+
+/* The filter is here, before sort(), and not inside score(). A score of -1 is a
+   ranking opinion; removal from the pool is a fact, and this must be a fact. */
+const pool = (status) =>
+  sites.filter((e) => e.dialectStatus === status && !excludedIds.has(e.id)).sort(rank);
 const row = (e) => {
   const ls = (LAYERS.get(e.id) ?? []).filter((l) => l.source === 'alex' && /IN|OUT/.test(l.verdict));
   /* Both axes are printed, because the point of separating them is that the agent
@@ -205,6 +254,9 @@ const scaffold = template
   .replace('<!--CANDIDATES-IN-->', pool('in').map(row).join('\n'))
   .replace('<!--CANDIDATES-HYBRID-->', pool('hybrid').map(row).join('\n'))
   .replace('<!--CANDIDATES-OUT-->', pool('out').map(row).join('\n'))
+  .replace('<!--EXCLUSIONS-->', excluded.length
+    ? excluded.map((x) => `| \`${x.id}\` | ${x.by}, ${x.date} | ${x.reason} |`).join('\n')
+    : '| — | — | none recorded for this project |')
   .replace('<!--DIALECTS-->', dialects.map((d) => `| \`${d.name}\` | **${d.status}** |`).join('\n'))
   .replace('<!--TERMS-->', terms.slice(0, 12).join(' · ') || '—');
 
@@ -213,5 +265,9 @@ writeFileSync(out, scaffold);
 console.log(`\nphase 1 complete — scaffold written: ${out}`);
 console.log(`  request terms: ${terms.slice(0, 12).join(' · ') || '—'}`);
 console.log(`  candidates ranked: ${pool('in').length} in · ${pool('hybrid').length} hybrid · ${pool('out').length} out`);
+if (excluded.length) {
+  console.log(`  EXCLUDED BY EXPLICIT PROJECT VERDICT — removed before ranking, cannot return by any axis:`);
+  for (const x of excluded) console.log(`     ${x.id} — ${x.by}, ${x.date}: ${x.reason}`);
+}
 console.log('\nPHASE 2 IS THE AGENT\'S. This script chose nothing: it ordered candidates and');
 console.log('left the decision slots empty. Fill them, then: npm run brief:check -- ' + out + '\n');

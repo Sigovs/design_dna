@@ -1,0 +1,17 @@
+{
+  "_what": "Project-scoped exclusions. A record listed here is barred from one project's retrieval — never from the vault, and never from other projects.",
+  "_precedence": "ABSOLUTE. An exclusion is applied before ranking and outranks rating, compositional-operation relevance and sector relevance. No axis can return an excluded record, including any axis added later.",
+  "_scope": "Keyed by brief slug — the basename of projects/requests/<slug>.txt and projects/briefs/<slug>.md.",
+  "_visibility": "brief.mjs prints every applied exclusion and writes it into the compiled brief. An exclusion never removes a record silently.",
+  "_not_this_file": "A record Alex judges globally wrong belongs in vault/sites.json as dialectStatus out, with its reasoning. This file is only for 'not on this project'.",
+
+  "patton-motors": [
+    {
+      "id": "rekorderstudios-com",
+      "by": "Alex",
+      "date": "2026-08-13",
+      "reason": "Explicitly excluded from Patton Motors. It entered the compiled brief by accident and must not be used as evidence, direction, compositional source or retrieval candidate for this project.",
+      "globalStanding": "unaffected — rating 3, in, organic-tactile, and fully available to every other project"
+    }
+  ]
+}

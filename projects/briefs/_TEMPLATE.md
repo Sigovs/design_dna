@@ -56,6 +56,17 @@ collision and grid interruption below rating.
 |---|---|---|---|---|---|---|
 <!--CANDIDATES-OUT-->
 
+## Exclusions — explicit project verdicts, applied before ranking
+
+**A record listed here was barred from this project by Alex. The bar is absolute:
+it is applied before any ranking, so no axis can return it — not rating, not
+compositional operation, not sector relevance, and not an axis added later. Its
+standing everywhere else is untouched.**
+
+| Record | Verdict | Reason |
+|---|---|---|
+<!--EXCLUSIONS-->
+
 ## Dialects available
 
 | Dialect | Status |

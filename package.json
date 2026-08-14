@@ -22,7 +22,8 @@
     "smoke": "node vault/smoke.mjs",
     "projects:check": "node projects/check.mjs",
     "dialects:check": "node dialects/check.mjs",
-    "postinstall": "playwright install chromium"
+    "postinstall": "playwright install chromium",
+    "fixtures": "node projects/fixtures/fixtures.mjs"
   },
   "devDependencies": {
     "live-server": "^1.2.2",

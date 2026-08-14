@@ -1,0 +1,177 @@
+PROVENANCE — every image and film in this concept
+==================================================
+
+Rule for this build, and it has no exceptions:
+
+  NOTHING SYNTHETIC, AND NOTHING WHOSE ORIGIN IS UNCONFIRMED.
+
+That is why there is no `gen-` prefix anywhere in this folder: not one file
+here was generated, upscaled, extended or generatively filled, so
+`generated-imagery` does not bind this build at all. It is also why several
+strong-looking frames in the working project were left behind — see the
+bottom of this file.
+
+Every file was COPIED, unmodified, out of the read-only working project at
+/Users/alex/Desktop/WORK/Chicago Motor Cars. Nothing there was edited, moved
+or renamed.
+
+
+--------------------------------------------------------------------------
+IN USE
+--------------------------------------------------------------------------
+
+stock/cmc-porsche-gt3.jpg              1920 x 1280   400 KB
+    THE OPENING PLATE, and the page's LCP element.
+    A green Porsche 911 GT3, front three-quarter, on polished concrete
+    against a black steel wall.
+    Origin: chicagomotorcars.com's own image CDN (/imagetag/...), read off
+    the live inventory listing on 2026-08-07 by the working project. CMC's
+    own frame of a car on their own floor. Not synthetic, not stock.
+    Room: Tonganoxie, Kansas — attributed from the working project's own
+    asset note, which identifies this environment as "the Kansas industrial
+    space — black steel, polished concrete, no turntable, no showroom
+    curtain, no burned-in wordmark". TO CONFIRM WITH CMC.
+    Model year is NOT established and is therefore not stated anywhere.
+
+stock/cmc-porsche-gt2rs.jpg            1920 x 1288   608 KB
+    Comparison row, position 1. Red 911 GT2 RS, side elevation, same room.
+    Same origin and same room attribution as above.
+    Price, mileage and stock number were NOT published at capture and are
+    rendered as an em dash rather than guessed.
+
+stock/cmc-koenigsegg-regera.jpg        1920 x 1279   284 KB
+    Comparison row, position 2. White Regera, side elevation, seamless
+    grey studio. Same CDN origin.
+    Room: NAPERVILLE — and this one is evidence rather than inference. The
+    version of this frame served on CMC's own homepage carries their script
+    wordmark burned into the top of the picture reading "Chicago Motor Cars
+    NAPERVILLE". The file here is the clean CDN version without the mark.
+    Data (real, and dated): $2,899,800 · 2,055 mi · stock 22536 · 2021.
+
+stock/cmc-rimac-nevera.jpg             1920 x 1279   220 KB
+    Comparison row, position 3. Blue/black Nevera, side elevation, seamless
+    white studio. Same CDN origin.
+    Room: NOT ESTABLISHED. Rendered as an em dash.
+    Data (real, and dated): $1,999,800 · 3,498 mi · stock 9R4AB8069MS · 2024.
+
+video/cmc-collection-walkthrough.mp4   1920 x 1080   27.3s   20.2 MB
+    THE FILM BAND. A slow walk through a large CMC collection space: rows of
+    Mustang Cobra R, a Ford GT, two Aventadors against walls carrying
+    Lamborghini, Ferrari, Shelby Cobra and Lotus murals. Polished concrete.
+    No people, no readable plates.
+    ORIGIN CONFIRMED: supplied by the client, confirmed by Alex 2026-08-10
+    in the working project's own asset record.
+    Copied from assets/video/visual_brake_video.mp4 and renamed for clarity.
+
+    PLAYED BETWEEN 9s AND 20s ONLY. The full file opens on a close crop of a
+    bumper on a ramp and passes through two heavily blurred pans. Every frame
+    a visitor can stop on is a frame the page is showing them, so the band
+    plays only the passage that holds. The window is enforced in
+    assets/js/main.js; see FILM_IN / FILM_OUT.
+
+rooms/west-chicago-floor-1600.jpg      1600 x 900    151 KB
+rooms/west-chicago-floor-960.jpg        960 x 540     72 KB
+    The film's poster, and its authored still under reduced motion.
+    IT IS A REAL FRAME OF THE FILM ABOVE, captured off the decoded video at
+    t≈8s rather than drawn or sourced elsewhere — which is why it is the
+    same picture the film's first played frame shows, and why the start of
+    playback is invisible. If the video never loads, the band is still a
+    photograph of the same room at the same moment.
+    Copied from assets/video/visual-break-poster-*.jpg.
+
+rooms/room-01-west-chicago.jpg          322 x 262
+rooms/room-02-naperville.jpg            324 x 262
+rooms/room-03-rock-hill.jpg             322 x 262
+rooms/room-04-tonganoxie.jpg            316 x 262
+    The four showrooms, in the closing record.
+    Origin: extracted from a full-page capture of CMC's own live site, where
+    they sit under the four addresses in the footer. Their own rooms.
+    THEY ARE SCREENSHOT-RESOLUTION AND THEY ARE USED AT SCREENSHOT SCALE.
+    They are not upscaled anywhere and must not be. Ask CMC for the
+    originals before this ships.
+
+rooms/cmc-building.jpg                 1425 x 480
+    The West Chicago building exterior, same origin. CURRENTLY UNUSED —
+    kept because it is the only exterior frame available and a "plan a
+    visit" page would want it.
+
+logos/cmc-wordmark.svg
+logos/cmc-mark.svg
+logos/favicon.svg
+logos/karma-logo.svg
+    Copied unmodified from the working project. The wordmark's outlines are
+    untouched — not one control point moved. It ships inline in the markup
+    rather than as an <img> so it inherits --ink and can sit on any of the
+    page's three grounds from one file.
+    The Karma mark's paths were served with a baked fill="#fff", which is
+    invisible on bone; the fill attribute alone was swapped to currentColor
+    at build time. Outlines untouched.
+
+
+--------------------------------------------------------------------------
+DELIBERATELY NOT USED, AND WHY
+--------------------------------------------------------------------------
+
+hero/gen-hero-showroom-wide.jpg        AI placeholders. This concept ships no
+hero/gen-hero-showroom-portrait.jpg    synthetic imagery at all.
+hero/gen-hero-drive-portrait.jpg
+
+hero/hero_d.jpg (McLaren Senna)        Its own sidecar records that whether
+                                       this is CMC's own photography or a
+                                       press/stock frame is NOT established.
+                                       A dealership hero implies the car is
+                                       on the floor; if it is not, the page
+                                       makes a claim the business cannot
+                                       stand behind.
+
+img/sell/sell_page_image.jpg           Its own sidecar records two open
+                                       questions: the frame reads as a render
+                                       rather than a photograph and has not
+                                       been confirmed as CMC's premises, and
+                                       there is a third-party signature in
+                                       the bottom right. On a page whose whole
+                                       argument is "every room here is our
+                                       room", an unconfirmed showroom is the
+                                       one thing it cannot show.
+
+img/backgrounds/cmc-ford-gt-showroom.jpg
+                                       Beautiful, 5760 x 2550, and its own
+                                       README records that whether it is CMC's
+                                       photograph, a Ford press image or stock
+                                       is not established.
+
+img/inventory/cutout-*.png             The four transparent cut-outs. Excellent
+                                       assets, and they belong to the working
+                                       concept's visual language. A car cut out
+                                       of its room also contradicts a page
+                                       arguing that every car is standing in
+                                       one.
+
+img/stock/*.jpg (ten frames)           CMC's own cars, but extracted from a
+                                       screenshot at roughly 326 x 218 — fine
+                                       for judging a card system, too small to
+                                       ship at plate scale.
+
+video/hero-video.mp4                   The client-origin confirmation recorded
+                                       in the working project names the break
+                                       film specifically and says in as many
+                                       words that it covers that file only.
+
+
+--------------------------------------------------------------------------
+OPEN, AND ALL OF IT IS THE CLIENT'S TO ANSWER
+--------------------------------------------------------------------------
+
+1.  Room attribution for the two Porsches rests on an authored note, not on
+    CMC's own statement. Confirm.
+2.  The Nevera's room is unknown.
+3.  Price, mileage, stock number and the 301 count were read on 2026-08-13
+    and are dated. The page carries that date visibly. RE-PULL FROM THE FEED
+    BEFORE THIS GOES IN FRONT OF ANYONE.
+4.  The film is 20.2 MB. It is lazy, it is never fetched under reduced
+    motion, and it costs nothing until a visitor reaches the band — but for
+    anyone who does reach it on a phone it is a real 20 MB. There is no
+    ffmpeg on this machine; a trim to the 9–20s window plus an H.264 pass at
+    a sane bitrate would take it under 3 MB and would also make the player-
+    side window unnecessary.
+5.  The four showroom frames need to be re-shot or supplied at real size.

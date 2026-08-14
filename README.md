@@ -574,14 +574,23 @@ The canonical summary of what the two tiers add up to. **If a change to
 same commit** — this is the surface Alex reads to catch drift, so it is only useful
 while it is honest.
 
-0. **Delivery is gated on the screenshots, not on the reasoning.** Before anything
-   ships, the rendered frames are judged with the Design Read, the rationale and the
-   audits hidden: the product reads as desirable before it is explained, perceived
-   value matches the category, the dominant mass is what the customer wants, and the
-   Anchor is nameable from the frames alone. A `defer` on the central proposition,
-   the dominant, the Anchor, desire or perceived value blocks delivery outright. If
-   the defence is stronger than the artefact, that is evidence against shipping —
-   and passing every verifiable check establishes competence, never quality.
+0. **Delivery runs three gates, and the last one is Alex's.** **Gate 1** measures
+   the render against commitments the Read declared in advance, with one floor it
+   may not lower — on identity-led and image-led pages the governing event owns the
+   first screen. **Gate 2** asks of every device present what work it does: a
+   full-screen hero names its event, a bleed names the chapter it separates, scale
+   contrast says what the small type cannot, an overlap changes rank, emptiness is a
+   pause between two events, and two sections sharing one formula are one section.
+   **Gate 3 is a human verdict** — clean desktop and mobile screenshots, no Design
+   Read and no rationale attached, and approve / revise / reject from Alex; absence
+   of approval is an unfinished gate, never a pass. A `defer` on the central
+   proposition, the dominant, the Anchor, desire or perceived value blocks delivery
+   outright, and if the defence is stronger than the artefact that is evidence
+   against shipping. **Passing Gate 1 proves the means are present and nothing
+   else** — `npm run fixtures` keeps a rejected artefact on file that met every
+   measurable commitment. A hero owns the first screen as a **scene**, not as an
+   object enlarged to the viewport edges: the air around the subject is part of the
+   governing event.
 1. **Two tiers, and the tier decides everything.** Invariants are universal
    quality laws and never yield; dialect rules are aesthetic positions, each with a
    stated `yields when:`. Yielding for a stated reason is correct practice —

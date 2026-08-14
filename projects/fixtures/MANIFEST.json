@@ -1,0 +1,326 @@
+{
+  "generated": "2026-08-13",
+  "purpose": "Paired regression fixture. Frozen copies, never the live project folder. Concept 2 must fail Gate 1; Concept 3 must pass the Gate 1 floor and fail Gate 2; neither may pass Gate 3 without Alex’s explicit approval.",
+  "gate1Floor": {
+    "rule": "A1 / C1+C13",
+    "check": "firstScreenGoverningMassPct >= 90 on identity-led or image-led pages",
+    "note": "Passing Gate 1 proves the means are present. It proves nothing about quality — Concept 3 is the recorded counter-example."
+  },
+  "omitted": [
+    {
+      "path": "assets/video/cmc-collection-walkthrough.mp4",
+      "appliesTo": "cmc-concept-2",
+      "sha256": "4dd522dcc1c78f8a02b71e3e25e454c6748940d73b1d70bcf1c02818f1131e18",
+      "bytes": 21186647,
+      "why": "20 MB of source video. Hash recorded so the omission is auditable; the composition is judged without it."
+    }
+  ],
+  "fixtures": [
+    {
+      "id": "cmc-concept-2",
+      "entry": "index.html",
+      "source": "/Users/alex/Desktop/WORK/Chicago Motor Cars Concept 2/index.html",
+      "failureClass": "A — required means absent",
+      "verdict": {
+        "by": "Alex",
+        "date": "2026-08-13",
+        "result": "reject",
+        "reason": "Small split hero, four identical room cards, conventional masonry inventory, even safe rhythm; no cinematic direction, no montage breaks, no layering, no scroll-telling. A dealership of multimillion-dollar exotics reading as an industrial inventory registry."
+      },
+      "expect": {
+        "gate1": "fail",
+        "gate2": "fail",
+        "gate3": "no approval on record"
+      },
+      "files": [
+        {
+          "path": "assets/css/concept3.css",
+          "sha256": "5ad968e8706698cdbb2342234e3c8905c9d7d443e60b715dbc7355e0d4f850a6"
+        },
+        {
+          "path": "assets/css/main.css",
+          "sha256": "f786dc4c00107c82e076b957a611458940991c5ac06409dd396fb8fffadcb711"
+        },
+        {
+          "path": "assets/css/tokens.css",
+          "sha256": "7621e5aab01a8468efbf6cfee9be1144d48f9b00259947b583d5b237253a5dfd"
+        },
+        {
+          "path": "assets/img/PROVENANCE.txt",
+          "sha256": "48a0e1c43f25fd6bddef649b427bb18e9f2cab8153dccb019d47f3a2fa9c2681"
+        },
+        {
+          "path": "assets/img/rooms/cmc-building.jpg",
+          "sha256": "3d9ee7995ea8bee03d1d3015e9dcee69ea49935942f40eb583bdd4b95ad5fbd5"
+        },
+        {
+          "path": "assets/img/rooms/room-01-west-chicago.jpg",
+          "sha256": "9fa5f153f4d20feb135f6fc83a7960e90f3785eb0b2ad1844e38eedb854ec3a1"
+        },
+        {
+          "path": "assets/img/rooms/room-02-naperville.jpg",
+          "sha256": "8b1a44482fd23b8c619054cf186cd9144e16dbb54eb1150d10deb1aec54bbf29"
+        },
+        {
+          "path": "assets/img/rooms/room-03-rock-hill.jpg",
+          "sha256": "993c928f718957f85a173d9e55849f9573abf45ed4281fd14a3bc122e7aff565"
+        },
+        {
+          "path": "assets/img/rooms/room-04-tonganoxie.jpg",
+          "sha256": "7de9e3845b2c6066eb29add4d4796ddab34c82d473a39d5cedc3145dbef3eeac"
+        },
+        {
+          "path": "assets/img/rooms/west-chicago-floor-1600.jpg",
+          "sha256": "c6c5142093f48de933c44d3cd1993c072c76c655ea6c711862d16066523f8c81"
+        },
+        {
+          "path": "assets/img/rooms/west-chicago-floor-960.jpg",
+          "sha256": "1bc7dd02d36ab837f12e3ec73b9a1257d936e8f2d42ede67be59df2cb1e3b991"
+        },
+        {
+          "path": "assets/img/stock/cmc-koenigsegg-regera.jpg",
+          "sha256": "f11879b46f81c49cefd305748644f4a3df003b6267b07afa76c37ce5810256ef"
+        },
+        {
+          "path": "assets/img/stock/cmc-porsche-gt2rs.jpg",
+          "sha256": "6a6c5d5874033cb94a481b458a9e91bdc00ab2e420835295bcb0ea0d727a43ed"
+        },
+        {
+          "path": "assets/img/stock/cmc-porsche-gt3.jpg",
+          "sha256": "4875022fbfe542d72100aea68835b68e6f34009c3635a88534f3bf86620bad88"
+        },
+        {
+          "path": "assets/img/stock/cmc-rimac-nevera.jpg",
+          "sha256": "fd05ad7325775467c16251bd801a2e10b0fc49e6e0ba0647a4dba6275b8b16ea"
+        },
+        {
+          "path": "assets/js/concept3.js",
+          "sha256": "ff68dc923cce585a22d5a3794fb745148de6d88a0a209694ce17f6a7fb3d57dc"
+        },
+        {
+          "path": "assets/js/main.js",
+          "sha256": "2d15d489a13cad0de4e7f2f75800bdd6c248343d2bcc4746f256c80081380830"
+        },
+        {
+          "path": "assets/logos/cmc-mark.svg",
+          "sha256": "27af7496ea5f3dc641c5e2c44b9215a5d2a39c41e42a76c3118cf9f4ab8d5e3c"
+        },
+        {
+          "path": "assets/logos/cmc-wordmark.svg",
+          "sha256": "1e8d00eddde0e4a22a14354717118df77727741991146cb688ef752b67b7dd6a"
+        },
+        {
+          "path": "assets/logos/favicon.svg",
+          "sha256": "0d9a7e408d2c803c2e51ada9216a70552a1f19a8789bb3e4aaf837949a44862f"
+        },
+        {
+          "path": "assets/logos/karma-logo.svg",
+          "sha256": "f372bfb9b87a0d86169421509f8d27c95a0b64128ac7ee44aa130a98fea2443d"
+        },
+        {
+          "path": "index.html",
+          "sha256": "367a81366632b9d4a17a5e53f84e1617c411b12b6d025e478db7b8aef51bf45e"
+        }
+      ],
+      "measured": {
+        "pageHeightPx": 8046,
+        "screens": 8.9,
+        "firstScreenGoverningMassPct": 58,
+        "mediaTotal": 10,
+        "fullBleedMedia": 2,
+        "typeScaleRatio": 5.2,
+        "largestTypePx": 72
+      },
+      "gate2Findings": [
+        {
+          "device": "room ledger (four addresses, hairline-ruled)",
+          "job_claimed": "the page's second mass and central proposition",
+          "function_test": "does the dominant serve the buyer's motivation (C20)?",
+          "result": "FAIL — operational truth holds the dominant; the automobiles are subordinate to it"
+        },
+        {
+          "device": "four room cards",
+          "job_claimed": "one card per showroom",
+          "function_test": "state each section's compositional formula",
+          "result": "FAIL — one formula repeated four times; four sections, one section"
+        },
+        {
+          "device": "inventory presentation",
+          "job_claimed": "show the floor",
+          "function_test": "does it read as objects of desire or as records?",
+          "result": "FAIL — conventional masonry, accounting-record register"
+        },
+        {
+          "device": "whitespace",
+          "job_claimed": "editorial calm",
+          "function_test": "a pause between which two events?",
+          "result": "FAIL — even spacing throughout; no event on either side of the largest runs"
+        }
+      ],
+      "gate3": {
+        "status": "not passed",
+        "reason": "no explicit approval from Alex on record; his recorded verdict is reject"
+      }
+    },
+    {
+      "id": "cmc-concept-3",
+      "entry": "index3.html",
+      "source": "/Users/alex/Desktop/WORK/Chicago Motor Cars Concept 2/index3.html",
+      "failureClass": "B — formal compliance without compositional success",
+      "verdict": {
+        "by": "Alex",
+        "date": "2026-08-13",
+        "result": "reject",
+        "reason": "Full-viewport hero exists but reads as an ordinary automotive hero; full-bleed images exist but build no montage or chapter transition; 223px type exists but the cropped REGERA/NEVERA look accidental and poorly integrated; long empty runs are uncomposed space rather than pacing; two cars repeat one presentation scheme; the four-rooms idea is barely legible; no authored tension and no film-title logic."
+      },
+      "expect": {
+        "gate1": "partial pass — the A1 first-screen floor is met",
+        "gate2": "fail",
+        "gate3": "no approval on record"
+      },
+      "files": [
+        {
+          "path": "assets/css/concept3.css",
+          "sha256": "5ad968e8706698cdbb2342234e3c8905c9d7d443e60b715dbc7355e0d4f850a6"
+        },
+        {
+          "path": "assets/img/c3/hero-gt2rs-1600.jpg",
+          "sha256": "d59014ee8c8693af29dd8c95443f984e989d15d37097fc960813ca60ceea1bb1"
+        },
+        {
+          "path": "assets/img/c3/hero-gt2rs-2400.jpg",
+          "sha256": "d5da469eeea75cb60a99e112f6bc60693a3ad54306b7cc75e2e70b00e95cd8cf"
+        },
+        {
+          "path": "assets/img/c3/hero-gt2rs-portrait-1000.jpg",
+          "sha256": "b46e2ac080f09d2f27fbffcc2d61d8a12f1a0f1dbc89a929eb3ac92d491b4155"
+        },
+        {
+          "path": "assets/img/c3/hero-gt2rs-portrait-1100.jpg",
+          "sha256": "b94b15d62857439d8157c9246b69e368a1e21851dd89b747c0b41e30cfd76848"
+        },
+        {
+          "path": "assets/img/c3/lot-nevera-1000.jpg",
+          "sha256": "47e56058dc4cac0eaec507a8f19def5acc2ca0dadac139793c71aa6a0a96bfe4"
+        },
+        {
+          "path": "assets/img/c3/lot-nevera-1400.jpg",
+          "sha256": "cfa0139cb3e3691d7cf1cd91e861d40bb94bced3eaaae6c437654d211f48850f"
+        },
+        {
+          "path": "assets/img/c3/lot-nevera-1600.jpg",
+          "sha256": "3d17dbcad28c4731ae37e65099944fced058e83cbe725829ca0dad6ca459a4ac"
+        },
+        {
+          "path": "assets/img/c3/lot-nevera-2400.jpg",
+          "sha256": "788b168cbcd5922789f3c552f8dfcabc567596bc5823509c3779edce0e905621"
+        },
+        {
+          "path": "assets/img/c3/lot-regera-1000.jpg",
+          "sha256": "2ec267ccd991c9c498c4bf91e662922830b80d6e3643c24f066f5b16c6a6ab7e"
+        },
+        {
+          "path": "assets/img/c3/lot-regera-1400.jpg",
+          "sha256": "0a0f8da8c1c669a7bbb484bf5c91cd38d601a3b6e96797386af76432176ab067"
+        },
+        {
+          "path": "assets/img/c3/lot-regera-1600.jpg",
+          "sha256": "a5806f9c216ec1d1ffcbae6feb5cbeac6478227fbae5ae62e029e5e2ae3f03ed"
+        },
+        {
+          "path": "assets/img/c3/lot-regera-2400.jpg",
+          "sha256": "e3660d0c457fc9eb3cfc252702cbd4d4b03ebc3425a1c6c7eaa24107d7af347f"
+        },
+        {
+          "path": "assets/img/c3/strip-gt3-1400.jpg",
+          "sha256": "ec9b7415fe47c9ffceb1f8a2996faf8a333d99c51f6b74e1a26a5b13aebbd58b"
+        },
+        {
+          "path": "assets/img/c3/strip-gt3-2400.jpg",
+          "sha256": "27833b20dd7ff4f0113786cafd14c556bca88e0899db14205eca3475d94809e0"
+        },
+        {
+          "path": "assets/js/concept3.js",
+          "sha256": "ff68dc923cce585a22d5a3794fb745148de6d88a0a209694ce17f6a7fb3d57dc"
+        },
+        {
+          "path": "assets/logos/cmc-mark.svg",
+          "sha256": "27af7496ea5f3dc641c5e2c44b9215a5d2a39c41e42a76c3118cf9f4ab8d5e3c"
+        },
+        {
+          "path": "assets/logos/cmc-wordmark.svg",
+          "sha256": "1e8d00eddde0e4a22a14354717118df77727741991146cb688ef752b67b7dd6a"
+        },
+        {
+          "path": "assets/logos/favicon.svg",
+          "sha256": "0d9a7e408d2c803c2e51ada9216a70552a1f19a8789bb3e4aaf837949a44862f"
+        },
+        {
+          "path": "assets/logos/karma-logo.svg",
+          "sha256": "f372bfb9b87a0d86169421509f8d27c95a0b64128ac7ee44aa130a98fea2443d"
+        },
+        {
+          "path": "index3.html",
+          "sha256": "c9816d1650e3f4233137504a5c36fde84ae30c336c636fde205300fcdc87d67a"
+        }
+      ],
+      "measured": {
+        "pageHeightPx": 3652,
+        "screens": 4.1,
+        "firstScreenGoverningMassPct": 100,
+        "mediaTotal": 4,
+        "fullBleedMedia": 2,
+        "typeScaleRatio": 15.9,
+        "largestTypePx": 223
+      },
+      "gate2Findings": [
+        {
+          "device": "full-viewport hero (100% of first screen)",
+          "job_claimed": "the car at full scale as the governing event",
+          "function_test": "name the event in one sentence; would it transfer unchanged to a competitor?",
+          "result": "FAIL — the event is 'a car photographed in a warehouse'; transfers unchanged"
+        },
+        {
+          "device": "full-bleed media (2 of 4)",
+          "job_claimed": "cinematic breaks",
+          "function_test": "which chapter does each bleed separate, and what changed across it?",
+          "result": "FAIL — neither marks a chapter change; no montage, no transition"
+        },
+        {
+          "device": "type scale contrast 15.9x (223px)",
+          "job_claimed": "the scale collision, declared as the signature's one job",
+          "function_test": "what does the large element say that the small one cannot?",
+          "result": "FAIL — REGERA repeats the caption 'Koenigsegg Regera' set directly beneath it"
+        },
+        {
+          "device": "overlap (wordmark behind photograph)",
+          "job_claimed": "layering",
+          "function_test": "which element is subordinated by the overlap?",
+          "result": "FAIL — rank unchanged; collage rather than hierarchy"
+        },
+        {
+          "device": "long empty runs",
+          "job_claimed": "pacing",
+          "function_test": "a pause between which two events?",
+          "result": "FAIL — uncomposed space; no event on one side"
+        },
+        {
+          "device": "motion (declared: one slow hero push-in)",
+          "job_claimed": "cinematic support",
+          "function_test": "how does the scene read after the motion that it did not before?",
+          "result": "FAIL — reading unchanged"
+        },
+        {
+          "device": "two lot sections",
+          "job_claimed": "two vehicles presented",
+          "function_test": "write out each section's formula",
+          "result": "FAIL — identical formula; one section shown twice"
+        }
+      ],
+      "gate3": {
+        "status": "not passed",
+        "reason": "no explicit approval from Alex on record; his recorded verdict is reject"
+      }
+    }
+  ]
+}

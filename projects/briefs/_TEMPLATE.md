@@ -28,25 +28,32 @@ identifier types and are validated against different sources.
 
 ## Candidates — ranked, NOT selected
 
-Ranking order: project-type relevance → approved layer relevance → dialect fit →
-evidence completeness → rating. **It orders the list. The agent selects.**
+Ranking order, two independent axes and the composition first: **device relevance**
+(the move a reference can teach) → rating → **sector relevance** (the industry it
+happens to be in) → approved layers → dialect fit → completeness. **It orders the
+list. The agent selects.**
+
+Sector relevance is still printed and still orders — it was demoted, not removed.
+Ranking by vocabulary first is what put three dealer inventory pages at the top of
+the Chicago Motor Cars brief and left every record documenting overlap, scale
+collision and grid interruption below rating.
 
 **`in` — eligible as primary or secondary**
 
-| Record | Rating | Status | Term hits | Approved layers | Alex's layer verdicts |
-|---|---|---|---|---|---|
+| Record | Rating | Status | Device hits | Sector hits | Approved layers | Alex's layer verdicts |
+|---|---|---|---|---|---|---|
 <!--CANDIDATES-IN-->
 
 **`hybrid` — contextual only, limited to the named layer or function. Never presented as an overall positive reference.**
 
-| Record | Rating | Status | Term hits | Approved layers | Alex's layer verdicts |
-|---|---|---|---|---|---|
+| Record | Rating | Status | Device hits | Sector hits | Approved layers | Alex's layer verdicts |
+|---|---|---|---|---|---|---|
 <!--CANDIDATES-HYBRID-->
 
 **`out` — anti-references only: prohibitions and failure patterns.**
 
-| Record | Rating | Status | Term hits | Approved layers | Alex's layer verdicts |
-|---|---|---|---|---|---|
+| Record | Rating | Status | Device hits | Sector hits | Approved layers | Alex's layer verdicts |
+|---|---|---|---|---|---|---|
 <!--CANDIDATES-OUT-->
 
 ## Dialects available

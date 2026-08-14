@@ -227,6 +227,53 @@ brief. When the brief is thin, derive the dialect from what you *do* know
 lean on auction-editorial anyway, you must be able to name the compatibility
 you found; "nothing else was specified" is not one.
 
+### The hero declaration — required whenever a hero exists
+
+> **FULL-SCREEN SCENE, NOT FULL-FRAME OBJECT.**
+
+**Alex's stated default, recorded 2026-08-13 on his direct instruction and not
+inferred from any project:** a hero almost always owns the full first screen.
+**What is full-screen is the scene — the photographic field — never the scale of
+the subject inside it.** A car, a person or any other principal object is not
+stretched to the viewport edges to fill it; the air around the object is **part of
+the governing event, not unused space**.
+
+- **full-screen scene** — the strong default.
+- **edge-to-edge object** — not the default, and never the automatic reading of
+  "full-screen".
+- **a full-bleed field does not mean the object fills the frame.**
+
+Declare these nine, before the hero is built:
+
+| | |
+|---|---|
+| **viewport ownership** | does the hero own the first screen, and to what extent |
+| **scene treatment** | what the field *is* — environment, studio, landscape, constructed |
+| **object scale** | the subject's size **within the frame**, taken from the source composition |
+| **focal point** | where the eye lands first |
+| **negative-space region** | which air is doing work, and what work |
+| **text safe zone** | the region reserved for type and CTA before the crop is chosen |
+| **desktop crop** | decided |
+| **mobile crop** | decided **separately** — never inherited from desktop |
+| **asset suitability** | whether this frame can carry it at all |
+
+**If no frame can carry it: choose another asset, build a separate composition, or
+record the asset as unsuitable.** An aggressive crop is not a repair for a frame
+that was never a hero. `object-fit: cover` and `background-size: cover` are not
+decisions — applying either without checking the subject and the safe zones is the
+failure this rule names.
+
+**Exception — a hero composition Alex supplied.** When he provides an image *as a
+finished hero composition*, keep it: the object's placement is not re-arranged
+without his request, and the image may fill the hero as its own framing intends.
+The safe zones for navigation and type, and the mobile crop, are still verified.
+
+[Gate 1](#7-delivery-gates-and-report-format) may check the geometry — safe zones,
+silhouette integrity, crop. **[Gate 2](skills/academic-composition/SKILL.md#gate-2--structural-visual-review)
+answers what geometry cannot:** whether the air works as composition, whether the
+object reads whole and confidently, whether the hero has become a mechanically
+enlarged photograph, and whether object, type and emptiness form **one scene**.
+
 **The dimensionality line is also a required choice**, declared here — after the
 dialect and **before** the composition pass, because the role decides what the
 composition is made of. Its three answers and their obligations are in
@@ -920,22 +967,67 @@ drive two concrete decisions, is in
 **Two of the six gates live here. The other four are rules in their own places and
 are listed at the end of this section.**
 
-#### The explanation-free desirability gate
+#### Gate 1 — measurable conformance
 
-**Before delivery, look only at the rendered screenshots.** Hide the Design Read,
-the rationale, the vault citations, the audit results and the implementation notes.
-Judge what a visitor gets, which is the pixels and nothing else.
+**The Read declares measurable commitments before the build; the render is
+measured against them afterwards; a mismatch blocks.** The commitments belong to
+the brief, not to this file — first-screen ownership, full-bleed count, type-scale
+ratio, overlap count, ground changes, hero safe zones, whatever the direction
+actually rests on. What is fixed is that they are **stated in advance and checked
+in the render**, so a Read cannot describe a page the artefact never became.
 
-**Delivery is blocked unless every answer is clearly yes:**
+**One floor is not the Read's to lower.** On identity-led and image-led pages,
+**one governing event owns the first screen** — [A1](vault/EVIDENCE.md#a--demonstrated),
+restored 2026-08-13 from six of Alex's own records. A Read may commit above it and
+may only go below it by declaring the yield A1 states — a visitor arriving with a
+task rather than a first impression.
 
-1. Does the product feel **desirable before the concept is explained**?
-2. Does **perceived value match the category and the price**?
-3. Is the **dominant visual mass the thing the customer wants**?
-4. Does the page keep its **emotional force without annotations or rationale**?
-5. Would you **present these screenshots alone**, with confidence?
+> **Passing Gate 1 proves the means are present. It proves nothing about quality.**
+> The recorded counter-example is `projects/fixtures/cmc-concept-3`: full-viewport
+> hero at 100% of the first screen, two full-bleed masses, 15.9× type contrast —
+> every measurable commitment met, and rejected outright. **Gate 1 can never be
+> strengthened into Gate 2 by raising its thresholds.**
 
-A hesitant yes is a no. The gate exists because the author is the one person on
-earth who cannot see the page without its explanation attached.
+#### Gate 2 — structural visual review
+
+Runs on the render, and asks of **every device present: what work does it do.**
+Presence is what Gate 1 measured; function is what this gate tests, device by
+device, by substitution and removal. The seven questions and their failure
+conditions are in
+[academic-composition](skills/academic-composition/SKILL.md#gate-2--structural-visual-review).
+
+**This is the gate that catches formal compliance without compositional success**
+— the failure class where a full-screen hero exists and the governing event is
+conventional, a bleed exists and separates nothing, scale contrast exists and the
+large element repeats what the small one already said.
+
+#### Gate 3 — human desirability, and it is not the system's to declare
+
+**Desirability is Alex's verdict. The system may never record it as passed on the
+strength of its own explanation, its own audit, or a vote of its own critics.**
+
+The procedure, and it has no alternative form:
+
+1. **Present clean screenshots** — desktop and mobile, the rendered page and
+   nothing else.
+2. **Send no Design Read, no rationale, no audit result and no list of satisfied
+   requirements with them.** Those arrive only if Alex asks, and only after he has
+   looked.
+3. **Ask for the verdict: approve · revise · reject.**
+4. **Absence of an explicit approval is an unfinished gate, not a pass.** Silence
+   is not consent, and neither is a passing Gate 1 or a clean Gate 2.
+5. **Record the verdict and a one-line reason as evidence** for later runs, beside
+   the artefact it judged.
+
+The questions Alex is answering — and they are his to answer, not the system's to
+pre-answer — are whether the product feels desirable before the concept is
+explained, whether perceived value matches the category, whether the dominant mass
+is the thing the customer wants, and whether the page keeps its force without
+annotations.
+
+The gate exists because the author is the one person who cannot see the page
+without its explanation attached, and because a system that grades its own
+desirability will always pass.
 
 #### The rationale-dependency warning
 
@@ -952,7 +1044,7 @@ honest answer is yes, the artefact is not ready, however good the writing is.
 contrast, responsiveness, provenance, accessibility, token consistency and its own
 internal rationale, and was rejected outright on the screenshots.
 
-#### The other four gates, and where they live
+#### The remaining gates, and where they live
 
 | Gate | Where it binds |
 |---|---|

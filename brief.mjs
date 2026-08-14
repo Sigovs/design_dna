@@ -155,22 +155,47 @@ const words = request.toLowerCase().match(/[a-zа-я][a-zа-я-]{3,}/gi) ?? [];
 const stop = new Set(['design','brand','goal','homepage','website','site','page','redesign','luxury','the','for','and','with']);
 const terms = [...new Set(words.filter((w) => !stop.has(w)))];
 
-/* Deterministic ordering for the scaffold ONLY. It never selects. */
+/* Compositional devices — the moves a reference can teach, as distinct from the
+   industry it happens to be in. Kept deliberately small and readable. */
+const DEVICE = [
+  'bleed', 'full-bleed', 'full-screen', 'oversized', 'overlap', 'layer', 'layered',
+  'scale', 'crop', 'cropped', 'asymmetr', 'grid-break', 'interrupt', 'scrollytelling',
+  'scroll-linked', 'sticky', 'cinematic', 'montage', 'dominant-mass', 'active-negative-space',
+  'intentional-crop', 'rhythm-variation', 'tonal-structure', 'directed-eye', 'visual-silence',
+];
+
+/* Deterministic ordering for the scaffold ONLY. It never selects.
+   TWO INDEPENDENT AXES, and device relevance is read first.
+
+   Before 2026-08-13 the first key was term overlap with the request, so a brief
+   about a dealership surfaced dealerships — and dealership pages are the most
+   conventional artefacts in this library. A rating-3 record documenting overlap,
+   scale collision or grid interruption scored zero on vocabulary and sorted below
+   rating. The CMC Concept 2 brief cited eight references, three of them the same
+   Semler dealer pages, and none of the five records that carry the moves it needed.
+
+   Industry relevance is NOT removed — it is the second axis, still reported and
+   still ordering. What changed is that a reference is now ranked first by the
+   composition it can teach. */
 const score = (e) => {
   const hay = [e.id, e.title, e.note, e.works, ...Object.values(e.tags ?? {}).flat()].join(' ').toLowerCase();
-  const rel = terms.filter((t) => hay.includes(t)).length;
+  const device = DEVICE.filter((d) => hay.includes(d)).length;   // axis 1 — the move
+  const rel = terms.filter((t) => hay.includes(t)).length;       // axis 2 — the sector
   const ls = LAYERS.get(e.id) ?? [];
   const approved = ls.filter((l) => l.source === 'alex' && l.verdict === 'IN').length;
   const complete = (e.works ? 1 : 0) + (e.weaknesses ? 1 : 0) + (ls.length ? 1 : 0);
-  return [rel, approved, (e.dialects ?? []).length, complete, e.rating ?? 0];
+  return [device, e.rating ?? 0, rel, approved, (e.dialects ?? []).length, complete];
 };
 const rank = (a, b) => { const x = score(a), y = score(b); for (let i = 0; i < x.length; i++) if (y[i] !== x[i]) return y[i] - x[i]; return a.id.localeCompare(b.id); };
 
 const pool = (status) => sites.filter((e) => e.dialectStatus === status).sort(rank);
 const row = (e) => {
   const ls = (LAYERS.get(e.id) ?? []).filter((l) => l.source === 'alex' && /IN|OUT/.test(l.verdict));
-  const [rel, approved] = score(e);
-  return `| \`${e.id}\` | ${e.rating} | ${e.dialectStatus} | ${rel} | ${approved || '—'} | ${ls.map((l) => l.layer + ':' + l.verdict).join(', ') || '—'} |`;
+  /* Both axes are printed, because the point of separating them is that the agent
+     can see which one put a record where it is. Destructure by name, not by
+     position — the key order changed once and silently mislabelled two columns. */
+  const [device, , rel, approved] = score(e);
+  return `| \`${e.id}\` | ${e.rating} | ${e.dialectStatus} | ${device} | ${rel} | ${approved || '—'} | ${ls.map((l) => l.layer + ':' + l.verdict).join(', ') || '—'} |`;
 };
 
 const template = readFileSync(join(ROOT, 'projects/briefs/_TEMPLATE.md'), 'utf8');

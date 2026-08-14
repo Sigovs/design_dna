@@ -1,0 +1,158 @@
+/* ==========================================================================
+   Chicago Motor Cars — Concept 2
+   tokens.css — the single source of truth for colour, type, space, time.
+
+   Values go here. Never inline, never in main.css as a literal.
+   Editing this file means bumping ?v=N in index.html and design.html,
+   or the browser serves the cached copy.
+
+   Design Read this implements:
+     Reading   inventory-led homepage, editorial-technical
+     Mandate   REDESIGN — script wordmark, #CB141D, KARMA, four rooms, fact set
+     Style     HYBRID — anchor auction-editorial / contrast brief-derived evidential
+     Depth     SUPPORT — one film; otherwise two planes, paper and plates on paper
+   ========================================================================== */
+
+:root {
+
+  /* ---------------------------------------------------------------- COLOUR
+     Built in order: base -> ink -> rules -> accent  (color-taste D1).
+     Every ratio below is measured, not estimated. Composited-render
+     figures live in docs/DESIGN-READ.md; these are the token-level ones.
+     ---------------------------------------------------------------- */
+
+  --paper:        #F2EEE7;   /* warm bone. never #fff */
+  --paper-2:      #E7E1D6;   /* the plate every stock frame sits on */
+  --ground:       #141210;   /* the page's ONE tonal reversal. never #000 */
+
+  --ink:          #1A1814;   /* 15.33:1 on paper · 13.62:1 on plate */
+  --ink-2:        #5F5C58;   /* ink @0.68 — 5.72:1 on paper, 5.08:1 on plate.
+                                Was @0.65: that measured 5.18 on paper but
+                                only 4.61 on the plate, which is a tenth
+                                above the line. The ladder's floor is set by
+                                the WORST ground the ink lands on, not the
+                                first one it was checked against. @0.60 is
+                                4.41 and fails outright. */
+  --ink-on-ground:#F2EEE7;   /* 16.16:1 on ground */
+  --ink-2-on-ground: #A4A19C;/* paper @0.65 — 7.26:1 on ground */
+
+  /* TWO KINDS OF LINE, and they answer to different rules.
+
+     A RULE separates records. It is structure, not a control boundary, and
+     the grouping it expresses is also carried by spacing — so it is not
+     bound by the 3:1 figure.
+
+     A CONTROL LINE is the visible edge of something you can operate, and
+     colour I1 requires 3:1 against the page. On the first build every ruled
+     control used --rule-strong, which measures 2.61:1 on paper and 1.88:1
+     on the dark band. Both failed, and both were invisible in review
+     because the tokens were never measured where they landed. */
+  --rule:           rgb(26 24 20 / 0.16);   /* record separator */
+  --rule-strong:    rgb(26 24 20 / 0.42);   /* row hover — not a control edge */
+  --rule-on-ground: rgb(242 238 231 / 0.22);
+
+  --control-line:            rgb(26 24 20 / 0.55);    /* 3.79:1 on paper,
+                                                         3.37:1 on the plate */
+  --control-line-on-ground:  rgb(242 238 231 / 0.42); /* 3.70:1 on ground */
+
+  /* CMC red — CARRIED THROUGH UNTOUCHED under REDESIGN.
+     Derivation: measured from the existing CMC identity, not chosen.
+     Judged where it lands: on bone it reads as a stamp, and in the
+     automotive domain red carries no false signal.
+     THREE ROLES ONLY: primary action fill · current-room marker · the one
+     editorial mark. Under ~5% of visible pixels.
+
+     MEASURED CONSTRAINTS, and they bind:
+       #CB141D on --paper    4.97:1   OK as text
+       #CB141D on --paper-2  4.41:1   FAILS — never set red text on the plate
+       #CB141D on --ground   3.25:1   large text / boundaries only, never body
+       --paper on #CB141D    4.97:1   OK — the filled control's label       */
+  --red:          #CB141D;
+  --red-deep:     #A50F16;   /* 6.78:1 on paper — for red text at body size
+                                where the 4.97 figure is too close to the line */
+
+  --focus:        #1A1814;   /* ring colour; 15.33:1 on paper, 16.16 inverted */
+
+  /* ------------------------------------------------------------------ TYPE
+     Three voices, each with one systemic job (typography I8):
+       display  Big Shoulders  — sets place names as condensed blocks
+       body     Public Sans    — sustained reading at one measure
+       mono     IBM Plex Mono  — fixed advance width; the ledger
+     ------------------------------------------------------------------ */
+
+  --font-display: "Big Shoulders", "Oswald", "Haettenschweiler",
+                  "Arial Narrow", sans-serif;
+  --font-body:    "Public Sans", -apple-system, BlinkMacSystemFont,
+                  "Segoe UI", system-ui, sans-serif;
+  --font-mono:    "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Fluid, so type is correct at every width rather than at two (I3). */
+  --text-xs:      0.875rem;                                   /* 14px FLOOR */
+  --text-sm:      clamp(0.9375rem, 0.18vw + 0.90rem, 1rem);   /* 15 -> 16 */
+  --text-body:    clamp(1rem, 0.22vw + 0.95rem, 1.0625rem);   /* 16 -> 17 */
+  --text-lead:    clamp(1.125rem, 0.55vw + 1rem, 1.375rem);   /* 18 -> 22 */
+
+  /* display-1 was capped at 132px on the first build and the type mass then
+     outranked the photographic plate — which inverts the composition's own
+     dominant (C13: the subject is the room, not the sentence about it).
+     Capped at 80px so the plate carries the mass and the headline sits
+     under it in rank. */
+  --display-1:    clamp(2.5rem, 4.2vw + 0.75rem, 5rem);       /* 40 -> 80 */
+  --display-2:    clamp(2.125rem, 3.4vw + 1rem, 4rem);        /* 34 -> 64 */
+  --display-3:    clamp(1.375rem, 0.85vw + 1.15rem, 1.75rem); /* 22 -> 28 */
+
+  /* Optical correction encoded, not remembered (I3). Big Shoulders carries a
+     real optical-size axis, so the correction is the axis rather than a
+     tracking guess. */
+  --opsz-1: 72;  --opsz-2: 56;  --opsz-3: 32;
+
+  --lh-display:   0.88;
+  --lh-display-3: 1.04;
+  --lh-lead:      1.42;
+  --lh-body:      1.62;
+  --lh-mono:      1.35;
+
+  --track-display: -0.005em;
+  --track-mono:    0.12em;   /* uppercase mono is tracked (I4) */
+  --measure:       62ch;     /* one body measure, everywhere */
+  --measure-lead:  34ch;
+
+  /* ----------------------------------------------------------------- SPACE
+     4px base. Nothing on this page uses a value that is not here (I2).
+     ----------------------------------------------------------------- */
+  --space-1:  0.25rem;   /*   4 */
+  --space-2:  0.5rem;    /*   8 */
+  --space-3:  0.75rem;   /*  12 */
+  --space-4:  1rem;      /*  16 */
+  --space-5:  1.5rem;    /*  24 */
+  --space-6:  2rem;      /*  32 */
+  --space-7:  3rem;      /*  48 */
+  --space-8:  4rem;      /*  64 */
+  --space-9:  6rem;      /*  96 */
+  --space-10: 8rem;      /* 128 */
+  --space-11: 12rem;     /* 192 */
+
+  /* Sections exhale downward — 1 : 1.6, at every breakpoint (spacing D2). */
+  --section-top:    clamp(var(--space-8), 7vw, var(--space-9));
+  --section-bottom: clamp(var(--space-10), 11vw, var(--space-11));
+
+  --gutter:  clamp(var(--space-5), 4vw, var(--space-9));
+  --shell:   96rem;    /* 1536px — the outer measure */
+  --band:    72rem;    /* 1152px — the inner measure for text-led masses */
+
+  --header-h: 4.5rem;  /* 72px — counted in the mass scheme (U10) */
+
+  /* ------------------------------------------------------------------ TIME
+     Entering decelerates, exiting accelerates (motion I3).
+     ------------------------------------------------------------------ */
+  --dur-1: 0.15s;
+  --dur-2: 0.25s;
+  --dur-3: 0.4s;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in:  cubic-bezier(0.55, 0, 1, 0.45);
+
+  /* ----------------------------------------------------------------- FORMS
+     ----------------------------------------------------------------- */
+  --hairline: 1px;
+  --tap:      2.75rem;   /* 44px minimum target */
+}

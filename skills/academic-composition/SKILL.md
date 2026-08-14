@@ -1,6 +1,6 @@
 ---
 name: academic-composition
-description: Classical academic composition translated into digital art direction, interface design, responsive design, and visual critique — in two tiers. INVARIANT (dominant/subordinate/support hierarchy, unity and subordination, tonal structure before colour, figure-ground clarity, optical over mathematical balance, directed eye movement, rhythm with variation, proportion relationships, intentional edges and crops, tension with counterweight, compositional resolution, a page that holds its standard to its last mass, responsive recomposition, the dominant being the subject rather than the device presenting it, the means of the visitor's task surviving the composition, major masses established before components, a decided compositional centre, a declared asset dependency that survives an ordinary asset, operational truth kept from outranking the buyer's motivation, the page — not the section — being the composition, and a first screen that identifies what it is) and DIALECT (auction-editorial's composed asymmetry and downward exhale, with yields-when). Contains the COMPOSITION READ and COMPOSITION PLAN that run after dialect selection and before any grid, component or surface styling decision, and routes to references/ for the academic method behind each stage. Use before laying out any full page or substantial section, when art-directing imagery, and when critiquing a design.
+description: Classical academic composition translated into digital art direction, interface design, responsive design, and visual critique — in two tiers. INVARIANT (dominant/subordinate/support hierarchy, unity and subordination, tonal structure before colour, figure-ground clarity, optical over mathematical balance, directed eye movement, rhythm with variation, proportion relationships, intentional edges and crops, tension with counterweight, compositional resolution, a page that holds its standard to its last mass, responsive recomposition, the dominant being the subject rather than the device presenting it, the means of the visitor's task surviving the composition, major masses established before components, a decided compositional centre, a declared asset dependency that survives an ordinary asset, operational truth kept from outranking the buyer's motivation, the page — not the section — being the composition, a full-screen field treated as a scene rather than an enlarged object, and a first screen that identifies what it is) and DIALECT (auction-editorial's composed asymmetry and downward exhale, with yields-when). Contains the COMPOSITION READ and COMPOSITION PLAN that run after dialect selection and before any grid, component or surface styling decision, and routes to references/ for the academic method behind each stage. Use before laying out any full page or substantial section, when art-directing imagery, and when critiquing a design.
 ---
 
 # Academic Composition
@@ -700,6 +700,50 @@ a request to build one section is repeatedly read as licence to invent a small
 separate website inside a page. It rests on no single vault record and is not
 evidence of a demonstrated preference.
 
+### C22 — A full-screen field is a scene, not an enlarged object
+
+**When a composition claims the full first screen, what fills it is the scene. The
+principal object is scaled by the framing of the source photograph, never by the
+ambition to reach the viewport edges.**
+
+Four obligations, and each fails in any aesthetic:
+
+- **The silhouette survives.** A subject whose outline or defining detail is cut by
+  the viewport is not cropped, it is damaged.
+- **The type has a region that was reserved, not found.** The safe zone for
+  navigation, headline and control is decided **before** the crop, not discovered
+  after it.
+- **Mobile is cropped separately.** A second aspect ratio is a second composition,
+  and inheriting the desktop focal point is how a subject ends up centred on its own
+  door handle.
+- **`cover` is not a decision.** `object-fit: cover` and `background-size: cover`
+  applied without checking the subject and the safe zones is the mechanism by which
+  all three failures above arrive at once.
+
+**The air around the object belongs to the composition.** It is where the subject is
+given room to be seen, and it is the first thing an enlargement destroys — which is
+why a hero that has been scaled up to fill the screen reads as a photograph made
+bigger rather than as a scene.
+
+**When no available frame can carry the screen, the honest outcomes are: choose a
+different asset, construct a separate composition, or record the asset as
+unsuitable.** An aggressive crop is not a repair.
+
+*Why it's universal:* the failure is not a matter of taste — a cut silhouette, a
+headline sitting on the subject's face and a mobile crop centred on nothing are
+defects in every register, and they are produced by the same shortcut in every case.
+
+*Boundary:* [C9](#invariant) governs edges and crops as a compositional decision;
+C22 governs the specific case where the frame is the whole first screen and the
+temptation is to solve it by scale. The house preference that a hero usually *does*
+own the first screen is Alex's stated default and lives in
+[TASTE.md's hero declaration](../../TASTE.md#the-hero-declaration--required-whenever-a-hero-exists),
+with the nine fields a Read must declare and the exception for a hero composition he
+supplied himself.
+
+*Recorded 2026-08-13 on Alex's direct instruction* `[A]`, in his words:
+**"Full-screen scene, not full-frame object."** It is not inferred from any project.
+
 ## COMPOSITION READ
 
 Runs **after the dialect declaration** and **before typography, colour, effects,
@@ -776,6 +820,48 @@ COMPOSITION PLAN
 
 Only then: grid, columns, sections, components, containers, cards, spacing
 values, breakpoints, implementation patterns.
+
+**The Plan also states its measurable commitments** — the handful of properties the
+direction actually rests on, written as numbers before the build so
+[Gate 1](../../TASTE.md#7-delivery-gates-and-report-format) can measure them in the
+render: first-screen ownership, full-bleed count, type-scale ratio, overlap count,
+ground changes, hero safe zones. A Plan that commits to nothing measurable has made
+no promise a render can break.
+
+---
+
+## Gate 2 — structural visual review
+
+**Runs on the render, after Gate 1 and before Gate 3. Gate 1 measured whether the
+means are present. This gate asks what work each one does — and a device that is
+present and does no work is a failure, not a neutral.**
+
+For **every device the page actually uses**, answer its question. The answer is a
+sentence about the page, not a restatement of the device.
+
+| Device present | The question | It has failed when |
+|---|---|---|
+| **Full-screen hero** | What event is happening? Name it in one sentence. | The sentence describes an object rather than an event, or the hero would transfer unchanged to a competitor |
+| **Full-bleed mass** | Which chapter does it separate or join, and what changed across it? | It sits inside one chapter and nothing changes across it |
+| **Scale contrast** | What does the large element say that the small one cannot? | The large element repeats what the caption beneath it already says |
+| **Overlap / layering** | Which element is subordinated by the overlap? | Rank is unchanged — it is collage, not hierarchy |
+| **Large negative space** | A pause between which two events? | There is no event on one side of it: uncomposed space, not silence |
+| **Motion** | How does the scene read after it that it did not before? | The reading is unchanged |
+| **Sections that look different** | Write out each section's compositional formula. | Two formulas match — they are one section shown twice |
+
+**The hero gets four more, because geometry cannot answer them**
+([C22](#invariant)): does the air work as part of the composition · does the object
+read whole and confidently · has the full-screen hero become a mechanically enlarged
+photograph · do object, type and emptiness form **one** scene.
+
+**Why this gate exists, and the counter-example it was built from.** A page can meet
+every measurable commitment and still be a failure of direction:
+`projects/fixtures/cmc-concept-3` has a full-viewport hero at 100% of the first
+screen, two full-bleed masses and 15.9× type contrast, and **seven of seven devices
+fail their function test** — the giant `REGERA` repeats the caption set directly
+beneath it, neither bleed marks a chapter change, the overlap changes no rank, and
+its two vehicle sections share one formula. It was rejected outright.
+`npm run fixtures` asserts that this stays true.
 
 ---
 

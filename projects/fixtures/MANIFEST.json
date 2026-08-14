@@ -34,10 +34,6 @@
       },
       "files": [
         {
-          "path": "assets/css/concept3.css",
-          "sha256": "5ad968e8706698cdbb2342234e3c8905c9d7d443e60b715dbc7355e0d4f850a6"
-        },
-        {
           "path": "assets/css/main.css",
           "sha256": "f786dc4c00107c82e076b957a611458940991c5ac06409dd396fb8fffadcb711"
         },
@@ -92,10 +88,6 @@
         {
           "path": "assets/img/stock/cmc-rimac-nevera.jpg",
           "sha256": "fd05ad7325775467c16251bd801a2e10b0fc49e6e0ba0647a4dba6275b8b16ea"
-        },
-        {
-          "path": "assets/js/concept3.js",
-          "sha256": "ff68dc923cce585a22d5a3794fb745148de6d88a0a209694ce17f6a7fb3d57dc"
         },
         {
           "path": "assets/js/main.js",
@@ -322,5 +314,6 @@
         "reason": "no explicit approval from Alex on record; his recorded verdict is reject"
       }
     }
-  ]
+  ],
+  "note_2026_08_13": "The Concept 2 fixture was frozen by copying whole asset directories, which pulled in Concept 3's concept3.css and concept3.js — files Concept 2 never references. Removed the same day and the hash list regenerated. Shared logos, the image PROVENANCE.txt and the unused 960px variant are kept: they are part of Concept 2's own asset folder, not another concept's work."
 }

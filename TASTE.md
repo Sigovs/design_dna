@@ -638,6 +638,7 @@ its own `yields when:`.
 | [color-taste](skills/color-taste/SKILL.md) | AA verified every change; never meaning by hue alone; legibility fixed at the background layer. | Chromatic restraint — neutral dark base, smoky desaturated accents used as a setting. |
 | [generated-imagery](skills/generated-imagery/SKILL.md) | **Cross-dialect.** Origin declared before generation; the prompt derived from the brief, never typed from taste; nothing synthetic depicts a real product, place or person; no type, UI or logo inside the frame; the reading zone held at generation rather than patched with a scrim afterwards; provenance travelling with the file permanently; the composition surviving an ordinary photograph; mobile frames authored rather than cropped. | **None.** Whether an image may be synthetic is not an aesthetic position, and a preferred generated look would be the AI-default arriving through the back door. |
 | [motion-judgment](skills/motion-judgment/SKILL.md) | **Cross-dialect.** Role declared before effect; one primary temporal idea per viewport; the subject decides rather than the amount; every stoppable frame is a designed frame; the static build stands alone; the user keeps the transport; comprehension never waits on choreography; mobile authored separately; reduced motion preserves meaning; a device that spends the visitor's advance returns it in understanding. Contains the MOTION READ and PLAN; routes to `references/` for category judgment, the audit rubric and implementation. | **None.** Whether to move is not a taste position — the house motion feel lives in `motion-taste`. |
+| [content-provenance](skills/content-provenance/SKILL.md) | **Cross-dialect.** The ledger exists before the claim is typed; coverage rather than validity is the mechanism; a prior concept, design read or agent output is never a source; a placeholder is visibly a placeholder; a dated figure carries its date in the render; a promise is a claim about the business, not a piece of copy; content shape is never invented to fill a composition. | **None.** Whether a number is true is not an aesthetic position. |
 | [motion-taste](skills/motion-taste/SKILL.md) | Reduced-motion path for everything; state changes perceivable with keyboard parity; no jank. | Calm and physical — crossfade over travel, subtle hover, motion never as identity. |
 | [anti-patterns](skills/anti-patterns/SKILL.md) | The five universal failure modes, controlled-irregularity legibility, uncounted persistent overlays, competing art directions inside one page, and task-relevant routes that cannot be found — or cannot be told apart from the route beside them. | The trope bans — AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, template anonymity. |
 
@@ -659,6 +660,14 @@ image** — generated, upscaled, extended, generatively filled. It sits outside 
 conflict order because it has no dialect tier: it decides whether an image may be
 synthetic, what it may claim, and what must be true of it. What it should then look
 like comes from the dialect already selected.
+
+**`content-provenance` binds whenever the page asserts anything** — a price, a count,
+a date, a duration, a guarantee, a coverage area, a superlative. It is the sibling of
+`generated-imagery` and sits outside the conflict order for the same reason: it
+decides whether a claim may appear at all, not how it should look. Its last rule is
+the one that reaches back into composition — **content shape is never invented to fill
+a composition.** Four equal slots were why four prices were needed, and the prices were
+fabricated because the grid had already been built.
 
 **`motion-judgment` decides before `motion-taste` executes.** Whether a thing should
 move, and what for, is settled in the MOTION READ; how it then behaves — duration
@@ -964,10 +973,48 @@ drive two concrete decisions, is in
 
 ### 7a. The delivery gates — run before the report is written
 
-**Two of the six gates live here. The other four are rules in their own places and
-are listed at the end of this section.**
+**Five gates, in this order, and none of them is skippable.**
 
-#### Gate 1 — measurable conformance
+| | Gate | Artefact |
+|---|---|---|
+| 1 | **Measurable Conformance** | `gate1.json` — and `hero.json`, a required delegated check |
+| 2 | **Structural and Authorship Conformance** | `gate2.json` — and `authorship.json`, a required delegated artefact |
+| 3 | **Product Usefulness** | `product.json` |
+| 4 | **Content Provenance** | `content-ledger.json` |
+| 5 | **Human Desirability** | none. Alex's verdict, and the system may not record it. |
+
+**A gate is run when its artefact exists, not when a report says it passed.** Before
+anything is shown to a human, the six artefacts above must exist, have been computed
+against *this* build, and have been produced in order. `gates/lib/seal.mjs` enforces
+that; `npm run gate5` refuses the handoff otherwise. Three mechanisms:
+
+- **Presence** — a missing artefact is NOT RUN. There is no other way to say "passed".
+- **Staleness** — each artefact stores the source hash it was computed against. One
+  edited byte reverts all of them to not-run. A page cannot be fixed after its gate
+  passed.
+- **Order** — out-of-sequence finish times fail. Gate 3 cannot be answered before
+  Gate 2 has been.
+
+A refusal at the seal is a **workflow failure**. It is reported as one, and it is
+never recorded as taste evidence — nothing about the design has been learned.
+
+> #### Gates 2 and 3 are conjunctive
+>
+> **Authorship and usefulness are both required. Neither may be traded for the
+> other, and excelling at one never compensates for failing the other.**
+>
+> Two concepts were rejected on the same day and are frozen as the proof.
+> `projects/fixtures/cmc-index2-spine` was authored and useless — distinctive,
+> coherent, and it failed task hierarchy, inventory discoverability and desire; the
+> register became the product. `projects/fixtures/cmc-index3-conventional` was the
+> page built to correct that, and the correction restored every banned structure at
+> once: four equal inventory cards, four equal process columns, repeated horizontal
+> bands, a cropped hero, and four fabricated prices.
+>
+> **The correction applied to one produced the other.** That is why they are one
+> fixture in two halves, and why a chain that lets either pass is broken.
+
+#### Gate 1 — Measurable Conformance
 
 **The Read declares measurable commitments before the build; the render is
 measured against them afterwards; a mismatch blocks.** The commitments belong to
@@ -988,7 +1035,23 @@ task rather than a first impression.
 > every measurable commitment met, and rejected outright. **Gate 1 can never be
 > strengthened into Gate 2 by raising its thresholds.**
 
-#### Gate 2 — structural visual review
+**The hero is verified on the delivered render — `hero.json`.** Not on the source
+asset. The declared subject box is mapped through the actual `object-fit` /
+`object-position` mapping at every required viewport, and checked for clipping,
+clearance and overlap against nav and declared text-safe zones. If the subject moves
+— video, or a sequence — **a single declared box is insufficient**: sample the
+declared interval, give per-sample boxes or a union box, and **the worst sample
+governs the pass**. Annotated evidence images are emitted at every viewport, plus one
+annotated *source* frame, and a human confirms the declared box actually contains the
+vehicle. A manually declared but visually wrong box cannot produce a pass.
+
+This is the check that was missed. In `cmc-index3-conventional` the declared hero
+interval was not even the delivered one — the encode opens on a daylight side profile
+before cutting to the night garage, and by the end the car is clipped at the bottom on
+desktop and on both edges on mobile. All of it invisible from the source master;
+all of it obvious on the render.
+
+#### Gate 2 — Structural and Authorship Conformance
 
 Runs on the render, and asks of **every device present: what work does it do.**
 Presence is what Gate 1 measured; function is what this gate tests, device by
@@ -1001,7 +1064,52 @@ conditions are in
 conventional, a bleed exists and separates nothing, scale contrast exists and the
 large element repeats what the small one already said.
 
-#### Gate 3 — human desirability, and it is not the system's to declare
+**Structural repetition is measured semantically, never by class name.** A count of
+`.card` selectors, border radii or explicit borders proves nothing: the rejected
+concept carried none of them and shipped four card-equivalent modules, and a
+class-name detector reported `cards: 0`. `gates/structure.mjs` finds repeated units
+by **rendered geometry**, so extra wrappers, nested divs, a `<ul>` or a flex row
+instead of a grid cannot hide them. **`cards: 0` may never pass a layout containing
+card-equivalent repeated masses.**
+
+**The detector is a detector, not an oracle.** It cannot see absolutely-positioned
+repeats, masses that repeat across scroll, or repetition that is compositional rather
+than geometric. So Gate 2 is not its output. Gate 2 is: the detector's output with
+**every finding explicitly disposed of by a human** (findings arrive undisposed and
+the detector never clears itself); a full-page screenshot; a written human
+section-by-section formula inventory; and reconciliation between the two. **An empty
+detector report is not evidence of structural originality** — only that this detector
+found nothing.
+
+`authorship.json` is the delegated artefact of this gate: the record that the
+operations the Design Read committed to actually survived into the render. An
+operation declared and then lost during implementation is a Gate 2 failure, not a
+footnote.
+
+#### Gate 3 — Product Usefulness
+
+**Can a person do the thing they came to do.** Task hierarchy, discoverability of the
+primary content, reachability of the primary and secondary commercial actions, and
+whether the page produces desire for the thing being sold rather than for its
+own organisation.
+
+Generic usability is not automatically sufficient, and it is never a substitute for
+Gate 2 — see the conjunctive rule above. `cmc-index3-conventional` passes this gate
+cleanly and is still a rejected page.
+
+#### Gate 4 — Content Provenance
+
+**Every claim-shaped string in the rendered page must map to a ledger entry.** Prices,
+counts, dates, durations, guarantees, coverage areas, fee structures, superlatives.
+The seven invariants are in
+[content-provenance](skills/content-provenance/SKILL.md#invariant).
+
+**A project with no ledger fails outright, with no claims examined.** The absence is
+the finding — coverage is the mechanism, not validity, because the fabricated claims
+were never recorded in the first place. A prior concept, a design read or an agent's
+own output can never be a source.
+
+#### Gate 5 — Human Desirability, and it is not the system's to declare
 
 **Desirability is Alex's verdict. The system may never record it as passed on the
 strength of its own explanation, its own audit, or a vote of its own critics.**
@@ -1015,7 +1123,7 @@ The procedure, and it has no alternative form:
    looked.
 3. **Ask for the verdict: approve · revise · reject.**
 4. **Absence of an explicit approval is an unfinished gate, not a pass.** Silence
-   is not consent, and neither is a passing Gate 1 or a clean Gate 2.
+   is not consent, and neither is a validating chain of all four gates beneath it.
 5. **Record the verdict and a one-line reason as evidence** for later runs, beside
    the artefact it judged.
 
@@ -1044,9 +1152,11 @@ honest answer is yes, the artefact is not ready, however good the writing is.
 contrast, responsiveness, provenance, accessibility, token consistency and its own
 internal rationale, and was rejected outright on the screenshots.
 
-#### The remaining gates, and where they live
+#### The standing constraints, and where they live
 
-| Gate | Where it binds |
+These bind alongside the five gates; they are not steps in the chain.
+
+| Constraint | Where it binds |
 |---|---|
 | **Core-defer blocking** — no `defer` on the central proposition, dominant composition, Anchor, customer desire or perceived value | [§2b](#2b-the-critique-panel) |
 | **Buyer-desire hierarchy** — operational truth may organise support and may not displace the buyer's motivation | [C20](skills/academic-composition/SKILL.md#invariant) |
@@ -1069,6 +1179,16 @@ End any visual work with:
   row per section, and every column change either carried by the concept or named
   as drift.
 - **Critique panel + disposition table** — where §2b ran. Every point disposed of.
+- **Gate chain** — the seal line from `npm run gate5`: each of the six artefacts as
+  pass / fail / STALE / NOT RUN, with the source and chain seals. A report that
+  claims a gate without its artefact is claiming something that did not happen.
+- **Structural formula inventory** — one row per section, written out by hand, and
+  reconciled against the detector's findings. Every detector finding disposed of
+  explicitly; an empty detector report stated as such, never as originality.
+- **Operations ledger** — every operation the Design Read committed to, and whether
+  it survived into the render. A lost operation is named, not omitted.
+- **Content ledger** — every claim, its status and its source. Or the explicit
+  statement that the page makes no claims.
 - **Invariants applied** — which bound the work, and where they bit.
 - **Dialect yields** — every dialect rule you set aside, with the `yields when:`
   condition that justified it. A yield is a normal outcome; an unreported yield

@@ -650,6 +650,14 @@ structure.
 ## The gate
 
 **Before any of it — the delivery gates** ([TASTE.md §7a](../../TASTE.md#7-delivery-gates-and-report-format))
+- [ ] All six chain artefacts exist, were computed against **this** build, and are in order — `npm run gate5` validates rather than refuses. A claimed gate with no artefact is NOT RUN.
+- [ ] Structural repetition checked **semantically**, not by class name. `cards: 0` never passes a layout containing card-equivalent repeated masses.
+- [ ] Every structural finding disposed of by hand, and the written section-by-section formula inventory reconciled against the detector. An empty detector report is not originality.
+- [ ] No two sections share a compositional formula. Four equal modules are one module shown four times, however they are nested.
+- [ ] Every operation the Design Read committed to survived into the render — or is named as lost, which is a failure and not a footnote.
+- [ ] The hero verified on the **delivered composited render** at every viewport, with annotated evidence and a human confirming the subject box. If the subject moves, the worst sample governs.
+- [ ] Every claim-shaped string maps to a content-ledger entry. No ledger = fail, with no claims examined.
+- [ ] Authorship **and** usefulness both hold. Neither was traded for the other.
 - [ ] Screenshots reviewed with the Design Read, rationale and audits hidden — and the product reads as desirable before it is explained.
 - [ ] Perceived value matches the category and price; the dominant mass is the thing the customer wants.
 - [ ] The defence is not stronger than the artefact.
@@ -668,6 +676,8 @@ structure.
 - [ ] Any irregularity is legible and reads as intentional.
 - [ ] Depth cues coherent with the spatial model; elevation matches real layering.
 - [ ] Every task-relevant route findable without hover, animation or guessing, and legible before commitment.
+- [ ] Every price, count, date, duration, guarantee and superlative has a recorded source that is not a prior concept, a design read or an agent's own output.
+- [ ] No content was invented to fill a slot — where the honest content is three items, the composition holds three.
 
 **Dialect — when auction-editorial is active**
 - [ ] No AI-default palette or archetype (or a named structural differentiation).

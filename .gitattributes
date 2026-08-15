@@ -1,0 +1,9 @@
+# The last matching pattern wins, so the general rule goes first.
+* text=auto
+
+# Frozen regression artefacts. Their SHA-256 hashes are the whole point of them,
+# so git must never rewrite a byte on the way in or out. Without this, a Windows
+# checkout with core.autocrlf=true converts every text file in the fixtures to
+# CRLF and the manifest reports nine files "CHANGED" — a false alarm that trains
+# people to ignore the one alarm that matters.
+projects/fixtures/** -text

@@ -1,0 +1,433 @@
+/* =============================================================================
+   index3 — layout and surface.
+
+   ONE RULE, AND IT DECIDES EVERYTHING: the page is dark where the car is
+   wanted and bright where it is bought. Two dark chapters bracket the page —
+   the film at the top, the studio at the bottom — and every control the visitor
+   can operate lives on the daylight ground between them, where the accent also
+   lives. Nothing on this page is a card; separation is by rule, interval and
+   ground, never by a box.
+
+   Every value resolves to a token in c3-tokens.css.
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+html, body { overflow-x: clip; }
+body {
+  margin: 0; background: var(--day); color: var(--ink);
+  font-family: var(--sans); font-size: var(--t-body); line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img, svg, video { max-width: 100%; }
+img { height: auto; display: block; }
+[hidden] { display: none !important; }   /* an author display rule outranks the UA hidden rule */
+h1, h2, h3, p, ul, ol, dl, dd, figure, blockquote { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+a { color: inherit; }
+button, input, select { font: inherit; color: inherit; }
+
+:where(a, button, input, select, [tabindex]):focus-visible {
+  outline: 3px solid var(--red); outline-offset: 2px; border-radius: 1px;
+}
+.on-dark :where(a, button, input, select):focus-visible { outline-color: var(--lit); }
+
+.sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+      overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.skip { position: absolute; left: var(--s4); top: -6rem; z-index: 100;
+        padding: var(--s3) var(--s5); background: var(--ink); color: var(--paper);
+        font-family: var(--grotesk); font-size: var(--t-micro); text-decoration: none; }
+.skip:focus { top: var(--s4); }
+
+.shell { max-width: var(--shell); margin-inline: auto; padding-inline: var(--gutter); }
+
+/* ---- type roles ----------------------------------------------------------- *
+   Space Grotesk: every headline, number, price and label.
+   Instrument Sans: everything meant to be read continuously.                  */
+.h1, .h2, .h3, .fig, .price {
+  font-family: var(--grotesk); font-weight: 700; letter-spacing: -.022em;
+  line-height: 1.02; text-wrap: balance;
+}
+.h1  { font-size: var(--t-hero); }
+.h2  { font-size: var(--t-h2); }
+.h3  { font-size: var(--t-h3); line-height: 1.12; letter-spacing: -.012em; }
+.fig { font-size: var(--t-fig); font-variant-numeric: tabular-nums; }
+.price { font-size: var(--t-price); font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+
+.label {
+  font-family: var(--grotesk); font-size: var(--t-micro); font-weight: 500;
+  line-height: 1.2; letter-spacing: var(--track); text-transform: uppercase;
+  color: var(--ink-70);
+}
+/* every rank on a dark chapter takes the lit ink; the dimmed step is the only
+   thing that changes */
+.on-dark { color: var(--lit); }
+.on-dark .label { color: var(--lit-70); }
+.on-dark .note { color: var(--lit-70); }
+.lead { font-size: var(--t-lead); line-height: 1.5; max-width: 36ch; }
+.note { color: var(--ink-70); max-width: 52ch; }
+p { text-wrap: pretty; }
+
+/* ---- controls -------------------------------------------------------------
+   One filled primary per view. Everything else is a ruled action.            */
+.btn {
+  display: inline-flex; align-items: center; gap: var(--s3);
+  padding: var(--s4) var(--s6); min-height: 3rem;
+  background: var(--red); color: var(--lit);           /* 5.14:1 */
+  font-family: var(--grotesk); font-size: var(--t-micro); font-weight: 700;
+  letter-spacing: var(--track); text-transform: uppercase; text-decoration: none;
+  border: 0; cursor: pointer;
+  transition: background-color var(--d1) var(--ease);
+}
+.btn:hover { background: var(--red-deep); }
+.btn--ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px var(--rule-2); }
+.btn--ghost:hover { background: rgb(var(--ink-rgb) / .07); }
+.on-dark .btn--ghost { color: var(--lit); box-shadow: inset 0 0 0 1px var(--rule-lit); }
+.on-dark .btn--ghost:hover { background: rgb(var(--lit-rgb) / .12); }
+
+.act {
+  display: inline-flex; align-items: baseline; gap: var(--s3);
+  font-family: var(--grotesk); font-size: var(--t-micro); font-weight: 700;
+  letter-spacing: var(--track); text-transform: uppercase; text-decoration: none;
+  padding-block-end: var(--s2); border-bottom: 2px solid var(--red);
+  transition: gap var(--d2) var(--ease);
+}
+.act:hover { gap: var(--s4); }
+.on-dark .act { border-bottom-color: var(--lit); }
+
+/* ---- the bar --------------------------------------------------------------
+   It opens over the film with the film's own falloff behind it, and takes a
+   solid ground only once it has left the chapter it opened over.             */
+.veil { position: fixed; inset: 0 0 auto 0; height: 8rem; z-index: 40; pointer-events: none;
+        background: linear-gradient(to bottom, rgb(5 8 11 / .72), rgb(5 8 11 / 0)); }
+.veil.is-off { opacity: 0; transition: opacity var(--d3) var(--ease); }
+.bar {
+  position: fixed; inset: 0 0 auto 0; z-index: 50; color: var(--lit);
+  border-bottom: 1px solid transparent;
+  transition: background-color var(--d3) var(--ease), color var(--d3) var(--ease),
+              border-color var(--d3) var(--ease);
+}
+.bar.is-solid { background: var(--day); color: var(--ink); border-bottom-color: var(--rule); }
+.bar__in { max-width: var(--shell); margin-inline: auto; padding: var(--s5) var(--gutter);
+           display: flex; align-items: center; gap: var(--s6);
+           transition: padding-block var(--d3) var(--ease); }
+.bar.is-moved .bar__in { padding-block: var(--s3); }
+.wm { display: block; fill: currentColor; }
+.bar__mark { display: block; flex: none; }
+.bar__mark .wm { width: clamp(8rem, 11vw, 10.5rem); }
+.bar__menu { display: none; }
+.bar__nav[hidden] { display: none; }
+.bar__nav { margin-inline-start: auto; display: flex; gap: clamp(var(--s5), 2vw, var(--s7));
+            font-family: var(--grotesk); font-size: var(--t-micro); font-weight: 500;
+            letter-spacing: var(--track); text-transform: uppercase; }
+.bar__nav a { text-decoration: none; opacity: .8; padding-block: var(--s2); }
+.bar__nav a:hover { opacity: 1; }
+.bar__tel { display: flex; align-items: baseline; gap: var(--s3); text-decoration: none;
+            font-family: var(--grotesk); font-size: var(--t-micro); font-weight: 700;
+            letter-spacing: var(--track); padding-inline-start: var(--s6);
+            border-inline-start: 1px solid currentColor; }
+.bar__tel span { text-transform: uppercase; opacity: .7; font-weight: 500; }
+.bar__tel b { font-weight: 700; font-variant-numeric: tabular-nums; }
+
+/* =============================================================================
+   1 · THE FILM — night. The scene fills the viewport; the car does not. It is
+   drawn at the framing of the source footage and it approaches from the far end
+   of a real garage, so the air around it is the event rather than a margin.
+   ========================================================================== */
+.film { position: relative; min-height: 100svh; display: grid; align-items: center;
+        background: var(--night); overflow: hidden; isolation: isolate; }
+.film__media { position: absolute; inset: 0; z-index: -2; }
+.film__media video, .film__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 46%; }
+/* the reading zone is held at the left edge, where the footage is darkest */
+.film::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    linear-gradient(to right, rgb(5 8 11 / .90) 0%, rgb(5 8 11 / .68) 34%, rgb(5 8 11 / 0) 64%),
+    linear-gradient(to top, rgb(5 8 11 / .60) 0%, rgb(5 8 11 / 0) 44%);
+}
+.film__in { max-width: var(--shell); margin-inline: auto; width: 100%;
+            padding: calc(var(--bar-h) + var(--s8)) var(--gutter) var(--s9); }
+.film__claim { max-width: 34rem; }
+.film__claim .h1 { margin-block-start: var(--s4); }
+.film__claim .lead { margin-block-start: var(--s5); color: rgb(var(--lit-rgb) / .88); }
+.film__row { margin-block-start: var(--s7); display: flex; flex-wrap: wrap; gap: var(--s3); }
+
+/* =============================================================================
+   2 · THE FORECOURT — daylight, and the page's primary task. The search sits in
+   the empty plaza the photograph already contains, so the reading zone was
+   found in the frame rather than cut into it.
+   ========================================================================== */
+.find { position: relative; isolation: isolate; background: var(--day);
+        min-height: min(84svh, 44rem); display: grid; align-items: center; }
+.find__media { position: absolute; inset: 0; z-index: -2; }
+.find__media img { width: 100%; height: 100%; object-fit: cover; object-position: 62% 50%; }
+.find::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(to right, rgb(217 214 207 / .96) 0%, rgb(217 214 207 / .88) 30%, rgb(217 214 207 / .10) 58%, rgb(217 214 207 / 0) 74%); }
+.find__in { max-width: var(--shell); margin-inline: auto; width: 100%;
+            padding: var(--s9) var(--gutter); }
+.find__box { max-width: 40rem; }
+.find__box .h2 { margin-block-start: var(--s4); }
+.find__box .note { margin-block-start: var(--s4); }
+
+.finder { margin-block-start: var(--s6); display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr)) auto; gap: var(--s3); }
+.finder .kw { grid-column: 1 / 4; }
+.finder label { display: block; }
+.finder select, .finder input {
+  width: 100%; min-height: 3rem; padding: var(--s3) var(--s4);
+  background: rgb(244 242 239 / .92); border: 1px solid var(--rule-2); border-radius: 0;
+  font-family: var(--grotesk); font-size: var(--t-micro); font-weight: 500; letter-spacing: .02em;
+  appearance: none;
+}
+.finder select { background-image: linear-gradient(45deg, transparent 50%, var(--ink) 50%),
+                                   linear-gradient(135deg, var(--ink) 50%, transparent 50%);
+                 background-position: right 1.1rem center, right .75rem center;
+                 background-size: 6px 6px, 6px 6px; background-repeat: no-repeat; }
+.finder .btn { justify-content: center; }
+.bands { margin-block-start: var(--s5); display: flex; flex-wrap: wrap; gap: var(--s2); }
+.bands a { font-family: var(--grotesk); font-size: var(--t-micro); font-weight: 500;
+           letter-spacing: .04em; text-decoration: none; padding: var(--s2) var(--s4);
+           box-shadow: inset 0 0 0 1px var(--rule-2); }
+.bands a:hover { background: rgb(var(--ink-rgb) / .08); }
+.find__count { margin-block-start: var(--s5); font-family: var(--grotesk);
+               font-size: var(--t-micro); letter-spacing: .04em; color: var(--ink-70); }
+.find__count b { font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+
+/* =============================================================================
+   3 · THE LINE-UP — four vehicles standing on one floor line at their true
+   relative sizes, with their records aligned in four columns beneath. It is a
+   comparison table whose rows are cars: the silhouettes, the mileages and the
+   prices are all read across in one movement.
+   ========================================================================== */
+.line { background: var(--day); padding-block: clamp(var(--s8), 8vw, var(--s10)) clamp(var(--s8), 7vw, var(--s9)); }
+.line__head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between;
+              gap: var(--s5); padding-block-end: var(--s7); }
+.line__head .h2 { margin-block-start: var(--s3); }
+.lot { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s5);
+       align-items: end; }
+.lot__car { display: flex; align-items: flex-end; justify-content: center;
+            height: clamp(6rem, 11vw, 11rem); }
+.lot__car img { max-height: 100%; width: auto; }
+.lot__rec { border-block-start: 1px solid var(--rule-2); padding-block-start: var(--s4);
+            margin-block-start: var(--s4); }
+.lot__yr { font-family: var(--grotesk); font-size: var(--t-micro); font-weight: 500;
+           letter-spacing: .06em; color: var(--ink-70); font-variant-numeric: tabular-nums; }
+.lot__nm { display: block; margin-block-start: var(--s2); font-size: var(--t-body); line-height: 1.25; }
+.lot__mi { display: block; margin-block-start: var(--s3); font-family: var(--grotesk);
+           font-size: var(--t-micro); letter-spacing: .04em; color: var(--ink-70);
+           font-variant-numeric: tabular-nums; }
+.lot__pr { display: block; margin-block-start: var(--s3); }
+.lot__go { margin-block-start: var(--s4); display: inline-flex; }
+.lot li:focus-within .lot__car img { transform: translateY(-4px); }
+.lot__car img { transition: transform var(--d2) var(--ease); }
+.lot li:hover .lot__car img { transform: translateY(-4px); }
+.line__tail { margin-block-start: clamp(var(--s7), 6vw, var(--s8)); display: flex;
+              flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s5);
+              border-block-start: 1px solid var(--rule); padding-block-start: var(--s5); }
+
+/* =============================================================================
+   4 · SELL AND TRADE — daylight, no photograph. Four real steps, ranked by a
+   numeral, and one action.
+   ========================================================================== */
+.sell { background: var(--paper); padding-block: clamp(var(--s8), 8vw, var(--s10)); }
+.sell__head { max-width: 42rem; }
+.sell__head .h2 { margin-block-start: var(--s3); }
+.sell__head .lead { margin-block-start: var(--s5); color: var(--ink-70); }
+.steps { margin-block-start: clamp(var(--s7), 6vw, var(--s8));
+         display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s6); }
+.steps li { border-block-start: 2px solid var(--ink); padding-block-start: var(--s4); }
+.steps b { display: block; font-family: var(--grotesk); font-size: var(--t-h3); font-weight: 700;
+           font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+.steps h3 { margin-block-start: var(--s3); font-size: var(--t-body); font-weight: 600; }
+.steps p { margin-block-start: var(--s2); color: var(--ink-70); font-size: var(--t-micro); line-height: 1.5; }
+.sell__act { margin-block-start: clamp(var(--s7), 6vw, var(--s8)); display: flex; gap: var(--s4); flex-wrap: wrap; }
+
+/* =============================================================================
+   5 · THE FLOOR — their own building, their own cars, origin confirmed. The
+   page's mid-tone chapter and the only place the figures are stated.
+   ========================================================================== */
+.floor { position: relative; isolation: isolate; min-height: min(78svh, 40rem);
+         display: grid; align-items: end; background: var(--night); }
+.floor__media { position: absolute; inset: 0; z-index: -2; }
+.floor__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 58%; }
+/* the row of white cars sits behind the copy, so the scrim is measured against
+   the brightest region the glyphs actually cross, not against the frame */
+.floor::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(to top, rgb(5 8 11 / .96) 0%, rgb(5 8 11 / .92) 34%, rgb(5 8 11 / .84) 58%, rgb(5 8 11 / .22) 88%); }
+.floor__in { max-width: var(--shell); margin-inline: auto; width: 100%;
+             padding: clamp(var(--s9), 10vw, var(--s10)) var(--gutter) clamp(var(--s7), 6vw, var(--s8)); }
+.floor__in .h2 { margin-block-start: var(--s4); max-width: 22ch; }
+.floor__in .lead { margin-block-start: var(--s5); color: rgb(var(--lit-rgb) / .90); max-width: 46ch; }
+.figs { margin-block-start: clamp(var(--s7), 6vw, var(--s8));
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: var(--s6); }
+.figs div { border-block-start: 1px solid var(--rule-lit); padding-block-start: var(--s4); }
+.figs dt { font-family: var(--grotesk); font-size: var(--t-micro); font-weight: 500;
+           letter-spacing: var(--track); text-transform: uppercase; color: var(--lit-70); }
+.figs dd { margin: var(--s3) 0 0; }
+
+/* =============================================================================
+   6 · WARRANTY — daylight. A protection record, not a picture.
+   ========================================================================== */
+.warr { background: var(--day); padding-block: clamp(var(--s8), 8vw, var(--s10)); }
+.warr__grid { display: grid; grid-template-columns: minmax(0, 26rem) minmax(0, 1fr);
+              gap: clamp(var(--s7), 6vw, var(--s9)); align-items: start; }
+.warr__grid .h2 { margin-block-start: var(--s3); }
+.warr__grid > div:first-child .act { margin-block-start: var(--s6); }
+.cover { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s5) var(--s7); }
+.cover div { border-block-start: 1px solid var(--rule-2); padding-block-start: var(--s4); }
+.cover dt { font-family: var(--grotesk); font-size: var(--t-micro); font-weight: 700;
+            letter-spacing: var(--track); text-transform: uppercase; }
+.cover dd { margin: var(--s3) 0 0; color: var(--ink-70); font-size: var(--t-micro); line-height: 1.5; }
+
+/* =============================================================================
+   7 · REVIEWS — verbatim, attributed, no rating and no count invented.
+   ========================================================================== */
+.says { background: var(--paper); padding-block: clamp(var(--s8), 8vw, var(--s10)); }
+.says__head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: var(--s5); }
+.says__head .h2 { margin-block-start: var(--s3); max-width: 20ch; }
+.quotes { margin-block-start: clamp(var(--s7), 6vw, var(--s8));
+          display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s7); }
+.quotes li { border-block-start: 2px solid var(--ink); padding-block-start: var(--s4); }
+.quotes p { font-size: var(--t-lead); line-height: 1.45; }
+.quotes .label { margin-block-start: var(--s4); }
+.quotes li:first-child { grid-column: span 2; }
+.quotes li:first-child p { font-family: var(--grotesk); font-weight: 500; letter-spacing: -.012em;
+                           font-size: var(--t-h3); line-height: 1.2; }
+
+/* =============================================================================
+   8 · KARMA — the only Karma asset in the library is Karma's own product film,
+   so the chapter is one frame of it and a record. No car is invented.
+   ========================================================================== */
+.karma { position: relative; isolation: isolate; background: var(--night);
+         display: grid; grid-template-columns: minmax(0, 44fr) minmax(0, 56fr); align-items: stretch; }
+.karma__media { position: relative; min-height: min(62svh, 32rem); }
+.karma__media img { position: absolute; inset: 0; width: 100%; height: 100%;
+                    object-fit: cover; object-position: 50% 50%; }
+.karma__in { padding: clamp(var(--s8), 7vw, var(--s9)) var(--gutter); align-self: center;
+             max-width: 34rem; }
+.karma__mark { display: block; width: 8rem; margin-block: var(--s4) var(--s5); }
+.karma__mark svg { width: 100%; height: auto; fill: var(--lit); }
+.karma__in .lead { color: var(--lit-70); margin-block-start: var(--s4); }
+.karma__in .act { margin-block-start: var(--s6); }
+
+/* =============================================================================
+   9 · SERVICE AND FINANCING — daylight, two parts, one rule between them.
+   ========================================================================== */
+.own { background: var(--day); padding-block: clamp(var(--s8), 8vw, var(--s10)); }
+.own__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(var(--s7), 6vw, var(--s9)); }
+.own__grid > section { border-block-start: 2px solid var(--ink); padding-block-start: var(--s5); }
+.own__grid .h3 { margin-block-start: var(--s3); }
+.own__grid .note { margin-block-start: var(--s4); }
+.own__grid .act { margin-block-start: var(--s5); }
+
+/* =============================================================================
+   10 · THE LOCATIONS — night again, and the page's last action.
+   ========================================================================== */
+.where { position: relative; isolation: isolate; background: var(--night);
+         padding-block: clamp(var(--s9), 10vw, var(--s11)); color: var(--lit); }
+.where__media { position: absolute; inset: 0; z-index: -2; }
+.where__media img { width: 100%; height: 100%; object-fit: cover; object-position: 34% 50%; }
+.where::after { content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(to left, rgb(5 8 11 / .95) 0%, rgb(5 8 11 / .82) 40%, rgb(5 8 11 / .45) 100%); }
+.where__head { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--s6);
+               align-items: end; }
+.where__head .h2 { margin-block-start: var(--s4); max-width: 18ch; }
+.places { margin-block-start: clamp(var(--s8), 7vw, var(--s9));
+          display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s6); }
+.places li { border-block-start: 1px solid var(--rule-lit); padding-block-start: var(--s4); }
+.places b { display: block; font-family: var(--grotesk); font-weight: 700; letter-spacing: -.01em; }
+.places span { display: block; margin-block-start: var(--s3); font-size: var(--t-micro);
+               line-height: 1.5; color: var(--lit-70); }
+.places a { display: inline-block; margin-block-start: var(--s3); font-family: var(--grotesk);
+            font-size: var(--t-micro); font-weight: 700; letter-spacing: .04em;
+            font-variant-numeric: tabular-nums; text-decoration: none;
+            border-bottom: 2px solid var(--lit); padding-block-end: 2px; }
+
+/* =============================================================================
+   11 · THE FEED AND THE END
+   ========================================================================== */
+.end { background: var(--paper); }
+.feed { padding-block: clamp(var(--s8), 7vw, var(--s9)) 0; }
+.feed__head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: var(--s5); }
+.feed__head .h3 { margin-block-start: var(--s2); }
+.sheet { margin-block-start: var(--s6); display: flex; gap: var(--s2); overflow-x: auto;
+         padding-inline-start: var(--gutter); scrollbar-width: thin;
+         scrollbar-color: var(--rule-2) transparent; }
+.sheet li { flex: 0 0 auto; }
+.sheet img { height: clamp(7rem, 13vw, 13rem); width: auto; }
+.foot { padding-block: clamp(var(--s8), 7vw, var(--s9)); display: grid; gap: var(--s6); }
+.foot__wm { width: clamp(10rem, 18vw, 14rem); }
+.foot__legal { font-family: var(--grotesk); font-size: var(--t-micro); line-height: 1.7;
+               letter-spacing: .02em; color: var(--ink-70); max-width: 66ch; }
+
+/* =============================================================================
+   RESPONSIVE RECOMPOSITION — the phone gets its own hero crop, its own finder
+   and a line-up that scrolls on the horizontal axis. The task never changes.
+   ========================================================================== */
+@media (max-width: 63.999rem) {
+  .karma { grid-template-columns: minmax(0, 1fr); }
+  .karma__media { min-height: 44svh; }
+  .lot { grid-template-columns: repeat(4, 70vw); overflow-x: auto; scroll-snap-type: x proximity;
+         padding-block-end: var(--s4); scrollbar-width: thin; }
+  .lot li { scroll-snap-align: start; }
+  .steps, .quotes, .places { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .quotes li:first-child { grid-column: span 2; }
+  .warr__grid, .own__grid { grid-template-columns: minmax(0, 1fr); }
+  /* the phone gets a different composition, not a squeezed one: the scene owns
+     the top of the screen and the type stands under it on the night ground, so
+     the car is never read through a headline */
+  .film { display: block; min-height: 100svh; }
+  .film__media { position: relative; inset: auto; z-index: 0; height: 48svh; }
+  .film__media video, .film__media img { object-position: 50% 40%; }
+  .film::after { display: none; }
+  .film__media::after {
+    content: ""; position: absolute; inset: auto 0 0 0; height: 40%; pointer-events: none;
+    background: linear-gradient(to top, var(--night) 0%, rgb(5 8 11 / .55) 46%, rgb(5 8 11 / 0) 100%);
+  }
+  .film__in { padding-block: var(--s6) var(--s8); }
+  .film__row { margin-block-start: var(--s6); }
+  .film__row .btn { padding-inline: var(--s5); }
+  .find::after { background:
+    linear-gradient(to top, rgb(217 214 207 / .97) 0%, rgb(217 214 207 / .92) 52%, rgb(217 214 207 / .30) 82%); }
+  .find { align-items: end; }
+  .find__media img { object-position: 66% 34%; }
+  .finder { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .finder .btn { grid-column: 1 / -1; }
+  .where__head { grid-template-columns: minmax(0, 1fr); }
+  .bar__menu {
+    display: inline-flex; align-items: center; gap: var(--s3);
+    margin-inline-start: auto; padding: var(--s2) 0; background: none; border: 0;
+    color: inherit; cursor: pointer;
+    font-family: var(--grotesk); font-size: var(--t-micro); font-weight: 700;
+    letter-spacing: var(--track); text-transform: uppercase;
+  }
+  .bar__menu-i { width: 1.25rem; height: 2px; background: currentColor; position: relative; }
+  .bar__menu-i::before, .bar__menu-i::after {
+    content: ""; position: absolute; inset-inline: 0; height: 2px; background: currentColor; }
+  .bar__menu-i::before { top: -6px; }
+  .bar__menu-i::after  { top: 6px; }
+  .bar__in { flex-wrap: wrap; row-gap: var(--s4); gap: var(--s4); }
+  .bar__menu { margin-inline-start: 0; }
+  .bar__tel { margin-inline-start: auto; padding-inline-start: 0; border-inline-start: 0; }
+  .bar__tel span { display: none; }
+  .bar__nav { width: 100%; margin: 0; order: 3; flex-direction: column; gap: 0;
+              border-block-start: 1px solid currentColor; padding-block-start: var(--s3); }
+  .bar__nav a { padding-block: var(--s3); opacity: 1; }
+}
+@media (max-width: 40rem) {
+  .steps, .quotes, .places { grid-template-columns: minmax(0, 1fr); }
+  .quotes li:first-child { grid-column: auto; }
+  .cover { grid-template-columns: minmax(0, 1fr); }
+  .lot { grid-template-columns: repeat(4, 82vw); }
+}
+
+/* =============================================================================
+   REDUCED MOTION — the film is replaced by its own poster frame, which is a
+   composed still of the same moment rather than a stopped animation. Nothing
+   else on the page moves, so nothing else changes.
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important;
+                           transition-duration: .01ms !important; }
+}

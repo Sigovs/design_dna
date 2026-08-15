@@ -1,0 +1,92 @@
+/* =============================================================================
+   index2 — tokens. The only source of colour, type scale, spacing and duration.
+
+   THE GROUND IS SAMPLED, BAND BY BAND, from Chicago Motor Cars' own studio
+   frame (assets/img/inventory/cmc-koenigsegg-regera.jpg, 1920×1279) — the
+   seamless sweep their own photographer shot these cars against:
+
+     row 0 – 32%    #7A7A78     the wall
+     rows 60 – 74%  #989796     the wall meeting the floor
+     rows 74 – 88%  #EDEDED     the floor's lit band
+     rows 92 – 100% #D2D1CF     the floor at the frame's own bottom edge
+
+   Those four values are --sweep-1..4 below, in that order, and the page's
+   ground is that gradient continued to the viewport at the same drawing scale.
+   Nothing is invented; the scene is extended, the car is never enlarged.
+
+   WHY THIS GROUND AND NOT NEAR-BLACK OR BONE. Measured body luminance of the
+   four cut-outs: Regera 154, SVJ Roadster 52, GT2 RS 45, 812 GTS 38 (of 255).
+   On near-black the 812 separates by 27 points and dies; on bone the Regera
+   dissolves. The sweep's own value sits between the white car and the three
+   dark ones, so all four hold a silhouette on it.
+
+   THE ACCENT IS #CB141D, Chicago Motor Cars' own value, carried untouched
+   under REDESIGN. A saturation-weighted hue census over the nine shipping
+   frames found the photography already occupying blue 190–240°, red 340–010°,
+   green 140–190° and warm amber 010–060°; the only unoccupied bands are violet
+   and yellow-green, and both read wrong in an automotive context. So the
+   accent is not taken from a free band — it is the identity's measured value,
+   restricted to fills and markers and never used as text.
+   ========================================================================== */
+
+:root {
+  /* ---- the sampled sweep -------------------------------------------------- */
+  --sweep-1: #7A7A78;
+  --sweep-2: #989796;
+  --sweep-3: #EDEDED;
+  --sweep-4: #D2D1CF;
+
+  /* the room's own falloff, and it belongs to the opening screen only — below
+     the first screen the page is standing on the floor, not looking at the wall */
+  --scene: linear-gradient(to bottom,
+            var(--sweep-1)  0%,
+            var(--sweep-1) 12%,
+            #B4B3B1       30%,
+            #D6D5D3       58%,
+            var(--sweep-3) 84%,
+            var(--sweep-4) 100%);
+
+  /* the floor, flat — the page's ground everywhere below the first screen and
+     after the one release */
+  --paper:   #D2D1CF;
+  /* the floor's own lit band — the register's plane, standing on that floor */
+  --plane:   #EDEDED;
+
+  /* ---- ink. One ink for the whole page. --------------------------------- */
+  --ink:     #1A1A18;
+  --ink-rgb: 26 26 24;
+  --ink-72:  rgb(var(--ink-rgb) / 0.72);
+  --rule:    rgb(var(--ink-rgb) / 0.20);
+  --rule-2:  rgb(var(--ink-rgb) / 0.42);
+
+  --red:     #CB141D;
+
+  /* ---- type -------------------------------------------------------------- */
+  --display: 'Newsreader', 'Iowan Old Style', Georgia, serif;
+  --body:    'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  --mono:    'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* largest / smallest = 68 / 14 = 4.86x, deliberately below the 5x ceiling */
+  --t-collision: clamp(2.5rem, 4.6vw, 4.25rem);   /* 68px cap, used once */
+  --t-d1:        clamp(2rem, 3.2vw, 2.875rem);    /* 46px */
+  --t-d2:        clamp(1.625rem, 2.4vw, 2.25rem); /* 36px */
+  --t-price:     clamp(1.5rem, 2vw, 2rem);        /* 32px */
+  --t-lead:      clamp(1.0625rem, .5vw + .9rem, 1.1875rem);
+  --t-body:      1rem;
+  --t-micro:     0.875rem;                        /* 14px — the floor */
+  --track:       0.12em;
+
+  /* ---- space — 4px base -------------------------------------------------- */
+  --s1: .25rem;  --s2: .5rem;   --s3: .75rem;  --s4: 1rem;
+  --s5: 1.5rem;  --s6: 2rem;    --s7: 3rem;    --s8: 4rem;
+  --s9: 6rem;    --s10: 8rem;   --s11: 12rem;
+
+  --gutter:  clamp(1.5rem, 3.4vw, 3.5rem);
+  --bar-h:   4.25rem;
+  --spine-w: clamp(17rem, 25vw, 24rem);
+  --pitch:   1.375rem;              /* the register's rule pitch — the page's meter */
+
+  /* ---- time -------------------------------------------------------------- */
+  --d1: .15s;  --d2: .25s;  --d3: .4s;
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
+}

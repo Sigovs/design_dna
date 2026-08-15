@@ -1,0 +1,501 @@
+/* =============================================================================
+   index2 — layout and surface.
+
+   ONE SPATIAL MODEL, STATED ONCE: the page is two fields for its whole length.
+   An OPEN FIELD carrying the sampled sweep, and a REGISTER SPINE holding the
+   floor's own plane. The cars stand on the open field and occlude the spine;
+   the spine holds while the field travels. Nothing is inside a rectangle
+   except the one released photograph, and nothing casts a decorative shadow —
+   the only shadow on the page is the one baked into the client's own cut-outs.
+
+   Every value resolves to a token in c2-tokens.css.
+   ========================================================================== */
+
+/* ---- reset ---------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+html, body { overflow-x: clip; }
+body.c2 {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: var(--t-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img, svg { max-width: 100%; }
+img { height: auto; display: block; }
+h1, h2, h3, p, ul, ol, dl, dd, figure, blockquote { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+a { color: inherit; }
+input { font: inherit; color: inherit; }
+
+:where(a, button, input, [tabindex]):focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+.sr {
+  position: absolute; width: 1px; height: 1px; margin: -1px;
+  padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+}
+.skip {
+  position: absolute; left: var(--s4); top: -6rem; z-index: 100;
+  padding: var(--s3) var(--s5);
+  background: var(--ink); color: var(--paper);
+  font-family: var(--mono); font-size: var(--t-micro); text-decoration: none;
+}
+.skip:focus { top: var(--s4); }
+
+/* ---- type roles ----------------------------------------------------------- *
+   Three voices. Display carries the two chapter headlines, the prices and the
+   one collision. Body carries what is read. Mono carries every fact — the
+   register, the labels, the years, the mileages, the addresses.              */
+
+.d1, .d2, .collide {
+  font-family: var(--display); font-weight: 400;
+  letter-spacing: -.018em; text-wrap: balance;
+}
+.d1      { font-size: var(--t-d1); line-height: 1.02; }
+.d2      { font-size: var(--t-d2); line-height: 1.06; }
+.collide { font-size: var(--t-collision); line-height: 1.04; }
+.d1 em, .d2 em, .collide em { font-style: italic; }
+
+.micro {
+  font-family: var(--mono); font-size: var(--t-micro); font-weight: 500;
+  line-height: 1.2; letter-spacing: var(--track);
+  text-transform: uppercase; color: var(--ink-72);
+}
+.lead { font-size: var(--t-lead); line-height: 1.5; max-width: 32ch; }
+.gloss { color: var(--ink-72); max-width: 46ch; }
+p { text-wrap: pretty; }
+
+/* ---- the two controls ----------------------------------------------------- */
+.btn {
+  display: inline-block; padding: var(--s4) var(--s6);
+  background: var(--red); color: #F4F2EF;              /* 5.14:1 */
+  font-family: var(--mono); font-size: var(--t-micro); font-weight: 500;
+  letter-spacing: var(--track); text-transform: uppercase; text-decoration: none;
+  transition: background-color var(--d1) var(--ease-out);
+}
+.btn:hover { background: #A50F17; }
+
+.arrow {
+  display: inline-flex; align-items: baseline; gap: var(--s3);
+  font-family: var(--mono); font-size: var(--t-micro); font-weight: 500;
+  letter-spacing: var(--track); text-transform: uppercase; text-decoration: none;
+  padding-block-end: var(--s1);
+  border-bottom: 1px solid var(--rule-2);
+  transition: border-color var(--d1) var(--ease-out);
+}
+.arrow:hover { border-color: var(--ink); }
+.arrow i { font-style: normal; transition: transform var(--d2) var(--ease-out); }
+.arrow:hover i { transform: translateX(4px); }
+
+/* ---- the bar -------------------------------------------------------------- *
+   A persistent mass, counted in the first screen. It opens over the scene on
+   the sweep's own top light — the scrim IS the state that belongs over an
+   image — and it goes to a solid plane only once its bottom edge has cleared
+   the opening chapter's.                                                      */
+.veil {
+  position: fixed; inset-block-start: 0; inset-inline: 0; height: 5.5rem;
+  z-index: 40; pointer-events: none;
+  background: linear-gradient(to bottom, rgb(26 26 24 / .52), rgb(26 26 24 / 0));
+  transition: opacity var(--d3) var(--ease-out);
+}
+.veil.is-gone { opacity: 0; }
+.bar {
+  position: fixed; inset-block-start: 0; inset-inline: 0; z-index: 50;
+  color: #F4F2EF;                          /* 7.97:1 on the scrimmed sweep */
+  border-bottom: 1px solid transparent;
+  transition: background-color var(--d3) var(--ease-out),
+              border-color var(--d3) var(--ease-out),
+              color var(--d3) var(--ease-out);
+}
+.bar.is-solid { background: var(--paper); border-bottom-color: var(--rule); color: var(--ink); }
+.bar__in {
+  max-width: 96rem; margin-inline: auto;
+  padding: var(--s5) var(--gutter);
+  display: flex; align-items: center; gap: var(--s6);
+  transition: padding-block var(--d3) var(--ease-out);
+}
+.bar.is-moved .bar__in { padding-block: var(--s3); }
+.wm { display: block; fill: currentColor; }
+.bar__mark { display: block; flex: none; }
+.bar__mark .wm { width: clamp(8rem, 11vw, 10.5rem); stroke: currentColor; stroke-width: .7px; }
+.bar__nav {
+  margin-inline-start: auto; display: flex; gap: clamp(var(--s5), 2.2vw, var(--s7));
+  font-family: var(--mono); font-size: var(--t-micro); font-weight: 500;
+  letter-spacing: var(--track); text-transform: uppercase;
+}
+.bar__nav a { text-decoration: none; color: inherit; opacity: .78; }
+.bar__nav a:hover { opacity: 1; }
+.bar__tel {
+  display: flex; align-items: baseline; gap: var(--s3);
+  font-family: var(--mono); font-size: var(--t-micro); font-weight: 500;
+  letter-spacing: var(--track); text-decoration: none;
+  padding-inline-start: var(--s6); border-inline-start: 1px solid var(--rule);
+}
+.bar__tel { color: inherit; }
+.bar__tel b { font-weight: 500; font-variant-numeric: tabular-nums; }
+.bar__tel span { text-transform: uppercase; opacity: .78; }
+
+/* =============================================================================
+   THE ACT — two fields, one spine
+   ========================================================================== */
+.act {
+  position: relative;
+  max-width: 96rem; margin-inline: auto; padding-inline: var(--gutter);
+  display: grid; grid-template-columns: minmax(0, 1fr) var(--spine-w);
+  align-items: stretch;
+  padding-block-start: var(--bar-h);
+  background: var(--paper);
+}
+/* the room's falloff, on the first screen only and across the full width, so
+   the scene fills the viewport and the register stands inside it */
+.act::before {
+  content: ""; position: absolute; inset-block-start: 0; inset-inline: 0;
+  height: 100svh; background: var(--scene); z-index: 0; pointer-events: none;
+}
+.field { grid-column: 1; position: relative; z-index: 2; }
+.spine { grid-column: 2; position: relative; z-index: 1; }
+
+/* ---- the register spine --------------------------------------------------- *
+   It holds while the field travels. That IS the differential — there is no
+   second scrollport on this page, so the wheel, the trackpad and the thumb
+   always move the document and there is nothing to be trapped inside.        */
+.spine {
+  background: var(--plane);
+  border-inline-start: 1px solid var(--rule-2);
+}
+.spine__in {
+  position: sticky; inset-block-start: var(--bar-h);
+  height: calc(100svh - var(--bar-h));
+  display: flex; flex-direction: column;
+  overflow: hidden;                       /* clips the scale field, not a scroller */
+}
+.spine__top { padding: var(--s4) var(--s5); }
+.spine__n {
+  margin-block-start: var(--s3);
+  font-family: var(--mono); font-size: var(--t-micro);
+  font-variant-numeric: tabular-nums; color: var(--ink-72);
+}
+.spine__n b { font-weight: 500; color: var(--ink); }
+.spine__find { margin-block-start: var(--s4); position: relative; }
+.spine__find input {
+  width: 100%; padding: var(--s3) var(--s3) var(--s3) 0;
+  background: transparent; border: 0; border-bottom: 1px solid var(--rule-2);
+  font-family: var(--mono); font-size: var(--t-micro); letter-spacing: .02em;
+}
+.spine__find input::placeholder { color: var(--ink-72); }
+.spine__legend {
+  padding-inline: var(--s5); margin-block-start: var(--s4);
+  font-family: var(--mono); font-size: var(--t-micro); line-height: 1.45;
+  color: var(--ink-72);
+}
+
+/* the left inset clears the car that crosses into this plane, so the overlap
+   subordinates the register without taking a character of its data */
+.reg { padding-inline: var(--s7) var(--s5); margin-block-start: var(--s4); }
+.reg li { border-block-start: 1px solid var(--rule); }
+.reg a {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) max-content;
+  gap: var(--s3);
+  align-items: baseline;
+  min-height: var(--pitch);
+  padding-block: .15rem;
+  font-family: var(--mono); font-size: var(--t-micro); line-height: 1.15;
+  text-decoration: none;
+  transition: background-color var(--d1) var(--ease-out);
+}
+.reg a:hover { background: rgb(var(--ink-rgb) / .07); }
+.reg .y { display: inline-block; width: 3.2em; color: var(--ink-72);
+          font-variant-numeric: tabular-nums; font-weight: 400; }
+.reg .m { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.reg .p { font-variant-numeric: tabular-nums; text-align: end; }
+.reg .p[data-none] { color: var(--ink-72); }
+/* the two records that are opened on this page carry a mark outside the
+   truncating cell, so it survives a long model name */
+.reg li[data-open] { position: relative; }
+.reg li[data-open]::before {
+  content: ""; position: absolute; inset-inline-start: -.75rem; inset-block-start: 50%;
+  width: 4px; height: 4px; margin-block-start: -2px;
+  background: var(--red);                            /* 5.36:1 as a mark, never text */
+}
+.reg__none {
+  padding: var(--s4) var(--s5); font-family: var(--mono);
+  font-size: var(--t-micro); color: var(--ink-72);
+}
+
+.spine__note {
+  padding: var(--s4) var(--s5) 0;
+  border-block-start: 1px solid var(--rule-2);
+  font-family: var(--mono); font-size: var(--t-micro); line-height: 1.45;
+  color: var(--ink-72);
+}
+.spine__all { flex: none; align-self: start; margin: var(--s3) var(--s5) var(--s4); }
+#open, #open2, #spine, #sell, #floors { scroll-margin-block-start: calc(var(--bar-h) + 1rem); }
+.only-narrow { display: none; }
+
+/* the honest remainder: a measured field at the register's own pitch, carrying
+   no text, exposed to nothing, and clipped by the spine's own edge */
+.scale {
+  flex: 1 1 auto; min-height: 2rem; margin: var(--s3) var(--s5) 0;
+  background: repeating-linear-gradient(to bottom,
+              var(--rule) 0 1px, transparent 1px var(--pitch));
+}
+
+/* ---- chapters: four field ratios, no two alike ---------------------------- */
+.ch { position: relative; }
+
+/* 1 · OPEN — the scene owns the screen. The car is drawn at the framing of the
+   source photograph, stands on the sweep's own lit floor band, and runs into
+   the register so the list is subordinated by the overlap. */
+.ch--open {
+  min-height: calc(100svh - var(--bar-h));
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  padding-block: var(--s8) var(--s7);
+}
+.ch--open .claim { grid-row: 1; max-width: 30rem; }
+/* on the opening screen the ground is the wall, so every rank is full ink —
+   a dimmed step measures 4.07:1 there and the floor is 4.5:1 */
+.ch--open .micro, .ch--open .lead { color: var(--ink); }
+.claim .d1   { margin-block-start: var(--s4); }
+.claim .lead { margin-block-start: var(--s5); }
+.claim .act-row { margin-block-start: var(--s6); }
+
+.ch--open .car {
+  grid-row: 2; align-self: end; justify-self: end;
+  width: min(90%, 58rem);
+  margin-inline-end: calc(var(--spine-w) * -.11);
+  margin-block-end: clamp(var(--s5), 4vh, var(--s8));
+  position: relative; z-index: 2;
+}
+
+/* the lot record, on the floor beneath the car — one continuous rule, three
+   fields, the asking price the only display-size element */
+.plate {
+  grid-row: 3;
+  display: grid; grid-template-columns: 17rem 10rem auto;
+  border-block-start: 1px solid var(--rule-2); padding-block-start: var(--s4);
+}
+.plate div { padding-inline-end: var(--s6); }
+.plate dt { font-family: var(--mono); font-size: var(--t-micro); font-weight: 500;
+            letter-spacing: var(--track); text-transform: uppercase; color: var(--ink-72); }
+.plate dd { margin: var(--s3) 0 0; font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.plate dd.big { font-family: var(--display); font-size: var(--t-price); line-height: 1; letter-spacing: -.01em; }
+
+/* 2 · PUSH — the widest gutter on the page. The field almost empties and the
+   register reads alone beside it. */
+.ch--push {
+  display: grid; grid-template-columns: minmax(0, 46%) minmax(0, 1fr);
+  padding-block: clamp(var(--s8), 9vw, var(--s10));
+}
+.ch--push > div { grid-column: 1; }
+.ch--push .d2 { margin-block-start: var(--s4); }
+.ch--push .gloss { margin-block-start: var(--s5); }
+.ch--push p:last-child { margin-block-start: var(--s6); }
+
+/* 3 · OPEN2 — the mirror, and a different formula. Chapter 1 stood a car on the
+   floor with its record beneath it; this one runs the record along a rule that
+   crosses the width of the field, and the car passes in front of the rule. */
+.ch--open2 { padding-block: clamp(var(--s8), 9vw, var(--s9)) clamp(var(--s9), 12vw, var(--s10)); }
+.ch--open2 .head { max-width: 34rem; margin-block-end: clamp(var(--s9), 13vw, 13rem); }
+.ch--open2 .head .d2 { margin-block-start: var(--s4); }
+.rulerec {
+  border-block-start: 1px solid var(--rule-2);
+  padding-block-start: var(--s5);
+  display: grid; grid-template-columns: minmax(0, 60%) minmax(0, 1fr);
+  column-gap: var(--s7); align-items: start;
+}
+.rulerec .car { grid-column: 1; margin-block-start: -36%; position: relative; z-index: 2; }
+.rulerec dl { grid-column: 2; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: var(--s5) var(--s6); }
+.rulerec dt { font-family: var(--mono); font-size: var(--t-micro); font-weight: 500;
+              letter-spacing: var(--track); text-transform: uppercase; color: var(--ink-72); }
+.rulerec dd { margin: var(--s3) 0 0; font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.rulerec dd.big { font-family: var(--display); font-size: var(--t-price); line-height: 1; letter-spacing: -.01em; }
+
+/* 4 · REST — the widest intervals, and the pause before the release */
+.ch--rest {
+  display: grid; grid-template-columns: minmax(0, 72%) minmax(0, 1fr);
+  padding-block: clamp(var(--s8), 8vw, var(--s9)) clamp(var(--s9), 14vw, 13rem);
+}
+.ch--rest > div { grid-column: 1; }
+.figs { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: var(--s6);
+        padding-block-end: clamp(var(--s7), 6vw, var(--s8)); border-block-end: 1px solid var(--rule); }
+.figs dt { font-family: var(--mono); font-size: var(--t-micro); font-weight: 500;
+           letter-spacing: var(--track); text-transform: uppercase; color: var(--ink-72); }
+.figs dd { margin: var(--s4) 0 0; font-family: var(--display); font-size: clamp(2rem, 3.4vw, 2.875rem);
+           line-height: 1; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.voice { margin-block-start: clamp(var(--s8), 8vw, var(--s9)); max-width: 40rem; }
+.voice blockquote { margin-block-start: var(--s5); font-family: var(--display);
+                    font-size: var(--t-d2); line-height: 1.1; letter-spacing: -.015em; text-wrap: balance; }
+.voice blockquote em { font-style: italic; }
+.voice figcaption { margin-block-start: var(--s5); font-family: var(--mono); font-size: var(--t-micro);
+                    font-weight: 500; letter-spacing: var(--track); text-transform: uppercase; color: var(--ink-72); }
+.voices { margin-block-start: clamp(var(--s7), 7vw, var(--s8));
+          display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: var(--s6) var(--s7); }
+.voices li { border-block-start: 1px solid var(--rule); padding-block-start: var(--s4); }
+.voices p:first-child { color: var(--ink-72); }
+.voices .micro { margin-block-start: var(--s4); }
+
+/* =============================================================================
+   THE RELEASE — the only full-bleed mass, the only photograph, and the single
+   change of ground. It happens once and never reverses.
+   ========================================================================== */
+.release {
+  position: relative; isolation: isolate;
+  min-height: min(92svh, 46rem);
+  display: grid; align-items: end;
+  padding: clamp(var(--s9), 12vw, var(--s10)) var(--gutter) clamp(var(--s8), 8vw, var(--s9));
+  background-image: url("../img/c2/room-collection-1600.webp");
+  background-size: cover; background-position: center 56%;
+  color: #F4F2EF;
+}
+.release::after {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(to top,
+    rgb(9 11 13 / .88) 0%, rgb(9 11 13 / .72) 34%, rgb(9 11 13 / .28) 68%, rgb(9 11 13 / .18) 100%);
+}
+.release__in { max-width: 96rem; margin-inline: auto; width: 100%; }
+.release .micro { color: rgb(244 242 239 / .82); }
+.release .collide { margin-block-start: var(--s5); max-width: 20ch; }
+.places {
+  margin-block-start: clamp(var(--s8), 8vw, var(--s9));
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: var(--s6);
+}
+.places li { border-block-start: 1px solid rgb(244 242 239 / .34); padding-block-start: var(--s4); }
+.places b { display: block; font-weight: 400; }
+.places span { display: block; margin-block-start: var(--s2); font-family: var(--mono);
+               font-size: var(--t-micro); line-height: 1.45; color: rgb(244 242 239 / .82); }
+.places a { display: inline-block; margin-block-start: var(--s3); font-family: var(--mono);
+            font-size: var(--t-micro); font-weight: 500; font-variant-numeric: tabular-nums;
+            letter-spacing: .04em; text-decoration: none;
+            border-bottom: 1px solid rgb(244 242 239 / .42); padding-block-end: 2px; }
+
+/* =============================================================================
+   THE COMPANY, THE FEED, THE END — released ground, held to the last mass
+   ========================================================================== */
+.shell { max-width: 96rem; margin-inline: auto; padding-inline: var(--gutter); }
+.co { padding-block: clamp(var(--s9), 10vw, var(--s10)) clamp(var(--s9), 12vw, var(--s11)); }
+.co__lead { max-width: 38rem; }
+.co__lead .d2 { margin-block-start: var(--s4); }
+.co__lead .lead { margin-block-start: var(--s5); max-width: 42ch; color: var(--ink-72); }
+.co__lead .act-row { margin-block-start: var(--s6); }
+.co__grid { margin-block-start: clamp(var(--s8), 9vw, var(--s10));
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: clamp(var(--s6), 4vw, var(--s8)); }
+.co__col { border-block-start: 1px solid var(--rule-2); padding-block-start: var(--s5); }
+.ways li { padding-block: var(--s4); border-block-start: 1px solid var(--rule); }
+.ways li:first-child { border-block-start: 0; }
+.ways a { text-decoration: none; }
+.ways a:hover { border-bottom: 1px solid var(--ink); }
+.ways span { display: block; margin-block-start: var(--s2); font-family: var(--mono);
+             font-size: var(--t-micro); line-height: 1.45; color: var(--ink-72); }
+.karma { display: block; width: 7rem; margin-block: var(--s4); }
+.karma svg { width: 100%; height: auto; fill: var(--ink); }
+
+.end { background: var(--paper); }
+.feed { padding-block: clamp(var(--s8), 9vw, var(--s9)) 0; }
+.feed__head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: var(--s5); }
+.feed__head h2 { margin-block-start: var(--s3); font-family: var(--display);
+                 font-size: var(--t-d2); font-weight: 400; letter-spacing: -.015em; }
+.sheet {
+  margin-block-start: clamp(var(--s6), 5vw, var(--s7));
+  display: flex; gap: var(--s2); overflow-x: auto;
+  padding-inline-start: var(--gutter);
+  scrollbar-width: thin; scrollbar-color: var(--rule-2) transparent;
+}
+.sheet li { flex: 0 0 auto; }
+.sheet img { height: clamp(8rem, 15vw, 15rem); width: auto; }
+.colophon { padding-block: clamp(var(--s8), 9vw, var(--s9)); display: grid; gap: var(--s6); }
+.colophon .wm { width: clamp(10rem, 20vw, 15rem); }
+.colophon p { font-family: var(--mono); font-size: var(--t-micro); line-height: 1.7;
+              color: var(--ink-72); max-width: 62ch; }
+
+/* =============================================================================
+   RESPONSIVE RECOMPOSITION
+   ========================================================================== */
+@media (max-width: 63.999rem) {
+  /* the spine's counterweight does not exist in one column, so the register is
+     re-authored: a one-line ticker under the bar, scrolling on the horizontal
+     axis only. The document keeps the vertical axis — the phone never inherits
+     two scrollports. */
+  .act { display: flex; flex-direction: column; padding-inline: 0;
+         padding-block-start: var(--bar-h); }
+  .field { padding-inline: var(--gutter); }
+  .act::before { height: 100svh; }
+
+  .bar__nav { display: none; }
+  .bar__tel { margin-inline-start: auto; padding-inline-start: 0; border-inline-start: 0; }
+
+  .spine {
+    order: -1;
+    position: sticky; inset-block-start: var(--bar-h);
+    z-index: 30; border-inline-start: 0;
+    border-block-end: 1px solid var(--rule-2);
+    background: var(--plane);
+  }
+  .spine__in { position: static; height: auto; display: block; overflow: visible; }
+  .spine__top { display: flex; align-items: baseline; gap: var(--s4); flex-wrap: wrap;
+                padding: var(--s3) var(--gutter) var(--s2); }
+  .spine__top .micro { flex: none; }
+  .spine__n { margin: 0; }
+  .spine__find, .spine__legend, .spine__note, .spine__all { display: none; }
+  .reg {
+    display: flex; gap: 0; padding: 0 var(--gutter) var(--s2); margin: 0;
+    overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none;
+  }
+  .reg::-webkit-scrollbar { display: none; }
+  .reg li { flex: 0 0 auto; border-block-start: 0; border-inline-start: 1px solid var(--rule); }
+  .reg li:first-child { border-inline-start: 0; }
+  .reg li[data-open]::before { inset-inline-start: .5rem; inset-block-start: .55rem; margin: 0; }
+  .reg a { grid-template-columns: auto auto; gap: var(--s3);
+           padding: var(--s2) var(--s4); min-height: 0; }
+  .reg .y { width: auto; margin-inline-end: .5em; }
+  .reg .m { max-width: none; }
+  .scale { display: none; }
+  .mob-note { display: block; }
+
+  .ch--open {
+    min-height: 0; display: block;
+    padding-block: var(--s5) var(--s6);
+  }
+  .ch--open .claim { max-width: none; }
+  .ch--open .car { width: calc(100% + var(--gutter) * 2);
+                   margin: var(--s5) calc(var(--gutter) * -1) var(--s4); }
+  .plate { grid-template-columns: 1fr 1fr; gap: var(--s4) var(--s5); padding-block-start: var(--s3); }
+  .plate div:first-child { grid-column: 1 / -1; }
+  .plate div { padding-inline-end: 0; }
+
+  .ch--push, .ch--rest { display: block; }
+  .ch--push { padding-block: var(--s9); }
+  .rulerec { display: block; }
+  .rulerec .car { margin-block-start: var(--s6); }
+  .rulerec dl { margin-block-start: var(--s6); grid-template-columns: 1fr 1fr; }
+  .ch--open2 .head { margin-block-end: var(--s7); }
+  .release { min-height: 0; }
+}
+@media (min-width: 64rem) { .mob-note { display: none; } }
+
+@media (max-width: 40rem) {
+  .rulerec dl { grid-template-columns: 1fr; }
+  .plate div { min-width: 100%; }
+}
+
+/* =============================================================================
+   REDUCED MOTION — an authored alternative. The spine stops holding and
+   travels with the field, so no large mass moves relative to another; it still
+   fills the rail for the act's full height, so the composition and the page's
+   vertical silhouette are unchanged.
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .spine__in { position: static; height: auto; overflow: visible; }
+  .scale { min-height: 16rem; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important; animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}

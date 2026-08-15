@@ -729,6 +729,28 @@ bigger rather than as a scene.
 different asset, construct a separate composition, or record the asset as
 unsuitable.** An aggressive crop is not a repair.
 
+**All four obligations are verified on the delivered composited render, never on the
+source asset.** This is not a procedural detail — it is the difference between the
+check working and the check not existing. Every one of these failures lives in the
+mapping between the asset and the frame, so a review of the master frame cannot see
+any of them, and a review that declares the subject box without looking at the render
+is asserting the very thing it was meant to test.
+
+Three consequences:
+
+- **A declared `subjectBox` is a hypothesis until an annotated render confirms it.**
+  The box is drawn on the real page at every required viewport, and a human confirms
+  it actually contains the vehicle. A manually declared but visually wrong box cannot
+  produce a pass.
+- **If the subject moves, one box is not an answer.** Video, a sequence, a parallaxed
+  frame: sample the declared interval, give per-sample boxes or a union box, and **the
+  worst sample governs the pass.**
+- **The delivered encode is the subject, not the source master.** In
+  `projects/fixtures/cmc-index3-conventional` the delivered clip opens on a daylight
+  side profile before cutting to the night garage it was declared to be — the declared
+  interval was not the delivered interval — and by the end the car is clipped at the
+  bottom on desktop and on both edges on mobile. The source review saw none of it.
+
 *Why it's universal:* the failure is not a matter of taste — a cut silhouette, a
 headline sitting on the subject's face and a mobile crop centred on nothing are
 defects in every register, and they are produced by the same shortcut in every case.
@@ -830,7 +852,7 @@ no promise a render can break.
 
 ---
 
-## Gate 2 — structural visual review
+## Gate 2 — structural and authorship conformance
 
 **Runs on the render, after Gate 1 and before Gate 3. Gate 1 measured whether the
 means are present. This gate asks what work each one does — and a device that is
@@ -853,6 +875,64 @@ sentence about the page, not a restatement of the device.
 ([C22](#invariant)): does the air work as part of the composition · does the object
 read whole and confidently · has the full-screen hero become a mechanically enlarged
 photograph · do object, type and emptiness form **one** scene.
+
+**All four are asked of the composited render at every required viewport, never of
+the source asset.** A crop that clips the subject is invisible in the master and
+obvious on the page. Where the subject moves — video, or a sequence — the declared
+interval is sampled and **the worst sample governs**; a single declared box is not
+an answer. See [C22](#invariant) and `gates/hero.mjs`.
+
+### The structural-formula procedure
+
+The last row above — *write out each section's compositional formula* — is the row
+that was skipped, so it has a procedure rather than an instruction.
+
+**1 · Run the detector.** `gates/structure.mjs` finds repeated units by **rendered
+geometry**: it buckets elements by measured width and height, keeps the outermost
+non-containing members, and requires their widths to agree within 4%.
+
+**It reads no class names, and that is the whole point.** A count of `.card`
+selectors, border radii or explicit borders proves nothing — the rejected concept
+carried none of them and shipped four card-equivalent vehicle modules, so the review
+reported `cards: 0` and the page went out. **`cards: 0` may never pass a layout that
+contains card-equivalent repeated masses.** Extra wrappers, nested divs, a `<ul>`, or
+a flex row instead of a grid change the DOM and change nothing a reader sees, so they
+change nothing the detector measures.
+
+**2 · Take a full-page screenshot.**
+
+**3 · Write the inventory by hand.** One row per section: how many units, whether
+their widths are equal, and where the image, heading, meta and action sit inside a
+unit. Written from the screenshot, before reading the detector's output.
+
+**4 · Reconcile the two.** Anything the detector found and the inventory missed, and
+anything the inventory found and the detector missed. Both directions are findings.
+
+**5 · Dispose of every detector finding explicitly.** Findings arrive with
+`disposition: null` and **the detector never clears itself.** A disposition is a
+sentence about the page — *a social feed is a list and repetition is its content* is
+a defensible one; *they are different colours* is not.
+
+> **The detector is a detector, not an oracle.** It cannot see absolutely-positioned
+> repeats, masses that repeat across scroll rather than within a section, or
+> repetition that is compositional rather than geometric. **An empty detector report
+> is not evidence of structural originality** — only that this detector found nothing.
+> That is why steps 2–4 are not optional, and why the machine output alone can never
+> constitute this gate.
+
+### Authorship — the delegated artefact
+
+**Every operation the Design Read committed to is checked against the render, and an
+operation that was declared and then lost during implementation is a Gate 2 failure.**
+Not a footnote, not a known compromise — a failure, recorded in `authorship.json`
+with the operation named and the reason it disappeared.
+
+This is the half of the gate that catches the page that is *useful and unauthored*:
+one where the composition survived Gate 3 by abandoning everything the Read committed
+to. `projects/fixtures/cmc-index3-conventional` declared a continuous night approach,
+a reading zone found in the frame, and a distinct formula per section. It delivered a
+two-shot encode, a headline sitting on the car, and four sections resolving to
+`4×equal`.
 
 **Why this gate exists, and the counter-example it was built from.** A page can meet
 every measurable commitment and still be a failure of direction:

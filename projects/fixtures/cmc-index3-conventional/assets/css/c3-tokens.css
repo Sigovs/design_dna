@@ -1,0 +1,75 @@
+/* =============================================================================
+   index3 — tokens. The only source of colour, type scale, spacing and duration.
+
+   THE TWO GROUNDS ARE SAMPLED FROM THE TWO FILMS THE PAGE ACTUALLY SHOWS.
+
+     --night  #05080B   the darkest field of the closing studio frame
+                        (assets/img/financing/fin-lineup-2473.jpg, right third)
+     --day    #D9D6CF   the empty plaza in the forecourt frame
+                        (assets/img/warranty/warranty_upd.png, left field)
+     --day-2  #B6B5B0   the same frame's lower floor — the working surface
+     --ink    #16181A   near-black, never #000
+
+   The rule the page runs on: NIGHT IS WHERE THE CAR IS WANTED, DAYLIGHT IS
+   WHERE IT IS BOUGHT. The page opens and closes in the dark, and every control
+   a visitor can operate — search, compare, sell, call, finance — sits on the
+   bright ground in between. The accent follows the controls and appears on the
+   light ground only.
+
+   THE ACCENT IS #CB141D, Chicago Motor Cars' own value, carried untouched under
+   REDESIGN. Measured on the day ground it is 4.53:1 as text and 5.14:1 as a
+   fill with near-white on it, so it is used for both. It never appears over the
+   footage, where the cars already carry the colour.
+
+   TYPE — no serif anywhere. Space Grotesk carries every headline, number and
+   label; Instrument Sans carries everything meant to be read. Two families,
+   three roles, self-hosted.
+   ========================================================================== */
+
+:root {
+  --night:    #05080B;
+  --night-2:  #0D1316;
+  --day:      #D9D6CF;
+  --day-2:    #B6B5B0;
+  --paper:    #E7E5DF;
+
+  --ink:      #16181A;
+  --ink-rgb:  22 24 26;
+  --ink-70:   rgb(var(--ink-rgb) / .70);
+  --rule:     rgb(var(--ink-rgb) / .22);
+  --rule-2:   rgb(var(--ink-rgb) / .46);
+
+  --lit:      #F4F2EF;
+  --lit-rgb:  244 242 239;
+  --lit-70:   rgb(var(--lit-rgb) / .72);
+  --rule-lit: rgb(var(--lit-rgb) / .30);
+
+  --red:      #CB141D;
+  --red-deep: #A50F17;
+
+  /* ---- type -------------------------------------------------------------- */
+  --grotesk:  'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --sans:     'Instrument Sans', system-ui, -apple-system, sans-serif;
+
+  --t-hero:   clamp(2.25rem, 4.6vw, 4rem);      /* 64px cap */
+  --t-h2:     clamp(1.75rem, 2.9vw, 2.75rem);   /* 44px */
+  --t-h3:     clamp(1.25rem, 1.5vw + .5rem, 1.625rem);
+  --t-fig:    clamp(2rem, 3.4vw, 3.25rem);
+  --t-price:  clamp(1.125rem, 1.1vw + .6rem, 1.5rem);
+  --t-lead:   clamp(1.0625rem, .5vw + .9rem, 1.1875rem);
+  --t-body:   1rem;
+  --t-micro:  .875rem;                          /* 14px — the floor */
+  --track:    .1em;
+
+  /* ---- space — 4px base -------------------------------------------------- */
+  --s1: .25rem;  --s2: .5rem;   --s3: .75rem;  --s4: 1rem;
+  --s5: 1.5rem;  --s6: 2rem;    --s7: 3rem;    --s8: 4rem;
+  --s9: 6rem;    --s10: 8rem;   --s11: 12rem;
+
+  --gutter: clamp(1.25rem, 3.6vw, 4rem);
+  --shell:  90rem;
+  --bar-h:  4.5rem;
+
+  --d1: .15s;  --d2: .25s;  --d3: .45s;
+  --ease: cubic-bezier(.22, 1, .36, 1);
+}

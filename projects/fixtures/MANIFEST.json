@@ -1,10 +1,11 @@
 {
-  "generated": "2026-08-13",
-  "purpose": "Paired regression fixture. Frozen copies, never the live project folder. Concept 2 must fail Gate 1; Concept 3 must pass the Gate 1 floor and fail Gate 2; neither may pass Gate 3 without Alex’s explicit approval.",
+  "generated": "2026-08-15",
+  "purpose": "Regression fixtures. Frozen copies, never the live project folder. Four recorded rejections across four failure classes. THE STANDING RULE: a change to the workflow is broken if any fixture here can pass the complete gate chain.",
   "gate1Floor": {
     "rule": "A1 / C1+C13",
-    "check": "firstScreenGoverningMassPct >= 90 on identity-led or image-led pages",
-    "note": "Passing Gate 1 proves the means are present. It proves nothing about quality — Concept 3 is the recorded counter-example."
+    "check": "firstScreenGoverningMassPct >= 90, where governing mass is the tallest single media element on the first screen as a fraction of viewport height",
+    "note": "Passing Gate 1 proves the means are present. It proves nothing about quality — Concept 3 is the recorded counter-example.",
+    "limitation": "Measures media, not composition. cmc-index2-spine fails it with an authored full-screen scene; cmc-index3-conventional passes it at 100% with a stock full-bleed video. Passing proves a photograph is large. It proves nothing else."
   },
   "omitted": [
     {
@@ -30,7 +31,8 @@
       "expect": {
         "gate1": "fail",
         "gate2": "fail",
-        "gate3": "no approval on record"
+        "gate5": "no approval on record",
+        "gate4": "fail — no content ledger exists"
       },
       "files": [
         {
@@ -149,10 +151,16 @@
           "result": "FAIL — even spacing throughout; no event on either side of the largest runs"
         }
       ],
-      "gate3": {
+      "gate5": {
         "status": "not passed",
         "reason": "no explicit approval from Alex on record; his recorded verdict is reject"
-      }
+      },
+      "gate4Findings": [
+        {
+          "result": "FAIL — NO LEDGER. Recorded retrospectively; this fixture predates the Content Provenance gate and shipped claim-shaped strings with no source."
+        }
+      ],
+      "frozen": "2026-08-13"
     },
     {
       "id": "cmc-concept-3",
@@ -168,7 +176,8 @@
       "expect": {
         "gate1": "partial pass — the A1 first-screen floor is met",
         "gate2": "fail",
-        "gate3": "no approval on record"
+        "gate5": "no approval on record",
+        "gate4": "fail — no content ledger exists"
       },
       "files": [
         {
@@ -309,11 +318,1075 @@
           "result": "FAIL — identical formula; one section shown twice"
         }
       ],
-      "gate3": {
+      "gate5": {
         "status": "not passed",
         "reason": "no explicit approval from Alex on record; his recorded verdict is reject"
-      }
+      },
+      "gate4Findings": [
+        {
+          "result": "FAIL — NO LEDGER. Recorded retrospectively; this fixture predates the Content Provenance gate and shipped claim-shaped strings with no source."
+        }
+      ],
+      "frozen": "2026-08-13"
+    },
+    {
+      "id": "cmc-index2-spine",
+      "entry": "index2.html",
+      "source": "c:/____WORK/cmc_concept4/index2.html",
+      "frozen": "2026-08-15",
+      "failureClass": "C — authored composition without product success",
+      "verdict": {
+        "by": "Alex",
+        "date": "2026-08-15",
+        "result": "reject",
+        "reason": "Formal compositional success without product success. The concept was distinctive and internally coherent, but failed task hierarchy, inventory discoverability, commercial usefulness and desire. The register became the product, while the automobiles and primary buyer actions became secondary."
+      },
+      "pairedWith": "cmc-index3-conventional",
+      "whyPaired": "C and D are the same error photographed from opposite sides. Correcting either one alone reproduces the other, which is why authorship and usefulness are conjunctive and no gate may be traded against another.",
+      "expect": {
+        "gate1": "fail — Measurable Conformance. The A1 media floor reads 35%; see gate1Note.",
+        "gate2": "pass with dispositions — the detector fires and every finding has a defensible human disposition; authorship is real",
+        "gate3": "fail — Product Usefulness. Inventory is not discoverable, the primary buyer action is subordinate to the register, no desire is produced",
+        "gate4": "fail — no content ledger exists; claim-shaped strings are published with no recorded source",
+        "gate5": "no approval on record; recorded verdict is reject"
+      },
+      "declaredOperations": [
+        {
+          "op": "a single continuous spine holding every chapter",
+          "survivedToRender": true
+        },
+        {
+          "op": "the governing car drawn at source framing, air above it reserved before the crop",
+          "survivedToRender": true
+        },
+        {
+          "op": "the register overlapped by the car so the list is subordinated",
+          "survivedToRender": true
+        },
+        {
+          "op": "differential scroll between spine and record column",
+          "survivedToRender": true
+        },
+        {
+          "op": "the buyer’s primary task made findable at the top of the first screen",
+          "survivedToRender": false,
+          "note": "never authored; the register took the position the task needed"
+        }
+      ],
+      "hero": {
+        "viewports": [
+          {
+            "w": 1440,
+            "h": 900
+          },
+          {
+            "w": 390,
+            "h": 844
+          }
+        ],
+        "media": "assets/img/c2/car-regera-1421.webp",
+        "naturalSize": {
+          "w": 1421,
+          "h": 509
+        },
+        "fit": "intrinsic",
+        "fitNote": "in-flow img sized by width; no object-fit, so the frame cannot crop the subject. Recorded as a control: the hero gate must pass this one.",
+        "subjectBoxes": [
+          {
+            "at": "static",
+            "box": {
+              "x": 0.0359,
+              "y": 0.1022,
+              "w": 0.9261,
+              "h": 0.8841
+            },
+            "method": "alpha bounding box of the cut-out at threshold A>24, measured on the delivered asset"
+          }
+        ],
+        "textSafe": {
+          "x": 0,
+          "y": 0,
+          "w": 0.42,
+          "h": 0.46,
+          "note": ".claim occupies grid-row 1; the car is grid-row 2"
+        },
+        "expect": {
+          "clipped": false,
+          "overlapsTextSafe": false,
+          "verdict": "pass"
+        }
+      },
+      "measured": {
+        "at": {
+          "w": 1440,
+          "h": 900
+        },
+        "pageHeightPx": 5843,
+        "screens": 6.5,
+        "firstScreenGoverningMassPct": 35,
+        "mediaTotal": 14,
+        "fullBleedMedia": 0,
+        "largestTypePx": 66,
+        "smallestTypePx": 14,
+        "typeScaleRatio": 4.7,
+        "topLevelSections": 3,
+        "bandRun": 0,
+        "governingMassNote": "Tallest media element on the first screen, as a fraction of viewport height — the frozen A1 definition. The scene owning the first screen measures 100% by area, but its governing element is an authored composition rather than one media element, and the floor as written cannot see that."
+      },
+      "expectedShapes": {
+        "note": "The detector must report these. It is not an oracle: each one requires a human disposition, and a defensible disposition is why this fixture still clears Gate 2.",
+        "parallelUnits": [
+          {
+            "section": "section#floors.release",
+            "units": 4,
+            "shape": "4×equal|m:mid|c:bottom"
+          },
+          {
+            "section": "section#sell.co",
+            "units": 4,
+            "shape": "4×equal|m:lower|c:upper"
+          },
+          {
+            "section": "section#sell.co",
+            "units": 3,
+            "shape": "3×equal|h:top|m:upper|c:top"
+          },
+          {
+            "section": "section.feed",
+            "units": 11,
+            "shape": "11×equal|i:mid"
+          },
+          {
+            "section": "footer.end",
+            "units": 11,
+            "shape": "11×equal|i:mid"
+          }
+        ],
+        "repeatedShapes": [
+          "11×equal|i:mid"
+        ],
+        "bandRun": 0
+      },
+      "expectedClaimClasses": [
+        "bare-count",
+        "grouped-number",
+        "year",
+        "currency",
+        "delivery"
+      ],
+      "gate3Findings": [
+        {
+          "device": "the register (301 records on a fixed spine)",
+          "job_claimed": "the inventory, made legible as a single continuous body",
+          "function_test": "can a buyer reach a specific car they want in under three actions?",
+          "result": "FAIL — the register is browsable but not searchable; filtering, price and body-style entry points are absent"
+        },
+        {
+          "device": "first-screen call to action",
+          "job_claimed": "“View all 301 vehicles”",
+          "function_test": "is the primary commercial action the strongest offer on the first screen?",
+          "result": "FAIL — it is the third element in the claim block and is outranked by the register and the standing car"
+        },
+        {
+          "device": "vehicle presentation",
+          "job_claimed": "one car standing on the floor, at source framing",
+          "function_test": "does the page produce desire for a specific automobile a buyer could act on?",
+          "result": "FAIL — one car is presented as an event; the other 300 are presented as rows of type"
+        },
+        {
+          "device": "sell / trade path",
+          "job_claimed": "the second commercial task",
+          "function_test": "is it reachable without scrolling past the whole register?",
+          "result": "FAIL — it sits below four screens of register"
+        }
+      ],
+      "gate4Findings": [
+        {
+          "result": "FAIL — NO LEDGER. $2,900,212, “301 vehicles”, “more than thirty thousand placed”, “since 2003” and “delivered anywhere in the country” are published with no recorded source. The absence of a ledger is itself the failure; nothing was ever marked false because nothing was ever recorded."
+        }
+      ],
+      "gate5": {
+        "status": "not passed",
+        "reason": "no explicit approval from Alex on record; his recorded verdict is reject"
+      },
+      "files": [
+        {
+          "path": "assets/css/c2-tokens.css",
+          "sha256": "1ea6edcf41b7c4f245856b3e501d9ea288a43b319342145203e55b162840add2",
+          "bytes": 4333
+        },
+        {
+          "path": "assets/css/c2.css",
+          "sha256": "a14551ad6b53fd25a81978d5d13a96f5990e82eee8a14d1ad642d64f3ae792e3",
+          "bytes": 24366
+        },
+        {
+          "path": "assets/fonts/fonts.css",
+          "sha256": "b47a21051dc6f543392fe7b4e8a91f6dba7111d252c5360926e2e1551728a3d7",
+          "bytes": 6476
+        },
+        {
+          "path": "assets/fonts/newsreader-latin-1.woff2",
+          "sha256": "e384e31812c1d580b5ae2217ade8ca5fe9e5135ea9c27423359d00a954c28488",
+          "bytes": 63212
+        },
+        {
+          "path": "assets/fonts/newsreader-latin-3.woff2",
+          "sha256": "01817351be3edfc1714fe6d60ddea6a22a169a5ebd033b50c7f9495e5d9c386a",
+          "bytes": 131848
+        },
+        {
+          "path": "assets/fonts/newsreader-latin-5.woff2",
+          "sha256": "01817351be3edfc1714fe6d60ddea6a22a169a5ebd033b50c7f9495e5d9c386a",
+          "bytes": 131848
+        },
+        {
+          "path": "assets/fonts/newsreader-latin-ext-0.woff2",
+          "sha256": "89e1d530cc551a0f1476bac4983b8c3f9d4842e414dc624fcff16e31acf17c35",
+          "bytes": 38612
+        },
+        {
+          "path": "assets/fonts/newsreader-latin-ext-2.woff2",
+          "sha256": "cbca001188852d514d8654be7ddc97868f039bdf986b926ec5c985c117853cfd",
+          "bytes": 86628
+        },
+        {
+          "path": "assets/fonts/newsreader-latin-ext-4.woff2",
+          "sha256": "cbca001188852d514d8654be7ddc97868f039bdf986b926ec5c985c117853cfd",
+          "bytes": 86628
+        },
+        {
+          "path": "assets/fonts/plexmono-latin-1.woff2",
+          "sha256": "c36f509c0a8f9f85f29cb44bc8701d8a9e0b14c499e77a884f789ead7093a7ac",
+          "bytes": 10052
+        },
+        {
+          "path": "assets/fonts/plexmono-latin-3.woff2",
+          "sha256": "a76f53ca6612e7b3828eec2311098675b7f9849ae4169a8bcef6302aec02a6c0",
+          "bytes": 10060
+        },
+        {
+          "path": "assets/fonts/plexmono-latin-ext-0.woff2",
+          "sha256": "f1050dc5317b43434c0aeda599d4624c774ffc162e87a8cf204b949b6a85816d",
+          "bytes": 8860
+        },
+        {
+          "path": "assets/fonts/plexmono-latin-ext-2.woff2",
+          "sha256": "77f03e26f981c582bdba3a7abed4baa2d3149211c01366bb3ab3ba7622ec4ae5",
+          "bytes": 8848
+        },
+        {
+          "path": "assets/fonts/plexsans-latin-1.woff2",
+          "sha256": "134dc0ee94e70cf5d52f608a7ac4b864c9b00bdf69779b8919712ce89da253b1",
+          "bytes": 19284
+        },
+        {
+          "path": "assets/fonts/plexsans-latin-3.woff2",
+          "sha256": "056e4e2459f57a0033c8c9c844ff19d6e42ac8602027803d4345823bcc939818",
+          "bytes": 40240
+        },
+        {
+          "path": "assets/fonts/plexsans-latin-5.woff2",
+          "sha256": "056e4e2459f57a0033c8c9c844ff19d6e42ac8602027803d4345823bcc939818",
+          "bytes": 40240
+        },
+        {
+          "path": "assets/fonts/plexsans-latin-ext-0.woff2",
+          "sha256": "f0d521828c0d91f2857f001f0ede42adb7b2c12520b00f1cbc1af16ae4fa1eeb",
+          "bytes": 12032
+        },
+        {
+          "path": "assets/fonts/plexsans-latin-ext-2.woff2",
+          "sha256": "ae1d854fefa1167a79071f1afe01d4d51b60c5840c1be36dd74bd5fe7375b405",
+          "bytes": 25868
+        },
+        {
+          "path": "assets/fonts/plexsans-latin-ext-4.woff2",
+          "sha256": "ae1d854fefa1167a79071f1afe01d4d51b60c5840c1be36dd74bd5fe7375b405",
+          "bytes": 25868
+        },
+        {
+          "path": "assets/img/c2/car-aventador-1396.webp",
+          "sha256": "4ff2e5b6cf355786f7c1ca641244bef507ce3981704bc9bfa3fb3b60c09fa957",
+          "bytes": 104668
+        },
+        {
+          "path": "assets/img/c2/car-regera-1421.webp",
+          "sha256": "e392bb8f05646924035421bf60dd3970950abb321f566813e9338cb0a79e6024",
+          "bytes": 90440
+        },
+        {
+          "path": "assets/img/c2/room-collection-1600.webp",
+          "sha256": "8fd53848b1bd4e418bd5ff9c4f643ef225adb5d2a6aaae0813a4161fd5767497",
+          "bytes": 39212
+        },
+        {
+          "path": "assets/img/instagram/cmc-ig-audi-r8-v10.jpg",
+          "sha256": "66187a309f651e19416cd8a011e6f3abb854839412b4e10ce59faf0a97df1c7b",
+          "bytes": 50601
+        },
+        {
+          "path": "assets/img/instagram/cmc-ig-dodge-viper-acr.jpg",
+          "sha256": "260123ff12b48946b253a68264fa4b7ac72a1fee41d2439b6fddb45689867f61",
+          "bytes": 42142
+        },
+        {
+          "path": "assets/img/instagram/cmc-ig-jeep-gladiator.jpg",
+          "sha256": "fda049a99a9294e7ee117a74e391cbadb7934fc1724e6ceebf319103b27e9b7e",
+          "bytes": 48852
+        },
+        {
+          "path": "assets/img/instagram/cmc-ig-lamborghini-countach-showroom.jpg",
+          "sha256": "da88b2b352a4e66340ad56a2622f111ef240dee6376e7e1eff88e0f942754e94",
+          "bytes": 140501
+        },
+        {
+          "path": "assets/img/instagram/cmc-ig-lamborghini-huracan-evo-gt.jpg",
+          "sha256": "4d1f8ae6d91a546320ede649574c9ece5a6dbd884413dac414248a05b64e91fb",
+          "bytes": 50350
+        },
+        {
+          "path": "assets/img/instagram/cmc-ig-lamborghini-huracan-sto.jpg",
+          "sha256": "0c08778667708b39882ecf8f59f45b7feb6aab3e44dc803036472258c1771c70",
+          "bytes": 43898
+        },
+        {
+          "path": "assets/img/instagram/cmc-ig-lamborghini-urus-s.jpg",
+          "sha256": "a29497309d1154291e0cdf5c381037e2229c3c16fdb661e1222e50cabe8d88c5",
+          "bytes": 45763
+        },
+        {
+          "path": "assets/img/instagram/cmc-ig-mercedes-s65-amg.jpg",
+          "sha256": "b5c2b25fcd57cbe90ba3aeb525e83420b4ee71c1e679ecb7630fd39a24682e30",
+          "bytes": 43361
+        },
+        {
+          "path": "assets/img/instagram/cmc-ig-porsche-911-carrera-s.jpg",
+          "sha256": "b5f614d00a2cf46e7ca0b0db70a39c9d646a0920384935b7380fb5acc5c48257",
+          "bytes": 48070
+        },
+        {
+          "path": "assets/img/instagram/cmc-ig-porsche-911-gt2-rs.jpg",
+          "sha256": "d1eda040e21c40a0096ec424b1aece43a97b91b534cadf92be8529207322457a",
+          "bytes": 44120
+        },
+        {
+          "path": "assets/img/instagram/cmc-ig-porsche-911-gt3-touring.jpg",
+          "sha256": "db5f68f5714dd02df88114951e0ea96d392e55bc8529076278303479df81f64c",
+          "bytes": 44961
+        },
+        {
+          "path": "assets/img/instagram/cmc-ig-porsche-911-gt3.jpg",
+          "sha256": "14302e9a81b4aa45ef36194edbf872777cdaca251cb1152189e21ce8dfd31a35",
+          "bytes": 45945
+        },
+        {
+          "path": "assets/js/c2.js",
+          "sha256": "1532956f309ebd01a58606cbea90107334899b54738a5ffa6918989d118c2c75",
+          "bytes": 4449
+        },
+        {
+          "path": "assets/logos/favicon.svg",
+          "sha256": "aec320a5d2f6763960afe25a8991f7ac4eb9fff35d24b89aa474b32789f326ae",
+          "bytes": 1725
+        },
+        {
+          "path": "index2.html",
+          "sha256": "2734f55cb05fcc4e4ab805d085ba70cd104f5f622f49c29e75229b3bd59c8579",
+          "bytes": 39034
+        }
+      ],
+      "gate1Note": "FLOOR LIMITATION, RECORDED NOT RESOLVED. Under A1 as currently written, this fixture — the authored one — scores 35%, while cmc-index3-conventional — the unauthored one — scores a perfect 100%. The floor rewards a full-bleed photograph and is blind to a composed scene. It is left unchanged here because altering an invariant is Alex’s call, not the patch’s. Flagged for a decision."
+    },
+    {
+      "id": "cmc-index3-conventional",
+      "entry": "index3.html",
+      "source": "c:/____WORK/cmc_concept4/index3.html",
+      "frozen": "2026-08-15",
+      "failureClass": "D — product usability without design authorship",
+      "verdict": {
+        "by": "Alex",
+        "date": "2026-08-15",
+        "result": "reject",
+        "reason": "Formal product usability without design authorship. Product usability was restored by abandoning the Design DNA. Four equal inventory cards, four equal process columns, repeated horizontal bands, a cropped hero and generic dark-luxury register — every banned structure returned the moment the page was made useful."
+      },
+      "pairedWith": "cmc-index2-spine",
+      "whyPaired": "The correction applied to C produced D. That is the evidence that a gate chain permitting either to pass is broken.",
+      "expect": {
+        "gate1": "fail — Measurable Conformance. The delivered hero render clips the subject; the declared interval is not the delivered interval",
+        "gate2": "fail — Structural and Authorship Conformance. Four equal modules in four separate sections; no disposition can defend them",
+        "gate3": "pass — Product Usefulness. Search, inventory, warranty, sell and locations are all reachable and the primary action is dominant",
+        "gate4": "fail — Content Provenance. Four fabricated prices and eleven unsupported commercial promises",
+        "gate5": "no approval on record; recorded verdict is reject"
+      },
+      "declaredOperations": [
+        {
+          "op": "a night film owning the whole first screen — one continuous approach",
+          "survivedToRender": false,
+          "note": "the delivered 1600 encode contains a shot change: t=0.0 is a daylight side profile on a bridge, t≥1.3 is the night garage. Two shots, declared as one."
+        },
+        {
+          "op": "the reading zone found in the frame rather than cut into it",
+          "survivedToRender": false,
+          "note": "at t=5.1 the subject box starts at x=0.09, well inside the declared 0–0.34 text-safe zone"
+        },
+        {
+          "op": "mobile cut to stop before the car outgrows the portrait frame",
+          "survivedToRender": false,
+          "note": "measured false: the 720×1280 encode clips the subject on both edges at t=0.0 and t=3.3"
+        },
+        {
+          "op": "day/night alternation as chapter structure",
+          "survivedToRender": true,
+          "note": "present, but carried by background colour alone; the formula beneath it does not change"
+        },
+        {
+          "op": "a distinct compositional formula per section",
+          "survivedToRender": false,
+          "note": "four sections resolve to 4×equal modules; two more repeat 11×equal"
+        }
+      ],
+      "hero": {
+        "viewports": [
+          {
+            "w": 1440,
+            "h": 900
+          },
+          {
+            "w": 390,
+            "h": 844
+          }
+        ],
+        "fit": "cover",
+        "coverProof": "required — declared cover must be proved on the composited render, not asserted",
+        "desktop": {
+          "media": "assets/video/c3/hero-approach-1600.mp4",
+          "naturalSize": {
+            "w": 1600,
+            "h": 900
+          },
+          "durationSec": 5.2,
+          "objectPosition": {
+            "x": 0.5,
+            "y": 0.46
+          },
+          "mediaBox": "inset 0 of a 100svh section",
+          "textSafe": {
+            "x": 0,
+            "y": 0,
+            "w": 0.34,
+            "h": 1,
+            "note": "declared by the left reading gradient, opaque to 34%"
+          },
+          "subjectBoxes": [
+            {
+              "at": 0,
+              "box": {
+                "x": 0.1,
+                "y": 0.22,
+                "w": 0.69,
+                "h": 0.38
+              },
+              "shot": "A — daylight bridge, side profile"
+            },
+            {
+              "at": 1.3,
+              "box": {
+                "x": 0.42,
+                "y": 0.4,
+                "w": 0.18,
+                "h": 0.17
+              },
+              "shot": "B — night garage, distant"
+            },
+            {
+              "at": 2.6,
+              "box": {
+                "x": 0.35,
+                "y": 0.53,
+                "w": 0.28,
+                "h": 0.26
+              },
+              "shot": "B"
+            },
+            {
+              "at": 3.9,
+              "box": {
+                "x": 0.25,
+                "y": 0.6,
+                "w": 0.48,
+                "h": 0.37
+              },
+              "shot": "B"
+            },
+            {
+              "at": 5.1,
+              "box": {
+                "x": 0.09,
+                "y": 0.62,
+                "w": 0.77,
+                "h": 0.45
+              },
+              "shot": "B — worst sample",
+              "governs": true
+            }
+          ],
+          "unionBox": {
+            "x": 0.09,
+            "y": 0.22,
+            "w": 0.77,
+            "h": 0.85
+          },
+          "unionNote": "The union spans 85% of frame height across two different shots. A single declared box here is meaningless, which is the case the per-sample rule exists for."
+        },
+        "mobile": {
+          "media": "assets/video/c3/hero-approach-720.mp4",
+          "naturalSize": {
+            "w": 720,
+            "h": 1280
+          },
+          "durationSec": 3.4,
+          "objectPosition": {
+            "x": 0.5,
+            "y": 0.4
+          },
+          "mediaBox": "a 48svh block, 390×405 at 390×844",
+          "textSafe": {
+            "x": 0,
+            "y": 0.48,
+            "w": 1,
+            "h": 0.52,
+            "note": "type sits beneath the media block on the night ground"
+          },
+          "subjectBoxes": [
+            {
+              "at": 0,
+              "box": {
+                "x": -0.05,
+                "y": 0.22,
+                "w": 1.06,
+                "h": 0.33
+              },
+              "shot": "A",
+              "note": "exits both vertical edges"
+            },
+            {
+              "at": 1.7,
+              "box": {
+                "x": 0.17,
+                "y": 0.38,
+                "w": 0.55,
+                "h": 0.2
+              },
+              "shot": "B"
+            },
+            {
+              "at": 3.3,
+              "box": {
+                "x": -0.08,
+                "y": 0.28,
+                "w": 1.16,
+                "h": 0.4
+              },
+              "shot": "B — worst sample",
+              "governs": true
+            }
+          ],
+          "unionBox": {
+            "x": -0.08,
+            "y": 0.22,
+            "w": 1.24,
+            "h": 0.46
+          }
+        },
+        "measurement": "Boxes read off a decile grid overlaid on frames decoded from the DELIVERED encodes, not from the source master. Fractions are of the media box.",
+        "expect": {
+          "clipped": true,
+          "clippedEdges": {
+            "desktop": [
+              "bottom"
+            ],
+            "mobile": [
+              "left",
+              "right"
+            ]
+          },
+          "overlapsTextSafe": {
+            "desktop": true,
+            "mobile": false
+          },
+          "shotChangeInDeclaredInterval": true,
+          "verdict": "fail"
+        }
+      },
+      "measured": {
+        "at": {
+          "w": 1440,
+          "h": 900
+        },
+        "pageHeightPx": 7246,
+        "screens": 8.1,
+        "firstScreenGoverningMassPct": 100,
+        "mediaTotal": 21,
+        "fullBleedMedia": 4,
+        "largestTypePx": 64,
+        "smallestTypePx": 14,
+        "typeScaleRatio": 4.6,
+        "topLevelSections": 10,
+        "bandRun": 3,
+        "governingMassNote": "A perfect score on the A1 media floor, awarded to the fixture rejected for having no authorship. Recorded as the counter-example that motivates gate1Note on cmc-index2-spine."
+      },
+      "expectedShapes": {
+        "note": "These are the modules Alex named in the rejection. If a future detector change stops reporting any of them, the detector regressed — not the page.",
+        "parallelUnits": [
+          {
+            "section": "section.line",
+            "units": 4,
+            "shape": "4×equal|i:upper|m:mid|c:bottom",
+            "is": "the four equal inventory cards"
+          },
+          {
+            "section": "section#sell.sell",
+            "units": 4,
+            "shape": "4×equal|h:mid|m:lower",
+            "is": "the four equal process columns"
+          },
+          {
+            "section": "section#warranty.warr",
+            "units": 4,
+            "shape": "4×equal|m:upper"
+          },
+          {
+            "section": "section#locations.where",
+            "units": 4,
+            "shape": "4×equal|m:mid|c:bottom"
+          },
+          {
+            "section": "section#find.find",
+            "units": 3,
+            "shape": "3×equal|m:mid"
+          },
+          {
+            "section": "section.floor",
+            "units": 3,
+            "shape": "3×equal|m:upper"
+          },
+          {
+            "section": "section.feed",
+            "units": 11,
+            "shape": "11×equal|i:mid"
+          },
+          {
+            "section": "footer.end",
+            "units": 11,
+            "shape": "11×equal|i:mid"
+          }
+        ],
+        "repeatedShapes": [
+          "11×equal|i:mid"
+        ],
+        "bandRun": 3,
+        "cardsByClassName": 0,
+        "cardsByClassNameNote": "No element on this page carries a card class, a border radius or an explicit border. A class-name detector reports cards: 0 and the four equal modules ship. That number is recorded here only as the counter-example."
+      },
+      "expectedClaimHits": {
+        "currency": [
+          "$2,900,212",
+          "$1,600,212",
+          "$1,100,212",
+          "$900,212",
+          "$100,000",
+          "$1,000,000",
+          "$2B"
+        ],
+        "grouped-number": [
+          "2,055",
+          "7,671",
+          "1,641",
+          "2,850",
+          "30,000"
+        ],
+        "same-day": [
+          "Same-day"
+        ],
+        "no-fee": [
+          "no listing fees",
+          "No listing fees"
+        ],
+        "no-commission": [
+          "no commissions"
+        ],
+        "zero-risk": [
+          "Zero-risk"
+        ],
+        "duration": [
+          "within two business days"
+        ],
+        "warranty-benefit": [
+          "factory warranty"
+        ],
+        "service-coverage": [
+          "service that goes with them"
+        ],
+        "delivery": [
+          "anywhere in the country",
+          "Worldwide",
+          "Nationwide"
+        ],
+        "superlative": [
+          "the best"
+        ]
+      },
+      "gate2Findings": [
+        {
+          "device": "four inventory cards (section.line)",
+          "job_claimed": "four vehicles offered",
+          "function_test": "write out each unit’s formula and name what differs",
+          "result": "FAIL — 4×equal|i:upper|m:mid|c:bottom, four times. One module shown four times."
+        },
+        {
+          "device": "four process columns (section#sell)",
+          "job_claimed": "the four steps of selling a car",
+          "function_test": "does the composition rank the steps, or list them?",
+          "result": "FAIL — 4×equal|h:mid|m:lower; equal width means equal rank, and the steps are sequential"
+        },
+        {
+          "device": "warranty and locations",
+          "job_claimed": "two distinct destinations",
+          "function_test": "state each section’s formula",
+          "result": "FAIL — both resolve to four equal units; two sections, one section"
+        },
+        {
+          "device": "horizontal band run",
+          "job_claimed": "day/night chapter alternation",
+          "function_test": "what changes across a chapter boundary besides the ground colour?",
+          "result": "FAIL — bandRun 3; the formula beneath the colour is unchanged"
+        },
+        {
+          "device": "the hero film",
+          "job_claimed": "one continuous approach out of the far end of a garage",
+          "function_test": "play the delivered encode and describe what is on screen at t=0",
+          "result": "FAIL — a daylight side profile on a bridge. The declared interval is not the delivered interval."
+        }
+      ],
+      "gate3Findings": [
+        {
+          "device": "search / finder",
+          "job_claimed": "the primary buyer task",
+          "function_test": "can a buyer reach a specific car in under three actions?",
+          "result": "PASS — make, body style and price entry on the first daylight screen"
+        },
+        {
+          "device": "warranty in the top-level navigation",
+          "job_claimed": "a required destination",
+          "function_test": "is it reachable from the bar without scrolling?",
+          "result": "PASS"
+        },
+        {
+          "device": "sell / trade path",
+          "job_claimed": "the second commercial task",
+          "function_test": "reachable and explained?",
+          "result": "PASS"
+        },
+        {
+          "note": "Gate 3 passing is the whole point of this fixture. Usefulness is necessary and is not sufficient; it may never be traded against Gate 2."
+        }
+      ],
+      "gate4Findings": [
+        {
+          "result": "FAIL — FABRICATED. $2,900,212 / $1,600,212 / $1,100,212 / $900,212. Four asking prices sharing the suffix 212, invented to look like the live site’s ,800 convention. No source."
+        },
+        {
+          "result": "FAIL — UNSUPPORTED. “Same-day”, “no listing fees”, “no commissions”, “Zero-risk”, “within two business days”, “factory warranty”, “service that goes with them”, “Worldwide”, “Nationwide”, “the best”. Commercial promises with no recorded source."
+        },
+        {
+          "result": "FAIL — NO LEDGER. None of the above was recorded as false, because none of it was recorded at all."
+        }
+      ],
+      "gate5": {
+        "status": "not passed",
+        "reason": "no explicit approval from Alex on record; his recorded verdict is reject"
+      },
+      "files": [
+        {
+          "path": "assets/css/c3-tokens.css",
+          "sha256": "dc9a021b2e1246407a2c40d979d583f431b0e2a65f5141c729241e1b482274a6",
+          "bytes": 3108
+        },
+        {
+          "path": "assets/css/c3.css",
+          "sha256": "1744c17e9486cdd82e69347921f6fe8e2060646925c3443086f6fab9aa5c1e35",
+          "bytes": 27152
+        },
+        {
+          "path": "assets/fonts/c3/fonts-c3.css",
+          "sha256": "960e4c55de37457210bacce5dce7619bb7edbaee9594c826a7036b776f8d8a82",
+          "bytes": 5119
+        },
+        {
+          "path": "assets/fonts/c3/instrumentsans-400-0.woff2",
+          "sha256": "c4fcfea41f2c1cfeea9211fa43679845454a1d0e0d7e95e069c7e73c4ae302d2",
+          "bytes": 11144
+        },
+        {
+          "path": "assets/fonts/c3/instrumentsans-400-1.woff2",
+          "sha256": "2ee17598a98d8a59e4df8152d015bec9ab8e4d5672cc0ab42bef806b568e3971",
+          "bytes": 30092
+        },
+        {
+          "path": "assets/fonts/c3/instrumentsans-500-2.woff2",
+          "sha256": "c4fcfea41f2c1cfeea9211fa43679845454a1d0e0d7e95e069c7e73c4ae302d2",
+          "bytes": 11144
+        },
+        {
+          "path": "assets/fonts/c3/instrumentsans-500-3.woff2",
+          "sha256": "2ee17598a98d8a59e4df8152d015bec9ab8e4d5672cc0ab42bef806b568e3971",
+          "bytes": 30092
+        },
+        {
+          "path": "assets/fonts/c3/instrumentsans-600-4.woff2",
+          "sha256": "c4fcfea41f2c1cfeea9211fa43679845454a1d0e0d7e95e069c7e73c4ae302d2",
+          "bytes": 11144
+        },
+        {
+          "path": "assets/fonts/c3/instrumentsans-600-5.woff2",
+          "sha256": "2ee17598a98d8a59e4df8152d015bec9ab8e4d5672cc0ab42bef806b568e3971",
+          "bytes": 30092
+        },
+        {
+          "path": "assets/fonts/c3/spacegrotesk-400-6.woff2",
+          "sha256": "8895e3d49825128bfa5238e4c96e9b432d7a3dadbe5c17c6081267398305dc71",
+          "bytes": 6712
+        },
+        {
+          "path": "assets/fonts/c3/spacegrotesk-400-7.woff2",
+          "sha256": "952dddb45d2f96f71cbf3b7f510b24379afc3c89ea02fcf89d377b45d62c0166",
+          "bytes": 18940
+        },
+        {
+          "path": "assets/fonts/c3/spacegrotesk-400-8.woff2",
+          "sha256": "0640890476fc1198ab4de571fb658de443c4d85b66466ec09534a8737ab1ce9d",
+          "bytes": 22288
+        },
+        {
+          "path": "assets/fonts/c3/spacegrotesk-500-10.woff2",
+          "sha256": "952dddb45d2f96f71cbf3b7f510b24379afc3c89ea02fcf89d377b45d62c0166",
+          "bytes": 18940
+        },
+        {
+          "path": "assets/fonts/c3/spacegrotesk-500-11.woff2",
+          "sha256": "0640890476fc1198ab4de571fb658de443c4d85b66466ec09534a8737ab1ce9d",
+          "bytes": 22288
+        },
+        {
+          "path": "assets/fonts/c3/spacegrotesk-500-9.woff2",
+          "sha256": "8895e3d49825128bfa5238e4c96e9b432d7a3dadbe5c17c6081267398305dc71",
+          "bytes": 6712
+        },
+        {
+          "path": "assets/fonts/c3/spacegrotesk-700-12.woff2",
+          "sha256": "8895e3d49825128bfa5238e4c96e9b432d7a3dadbe5c17c6081267398305dc71",
+          "bytes": 6712
+        },
+        {
+          "path": "assets/fonts/c3/spacegrotesk-700-13.woff2",
+          "sha256": "952dddb45d2f96f71cbf3b7f510b24379afc3c89ea02fcf89d377b45d62c0166",
+          "bytes": 18940
+        },
+        {
+          "path": "assets/fonts/c3/spacegrotesk-700-14.woff2",
+          "sha256": "35f8aec56cfd5cbfdb03cc68733a54a0b05bb3617ffcd5fd332badc0b045ca55",
+          "bytes": 12840
+        },
+        {
+          "path": "assets/img/c3/breadth-1900.jpg",
+          "sha256": "9c3d89ff2245dbd804d35658be2a97f1a888e41412a5b86781e2b7d99a876791",
+          "bytes": 135441
+        },
+        {
+          "path": "assets/img/c3/car-aventador-svj-roadster.webp",
+          "sha256": "fd238411183b46bf6e411c3cb377e6c75e8a5d795cc23e980fa84b6bde1cc148",
+          "bytes": 111858
+        },
+        {
+          "path": "assets/img/c3/car-ferrari-812-gts.webp",
+          "sha256": "632c1495d7d1a41986a33c5c95736323abfb428e2607198e4190b285746abe5e",
+          "bytes": 121548
+        },
+        {
+          "path": "assets/img/c3/car-koenigsegg-regera.webp",
+          "sha256": "b343bf8a2c8a6bca267865ba8187ab8cba3aaba85ec8a7bb2936af64767510ca",
+          "bytes": 96136
+        },
+        {
+          "path": "assets/img/c3/car-porsche-gt2rs.webp",
+          "sha256": "baeeb3d8782c44a2738bf614cfa65cf03939e9b0cb20e6856f7a004d4a90d45c",
+          "bytes": 100116
+        },
+        {
+          "path": "assets/img/c3/floor-muscle-1600.jpg",
+          "sha256": "df2ae33008d4d56e951d6730060ed73e9d62c8290079d1113ceccfd879c53afa",
+          "bytes": 102813
+        },
+        {
+          "path": "assets/img/c3/forecourt-1920.jpg",
+          "sha256": "ce39a9af3404b5d46616052ce8f38ecf6397fe2a409a5d7ce5e0c62de7b603f5",
+          "bytes": 170027
+        },
+        {
+          "path": "assets/img/c3/ig/cmc-ig-audi-r8-v10.jpg",
+          "sha256": "66187a309f651e19416cd8a011e6f3abb854839412b4e10ce59faf0a97df1c7b",
+          "bytes": 50601
+        },
+        {
+          "path": "assets/img/c3/ig/cmc-ig-dodge-viper-acr.jpg",
+          "sha256": "260123ff12b48946b253a68264fa4b7ac72a1fee41d2439b6fddb45689867f61",
+          "bytes": 42142
+        },
+        {
+          "path": "assets/img/c3/ig/cmc-ig-jeep-gladiator.jpg",
+          "sha256": "fda049a99a9294e7ee117a74e391cbadb7934fc1724e6ceebf319103b27e9b7e",
+          "bytes": 48852
+        },
+        {
+          "path": "assets/img/c3/ig/cmc-ig-lamborghini-countach-showroom.jpg",
+          "sha256": "da88b2b352a4e66340ad56a2622f111ef240dee6376e7e1eff88e0f942754e94",
+          "bytes": 140501
+        },
+        {
+          "path": "assets/img/c3/ig/cmc-ig-lamborghini-huracan-evo-gt.jpg",
+          "sha256": "4d1f8ae6d91a546320ede649574c9ece5a6dbd884413dac414248a05b64e91fb",
+          "bytes": 50350
+        },
+        {
+          "path": "assets/img/c3/ig/cmc-ig-lamborghini-huracan-sto.jpg",
+          "sha256": "0c08778667708b39882ecf8f59f45b7feb6aab3e44dc803036472258c1771c70",
+          "bytes": 43898
+        },
+        {
+          "path": "assets/img/c3/ig/cmc-ig-lamborghini-urus-s.jpg",
+          "sha256": "a29497309d1154291e0cdf5c381037e2229c3c16fdb661e1222e50cabe8d88c5",
+          "bytes": 45763
+        },
+        {
+          "path": "assets/img/c3/ig/cmc-ig-mercedes-s65-amg.jpg",
+          "sha256": "b5c2b25fcd57cbe90ba3aeb525e83420b4ee71c1e679ecb7630fd39a24682e30",
+          "bytes": 43361
+        },
+        {
+          "path": "assets/img/c3/ig/cmc-ig-porsche-911-carrera-s.jpg",
+          "sha256": "b5f614d00a2cf46e7ca0b0db70a39c9d646a0920384935b7380fb5acc5c48257",
+          "bytes": 48070
+        },
+        {
+          "path": "assets/img/c3/ig/cmc-ig-porsche-911-gt2-rs.jpg",
+          "sha256": "d1eda040e21c40a0096ec424b1aece43a97b91b534cadf92be8529207322457a",
+          "bytes": 44120
+        },
+        {
+          "path": "assets/img/c3/ig/cmc-ig-porsche-911-gt3-touring.jpg",
+          "sha256": "db5f68f5714dd02df88114951e0ea96d392e55bc8529076278303479df81f64c",
+          "bytes": 44961
+        },
+        {
+          "path": "assets/img/c3/ig/cmc-ig-porsche-911-gt3.jpg",
+          "sha256": "14302e9a81b4aa45ef36194edbf872777cdaca251cb1152189e21ce8dfd31a35",
+          "bytes": 45945
+        },
+        {
+          "path": "assets/img/c3/karma-panel-1280.jpg",
+          "sha256": "acfa4f999cad281579a8cbb71a5d6f18292d939de59cf33494e16ce791ddf16e",
+          "bytes": 25867
+        },
+        {
+          "path": "assets/js/c3.js",
+          "sha256": "a14dc259787819d4aba0fefb773628882fb3ffd19d23e640b8e00804d2430a43",
+          "bytes": 4864
+        },
+        {
+          "path": "assets/logos/favicon.svg",
+          "sha256": "aec320a5d2f6763960afe25a8991f7ac4eb9fff35d24b89aa474b32789f326ae",
+          "bytes": 1725
+        },
+        {
+          "path": "assets/video/c3/hero-approach-1600.mp4",
+          "sha256": "f53165f9416bf8ae2bda1916380b5e595d5d7a28b3e75aea255dc4f3ca540a7b",
+          "bytes": 1134985
+        },
+        {
+          "path": "assets/video/c3/hero-approach-1600.webm",
+          "sha256": "cc2ab22340ec8374292045f4f205406673eab2b8a6a87d2c38036a3f92a34785",
+          "bytes": 631053
+        },
+        {
+          "path": "assets/video/c3/hero-approach-720.mp4",
+          "sha256": "846f58d1f7c4e5a3bd5d4377e7de9d325e708a433de224281dc785195957a17d",
+          "bytes": 531107
+        },
+        {
+          "path": "assets/video/c3/hero-approach-720.webm",
+          "sha256": "0b8c2eabda422df7298f3d0e6bfe301550f04d4d619c7efaec2c57c837cfce56",
+          "bytes": 350047
+        },
+        {
+          "path": "assets/video/c3/hero-poster-1600.jpg",
+          "sha256": "a63c3fe67ed1191de33c4f3c6cd0d1b1ca8e51e9eeb9805e48bf9921d846b489",
+          "bytes": 63478
+        },
+        {
+          "path": "assets/video/c3/hero-poster-720.jpg",
+          "sha256": "0988260a7e563187c030224c094f2e22e461835cffa80cfbb3eacbbd558ff06b",
+          "bytes": 34482
+        },
+        {
+          "path": "index3.html",
+          "sha256": "14c30a6c0e6ecaeab5ca126eea36a137c7e515e6244367c9e3e0ebd460e877e4",
+          "bytes": 40036
+        }
+      ]
     }
   ],
-  "note_2026_08_13": "The Concept 2 fixture was frozen by copying whole asset directories, which pulled in Concept 3's concept3.css and concept3.js — files Concept 2 never references. Removed the same day and the hash list regenerated. Shared logos, the image PROVENANCE.txt and the unused 960px variant are kept: they are part of Concept 2's own asset folder, not another concept's work."
+  "note_2026_08_13": "The Concept 2 fixture was frozen by copying whole asset directories, which pulled in Concept 3's concept3.css and concept3.js — files Concept 2 never references. Removed the same day and the hash list regenerated. Shared logos, the image PROVENANCE.txt and the unused 960px variant are kept: they are part of Concept 2's own asset folder, not another concept's work.",
+  "gateOrder": [
+    {
+      "gate": "Gate 1",
+      "name": "Measurable Conformance",
+      "artifact": "gate1.json",
+      "delegates": [
+        "hero.json"
+      ]
+    },
+    {
+      "gate": "Gate 2",
+      "name": "Structural and Authorship Conformance",
+      "artifact": "gate2.json",
+      "delegates": [
+        "authorship.json"
+      ]
+    },
+    {
+      "gate": "Gate 3",
+      "name": "Product Usefulness",
+      "artifact": "product.json"
+    },
+    {
+      "gate": "Gate 4",
+      "name": "Content Provenance",
+      "artifact": "content-ledger.json"
+    },
+    {
+      "gate": "Gate 5",
+      "name": "Human Desirability",
+      "artifact": null,
+      "note": "Alex’s explicit approve / revise / reject. Never automatically passed."
+    }
+  ],
+  "conjunctive": "Gate 2 and Gate 3 are conjunctive. Authorship without usefulness is failure class C; usefulness without authorship is failure class D. Fixtures cmc-index2-spine and cmc-index3-conventional are the two halves of that proof and must both keep failing.",
+  "failureClasses": {
+    "A": "required means absent — cmc-concept-2",
+    "B": "means present, no direction — cmc-concept-3",
+    "C": "authored composition without product success — cmc-index2-spine",
+    "D": "product usability without design authorship — cmc-index3-conventional"
+  },
+  "note_2026_08_15": "Both new fixtures include their real video encodes in full; the hash-only omission mechanism was deliberately not used, so the hero gate can decode the delivered frames rather than trust a recorded number. The hero subject boxes for cmc-index3-conventional were read off the DELIVERED encodes and disagree with what the source review recorded — that disagreement is the finding."
 }

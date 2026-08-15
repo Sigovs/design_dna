@@ -1,127 +1,256 @@
 #!/usr/bin/env node
 /**
- * The paired regression fixture.
+ * The regression fixtures.
  *
- *   npm run fixtures            verify hashes, re-measure, assert every gate
+ *   npm run fixtures                  verify hashes, re-measure, assert every gate
  *   npm run fixtures -- --no-render   hashes and recorded verdicts only
  *
- * WHY TWO FIXTURES AND NOT ONE. Chicago Motor Cars Concept 2 fails because the
- * means are absent — a measurement catches it. Concept 3 fails with the means
- * present: full-viewport hero, full-bleed media, 15.9x type contrast, all there
- * and none of them doing any work. One fixture would let the system believe that
- * hitting the numbers is the same as designing. The pair makes that impossible:
- * a change that lets Concept 3 pass every gate has broken the system, not fixed it.
+ * FOUR ARTEFACTS, FOUR WAYS OF BEING WRONG.
  *
- * The fixtures are FROZEN COPIES. They are never the live project folder, which
- * keeps changing — Concept 3 was being iterated in the same directory on the day
- * these were taken.
+ *   A  cmc-concept-2            the required means are absent
+ *   B  cmc-concept-3            the means are present and do no work
+ *   C  cmc-index2-spine         authored, and useless as a product
+ *   D  cmc-index3-conventional  useful as a product, and unauthored
+ *
+ * A and B taught the system that hitting numbers is not designing. C and D
+ * teach it the harder thing: that the correction for either one produces the
+ * other. C was rejected for product failure; the page built to fix that came
+ * back as D, with every banned structure restored. So Gate 2 and Gate 3 are
+ * conjunctive and neither may be traded for the other.
+ *
+ * THE STANDING RULE: this suite is broken the moment any fixture here can pass
+ * the complete chain. That is asserted explicitly at the end, and it is the
+ * only assertion that matters.
+ *
+ * The fixtures are FROZEN COPIES, never the live project folder — Concept 3 was
+ * being iterated in the same directory on the day it was taken.
  */
 
 import { createHash } from 'node:crypto';
 import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, relative } from 'node:path';
-import { spawn } from 'node:child_process';
+import { serve } from '../../gates/lib/server.mjs';
+import { measure as measureStructure } from '../../gates/structure.mjs';
+import { harvest, validate as validateContent } from '../../gates/content.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const MAN = JSON.parse(readFileSync(join(HERE, 'MANIFEST.json'), 'utf8'));
 const RENDER = !process.argv.includes('--no-render');
-const PORT = 8962;
 
 const sha = (p) => createHash('sha256').update(readFileSync(p)).digest('hex');
 const walk = (d) => readdirSync(d).flatMap((n) => { const p = join(d, n); return statSync(p).isDirectory() ? walk(p) : [p]; });
 const ok = (s) => `\x1b[32m✓\x1b[0m ${s}`;
 const bad = (s) => `\x1b[31m✗\x1b[0m ${s}`;
+const dim = (s) => `\x1b[2m${s}\x1b[0m`;
 let failures = 0;
 const assert = (cond, msg) => { console.log(cond ? ok(msg) : bad(msg)); if (!cond) failures++; };
 
-console.log(`\nfixtures — ${MAN.fixtures.length} frozen artefacts, generated ${MAN.generated}\n`);
+console.log(`\nfixtures — ${MAN.fixtures.length} frozen artefacts, generated ${MAN.generated}`);
+console.log(dim(`  ${Object.entries(MAN.failureClasses || {}).map(([k, v]) => `${k}: ${v.split(' — ')[0]}`).join('   ')}\n`));
 
 /* ── 1 · the artefacts have not moved ─────────────────────────────────────── */
 for (const f of MAN.fixtures) {
   const dir = join(HERE, f.id);
-  const onDisk = walk(dir).sort().map((p) => relative(dir, p));
+  const onDisk = walk(dir).sort().map((p) => relative(dir, p).replace(/\\/g, '/'));
   const listed = f.files.map((x) => x.path).sort();
   assert(onDisk.length === listed.length && onDisk.every((p, i) => p === listed[i]),
     `${f.id}: file list matches the manifest (${listed.length} files)`);
   const drift = f.files.filter((x) => !existsSync(join(dir, x.path)) || sha(join(dir, x.path)) !== x.sha256);
   assert(drift.length === 0,
-    drift.length ? `${f.id}: ${drift.length} FILE(S) CHANGED — ${drift.map((d) => d.path).join(', ')}` : `${f.id}: every file byte-identical to the frozen hash`);
+    drift.length ? `${f.id}: ${drift.length} FILE(S) CHANGED — ${drift.map((d) => d.path).join(', ')}`
+                 : `${f.id}: every file byte-identical to the frozen hash`);
 }
 
-/* ── 2 · Gate 1 — measurable conformance ──────────────────────────────────── */
-const floor = MAN.gate1Floor;
-console.log(`\nGate 1 · measurable conformance — floor: ${floor.check}`);
-
-let measured = null;
+/* ── 2 · render each fixture once, and take everything from that render ───── */
+const live = {};
 if (RENDER) {
-  const srv = spawn('python3', ['-m', 'http.server', String(PORT)], { cwd: HERE, stdio: 'ignore', detached: true });
-  await new Promise((r) => setTimeout(r, 1500));
+  let browser, close;
   try {
     const { chromium } = await import('playwright');
-    const b = await chromium.launch({ channel: 'chrome' });
-    measured = {};
+    browser = await chromium.launch();
+    ({ close } = await (async () => { const s = await serve(HERE); live.__origin = s.origin; return s; })());
     for (const f of MAN.fixtures) {
-      const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
-      await p.goto(`http://127.0.0.1:${PORT}/${f.id}/${f.entry}`, { waitUntil: 'networkidle' }).catch(() => {});
-      await p.evaluate(async () => { await new Promise((r) => { let y = 0; const t = setInterval(() => { y += 600; scrollTo(0, y);
-        if (y >= document.body.scrollHeight) { clearInterval(t); scrollTo(0, 0); r(); } }, 70); }); });
-      await p.waitForTimeout(1800);
-      measured[f.id] = await p.evaluate(() => {
-        const vw = innerWidth, vh = innerHeight;
-        const vis = [...document.querySelectorAll('img,video')].map((e) => e.getBoundingClientRect());
-        const first = vis.filter((r) => r.top < vh && r.bottom > 0);
-        const governing = first.length ? Math.max(...first.map((r) => Math.min(r.bottom, vh) - Math.max(r.top, 0))) : 0;
-        const fonts = [...document.querySelectorAll('h1,h2,h3,p,span,div,a')].map((e) => parseFloat(getComputedStyle(e).fontSize)).filter((n) => n > 0);
-        return { pageHeightPx: document.body.scrollHeight, screens: +(document.body.scrollHeight / vh).toFixed(1),
-          firstScreenGoverningMassPct: +(governing / vh * 100).toFixed(0), mediaTotal: vis.length,
-          fullBleedMedia: vis.filter((r) => r.width >= vw - 2).length,
-          typeScaleRatio: +(Math.max(...fonts) / Math.min(...fonts)).toFixed(1), largestTypePx: Math.round(Math.max(...fonts)) };
+      const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+      await page.goto(`${live.__origin}/${f.id}/${f.entry}`, { waitUntil: 'networkidle' });
+      /* scroll the whole page first: Chromium never rasterises what it never showed,
+         and a lazily-decoded image is absent from the measurement otherwise */
+      await page.evaluate(async () => {
+        for (let y = 0; y < document.documentElement.scrollHeight; y += 400) {
+          scrollTo(0, y); await new Promise((r) => setTimeout(r, 40));
+        }
+        scrollTo(0, 0); await new Promise((r) => setTimeout(r, 300));
       });
-      await p.close();
+      const basic = await page.evaluate(() => {
+        const vw = innerWidth, vh = innerHeight;
+        const media = [...document.querySelectorAll('img,video,picture,canvas')]
+          .filter((e) => { const r = e.getBoundingClientRect(); return r.width * r.height > 8000; });
+        /* A1's governing mass is the tallest single MEDIA element on the first
+           screen, as a fraction of viewport height. This is the definition the
+           existing fixtures were frozen against; do not widen it silently. */
+        let governing = 0;
+        for (const e of document.querySelectorAll('img,video,picture,canvas')) {
+          const r = e.getBoundingClientRect();
+          if (r.top >= vh || r.bottom <= 0) continue;
+          governing = Math.max(governing, (Math.min(r.bottom, vh) - Math.max(r.top, 0)) / vh * 100);
+        }
+        const sizes = [...document.querySelectorAll('*')]
+          .filter((e) => e.getClientRects().length && e.textContent.trim())
+          .map((e) => parseFloat(getComputedStyle(e).fontSize) || 0).filter(Boolean);
+        return {
+          pageHeightPx: document.documentElement.scrollHeight,
+          screens: +(document.documentElement.scrollHeight / vh).toFixed(1),
+          firstScreenGoverningMassPct: Math.round(governing),
+          mediaTotal: media.length,
+          fullBleedMedia: media.filter((e) => e.getBoundingClientRect().width >= vw - 4).length,
+          largestTypePx: Math.round(Math.max(...sizes)),
+          typeScaleRatio: +(Math.max(...sizes) / Math.min(...sizes)).toFixed(1),
+        };
+      });
+      const structure = await measureStructure(page);
+      const hits = await harvest(page);
+      live[f.id] = { basic, structure, hits };
+      await page.close();
     }
-    await b.close();
   } catch (e) {
-    console.log(`  (render skipped: ${e.message.split('\n')[0]})`);
-  } finally { try { process.kill(-srv.pid); } catch {} }
+    console.log(bad(`RENDER FAILED — ${e.message.split('\n')[0]}`));
+    console.log(`  Every measured assertion below would otherwise silently fall back to the`);
+    console.log(`  manifest's own numbers, which is a suite that cannot fail. Treated as an error.`);
+    failures++;
+  } finally {
+    if (browser) await browser.close();
+    if (close) await close();
+  }
 }
 
+const rendered = (id) => (live[id] ? live[id] : null);
+
+/* ── Gate 1 · measurable conformance ──────────────────────────────────────── */
+console.log(`\nGate 1 · Measurable Conformance — floor: ${MAN.gate1Floor.check}`);
 for (const f of MAN.fixtures) {
-  const m = (measured && measured[f.id]) || f.measured;
-  const live = measured && measured[f.id] ? 're-measured' : 'from manifest';
-  const pct = m.firstScreenGoverningMassPct;
-  const passes = pct >= 90;
-  const shouldPass = f.expect.gate1.startsWith('partial pass');
-  console.log(`  ${f.id} (${live}): first-screen governing mass ${pct}% · ${m.screens} screens · ${m.fullBleedMedia}/${m.mediaTotal} full-bleed · type ${m.typeScaleRatio}x`);
-  assert(passes === shouldPass,
-    `  ${f.id}: Gate 1 ${passes ? 'meets' : 'fails'} the floor — expected ${shouldPass ? 'meets' : 'fails'}`);
+  const r = rendered(f.id);
+  const m = r ? r.basic : f.measured;
+  const src = r ? 're-measured' : 'from manifest';
+  const meets = m.firstScreenGoverningMassPct >= 90;
+  const expected = !f.expect.gate1.startsWith('fail');
+  console.log(`  ${f.id} ${dim(`(${src})`)}: governing mass ${m.firstScreenGoverningMassPct}% · ${m.screens} screens · ${m.fullBleedMedia}/${m.mediaTotal} full-bleed · type ${m.typeScaleRatio}×`);
+  if (f.hero?.expect?.clipped) {
+    const edges = f.hero.expect.clippedEdges || {};
+    for (const [vp, list] of Object.entries(edges)) {
+      console.log(`     · hero ${vp}: subject clipped ${list.join(' + ')} on the delivered render`);
+    }
+    if (f.hero.expect.shotChangeInDeclaredInterval) {
+      console.log(`     · hero: the declared interval is not the delivered interval — shot change inside it`);
+    }
+  }
+  const gate1 = meets && !f.hero?.expect?.clipped;
+  assert(gate1 === expected,
+    `  ${f.id}: Gate 1 ${gate1 ? 'passes' : 'fails'} — expected ${expected ? 'pass' : 'fail'}`);
 }
 
-/* ── 3 · Gate 2 — structural visual review ────────────────────────────────── */
-console.log(`\nGate 2 · structural visual review — every device present must do work`);
+/* ── Gate 2 · structural and authorship conformance ───────────────────────── */
+console.log(`\nGate 2 · Structural and Authorship Conformance — repetition measured by rendered geometry`);
 for (const f of MAN.fixtures) {
-  const fails = f.gate2Findings.filter((g) => g.result.startsWith('FAIL'));
-  console.log(`  ${f.id} — ${fails.length} of ${f.gate2Findings.length} devices fail their function test`);
+  const r = rendered(f.id);
+  if (r) {
+    const four = r.structure.findings.filter((x) => x.kind === 'parallel-units' && x.units >= 4);
+    const three = r.structure.findings.filter((x) => x.kind === 'parallel-units' && x.units === 3);
+    console.log(`  ${f.id}: ${r.structure.findings.length} findings — ${four.length} at ≥4 equal units, ${three.length} at 3, bandRun ${r.structure.report.bandRun}`);
+    for (const x of four.slice(0, 4)) console.log(`     · ${x.section} — ${x.formula}`);
+
+    /* the modules the human named must still be detected */
+    for (const want of f.expectedShapes?.parallelUnits || []) {
+      const hit = r.structure.findings.some((x) => x.kind === 'parallel-units'
+        && x.section === want.section && x.units === want.units && x.shape === want.shape);
+      assert(hit, `  ${f.id}: still detects ${want.units}×equal in ${want.section}${want.is ? ` (${want.is})` : ''}`);
+    }
+    if (typeof f.expectedShapes?.bandRun === 'number') {
+      assert(r.structure.report.bandRun === f.expectedShapes.bandRun,
+        `  ${f.id}: band run ${r.structure.report.bandRun} matches the frozen ${f.expectedShapes.bandRun}`);
+    }
+    /* every finding leaves the detector undisposed — that is the contract */
+    assert(r.structure.findings.every((x) => x.disposition === null),
+      `  ${f.id}: every finding arrives undisposed; the detector never clears itself`);
+  }
+  const recorded = (f.gate2Findings || []).filter((g) => g.result?.startsWith('FAIL'));
+  const expectFail = f.expect.gate2.startsWith('fail');
+  if (recorded.length) for (const g of recorded.slice(0, 3)) console.log(`     ${dim(`· ${g.device}: ${g.result}`)}`);
+  assert(expectFail === recorded.length > 0,
+    `  ${f.id}: Gate 2 ${expectFail ? 'fails' : 'passes with dispositions'}, as recorded`);
+}
+
+/* ── Gate 3 · product usefulness ──────────────────────────────────────────── */
+console.log(`\nGate 3 · Product Usefulness — conjunctive with Gate 2, never traded against it`);
+for (const f of MAN.fixtures) {
+  const findings = f.gate3Findings || [];
+  const fails = findings.filter((g) => g.result?.startsWith('FAIL'));
+  const expectFail = f.expect.gate3?.startsWith('fail');
+  if (!findings.length) { console.log(`  ${f.id}: ${dim('not assessed — predates the gate')}`); continue; }
+  console.log(`  ${f.id}: ${fails.length} of ${findings.filter((g) => g.result).length} product tests fail`);
   for (const g of fails) console.log(`     · ${g.device}: ${g.result}`);
-  assert(f.expect.gate2 === 'fail' && fails.length > 0, `  ${f.id}: Gate 2 fails, as recorded`);
+  assert(expectFail === fails.length > 0, `  ${f.id}: Gate 3 ${fails.length ? 'fails' : 'passes'}, as recorded`);
 }
 
-/* ── 4 · Gate 3 — human desirability ──────────────────────────────────────── */
-console.log(`\nGate 3 · human desirability — Alex's verdict, never the system's`);
+/* ── Gate 4 · content provenance ──────────────────────────────────────────── */
+console.log(`\nGate 4 · Content Provenance — coverage, not validity: an unrecorded claim fails the same as a false one`);
 for (const f of MAN.fixtures) {
-  assert(f.gate3.status !== 'passed' && f.verdict.result === 'reject',
-    `  ${f.id}: no approval on record (verdict: ${f.verdict.result} by ${f.verdict.by}, ${f.verdict.date})`);
+  const r = rendered(f.id);
+  if (r) {
+    /* no fixture ships a ledger — that IS the finding, and validate() must say so */
+    const v = validateContent({ hits: r.hits, ledger: null });
+    const byClass = {};
+    for (const h of r.hits) (byClass[h.class] ||= new Set()).add(h.text);
+    console.log(`  ${f.id}: ${r.hits.length} claim-shaped strings across ${Object.keys(byClass).length} classes, 0 ledger entries`);
+    assert(v.verdict === 'fail' && v.reason === 'no content ledger exists',
+      `  ${f.id}: Gate 4 fails on absence of a ledger`);
+
+    for (const [cls, want] of Object.entries(f.expectedClaimHits || {})) {
+      const got = byClass[cls] || new Set();
+      const missing = want.filter((w) => !got.has(w));
+      assert(missing.length === 0,
+        `  ${f.id}: still catches every recorded ${cls}${missing.length ? ` — MISSED ${missing.join(', ')}` : ` (${want.length})`}`);
+    }
+    for (const cls of f.expectedClaimClasses || []) {
+      assert(Boolean(byClass[cls]), `  ${f.id}: still catches claim class ${cls}`);
+    }
+  }
+  for (const g of f.gate4Findings || []) console.log(`     ${dim(`· ${g.result}`)}`);
 }
 
-/* ── 5 · the pair must stay a pair ────────────────────────────────────────── */
-const a = MAN.fixtures.find((f) => f.failureClass.startsWith('A'));
-const b2 = MAN.fixtures.find((f) => f.failureClass.startsWith('B'));
-assert(a && b2, `\nboth failure classes present — A (means absent) and B (means present, no direction)`);
-const bMeasured = (measured && measured[b2.id]) || b2.measured;
-assert(bMeasured.firstScreenGoverningMassPct >= 90 && b2.expect.gate2 === 'fail',
-  `class B still proves the point: measurable floor met, review still fails`);
+/* ── Gate 5 · human desirability ──────────────────────────────────────────── */
+console.log(`\nGate 5 · Human Desirability — Alex's verdict, never the system's`);
+for (const f of MAN.fixtures) {
+  const g5 = f.gate5 || f.gate3;
+  assert(g5.status !== 'passed' && f.verdict.result === 'reject',
+    `  ${f.id}: no approval on record (${f.verdict.result} by ${f.verdict.by}, ${f.verdict.date})`);
+}
+
+/* ── the classes must stay four, and the pairs must stay pairs ────────────── */
+console.log(`\nthe suite's own shape`);
+for (const cls of ['A', 'B', 'C', 'D']) {
+  const f = MAN.fixtures.find((x) => x.failureClass.startsWith(cls + ' '));
+  assert(Boolean(f), `  failure class ${cls} present — ${f ? f.id : 'MISSING'}`);
+}
+const c = MAN.fixtures.find((f) => f.failureClass.startsWith('C '));
+const d = MAN.fixtures.find((f) => f.failureClass.startsWith('D '));
+assert(c && d && c.pairedWith === d.id && d.pairedWith === c.id,
+  `  C and D still reference each other as the two halves of one proof`);
+assert(c && c.expect.gate2.startsWith('pass') && c.expect.gate3.startsWith('fail'),
+  `  C: authorship holds, product fails — trading Gate 3 away would pass it`);
+assert(d && d.expect.gate2.startsWith('fail') && d.expect.gate3.startsWith('pass'),
+  `  D: product holds, authorship fails — trading Gate 2 away would pass it`);
+
+/* ── THE STANDING RULE ────────────────────────────────────────────────────── */
+console.log(`\nthe standing rule`);
+for (const f of MAN.fixtures) {
+  const chain = ['gate1', 'gate2', 'gate3', 'gate4'].map((g) => f.expect[g]).filter(Boolean);
+  const broken = chain.filter((s) => s.startsWith('fail'));
+  const g5 = (f.gate5 || f.gate3).status !== 'passed';
+  assert(broken.length > 0 && g5,
+    `  ${f.id}: still fails the complete chain (${broken.length} gate${broken.length === 1 ? '' : 's'} broken${f.expect.gate3?.startsWith('pass') ? ', and being useful did not rescue it' : ''})`);
+}
 
 console.log(failures === 0
-  ? `\n\x1b[32m✓ fixtures pass — both artefacts fail as recorded, and Gate 1 alone would have cleared Concept 3\x1b[0m\n`
+  ? `\n\x1b[32m✓ fixtures pass — all four artefacts still fail as recorded, and none of them reaches Gate 5\x1b[0m\n`
   : `\n\x1b[31m✗ ${failures} expectation(s) violated\x1b[0m\n`);
 process.exit(failures === 0 ? 0 : 1);

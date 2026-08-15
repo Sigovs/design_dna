@@ -23,7 +23,14 @@
     "projects:check": "node projects/check.mjs",
     "dialects:check": "node dialects/check.mjs",
     "postinstall": "playwright install chromium",
-    "fixtures": "node projects/fixtures/fixtures.mjs"
+    "fixtures": "node projects/fixtures/fixtures.mjs",
+    "gates": "node gates/run.mjs",
+    "gate5": "node gates/gate5.mjs",
+    "test:structure": "node gates/test/structure.test.mjs",
+    "test:content": "node gates/test/content.test.mjs",
+    "test:seal": "node gates/test/seal.test.mjs",
+    "test:gates": "npm run test:seal && npm run test:structure && npm run test:content",
+    "check": "npm run projects:check && npm run dialects:check && npm run evidence:check && npm run test:gates && npm run fixtures"
   },
   "devDependencies": {
     "live-server": "^1.2.2",

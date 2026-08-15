@@ -59,6 +59,7 @@ design_dna/
 │   ├── design-dna/SKILL.md         # the entry point — no rules, routes to TASTE.md (globally symlinked)
 │   ├── color-taste/SKILL.md        # I: AA, no hue-only meaning, scrims · D: neutral dark base, smoky accents
 │   ├── generated-imagery/SKILL.md  # cross-dialect · I: origin declared, never depicts the real thing, provenance, survives a phone photo
+│   ├── content-provenance/SKILL.md # cross-dialect · I: ledger before the claim, coverage not validity, no prior concept as a source, shape never invented to fill a slot
 │   ├── motion-judgment/            # cross-dialect · whether to move at all, and what for
 │   │   ├── SKILL.md                # I: declared role, one primary idea, subject over amount, stoppable frames
 │   │   └── references/             # per-category judgment, audit rubric, implementation
@@ -81,10 +82,21 @@ design_dna/
 │   └── organic-tactile.md          # library — let the hand show
 ├── brief.mjs                       # npm run brief / brief:check — the brief compiler
 ├── art.mjs                         # npm run art / art:dry — compiled brief → generated imagery
+├── gates/                          # the five-gate chain — a gate is run when its artefact exists
+│   ├── README.md                   # the order, the three seal mechanisms, the detector's limits
+│   ├── run.mjs                     # npm run gates — runs 1–4, writes the six artefacts, seals
+│   ├── gate5.mjs                   # npm run gate5 — refuses the handoff unless the chain validates
+│   ├── structure.mjs               # repetition by rendered geometry; reads no class names
+│   ├── hero.mjs                    # closed-form cover mapping, per-sample boxes, annotated evidence
+│   ├── content.mjs                 # claim harvest + ledger coverage
+│   ├── lib/seal.mjs                # presence · staleness · order
+│   ├── lib/server.mjs              # dependency-free static server with range support
+│   └── test/                       # npm run test:gates — wrapper evasion, coverage, seal
 ├── projects/                       # records of MY OWN work — the inward half of the loop
 │   ├── README.md                   # why, when to write, how it feeds distillation
 │   ├── _TEMPLATE.md                # front-matter + required sections, incl. exploration
 │   ├── check.mjs                   # npm run projects:check — register collisions
+│   ├── fixtures/                   # npm run fixtures — four frozen rejections, four failure classes
 │   ├── requests/<slug>.txt         # the raw DESIGN request a brief was compiled from
 │   ├── briefs/_TEMPLATE.md         # the 14-section brief scaffold + provenance table
 │   ├── briefs/<slug>.md            # one compiled brief per project
@@ -574,23 +586,38 @@ The canonical summary of what the two tiers add up to. **If a change to
 same commit** — this is the surface Alex reads to catch drift, so it is only useful
 while it is honest.
 
-0. **Delivery runs three gates, and the last one is Alex's.** **Gate 1** measures
-   the render against commitments the Read declared in advance, with one floor it
-   may not lower — on identity-led and image-led pages the governing event owns the
-   first screen. **Gate 2** asks of every device present what work it does: a
-   full-screen hero names its event, a bleed names the chapter it separates, scale
-   contrast says what the small type cannot, an overlap changes rank, emptiness is a
-   pause between two events, and two sections sharing one formula are one section.
-   **Gate 3 is a human verdict** — clean desktop and mobile screenshots, no Design
-   Read and no rationale attached, and approve / revise / reject from Alex; absence
-   of approval is an unfinished gate, never a pass. A `defer` on the central
-   proposition, the dominant, the Anchor, desire or perceived value blocks delivery
-   outright, and if the defence is stronger than the artefact that is evidence
-   against shipping. **Passing Gate 1 proves the means are present and nothing
-   else** — `npm run fixtures` keeps a rejected artefact on file that met every
-   measurable commitment. A hero owns the first screen as a **scene**, not as an
-   object enlarged to the viewport edges: the air around the subject is part of the
-   governing event.
+0. **Delivery runs five gates, in order, and the last one is Alex's.** **Gate 1 —
+   Measurable Conformance** measures the render against commitments the Read declared
+   in advance, with one floor it may not lower: on identity-led and image-led pages
+   the governing event owns the first screen. **Gate 2 — Structural and Authorship
+   Conformance** asks of every device present what work it does — a full-screen hero
+   names its event, a bleed names the chapter it separates, scale contrast says what
+   the small type cannot, an overlap changes rank, emptiness is a pause between two
+   events, two sections sharing one formula are one section — and asks whether the
+   operations the Read committed to actually survived into the render. **Gate 3 —
+   Product Usefulness** asks whether a person can do the thing they came to do.
+   **Gate 4 — Content Provenance** requires every claim-shaped string to map to a
+   ledger entry. **Gate 5 — Human Desirability** is a human verdict: clean desktop
+   and mobile screenshots, no Design Read and no rationale attached, and approve /
+   revise / reject from Alex; absence of approval is an unfinished gate, never a pass.
+
+   **A gate is run when its artefact exists, not when a report says it passed.** The
+   six chain artefacts must exist, be computed against this build, and be produced in
+   order; `npm run gate5` refuses the handoff otherwise, and a refusal there is a
+   workflow failure that teaches nothing about the design. **Gates 2 and 3 are
+   conjunctive** — authorship and usefulness are both required and neither is ever
+   traded for the other. **Structural repetition is measured semantically, never by
+   class name:** `cards: 0` may not pass a layout containing card-equivalent repeated
+   masses, and an empty detector report is not evidence of originality. A `defer` on
+   the central proposition, the dominant, the Anchor, desire or perceived value blocks
+   delivery outright, and if the defence is stronger than the artefact that is evidence
+   against shipping. **Passing Gate 1 proves the means are present and nothing else** —
+   `npm run fixtures` keeps four rejected artefacts on file across four failure
+   classes: means absent, means present doing no work, authored-and-useless, and
+   useful-and-unauthored. A hero owns the first screen as a **scene**, not as an object
+   enlarged to the viewport edges — the air around the subject is part of the governing
+   event — and it is verified on the **delivered composited render**, never on the
+   source asset, with the worst sample governing when the subject moves.
 1. **Two tiers, and the tier decides everything.** Invariants are universal
    quality laws and never yield; dialect rules are aesthetic positions, each with a
    stated `yields when:`. Yielding for a stated reason is correct practice —

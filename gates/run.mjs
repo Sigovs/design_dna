@@ -21,6 +21,7 @@ import { sourceSeal, validateChain } from './lib/seal.mjs';
 import { measure as measureStructure } from './structure.mjs';
 import { harvest, validate as validateContent } from './content.mjs';
 import { audit as auditHero, sourceEvidence } from './hero.mjs';
+import { measure as measureEvent } from './event.mjs';
 
 const args = process.argv.slice(2);
 const root = resolve(args.find((a) => !a.startsWith('--')) || '.');
@@ -48,6 +49,26 @@ const browser = await chromium.launch();
 const url = `${srv.origin}/${pageName}`;
 const viewports = decl.viewports || [{ label: 'desktop', w: 1440, h: 900 }, { label: 'mobile', w: 390, h: 844 }];
 
+/* A1 is a claim about the FIRST screen, so it is measured on one: a freshly
+   loaded page that has never been scrolled. `open()` below scrolls the whole
+   document to force lazy rasterisation, and a scroll-linked hero transform does
+   not always return to where it started — measuring A1 after that pass reads a
+   state no visitor arrives at. Same principle as verifying the hero on the
+   delivered render rather than the source frame. */
+async function openFirstScreen(vp) {
+  const ctx = await browser.newContext({ viewport: { width: vp.w, height: vp.h }, deviceScaleFactor: 1 });
+  const page = await ctx.newPage();
+  await page.goto(url, { waitUntil: 'networkidle' });
+  await page.evaluate(() => document.fonts.ready);
+  await page.evaluate(async () => {
+    await Promise.all([...document.images]
+      .filter((i) => { const r = i.getBoundingClientRect(); return r.top < innerHeight && r.bottom > 0; })
+      .map((i) => (i.complete ? 1 : i.decode().catch(() => 1))));
+  });
+  await page.waitForTimeout(250);
+  return { ctx, page };
+}
+
 async function open(vp) {
   const ctx = await browser.newContext({ viewport: { width: vp.w, height: vp.h }, deviceScaleFactor: 1 });
   const page = await ctx.newPage();
@@ -68,8 +89,17 @@ async function open(vp) {
 }
 
 /* ── Gate 1 · measurable conformance ─────────────────────────────────────── */
-const g1 = { gate: 'Gate 1 · Measurable Conformance', sourceSeal: srcSeal, fileCount, page: pageName, measured: {}, commitments: [], verdict: 'fail', finishedAt: null };
+const g1 = { gate: 'Gate 1 · Measurable Conformance', sourceSeal: srcSeal, fileCount, page: pageName, measured: {}, a1: {}, commitments: [], verdict: 'fail', finishedAt: null };
 for (const vp of viewports) {
+  /* A1 — one governing event owns the first screen. Measured from the declared
+     component system on an unscrolled page, never from how much of the viewport
+     happens to be image. */
+  if (decl.a1) {
+    const a1decl = { ...decl.a1, ...(decl.a1.perViewport?.[vp.label] || {}) };
+    const first = await openFirstScreen(vp);
+    g1.a1[vp.label] = await measureEvent({ page: first.page, decl: a1decl, outDir: join(gatesDir, 'evidence'), label: vp.label });
+    await first.ctx.close();
+  }
   const { ctx, page, errors } = await open(vp);
   g1.measured[vp.label] = await page.evaluate(() => {
     const vw = innerWidth, vh = innerHeight;
@@ -95,7 +125,15 @@ g1.commitments = (decl.commitments || []).map((c) => {
   const ok = c.max != null ? actual <= c.max : c.min != null ? actual >= c.min : actual === c.equals;
   return { ...c, actual, pass: !!ok };
 });
-g1.verdict = g1.commitments.every((c) => c.pass) && !Object.values(g1.measured).some((m) => m.horizontalOverflow || m.errors.length) ? 'pass' : 'fail';
+const a1Runs = Object.values(g1.a1);
+g1.blockers = [
+  ...(decl.a1 ? [] : ['A1 not declared — the governing event must be declared through named components before the first screen can be measured']),
+  ...a1Runs.flatMap((r) => r.problems.map((p) => `A1 ${r.label}: ${p}`)),
+  ...g1.commitments.filter((c) => !c.pass).map((c) => `commitment ${c.metric}: ${c.actual}`),
+  ...Object.entries(g1.measured).filter(([, m]) => m.horizontalOverflow).map(([k]) => `${k}: horizontal page scroll`),
+  ...Object.entries(g1.measured).flatMap(([k, m]) => m.errors.map((e) => `${k}: ${e}`)),
+];
+g1.verdict = g1.blockers.length === 0 ? 'pass' : 'fail';
 g1.finishedAt = stamp();
 write('gate1.json', g1);
 

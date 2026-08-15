@@ -33,6 +33,7 @@ import { dirname, join, relative } from 'node:path';
 import { serve } from '../../gates/lib/server.mjs';
 import { measure as measureStructure } from '../../gates/structure.mjs';
 import { harvest, validate as validateContent } from '../../gates/content.mjs';
+import { measure as measureEvent } from '../../gates/event.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const MAN = JSON.parse(readFileSync(join(HERE, 'MANIFEST.json'), 'utf8'));
@@ -49,8 +50,10 @@ const assert = (cond, msg) => { console.log(cond ? ok(msg) : bad(msg)); if (!con
 console.log(`\nfixtures — ${MAN.fixtures.length} frozen artefacts, generated ${MAN.generated}`);
 console.log(dim(`  ${Object.entries(MAN.failureClasses || {}).map(([k, v]) => `${k}: ${v.split(' — ')[0]}`).join('   ')}\n`));
 
+const INSTRUMENTS = MAN.a1Fixtures || [];
+
 /* ── 1 · the artefacts have not moved ─────────────────────────────────────── */
-for (const f of MAN.fixtures) {
+for (const f of [...MAN.fixtures, ...INSTRUMENTS]) {
   const dir = join(HERE, f.id);
   const onDisk = walk(dir).sort().map((p) => relative(dir, p).replace(/\\/g, '/'));
   const listed = f.files.map((x) => x.path).sort();
@@ -70,9 +73,24 @@ if (RENDER) {
     const { chromium } = await import('playwright');
     browser = await chromium.launch();
     ({ close } = await (async () => { const s = await serve(HERE); live.__origin = s.origin; return s; })());
-    for (const f of MAN.fixtures) {
+    for (const f of [...MAN.fixtures, ...INSTRUMENTS]) {
+      /* A1 is a claim about the FIRST screen, so it is measured on an unscrolled
+         page at every required viewport — mobile is a separate composition and
+         often needs its own component set. */
+      const a1 = {};
+      for (const vp of MAN.gate1Floor.viewports.map((l) => (l === 'mobile' ? { l, w: 390, h: 844 } : { l, w: 1440, h: 900 }))) {
+        if (!f.a1) break;
+        const p = await browser.newPage({ viewport: { width: vp.w, height: vp.h } });
+        await p.goto(`${live.__origin}/${f.id}/${f.entry}`, { waitUntil: 'networkidle' });
+        await p.evaluate(() => document.fonts.ready);
+        await p.waitForTimeout(400);
+        a1[vp.l] = await measureEvent({ page: p, decl: { ...f.a1, ...(f.a1.perViewport?.[vp.l] || {}) }, label: `${f.id}-${vp.l}` });
+        await p.close();
+      }
+
       const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
       await page.goto(`${live.__origin}/${f.id}/${f.entry}`, { waitUntil: 'networkidle' });
+      await page.evaluate(() => document.fonts.ready);
       /* scroll the whole page first: Chromium never rasterises what it never showed,
          and a lazily-decoded image is absent from the measurement otherwise */
       await page.evaluate(async () => {
@@ -85,31 +103,21 @@ if (RENDER) {
         const vw = innerWidth, vh = innerHeight;
         const media = [...document.querySelectorAll('img,video,picture,canvas')]
           .filter((e) => { const r = e.getBoundingClientRect(); return r.width * r.height > 8000; });
-        /* A1's governing mass is the tallest single MEDIA element on the first
-           screen, as a fraction of viewport height. This is the definition the
-           existing fixtures were frozen against; do not widen it silently. */
-        let governing = 0;
-        for (const e of document.querySelectorAll('img,video,picture,canvas')) {
-          const r = e.getBoundingClientRect();
-          if (r.top >= vh || r.bottom <= 0) continue;
-          governing = Math.max(governing, (Math.min(r.bottom, vh) - Math.max(r.top, 0)) / vh * 100);
-        }
         const sizes = [...document.querySelectorAll('*')]
           .filter((e) => e.getClientRects().length && e.textContent.trim())
           .map((e) => parseFloat(getComputedStyle(e).fontSize) || 0).filter(Boolean);
         return {
           pageHeightPx: document.documentElement.scrollHeight,
           screens: +(document.documentElement.scrollHeight / vh).toFixed(1),
-          firstScreenGoverningMassPct: Math.round(governing),
           mediaTotal: media.length,
           fullBleedMedia: media.filter((e) => e.getBoundingClientRect().width >= vw - 4).length,
           largestTypePx: Math.round(Math.max(...sizes)),
           typeScaleRatio: +(Math.max(...sizes) / Math.min(...sizes)).toFixed(1),
         };
       });
-      const structure = await measureStructure(page);
-      const hits = await harvest(page);
-      live[f.id] = { basic, structure, hits };
+      const structure = f.kind === 'instrument' ? null : await measureStructure(page);
+      const hits = f.kind === 'instrument' ? null : await harvest(page);
+      live[f.id] = { basic, structure, hits, a1 };
       await page.close();
     }
   } catch (e) {
@@ -125,27 +133,99 @@ if (RENDER) {
 
 const rendered = (id) => (live[id] ? live[id] : null);
 
-/* ── Gate 1 · measurable conformance ──────────────────────────────────────── */
-console.log(`\nGate 1 · Measurable Conformance — floor: ${MAN.gate1Floor.check}`);
+/* ── Gate 1 · measurable conformance, and A1 within it ────────────────────── */
+console.log(`\nGate 1 · Measurable Conformance`);
+console.log(dim(`  A1 — ${MAN.gate1Floor.statement}`));
+console.log(dim(`  measured as: ${MAN.gate1Floor.check}`));
+console.log(dim(`  superseded ${MAN.gate1Floor.supersedes.on}: ${MAN.gate1Floor.supersedes.was}`));
+
+const a1At = (f, vp) => rendered(f.id)?.a1?.[vp] || null;
+const near = (a, b, tol) => Math.abs(a - b) <= tol;
+const VIEWPORTS = MAN.gate1Floor.viewports;
+
 for (const f of MAN.fixtures) {
   const r = rendered(f.id);
   const m = r ? r.basic : f.measured;
   const src = r ? 're-measured' : 'from manifest';
-  const meets = m.firstScreenGoverningMassPct >= 90;
-  const expected = !f.expect.gate1.startsWith('fail');
-  console.log(`  ${f.id} ${dim(`(${src})`)}: governing mass ${m.firstScreenGoverningMassPct}% · ${m.screens} screens · ${m.fullBleedMedia}/${m.mediaTotal} full-bleed · type ${m.typeScaleRatio}×`);
+  console.log(`  ${f.id} ${dim(`(${src}, ${m.screens} screens)`)}`);
+
+  for (const vp of VIEWPORTS) {
+    const a1 = a1At(f, vp);
+    const want = f.a1.expect[vp];
+    if (!a1 || !want) continue;
+    const q = a1.metrics;
+    console.log(`     ${vp.padEnd(8)} A1 ${a1.verdict === 'pass' ? '\x1b[32mpass\x1b[0m' : '\x1b[31mfail\x1b[0m'} · ` +
+      `event ${(q.eventCoverage * 100).toFixed(1)}% · media ${(q.mediaCoverage * 100).toFixed(1)}% · ` +
+      `competition ${(q.competitionRatio * 100).toFixed(0)}% · ${q.declaredMasses} masses`);
+    for (const p of a1.problems) console.log(`       · ${p}`);
+    assert(a1.verdict === want.verdict, `  ${f.id} @${vp}: A1 ${a1.verdict}, as recorded`);
+    assert(near(q.eventCoverage, want.eventCoverage, 0.02),
+      `  ${f.id} @${vp}: eventCoverage ${q.eventCoverage} matches the frozen ${want.eventCoverage}`);
+    assert(near(q.mediaCoverage, want.mediaCoverage, 0.02),
+      `  ${f.id} @${vp}: mediaCoverage ${q.mediaCoverage} matches the frozen ${want.mediaCoverage} — reported, never decisive`);
+  }
+  const a1 = a1At(f, 'desktop');
+  const want = f.a1.expect.desktop;
+
   if (f.hero?.expect?.clipped) {
-    const edges = f.hero.expect.clippedEdges || {};
-    for (const [vp, list] of Object.entries(edges)) {
+    for (const [vp, list] of Object.entries(f.hero.expect.clippedEdges || {})) {
       console.log(`     · hero ${vp}: subject clipped ${list.join(' + ')} on the delivered render`);
     }
     if (f.hero.expect.shotChangeInDeclaredInterval) {
       console.log(`     · hero: the declared interval is not the delivered interval — shot change inside it`);
     }
   }
-  const gate1 = meets && !f.hero?.expect?.clipped;
+
+  const expected = !f.expect.gate1.startsWith('fail');
+  /* A1 must hold at EVERY required viewport — mobile is a separate composition */
+  const a1AllPass = VIEWPORTS.every((vp) => (a1At(f, vp) || { verdict: f.a1.expect[vp]?.verdict }).verdict === 'pass');
+  const gate1 = a1AllPass && !f.hero?.expect?.clipped;
   assert(gate1 === expected,
     `  ${f.id}: Gate 1 ${gate1 ? 'passes' : 'fails'} — expected ${expected ? 'pass' : 'fail'}`);
+}
+
+/* the defect that motivated the new instrument must stay fixed */
+const authored = MAN.fixtures.find((f) => f.id === 'cmc-index2-spine');
+const generic = MAN.fixtures.find((f) => f.id === 'cmc-index3-conventional');
+const aM = a1At(authored, 'desktop')?.metrics, gM = a1At(generic, 'desktop')?.metrics;
+if (aM && gM) {
+  assert(aM.mediaCoverage < gM.mediaCoverage && aM.eventCoverage >= MAN.gate1Floor.floorValue,
+    `  the authored fixture owns its first screen (${(aM.eventCoverage * 100).toFixed(0)}%) on ${(aM.mediaCoverage * 100).toFixed(0)}% media — the old instrument scored it 35`);
+  assert(a1At(generic, 'desktop').verdict === 'pass' && generic.expect.gate1.startsWith('fail'),
+    `  the generic fixture owns its first screen too, and gains nothing by it — Gate 1 still fails on the hero`);
+  assert(MAN.gate1Floor.supersedes.oldNumbers['cmc-index2-spine'] === 35
+    && MAN.gate1Floor.supersedes.oldNumbers['cmc-index3-conventional'] === 100,
+    `  the numbers the old instrument produced stay on the record as the reason it was replaced`);
+}
+
+/* ── the A1 instrument fixtures ───────────────────────────────────────────── */
+if (INSTRUMENTS.length) {
+  console.log(`\nA1 instrument fixtures — the two ends of the measurement`);
+  for (const f of INSTRUMENTS) {
+    console.log(`  ${f.id} ${dim('— ' + f.purpose)}`);
+    for (const vp of VIEWPORTS) {
+      const a1 = a1At(f, vp);
+      const want = f.expect[vp];
+      if (!a1 || !want) { console.log(`     ${vp}: ${dim('not rendered')}`); continue; }
+      const q = a1.metrics;
+      console.log(`     ${vp.padEnd(8)} A1 ${a1.verdict === 'pass' ? '\x1b[32mpass\x1b[0m' : '\x1b[31mfail\x1b[0m'} · ` +
+        `event ${(q.eventCoverage * 100).toFixed(0)}% · media ${(q.mediaCoverage * 100).toFixed(0)}% · competition ${(q.competitionRatio * 100).toFixed(0)}%`);
+      for (const p of a1.problems) console.log(`       · ${p}`);
+      assert(a1.verdict === want.verdict, `  ${f.id} @${vp}: A1 ${a1.verdict}, as recorded`);
+
+      if (f.expect.failsOn === 'competition') {
+        assert(q.mediaCoverage >= 0.98 && q.eventCoverage >= 0.9,
+          `  ${f.id} @${vp}: coverage is perfect (${(q.mediaCoverage * 100).toFixed(0)}% media) and it fails anyway`);
+        assert(a1.problems.some((p) => p.includes('comparable rank')),
+          `  ${f.id} @${vp}: …on competition, not on coverage`);
+      } else {
+        assert(q.mediaCoverage < 0.2,
+          `  ${f.id} @${vp}: passes on ${(q.mediaCoverage * 100).toFixed(0)}% media coverage — ownership, not image area`);
+      }
+    }
+    assert(!f.verdict && f.kind === 'instrument',
+      `  ${f.id}: carries no verdict from Alex — an instrument fixture is never taste evidence`);
+  }
 }
 
 /* ── Gate 2 · structural and authorship conformance ───────────────────────── */

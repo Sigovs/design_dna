@@ -755,6 +755,16 @@ Three consequences:
 headline sitting on the subject's face and a mobile crop centred on nothing are
 defects in every register, and they are produced by the same shortcut in every case.
 
+**Ownership is a property of the composed system, not of the photograph.** A first
+screen can be owned completely by a subject standing on an authored field with its
+record beside it, where the image is a fifth of the viewport; and a photograph
+stretched to all four edges can own nothing, because a second independent event sits
+on it at equal rank. Those are the two ends the A1 instrument is calibrated against
+(`projects/fixtures/a1-composed-low-media` and `a1-two-events`), and they are why
+the governing event is declared as **named components** — subject, identity mass,
+supporting record, active field, CTA cluster, reserved space — rather than asserted
+as a percentage. A single full-viewport wrapper is not a declaration of anything.
+
 *Boundary:* [C9](#invariant) governs edges and crops as a compositional decision;
 C22 governs the specific case where the frame is the whole first screen and the
 temptation is to solve it by scale. The house preference that a hero usually *does*

@@ -86,6 +86,7 @@ design_dna/
 │   ├── README.md                   # the order, the three seal mechanisms, the detector's limits
 │   ├── run.mjs                     # npm run gates — runs 1–4, writes the six artefacts, seals
 │   ├── gate5.mjs                   # npm run gate5 — refuses the handoff unless the chain validates
+│   ├── event.mjs                   # A1 — event ownership vs media coverage vs competition
 │   ├── structure.mjs               # repetition by rendered geometry; reads no class names
 │   ├── hero.mjs                    # closed-form cover mapping, per-sample boxes, annotated evidence
 │   ├── content.mjs                 # claim harvest + ledger coverage
@@ -589,7 +590,14 @@ while it is honest.
 0. **Delivery runs five gates, in order, and the last one is Alex's.** **Gate 1 —
    Measurable Conformance** measures the render against commitments the Read declared
    in advance, with one floor it may not lower: on identity-led and image-led pages
-   the governing event owns the first screen. **Gate 2 — Structural and Authorship
+   **one governing event owns the first screen, and everything else defers to it**.
+   That is measured as a composed system — subject, identity mass, supporting record,
+   active field, CTA cluster and reserved space, each declared as a named component
+   mapping to a rendered selector, never as a single full-viewport wrapper — with
+   `eventCoverage` and `competition` deciding and **`mediaCoverage` reported and never
+   decisive**. A composition owning its first screen on a fifth of a viewport of image
+   passes; a full-bleed photograph carrying two independent events of equal rank fails.
+   **Gate 2 — Structural and Authorship
    Conformance** asks of every device present what work it does — a full-screen hero
    names its event, a bleed names the chapter it separates, scale contrast says what
    the small type cannot, an overlap changes rank, emptiness is a pause between two
@@ -614,7 +622,8 @@ while it is honest.
    against shipping. **Passing Gate 1 proves the means are present and nothing else** —
    `npm run fixtures` keeps four rejected artefacts on file across four failure
    classes: means absent, means present doing no work, authored-and-useless, and
-   useful-and-unauthored. A hero owns the first screen as a **scene**, not as an object
+   useful-and-unauthored — plus two instrument fixtures that calibrate A1 and carry
+   no verdict at all. A hero owns the first screen as a **scene**, not as an object
    enlarged to the viewport edges — the air around the subject is part of the governing
    event — and it is verified on the **delivered composited render**, never on the
    source asset, with the worst sample governing when the subject moves.

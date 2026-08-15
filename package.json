@@ -29,7 +29,8 @@
     "test:structure": "node gates/test/structure.test.mjs",
     "test:content": "node gates/test/content.test.mjs",
     "test:seal": "node gates/test/seal.test.mjs",
-    "test:gates": "npm run test:seal && npm run test:structure && npm run test:content",
+    "test:a1": "node gates/test/event.test.mjs",
+    "test:gates": "npm run test:seal && npm run test:a1 && npm run test:structure && npm run test:content",
     "check": "npm run projects:check && npm run dialects:check && npm run evidence:check && npm run test:gates && npm run fixtures"
   },
   "devDependencies": {

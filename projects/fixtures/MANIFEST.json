@@ -3,9 +3,31 @@
   "purpose": "Regression fixtures. Frozen copies, never the live project folder. Four recorded rejections across four failure classes. THE STANDING RULE: a change to the workflow is broken if any fixture here can pass the complete gate chain.",
   "gate1Floor": {
     "rule": "A1 / C1+C13",
-    "check": "firstScreenGoverningMassPct >= 90, where governing mass is the tallest single media element on the first screen as a fraction of viewport height",
-    "note": "Passing Gate 1 proves the means are present. It proves nothing about quality — Concept 3 is the recorded counter-example.",
-    "limitation": "Measures media, not composition. cmc-index2-spine fails it with an authored full-screen scene; cmc-index3-conventional passes it at 100% with a stock full-bleed video. Passing proves a photograph is large. It proves nothing else."
+    "statement": "One governing event owns the first screen, and everything else defers to it.",
+    "check": "eventCoverage >= 0.90 of the first screen outside persistent chrome, with no independent mass at or above 60% of the event’s rank mass",
+    "measures": {
+      "eventCoverage": "the declared governing event as a composed system — subject, identity mass, supporting record, active field, CTA cluster, and reserved space that participates in the composition",
+      "mediaCoverage": "how much of the first screen is image or video. REPORTED, NEVER A PASS CONDITION.",
+      "competitionRatio": "the strongest independent mass, as a fraction of the event’s rank mass. Ownership is singular."
+    },
+    "supersedes": {
+      "on": "2026-08-15",
+      "was": "the tallest single media element on the first screen, as a fraction of viewport height",
+      "why": "That instrument scored cmc-index2-spine — a composed system of car, record, claim and graduated field — at 35%, and cmc-index3-conventional — a stock video stretched edge to edge — at 100%. It was rewarding a large photograph and calling it a governing event. A1 itself was never weakened; only the thing measuring it was replaced.",
+      "oldNumbers": {
+        "cmc-concept-2": 58,
+        "cmc-concept-3": 100,
+        "cmc-index2-spine": 35,
+        "cmc-index3-conventional": 100
+      }
+    },
+    "note": "Passing proves presence and ownership. It proves nothing about quality — Gate 2 is what asks whether the event does any compositional work, and nothing in A1 gives a page authorship credit.",
+    "floorValue": 0.9,
+    "viewports": [
+      "desktop",
+      "mobile"
+    ],
+    "perViewport": "A1 is measured at every required viewport, on an UNSCROLLED first screen. Mobile is a separate composition and often needs its own component set — in cmc-index2-spine the element carrying the ground at desktop paints nothing at mobile widths, so declaring it there would name an element that is not the field."
   },
   "omitted": [
     {
@@ -119,11 +141,13 @@
       "measured": {
         "pageHeightPx": 8046,
         "screens": 8.9,
-        "firstScreenGoverningMassPct": 58,
         "mediaTotal": 10,
         "fullBleedMedia": 2,
         "typeScaleRatio": 5.2,
-        "largestTypePx": 72
+        "largestTypePx": 72,
+        "eventCoverage": 0.569,
+        "mediaCoverage": 0.292,
+        "competitionRatio": 0.091
       },
       "gate2Findings": [
         {
@@ -160,7 +184,53 @@
           "result": "FAIL — NO LEDGER. Recorded retrospectively; this fixture predates the Content Provenance gate and shipped claim-shaped strings with no source."
         }
       ],
-      "frozen": "2026-08-13"
+      "frozen": "2026-08-13",
+      "a1": {
+        "eventStatement": "A GT3 standing in one of the four rooms, beside the claim that every car we list is standing in one.",
+        "components": [
+          {
+            "role": "subject",
+            "selector": "figure.open__plate"
+          },
+          {
+            "role": "identity",
+            "selector": "div.open__say"
+          },
+          {
+            "role": "cta",
+            "selector": ".open__say a, .open__say .btn"
+          }
+        ],
+        "excluded": [
+          {
+            "selector": "header#masthead",
+            "why": "persistent masthead — the frame, not the event"
+          }
+        ],
+        "expect": {
+          "desktop": {
+            "verdict": "fail",
+            "eventCoverage": 0.569,
+            "mediaCoverage": 0.292,
+            "competitionRatio": 0.091,
+            "declaredMasses": 3,
+            "problems": [
+              "eventCoverage 56.9% is below the A1 floor of 90%"
+            ]
+          },
+          "mobile": {
+            "verdict": "fail",
+            "eventCoverage": 0.75,
+            "mediaCoverage": 0.237,
+            "competitionRatio": 0,
+            "declaredMasses": 2,
+            "problems": [
+              "component cta \".open__say a, .open__say .btn\": matched 2 element(s), none of them on the first screen",
+              "eventCoverage 75.0% is below the A1 floor of 90%"
+            ]
+          }
+        }
+      }
     },
     {
       "id": "cmc-concept-3",
@@ -268,11 +338,13 @@
       "measured": {
         "pageHeightPx": 3652,
         "screens": 4.1,
-        "firstScreenGoverningMassPct": 100,
         "mediaTotal": 4,
         "fullBleedMedia": 2,
         "typeScaleRatio": 15.9,
-        "largestTypePx": 223
+        "largestTypePx": 223,
+        "eventCoverage": 1,
+        "mediaCoverage": 1,
+        "competitionRatio": 0.218
       },
       "gate2Findings": [
         {
@@ -327,7 +399,80 @@
           "result": "FAIL — NO LEDGER. Recorded retrospectively; this fixture predates the Content Provenance gate and shipped claim-shaped strings with no source."
         }
       ],
-      "frozen": "2026-08-13"
+      "frozen": "2026-08-13",
+      "a1": {
+        "eventStatement": "A GT2 RS photographed in a warehouse, filling the screen, with the claim laid over it.",
+        "components": [
+          {
+            "role": "field",
+            "selector": "div.c3-hero__media"
+          },
+          {
+            "role": "subject",
+            "selector": "div.c3-hero__media img"
+          },
+          {
+            "role": "identity",
+            "selector": "div.c3-hero__say"
+          },
+          {
+            "role": "support",
+            "selector": "div.c3-hero__right"
+          }
+        ],
+        "excluded": [
+          {
+            "selector": "header.c3-bar",
+            "why": "persistent bar"
+          }
+        ],
+        "perViewport": {
+          "mobile": {
+            "components": [
+              {
+                "role": "field",
+                "selector": "section.c3-hero"
+              },
+              {
+                "role": "subject",
+                "selector": "div.c3-hero__media img"
+              },
+              {
+                "role": "identity",
+                "selector": "div.c3-hero__say"
+              },
+              {
+                "role": "support",
+                "selector": "div.c3-hero__right"
+              }
+            ],
+            "excluded": [
+              {
+                "selector": "header.c3-bar",
+                "why": "persistent bar"
+              }
+            ]
+          }
+        },
+        "expect": {
+          "desktop": {
+            "verdict": "pass",
+            "eventCoverage": 1,
+            "mediaCoverage": 1,
+            "competitionRatio": 0.218,
+            "declaredMasses": 2,
+            "problems": []
+          },
+          "mobile": {
+            "verdict": "pass",
+            "eventCoverage": 0.943,
+            "mediaCoverage": 0.31,
+            "competitionRatio": 0.077,
+            "declaredMasses": 3,
+            "problems": []
+          }
+        }
+      }
     },
     {
       "id": "cmc-index2-spine",
@@ -344,7 +489,7 @@
       "pairedWith": "cmc-index3-conventional",
       "whyPaired": "C and D are the same error photographed from opposite sides. Correcting either one alone reproduces the other, which is why authorship and usefulness are conjunctive and no gate may be traded against another.",
       "expect": {
-        "gate1": "fail — Measurable Conformance. The A1 media floor reads 35%; see gate1Note.",
+        "gate1": "pass — Measurable Conformance. A1 holds: eventCoverage 93.2% with no competing mass.",
         "gate2": "pass with dispositions — the detector fires and every finding has a defensible human disposition; authorship is real",
         "gate3": "fail — Product Usefulness. Inventory is not discoverable, the primary buyer action is subordinate to the register, no desire is produced",
         "gate4": "fail — no content ledger exists; claim-shaped strings are published with no recorded source",
@@ -423,7 +568,6 @@
         },
         "pageHeightPx": 5843,
         "screens": 6.5,
-        "firstScreenGoverningMassPct": 35,
         "mediaTotal": 14,
         "fullBleedMedia": 0,
         "largestTypePx": 66,
@@ -431,7 +575,9 @@
         "typeScaleRatio": 4.7,
         "topLevelSections": 3,
         "bandRun": 0,
-        "governingMassNote": "Tallest media element on the first screen, as a fraction of viewport height — the frozen A1 definition. The scene owning the first screen measures 100% by area, but its governing element is an authored composition rather than one media element, and the floor as written cannot see that."
+        "eventCoverage": 0.932,
+        "mediaCoverage": 0.216,
+        "competitionRatio": 0
       },
       "expectedShapes": {
         "note": "The detector must report these. It is not an oracle: each one requires a human disposition, and a defensible disposition is why this fixture still clears Gate 2.",
@@ -696,7 +842,114 @@
           "bytes": 39034
         }
       ],
-      "gate1Note": "FLOOR LIMITATION, RECORDED NOT RESOLVED. Under A1 as currently written, this fixture — the authored one — scores 35%, while cmc-index3-conventional — the unauthored one — scores a perfect 100%. The floor rewards a full-bleed photograph and is blind to a composed scene. It is left unchanged here because altering an invariant is Alex’s call, not the patch’s. Flagged for a decision."
+      "a1": {
+        "eventStatement": "A Regera standing on the graduated floor of the room, with the register of everything else held alongside it.",
+        "components": [
+          {
+            "role": "field",
+            "selector": "div.field"
+          },
+          {
+            "role": "subject",
+            "selector": "img.car"
+          },
+          {
+            "role": "identity",
+            "selector": "div.claim"
+          },
+          {
+            "role": "cta",
+            "selector": ".act-row .btn"
+          },
+          {
+            "role": "support",
+            "selector": "aside#spine"
+          },
+          {
+            "role": "support",
+            "selector": "dl.plate"
+          },
+          {
+            "role": "negative-space",
+            "rect": {
+              "x": 0.367,
+              "y": 0.076,
+              "w": 0.349,
+              "h": 0.409
+            },
+            "function": "isolation around the subject"
+          }
+        ],
+        "excluded": [
+          {
+            "selector": "header#bar",
+            "why": "persistent bar"
+          },
+          {
+            "selector": "div.veil",
+            "why": "the bar's own scrim"
+          }
+        ],
+        "perViewport": {
+          "mobile": {
+            "components": [
+              {
+                "role": "field",
+                "selector": "div.act"
+              },
+              {
+                "role": "subject",
+                "selector": "img.car"
+              },
+              {
+                "role": "identity",
+                "selector": "div.claim"
+              },
+              {
+                "role": "cta",
+                "selector": ".act-row .btn"
+              },
+              {
+                "role": "support",
+                "selector": "aside#spine"
+              },
+              {
+                "role": "support",
+                "selector": "dl.plate"
+              }
+            ],
+            "excluded": [
+              {
+                "selector": "header#bar",
+                "why": "persistent bar"
+              },
+              {
+                "selector": "div.veil",
+                "why": "the bar's own scrim"
+              }
+            ]
+          }
+        },
+        "expect": {
+          "desktop": {
+            "verdict": "pass",
+            "eventCoverage": 0.932,
+            "mediaCoverage": 0.216,
+            "competitionRatio": 0,
+            "declaredMasses": 5,
+            "problems": []
+          },
+          "mobile": {
+            "verdict": "pass",
+            "eventCoverage": 1,
+            "mediaCoverage": 0.127,
+            "competitionRatio": 0,
+            "declaredMasses": 5,
+            "problems": []
+          }
+        }
+      },
+      "note_a1": "Before 2026-08-15 this fixture was recorded as failing A1 at 35%. That number was the tallest media element, not the governing event, and correcting the instrument corrected the record. Nothing about the page changed, and it still fails Gate 3 and Gate 4."
     },
     {
       "id": "cmc-index3-conventional",
@@ -713,7 +966,7 @@
       "pairedWith": "cmc-index2-spine",
       "whyPaired": "The correction applied to C produced D. That is the evidence that a gate chain permitting either to pass is broken.",
       "expect": {
-        "gate1": "fail — Measurable Conformance. The delivered hero render clips the subject; the declared interval is not the delivered interval",
+        "gate1": "fail — Measurable Conformance. A1 passes on ownership; the delivered hero render clips the subject, and hero.json is a required delegated check inside this gate.",
         "gate2": "fail — Structural and Authorship Conformance. Four equal modules in four separate sections; no disposition can defend them",
         "gate3": "pass — Product Usefulness. Search, inventory, warranty, sell and locations are all reachable and the primary action is dominant",
         "gate4": "fail — Content Provenance. Four fabricated prices and eleven unsupported commercial promises",
@@ -926,7 +1179,6 @@
         },
         "pageHeightPx": 7246,
         "screens": 8.1,
-        "firstScreenGoverningMassPct": 100,
         "mediaTotal": 21,
         "fullBleedMedia": 4,
         "largestTypePx": 64,
@@ -934,7 +1186,9 @@
         "typeScaleRatio": 4.6,
         "topLevelSections": 10,
         "bandRun": 3,
-        "governingMassNote": "A perfect score on the A1 media floor, awarded to the fixture rejected for having no authorship. Recorded as the counter-example that motivates gate1Note on cmc-index2-spine."
+        "eventCoverage": 1,
+        "mediaCoverage": 1,
+        "competitionRatio": 0
       },
       "expectedShapes": {
         "note": "These are the modules Alex named in the rejection. If a future detector change stops reporting any of them, the detector regressed — not the page.",
@@ -1343,7 +1597,88 @@
           "sha256": "14c30a6c0e6ecaeab5ca126eea36a137c7e515e6244367c9e3e0ebd460e877e4",
           "bytes": 40036
         }
-      ]
+      ],
+      "a1": {
+        "eventStatement": "A Revuelto approaching out of the far end of a night garage, filling the screen.",
+        "components": [
+          {
+            "role": "field",
+            "selector": "div.film__media"
+          },
+          {
+            "role": "subject",
+            "selector": "video#filmv"
+          },
+          {
+            "role": "identity",
+            "selector": "div.film__claim"
+          },
+          {
+            "role": "cta",
+            "selector": ".film__row .btn"
+          }
+        ],
+        "excluded": [
+          {
+            "selector": "header#bar",
+            "why": "persistent bar"
+          },
+          {
+            "selector": "div#veil",
+            "why": "the bar's own scrim"
+          }
+        ],
+        "perViewport": {
+          "mobile": {
+            "components": [
+              {
+                "role": "field",
+                "selector": "section#top.film"
+              },
+              {
+                "role": "subject",
+                "selector": "div.film__media"
+              },
+              {
+                "role": "identity",
+                "selector": "div.film__claim"
+              },
+              {
+                "role": "cta",
+                "selector": ".film__row .btn"
+              }
+            ],
+            "excluded": [
+              {
+                "selector": "header#bar",
+                "why": "persistent bar"
+              },
+              {
+                "selector": "div#veil",
+                "why": "the bar's own scrim"
+              }
+            ]
+          }
+        },
+        "expect": {
+          "desktop": {
+            "verdict": "pass",
+            "eventCoverage": 1,
+            "mediaCoverage": 1,
+            "competitionRatio": 0,
+            "declaredMasses": 2,
+            "problems": []
+          },
+          "mobile": {
+            "verdict": "pass",
+            "eventCoverage": 1,
+            "mediaCoverage": 0.48,
+            "competitionRatio": 0,
+            "declaredMasses": 3,
+            "problems": []
+          }
+        }
+      }
     }
   ],
   "note_2026_08_13": "The Concept 2 fixture was frozen by copying whole asset directories, which pulled in Concept 3's concept3.css and concept3.js — files Concept 2 never references. Removed the same day and the hash list regenerated. Shared logos, the image PROVENANCE.txt and the unused 960px variant are kept: they are part of Concept 2's own asset folder, not another concept's work.",
@@ -1388,5 +1723,189 @@
     "C": "authored composition without product success — cmc-index2-spine",
     "D": "product usability without design authorship — cmc-index3-conventional"
   },
-  "note_2026_08_15": "Both new fixtures include their real video encodes in full; the hash-only omission mechanism was deliberately not used, so the hero gate can decode the delivered frames rather than trust a recorded number. The hero subject boxes for cmc-index3-conventional were read off the DELIVERED encodes and disagree with what the source review recorded — that disagreement is the finding."
+  "note_2026_08_15": "Both new fixtures include their real video encodes in full; the hash-only omission mechanism was deliberately not used, so the hero gate can decode the delivered frames rather than trust a recorded number. The hero subject boxes for cmc-index3-conventional were read off the DELIVERED encodes and disagree with what the source review recorded — that disagreement is the finding.",
+  "a1Fixtures": [
+    {
+      "id": "a1-composed-low-media",
+      "entry": "index.html",
+      "kind": "instrument",
+      "frozen": "2026-08-15",
+      "purpose": "Low media coverage, strong composed event ownership, no competing event. Must PASS A1.",
+      "holds": "the end of the measurement the old instrument failed: an event can own the first screen with almost no image in it",
+      "a1": {
+        "eventStatement": "One object standing on an authored graduated field, with its record on the floor beneath it.",
+        "components": [
+          {
+            "role": "field",
+            "selector": ".field"
+          },
+          {
+            "role": "subject",
+            "selector": ".subject"
+          },
+          {
+            "role": "identity",
+            "selector": ".claim"
+          },
+          {
+            "role": "cta",
+            "selector": ".cta"
+          },
+          {
+            "role": "support",
+            "selector": ".record"
+          },
+          {
+            "role": "negative-space",
+            "rect": {
+              "x": 0.354,
+              "y": 0.142,
+              "w": 0.253,
+              "h": 0.704
+            },
+            "function": "directional air"
+          }
+        ],
+        "excluded": [
+          {
+            "selector": "header.bar",
+            "why": "persistent bar"
+          }
+        ],
+        "perViewport": {
+          "mobile": {
+            "components": [
+              {
+                "role": "field",
+                "selector": ".field"
+              },
+              {
+                "role": "subject",
+                "selector": ".subject"
+              },
+              {
+                "role": "identity",
+                "selector": ".claim"
+              },
+              {
+                "role": "cta",
+                "selector": ".cta"
+              },
+              {
+                "role": "support",
+                "selector": ".record"
+              }
+            ],
+            "excluded": [
+              {
+                "selector": "header.bar",
+                "why": "persistent bar"
+              }
+            ]
+          }
+        }
+      },
+      "expect": {
+        "verdict": "pass",
+        "eventCoverage": 1,
+        "mediaCoverage": 0.06,
+        "competitionRatio": 0,
+        "desktop": {
+          "verdict": "pass",
+          "eventCoverage": 1,
+          "mediaCoverage": 0.06,
+          "competitionRatio": 0,
+          "declaredMasses": 4,
+          "problems": []
+        },
+        "mobile": {
+          "verdict": "pass",
+          "eventCoverage": 1,
+          "mediaCoverage": 0.074,
+          "competitionRatio": 0,
+          "declaredMasses": 4,
+          "problems": []
+        }
+      },
+      "note": "Not a design and not taste evidence. It carries no verdict from Alex and must never be cited as a preference.",
+      "files": [
+        {
+          "path": "index.html",
+          "sha256": "ee0edf036ed39db89f19893c829a4cd75a4f108223f730d7995b08825901d6c0",
+          "bytes": 5956
+        }
+      ]
+    },
+    {
+      "id": "a1-two-events",
+      "entry": "index.html",
+      "kind": "instrument",
+      "frozen": "2026-08-15",
+      "purpose": "100% media coverage, two competing independent events. Must FAIL A1 on competition.",
+      "holds": "the other end: full-bleed coverage is not ownership. Two events of similar rank means neither governs.",
+      "a1": {
+        "eventStatement": "The declared governing event: subject A on the full-bleed plate.",
+        "components": [
+          {
+            "role": "field",
+            "selector": ".plate"
+          },
+          {
+            "role": "subject",
+            "selector": "#subject-a"
+          },
+          {
+            "role": "identity",
+            "selector": "#event-a h2"
+          },
+          {
+            "role": "cta",
+            "selector": "#event-a .go"
+          }
+        ],
+        "excluded": [
+          {
+            "selector": "header.bar",
+            "why": "persistent bar"
+          }
+        ]
+      },
+      "expect": {
+        "verdict": "fail",
+        "eventCoverage": 1,
+        "mediaCoverage": 1,
+        "competitionRatio": 5.49,
+        "failsOn": "competition",
+        "desktop": {
+          "verdict": "fail",
+          "eventCoverage": 1,
+          "mediaCoverage": 1,
+          "competitionRatio": 5.49,
+          "declaredMasses": 3,
+          "problems": [
+            "an independent mass holds comparable rank: div#event-b.event at 549% of the event's rank mass (limit 60%). Two events of similar rank means neither governs."
+          ]
+        },
+        "mobile": {
+          "verdict": "fail",
+          "eventCoverage": 1,
+          "mediaCoverage": 1,
+          "competitionRatio": 5.647,
+          "declaredMasses": 3,
+          "problems": [
+            "an independent mass holds comparable rank: div#event-b.event at 565% of the event's rank mass (limit 60%). Two events of similar rank means neither governs."
+          ]
+        }
+      },
+      "note": "Not a design and not taste evidence. Its coverage is perfect and it fails anyway, which is the whole reason the two numbers are kept apart.",
+      "files": [
+        {
+          "path": "index.html",
+          "sha256": "017682f305acc33765b56f392ed48573ea4bcc2f0d0fec5982af552929124d93",
+          "bytes": 6130
+        }
+      ]
+    }
+  ],
+  "note_2026_08_15_a1": "A1’s measurement model was replaced (see gate1Floor.supersedes). The rule is unchanged. Every fixture carries an `a1` declaration naming the governing event through components that each map to a rendered selector or rectangle; a single full-viewport wrapper is not a declaration. cmc-index2-spine’s recorded Gate 1 result changed from fail to pass as a direct consequence — the instrument was corrected, the fixture was not."
 }

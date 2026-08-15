@@ -257,6 +257,28 @@ Declare these nine, before the hero is built:
 | **mobile crop** | decided **separately** — never inherited from desktop |
 | **asset suitability** | whether this frame can carry it at all |
 
+**And declare the governing event itself, as a system.** Viewport ownership is a
+claim about a composed whole, so it is stated as one — this is what A1 is measured
+against, and a first screen with no such declaration cannot pass Gate 1:
+
+| | |
+|---|---|
+| **event statement** | one sentence: what is happening on this screen |
+| **primary subject** | what the screen is *of* |
+| **identity / headline mass** | the mass carrying the proposition |
+| **supporting evidence or interface mass** | the record, index or control that belongs to the event |
+| **CTA cluster** | the action, as part of the composition rather than beside it |
+| **active field** | the authored ground the masses stand in, where one exists |
+| **intentional negative-space region** | which air participates, and its function |
+| **excluded** | what is on the first screen and deliberately *not* part of the event — persistent chrome, cookie bars, anything else |
+
+**Each component maps to a rendered selector or a declared rectangle**, and **a
+single full-viewport wrapper is not a declaration**. "The hero owns the screen" is
+an assertion; naming the masses that own it is a decision, and only the second one
+can be checked. An event is not required to be one image — a composition of subject,
+record, claim and field owns a first screen as completely as a photograph does, and
+[the instrument that could not see that was replaced](#7-delivery-gates-and-report-format).
+
 **If no frame can carry it: choose another asset, build a separate composition, or
 record the asset as unsuitable.** An aggressive crop is not a repair for a frame
 that was never a hero. `object-fit: cover` and `background-size: cover` are not
@@ -1024,10 +1046,43 @@ actually rests on. What is fixed is that they are **stated in advance and checke
 in the render**, so a Read cannot describe a page the artefact never became.
 
 **One floor is not the Read's to lower.** On identity-led and image-led pages,
-**one governing event owns the first screen** — [A1](vault/EVIDENCE.md#a--demonstrated),
-restored 2026-08-13 from six of Alex's own records. A Read may commit above it and
-may only go below it by declaring the yield A1 states — a visitor arriving with a
-task rather than a first impression.
+**one governing event owns the first screen, and everything else defers to it** —
+[A1](vault/EVIDENCE.md#a--demonstrated), restored 2026-08-13 from six of Alex's own
+records. A Read may commit above it and may only go below it by declaring the yield
+A1 states — a visitor arriving with a task rather than a first impression.
+
+**A1 is not "a large image occupies the viewport", and is not measured as one.**
+Three separate numbers, and only two of them can fail a build:
+
+| | |
+|---|---|
+| **`eventCoverage`** | the declared governing event as a composed system, over the first screen outside persistent chrome. Floor **0.90**. |
+| **`competition`** | the strongest independent mass, as a fraction of the event's rank mass. Limit **0.60** — ownership is singular, and two events of similar rank means neither governs. |
+| **`mediaCoverage`** | how much of the first screen is image or video. **Reported, never a pass condition.** |
+
+A governing event is a **system**, not an image: subject, identity or headline
+mass, supporting record or index, active atmospheric field, CTA cluster, and
+deliberately reserved negative space that participates in the composition. The Read
+declares it through **named components, each mapping to a rendered selector or a
+declared rectangle**, plus the elements explicitly excluded from it.
+
+**A single full-viewport wrapper selector is not a declaration.** A wrapper with no
+independently identified internal masses proves nothing, and fails on that ground
+alone however much of the screen it covers. Reserved space counts only where it is
+**bounded by active event components** and assigned a function — text-safe field,
+directional air, isolation around the subject, or a visual pause inside the event.
+Unused blank viewport cannot be annexed to reach the floor.
+
+> **The instrument was replaced on 2026-08-15; the rule was not touched.** A1 used
+> to be measured as the tallest media element on the first screen. That number
+> scored `cmc-index2-spine` — an authored system of car, record, claim and graduated
+> field — at **35%**, and `cmc-index3-conventional` — a stock video stretched edge to
+> edge — at **100%**. It was rewarding a large photograph and calling it a governing
+> event. Under the current instrument they measure 93% and 100% *event* coverage on
+> 22% and 100% *media* coverage, and the second one gains nothing by it: Gate 1 still
+> fails on its delivered hero. `projects/fixtures/a1-composed-low-media` and
+> `a1-two-events` hold the two ends — an event owning the screen on 6% media, and a
+> full-bleed photograph that fails on competition at 100%.
 
 > **Passing Gate 1 proves the means are present. It proves nothing about quality.**
 > The recorded counter-example is `projects/fixtures/cmc-concept-3`: full-viewport

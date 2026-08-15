@@ -50,6 +50,7 @@ Each file here closes one of those.
 | `gate5.mjs` | Refuses the screenshot handoff unless the chain validates. Prints each artefact as NOT RUN / STALE / pass / fail. A refusal here is a **workflow** failure and is reported as one — it is never recorded as taste evidence. |
 | `lib/seal.mjs` | Presence, staleness and order. Defines `CHAIN`, the six required artefacts in sequence. |
 | `lib/server.mjs` | A dependency-free static server with HTTP range support, so a `<video>` can seek. Replaces the `python3 -m http.server` spawn, which on Windows resolved to a Store shim that exited immediately and turned every measured assertion into a silent fallback. |
+| `event.mjs` | A1 — measures whether one declared governing event owns the first screen. Keeps `eventCoverage`, `mediaCoverage` and `competition` apart. |
 | `structure.mjs` | Finds repeated modules by rendered geometry. Reads no class names. |
 | `hero.mjs` | Closed-form `object-fit` mapping, per-sample subject boxes, annotated evidence images. |
 | `content.mjs` | Harvests claim-shaped strings from the render and requires each to map to a ledger entry. |
@@ -122,11 +123,12 @@ the source master and obvious on the render.
 ## Tests
 
 ```sh
-npm run test:gates        # all three suites
+npm run test:gates        # all four suites
+npm run test:a1           # ownership vs media coverage, competition, declaration honesty
 npm run test:structure    # wrapper-evasion regressions
 npm run test:content      # coverage, banned sources, dated figures
 npm run test:seal         # presence, staleness, order
-npm run fixtures          # the four frozen rejections
+npm run fixtures          # the four frozen rejections + two A1 instrument fixtures
 ```
 
 `npm run fixtures` is the one that matters. It holds four recorded rejections across
@@ -144,13 +146,47 @@ complete chain.** C and D are the two halves of one proof — the correction app
 to C produced D — which is why Gate 2 and Gate 3 are conjunctive and neither may be
 traded for the other.
 
-## One known limitation, recorded not resolved
+## A1 measures ownership, not media coverage
 
-Gate 1's A1 floor measures the tallest single media element on the first screen as a
-fraction of viewport height. Under it, `cmc-index2-spine` — the authored fixture —
-scores **35%**, while `cmc-index3-conventional` — the unauthored one — scores **100%**.
+`event.mjs`. A1 says *one governing event owns the first screen, and everything else
+defers to it*. It used to be measured as the tallest media element on the first
+screen — which scored the authored fixture at **35%** and the stock full-bleed video
+at **100%**. The rule was right; the instrument was measuring a different thing. It
+was replaced on 2026-08-15 and A1 itself was not touched.
 
-The floor rewards a large photograph and is blind to a composed scene. It is left
-unchanged here because changing an invariant is Alex's call, not a patch's. It is
-recorded in `projects/fixtures/MANIFEST.json` under `gate1Floor.limitation` and
-flagged for a decision.
+Three numbers now, and only two of them can fail a build:
+
+| | | |
+|---|---|---|
+| `eventCoverage` | the declared event as a composed system, over the first screen outside persistent chrome | floor **0.90** |
+| `competition` | the strongest independent mass, over the event's rank mass | limit **0.60** |
+| `mediaCoverage` | how much of the first screen is image or video | **reported, never decisive** |
+
+The event is declared through **named components** — subject, identity mass,
+supporting record or interface, active field, CTA cluster, reserved negative space —
+each mapping to a rendered selector or a declared rectangle, plus what is explicitly
+excluded. **A single full-viewport wrapper is not a declaration** and fails on that
+ground however much it covers. Reserved space counts only where it is **bounded on
+at least two sides by event masses** and carries one of the named functions;
+unbounded blank viewport cannot be annexed to reach the floor. Rank excludes
+full-viewport components, so declaring the photograph as the subject cannot make the
+denominator the whole screen and immunise the page against competitors.
+
+Every run emits an annotated first screen: each component box colour-coded by role,
+the event envelope, reserved regions marked counted or not counted with the sides
+that bound them, competitors in magenta with their ratio, and the three numbers
+along the bottom.
+
+Where the four design fixtures land, and what it changed:
+
+| fixture | media | event | competition | A1 |
+|---|---|---|---|---|
+| `cmc-concept-2` | 29% | 57% | 9% | **fail** — a split hero; half the screen was never composed |
+| `cmc-concept-3` | 100% | 100% | 22% | pass — it owns the screen and does nothing with it, which is Gate 2's finding |
+| `cmc-index2-spine` | 22% | 93% | 0% | **pass** — the case the old instrument got wrong |
+| `cmc-index3-conventional` | 100% | 100% | 0% | pass — and it gains nothing: Gate 1 still fails on the delivered hero |
+
+Two instrument fixtures hold the ends of the scale. `a1-composed-low-media` passes
+on **6%** media coverage. `a1-two-events` fails at **100%** media coverage, on
+competition. Neither is a design, neither carries a verdict from Alex, and neither
+may ever be cited as taste evidence.

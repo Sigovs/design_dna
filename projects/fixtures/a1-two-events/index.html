@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A1 instrument fixture — full media coverage, two competing events</title>
+<!--
+  INSTRUMENT FIXTURE. Not a design, not a rejection, not taste evidence.
+
+  It holds the other end of the A1 measurement: MEDIA COVERAGE IS 100% and the
+  first screen is still not owned. A full-bleed photograph fills the viewport,
+  and two independent events sit on top of it — each with its own subject,
+  headline and call to action, at comparable rank.
+
+  The old instrument scored this kind of page at 100% and passed it. A1 says one
+  governing event owns the first screen; two events of similar rank means
+  neither governs, so this must fail on COMPETITION while its coverage is
+  perfect. That is the whole point of separating the two numbers.
+-->
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body { font: 400 16px/1.5 ui-sans-serif, system-ui, sans-serif; color: #f3f4f5; background: #0b0d10; }
+
+  .bar { position: absolute; inset: 0 0 auto 0; height: 72px; display: flex; align-items: center;
+         justify-content: space-between; padding: 0 40px; z-index: 5; }
+  .bar b { font-weight: 700; }
+  .bar nav { display: flex; gap: 26px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
+  .bar a { color: inherit; text-decoration: none; }
+
+  .screen { position: relative; height: 100svh; overflow: hidden; }
+
+  /* 100% MEDIA COVERAGE — the full-bleed photograph the old instrument rewarded */
+  .plate { position: absolute; inset: 0; z-index: 0; }
+  .plate img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* two independent events, side by side, at comparable rank ------------- */
+  .events { position: absolute; inset: 72px 0 0 0; z-index: 2;
+            display: grid; grid-template-columns: 1fr 1fr; }
+  .event { position: relative; display: flex; flex-direction: column; justify-content: center;
+           gap: 18px; padding: 0 56px; }
+  .event::after { content: ""; position: absolute; inset: 0; z-index: -1; }
+  .event--a::after { background: linear-gradient(to right, rgb(9 12 16 / .88), rgb(9 12 16 / .34)); }
+  .event--b::after { background: linear-gradient(to left,  rgb(28 9 9 / .88), rgb(28 9 9 / .34)); }
+
+  .event .kicker { font: 500 12px/1 ui-monospace, Menlo, monospace; letter-spacing: .18em;
+                   text-transform: uppercase; opacity: .8; }
+  .event h2 { margin: 0; font-size: 42px; line-height: 1.05; font-weight: 400; letter-spacing: -.02em; }
+  .event p { margin: 0; max-width: 32ch; opacity: .82; font-size: 15px; }
+  .event .go { align-self: flex-start; padding: 14px 22px; font: 600 13px/1 ui-sans-serif, system-ui, sans-serif;
+               letter-spacing: .1em; text-transform: uppercase; text-decoration: none; color: #fff; }
+  .event--a .go { background: #1d6fd0; }
+  .event--b .go { background: #c8102e; }
+  .event figure { margin: 0; width: 78%; }
+  .event figure img { display: block; width: 100%; height: auto; }
+
+  @media (max-width: 900px) {
+    .events { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; }
+    .event { padding: 0 28px; gap: 12px; }
+    .event h2 { font-size: 26px; }
+    .event figure { width: 58%; }
+    .event--a::after { background: linear-gradient(to bottom, rgb(9 12 16 / .88), rgb(9 12 16 / .40)); }
+    .event--b::after { background: linear-gradient(to top,    rgb(28 9 9 / .88), rgb(28 9 9 / .40)); }
+  }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <b>Instrument Fixture</b>
+  <nav><a href="#a">One</a><a href="#b">Two</a></nav>
+</header>
+
+<main>
+  <section class="screen">
+    <div class="plate">
+      <img width="1600" height="900" alt=""
+           src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='900'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23101820'/%3E%3Cstop offset='.55' stop-color='%231d2a34'/%3E%3Cstop offset='1' stop-color='%2338464f'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1600' height='900' fill='url(%23g)'/%3E%3Cellipse cx='800' cy='760' rx='760' ry='120' fill='%23000' opacity='.35'/%3E%3C/svg%3E">
+    </div>
+
+    <div class="events">
+      <!-- event A: the one that will be declared as governing -->
+      <div class="event event--a" id="event-a">
+        <p class="kicker">Event A</p>
+        <h2>The declared governing event.</h2>
+        <figure id="subject-a">
+          <img width="700" height="240" alt="Subject A."
+               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='700' height='240'%3E%3Cellipse cx='350' cy='206' rx='320' ry='24' fill='%23000' opacity='.3'/%3E%3Cpath d='M64 176c-10-28 6-58 32-72 38-20 96-40 160-44 60-4 122 6 174 26 36 13 74 30 112 38 32 7 58 18 60 36 3 16-12 24-36 24H80c-10 0-14-3-16-8z' fill='%23dfe4e7'/%3E%3Ccircle cx='190' cy='176' r='32' fill='%23161a1d'/%3E%3Ccircle cx='500' cy='176' r='32' fill='%23161a1d'/%3E%3C/svg%3E">
+        </figure>
+        <p>Its own subject, headline and action.</p>
+        <a class="go" href="#a">Action A</a>
+      </div>
+
+      <!-- event B: independent, comparable rank, not part of A -->
+      <div class="event event--b" id="event-b">
+        <p class="kicker">Event B</p>
+        <h2>An independent second event.</h2>
+        <figure>
+          <img width="700" height="240" alt="Subject B."
+               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='700' height='240'%3E%3Cellipse cx='350' cy='206' rx='320' ry='24' fill='%23000' opacity='.3'/%3E%3Cpath d='M60 182c-8-30 10-62 40-76 40-19 100-36 164-38 58-2 118 8 168 28 34 14 72 30 108 38 30 7 56 18 58 34 2 16-12 22-34 22H76c-10 0-14-3-16-8z' fill='%23f0dcdc'/%3E%3Ccircle cx='188' cy='182' r='32' fill='%23241012'/%3E%3Ccircle cx='498' cy='182' r='32' fill='%23241012'/%3E%3C/svg%3E">
+        </figure>
+        <p>Its own subject, headline and action, at comparable rank.</p>
+        <a class="go" href="#b">Action B</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+</body>
+</html>

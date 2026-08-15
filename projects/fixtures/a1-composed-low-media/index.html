@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A1 instrument fixture — composed event, low media coverage</title>
+<!--
+  INSTRUMENT FIXTURE. Not a design, not a rejection, not taste evidence.
+
+  It exists to hold one end of the A1 measurement honest: a first screen owned
+  by a composed governing event whose MEDIA COVERAGE IS LOW. The old instrument
+  measured the tallest media element and would have scored this page at roughly
+  a fifth of the viewport, which is the exact defect that instrument had.
+
+  Everything on this screen is one event: an authored graduated field, a subject
+  standing on it, the identity mass, the CTA, a supporting record, and one
+  reserved region that is bounded on three sides by those masses. Nothing else
+  competes. A1 must pass it.
+-->
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    font: 400 16px/1.5 ui-sans-serif, system-ui, sans-serif;
+    color: #17181a; background: #ece9e3;
+  }
+
+  .bar { position: relative; height: 72px; display: flex; align-items: center;
+         justify-content: space-between; padding: 0 40px; z-index: 3; }
+  .bar b { font-weight: 700; letter-spacing: .02em; }
+  .bar nav { display: flex; gap: 28px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
+  .bar a { color: inherit; text-decoration: none; }
+
+  /* the event ---------------------------------------------------------- */
+  .stage { position: relative; height: calc(100svh - 72px); }
+
+  /* an ACTIVE FIELD: an authored ground, not the page background. The tonal
+     sweep is the room the subject stands in, and it runs to the edges — a
+     composed ground with a page margin around it is a picture of a room. */
+  .field {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, #2b2f34 0%, #4a4f55 34%, #9a9c9c 64%, #d8d6d1 84%, #e4e2dd 100%);
+  }
+
+  .claim { position: absolute; left: 80px; top: 56px; width: 430px; z-index: 2; color: #f4f3f0; }
+  .claim .kicker { font: 500 12px/1 ui-monospace, Menlo, monospace; letter-spacing: .18em;
+                   text-transform: uppercase; opacity: .78; }
+  .claim h1 { margin: 18px 0 0; font-size: 46px; line-height: 1.04; font-weight: 400; letter-spacing: -.02em; }
+  .claim p { margin: 18px 0 0; font-size: 15px; line-height: 1.55; opacity: .84; max-width: 34ch; }
+
+  .cta { position: absolute; left: 80px; top: 330px; z-index: 2; display: flex; gap: 12px; }
+  .cta a { display: inline-block; padding: 14px 22px; font: 600 13px/1 ui-sans-serif, system-ui, sans-serif;
+           letter-spacing: .1em; text-transform: uppercase; text-decoration: none; }
+  .cta .go { background: #c8102e; color: #fff; }
+  .cta .alt { border: 1px solid rgb(244 243 240 / .5); color: #f4f3f0; }
+
+  /* the SUBJECT. Deliberately small in the frame — a fifth of the viewport —
+     because A1 is about ownership, not about how much image there is. */
+  .subject { position: absolute; right: 96px; bottom: 168px; width: 430px; z-index: 2; }
+  .subject img { display: block; width: 100%; height: auto; }
+
+  /* a SUPPORTING RECORD, on the floor of the field */
+  .record { position: absolute; left: 80px; right: 80px; bottom: 56px; z-index: 2;
+            display: grid; grid-template-columns: 15rem 9rem auto; gap: 8px 32px;
+            border-top: 1px solid rgb(23 24 26 / .28); padding-top: 16px; color: #17181a; }
+  .record dt { font: 500 11px/1 ui-monospace, Menlo, monospace; letter-spacing: .14em;
+               text-transform: uppercase; opacity: .66; }
+  .record dd { margin: 8px 0 0; font: 400 15px/1 ui-monospace, Menlo, monospace; }
+  .record dd.big { font-size: 30px; font-family: inherit; }
+
+  @media (max-width: 900px) {
+    .stage { height: calc(100svh - 72px); }
+    .claim { left: 40px; top: 32px; width: auto; right: 40px; }
+    .claim h1 { font-size: 30px; }
+    .cta { left: 40px; top: 260px; }
+    .subject { right: 40px; bottom: 150px; width: 62%; }
+    .record { left: 40px; right: 40px; bottom: 28px; grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <b>Instrument Fixture</b>
+  <nav><a href="#a">One</a><a href="#b">Two</a><a href="#c">Three</a></nav>
+</header>
+
+<main>
+  <section class="stage" id="event">
+    <div class="field"></div>
+
+    <div class="claim">
+      <p class="kicker">Standing on the floor</p>
+      <h1>One event, and everything defers to it.</h1>
+      <p>The field, the object, the record and the air between them are a single
+        composed system. The photograph is a fifth of the screen.</p>
+    </div>
+
+    <p class="cta">
+      <a class="go" href="#a">Primary action</a>
+      <a class="alt" href="#b">Secondary</a>
+    </p>
+
+    <figure class="subject">
+      <!-- a small neutral object: this fixture measures composition, not imagery -->
+      <img width="860" height="360" alt="The subject of the first screen."
+           src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='860' height='360'%3E%3Cellipse cx='430' cy='300' rx='400' ry='34' fill='%23000' opacity='.28'/%3E%3Cpath d='M92 262c-14-40 6-84 40-104 46-27 118-58 196-64 74-6 150 8 214 36 44 19 92 44 138 56 40 10 74 26 78 52 4 24-14 34-46 34H112c-12 0-16-4-20-10z' fill='%23f2f1ee'/%3E%3Cpath d='M196 158c44-24 108-46 176-50 66-4 132 8 186 32-30 6-84 14-176 16-96 2-152 4-186 2z' fill='%23b9c2c8'/%3E%3Ccircle cx='250' cy='262' r='46' fill='%23202225'/%3E%3Ccircle cx='250' cy='262' r='20' fill='%23c9ccce'/%3E%3Ccircle cx='612' cy='262' r='46' fill='%23202225'/%3E%3Ccircle cx='612' cy='262' r='20' fill='%23c9ccce'/%3E%3C/svg%3E">
+    </figure>
+
+    <dl class="record">
+      <div><dt>Standing now</dt><dd>Instrument fixture</dd></div>
+      <div><dt>Media coverage</dt><dd>low by design</dd></div>
+      <div><dt>Governs</dt><dd class="big">the first screen</dd></div>
+    </dl>
+  </section>
+</main>
+
+</body>
+</html>

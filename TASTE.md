@@ -73,7 +73,7 @@ The invariants, by domain — full text in the linked skills:
 | **A display face is verified in the render** — the page's own strings at the sizes the page sets, on every ground; below roughly 40px a high-contrast face stops being drawn | [typography](skills/typography-taste/SKILL.md#invariant) |
 | Accessible contrast — WCAG AA as a contract, verified on every palette change | [color](skills/color-taste/SKILL.md#invariant) |
 | **The accent is derived from something the project contains, the derivation is stated, and the result is then judged where it lands** | [color](skills/color-taste/SKILL.md#invariant) |
-| **Contrast is measured on the composited render** — translucent layers composited, and text over imagery measured at the pixels its glyphs actually cover | [color](skills/color-taste/SKILL.md#invariant) |
+| **Contrast is measured on the composited render** — translucent layers composited, text over imagery measured at the pixels its glyphs actually cover, and re-measured per format, where the answer is often a differently-constructed scrim rather than a deeper one | [color](skills/color-taste/SKILL.md#invariant) |
 | Reduced-motion paths — every animation has a complete static equivalent | [motion](skills/motion-taste/SKILL.md#invariant) |
 | **A device earns the advance it consumes** — every stage of a staged reveal delivers a truth the last one did not, and a demonstration never replaces the explanation | [motion-judgment](skills/motion-judgment/SKILL.md#invariant) |
 | **Controlled irregularity must remain legible and intentional.** | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |

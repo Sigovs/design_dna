@@ -148,6 +148,40 @@ on the page outside the hero.
   offsets, column content lands exactly on the shell's padding axis, so the
   twelve-column bands align with the hand-built rails that sit between them.
 
+**Second page, 2026-08-17.** The client chose one of the three homepage directions
+and asked for an about page as the template for more.
+
+- decided: an interior page opens with its own shorter head, not the hero |
+  rejected: reusing the full-viewport hero | why: the hero earns a whole screen by
+  being the page's arrival and takes two seconds to land. A visitor who followed a
+  link is already reading, and giving page two the same opening gives every page
+  the homepage's rank — which is another way of saying no page has one. Same
+  photographic language at a third of the height.
+- decided: the page is built from the shop's one stated practice — *nothing gets
+  replaced to find out whether it was the problem* | rejected: an "our story"
+  structure | why: an about page conventionally runs on founding year, the people
+  and certifications, and **none of those were confirmed.** The choice was between
+  inventing them and building on the only material that was both true and specific.
+  Four rows of the record ship marked rather than written. General rule extracted:
+  where the confirmed content will not fill the conventional structure, change the
+  structure — a plausible invented fact is the one defect a client repeats back to
+  you as their own.
+- decided: no team block, and the generated exterior flagged as the first image to
+  replace | rejected: the counter photograph, which has a clear face | why: `GI3`
+  bans depicting a real person or premises, and on a page about the business itself
+  the reading inverts — elsewhere a generated technician is art direction, here a
+  building reads as *this* building and a face as *this* employee. The frame is not
+  the claim; the page around it is.
+- decided: text-only band between the two picture splits | rejected: three picture
+  splits down the page | why: the client's own note, and he was right — the
+  homepage already mirrors its two splits precisely so they do not read as the same
+  section twice. Three stops being rhythm and becomes a template.
+- decided: About as a fifth masthead label | rejected: leaving it in the overflow
+  menu with the other two | why: it is the only entry that is a page rather than a
+  section. A section can be reached by scrolling; a page cannot, so the overflow
+  route is the one case where it actually costs reachability. The four-item limit
+  was measured, so this was measured back in — 24px clearance at 992, 151 at 1920.
+
 ## 4. Environment knowledge
 
 **Bootstrap's own selectors outrank single-class project overrides, and the
@@ -185,6 +219,30 @@ Hiding the text layer with `visibility: hidden`, screenshotting, and sampling th
 worst pixel in each text box is the only method that accounts for the scrims. The
 source-image estimate said the hero's anchor label passed; the composited render
 said 4.34:1.
+
+**A scrim's axis is a per-format decision, and the wide answer can fail the narrow
+one outright.** The second page's head put the type in the left half with the lit
+building on the right. Bottom-up left the eyebrow at 2.57:1; deep enough to fix it
+flattened the building, which was the subject. A left-to-right pass got 7.46:1 and
+cost the photograph nothing — then failed stacked, where the panel goes full-width
+and the pass lands *inside* the text: the lead measured 3.22:1. Two constructions,
+one per format. Four formats measured, only the wide two shared an answer. This is
+now `color-taste I6`'s axis clause.
+
+**A motion system bound to section names is a motion system for exactly one page.**
+`motion2.js` looked its sections up by id and returned early without `.hero2`, so
+the second page would have been silently static — not broken, not warned about,
+just still. Binding by an attribute that names the *direction* instead
+(`data-scene="left|right"`, the side the text is on) made the next page cost markup
+rather than JavaScript. Worth doing at page two; it would have been a rewrite at
+page five.
+
+**Assembling pages from partials is only safe if you can prove the output did not
+move.** The homepage was converted to build from the extracted chrome and then
+diffed against the hand-written file it replaced: identical except the three
+intended additions. Without that diff the conversion is a promise, and the failure
+mode — a phone number changed in four places out of five — is invisible until a
+customer calls the wrong number.
 
 ## 5. What turned out wrong
 

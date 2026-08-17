@@ -131,8 +131,19 @@ it visible — diff the two to find the pixels the glyphs cover, and measure tho
 against the ground beneath them. Composite every translucent layer between the text
 and its first opaque ancestor before comparing.
 
+**A scrim's AXIS is part of the composition, and it does not survive a reflow.**
+Where the type sits beside its subject rather than under it, the fix belongs on the
+horizontal — carrying the type's own column deep costs the photograph nothing,
+where a bottom-up pass deep enough to do the same job flattens the subject as well.
+That construction then depends on the column existing. Stacked, the type spans the
+full width, a left-to-right pass falls *inside* the text instead of beside it, and
+it separates nothing. **Re-measure at every format, and expect the answer to be a
+different scrim rather than a deeper one** — a single gradient tuned until all
+formats pass is how the subject gets flattened to rescue one breakpoint.
+
 *Why:* the point of [I1](#invariant) is that contrast is a contract rather than an
-intention. A contract checked against the wrong artefact is not checked.
+intention. A contract checked against the wrong artefact is not checked — and a
+responsive page has more than one artefact.
 
 > **Evidence — measured on the author's own work, 360 Auto Care, 2026-07-30/31.**
 > Two failures of two different kinds. A hero lead measured **2.06:1 against its
@@ -144,6 +155,16 @@ intention. A contract checked against the wrong artefact is not checked.
 > hundredths under the floor, passing every check made against the tokens. On the
 > same page a sweep of all 155 rendered text elements found the token table clean
 > and the render not.
+>
+> **The axis clause, same project, 2026-08-17.** An interior page's head put the
+> type in the left half with the lit subject on the right. A bottom-up scrim left
+> the eyebrow at **2.57:1** against the 4.5 it owed; deepening it far enough
+> flattened the building, which was the subject. A left-to-right pass fixed it at
+> **7.46:1** and cost the photograph nothing — and then failed the stack, where the
+> panel goes full-width and the pass lands inside the text: the lead measured
+> **3.22:1**. Two constructions, one per format, rather than one gradient bullied
+> into covering both. Four formats were measured; only the wide two shared an
+> answer.
 ---
 
 ## DIALECT

@@ -68,7 +68,7 @@ The invariants, by domain — full text in the linked skills:
 | Body-length text is built for sustained reading — face, size, spacing, and measure | [typography](skills/typography-taste/SKILL.md#invariant) |
 | Line breaks are intentional and compositionally resolved | [typography](skills/typography-taste/SKILL.md#invariant) |
 | **Functional text has a floor** — information a visitor must read is never below 14px; below the floor, type is decoration and carries nothing | [typography](skills/typography-taste/SKILL.md#invariant) |
-| **A role is not a voice** — many functional roles are served by few typographic voices; each additional voice states the systemic job the existing ones cannot do | [typography](skills/typography-taste/SKILL.md#invariant) |
+| **A role is not a voice** — many functional roles are served by few typographic voices; each additional voice states the systemic job the existing ones cannot do, and casing is applied by role across the whole page rather than to voice, with accessible names left as descriptions | [typography](skills/typography-taste/SKILL.md#invariant) |
 | **An icon is a glyph** — one set per project, stroke matched to its neighbouring type, sized optically rather than nominally, never the only carrier of meaning, and earned by repetition or constraint rather than by decoration | [typography](skills/typography-taste/SKILL.md#invariant) |
 | **A display face is verified in the render** — the page's own strings at the sizes the page sets, on every ground; below roughly 40px a high-contrast face stops being drawn | [typography](skills/typography-taste/SKILL.md#invariant) |
 | Accessible contrast — WCAG AA as a contract, verified on every palette change | [color](skills/color-taste/SKILL.md#invariant) |
@@ -88,6 +88,7 @@ The invariants, by domain — full text in the linked skills:
 | **A design re-hosted on a different base layer is a different artefact** — what the original got by inheritance, the new base declares on elements and outranks; verify by diffing computed values against the source build, not by looking | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
 | **A layer that fails paints nothing** — an unresolved `var()`, a swallowed token, a negative-z child with no stacking context: no error, no artefact, and an absent light is indistinguishable from a design that was never lit. A declared layer is verified by measuring its region, not by looking at it | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
 | **A hard edge is hidden only by the ground beneath it** — a glow box, a scrim, a capped tint: invisible while the ground under them is opaque, a drawn line the moment a composition puts something transparent underneath | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
+| **A clipping container makes a layout error invisible** — an element anchored to a box whose size is viewport-dependent, or copy inside a fixed proportion whose padding still scales: past the crossing point the parent's `overflow` eats it rather than showing it misplaced. Audit by comparing rects against the clipping ancestor at the narrow end of every band, where a 3px clearance is a failure, not a pass | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
 
 ### DIALECT
 

@@ -1,6 +1,6 @@
 ---
 name: anti-patterns
-description: Failure modes in two tiers — INVARIANT universal failures (weak hierarchy, inaccessible contrast, gratuitous motion, arbitrary spacing, inconsistent tokens, uncounted persistent overlays, competing art directions inside one page, horizontal page scroll, content parity across viewports, controlled irregularity that stops being legible or intentional, depth cues incoherent with the spatial model they imply, task-relevant routes that cannot be discovered without hover, completed animation or guessing or told apart from the route beside them, opaque surfaces that cross live content, expansions that move the list they live in, sections designed as independent microsites, decorative layers that fail by painting nothing, and hard-edged layers over a deliberately transparent ground) and DIALECT trope bans (AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, underlined nav, repeated primary CTAs, imagery hidden on mobile, the default Spline aesthetic, ambient motion behind body copy, template anonymity — each with a yields-when). Use as the final gate before shipping any visual work, and whenever choosing between a container and open air.
+description: Failure modes in two tiers — INVARIANT universal failures (weak hierarchy, inaccessible contrast, gratuitous motion, arbitrary spacing, inconsistent tokens, uncounted persistent overlays, competing art directions inside one page, horizontal page scroll, content parity across viewports, controlled irregularity that stops being legible or intentional, depth cues incoherent with the spatial model they imply, task-relevant routes that cannot be discovered without hover, completed animation or guessing or told apart from the route beside them, opaque surfaces that cross live content, expansions that move the list they live in, sections designed as independent microsites, decorative layers that fail by painting nothing, hard-edged layers over a deliberately transparent ground, and elements clipped into invisibility by a container whose box changes size at another viewport) and DIALECT trope bans (AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, underlined nav, repeated primary CTAs, imagery hidden on mobile, the default Spline aesthetic, ambient motion behind body copy, template anonymity — each with a yields-when). Use as the final gate before shipping any visual work, and whenever choosing between a container and open air.
 ---
 
 # Anti-Patterns
@@ -558,6 +558,62 @@ the same failure as measuring contrast on tokens rather than on the render
 > 100% + 48px and wrapped the third onto its own line — 419px in one section.
 > After the diff: total page height 8939 against the original's 8934, five pixels
 > across nine thousand.
+
+---
+
+### U19 — A clipping container makes a layout error invisible
+
+**An element positioned against a box whose size is viewport-dependent is only
+placed correctly at the widths where that box still has the size you assumed. If
+an ancestor clips, the mistake does not arrive as a broken layout. It arrives as
+nothing at all.**
+
+Two mechanisms, one outcome:
+
+- **An anchor that collapses.** `left: calc(100% + gap)` off a `max-width` column
+  reads as "just outside the text" — but it only means that while the column is
+  narrower than its container. At the width where the column goes full-width, the
+  same declaration points outside the section, and `overflow: hidden` on the
+  section eats the element rather than showing it in the wrong place.
+- **A proportion fixed while its padding is not.** `aspect-ratio` pins the border
+  box while vw-scaled `padding-block` keeps taking its share of it, so the content
+  box shrinks faster than the copy inside it. Past the crossing point the copy is
+  clipped, not scrolled — the last line simply loses its descenders.
+
+**Both live in the band between the named breakpoints.** A rule written for ≤760
+and a rule written for the desktop composition leave a range that neither author
+ever opened, and it is the narrow end of each band that fails first — the element
+that clears by 3px at the bottom of its range is not passing, it is one font
+metric away from being eaten.
+
+**So a clipping container is audited by measurement, not by looking.** Compare each
+child's rect against the clipping ancestor's rect, at the **narrow end of every
+band**, and treat a small positive slack as a failure rather than a pass. "Desktop
+and mobile verified" is not a claim about 761px, and the widths a design is
+reviewed at are exactly the widths where it was authored to work.
+
+*Why it's universal:* it belongs to the same family as [U16](#invariant) — a fault
+with no artefact, no error and no console message — but it fails the opposite way
+round. In U16 the declaration is invalid and nothing paints. Here the declaration
+is valid and the element *is* painting: it is painting outside the only region
+anyone looks at, so review sees a section that appears complete and is missing a
+piece. Note the asymmetry with [U6](#invariant): overflow left visible produces a
+horizontal scrollbar, which is at least a symptom. Overflow clipped produces
+silence.
+
+> **Evidence — measured on the author's own work, Beverly Hills Car Club,
+> 2026-08-20.** A "2,250+ five-star ratings" badge was placed beside the sell
+> section's 620px copy column with `left: calc(100% + clamp(12px, 2.4vw, 52px))`,
+> correct and verified at 1440. Below 760 that column goes full-width: the badge
+> landed 50px past the section's right edge, half of it eaten by the section's own
+> `overflow: hidden`, the visible sliver sitting on the trust line — and it forced
+> a horizontal page scroll on top. Between 761 and 900 the layout was still the
+> desktop one, so nothing looked wrong; the badge simply cleared the section edge
+> **by 3px**. In the same band the section's vw-scaled `padding-block` (≈86px a
+> side) plus the hard `aspect-ratio: 2/1` left less content height than the copy
+> needed, and the trust line was being cut off around 761–775 — a second silent
+> clip, in the same container, found only by comparing rects against the section
+> box rather than by reviewing at 1440 and 390.
 
 ---
 

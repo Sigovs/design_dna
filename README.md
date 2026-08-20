@@ -654,7 +654,11 @@ while it is honest.
    it, and not moving the list it opens in;
    and a design re-hosted on another base layer verified by diffing computed values
    against the build it came from, because what the original inherited the new base
-   declares on elements and outranks.
+   declares on elements and outranks; and nothing left to be eaten by a clipping
+   ancestor — an element anchored to a box that changes size at another viewport, or
+   copy inside a fixed proportion whose padding still scales, checked by measuring
+   rects against the clipping box at the narrow end of every band rather than at the
+   two widths the design was authored at.
    **Composition is the cross-dialect layer inside this tier** — the page
    describable as 3–7 major masses before any component is named, a compositional
    centre that is decided rather than inherited, a dominant with subordinates and

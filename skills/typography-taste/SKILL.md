@@ -1,6 +1,6 @@
 ---
 name: typography-taste
-description: Typography rules in two tiers — INVARIANT (legible hierarchy, bounded type roles, body-length text built for sustained reading, optical correction at every size, a 14px floor under functional text, roles distinguished from voices, icons treated as glyphs — one set, stroke matched, sized optically, never meaning alone — tabular figures for aligned data, tracked and short uppercase, intentional line breaks, and a display face verified in the render at the sizes the page sets) and DIALECT (auction-editorial's didone display + quiet grotesque + mono, italic signature word, mono micro-labels, spec plates, each with a yields-when). Use before choosing typefaces, setting type scales, writing headings, or laying out any data, label, or caption.
+description: Typography rules in two tiers — INVARIANT (legible hierarchy, bounded type roles, body-length text built for sustained reading, optical correction at every size, a 14px floor under functional text, roles distinguished from voices with casing applied by role, icons treated as glyphs — one set, stroke matched, sized optically, never meaning alone — tabular figures for aligned data, tracked and short uppercase, intentional line breaks, and a display face verified in the render at the sizes the page sets) and DIALECT (auction-editorial's didone display + quiet grotesque + mono, italic signature word, mono micro-labels, spec plates, each with a yields-when). Use before choosing typefaces, setting type scales, writing headings, or laying out any data, label, or caption.
 ---
 
 # Typography Taste
@@ -226,6 +226,37 @@ seven of them are [anti-patterns U11](../anti-patterns/SKILL.md#invariant).
 place to lose coherence, because the reader uses typographic consistency to know
 what kind of thing they are reading. When the voice changes without a reason, the
 cue stops working everywhere, not just where it changed.
+
+#### Casing is a role signal, and it is applied by role
+
+Casing is the cheapest role signal a system has — it costs no face, no weight and
+no colour — which is exactly why it gets applied half-way and left there.
+
+**Every label of the same role takes the same casing across the whole page.** One
+"View all inventory" standing beside four Title Case CTAs does not read as
+variation; it reads as the one nobody checked. Casing is decided once per role and
+then applied exhaustively, by sweeping the rendered page for the role rather than
+by fixing the instances someone happened to notice.
+
+**And casing is applied to roles, not to voice.** Recasing headings and editorial
+copy to match the buttons is not consistency — it flattens the very distinction
+this invariant exists to protect. A page whose CTAs read *Sell Today · View All
+Inventory · Read More* while its headings still read *We buy classic cars!* is
+working correctly: the labels are a role, the headings are a voice, and the
+difference in casing is what tells the reader which is which.
+
+**An accessible name is a description, not a label.** It is written as a sentence
+for someone listening to it, and it does not take the label's casing — recasing
+`aria-label="Sell your classic car — we buy classic cars"` into title case makes it
+worse to hear and confuses a description with a control.
+
+> **Evidence — Beverly Hills Car Club, 2026-08-20.** A CTA recasing pass had been
+> started and abandoned: the two hero buttons had been moved to Title Case, while
+> *View all inventory*, *View details*, *Sell today*, *See all articles* and *Read
+> more* had not. Half-applied, the casing carried no information at all — it looked
+> like inconsistency rather than like a role. Finishing the sweep across all ten
+> labels made casing mean "this is a control", and holding the headings and the
+> trust lines in sentence case is what let it mean that.
 
 ---
 

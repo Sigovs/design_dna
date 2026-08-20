@@ -521,6 +521,44 @@ the reader blames the page rather than the layer.
 > nothing, so the seam arrived with the fix rather than with the stack that caused
 > it.
 
+### U18 — A design re-hosted on a different base layer, assumed to be the same design
+
+Moving finished work onto another stack — a client's theme, a CMS, a component
+library, a different CSS reset — **produces a different artefact, and the
+difference is silent.** The markup is yours, the styles are yours, and the page
+still looks broadly right; what changed is everything the original got by
+INHERITANCE, because the new base layer declares those values on elements and
+classes instead, where they outrank inheritance.
+
+Nothing warns you. There is no error, no console message and no obviously broken
+section — the page is simply retuned, a little, everywhere.
+
+**The check is a diff, not a look.** Probe the original build for computed values
+on a dozen or so components — colour, size, leading, radius, padding, box — and
+the height of every section. Run the identical probe on the port. Compare the
+numbers. Anything a screenshot comparison can catch, this catches earlier and
+tells you which declaration did it.
+
+*Why:* every other rule in this file is about a decision made badly. This one is
+about a decision made well and then quietly un-made by an environment. The work
+was verified in the artefact that was authored; what ships is the other one —
+the same failure as measuring contrast on tokens rather than on the render
+([color-taste I6](../color-taste/SKILL.md#invariant)), one level up.
+
+> **Evidence — 360 Auto Care ported to a client's dealer theme, 2026-08-20.**
+> Four findings, none visible by eye. `p { line-height: 1.6 }` in the base layer
+> beat the inheritance the design relied on for its 1.65 body leading, and that
+> **one rule cost ~840px of page height across two pages.** The theme's header
+> shipped white, fixed at 116px, declared by ID — which no class can override.
+> `html { scroll-behavior: smooth }` did not make scrolling jerky, it made the
+> scroll-position reads inside the animation library's refresh unreliable, so any
+> breakpoint change threw and the whole motion system reverted to static, silently.
+> And a grid utility that did not exist on the older framework was reimplemented
+> as a gap rather than as child padding, which pushed three columns to
+> 100% + 48px and wrapped the third onto its own line — 419px in one section.
+> After the diff: total page height 8939 against the original's 8934, five pixels
+> across nine thousand.
+
 ---
 
 ## DIALECT

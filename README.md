@@ -651,7 +651,10 @@ while it is honest.
    language rather than as several art directions sharing a URL; and every
    task-relevant route findable without hover, a completed animation or guesswork,
    legible before the visitor commits to it, distinguishable from the route beside
-   it, and not moving the list it opens in.
+   it, and not moving the list it opens in;
+   and a design re-hosted on another base layer verified by diffing computed values
+   against the build it came from, because what the original inherited the new base
+   declares on elements and outranks.
    **Composition is the cross-dialect layer inside this tier** — the page
    describable as 3–7 major masses before any component is named, a compositional
    centre that is decided rather than inherited, a dominant with subordinates and

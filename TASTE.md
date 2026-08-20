@@ -544,8 +544,8 @@ For each major section, record what it actually does on these seven axes:
 
 ```
 SECTION-LANGUAGE LEDGER
-section        ground        type voice    borders/containers   image treatment   depth      motion            signature device
-<name>         <what>        <which>       <what>               <what>            <what>     <what>            <what, or none>
+section    ask      ground   type voice   borders/containers   image treatment   depth    motion   signature device
+<name>     <what>   <what>   <which>      <what>               <what>            <what>   <what>   <what, or none>
 ```
 
 Then read down the columns, not across the rows. Every change in a column is
@@ -556,6 +556,25 @@ in every column in every section is several designs sharing a URL, which is
 
 The ledger is where that failure becomes visible, because it is invisible section
 by section: each passage reviews well and the page does not.
+
+**The `ask` column catches the opposite failure with the same mechanism.** Record
+what each section wants from the visitor — *nothing · read · browse · act* — and
+read down it. The other seven columns catch a page varying too much; this one
+catches a page not varying at all in the only dimension the visitor actually
+feels. A run of identical asks is either the page's argument, stated, or it is a
+sales floor.
+
+**And the fix for a run of asks is almost never interval.** Pushing more air
+between three consecutive offers spaces them; it does not stop the third from
+being the third thing wanting something. What separates them is being different
+*kinds* of mass — a photograph, a working surface, a piece of cinema — so that
+the change of register is the pause. Interval is what you add once the kinds
+already differ.
+
+This is why `ask` is not one of the seven: those seven describe how a section
+looks, and two sections can differ on every one of them while making the same
+demand. Formal variety is not rhetorical variety, and only the second is the one
+a reader is keeping score of.
 Depth: [unity-and-plastic-connection](skills/academic-composition/references/unity-and-plastic-connection.md).
 
 #### The device budget — a device earns its place by having a distinct job
@@ -777,6 +796,15 @@ Adopting this file means adopting how the work gets done, not only how it looks:
   be chosen.** Silence is not permission to reach for the house style; it is a
   prompt to derive one from the audience and the function, and to say which you
   did.
+- **A cut section stays recoverable, and says what was lost.** When a client
+  removes a section, delete nothing: leave the component and its assets in the
+  tree, and put a comment where the section stood saying *what went with it* and
+  *exactly how to restore it*. Clients reverse themselves, and the reasoning for
+  a section — what it was carrying that nothing else was — is the one thing a
+  diff cannot give back. It also forces the honest accounting at the moment of
+  removal rather than three weeks later: writing down that the cut mass was the
+  page's only pause, or its only non-selling moment, is how the cost gets
+  noticed at all.
 
 ---
 

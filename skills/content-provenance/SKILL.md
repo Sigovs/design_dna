@@ -137,6 +137,22 @@ composition failing, quietly, in a place nobody looks.
 If the honest content is three items, the composition holds three items. If the
 honest answer is that the number is unknown, the page says so or does without it.
 
+**Reassignment is the same failure, and it is the one that gets through.**
+Manufacturing a fourth item looks like fabrication and is caught. Taking an asset
+that already exists and moving it under a name it does not belong to looks like
+reuse — and it is the same lie, told with a real file. A photograph of one car
+placed under another car's name; one client's interior standing in for another's;
+a marque's badge over a picture of a different marque's product. Nothing was
+invented, the ledger has an entry for every asset, and the render still says
+something untrue.
+
+The tell is that the slot came first: the grid wanted nine and six exist, the
+roster wanted a picture and this car's folder was empty. **A slot with no asset
+of its own is a composition finding, not a sourcing problem** — the answer is six
+cards, or a treatment that does not need a picture per row. It has cost this
+system twice: a Carrera GT shipped over a photograph that was not it, and a 3×3
+marque wall was refused for the same reason and built as 3×2.
+
 ---
 
 ## What this is not

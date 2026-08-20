@@ -1,6 +1,6 @@
 ---
 name: anti-patterns
-description: Failure modes in two tiers — INVARIANT universal failures (weak hierarchy, inaccessible contrast, gratuitous motion, arbitrary spacing, inconsistent tokens, uncounted persistent overlays, competing art directions inside one page, horizontal page scroll, content parity across viewports, controlled irregularity that stops being legible or intentional, depth cues incoherent with the spatial model they imply, task-relevant routes that cannot be discovered without hover, completed animation or guessing or told apart from the route beside them, opaque surfaces that cross live content, expansions that move the list they live in, and sections designed as independent microsites) and DIALECT trope bans (AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, underlined nav, repeated primary CTAs, imagery hidden on mobile, the default Spline aesthetic, ambient motion behind body copy, template anonymity — each with a yields-when). Use as the final gate before shipping any visual work, and whenever choosing between a container and open air.
+description: Failure modes in two tiers — INVARIANT universal failures (weak hierarchy, inaccessible contrast, gratuitous motion, arbitrary spacing, inconsistent tokens, uncounted persistent overlays, competing art directions inside one page, horizontal page scroll, content parity across viewports, controlled irregularity that stops being legible or intentional, depth cues incoherent with the spatial model they imply, task-relevant routes that cannot be discovered without hover, completed animation or guessing or told apart from the route beside them, opaque surfaces that cross live content, expansions that move the list they live in, sections designed as independent microsites, decorative layers that fail by painting nothing, and hard-edged layers over a deliberately transparent ground) and DIALECT trope bans (AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, underlined nav, repeated primary CTAs, imagery hidden on mobile, the default Spline aesthetic, ambient motion behind body copy, template anonymity — each with a yields-when). Use as the final gate before shipping any visual work, and whenever choosing between a container and open air.
 ---
 
 # Anti-Patterns
@@ -450,6 +450,77 @@ procedure that enforces it is in [design-dna](../design-dna/SKILL.md).
 request to build one section is read as permission to invent a small separate
 website inside a page. It rests on no vault record.
 
+### U16 — A layer that fails paints nothing, and nothing looks deliberate
+
+**A decorative layer does not fail loudly. It fails by not being there — and an
+absent light is indistinguishable from a design that was never lit.**
+
+The mechanisms differ and the outcome is always the same:
+
+- a `var()` that does not resolve makes the **whole declaration** invalid at
+  computed-value time — `background-image` computes to `none`, not to a fallback;
+- a custom property swallowed by a stray comment or by error recovery, which hunts
+  for the next semicolon and takes whatever it finds on the way;
+- a `z-index: -1` pseudo-element whose parent establishes no stacking context: it
+  joins the nearest ancestor context and paints **behind the parent's own
+  background**;
+- a filter, blend mode or gradient stop the engine drops rather than approximates.
+
+None of these produce an error, a warning, or a visible artefact. The page renders,
+the review passes, and the only symptom is that a thing you decided to do is not
+happening.
+
+**So a declared layer is verified by measurement, not by looking.** If a lighting or
+texture device is declared over a region, that region must **not be uniform**:
+sample its darkest and brightest pixel and compare. Equal values mean the layer is
+not painting, whatever the stylesheet says.
+
+*Why it's universal:* every other invariant here describes something wrong that you
+can see. This one describes something missing that you cannot, which is why it
+survives review in a way that a bad decision never does. It also has no aesthetic
+dimension — a layer either paints or it does not.
+
+> **Evidence — measured on the author's own work, Exotic Motorsports of Oklahoma,
+> 2026-08-20.** `--glow` was consumed by an unterminated comment in `tokens.css`:
+> the paragraph documenting the glow's own measured cost sat outside `/* … */`, the
+> parser read it as declarations, failed, and recovered by consuming to the next
+> semicolon — which was the end of `--glow` itself. Every `var(--glow)` was then
+> invalid, so **every section glow on the page painted nothing**, across five
+> sections and several review passes, including passes that measured contrast and
+> passed. Found only when the ground was sampled rather than viewed: the darkest and
+> the brightest pixel across an entire section were the same `#0D0E10`.
+
+### U17 — A hard edge is hidden only by the ground beneath it
+
+Layers inherited from a general system carry hard rectangular edges — a glow box
+capped at a height, a scrim, a tint that stops at 70%. Those edges are invisible for
+one reason only: the ground under them is opaque and travels with them.
+
+**The moment a composition puts something transparent underneath, every one of those
+edges becomes a line drawn across whatever is behind it.** Overlapping sections, a
+sticky stack, a ground that fades in, a panel that lets the section below show
+through — each of them turns a general rule that was correct into a visible fault,
+and the fault appears on the *other* element, which is where nobody is looking.
+
+So: **wherever a ground is deliberately transparent for any part of its area, audit
+every layer that lands in that region** and grade or remove the ones with edges. The
+general rule is not wrong. It was written for an opaque ground and is being used
+over a transparent one.
+
+*Why it's universal:* it is a composition failure, not a styling preference — a hard
+horizontal line through a paragraph reads as a rendering fault in any aesthetic, and
+the reader blames the page rather than the layer.
+
+> **Evidence — same project and date.** In a sticky stack the covering section
+> inherited the generic dark-section glow, whose box begins at that section's own
+> top. Because the section's first 58svh were deliberately transparent so the
+> chapter beneath could read through, the glow became the only ungraded thing in
+> that region: it drew a hard horizontal line across the pinned chapter's pillars,
+> dimming and cooling every line below it. It became visible only once
+> [U16](#invariant) was repaired — until the token was fixed the layer painted
+> nothing, so the seam arrived with the fix rather than with the stack that caused
+> it.
+
 ---
 
 ## DIALECT
@@ -675,6 +746,8 @@ structure.
 - [ ] Content parity across viewports.
 - [ ] Any irregularity is legible and reads as intentional.
 - [ ] Depth cues coherent with the spatial model; elevation matches real layering.
+- [ ] Every declared decorative layer verified as actually painting — the region it covers measured, and not uniform.
+- [ ] Wherever a ground is deliberately transparent, every layer landing in that region audited for a hard edge.
 - [ ] Every task-relevant route findable without hover, animation or guessing, and legible before commitment.
 - [ ] Every price, count, date, duration, guarantee and superlative has a recorded source that is not a prior concept, a design read or an agent's own output.
 - [ ] No content was invented to fill a slot — where the honest content is three items, the composition holds three.

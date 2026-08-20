@@ -685,8 +685,10 @@ while it is honest.
    at rather than by the sector, every frame a
    visitor can stop on is a designed frame, the page stands up with all animation
    removed, the reader keeps control of pacing, comprehension never waits on
-   choreography, mobile choreography is authored rather than inherited, and reduced
-   motion delivers the same meaning rather than a disabled interface.
+   choreography, mobile choreography is authored rather than inherited, reduced
+   motion delivers the same meaning rather than a disabled interface, and the
+   system is bound to roles rather than to a page's own sections — one written
+   against instances silently applies to nothing on the next page.
    **Synthetic imagery is governed before it exists** — the origin of every image
    position is declared before a prompt does, the prompt is derived from the brief
    rather than typed from taste, nothing generated ever depicts a real product,

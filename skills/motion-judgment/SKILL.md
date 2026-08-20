@@ -367,6 +367,47 @@ the scope clause above keeps it away from micro-feedback.
 > understanding"*. Four of the five are `in`, so this is the standing cost of
 > ambitious motion rather than a complaint about bad work.
 
+### MJ11 — Motion is bound to roles, not to instances
+
+**A motion system written against one page's specific sections is that page's
+choreography, not a system — and the moment a second page exists, the difference
+is invisible.**
+
+Binding by instance means naming the thing: *this* section, *this* id, *this*
+hero. It works, it reads clearly, and it is the natural way to write the first
+page. Then page two arrives with different sections, matches none of the names,
+and **moves not at all** — no error, no warning, no half-played timeline. A
+reviewer sees a page where motion was apparently never designed, which is exactly
+what a page where motion was never designed looks like.
+
+Bind by the **role** instead — what the section *is* to the composition, declared
+in the markup and read by the system: a section that leads with its picture, a
+head, a full-bleed moment. Then a new page costs markup, and its motion is
+inherited rather than reimplemented.
+
+Two consequences worth stating:
+
+- **The opening is the legitimate exception.** A page's arrival is composed for
+  that page and may be bound to it by name. Everything below the first screen
+  should not be.
+- **Absence needs a check, because it raises no alarm.** After a page loads,
+  confirm the system actually took hold — that it recognised the page at all, and
+  that its parts are playing. A silent no-op fails every test that asks whether
+  anything is broken.
+
+*Why:* [MJ5](#invariant) makes the static build stand alone so a failed motion
+system leaves a readable page. This is the other half — a motion system that
+silently applies to nothing also leaves a readable page, and is therefore
+indistinguishable from success by every check MJ5 satisfies.
+
+> **Evidence — 360 Auto Care, 2026-08-17/20.** The homepage's motion looked its
+> sections up by id and returned early unless the homepage hero was present. It
+> was correct, thorough, and worked perfectly — on one page. Adding a second page
+> would have produced a completely static one, silently. Rebinding the shared
+> parts to a role attribute naming the side the TEXT sits on made the second page
+> cost markup rather than JavaScript; the hero kept its by-name binding, because
+> it is the arrival.
+
 ## MOTION READ
 
 Runs **after the Composition Read and Plan** — the static structure must exist

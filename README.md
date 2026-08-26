@@ -65,6 +65,8 @@ design_dna/
 │   │   └── references/             # per-category judgment, audit rubric, implementation
 │   ├── motion-taste/SKILL.md       # I: reduced-motion, keyboard parity, no jank · D: crossfade, subtle hover
 │   └── anti-patterns/SKILL.md      # I: the universal failures · D: the trope bans
+├── external/                       # other people's work, vendored whole — binds nothing
+│   └── README.md                   # the rule: nothing here binds; promotion is a diff Alex reads
 ├── dialects/                       # 2 confirmed · 1 provisional · 7 library
 │   ├── README.md                   # index + confirmed / provisional / library status
 │   ├── HYBRID.md                   # style modes, Anchor/Contrast/Signature, CONTROL MAP, audit

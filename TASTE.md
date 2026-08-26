@@ -721,6 +721,17 @@ scale, easing, reduced-motion path, hover feel — belongs to `motion-taste`. Th
 MOTION READ runs after the Composition Read and Plan, because time is scheduled
 against a structure that already exists.
 
+**Instrumental skills sit outside this table, and outside both tiers.**
+[gsap-implementation](skills/gsap-implementation/SKILL.md) is the only one. `G1`–`G8`
+are engineering contracts on how a motion system is built and how it fails — context
+and teardown, scoped selectors, timeline membership, token governance, `matchMedia`
+branching, property ownership and overwrite, progressive enhancement over visible
+content, refresh strategy. It has no DIALECT section and never will. It cannot
+authorize motion, define its character, assign a dimensional role or justify its own
+presence: it loads only after `motion-judgment` has approved a role and the register
+is set, and its most common correct output is *no GSAP*. Nothing in it may appear in
+a report as the reason for a design decision — a tool is never a direction (§2).
+
 ---
 
 ## 4. Dialect index

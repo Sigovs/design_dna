@@ -64,6 +64,9 @@ design_dna/
 │   │   ├── SKILL.md                # I: declared role, one primary idea, subject over amount, stoppable frames
 │   │   └── references/             # per-category judgment, audit rubric, implementation
 │   ├── motion-taste/SKILL.md       # I: reduced-motion, keyboard parity, no jank · D: crossfade, subtle hover
+│   ├── gsap-implementation/        # instrumental · outside both tiers · no DIALECT section
+│   │   ├── SKILL.md                # G1–G8: context/teardown, scoped selectors, tokens, matchMedia, overwrite, static path
+│   │   └── references/             # ScrollTrigger modes and lifecycle — loaded only when GSAP is actually chosen
 │   └── anti-patterns/SKILL.md      # I: the universal failures · D: the trope bans
 ├── external/                       # other people's work, vendored whole — binds nothing
 │   └── README.md                   # the rule: nothing here binds; promotion is a diff Alex reads

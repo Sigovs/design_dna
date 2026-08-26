@@ -20,6 +20,7 @@ different brief.
 | `vocab.json` | The controlled tag vocabulary. **Single source of truth** — `index.html` and `capture.mjs` both read it. Add tags here. |
 | `capture.mjs` | Playwright capture tool. Page shots, the scroll filmstrip, and the scrolled header. |
 | `index.html` | The gallery. Browse, search, filter, edit, add. No backend. |
+| `test/index.html` | A **design test route** for the gallery, isolated from production. Reads the same `sites.json` and `vocab.json`, forks no data, writes nothing back, and deliberately carries no token path — a test route should not handle credentials. `vault/index.html` is untouched by anything in here. |
 | `smoke.mjs` | `npm run smoke` — checks the gallery still works, including a real mobile matrix (WebKit iPhone 13 / iPhone SE, Chrome Pixel 5) plus blocked-storage and hanging-API scenarios. No build step means nothing else catches a boot-time throw, and one throw kills every listener on the page. |
 | `prune.mjs` | `npm run prune` — deletes shot directories no entry points at any more. |
 | `EVIDENCE.md` | The **synthesis layer**: what Alex's judgements have been read to mean, at four confidence levels, every claim carrying its entry ids, its opposing ids, its context and its `yields when:`. Interpretation only — evidence stays in `sites.json`, executable rules stay in `skills/`. |

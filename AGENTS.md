@@ -1,7 +1,7 @@
-# CLAUDE.md — working style for this repo
+# AGENTS.md — working style for this repo
 
-> **Mirrored verbatim at [AGENTS.md](AGENTS.md)**, for agents that do not read this
-> file. Only the title line differs — change one, change both in the same commit.
+> **Mirrored verbatim at [CLAUDE.md](CLAUDE.md)**, which is the copy Claude Code
+> loads. Only the title line differs — change one, change both in the same commit.
 
 ## Autonomy
 

@@ -27,18 +27,28 @@ project. So the entry point is a skill and the rules stay files.
 
 In this order. **The first readable path wins.**
 
-1. `/Users/alex/Desktop/WORK/design_dna/TASTE.md` — the canonical working copy.
-2. `./design_dna/TASTE.md` in the project root — **only if it is a live git clone
+1. `C:\____WORK\_____________GDBURO\design_dna\TASTE.md` — the canonical working
+   copy on the Windows machine. **Verify it before using it, and never retype it
+   from memory.** The directory name contains a run of thirteen underscores; a
+   near-miss path resolves to nothing, and an entry point that resolves to nothing
+   fails *silently* — the agent simply proceeds on its own taste. Glob for
+   `c:/____WORK/*GDBURO/design_dna` rather than transcribing.
+2. `/Users/alex/Desktop/WORK/design_dna/TASTE.md` — the canonical copy on the Mac.
+3. `./design_dna/TASTE.md` in the project root — **only if it is a live git clone
    or a symlink.** A plain copied folder is a snapshot; it silently ages and there
    is no way to update it in place. Check for `design_dna/.git` or use `ls -l` to
    see a symlink. If it is neither, **skip it and use the canonical path**, and say
    so in the report.
-3. `https://github.com/Sigovs/design_dna` — for a machine that has neither. Fetch
+4. `https://github.com/Sigovs/design_dna` — for a machine that has neither. Fetch
    `TASTE.md` and the skills the task needs.
 
-If none of the three is reachable, say that plainly and stop rather than
+If none of the four is reachable, say that plainly and stop rather than
 improvising a house style. Inventing taste is the failure this repo exists to
 prevent.
+
+**Say which path won, in one line, at the top of the report.** A resolution that
+quietly fell through to the network is a different situation from one that read
+the working copy, and the difference is invisible in the output.
 
 ## Step 2 — read TASTE.md and follow it
 
@@ -53,6 +63,21 @@ hook. It also points at whichever of these to load for the task at hand:
 Load them from the same location the manifest came from. Do not paraphrase them
 from memory — they hold hard numbers and hard bans, and a remembered rule is a
 vague one.
+
+## Step 2b — if something is being BUILT, also read the build standard
+
+`.claude/rules/design-dna.md`, beside the manifest — `DNA1`–`DNA89`. It is the
+execution layer: the concept gate, the shot vocabulary, camera language, lighting
+and materials, scroll storytelling, annotation craft, the performance and
+accessibility floors, and the definition of done. `TASTE.md` decides what is good;
+the build standard decides how it is built.
+
+Read it for any page, component, scene, canvas or motion system. Skip it only for
+work that produces no build — a critique, a palette, a single image, a diagram.
+
+**For a scroll-driven or cinematic build, load the `scroll-site` skill instead of
+starting here on your own** — it is the same route with the setup and the concept
+gate attached.
 
 ## Step 3 — reconcile with the project's own instructions
 

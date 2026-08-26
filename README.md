@@ -24,23 +24,40 @@ with any agent that can read files.
 
 ## Wire it into any project
 
-Add to any project's `CLAUDE.md`:
-
-```md
-Before any visual work, fetch and obey TASTE.md and skills/ from
-https://github.com/Sigovs/design_dna (or the local clone at ../design_dna
-if present).
+```
+npm run setup -- ../my-new-project "My New Project"
 ```
 
-That's the whole integration. `TASTE.md` is the entry point — it carries the
-operating rules, the two-tier model, the Design Read procedure, the skill and
-dialect indexes, the working-style clause, and the vault hook, and it points the
-agent at whichever skills the task actually needs.
+It writes `CLAUDE.md`, `BRIEF.md` and a `.gitignore` into that directory, never
+overwrites a file that exists, and reports which of the four stack plugins are
+installed at user scope with the commands for any that are missing. It copies no
+rule file: the generated `CLAUDE.md` points at this working copy, so the project
+reads the live `TASTE.md` and the live build standard and can never drift from a
+snapshot.
 
-The local-clone fallback matters: a clone next to the project is faster, works
-offline, and lets you edit the taste and see the effect immediately. Clone this
-repo alongside the project (or symlink `design_dna/` into its root) and the same
-line resolves locally instead of over the network.
+**On this machine the entry points are already global.** `~/.claude/skills/design-dna`
+and `~/.claude/skills/scroll-site` are **junctions into `skills/`**, not copies, so
+every session in every folder loads the current file. Junctions rather than copies
+is the whole point — a copied skill ages silently, and the failure is invisible:
+the agent proceeds on its own taste with no error to notice.
+
+**Manual fallback**, for a machine with no working copy — add to the project's
+`CLAUDE.md`:
+
+```md
+Before any visual work, fetch and obey TASTE.md, .claude/rules/design-dna.md
+and skills/ from https://github.com/Sigovs/design_dna (or the local clone at
+../design_dna if present).
+```
+
+`TASTE.md` is the entry point — the operating rules, the two-tier model, the
+Design Read, the skill and dialect indexes, the working-style clause and the vault
+hook — and it points the agent at whichever skills the task needs.
+`.claude/rules/design-dna.md` is the build standard beside it.
+
+A clone next to the project is faster, works offline, and lets you edit the taste
+and see the effect immediately — but only as a **live clone or a symlink**. A
+plain copied folder is a snapshot, and the skill is told to skip it.
 
 ---
 
@@ -58,7 +75,8 @@ design_dna/
 │   ├── dimensionality/SKILL.md     # role-gated · I: removability, first read, budget, per-frame AA, one depth idea
 │   ├── spacing-taste/SKILL.md      # I: hierarchy, tokens, internal<external · D: air-first, bottom-heavy
 │   ├── typography-taste/SKILL.md   # I: legible rank, optical correction, icons as glyphs · D: didone + grotesque + mono
-│   ├── design-dna/SKILL.md         # the entry point — no rules, routes to TASTE.md (globally symlinked)
+│   ├── design-dna/SKILL.md         # the entry point — no rules, routes to TASTE.md (globally junctioned)
+│   ├── scroll-site/SKILL.md        # instrumental · the cinematic setup, the stack, the concept gate, done
 │   ├── color-taste/SKILL.md        # I: AA, no hue-only meaning, scrims · D: neutral dark base, smoky accents
 │   ├── generated-imagery/SKILL.md  # cross-dialect · I: origin declared, never depicts the real thing, provenance, survives a phone photo
 │   ├── content-provenance/SKILL.md # cross-dialect · I: ledger before the claim, coverage not validity, no prior concept as a source, shape never invented to fill a slot
@@ -87,6 +105,7 @@ design_dna/
 │   ├── expressive-poster.md        # library — type as image, one message, scale collisions
 │   ├── technical-luxury.md         # PROVISIONAL — value demonstrated, not asserted
 │   └── organic-tactile.md          # library — let the hand show
+├── setup.mjs                       # npm run setup -- <dir> — scaffolds a project against the live rules
 ├── brief.mjs                       # npm run brief / brief:check — the brief compiler
 ├── art.mjs                         # npm run art / art:dry — compiled brief → generated imagery
 ├── gates/                          # the five-gate chain — a gate is run when its artefact exists

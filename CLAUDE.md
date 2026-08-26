@@ -63,6 +63,21 @@ done.
 `TASTE.md` → the relevant `skills/` → `.claude/rules/design-dna.md` → the selected
 dialect. Plugins last, and only for technique.
 
+## Starting a scroll site
+
+```
+npm run setup -- <path-to-project> "Project Name"
+```
+
+Writes the project's `CLAUDE.md` and `BRIEF.md`, never overwrites, and reports
+which of the four stack plugins are installed. Then load the **`scroll-site`**
+skill: it carries the stack, the concept gate and the definition of done.
+
+`~/.claude/skills/design-dna` and `~/.claude/skills/scroll-site` are **junctions
+into `skills/`**, so both load in every folder and neither can go stale. If either
+is ever a plain copy again, fix that first — a stale entry point fails silently and
+the agent proceeds on its own taste with no error to notice.
+
 ## Autonomy
 
 **Never ask yes/no or confirmation questions. Never pause for permission between

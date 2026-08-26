@@ -722,7 +722,7 @@ MOTION READ runs after the Composition Read and Plan, because time is scheduled
 against a structure that already exists.
 
 **Instrumental skills sit outside this table, and outside both tiers.**
-[gsap-implementation](skills/gsap-implementation/SKILL.md) is the only one. `G1`–`G8`
+[gsap-implementation](skills/gsap-implementation/SKILL.md) is one of two. `G1`–`G8`
 are engineering contracts on how a motion system is built and how it fails — context
 and teardown, scoped selectors, timeline membership, token governance, `matchMedia`
 branching, property ownership and overwrite, progressive enhancement over visible
@@ -731,6 +731,14 @@ authorize motion, define its character, assign a dimensional role or justify its
 presence: it loads only after `motion-judgment` has approved a role and the register
 is set, and its most common correct output is *no GSAP*. Nothing in it may appear in
 a report as the reason for a design decision — a tool is never a direction (§2).
+
+[scroll-site](skills/scroll-site/SKILL.md) is the other, and it is a procedure rather
+than a contract: it resolves the system, names the four-plugin stack as reference
+material that binds nothing, scaffolds the project, and holds the concept gate shut
+until `BRIEF.md` exists — the feeling curve, the peak, the grammar, the signature
+move, the shot list, the budget. It carries no rule identifiers of its own for the
+same reason the entry point does not: giving a loader taste would put taste in two
+places at once.
 
 ---
 

@@ -6,6 +6,7 @@
   "description": "Alex's design DNA — a reusable taste system for design work with AI agents, plus the taste vault (visual reference library).",
   "scripts": {
     "sync": "node vault/sync.mjs",
+    "setup": "node setup.mjs",
     "distill": "node vault/distill.mjs",
     "evidence:check": "node vault/evidence.mjs",
     "add": "node vault/capture.mjs add",

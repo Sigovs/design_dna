@@ -47,6 +47,10 @@ contact-sheet*
 *.png
 !vault/shots/**
 !explore/**/*.png
+# A frozen fixture's screenshots ARE the evidence — the render is the thing the
+# verdict was passed on, and it cannot be reproduced from a build that has been
+# rejected and stopped. Same exception as vault/shots, for the same reason.
+!projects/fixtures/**/shots/*.png
 
 # The browser tool's own scratch directory — page snapshots, console logs and
 # capture probes. Same reasoning as the block above: reproducible from the page

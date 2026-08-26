@@ -23,8 +23,11 @@ Thumbs.db
 .vscode/
 .idea/
 
-# local agent config (not part of the taste system)
-.claude/
+# local agent config (not part of the taste system) — with one exception below.
+# .claude/rules/ IS part of the standard: the build rules have to survive a clone,
+# and a design DNA that only exists on one machine is not a design DNA.
+.claude/*
+!.claude/rules/
 
 # ── visual acceptance evidence and previews ───────────────────────────────
 # Browser screenshots, contact sheets and preview captures are reproducible from

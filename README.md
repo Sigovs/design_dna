@@ -48,6 +48,8 @@ line resolves locally instead of over the network.
 
 ```
 design_dna/
+├── CLAUDE.md · AGENTS.md           # working style, mirrored verbatim — and the DESIGN DNA pointer
+├── .claude/rules/design-dna.md     # the build standard — DNA1–DNA89, the cinematic / 3D execution layer
 ├── TASTE.md                        # the manifest — agents read this first
 ├── skills/                         # each split INVARIANT / DIALECT
 │   ├── academic-composition/       # cross-dialect · the composition method

@@ -3,6 +3,66 @@
 > **Mirrored verbatim at [AGENTS.md](AGENTS.md)**, for agents that do not read this
 > file. Only the title line differs — change one, change both in the same commit.
 
+---
+
+# DESIGN DNA
+
+**All design work in this repository follows [`.claude/rules/design-dna.md`](.claude/rules/design-dna.md).
+Read it before producing anything visual** — a page, a component, a scene, CSS,
+tokens, an image, a slide, Figma output — and before any redesign, art direction,
+palette, type scale, spacing ramp, motion or composition decision. It is the
+default visual and interaction standard for all future work here, and it outranks
+default agent taste.
+
+It carries the detail as `DNA1`–`DNA89`: visual direction and the concept gate ·
+typography hierarchy · spacing and composition · grid and alignment · colour and
+contrast · image treatment · cinematic art direction · premium automotive and
+editorial presentation · scroll storytelling · motion choreography · GSAP and
+ScrollTrigger · Three.js camera language · lighting and materials · large
+typography as a spatial layer · callouts and technical annotations · transitions ·
+responsive behaviour · performance · accessibility · anti-patterns · definition of
+done.
+
+## Order of authority
+
+1. **Truth and access** — contrast, provenance, reduced motion, discoverability.
+   Never yields.
+2. **`TASTE.md` and the INVARIANT tier of `skills/`** — the taste system is the
+   authority on taste.
+3. **`.claude/rules/design-dna.md`** — the build standard.
+4. **The selected dialect's DIALECT tier** — each rule with its own `yields when:`.
+5. **Plugins and `external/`** — `frontend-design`, Scrollcraft, `threejs-webgl`,
+   `gsap-scrolltrigger`. **Reference material only; they bind nothing** and may
+   never be named as the reason for a design decision.
+
+## The standing principles
+
+1. Never default to generic SaaS, dashboard, template or AI-looking layout.
+2. Every page has a stated visual concept before implementation.
+3. Composition beats adding UI.
+4. Strong hierarchy, deliberate negative space, asymmetry where it earns it, bold
+   scale change.
+5. No repetitive cards, no repeated equal columns, no pill clusters, no icon per
+   feature, no decorative noise.
+6. Scroll animation has narrative purpose or it does not exist.
+7. Cinematic pages are thought in shots: reveal, push-in, dolly, orbit, macro,
+   interruption, release.
+8. In 3D the camera and its target move with intent — never a model on a turntable.
+9. Lighting, reflections, environment, FOV, framing and material response are
+   design, not technical afterthoughts.
+10. One or two strong signature interactions beat dozens of small effects.
+11. Large typography may act as scenery and depth, including behind 3D objects.
+12. Restraint. Premium is not more elements.
+13. Compare the result to the intended reference, never to the previous build.
+14. Nothing is done until it has been seen in a browser at desktop **and** mobile.
+15. When a reference image or storyboard exists, its composition, scale, lighting,
+    spacing and hierarchy are the primary visual authority unless told otherwise.
+
+## Load order for a visual task
+
+`TASTE.md` → the relevant `skills/` → `.claude/rules/design-dna.md` → the selected
+dialect. Plugins last, and only for technique.
+
 ## Autonomy
 
 **Never ask yes/no or confirmation questions. Never pause for permission between

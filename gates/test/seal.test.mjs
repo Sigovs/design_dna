@@ -47,8 +47,11 @@ const seal0 = sourceSeal(root).seal;
 writeChain(seal0);
 let v = validateChain(root, gatesDir);
 check(v.ok, `a complete, current, in-order chain validates${v.ok ? '' : ` — ${v.problems[0]}`}`);
-check(v.artifacts.length === 6 && v.fileCount === 2,
-  `all six artefacts read, over a ${v.fileCount}-file build`);
+/* Read the length from CHAIN rather than repeating it. A hardcoded 6 does not
+   protect the chain — it just fails the day the chain legitimately grows, which
+   is what happened when the composition artefact was added. */
+check(v.artifacts.length === CHAIN.length && v.fileCount === 2,
+  `all ${CHAIN.length} artefacts read, over a ${v.fileCount}-file build`);
 
 /* ── PRESENCE — a missing artefact is NOT RUN, never a silent pass ────────── */
 for (const c of CHAIN) {
@@ -58,16 +61,16 @@ for (const c of CHAIN) {
     `PRESENCE — missing ${c.file} reports NOT RUN`);
 }
 writeChain(seal0, { skip: CHAIN.map((c) => c.file) });
-check(validateChain(root, gatesDir).problems.length === 6,
-  `PRESENCE — an empty .gates directory reports all six as not run, not "no problems found"`);
+check(validateChain(root, gatesDir).problems.length === CHAIN.length,
+  `PRESENCE — an empty .gates directory reports all ${CHAIN.length} as not run, not "no problems found"`);
 
 /* ── STALENESS — editing the page after the gates ran reverts them ────────── */
 writeChain(seal0);
 check(validateChain(root, gatesDir).ok, `chain valid before the edit`);
 writeFileSync(join(root, 'style.css'), 'p{color:blue}');
 v = validateChain(root, gatesDir);
-check(!v.ok && v.problems.every((p) => p.includes('STALE')) && v.problems.length === 6,
-  `STALENESS — one edited byte reverts all six gates to not-run`);
+check(!v.ok && v.problems.every((p) => p.includes('STALE')) && v.problems.length === CHAIN.length,
+  `STALENESS — one edited byte reverts all ${CHAIN.length} gates to not-run`);
 check(sourceSeal(root).seal !== seal0, `the source seal itself changed`);
 
 /* a NEW file counts as an edit, not just a changed one */

@@ -22,6 +22,7 @@ import { measure as measureStructure } from './structure.mjs';
 import { harvest, validate as validateContent } from './content.mjs';
 import { audit as auditHero, sourceEvidence } from './hero.mjs';
 import { measure as measureEvent } from './event.mjs';
+import { measure as measureComposition } from './composition.mjs';
 import { launchChromium } from '../lib/browser.mjs';
 
 const args = process.argv.slice(2);
@@ -184,6 +185,33 @@ const a = {
   verdict: ops.length > 0 && lost.length === 0 ? 'pass' : 'fail', finishedAt: stamp(),
 };
 write('authorship.json', a);
+
+
+/* ── Gate 1 · delegated — composed masses ────────────────────────────────
+   Runs inside the Gate 2 sweep because both need the same rendered viewports and
+   opening the browser twice to measure the same frame is waste. It is filed under
+   Gate 1 because it measures the artefact rather than its structure. */
+const prevC = read('composition.json');
+const gc = {
+  gate: 'Gate 1 · delegated — composed masses',
+  sourceSeal: srcSeal, viewports: {},
+  humanConfirmed: prevC?.humanConfirmed ?? false,
+  verdict: 'fail', finishedAt: null,
+};
+for (const vp of viewports) {
+  const { ctx, page } = await open(vp);
+  /* a scene needs a moment to load, settle and publish its subject */
+  await page.waitForTimeout(2200);
+  gc.viewports[vp.label] = await measureComposition(page);
+  await ctx.close();
+}
+const compFindings = Object.entries(gc.viewports)
+  .flatMap(([label, v]) => (v.findings || []).map((f) => ({ ...f, viewport: label })));
+gc.findings = compFindings;
+gc.verdict = compFindings.length === 0 ? 'pass' : 'fail';
+gc.blockers = compFindings.map((f) => `${f.viewport}: ${f.id} — ${f.detail}`);
+gc.finishedAt = stamp();
+write('composition.json', gc);
 
 /* ── Gate 1/2 · delegated — rendered hero ────────────────────────────────── */
 const h = { gate: 'Gate 1/2 · delegated — rendered hero conformance', sourceSeal: srcSeal, viewports: [], humanConfirmed: read('hero.json')?.humanConfirmed ?? false, verdict: 'fail', finishedAt: null };

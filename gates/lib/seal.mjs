@@ -22,6 +22,7 @@ export const CHAIN = [
   { file: 'gate1.json', gate: 'Gate 1 · Measurable Conformance' },
   { file: 'gate2.json', gate: 'Gate 2 · Structural and Authorship Conformance' },
   { file: 'authorship.json', gate: 'Gate 2 · delegated — authorship preservation' },
+  { file: 'composition.json', gate: 'Gate 1 · delegated — composed masses' },
   { file: 'hero.json', gate: 'Gate 1/2 · delegated — rendered hero conformance' },
   { file: 'product.json', gate: 'Gate 3 · Product Usefulness' },
   { file: 'content-ledger.json', gate: 'Gate 4 · Content Provenance' },

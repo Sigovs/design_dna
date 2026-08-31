@@ -3,7 +3,7 @@
 Five gates, in order, and the machinery that stops any of them being skipped.
 
 ```
-Gate 1  Measurable Conformance                    gate1.json   (+ hero.json)
+Gate 1  Measurable Conformance                    gate1.json   (+ composition.json, hero.json)
 Gate 2  Structural and Authorship Conformance     gate2.json   (+ authorship.json)
 Gate 3  Product Usefulness                        product.json
 Gate 4  Content Provenance                        content-ledger.json
@@ -42,6 +42,18 @@ what they measured, but because of *how* they were run:
 
 Each file here closes one of those.
 
+**A sixth was found on 2026-08-31 and `composition.mjs` closes it.** Every value on a
+hero was correct — contrast, the type floor, the spacing base — and the composition
+was not: the subject sat dead centre at 49% of the frame with a third of the screen
+empty beside it and every word in the left fifth. No gate had anything to say,
+because nothing there was a wrong *value*. Alex named it in one look. The gate now
+measures where the masses actually are, so the argument starts from numbers.
+
+It reports and does not judge. `verdict: pass` on this artefact means *no measurable
+defect*, and the seal says so out loud — "passes on machine checks only" until a
+human confirms. A machine can find a stranded void; it cannot tell you the
+composition is good.
+
 ## The files
 
 | file | what it does |
@@ -50,6 +62,7 @@ Each file here closes one of those.
 | `gate5.mjs` | Refuses the screenshot handoff unless the chain validates. Prints each artefact as NOT RUN / STALE / pass / fail. A refusal here is a **workflow** failure and is reported as one — it is never recorded as taste evidence. |
 | `lib/seal.mjs` | Presence, staleness and order. Defines `CHAIN`, the six required artefacts in sequence. |
 | `lib/server.mjs` | A dependency-free static server with HTTP range support, so a `<video>` can seek. Replaces the `python3 -m http.server` spawn, which on Windows resolved to a Store shim that exited immediately and turned every measured assertion into a silent fallback. |
+| `composition.mjs` | Where the masses are: extent, optical centre, the gutter between the two principal ones, dead air at an edge. Catches a dominant left unplaced. A 3D subject is measured from the box the scene publishes as `window.__subject`; a stage that publishes nothing is UNMEASURED, not passed. |
 | `event.mjs` | A1 — measures whether one declared governing event owns the first screen. Keeps `eventCoverage`, `mediaCoverage` and `competition` apart. |
 | `structure.mjs` | Finds repeated modules by rendered geometry. Reads no class names. |
 | `hero.mjs` | Closed-form `object-fit` mapping, per-sample subject boxes, annotated evidence images. |

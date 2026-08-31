@@ -100,6 +100,11 @@ const raw = await page.evaluate(() => {
     const cs = getComputedStyle(el);
     const r = el.getBoundingClientRect();
     if (cs.display === 'none' || cs.visibility === 'hidden') continue;
+    /* Parked off-screen — a skip link at -9999px, an off-canvas drawer. It is real
+       functional text when focused and it must clear the floor, but it is not part
+       of the composition as rendered and must not invent a rank that nothing on
+       screen carries. */
+    if (r.right < 0 || r.bottom < 0 || r.left > innerWidth || r.top > document.documentElement.scrollHeight) continue;
     const text = Array.from(el.childNodes)
       .filter((n) => n.nodeType === 3).map((n) => n.textContent.trim()).join(' ').trim();
     out.push({
@@ -237,11 +242,33 @@ const REAL_RANK = 3;
 const sizeVals = [...sizeUse.keys()].filter(Boolean)
   .filter((v) => Number.isInteger(v) && sizeUse.get(v) >= REAL_RANK)
   .sort((a, b) => a - b);
-const tooClose = sizeVals.map((v, i) => [v, sizeVals[i + 1]]).filter(([a, b]) => b && b - a > 0 && b / a < 1.1);
+
+/* I1 takes rank from "size, weight, register, or position — the source doesn't
+   matter, the unambiguity does". So two sizes 1px apart are only ONE rank wearing
+   two sizes when nothing else separates them. A 14px tracked uppercase mono label
+   beside 15px sentence-case sans is two ranks distinguished by register, and
+   flagging it sends you to weaken work that is already right.
+   Register here = font family + casing + weight. */
+/* A rank is carried by words. A single glyph — an ampersand inside a wordmark, a
+   bullet, an arrow — sits at whatever size the logotype needed and is not a
+   typographic rank competing with anything. Counting it invents collisions that
+   send you to change a mark that is already correct. */
+const registerOf = (v) => new Set(
+  textNodes.filter((n) => px(n.fontSize) === v && (n.textSample || '').trim().length > 2)
+    .map((n) => `${n.fontFamily.split(',')[0].trim()}|${n.textTransform}|${n.fontWeight}`),
+);
+const shareRegister = (a, b) => {
+  const [ra, rb] = [registerOf(a), registerOf(b)];
+  for (const r of ra) if (rb.has(r)) return true;
+  return false;
+};
+const tooClose = sizeVals.map((v, i) => [v, sizeVals[i + 1]])
+  .filter(([a, b]) => b && b - a > 0 && b / a < 1.1)
+  .filter(([a, b]) => shareRegister(a, b));
 if (tooClose.length) {
   findings.push({
     kind: 'type ranks that are not ranks',
-    detail: 'typography I1 — two ranks differing by less than 10% read as one rank wearing two sizes. Make the step obvious or collapse them.',
+    detail: 'typography I1 — two sizes under 10% apart that ALSO share a register (family, casing, weight), so nothing separates them but the size. Sizes distinguished by register are not reported.',
     rows: tooClose.map(([a, b]) => `${a}px → ${b}px   (×${(b / a).toFixed(2)})`),
   });
 }

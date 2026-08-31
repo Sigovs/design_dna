@@ -15,7 +15,8 @@
  * one for a build they have not looked at.
  */
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
-import { join, resolve } from 'node:path';
+import { join, resolve, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { serve } from './lib/server.mjs';
 import { sourceSeal, validateChain } from './lib/seal.mjs';
 import { measure as measureStructure } from './structure.mjs';
@@ -23,7 +24,12 @@ import { harvest, validate as validateContent } from './content.mjs';
 import { audit as auditHero, sourceEvidence } from './hero.mjs';
 import { measure as measureEvent } from './event.mjs';
 import { measure as measureComposition } from './composition.mjs';
+import { audit as auditVault } from './vault.mjs';
 import { launchChromium } from '../lib/browser.mjs';
+
+/* the working copy this file lives in — the vault is read from here, never from a
+   copy beside the project, for the same reason the skill refuses a copied folder */
+const DNA_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 
 const args = process.argv.slice(2);
 const root = resolve(args.find((a) => !a.startsWith('--')) || '.');
@@ -138,6 +144,16 @@ g1.blockers = [
 g1.verdict = g1.blockers.length === 0 ? 'pass' : 'fail';
 g1.finishedAt = stamp();
 write('gate1.json', g1);
+
+/* ── Gate 1 · delegated — the vault was read ─────────────────────────────
+   Placed straight after Gate 1 because the Design Read precedes markup: this
+   artefact records a decision made BEFORE the build, and validating it here means
+   a build cannot get past the first gate having never opened the library. */
+const gv = auditVault(join(DNA_ROOT, 'vault'), decl);
+gv.sourceSeal = srcSeal;
+gv.humanConfirmed = read('vault.json')?.humanConfirmed ?? false;
+gv.finishedAt = stamp();
+write('vault.json', gv);
 
 /* ── Gate 2 · structure ──────────────────────────────────────────────────── */
 const prev2 = read('gate2.json');

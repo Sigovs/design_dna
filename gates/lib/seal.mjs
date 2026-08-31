@@ -20,6 +20,7 @@ import { join, relative, sep } from 'node:path';
 /* the six artefacts that must exist, in the order they must have been produced */
 export const CHAIN = [
   { file: 'gate1.json', gate: 'Gate 1 · Measurable Conformance' },
+  { file: 'vault.json', gate: 'Gate 1 · delegated — the vault was read' },
   { file: 'gate2.json', gate: 'Gate 2 · Structural and Authorship Conformance' },
   { file: 'authorship.json', gate: 'Gate 2 · delegated — authorship preservation' },
   { file: 'composition.json', gate: 'Gate 1 · delegated — composed masses' },

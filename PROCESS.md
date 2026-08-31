@@ -123,6 +123,23 @@ tokens, so they cannot drift from the CSS.
 read would show: two inks the eye cannot tell apart, five type ranks one pixel apart
 that are one rank wearing five sizes, a price at 2.16:1 over its own ground.
 
+```sh
+npm run composition -- "<path to the built page>"
+```
+
+A separate check, because `extract-ds` measures things a VALUE can be wrong about
+and passed a hero whose subject sat dead centre with a third of the screen empty
+beside it. Nothing there is a wrong value; it is a wrong composition, and calling
+it a counterweight in a CSS comment did not make it one.
+
+It reports each mass's extent and optical centre, the gutter between the two
+principal ones, and dead air at an edge. A 3D subject is measured from the box the
+scene **publishes** — `window.__subject` — so the page states its composition and is
+held to the statement.
+
+A break that was asked for is not a defect: `data-audit="composition-ok"` excludes
+an element and lists it as declared rather than hiding it.
+
 The draft is a proposal. Naming a token, choosing the scale, and marking a value
 `AUTHORED` with the job it does stay judgement.
 

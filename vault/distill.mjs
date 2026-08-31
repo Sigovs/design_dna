@@ -123,7 +123,6 @@ const THEMES = [
     covered: 'composition C18',
   },
 
-  /* ── no rule covers these yet ─────────────────────────────────────────── */
   {
     key: 'device-over-content',
     label: 'the mechanism demonstrating itself instead of revealing the content',
@@ -141,8 +140,16 @@ const THEMES = [
       /scroll(ing)? (distance|length)[^.]{0,40}(few|small number|little)/i,
       /продвига\w+ анимацию/i,
     ],
-    covered: null,
+    /* Covered since 2026-08-13: MJ10 was distilled from this exact group —
+       lapz-io, morningstar-ventures and trionn-com are cited in its own
+       evidence block. The entry was left at `covered: null` when the rule
+       landed, so every run since reported an uncovered pattern and invited
+       a duplicate of a rule that already exists. Corrected 2026-08-31.
+       When a rule lands, its theme moves up here in the SAME commit — that
+       is the step this miss is evidence for. */
+    covered: 'motion-judgment MJ10',
   },
+  /* ── no rule covers these yet ─────────────────────────────────────────── */
   {
     key: 'empty-reads-as-broken',
     label: 'emptiness read as a loading failure',

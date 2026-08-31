@@ -63,6 +63,7 @@ verify, how to report — is what belongs here, because the taste system says no
 | `brand-extractor` | opus | Extracts exact brand values from source material and returns a token layer plus a provenance ledger. Extraction only — never designs. |
 | `design-critic` | opus | Independent review of built work: the Critique Panel, the gate chain, measured rather than looked at. Reports and never edits. |
 | `vault-curator` | opus | Runs the taste vault — entries, judgements, captures, the distillation watch. Drafts rules; never lands them in `skills/`. |
+| `project-recorder` | opus | Writes the record of a closed project into `projects/`, then runs the self-similarity check. Records evidence; never writes rules. |
 
 **Why `design-critic` never edits, and `brand-extractor` never designs.** Both restrictions
 exist for the same reason: an agent that both produces and judges its own output re-runs the

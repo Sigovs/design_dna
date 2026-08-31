@@ -95,7 +95,8 @@ design_dna/
 │   ├── designer.md                 # opus · premium dealership + automotive builds, browser-verified
 │   ├── brand-extractor.md          # opus · exact values from source material + a provenance ledger
 │   ├── design-critic.md            # opus · the Critique Panel and the gate chain · never edits
-│   └── vault-curator.md            # opus · the vault loop · drafts rules, never lands them
+│   ├── vault-curator.md            # opus · the vault loop · drafts rules, never lands them
+│   └── project-recorder.md         # opus · the record at close + the self-similarity check
 ├── dialects/                       # 2 confirmed · 1 provisional · 7 library
 │   ├── README.md                   # index + confirmed / provisional / library status
 │   ├── HYBRID.md                   # style modes, Anchor/Contrast/Signature, CONTROL MAP, audit

@@ -42,7 +42,7 @@
  * human to confirm, which is why the gap is printed on every line.
  */
 import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs';
-import { join, resolve, basename } from 'node:path';
+import { join, resolve, basename, dirname } from 'node:path';
 import { homedir } from 'node:os';
 import { execFileSync } from 'node:child_process';
 
@@ -101,10 +101,27 @@ if (!existsSync(join(projectPath, '.git'))) {
 }
 
 /* ── the two halves ────────────────────────────────────────────────────────── */
+/* Sessions belonging to a project live under the directory Claude was STARTED in,
+   which is often not the directory the repository is in. BHCC is the case that
+   found this: the repo is `BHCC/aan_BHCC_redesign`, every correction was typed
+   from `BHCC`, and keying on the repo path alone returned nothing.
+   So collect from the repo path, from every parent up to WORK, and from anything
+   nested below it. */
 export function sessionsFor(projectPath, root = TRANSCRIPTS) {
-  const key = encode(projectPath);
   if (!existsSync(root)) return [];
-  return readdirSync(root).filter((d) => d === key || d.startsWith(key + '-'));
+  const stop = join(homedir(), 'Desktop', 'WORK');
+  const keys = [];
+  let p = projectPath;
+  while (p.startsWith(stop) && p !== stop) { keys.push(encode(p)); p = dirname(p); }
+  if (!keys.length) keys.push(encode(projectPath));
+  const dirs = readdirSync(root);
+  const seen = new Set();
+  for (const key of keys) {
+    for (const d of dirs) {
+      if (d === key || d.startsWith(key + '-')) seen.add(d);
+    }
+  }
+  return [...seen];
 }
 
 export function corrections(projectPath, { root = TRANSCRIPTS, since = null } = {}) {

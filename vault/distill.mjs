@@ -175,6 +175,9 @@ const THEMES = [
   },
 ];
 
+import { readMessages, findCorrections, unnamedPass, projectSlug, CORRECTIONS }
+  from './transcripts.mjs';
+
 /* ── evidence ─────────────────────────────────────────────────────────────── */
 const sites = JSON.parse(readFileSync(join(VAULT, 'sites.json'), 'utf8'));
 
@@ -416,17 +419,61 @@ if (verdicts.length) {
   say('  none recorded yet — vault/reviews/ holds no Alex-sourced IN or OUT rows');
 }
 
+/* ── the third source: Alex's own sessions ─────────────────────────────────
+   Corrections he made to an agent, grouped by PROJECT. A correction repeated on
+   three unrelated clients is a standing preference; twenty inside one build are
+   one build. See vault/transcripts.mjs for why the threshold is higher here. */
+const messages = readMessages();
+const corrections = messages.length ? findCorrections(messages) : [];
+const correctionsOver = corrections.filter((c) => c.over && !c.theme.covered);
+
+if (!messages.length) {
+  say('');
+  say('## Patterns from Alex\'s own sessions');
+  say('  no transcripts readable on this machine — skipped');
+} else {
+  say('');
+  say(`## Patterns from Alex's own sessions  [${messages.length} messages, `
+    + `${new Set(messages.map((m) => m.project)).size} projects, ${CORRECTIONS.length} themes]`);
+  say('  Corrections only, and independence is by project. Threshold is 3 unrelated');
+  say('  projects — higher than the vault\'s, because a session message is written to');
+  say('  get a job done rather than to be evidence, and a false candidate here teaches');
+  say('  you to stop reading this section. Personal and estate messages are dropped');
+  say('  before matching and never appear below.');
+  if (!corrections.length) say('\n  nothing matched');
+  for (const { theme, projects, independent, over } of corrections) {
+    say('');
+    say(`${over ? '▲ OVER THRESHOLD' : '· below threshold'}  ${theme.label}`
+      + `  [${independent} independent project${independent === 1 ? '' : 's'}]`
+      + (theme.covered ? `  — already covered by ${theme.covered}` : '  — NO RULE COVERS THIS'));
+    for (const [dir, list] of projects) {
+      const first = list[0];
+      say(`    ${projectSlug(dir)} (${first.date}${list.length > 1 ? `, +${list.length - 1} more` : ''}): `
+        + `"${first.text.replace(/\s+/g, ' ').slice(0, 150)}"`);
+    }
+  }
+  const unnamed = unnamedPass(messages);
+  if (unnamed.length) {
+    say('');
+    say('  Words recurring in correction-shaped messages across 4+ projects, that no');
+    say('  theme claims. Reported, never scored — the lexicon only finds what it was');
+    say('  taught, and this is the one pass that can surface what it was not.');
+    say('    ' + unnamed.map((u) => `${u.word} (${u.projects})`).join(' · '));
+  }
+}
+
 /* The headline used to count prose themes only, so it could announce "nothing
    over threshold" while two human-applied risk tags sat over it — the false
    negative this whole pass exists to end. */
 const risksOver = [...riskHosts.entries()].filter(([, l]) => clears(l)).map(([t]) => t);
 say('');
-if (over.length || risksOver.length) {
+if (over.length || risksOver.length || correctionsOver.length) {
   if (over.length) say(`▲ ${over.length} uncovered pattern${over.length === 1 ? '' : 's'} over threshold`);
   if (risksOver.length) say(`▲ ${risksOver.length} risk tag${risksOver.length === 1 ? '' : 's'} over threshold: ${risksOver.join(', ')}`);
+  if (correctionsOver.length) say(`▲ ${correctionsOver.length} uncovered pattern${correctionsOver.length === 1 ? '' : 's'} over threshold in Alex's own sessions`);
   say('  run the ritual in vault/README.md');
 } else {
-  say('✓ nothing over threshold yet — neither an uncovered prose pattern nor a risk tag');
+  say('✓ nothing over threshold yet — not a prose pattern, a risk tag, or a session correction');
 }
 say('');
 say('Detection is arithmetic. Writing the rule is judgement: it needs a tier, an');
@@ -439,4 +486,4 @@ if (WRITE) {
   console.log(`written: ${out}\n`);
 }
 
-process.exit(over.length || risksOver.length ? 10 : 0);   // 10 = something is worth a ritual run
+process.exit(over.length || risksOver.length || correctionsOver.length ? 10 : 0);   // 10 = something is worth a ritual run

@@ -9,15 +9,15 @@
  * false, because none was ever recorded. So the mechanism is COVERAGE, and the
  * first test here is that an absent ledger fails as hard as a lying one.
  */
-import { chromium } from 'playwright';
 import { CLASSES, HARVEST, validate, BANNED_SOURCE, BANNED_TYPE, STATUS } from '../content.mjs';
+import { launchChromium } from '../../lib/browser.mjs';
 
 let failures = 0;
 const ok = (s) => console.log(`\x1b[32m✓\x1b[0m ${s}`);
 const bad = (s) => { console.log(`\x1b[31m✗\x1b[0m ${s}`); failures++; };
 const check = (cond, msg) => (cond ? ok(msg) : bad(msg));
 
-const browser = await chromium.launch();
+const browser = await launchChromium();
 const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
 const classes = CLASSES.map(([n, r]) => [n, { source: r.source, flags: r.flags }]);
 const harvestHTML = async (html) => {

@@ -15,6 +15,7 @@ import { chromium, webkit, devices } from 'playwright';
 import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { launchChromium } from '../lib/browser.mjs';
 
 const VAULT = dirname(fileURLToPath(import.meta.url));
 const URL_BASE = process.env.VAULT_URL || 'http://localhost:5177/';
@@ -142,7 +143,7 @@ console.log('\nshots invariant');
   }
 }
 
-const browser = await chromium.launch();
+const browser = await launchChromium();
 const ctx = await browser.newContext({ viewport: { width: 1440, height: 1100 } });
 const page = await ctx.newPage();
 

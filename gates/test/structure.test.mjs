@@ -14,8 +14,8 @@
  * same four modules. If a future change lets any of them through, a page can
  * evade Gate 2 by editing its DOM nesting and changing nothing a reader sees.
  */
-import { chromium } from 'playwright';
 import { EXTRACTOR, findings } from '../structure.mjs';
+import { launchChromium } from '../../lib/browser.mjs';
 
 let failures = 0;
 const ok = (s) => console.log(`\x1b[32m✓\x1b[0m ${s}`);
@@ -96,7 +96,7 @@ const CASES = [
   },
 ];
 
-const browser = await chromium.launch();
+const browser = await launchChromium();
 const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
 
 for (const c of CASES) {

@@ -13,8 +13,8 @@
  * depends on the declaration being a real decomposition rather than one
  * full-viewport wrapper with a name.
  */
-import { chromium } from 'playwright';
 import { EXTRACT, evaluate, unionArea, boundedEdges, DEFAULT_FLOOR, COMPETITION_LIMIT } from '../event.mjs';
+import { launchChromium } from '../../lib/browser.mjs';
 
 let failures = 0;
 const ok = (s) => console.log(`\x1b[32m✓\x1b[0m ${s}`);
@@ -39,7 +39,7 @@ check(boundedEdges({ x: 600, y: 600, w: 100, h: 100 }, masses).length === 0,
   `blank space far from every mass is bounded on none`);
 
 /* ── the page-level cases ─────────────────────────────────────────────────── */
-const browser = await chromium.launch();
+const browser = await launchChromium();
 const page = await browser.newPage({ viewport: { width: 1200, height: 800 } });
 const VA = 1200 * 800;
 

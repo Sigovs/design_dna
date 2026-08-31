@@ -34,6 +34,7 @@ import { serve } from '../../gates/lib/server.mjs';
 import { measure as measureStructure } from '../../gates/structure.mjs';
 import { harvest, validate as validateContent } from '../../gates/content.mjs';
 import { measure as measureEvent } from '../../gates/event.mjs';
+import { launchChromium } from '../../lib/browser.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const MAN = JSON.parse(readFileSync(join(HERE, 'MANIFEST.json'), 'utf8'));
@@ -71,7 +72,7 @@ if (RENDER) {
   let browser, close;
   try {
     const { chromium } = await import('playwright');
-    browser = await chromium.launch();
+    browser = await launchChromium();
     ({ close } = await (async () => { const s = await serve(HERE); live.__origin = s.origin; return s; })());
     for (const f of [...MAN.fixtures, ...INSTRUMENTS]) {
       /* A1 is a claim about the FIRST screen, so it is measured on an unscrolled

@@ -22,6 +22,7 @@ import { measure as measureStructure } from './structure.mjs';
 import { harvest, validate as validateContent } from './content.mjs';
 import { audit as auditHero, sourceEvidence } from './hero.mjs';
 import { measure as measureEvent } from './event.mjs';
+import { launchChromium } from '../lib/browser.mjs';
 
 const args = process.argv.slice(2);
 const root = resolve(args.find((a) => !a.startsWith('--')) || '.');
@@ -45,7 +46,7 @@ const keyOf = (f) => [f.kind, f.section || '', f.shape || '', f.length || ''].jo
 
 const { chromium } = await import('playwright');
 const srv = await serve(root);
-const browser = await chromium.launch();
+const browser = await launchChromium();
 const url = `${srv.origin}/${pageName}`;
 const viewports = decl.viewports || [{ label: 'desktop', w: 1440, h: 900 }, { label: 'mobile', w: 390, h: 844 }];
 

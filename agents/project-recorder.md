@@ -28,6 +28,34 @@ half-current.
 
 A record written late is still worth writing. Expect it to be thin, and let it be thin.
 
+## Start with what Alex actually changed
+
+```
+npm run corrections -- "<path to the project>"
+```
+
+This joins his correction-shaped messages to the commit that landed a few minutes
+later — the judgement and the concrete fix, both written down at the time. It is the
+strongest evidence available for sections 3 and 5, far better than reconstructing
+intent from the finished files.
+
+**Every pair is a proposal, not a finding.** A twenty-minute window sometimes catches
+a commit that was already in flight, and the lexicon catches "I replaced the video"
+alongside "replace the video, it's wrong". Read the gap and drop the pairs where the
+commit does not answer the message.
+
+Then split what survives into **three**, which the script deliberately refuses to do
+because it needs the skills read:
+
+| Bucket | What it means | Where it goes |
+|---|---|---|
+| **An existing rule was broken** | A compliance failure, not a gap. `ti opjatj ostavil podcherkivanije hotja v mojem taste eto zapresheno` is a rule that exists being ignored. | Section 5, named as a compliance failure. **Never** a distillation candidate — proposing a rule that already exists is how a duplicate lands. |
+| **No rule covers it** | A genuine gap, and only this bucket is a candidate. | Section 5, and say so in your report. Alex decides whether it reaches the ritual. |
+| **The taste of this one project** | This client, this brief. Not a preference that travels. | Section 3 as a decision. It stays project-local. |
+
+Without the split every finding lands in one heap and the report stops being read.
+The middle column is usually the smallest, and that is the correct shape.
+
 ## Reconstruct from artefacts, not from memory
 
 Read, in this order: `BRIEF.md` (the Design Read and the concept as declared) · the project's

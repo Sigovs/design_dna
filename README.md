@@ -131,6 +131,7 @@ design_dna/
 │   ├── README.md                   # why, when to write, how it feeds distillation
 │   ├── _TEMPLATE.md                # front-matter + required sections, incl. exploration
 │   ├── check.mjs                   # npm run projects:check — register collisions
+│   ├── corrections.mjs             # npm run corrections -- <project> — what Alex changed, joined to the commit that fixed it
 │   ├── fixtures/                   # npm run fixtures — four frozen rejections, four failure classes
 │   ├── requests/<slug>.txt         # the raw DESIGN request a brief was compiled from
 │   ├── briefs/_TEMPLATE.md         # the 14-section brief scaffold + provenance table

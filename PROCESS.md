@@ -14,13 +14,16 @@ empty folder to a client review, in the order Alex actually works.
 
 Alex starts with the hero and extracts the design system from it afterwards. That
 looks backwards against `DNA1` — *no markup before the concept exists in writing* —
-and it is not. GD2's own design system says it plainly:
+and it is not. The position is already written down, on an in-house build:
 
 > **Extracted from the hero. Not invented for it.**
 >
 > The hero is the only screen this brand has built, so it is the only evidence the
 > system has. Every token is either a value the hero already proved, or is marked
 > `AUTHORED` with the job it does.
+
+**The principle travels; that build does not.** It is work in progress, not a
+reference — no project in WORK is the template, and this file names none.
 
 That is a stronger position than inventing a palette in the abstract and discovering
 in the hero that it does not hold. **The concept still gets written before markup.
@@ -95,7 +98,7 @@ way: every later section re-decides colour, type and spacing from scratch, and t
 page arrives at competing art directions one defensible section at a time — which is
 `U15`, section-as-microsite.
 
-What "extracted" means, from GD2's model:
+What "extracted" means:
 
 - `tokens.css` — every value the system has. Each token is either **proved by the
   hero** or marked `AUTHORED` with the job it does. Nothing below it introduces a
@@ -106,8 +109,22 @@ What "extracted" means, from GD2's model:
 - The hero's own CSS owns one composition and nothing else. Delete it and the site
   still works.
 
-> **No tool does this yet.** It is hand-work today, which is exactly why it gets
-> skipped. This is the highest-value thing left to build in this repository.
+```sh
+npm run extract-ds -- "<path to the built page>"
+```
+
+Reads the **rendered** page rather than the stylesheet — computed values are what the
+visitor got, after the cascade and after the framework's defaults won an argument
+nobody watched. It writes `tokens.draft.css` with a use count against every value,
+and a `ds.html` that computes its contrast figures in the browser from the live
+tokens, so they cannot drift from the CSS.
+
+**The findings are the larger half of the output**, and they are things no source
+read would show: two inks the eye cannot tell apart, five type ranks one pixel apart
+that are one rank wearing five sizes, a price at 2.16:1 over its own ground.
+
+The draft is a proposal. Naming a token, choosing the scale, and marking a value
+`AUTHORED` with the job it does stay judgement.
 
 ## 6 · The rest of the sections
 

@@ -133,6 +133,7 @@ design_dna/
 │   ├── _TEMPLATE.md                # front-matter + required sections, incl. exploration
 │   ├── check.mjs                   # npm run projects:check — register collisions
 │   ├── corrections.mjs             # npm run corrections -- <project> — what Alex changed, joined to the commit that fixed it
+│   ├── extract-ds.mjs              # npm run extract-ds -- <page> — the token layer and ds.html, read off the rendered hero
 │   ├── fixtures/                   # npm run fixtures — four frozen rejections, four failure classes
 │   ├── requests/<slug>.txt         # the raw DESIGN request a brief was compiled from
 │   ├── briefs/_TEMPLATE.md         # the 14-section brief scaffold + provenance table

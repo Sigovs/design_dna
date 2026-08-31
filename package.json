@@ -33,7 +33,8 @@
     "test:a1": "node gates/test/event.test.mjs",
     "test:gates": "npm run test:seal && npm run test:a1 && npm run test:structure && npm run test:content",
     "check": "npm run projects:check && npm run dialects:check && npm run evidence:check && npm run test:gates && npm run fixtures",
-    "corrections": "node projects/corrections.mjs"
+    "corrections": "node projects/corrections.mjs",
+    "extract-ds": "node projects/extract-ds.mjs"
   },
   "devDependencies": {
     "live-server": "^1.2.2",

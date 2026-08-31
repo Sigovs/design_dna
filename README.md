@@ -90,6 +90,9 @@ design_dna/
 │   └── anti-patterns/SKILL.md      # I: the universal failures · D: the trope bans
 ├── external/                       # other people's work, vendored whole — binds nothing
 │   └── README.md                   # the rule: nothing here binds; promotion is a diff Alex reads
+├── agents/                         # the subagent roster — symlinked into ~/.claude/agents/
+│   ├── README.md                   # the shape of an agent file · method here, taste in skills/
+│   └── designer.md                 # opus · premium dealership + automotive builds, browser-verified
 ├── dialects/                       # 2 confirmed · 1 provisional · 7 library
 │   ├── README.md                   # index + confirmed / provisional / library status
 │   ├── HYBRID.md                   # style modes, Anchor/Contrast/Signature, CONTROL MAP, audit

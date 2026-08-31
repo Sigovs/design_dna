@@ -60,3 +60,11 @@ verify, how to report — is what belongs here, because the taste system says no
 | Agent | Model | Job |
 |---|---|---|
 | `designer` | opus | Builds and reproduces premium dealership and automotive sites from brand books, reference sites and client assets. Verifies in a real browser. |
+| `brand-extractor` | opus | Extracts exact brand values from source material and returns a token layer plus a provenance ledger. Extraction only — never designs. |
+| `design-critic` | opus | Independent review of built work: the Critique Panel, the gate chain, measured rather than looked at. Reports and never edits. |
+| `vault-curator` | opus | Runs the taste vault — entries, judgements, captures, the distillation watch. Drafts rules; never lands them in `skills/`. |
+
+**Why `design-critic` never edits, and `brand-extractor` never designs.** Both restrictions
+exist for the same reason: an agent that both produces and judges its own output re-runs the
+reasoning that made the mistake. Splitting the roles is what makes the second pass worth
+anything. Do not "improve" either agent by giving it the other half of the job.

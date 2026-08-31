@@ -92,7 +92,10 @@ design_dna/
 │   └── README.md                   # the rule: nothing here binds; promotion is a diff Alex reads
 ├── agents/                         # the subagent roster — symlinked into ~/.claude/agents/
 │   ├── README.md                   # the shape of an agent file · method here, taste in skills/
-│   └── designer.md                 # opus · premium dealership + automotive builds, browser-verified
+│   ├── designer.md                 # opus · premium dealership + automotive builds, browser-verified
+│   ├── brand-extractor.md          # opus · exact values from source material + a provenance ledger
+│   ├── design-critic.md            # opus · the Critique Panel and the gate chain · never edits
+│   └── vault-curator.md            # opus · the vault loop · drafts rules, never lands them
 ├── dialects/                       # 2 confirmed · 1 provisional · 7 library
 │   ├── README.md                   # index + confirmed / provisional / library status
 │   ├── HYBRID.md                   # style modes, Anchor/Contrast/Signature, CONTROL MAP, audit

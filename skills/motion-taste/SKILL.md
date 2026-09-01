@@ -1,6 +1,6 @@
 ---
 name: motion-taste
-description: Motion rules in two tiers — INVARIANT (a designed static path for prefers-reduced-motion, perceivable state changes with keyboard parity, durations from a documented scale with coherent easing, no jank, no layout-shifting loaders) and DIALECT (auction-editorial's crossfade over travel, 2px hover lift, skeletons over spinners, motion never as identity, each with a yields-when). Use before writing any transition, animation, transform, scroll effect, loading state, or page transition.
+description: Motion rules in two tiers — INVARIANT (a designed static path for prefers-reduced-motion, perceivable state changes with keyboard parity, durations from a documented scale with coherent easing, no jank, no layout-shifting loaders, placeholders that match what replaces them in picture as well as in box) and DIALECT (auction-editorial's crossfade over travel, 2px hover lift, skeletons over spinners, motion never as identity, each with a yields-when). Use before writing any transition, animation, transform, scroll effect, loading state, or page transition.
 ---
 
 # Motion Taste
@@ -87,12 +87,23 @@ is the only source of durations is not.
   `left` is a defect.
 - Everything is interruptible: a new interaction cancels the previous animation.
 - Loading placeholders match the real content's dimensions, so the swap causes no
-  layout shift.
+  layout shift — **and its picture, not only its box.** A hero video's poster and
+  any still beneath it must be a frame of *that video*, at the moment playback
+  actually starts, with the same `object-position` and the same transform. A
+  different photograph is a cut, and it lands seconds in, when the visitor has
+  already accepted the first image as the page.
 - Nothing blocks input while it animates.
 
 *Why:* layout-property animation forces reflow on every frame, and jank reads as
 brokenness rather than as slowness. Layout shift on load is worse than no
-placeholder at all, because it moves the thing the user was already reading.
+placeholder at all, because it moves the thing the user was already reading — and
+a placeholder showing different *content* fails the same way in a register nobody
+measures: the page appears to change its mind. Note how many things have to agree
+before the handover is invisible. Same frame, same crop, same scale. A slow
+ambient zoom on the still is enough on its own: by the time the video can play the
+still has drifted, so the two no longer line up even when the picture is identical.
+Where they cannot all be made to agree, dissolve rather than cut — a short
+crossfade absorbs the residue and reads as the shot settling.
 
 ### I5 — Gratuitous motion is a defect
 

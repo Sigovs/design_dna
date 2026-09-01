@@ -86,7 +86,40 @@ find_desktop() {
 
 DRIVE="$(find_drive)"
 OPSD="$DRIVE/_OPS"
-WORK="$(find_desktop)/WORK"
+
+# ── the working root, which is NOT the same on both machines ─────────────
+#
+# The Mac keeps everything under ~/Desktop/WORK. The Windows PC does not — it
+# works out of C:\____WORK\..., and a script that assumes the Mac's layout
+# quietly builds a second, parallel set of folders next to the real ones. That
+# happened: a full design_dna clone landed in Desktop\WORK while the actual work
+# was elsewhere, leaving two live copies and no way to tell which one a rule was
+# edited in.
+#
+# So the root is remembered per machine rather than guessed. Pass it once:
+#
+#   bash setup-machine.sh --work-root "/c/____WORK/_____________GDBURO"
+#
+# and every later run reads it back. The record lives on Drive so it survives a
+# reinstall, and it is keyed by hostname so the two machines never read each
+# other's answer.
+HOSTKEY="$(hostname 2>/dev/null | tr -cd 'A-Za-z0-9._-')"
+ROOTFILE="$OPSD/work-root.$HOSTKEY.txt"
+
+for i in "$@"; do
+  case "${prev:-}" in --work-root) NEWROOT="$i" ;; esac
+  prev="$i"
+done
+
+if [ -n "${NEWROOT:-}" ]; then
+  WORK="$NEWROOT"
+  [ -d "$OPSD" ] && printf '%s\n' "$WORK" > "$ROOTFILE" 2>/dev/null \
+    && say_saved=1
+elif [ -f "$ROOTFILE" ]; then
+  WORK="$(head -1 "$ROOTFILE" | tr -d '\r')"
+else
+  WORK="$(find_desktop)/WORK"
+fi
 DNA="$WORK/design_dna"
 REPO="https://github.com/Sigovs/design_dna.git"
 
@@ -177,6 +210,14 @@ echo
 echo "  machine: $OS   home: $HOME"
 echo "  drive:   ${DRIVE:-NOT FOUND}"
 echo "  work:    $WORK"
+if [ -n "${say_saved:-}" ]; then
+  echo "           ↑ remembered for this machine in $(basename "$ROOTFILE")"
+elif [ -f "$ROOTFILE" ]; then
+  echo "           ↑ from $(basename "$ROOTFILE")"
+else
+  echo "           ↑ default. If the real one differs, run once with:"
+  echo "             --work-root \"/c/path/to/your/WORK\""
+fi
 
 echo
 echo "═══ 1 · Google Drive ═══"

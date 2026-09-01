@@ -175,6 +175,29 @@ unlink_safely() {
   rm -f "$1" 2>/dev/null
 }
 
+# Same content, discounting line endings — on Windows only.
+#
+# git's autocrlf rewrites LF to CRLF on checkout, so a copy this script left in
+# an earlier run is byte-different from the repo while being the same file. The
+# content guard then reads it as "somebody's real file" and refuses to replace
+# it, permanently: the copy can never become the link it should have been. On
+# Windows that is the default case, not an edge one — it pinned scroll-site and
+# spacing-taste, whose sizes differed from the repo by exactly their line count.
+#
+# Content still decides. A genuinely different file is still left alone; only
+# the line endings are discounted, and only where they are created.
+same_file() {
+  cmp -s "$1" "$2" && return 0
+  [ "$OS" = win ] || return 1
+  cmp -s <(tr -d '\r' < "$1") <(tr -d '\r' < "$2")
+}
+
+same_tree() {
+  [ -z "$(diff -rq "$1" "$2" 2>/dev/null)" ] && return 0
+  [ "$OS" = win ] || return 1
+  [ -z "$(diff -r --strip-trailing-cr -q "$1" "$2" 2>/dev/null)" ]
+}
+
 link() {
   local target="$1" name="$2" label="${3:-$(basename "$2")}"
   [ -e "$target" ] || { bad "$label — source missing: $target"; return; }
@@ -184,11 +207,10 @@ link() {
     # have been. Anything that DIFFERS is somebody's real file and is left alone.
     # Content is the only honest test here: there is no other way to tell our own
     # stale copy from a file that matters.
-    if [ -f "$name" ] && [ -f "$target" ] && cmp -s "$name" "$target"; then
+    if [ -f "$name" ] && [ -f "$target" ] && same_file "$name" "$target"; then
       rm -f "$name" 2>/dev/null
       say "$label — replacing an identical copy left by an earlier run"
-    elif [ -d "$name" ] && [ -d "$target" ] \
-         && [ -z "$(diff -rq "$name" "$target" 2>/dev/null)" ]; then
+    elif [ -d "$name" ] && [ -d "$target" ] && same_tree "$name" "$target"; then
       rm -rf "$name" 2>/dev/null
       say "$label — replacing an identical copied folder left by an earlier run"
     else

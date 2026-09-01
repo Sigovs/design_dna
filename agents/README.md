@@ -62,6 +62,7 @@ verify, how to report — is what belongs here, because the taste system says no
 | `art-director` | opus | Decides what gets built, before it is built: Design Read, concept, feeling curve, shot list, peak, signature move, budgets. Runs the Selection Pass. Directs only — never writes markup. |
 | `designer` | opus | Builds and reproduces premium dealership and automotive sites from brand books, reference sites and client assets. Verifies in a real browser. |
 | `brand-extractor` | opus | Extracts exact brand values from source material and returns a token layer plus a provenance ledger. Extraction only — never designs. |
+| `motion-designer` | opus | Owns the temporal layer and **builds** it: beat sheet, timing, easing scale, the signature move, the reduced-motion still, the mobile choreography. Never restructures the page, never decides whether it moves. |
 | `design-critic` | opus | Independent review of built work: the Critique Panel, the gate chain, measured rather than looked at. Reports and never edits. |
 | `vault-curator` | opus | Runs the taste vault — entries, judgements, captures, the distillation watch. Drafts rules; never lands them in `skills/`. |
 | `project-recorder` | opus | Writes the record of a closed project into `projects/`, then runs the self-similarity check. Records evidence; never writes rules. |
@@ -73,6 +74,16 @@ so nothing checks it. GD2 is the worked example: seven `index` variants and no d
 because every build began with a fresh guess instead of a concept somebody else wrote
 down. Do not give this agent the ability to implement, and do not let `designer` write
 its own Design Read.
+
+**Why `motion-designer` implements instead of specifying.** It is the one split that
+runs the other way, and deliberately. A specification for motion is ignored more
+reliably than any other kind: whoever implements it is already holding a working page,
+and a tween that looks about right costs them nothing. Motion that was only described
+is motion that did not happen — which is why builds here kept shipping with fades and
+reveals and no authorship. So this agent owns the motion module and the motion tokens
+outright. The producer/judge split is preserved elsewhere: it does not decide whether
+the page moves (`motion-judgment` does, and the concept records it), it does not decide
+what the page is (`art-director`), and it does not review its own work (`design-critic`).
 
 **Why `design-critic` never edits, and `brand-extractor` never designs.** Both restrictions
 exist for the same reason: an agent that both produces and judges its own output re-runs the

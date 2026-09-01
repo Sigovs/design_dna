@@ -336,16 +336,23 @@ fi
 echo
 echo "═══ 5 · the _OPS console ═══"
 mkdir -p "$WORK/_OPS"
-link "$OPSD/agents"    "$WORK/_OPS/agents"
+# Only what belongs to the design track is reachable from WORK. The personal
+# agents and the _OPS README both describe the estate case, so linking them here
+# put it inside the design folder — the same leak as the documents archive, one
+# level further in. They stay on Drive, where that track lives.
 link "$OPSD/ideas"     "$WORK/_OPS/ideas"
-link "$OPSD/README.md" "$WORK/_OPS/README.md"
 link "$DNA"            "$WORK/_OPS/design-dna"
-if [ -d "$DRIVE/_ДОКУМЕНТЫ_DOCUMENTS" ]; then
-  link "$DRIVE/_ДОКУМЕНТЫ_DOCUMENTS" "$WORK/_ДОКУМЕНТЫ_DOCUMENTS" "documents"
-  link "$WORK/_ДОКУМЕНТЫ_DOCUMENTS"  "$WORK/_OPS/documents"
-else
-  bad "the documents archive has not arrived from Drive yet"
-fi
+# The documents archive is deliberately NOT linked here.
+#
+# WORK is the design track. The personal and estate track is a separate one that
+# never loads the design system, and the separation is the point of having three
+# tracks at all — it stops the estate case turning up in a client session and a
+# client brief turning up in a legal one. An earlier version of this script
+# linked the archive into WORK and into the _OPS console, which put the estate
+# paperwork one click inside the design folder and quietly undid that.
+#
+# The archive lives on Drive and is reached by opening it there. Alex asked for
+# this directly: "тут только design", "никаких документов по маме в этом workflow".
 
 echo
 echo "═══ RESULT ═══"

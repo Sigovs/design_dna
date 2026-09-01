@@ -69,6 +69,57 @@ a missing plugin is a missing reference, never a blocker.
 
 ---
 
+## Step 2b — the runtime libraries
+
+The four plugins above are reading material. These are the code that actually
+ships, and the list is short on purpose.
+
+| | Version tested | What it is for |
+|---|---|---|
+| **GSAP** | 3.15.0 | timelines, ScrollTrigger, and every former Club plugin |
+| **Lenis** | 1.3.26 | momentum scrolling, without breaking `position: sticky` |
+| **three.js** | r160 | the 3D layer, when `dimensionality` has given it a role |
+
+**Every GSAP plugin is free**, including for commercial use — Webflow bought
+GreenSock and dropped the paid tier in April 2025. There is no membership, no
+licence key and no auth token, and the whole set installs from public npm. The
+ones that used to be behind Club and are now simply available:
+
+`SplitText` — split a heading into lines, words or characters, which is the
+entry point to almost all typographic motion · `ScrambleText` · `MorphSVG` ·
+`DrawSVG` — draw a stroke along its own path · `Flip` — animate a layout change
+you did not have to hand-author · `CustomEase`, `CustomWiggle`, `CustomBounce` ·
+`Physics2D`, `InertiaPlugin` · `Observer` — one input abstraction over wheel,
+touch and pointer · `MotionPathPlugin` · `ScrollSmoother`.
+
+**Lenis is the smooth-scroll layer, and it is not optional-by-default any more.**
+It is what nearly every scroll-led site of the last two years is running, and its
+absence is why a hand-rolled build feels stiff next to them in a way that no
+amount of easing on the individual tweens fixes.
+
+**Wire Lenis and ScrollTrigger together explicitly, or each will fight the other:**
+
+```js
+const lenis = new Lenis({ autoRaf: false })
+lenis.on('scroll', ScrollTrigger.update)
+gsap.ticker.add(t => lenis.raf(t * 1000))
+gsap.ticker.lagSmoothing(0)
+```
+
+One ticker drives both. `autoRaf: false` stops Lenis running a second loop of
+its own — two loops is the usual cause of scroll that stutters only sometimes.
+
+**With Lenis active, `window.scrollTo` no longer scrolls the page.** Lenis owns
+the scroll position, so programmatic movement goes through `lenis.scrollTo(y)`.
+This bites hardest in verification: a test that scrolls with `window.scrollTo`
+and then measures reports every scroll-driven animation as broken, and the
+animation is fine. Use `lenis.scrollTo(y, { immediate: true })` in tests.
+
+`ScrollSmoother` does a similar job to Lenis and the two must never both be on
+the same page. Pick one — Lenis unless there is a stated reason.
+
+---
+
 ## Step 3 — scaffold
 
 From the design_dna working copy:

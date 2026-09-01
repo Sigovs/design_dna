@@ -35,7 +35,8 @@
     "check": "npm run projects:check && npm run dialects:check && npm run evidence:check && npm run test:gates && npm run fixtures",
     "corrections": "node projects/corrections.mjs",
     "extract-ds": "node projects/extract-ds.mjs",
-    "composition": "node projects/composition.mjs"
+    "composition": "node projects/composition.mjs",
+    "setup-machine": "bash setup-machine.sh"
   },
   "devDependencies": {
     "live-server": "^1.2.2",

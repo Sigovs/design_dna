@@ -114,6 +114,7 @@ design_dna/
 │   ├── technical-luxury.md         # PROVISIONAL — value demonstrated, not asserted
 │   └── organic-tactile.md          # library — let the hand show
 ├── lib/browser.mjs                 # one Playwright launcher — bundled chromium, else the system Chrome
+├── setup-machine.sh                # npm run setup-machine — links this machine's skills and agents (mac + Windows)
 ├── setup.mjs                       # npm run setup -- <dir> — scaffolds a project against the live rules
 ├── brief.mjs                       # npm run brief / brief:check — the brief compiler
 ├── art.mjs                         # npm run art / art:dry — compiled brief → generated imagery

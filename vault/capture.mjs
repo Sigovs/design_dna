@@ -995,11 +995,21 @@ async function cmdRecapture(id) {
 
 async function cmdCaptureMissing() {
   const entries = await readSites();
-  const todo = entries.filter(needsWork);
-  const skipped = entries.filter((e) => kindOf(e) === 'upload');
+  /* An entry with no URL has nothing to shoot. That was always true of upload
+     entries and is equally true of a print-composition record, whose evidence is a
+     scan somebody attaches rather than a page a browser can visit.
+
+     Testing the kind rather than the URL cost a real run: on 2026-09-01 the capture
+     Action walked nine URL-less records, died on `page.goto: url: expected string,
+     got object` for each, and wrote that message over the captureError explaining
+     what the entries actually needed. A pipeline that reports its own crash as the
+     reason an artefact is missing has destroyed the only useful information. */
+  const noSource = (e) => !e.url && kindOf(e) !== 'upload';
+  const todo = entries.filter((e) => needsWork(e) && e.url);
+  const skipped = entries.filter((e) => kindOf(e) === 'upload' || noSource(e));
 
   if (skipped.length) {
-    log(`${skipped.length} upload-only entr${skipped.length === 1 ? 'y' : 'ies'} skipped — nothing to capture:`);
+    log(`${skipped.length} entr${skipped.length === 1 ? 'y' : 'ies'} skipped — no URL, nothing to capture:`);
     skipped.forEach((e) => log(`  · ${e.id}`));
     log('');
   }

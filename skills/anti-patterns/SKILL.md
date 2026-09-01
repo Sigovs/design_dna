@@ -1,6 +1,6 @@
 ---
 name: anti-patterns
-description: Failure modes in two tiers — INVARIANT universal failures (weak hierarchy, inaccessible contrast, gratuitous motion, arbitrary spacing, inconsistent tokens, uncounted persistent overlays, competing art directions inside one page, horizontal page scroll, content parity across viewports, controlled irregularity that stops being legible or intentional, depth cues incoherent with the spatial model they imply, task-relevant routes that cannot be discovered without hover, completed animation or guessing or told apart from the route beside them, opaque surfaces that cross live content, expansions that move the list they live in, sections designed as independent microsites, decorative layers that fail by painting nothing, hard-edged layers over a deliberately transparent ground, and elements clipped into invisibility by a container whose box changes size at another viewport) and DIALECT trope bans (AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, underlined nav, repeated primary CTAs, imagery hidden on mobile, the default Spline aesthetic, ambient motion behind body copy, template anonymity — each with a yields-when). Use as the final gate before shipping any visual work, and whenever choosing between a container and open air.
+description: Failure modes in two tiers — INVARIANT universal failures (weak hierarchy, inaccessible contrast, gratuitous motion, arbitrary spacing, inconsistent tokens, uncounted persistent overlays, competing art directions inside one page, horizontal page scroll, content parity across viewports, controlled irregularity that stops being legible or intentional, depth cues incoherent with the spatial model they imply, task-relevant routes that cannot be discovered without hover, completed animation or guessing or told apart from the route beside them, opaque surfaces that cross live content, expansions that move the list they live in, sections designed as independent microsites, decorative layers that fail by painting nothing, hard-edged layers over a deliberately transparent ground, and elements clipped into invisibility by a container whose box changes size at another viewport, and fill-mode animations that keep owning a property so a later transition snaps instead of running) and DIALECT trope bans (AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, underlined nav, repeated primary CTAs, imagery hidden on mobile, the default Spline aesthetic, ambient motion behind body copy, template anonymity — each with a yields-when). Use as the final gate before shipping any visual work, and whenever choosing between a container and open air.
 ---
 
 # Anti-Patterns
@@ -614,6 +614,52 @@ silence.
 > needed, and the trust line was being cut off around 761–775 — a second silent
 > clip, in the same container, found only by comparing rects against the section
 > box rather than by reviewing at 1440 and 390.
+
+### U20 — An entrance animation that never ends owns the property forever
+
+**A `fill-mode: forwards` animation keeps asserting its final value for the life of
+the page, and while it does, a transition on that same property does not run. The
+element does not fade later. It snaps.**
+
+The trap is that the entrance *worked*, months ago, and nothing about it looks like
+state still being held. But an animation outranks every normal declaration in the
+cascade whatever its specificity, so a later `transition: opacity` on the same
+element has nothing to interpolate from — the value jumps the moment the class
+lands, at full duration, with the declared easing silently ignored.
+
+**It fails per-element, not per-component,** which is what makes it so hard to see.
+Two pieces of the same block, given the same fade, behave differently depending on
+where the entrance was attached: an animation on the *element* blocks it; an
+animation on the element's *inner spans* leaves the element free and the fade works
+perfectly. Review sees one line fade and its neighbour disappear and reaches for a
+timing bug, because the two share a rule.
+
+**The fix is to retire the animation, not to out-shout it.** On `animationend`, set
+`animation: none` and pin the value the animation had reached; opacity returns to
+the cascade and transitions behave normally. `!important` also beats the animation
+and is worth keeping as a fallback, but on its own it only wins the *value* — used
+alone it can still leave the property animation-controlled and the transition
+suppressed.
+
+*Why it's universal:* this is a cascade fact, not a taste position, and it belongs
+with [U16](#invariant) and [U19](#invariant) as a fault with no error, no console
+message and no artefact — the page simply does something abrupt where it was
+authored to be smooth. Related: a **motion token is directional**. `--ease` in most
+systems is the *entrance* curve, and an ease-out spends most of its travel in the
+first third; applied to an exit it turns a specified 800ms fade into a ~400ms snap
+with a 400ms invisible tail. Reaching for the only ease token in the file is how an
+exit silently gets the wrong physics — see motion invariant I3.
+
+> **Evidence — measured on the author's own work, Beverly Hills Car Club,
+> 2026-09-01.** The client specified the hero h1 and subtitle fading out at 3.5s
+> over 800ms. The h1 faded correctly (1 / 0.97 / 0.86 / 0.66 / 0); the subtitle
+> under the identical rule went 1 → 0 inside one sample. The h1's entrance
+> animation is on its inner spans, leaving the element free; the subtitle's is on
+> `.hero__sub` itself with `forwards`. Retiring it on `animationend` put both in
+> lockstep. Separately, the fade had been written with the house `--ease`
+> (`cubic-bezier(0.22, 1, 0.36, 1)` — easeOutQuint, the entrance curve): the text
+> measured 4% opacity 450ms into the 800ms. Only the exit curve made the client's
+> 800ms actually last 800ms.
 
 ---
 

@@ -189,9 +189,19 @@ const withShots = JSON.parse(readFileSync(join(VAULT, 'sites.json'), 'utf8'))
 check('every entry with a hero shot renders a preview',
   (await page.locator('.card-shot img:not(.pending-favicon)').count()) === withShots,
   `${await page.locator('.card-shot img:not(.pending-favicon)').count()} previews / ${withShots} expected`);
-check('every preview image actually loaded',
-  await page.locator('.card-shot img:not(.pending-favicon)').evaluateAll((imgs) =>
-    imgs.length > 0 && imgs.every((i) => i.complete && i.naturalWidth > 0)));
+/* Previews are lazy, so a card below the fold has legitimately not loaded and
+   asserting otherwise tests the browser rather than the gallery. This passed until
+   the vault reached 40 entries only because enough previews happened to sit above
+   the fold — the same fragility as a hardcoded chain length. The real invariant is
+   that a preview which SHOULD be showing is showing. */
+check('every preview in view actually loaded',
+  await page.locator('.card-shot img:not(.pending-favicon)').evaluateAll((imgs) => {
+    const inView = imgs.filter((i) => {
+      const r = i.getBoundingClientRect();
+      return r.bottom > 0 && r.top < innerHeight;
+    });
+    return inView.length > 0 && inView.every((i) => i.complete && i.naturalWidth > 0);
+  }));
 /* .card-shot--empty no longer exists: pending and failed are distinct states. */
 check('entries without shots show a placeholder, not a broken preview',
   (await page.locator('.card-shot--pending, .card-shot--failed').count()) ===

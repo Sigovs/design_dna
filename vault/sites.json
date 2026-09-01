@@ -1,258 +1,5 @@
 [
   {
-    "id": "italian-rockstar-laboratorio",
-    "kind": "print-composition",
-    "url": null,
-    "source": "Italian magazine, opening spread",
-    "title": "Una rockstar in laboratorio",
-    "added": "2026-08-31",
-    "rating": null,
-    "dialectStatus": "unreviewed",
-    "dialects": [],
-    "tags": {
-      "composition": [],
-      "risks": [],
-      "typography": [
-        "big-type",
-        "type-as-mass",
-        "grotesque"
-      ],
-      "layout": [],
-      "motion": [],
-      "color": [],
-      "imagery": []
-    },
-    "note": null,
-    "shots": null,
-    "captureError": "capture failed — page.goto: url: expected string, got object",
-    "agentObservation": "The title is broken across six lines into a solid rectangle of heavy display, so the words become a block of texture facing the photograph. A wedge of ground colour cuts under it and two orange discs sit at the corner — the type block and the portrait are two masses of equal weight."
-  },
-  {
-    "id": "more-now-numerals",
-    "kind": "print-composition",
-    "url": null,
-    "source": "More magazine, front-of-book",
-    "title": "now! — the numerals spread",
-    "added": "2026-08-31",
-    "rating": null,
-    "dialectStatus": "unreviewed",
-    "dialects": [],
-    "tags": {
-      "composition": [],
-      "risks": [],
-      "typography": [
-        "numeral-as-anchor",
-        "type-as-mass",
-        "editorial"
-      ],
-      "layout": [],
-      "motion": [],
-      "color": [],
-      "imagery": []
-    },
-    "note": null,
-    "shots": null,
-    "captureError": "capture failed — page.goto: url: expected string, got object",
-    "agentObservation": "Two figures at display scale — 1.8 MILLION and 7.8 MILLION — anchor each page and everything else is set around them. Weight, case and style change inside single sentences, so emphasis is carried by the setting rather than by punctuation. Flat colour blocks act as grounds, not as highlights."
-  },
-  {
-    "id": "wired-coming-threats-clapper",
-    "kind": "print-composition",
-    "url": null,
-    "source": "WIRED, feature spread",
-    "title": "The Coming Threats — the Clapper spread",
-    "added": "2026-08-31",
-    "rating": null,
-    "dialectStatus": "unreviewed",
-    "dialects": [],
-    "tags": {
-      "composition": [],
-      "risks": [],
-      "typography": [
-        "type-as-mass",
-        "run-in-opener",
-        "tracking-as-texture",
-        "concept-in-the-body",
-        "dual-measure"
-      ],
-      "layout": [],
-      "motion": [],
-      "color": [],
-      "imagery": []
-    },
-    "note": null,
-    "shots": null,
-    "captureError": "capture failed — page.goto: url: expected string, got object",
-    "agentObservation": "Redaction bars are content and figure at the same time: they black out a real document and they are the largest masses on the spread. The concept goes all the way down — body openers are set in letterspaced typewriter caps instead of drop caps, so the document motif reaches paragraph level rather than stopping at the illustration. Two measures run side by side, wide serif and narrow tracked, and the credit is set sideways at micro scale."
-  },
-  {
-    "id": "wired-gearhead-grounds",
-    "kind": "print-composition",
-    "url": null,
-    "source": "WIRED, product spread",
-    "title": "Gearhead / Head-to-head — products on colour grounds",
-    "added": "2026-08-31",
-    "rating": null,
-    "dialectStatus": "unreviewed",
-    "dialects": [],
-    "tags": {
-      "composition": [],
-      "risks": [],
-      "typography": [
-        "mono-details",
-        "numeral-as-anchor"
-      ],
-      "layout": [],
-      "motion": [],
-      "color": [],
-      "imagery": []
-    },
-    "note": null,
-    "shots": null,
-    "captureError": "capture failed — page.goto: url: expected string, got object",
-    "agentObservation": "Each product sits on a flat colour lozenge with a hard cast shadow, numbered, with its block of copy in the column measure. The colour is a plane the object occupies rather than an accent behind it, and the shadows carry a single consistent light direction across the whole spread."
-  },
-  {
-    "id": "wired-hide-the-antenna",
-    "kind": "print-composition",
-    "url": null,
-    "source": "WIRED, How It Works spread",
-    "title": "Hide the antenna inside the cell phone / Make a lighter bottle",
-    "added": "2026-08-31",
-    "rating": null,
-    "dialectStatus": "unreviewed",
-    "dialects": [],
-    "tags": {
-      "composition": [],
-      "risks": [],
-      "typography": [
-        "display-serif",
-        "type-interrupted",
-        "mono-details"
-      ],
-      "layout": [],
-      "motion": [],
-      "color": [],
-      "imagery": []
-    },
-    "note": null,
-    "shots": null,
-    "captureError": "capture failed — page.goto: url: expected string, got object",
-    "agentObservation": "The display word is interrupted by the object it names: the phone crosses PHONE, the bottle crosses BOTTLE. Leader lines run from numbered points on the product to annotation blocks with their own bold run-in labels, and a spec bar of mono figures runs the full width above. The page annotates the object at three scales at once."
-  },
-  {
-    "id": "wired-lost-buried-treasure",
-    "kind": "print-composition",
-    "url": null,
-    "source": "WIRED, feature spread",
-    "title": "LOST! — pop culture's buried treasure",
-    "added": "2026-08-31",
-    "rating": null,
-    "dialectStatus": "unreviewed",
-    "dialects": [],
-    "tags": {
-      "composition": [],
-      "risks": [],
-      "typography": [
-        "big-type",
-        "type-as-container",
-        "editorial"
-      ],
-      "layout": [],
-      "motion": [],
-      "color": [],
-      "imagery": []
-    },
-    "note": null,
-    "shots": null,
-    "captureError": "capture failed — page.goto: url: expected string, got object",
-    "agentObservation": "The five display letters are containers: film reels, a TV set, a pineapple and a figure sit inside their counters and apertures. The word is not placed on the composition — it IS the composition, and the objects are what fill it. Below it the page changes register completely into a dense three-column index with a rule grid, so one enormous gesture sits over a tightly ordered field."
-  },
-  {
-    "id": "wired-money-learnings",
-    "kind": "print-composition",
-    "url": null,
-    "source": "WIRED Money 2016, p.077",
-    "title": "Learnings to take away — WIRED Money 2016",
-    "added": "2026-08-31",
-    "rating": null,
-    "dialectStatus": "unreviewed",
-    "dialects": [],
-    "tags": {
-      "composition": [],
-      "risks": [],
-      "typography": [
-        "big-type",
-        "editorial",
-        "run-in-opener"
-      ],
-      "layout": [],
-      "motion": [],
-      "color": [],
-      "imagery": []
-    },
-    "note": null,
-    "shots": null,
-    "captureError": "capture failed — page.goto: url: expected string, got object",
-    "agentObservation": "Four numbered arguments across a spread, each opening on a drop cap or a numeral, each with its sources named in italic under the heading. Illustration spots sit in the column measure rather than breaking it. Enumeration is the navigation and the rhythm at once."
-  },
-  {
-    "id": "wired-now-display-windows",
-    "kind": "print-composition",
-    "url": null,
-    "source": "magazine feature spread",
-    "title": "N.O.W. — display letters as windows",
-    "added": "2026-08-31",
-    "rating": null,
-    "dialectStatus": "unreviewed",
-    "dialects": [],
-    "tags": {
-      "composition": [],
-      "risks": [],
-      "typography": [
-        "big-type",
-        "type-as-window",
-        "display-serif"
-      ],
-      "layout": [],
-      "motion": [],
-      "color": [],
-      "imagery": []
-    },
-    "note": null,
-    "shots": null,
-    "captureError": "capture failed — page.goto: url: expected string, got object",
-    "agentObservation": "Three didone letters are cut through to the photograph beneath, so the image reads inside the letterforms and the ground reads between them. The message itself is set at micro scale on the centre line — the smallest type on the spread carries the sentence and the largest carries the word."
-  },
-  {
-    "id": "wired-science-feeds",
-    "kind": "print-composition",
-    "url": null,
-    "source": "WIRED, list spread",
-    "title": "Science / Feeds — the new cultural literacy",
-    "added": "2026-08-31",
-    "rating": null,
-    "dialectStatus": "unreviewed",
-    "dialects": [],
-    "tags": {
-      "composition": [],
-      "risks": [],
-      "typography": [
-        "big-type",
-        "numeral-as-anchor",
-        "editorial"
-      ],
-      "layout": [],
-      "motion": [],
-      "color": [],
-      "imagery": []
-    },
-    "note": null,
-    "shots": null,
-    "captureError": "capture failed — page.goto: url: expected string, got object",
-    "agentObservation": "Twenty-four numbered entries at wildly different scales on one grid: a few given portrait, image and display size, most given four lines and a numeral. The numerals do the structural work — they are the only thing that makes a field this dense navigable. Portrait illustration, photograph and flat colour ground share the page without a seam."
-  },
-  {
     "id": "eco-com",
     "kind": "site",
     "url": "https://eco.com/",
@@ -2636,5 +2383,327 @@
     "works": "Worth stealing: (1) the footer caption is the only sentence on the page and it carries the entire editorial message, sitting on a hairline rule with the pagination at the far right — metadata as composition; (2) the photography is black-and-white, which is what lets a single saturated accent work without the page becoming about colour.",
     "weaknesses": "As a website, the project fails. The desktop navigation is ugly, the footer is unresolved, and the initial visual idea never develops into a coherent web experience. One decent cover does not make this a design reference.",
     "unsorted": []
+  },
+  {
+    "id": "wired-lost-buried-treasure",
+    "kind": "print-composition",
+    "url": null,
+    "source": "WIRED, feature spread",
+    "title": "LOST! — pop culture's buried treasure",
+    "added": "2026-08-31",
+    "rating": 3,
+    "dialectStatus": "out",
+    "dialects": [],
+    "tags": {
+      "composition": [
+        "dominant-mass",
+        "active-negative-space",
+        "intentional-crop"
+      ],
+      "risks": [
+        "asset-dependency-risk"
+      ],
+      "typography": [
+        "big-type",
+        "type-as-container",
+        "editorial"
+      ],
+      "layout": [],
+      "motion": [],
+      "color": [],
+      "imagery": []
+    },
+    "note": "Пять дисплейных литер работают контейнерами: катушки, телевизор, ананас и фигура стоят внутри их очков и просветов. Слово не положено на композицию — оно и есть композиция, а предметы её заполняют.\n\nПод ним регистр меняется полностью: плотный трёхколонник с линейной сеткой. Один огромный жест над строго упорядоченным полем — соотношение, которое и держит разворот.",
+    "shots": null,
+    "captureError": "print spread, supplied as an image in conversation on 2026-08-31. capture.mjs cannot shoot a page that has no URL, and the source images were never written to disk — so this entry carries its observation and no evidence. Attach the scan to vault/shots/<id>/ to complete it.",
+    "agentObservation": "The five display letters are containers: film reels, a TV set, a pineapple and a figure sit inside their counters and apertures. The word is not placed on the composition — it IS the composition, and the objects are what fill it. Below it the page changes register completely into a dense three-column index with a rule grid, so one enormous gesture sits over a tightly ordered field.",
+    "works": "Литера как контейнер. Резкая смена регистра между жестом и полем под ним. Негативное пространство внутри букв работает так же, как вокруг них.",
+    "weaknesses": "Полностью зависит от набора вырезанных предметов правильного силуэта под каждую букву. Без такой библиотеки приём не воспроизводится, и это ограничение, а не деталь исполнения.",
+    "judgementBy": "agent, under Alex's explicit delegation 2026-08-31 — not his own reading"
+  },
+  {
+    "id": "wired-now-display-windows",
+    "kind": "print-composition",
+    "url": null,
+    "source": "magazine feature spread",
+    "title": "N.O.W. — display letters as windows",
+    "added": "2026-08-31",
+    "rating": 3,
+    "dialectStatus": "out",
+    "dialects": [],
+    "tags": {
+      "composition": [
+        "dominant-mass",
+        "tonal-structure",
+        "visual-silence"
+      ],
+      "risks": [],
+      "typography": [
+        "big-type",
+        "type-as-window",
+        "display-serif"
+      ],
+      "layout": [],
+      "motion": [],
+      "color": [],
+      "imagery": []
+    },
+    "note": "Три дидонных литеры прорезаны в фотографию под ними: изображение читается внутри букв, фон — между ними. Одна идея, проведённая до конца, без второго приёма рядом.\n\nИ сообщение набрано микрокеглем по центральной линии: самый мелкий текст на развороте несёт фразу, самый крупный — слово. Это инверсия обычного порядка, и она работает.",
+    "shots": null,
+    "captureError": "print spread, supplied as an image in conversation on 2026-08-31. capture.mjs cannot shoot a page that has no URL, and the source images were never written to disk — so this entry carries its observation and no evidence. Attach the scan to vault/shots/<id>/ to complete it.",
+    "agentObservation": "Three didone letters are cut through to the photograph beneath, so the image reads inside the letterforms and the ground reads between them. The message itself is set at micro scale on the centre line — the smallest type on the spread carries the sentence and the largest carries the word.",
+    "works": "Литера как окно. Единственная идея на разворот. Обратное соотношение кегля и смысла — крупное несёт слово, мелкое несёт предложение.",
+    "weaknesses": "Требует изображения, которое выдержит обрез буквами: нужен ясный силуэт и тональный контраст в тех местах, где проходят штрихи. На случайной фотографии рассыпется.",
+    "judgementBy": "agent, under Alex's explicit delegation 2026-08-31 — not his own reading"
+  },
+  {
+    "id": "wired-hide-the-antenna",
+    "kind": "print-composition",
+    "url": null,
+    "source": "WIRED, How It Works spread",
+    "title": "Hide the antenna inside the cell phone / Make a lighter bottle",
+    "added": "2026-08-31",
+    "rating": 3,
+    "dialectStatus": "out",
+    "dialects": [],
+    "tags": {
+      "composition": [
+        "structured-specification",
+        "product-storytelling",
+        "directed-eye",
+        "optical-balance"
+      ],
+      "risks": [],
+      "typography": [
+        "display-serif",
+        "type-interrupted",
+        "mono-details"
+      ],
+      "layout": [],
+      "motion": [],
+      "color": [],
+      "imagery": []
+    },
+    "note": "Дисплейное слово разорвано предметом, который сам называет: телефон пересекает PHONE, бутылка — BOTTLE. Выносные линии идут от пронумерованных точек на продукте к блокам аннотации со своими жирными врезками, а поверху — полоса моно-цифр на всю ширину.\n\nСтраница комментирует объект на трёх кеглях сразу: дисплей называет, аннотация объясняет, спец-полоса измеряет. Для предметной работы это самый прямо применимый разворот из всех.",
+    "shots": null,
+    "captureError": "print spread, supplied as an image in conversation on 2026-08-31. capture.mjs cannot shoot a page that has no URL, and the source images were never written to disk — so this entry carries its observation and no evidence. Attach the scan to vault/shots/<id>/ to complete it.",
+    "agentObservation": "The display word is interrupted by the object it names: the phone crosses PHONE, the bottle crosses BOTTLE. Leader lines run from numbered points on the product to annotation blocks with their own bold run-in labels, and a spec bar of mono figures runs the full width above. The page annotates the object at three scales at once.",
+    "works": "Тип, разорванный своим предметом. Аннотация с выносными линиями к реальным точкам. Спец-полоса как отдельный регистр факта. Три кегля комментария на одном объекте.",
+    "weaknesses": "Нужен предмет с чистым силуэтом на белом и съёмка под конкретную композицию. Аннотация требует, чтобы у объекта действительно были называемые точки — на гладком корпусе выносить нечего.",
+    "judgementBy": "agent, under Alex's explicit delegation 2026-08-31 — not his own reading"
+  },
+  {
+    "id": "wired-coming-threats-clapper",
+    "kind": "print-composition",
+    "url": null,
+    "source": "WIRED, feature spread",
+    "title": "The Coming Threats — the Clapper spread",
+    "added": "2026-08-31",
+    "rating": 3,
+    "dialectStatus": "out",
+    "dialects": [],
+    "tags": {
+      "composition": [
+        "dominant-mass",
+        "tonal-structure",
+        "directed-eye",
+        "structured-specification"
+      ],
+      "risks": [],
+      "typography": [
+        "type-as-mass",
+        "run-in-opener",
+        "tracking-as-texture",
+        "concept-in-the-body",
+        "dual-measure"
+      ],
+      "layout": [],
+      "motion": [],
+      "color": [],
+      "imagery": []
+    },
+    "note": "Редакционные плашки цензуры одновременно содержание и фигура: они вымарывают настоящий документ и они же — самые крупные массы на развороте. Приём работает, потому что не изображает секретность, а показывает её артефакт.\n\nНо главное здесь глубже плашек. Концепт доведён до уровня абзаца: входы в текст набраны машинописной капителью с разрядкой вместо буквиц, так что мотив документа живёт и в самом мелком типографическом решении. Почти ни один сайт так не делает — концепт живёт в герое и умирает ко второму экрану.",
+    "shots": null,
+    "captureError": "print spread, supplied as an image in conversation on 2026-08-31. capture.mjs cannot shoot a page that has no URL, and the source images were never written to disk — so this entry carries its observation and no evidence. Attach the scan to vault/shots/<id>/ to complete it.",
+    "agentObservation": "Redaction bars are content and figure at the same time: they black out a real document and they are the largest masses on the spread. The concept goes all the way down — body openers are set in letterspaced typewriter caps instead of drop caps, so the document motif reaches paragraph level rather than stopping at the illustration. Two measures run side by side, wide serif and narrow tracked, and the credit is set sideways at micro scale.",
+    "works": "Плашка цензуры как масса — содержание и композиция одним элементом. Две меры набора рядом, широкая антиква и узкая с разрядкой. Машинописный run-in вместо буквицы. Концепт проведён до абзаца.",
+    "weaknesses": "Держится на существовании настоящего документа: без подлинного артефакта приём становится стилизацией под него, а это уже другой, гораздо более слабый ход. Плотность требует реального объёма текста — на короткой странице не встанет.",
+    "judgementBy": "agent, under Alex's explicit delegation 2026-08-31 — not his own reading"
+  },
+  {
+    "id": "wired-money-learnings",
+    "kind": "print-composition",
+    "url": null,
+    "source": "WIRED Money 2016, p.077",
+    "title": "Learnings to take away — WIRED Money 2016",
+    "added": "2026-08-31",
+    "rating": 2,
+    "dialectStatus": "out",
+    "dialects": [],
+    "tags": {
+      "composition": [
+        "editorial-inventory",
+        "compositional-resolution"
+      ],
+      "risks": [],
+      "typography": [
+        "big-type",
+        "editorial",
+        "run-in-opener"
+      ],
+      "layout": [],
+      "motion": [],
+      "color": [],
+      "imagery": []
+    },
+    "note": "Четыре пронумерованных тезиса на разворот, каждый открывается буквицей или цифрой, источники названы курсивом под заголовком. Иллюстративные пятна стоят в мере колонки, а не ломают её.\n\nКрепкая редакционная работа без единого выдающегося приёма — ценна как образец дисциплины, не как источник хода.",
+    "shots": null,
+    "captureError": "print spread, supplied as an image in conversation on 2026-08-31. capture.mjs cannot shoot a page that has no URL, and the source images were never written to disk — so this entry carries its observation and no evidence. Attach the scan to vault/shots/<id>/ to complete it.",
+    "agentObservation": "Four numbered arguments across a spread, each opening on a drop cap or a numeral, each with its sources named in italic under the heading. Illustration spots sit in the column measure rather than breaking it. Enumeration is the navigation and the rhythm at once.",
+    "works": "Нумерация как навигация и ритм одновременно. Атрибуция источника прямо под заголовком. Иллюстрация внутри меры.",
+    "weaknesses": "Наименее отличимый разворот из набора: приёмы стандартны для жанра. Как референс работает только на уровне плотности и порядка.",
+    "judgementBy": "agent, under Alex's explicit delegation 2026-08-31 — not his own reading"
+  },
+  {
+    "id": "wired-science-feeds",
+    "kind": "print-composition",
+    "url": null,
+    "source": "WIRED, list spread",
+    "title": "Science / Feeds — the new cultural literacy",
+    "added": "2026-08-31",
+    "rating": 2,
+    "dialectStatus": "out",
+    "dialects": [],
+    "tags": {
+      "composition": [
+        "editorial-inventory",
+        "rhythm-variation",
+        "directed-eye"
+      ],
+      "risks": [
+        "ambiguous-reading-order"
+      ],
+      "typography": [
+        "big-type",
+        "numeral-as-anchor",
+        "editorial"
+      ],
+      "layout": [],
+      "motion": [],
+      "color": [],
+      "imagery": []
+    },
+    "note": "Двадцать четыре записи на одной сетке в резко разных масштабах: нескольким дан портрет, изображение и дисплейный кегль, большинству — четыре строки и цифра. Структурную работу несут именно номера: поле такой плотности иначе нечитаемо.\n\nПортретная иллюстрация, фотография и плоская заливка делят страницу без шва — смешение регистров здесь удалось.",
+    "shots": null,
+    "captureError": "print spread, supplied as an image in conversation on 2026-08-31. capture.mjs cannot shoot a page that has no URL, and the source images were never written to disk — so this entry carries its observation and no evidence. Attach the scan to vault/shots/<id>/ to complete it.",
+    "agentObservation": "Twenty-four numbered entries at wildly different scales on one grid: a few given portrait, image and display size, most given four lines and a numeral. The numerals do the structural work — they are the only thing that makes a field this dense navigable. Portrait illustration, photograph and flat colour ground share the page without a seam.",
+    "works": "Нумерация как единственная навигация в плотном поле. Иерархия объёмом, а не рамками. Три типа изображения уживаются без разделителей.",
+    "weaknesses": "Порядок чтения неоднозначен: глаз идёт по кеглю, а не по номерам, и крупные записи вытягивают внимание из последовательности. Как справочник работает, как аргумент — нет.",
+    "judgementBy": "agent, under Alex's explicit delegation 2026-08-31 — not his own reading"
+  },
+  {
+    "id": "more-now-numerals",
+    "kind": "print-composition",
+    "url": null,
+    "source": "More magazine, front-of-book",
+    "title": "now! — the numerals spread",
+    "added": "2026-08-31",
+    "rating": 2,
+    "dialectStatus": "out",
+    "dialects": [],
+    "tags": {
+      "composition": [
+        "dominant-mass",
+        "rhythm-variation"
+      ],
+      "risks": [
+        "decorative-information-legibility-risk"
+      ],
+      "typography": [
+        "numeral-as-anchor",
+        "type-as-mass",
+        "editorial"
+      ],
+      "layout": [],
+      "motion": [],
+      "color": [],
+      "imagery": []
+    },
+    "note": "Две цифры дисплейного кегля держат по странице, всё остальное расставлено вокруг них. Вес, начертание и регистр меняются внутри одного предложения, так что акцент несёт набор, а не пунктуация.\n\nПлоские цветные блоки работают грунтом, а не подсветкой.",
+    "shots": null,
+    "captureError": "print spread, supplied as an image in conversation on 2026-08-31. capture.mjs cannot shoot a page that has no URL, and the source images were never written to disk — so this entry carries its observation and no evidence. Attach the scan to vault/shots/<id>/ to complete it.",
+    "agentObservation": "Two figures at display scale — 1.8 MILLION and 7.8 MILLION — anchor each page and everything else is set around them. Weight, case and style change inside single sentences, so emphasis is carried by the setting rather than by punctuation. Flat colour blocks act as grounds, not as highlights.",
+    "works": "Цифра как якорь структуры. Цвет как плоскость. Акцент набором вместо выделения.",
+    "weaknesses": "Смена начертания внутри строки быстро становится шумом и датирует разворот. Часть мелкого текста сидит на насыщенной заливке на грани читаемости.",
+    "judgementBy": "agent, under Alex's explicit delegation 2026-08-31 — not his own reading"
+  },
+  {
+    "id": "wired-gearhead-grounds",
+    "kind": "print-composition",
+    "url": null,
+    "source": "WIRED, product spread",
+    "title": "Gearhead / Head-to-head — products on colour grounds",
+    "added": "2026-08-31",
+    "rating": 2,
+    "dialectStatus": "out",
+    "dialects": [],
+    "tags": {
+      "composition": [
+        "product-storytelling",
+        "optical-balance"
+      ],
+      "risks": [
+        "asset-dependency-risk"
+      ],
+      "typography": [
+        "mono-details",
+        "numeral-as-anchor"
+      ],
+      "layout": [],
+      "motion": [],
+      "color": [],
+      "imagery": []
+    },
+    "note": "Каждый предмет стоит на плоской цветной плашке с жёсткой отброшенной тенью, пронумерован, со своим блоком текста в мере колонки. Цвет — плоскость, которую объект занимает, а не подсветка позади него.\n\nНаправление света единое по всему развороту, и это то, что удерживает набор разных предметов как одну сцену.",
+    "shots": null,
+    "captureError": "print spread, supplied as an image in conversation on 2026-08-31. capture.mjs cannot shoot a page that has no URL, and the source images were never written to disk — so this entry carries its observation and no evidence. Attach the scan to vault/shots/<id>/ to complete it.",
+    "agentObservation": "Each product sits on a flat colour lozenge with a hard cast shadow, numbered, with its block of copy in the column measure. The colour is a plane the object occupies rather than an accent behind it, and the shadows carry a single consistent light direction across the whole spread.",
+    "works": "Цвет как занятая плоскость. Единое направление света на разнородных предметах. Номер связывает объект с текстом без стрелки.",
+    "weaknesses": "Приём стал общим местом за последние годы. Требует вырезанной съёмки безупречного качества — на исходниках среднего уровня разваливается сразу.",
+    "judgementBy": "agent, under Alex's explicit delegation 2026-08-31 — not his own reading"
+  },
+  {
+    "id": "italian-rockstar-laboratorio",
+    "kind": "print-composition",
+    "url": null,
+    "source": "Italian magazine, opening spread",
+    "title": "Una rockstar in laboratorio",
+    "added": "2026-08-31",
+    "rating": 2,
+    "dialectStatus": "out",
+    "dialects": [],
+    "tags": {
+      "composition": [
+        "dominant-mass",
+        "tonal-structure"
+      ],
+      "risks": [],
+      "typography": [
+        "big-type",
+        "type-as-mass",
+        "grotesque"
+      ],
+      "layout": [],
+      "motion": [],
+      "color": [],
+      "imagery": []
+    },
+    "note": "Заголовок разбит на шесть строк в сплошной прямоугольник тяжёлого дисплея, так что слова становятся блоком фактуры напротив фотографии. Клин цветного грунта подрезает его снизу, два оранжевых диска стоят в углу.\n\nТипографический блок и портрет — две массы равного веса. Разворот держится на этом равновесии и больше ни на чём.",
+    "shots": null,
+    "captureError": "print spread, supplied as an image in conversation on 2026-08-31. capture.mjs cannot shoot a page that has no URL, and the source images were never written to disk — so this entry carries its observation and no evidence. Attach the scan to vault/shots/<id>/ to complete it.",
+    "agentObservation": "The title is broken across six lines into a solid rectangle of heavy display, so the words become a block of texture facing the photograph. A wedge of ground colour cuts under it and two orange discs sit at the corner — the type block and the portrait are two masses of equal weight.",
+    "works": "Слово, набранное в массу. Две равновесные массы вместо доминанты и подчинённого. Клин грунта как связка.",
+    "weaknesses": "Читаемость заголовка принесена в жертву фактуре — слово собирается не сразу. Работает только на развороте, где обе массы видны одновременно; при скролле распадается.",
+    "judgementBy": "agent, under Alex's explicit delegation 2026-08-31 — not his own reading"
   }
 ]

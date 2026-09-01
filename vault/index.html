@@ -2195,12 +2195,18 @@ function pendingPlaceholder(entry) {
     return box;
   }
 
-  /* Upload-kind entries are never pending: with no image, they are simply empty. */
-  if (entry.kind === 'upload') {
+  /* No URL, no favicon to fall back to. Upload entries were always this case; a
+     print-composition entry is the same shape — a record whose evidence is a scan
+     that has not been attached, not a page waiting to be captured.
+     The test is the URL rather than the kind, because the reason is the URL: a
+     favicon request built from an empty host produces a broken image, and a broken
+     image is a failure that looks like a bug instead of like an absent artefact. */
+  if (entry.kind === 'upload' || !entry.url) {
     const box = el('div', { className: 'card-shot card-shot--pending' });
     box.append(el('span', { className: 'pending-glyph', textContent: '◍' }));
     box.append(el('span', { className: 'pending-domain', textContent: entry.title || 'Untitled' }));
-    box.append(el('span', { className: 'pending-status label', textContent: 'no image uploaded' }));
+    box.append(el('span', { className: 'pending-status label',
+      textContent: entry.kind === 'print-composition' ? 'no scan attached' : 'no image uploaded' }));
     return box;
   }
 

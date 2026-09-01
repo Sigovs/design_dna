@@ -23,9 +23,9 @@ correct** — that is Alex's review, and the claims below are marked accordingly
 | Class | Count | Entry ids |
 |---|---|---|
 | **Usable `in`** (human-set) | **25** | `beings-co` (3) · `ciridae-com` (3) · `ruadh-com` (2) · `electrafilmworks-com` (2) · `thenewmobileworkforce-…-back-at-hq` (2) · `trionn-com` (2) · `kinncollective-co-uk` (2) · `augen-pro` (2) · `i-pinimg-…-46d9d54b` (2) · `organimo-com` (3) · `immersive-g-com` (3) · `rolls-roycemotorcars-…-home-html` (3) · `obys-agency` (2) · `mclaren-com-cars-gl-en` (2) · `semlerpremium-dk-showroom` (3) · `semlerpremium-dk-brands-porsche-911-gt3-…` (3) · `polestar-com-us` (2) · `semlerpremium-dk` (2) · `rimac-automobili-com-nevera` (2) · `oilstainlab-com` (2) · `hispanosuizacars-com` (2) · `morningstar-ventures` (3) · `rekorderstudios-com` (3) · `eco-com` (2) · `mugenstudio-framer-website` (2) |
-| **Usable `out`** (human-set) | **5** | `rmsothebys-com` (1) · `thegentlewoman-co-uk` (1) · `hbbody-com-en-home` (2) · `rivian-com` (2) · `lapz-io` (3) |
+| **Usable `out`** | **14** | `rmsothebys-com` (1) · `thegentlewoman-co-uk` (1) · `hbbody-com-en-home` (2) · `rivian-com` (2) · `lapz-io` (3) |
 | **Partial / contextual** (`hybrid`) | **1** | `porsche-com-usa` (2) |
-| **Not yet a judgement** (`unreviewed`) | **9** | The nine print-composition records entered 2026-08-31 — `wired-lost-buried-treasure` · `wired-now-display-windows` · `wired-hide-the-antenna` · `wired-coming-threats-clapper` · `wired-money-learnings` · `wired-science-feeds` · `more-now-numerals` · `wired-gearhead-grounds` · `italian-rockstar-laboratorio`. Each carries an agent observation and no rating. |
+| **Not yet a judgement** (`unreviewed`) | **0** | — every record carries a judgement again. Nine of them were set by an agent under Alex's explicit delegation on 2026-08-31 and are marked `judgementBy` in the record, so his hand and the agent's stay distinguishable. |
 
 > **A new kind of record, 2026-08-31 — and the run of "no unjudged entry" ends
 > deliberately.** Nine print spreads were entered under a new kind, print-composition:
@@ -34,7 +34,21 @@ correct** — that is Alex's review, and the claims below are marked accordingly
 > и то не всегда применяю"* and *"тут больше как работают с текстом а не про
 > переносы контента. работа с текстом и композиция."*
 >
-> **They are unjudged on purpose.** `rating`, `dialectStatus` and `note` are his,
+> **Judged 2026-08-31, by delegation.** Alex said: *"заканчивай vault на своё
+> усмотрение… чтобы там долгов не висело и design dna была как точка отправления
+> для любого моего дизайна"*, and then *"разрешаю на этом делать самому"*. So the
+> nine were rated and noted by the agent, and every one carries
+> `judgementBy: "agent, under Alex's explicit delegation 2026-08-31"` — the schema's
+> rule that judgement is human is not deleted, it is recorded as having been lent.
+> Ratings came out 4×3 and 5×2, not nine 3s: a vault where everything is a
+> reference is worth nothing.
+>
+> **All nine are `out`** — good work outside every stored dialect, which the schema
+> calls the most valuable kind and the only raw material a new dialect can be built
+> from. That is the honest classification: the mode they describe matches none of
+> the ten.
+>
+> **The original reasoning for holding them back still stands and is kept below.** `rating`, `dialectStatus` and `note` are his,
 > and enthusiasm expressed in conversation — *"вот это класс"*, *"прям балдёж"* —
 > is recorded verbatim in each review file and deliberately **not** read as a
 > rating. The `oilstainlab` record already carries a rating inferred from a

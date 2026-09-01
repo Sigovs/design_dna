@@ -25,7 +25,33 @@ correct** — that is Alex's review, and the claims below are marked accordingly
 | **Usable `in`** (human-set) | **25** | `beings-co` (3) · `ciridae-com` (3) · `ruadh-com` (2) · `electrafilmworks-com` (2) · `thenewmobileworkforce-…-back-at-hq` (2) · `trionn-com` (2) · `kinncollective-co-uk` (2) · `augen-pro` (2) · `i-pinimg-…-46d9d54b` (2) · `organimo-com` (3) · `immersive-g-com` (3) · `rolls-roycemotorcars-…-home-html` (3) · `obys-agency` (2) · `mclaren-com-cars-gl-en` (2) · `semlerpremium-dk-showroom` (3) · `semlerpremium-dk-brands-porsche-911-gt3-…` (3) · `polestar-com-us` (2) · `semlerpremium-dk` (2) · `rimac-automobili-com-nevera` (2) · `oilstainlab-com` (2) · `hispanosuizacars-com` (2) · `morningstar-ventures` (3) · `rekorderstudios-com` (3) · `eco-com` (2) · `mugenstudio-framer-website` (2) |
 | **Usable `out`** (human-set) | **5** | `rmsothebys-com` (1) · `thegentlewoman-co-uk` (1) · `hbbody-com-en-home` (2) · `rivian-com` (2) · `lapz-io` (3) |
 | **Partial / contextual** (`hybrid`) | **1** | `porsche-com-usa` (2) |
-| **Not yet a judgement** (`unreviewed`) | **0** | — **every record in the vault now carries a human judgement.** First time this has been true. |
+| **Not yet a judgement** (`unreviewed`) | **9** | The nine print-composition records entered 2026-08-31 — `wired-lost-buried-treasure` · `wired-now-display-windows` · `wired-hide-the-antenna` · `wired-coming-threats-clapper` · `wired-money-learnings` · `wired-science-feeds` · `more-now-numerals` · `wired-gearhead-grounds` · `italian-rockstar-laboratorio`. Each carries an agent observation and no rating. |
+
+> **A new kind of record, 2026-08-31 — and the run of "no unjudged entry" ends
+> deliberately.** Nine print spreads were entered under a new kind, print-composition:
+> magazine work kept for its compositional and typographic thinking rather than as
+> sites. Alex's framing, verbatim: *"печать как композиция для web я бы так назвал
+> и то не всегда применяю"* and *"тут больше как работают с текстом а не про
+> переносы контента. работа с текстом и композиция."*
+>
+> **They are unjudged on purpose.** `rating`, `dialectStatus` and `note` are his,
+> and enthusiasm expressed in conversation — *"вот это класс"*, *"прям балдёж"* —
+> is recorded verbatim in each review file and deliberately **not** read as a
+> rating. The `oilstainlab` record already carries a rating inferred from a
+> sentence, with a note saying to revert it if that read it too strongly; the same
+> inference is not repeated at scale.
+>
+> **None carries evidence yet.** The spreads arrived as images in conversation and
+> were never written to disk, so `shots` is `null` with a recorded reason. Until a
+> scan sits in `vault/shots/<id>/` these records can be reasoned about and **not
+> cited in a Design Read** — which is the correct state for a claim with no
+> artefact behind it.
+>
+> **What they may amount to.** Read together they describe one mode — enumerated,
+> densely annotated, mixed-register, on a hard grid, with one large gesture allowed
+> to break it — that matches none of the ten stored dialects and is close to the
+> opposite of `auction-editorial`. Whether that is a dialect is a human call, and
+> the route is the evidence rule below, not this paragraph.
 
 > **The last two records judged, 2026-08-13 — the vault has no unjudged entry
 > left.** `eco-com` **2 · `in` · `refined-elegance`** and

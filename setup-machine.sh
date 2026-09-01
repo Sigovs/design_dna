@@ -103,6 +103,30 @@ OPSD="$DRIVE/_OPS"
 # and every later run reads it back. The record lives on Drive so it survives a
 # reinstall, and it is keyed by hostname so the two machines never read each
 # other's answer.
+# Finding the root without being told, when nobody has been told yet.
+#
+# The Windows root is C:\____WORK\_____________GDBURO — four underscores, then
+# thirteen. That count has been mistyped or miscounted every single time it was
+# written out by hand, and each miss builds a whole second tree beside the real
+# one. So it is never typed here: the folder is found by shape, and a glob does
+# not care how many underscores it matched.
+#
+# Only ever returns a directory that EXISTS. It reports what it found; it does
+# not create anything, and if nothing matches, the caller falls back as before.
+find_work_root() {
+  # a root already holding a design_dna is the strongest evidence there is
+  for c in /c/*WORK*/*GDBURO* /c/*WORK*/*BURO* /c/*WORK* "$HOME"/*WORK*; do
+    [ -d "$c/design_dna" ] && { printf '%s' "$c"; return; }
+  done
+  # otherwise the deepest match that exists and has project folders in it
+  for c in /c/*WORK*/*GDBURO* /c/*WORK*/*BURO*; do
+    [ -d "$c" ] || continue
+    n=$(find "$c" -maxdepth 1 -type d 2>/dev/null | wc -l)
+    [ "$n" -gt 2 ] && { printf '%s' "$c"; return; }
+  done
+  printf ''
+}
+
 HOSTKEY="$(hostname 2>/dev/null | tr -cd 'A-Za-z0-9._-')"
 ROOTFILE="$OPSD/work-root.$HOSTKEY.txt"
 
@@ -117,6 +141,9 @@ if [ -n "${NEWROOT:-}" ]; then
     && say_saved=1
 elif [ -f "$ROOTFILE" ]; then
   WORK="$(head -1 "$ROOTFILE" | tr -d '\r')"
+elif [ -n "$(find_work_root)" ]; then
+  WORK="$(find_work_root)"
+  [ -d "$OPSD" ] && printf '%s\n' "$WORK" > "$ROOTFILE" 2>/dev/null && say_found=1
 else
   WORK="$(find_desktop)/WORK"
 fi
@@ -212,6 +239,8 @@ echo "  drive:   ${DRIVE:-NOT FOUND}"
 echo "  work:    $WORK"
 if [ -n "${say_saved:-}" ]; then
   echo "           ↑ remembered for this machine in $(basename "$ROOTFILE")"
+elif [ -n "${say_found:-}" ]; then
+  echo "           ↑ found on this machine, and remembered in $(basename "$ROOTFILE")"
 elif [ -f "$ROOTFILE" ]; then
   echo "           ↑ from $(basename "$ROOTFILE")"
 else

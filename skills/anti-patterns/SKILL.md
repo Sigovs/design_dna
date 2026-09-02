@@ -1,6 +1,6 @@
 ---
 name: anti-patterns
-description: Failure modes in two tiers — INVARIANT universal failures (weak hierarchy, inaccessible contrast, gratuitous motion, arbitrary spacing, inconsistent tokens, uncounted persistent overlays, competing art directions inside one page, horizontal page scroll, content parity across viewports, controlled irregularity that stops being legible or intentional, depth cues incoherent with the spatial model they imply, task-relevant routes that cannot be discovered without hover, completed animation or guessing or told apart from the route beside them, opaque surfaces that cross live content, expansions that move the list they live in, sections designed as independent microsites, decorative layers that fail by painting nothing, hard-edged layers over a deliberately transparent ground, and elements clipped into invisibility by a container whose box changes size at another viewport, and fill-mode animations that keep owning a property so a later transition snaps instead of running) and DIALECT trope bans (AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, underlined nav, repeated primary CTAs, imagery hidden on mobile, the default Spline aesthetic, ambient motion behind body copy, template anonymity — each with a yields-when). Use as the final gate before shipping any visual work, and whenever choosing between a container and open air.
+description: Failure modes in two tiers — INVARIANT universal failures (weak hierarchy, inaccessible contrast, gratuitous motion, arbitrary spacing, inconsistent tokens, uncounted persistent overlays, competing art directions inside one page, horizontal page scroll, content parity across viewports, controlled irregularity that stops being legible or intentional, depth cues incoherent with the spatial model they imply, task-relevant routes that cannot be discovered without hover, completed animation or guessing or told apart from the route beside them, opaque surfaces that cross live content, expansions that move the list they live in, sections designed as independent microsites, decorative layers that fail by painting nothing, hard-edged layers over a deliberately transparent ground, and elements clipped into invisibility by a container whose box changes size at another viewport, and fill-mode animations that keep owning a property so a later transition snaps instead of running, and hidden elements that keep their space so the gap they leave has nothing to point at) and DIALECT trope bans (AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, underlined nav, repeated primary CTAs, imagery hidden on mobile, the default Spline aesthetic, ambient motion behind body copy, template anonymity — each with a yields-when). Use as the final gate before shipping any visual work, and whenever choosing between a container and open air.
 ---
 
 # Anti-Patterns
@@ -679,6 +679,47 @@ exit silently gets the wrong physics — see motion invariant I3.
 > (`cubic-bezier(0.22, 1, 0.36, 1)` — easeOutQuint, the entrance curve): the text
 > measured 4% opacity 450ms into the 800ms. Only the exit curve made the client's
 > 800ms actually last 800ms.
+
+### U21 — A hidden element still holds its space, and the gap it leaves has nothing to point at
+
+**`opacity: 0` and `visibility: hidden` remove an element from sight, not from
+layout. What is left is a gap with nothing in it — and that is the hardest kind of
+spacing complaint to resolve, because everyone involved is staring at empty space
+and the only visible lever is padding, which is not the cause.**
+
+The pattern that produces it is ordinary and looks careful: a secondary affordance
+— "View details", a hover caption, a badge revealed on focus — is faded in rather
+than shown, so it keeps its box for the whole life of the page. On a pointer device
+it is invisible until hover; on touch it may never appear at all. Either way it has
+been silently rewriting the rhythm of every card, row or tile it sits in.
+
+**The diagnostic is to measure the INK gap, not the box gap.** Take the distance
+from the last *visible* glyph or edge above to the first *visible* one below, and
+compare it with the gap between the two boxes. When the two disagree, something
+invisible is sitting between them, and no amount of padding work will close it.
+
+**The fix is to stop reserving the space, not to delete the affordance.** Take the
+element out of flow, or drop it only on the input modality where it was never
+visible — gate on `(hover: hover)` rather than on width, so a wide touch screen
+keeps the version that actually shows.
+
+*Why it's universal:* it belongs with [U16](#invariant), [U19](#invariant) and
+[U20](#invariant) as a fault with no error, no console message and no artefact —
+but this one is worse in a specific way. The others fail where nobody is looking;
+this one fails in the exact place a client is already pointing, and it survives
+round after round of corrections aimed at the wrong variable, because the thing
+doing the damage cannot be seen in the screenshot either party is holding.
+
+> **Evidence — measured on the author's own work, Beverly Hills Car Club,
+> 2026-09-02.** The client had asked for the page to be tighter **three times**,
+> each round marking the same gap under the Featured cards. Between the price row
+> and the CTA pair the box gap was 24px; the ink gap measured **84px**. The
+> difference was `.card__view` — a "View Details" label at `opacity: 0` on pointer
+> devices, reserving 36px of flow beneath every card while invisible and
+> unclickable. Two rounds of padding reduction had been spent on a gap that was
+> more than half made of nothing. Dropped on `(hover: hover)` only — touch keeps it,
+> where `@media (hover: none)` shows it inline and it earns its height — the ink
+> gap went 84 → 24.
 
 ---
 

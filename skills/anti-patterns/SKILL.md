@@ -586,6 +586,14 @@ ever opened, and it is the narrow end of each band that fails first — the elem
 that clears by 3px at the bottom of its range is not passing, it is one font
 metric away from being eaten.
 
+**And the viewport has two axes.** The same fault runs on HEIGHT, where almost
+nobody looks: a box sized in `vh`/`svh` with a `min-height` floor stops shrinking
+at the floor while anything else measured from the window keeps growing, so the
+clearance between them closes and then goes negative. The floor is the tell —
+below it, one term is constant and the other is not. A review pair of one desktop
+size and one phone size varies width and holds height effectively fixed, so a
+height-driven clip passes verification and ships.
+
 **So a clipping container is audited by measurement, not by looking.** Compare each
 child's rect against the clipping ancestor's rect, at the **narrow end of every
 band**, and treat a small positive slack as a failure rather than a pass. "Desktop
@@ -614,6 +622,17 @@ silence.
 > needed, and the trust line was being cut off around 761–775 — a second silent
 > clip, in the same container, found only by comparing rects against the section
 > box rather than by reviewing at 1440 and 390.
+>
+> **The height axis, same project, 2026-09-02.** Hero CTAs settled downward by
+> `clamp(36px, 8vh, 84px)` inside a frame of `72svh` with `min-height: 520px` and
+> top-anchored content — so the buttons' bottom sat ~488px below the frame top at
+> every window height, and the room beneath them was (frame height − 488) while
+> the travel came from the window and knew nothing about that room. Above ~762px
+> of viewport height it cleared; below, the room ran out, and below 722px the
+> frame hit its floor and stopped shrinking while the travel kept growing. At
+> 1440×700 the frame's own `overflow: hidden` sliced a third off both buttons.
+> Verified at 1440×900 and 390×844 and reported as passing; **the client found it
+> and sent the screenshot.**
 
 ### U20 — An entrance animation that never ends owns the property forever
 

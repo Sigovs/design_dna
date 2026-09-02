@@ -1,6 +1,6 @@
 ---
 name: color-taste
-description: Colour rules in two tiers — INVARIANT (WCAG AA verified on every palette change, never meaning by hue alone, visible focus states, legibility over imagery fixed at the background layer against worst-case regions, contrast measured on the composited render rather than on the tokens) and DIALECT (auction-editorial's neutral dark-first base, smoky desaturated tones, accent as a setting, banned overused palettes, near-white/ink over photography, each with a yields-when). Use before defining any palette, colour token, accent, gradient, background, or text-over-image treatment.
+description: Colour rules in two tiers — INVARIANT (WCAG AA verified on every palette change, never meaning by hue alone, visible focus states, legibility over imagery fixed at the background layer against worst-case regions, contrast measured on the composited render rather than on the tokens, and across the travel of a background that moves) and DIALECT (auction-editorial's neutral dark-first base, smoky desaturated tones, accent as a setting, banned overused palettes, near-white/ink over photography, each with a yields-when). Use before defining any palette, colour token, accent, gradient, background, or text-over-image treatment.
 ---
 
 # Colour Taste
@@ -141,9 +141,17 @@ it separates nothing. **Re-measure at every format, and expect the answer to be 
 different scrim rather than a deeper one** — a single gradient tuned until all
 formats pass is how the subject gets flattened to rescue one breakpoint.
 
+**A background that MOVES has more than one artefact per format.** Parallax, a Ken
+Burns drift, an autoplaying loop: the type holds still while the picture under it
+travels, so a single capture measures one frame of a range. Measure at the extremes
+of the travel — for a scroll-linked band, entering / centred / leaving — and take
+the worst. The centred position is the one an author naturally screenshots and the
+one least likely to fail.
+
 *Why:* the point of [I1](#invariant) is that contrast is a contract rather than an
 intention. A contract checked against the wrong artefact is not checked — and a
-responsive page has more than one artefact.
+responsive page has more than one artefact, while a moving one has more than one
+per artefact.
 
 > **Evidence — measured on the author's own work, 360 Auto Care, 2026-07-30/31.**
 > Two failures of two different kinds. A hero lead measured **2.06:1 against its
@@ -166,6 +174,15 @@ responsive page has more than one artefact.
 > into covering both. Four formats were measured; only the wide two shared an
 > answer.
 ---
+
+> **The moving-background clause, Beverly Hills Car Club, 2026-09-02.** A proof
+> band was flattened from 2/1 to 3.4/1 and its crop raised, which put three lines
+> of white serif onto red bodywork and chrome. Measured centred, all six rows
+> passed. Measured while the band was ENTERING — its `122%`-tall background
+> translating under the fixed copy — a heading sat on exactly **3.00 against a 3.0
+> floor**, and every heading was within 0.3 of failing. Same page, same scrim, same
+> viewport: only the scroll position differed. Re-cut stops took the worst of all
+> eighteen readings to 5.09.
 
 ## DIALECT
 
@@ -305,6 +322,7 @@ at the background layer.
 - [ ] No meaning carried by hue alone.
 - [ ] Focus rings visible at ≥3:1 against element and page.
 - [ ] Text over media checked against worst-case overlap; fixed with a scrim.
+- [ ] If the media moves under the type, measured at both extremes of its travel.
 - [ ] Accent derived from something the project contains, derivation stated in one
       line, then judged where it lands and against the domain's colour conventions.
 

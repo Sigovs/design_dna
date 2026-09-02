@@ -1,6 +1,6 @@
 ---
 name: color-taste
-description: Colour rules in two tiers — INVARIANT (WCAG AA verified on every palette change, never meaning by hue alone, visible focus states, legibility over imagery fixed at the background layer against worst-case regions, contrast measured on the composited render rather than on the tokens, and across the travel of a background that moves) and DIALECT (auction-editorial's neutral dark-first base, smoky desaturated tones, accent as a setting, banned overused palettes, near-white/ink over photography, each with a yields-when). Use before defining any palette, colour token, accent, gradient, background, or text-over-image treatment.
+description: Colour rules in two tiers — INVARIANT (WCAG AA verified on every palette change, never meaning by hue alone, visible focus states, legibility over imagery fixed at the background layer against worst-case regions, contrast measured on the composited render rather than on the tokens, across the travel of a background that moves, and a scheme inverted by re-solving it rather than by flipping its tokens) and DIALECT (auction-editorial's neutral dark-first base, smoky desaturated tones, accent as a setting, banned overused palettes, near-white/ink over photography, each with a yields-when). Use before defining any palette, colour token, accent, gradient, background, or text-over-image treatment.
 ---
 
 # Colour Taste
@@ -183,6 +183,47 @@ per artefact.
 > floor**, and every heading was within 0.3 of failing. Same page, same scrim, same
 > viewport: only the scroll position differed. Re-cut stops took the worst of all
 > eighteen readings to 5.09.
+
+### I7 — A scheme is inverted by re-solving it, and the masses over photography do not invert at all
+
+**Turning a dark design light — or the reverse — is not a flip of the tokens.**
+The values swap, but three things do not follow the swap, and each one is a defect
+if it is allowed to.
+
+**The masses that carry type over a photograph keep their original register.**
+The picture did not change. Inverting the ink over it puts near-black type on a
+near-black frame, or white on a bright one; the result is not a contrast to tune
+but an unreadable headline. So the hero, the page head, the full-bleed moment stay
+as they were, and the page changes around them. Re-point **grounds as well as
+ink** on those sections — flipping only the ink leaves any plate inside them
+carrying the wrong surface. And note the consequence: a token re-pointed on a
+section resolves to that section's value INSIDE it, so an element there that is
+meant to belong to the page, not to the mass, has to name its value literally.
+
+**The single tonal exception inverts the other way.** A dark page with one light
+band becomes a light page with one dark band. Flip it with everything else and the
+page loses the only tonal event it had.
+
+**The ladder is not the same depth in both directions.** A dark ground carries
+more usable steps than a light one before it turns to grey mush; a four-step dark
+scheme is often a three-step light one. Adding the fourth back breaks whichever
+values were solved against the darkest ground as their binding case.
+
+*Why:* an inverted palette passes a token table trivially — every pair still has
+its contrast, because the pairs were only swapped. What it does not pass is
+[I6](#invariant), because the photographs, the plates and the one exception are
+all still where they were.
+
+> **Evidence — 360 Auto Care, a white version of a dark build, 2026-09-02.**
+> Dark ink on the workshop hero measured **under 2:1**. A fourth light ground for
+> the footer broke the rust, the amber and the boundary line at once. A light card
+> inside the dark-pinned hero, written with `var(--g-base)`, rendered **black** —
+> the token resolved to the hero's value, not the page's. And the line token had
+> to split: on dark one value did both decoration and boundaries because a
+> hairline reads there, while on light `#b9bac4` measures **1.52** — and two of
+> its jobs carry meaning, form-field borders and the EMPTY stars in a rating,
+> where invisible turns "4 of 5" into "4". That last one is a defect in the DARK
+> build too, and cannot be seen there.
 
 ## DIALECT
 

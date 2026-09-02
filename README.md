@@ -679,7 +679,9 @@ while it is honest.
    typographic voices, each voice justified by a job the others cannot do; every value from a documented token scale;
    WCAG AA verified on every palette change, measured on the composited render
    rather than on the token table and re-measured per format, where the answer is
-   often a differently-constructed scrim rather than a deeper one; a complete static path for every
+   often a differently-constructed scrim rather than a deeper one, and re-solved
+   rather than flipped when a scheme is inverted — the masses carrying type over
+   photography keeping the register they were measured in; a complete static path for every
    animation; a device that spends the visitor's advance — a pinned scene, a staged
    reveal, a scroll-linked sequence — returning it as understanding rather than as
    spectacle; depth cues coherent with the spatial model they imply; controlled

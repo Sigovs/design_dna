@@ -1,5 +1,22 @@
 #!/usr/bin/env python3
 """
+SUPERSEDED 2026-09-02 by hooks/design-dna-gate.mjs. Do not wire this one up.
+
+It has never executed on the Windows machine. It was written in Python to avoid
+depending on jq, which is not installed — and Python is not installed either:
+`python --version` there opens the Microsoft Store shim and exits non-zero. The
+paragraph below predicted exactly this outcome for jq and then walked into it, so
+the lesson is not "use a different runtime" but "verify the interpreter exists on
+the machine the hook has to run on."
+
+The replacement is Node, which this repo's toolchain already requires. It also
+does more: it resolves the manifest path by enumeration rather than by
+transcription, reports the concept gate's real state by diffing BRIEF.md against
+the scaffold's own template, and names the specific rules that bind for the kind
+of file being edited.
+
+---
+
 PreToolUse hook — put the DNA in front of the model at the moment it edits a
 visual file.
 

@@ -27,12 +27,31 @@ project. So the entry point is a skill and the rules stay files.
 
 In this order. **The first readable path wins.**
 
-1. `C:\____WORK\_____________GDBURO\design_dna\TASTE.md` — the canonical working
-   copy on the Windows machine. **Verify it before using it, and never retype it
-   from memory.** The directory name contains a run of thirteen underscores; a
-   near-miss path resolves to nothing, and an entry point that resolves to nothing
-   fails *silently* — the agent simply proceeds on its own taste. Glob for
-   `c:/____WORK/*GDBURO/design_dna` rather than transcribing.
+1. **The Windows working copy — resolve it by glob, never by transcription.**
+
+   ```
+   c:/____WORK/*GDBURO*/design_dna/TASTE.md
+   ```
+
+   The directory name is a run of underscores followed by `GDBURO` and, on this
+   machine, a suffix — it was `_____GDBURO SIGOFF` when this line was last
+   verified, on 2026-09-02. **Do not hard-code that.** A near-miss path resolves
+   to nothing, and an entry point that resolves to nothing fails *silently* — the
+   agent simply proceeds on its own taste, and the output looks finished.
+
+   > **This line was itself wrong for an unknown period, and that is the argument
+   > for the glob.** It named `C:\____WORK\_____________GDBURO\design_dna`
+   > (thirteen underscores) and globbed `c:/____WORK/*GDBURO/design_dna` — a
+   > pattern with no trailing wildcard, which cannot match a suffixed directory.
+   > Neither resolved. Every session that reached Step 1 on this machine fell
+   > through to the network, or to nothing, without saying so. Corrected
+   > 2026-09-02.
+
+   The reliable route is not to resolve it by hand at all:
+   `hooks/design-dna-gate.mjs` enumerates `C:\____WORK` for a directory matching
+   `/GDBURO/i`, checks each for a readable `TASTE.md`, and reports the winner —
+   or reports plainly that nothing resolved. Wire it as a `SessionStart` hook and
+   the path stops being something anyone types.
 2. `/Users/alex/Desktop/WORK/design_dna/TASTE.md` — the canonical copy on the Mac.
 3. `./design_dna/TASTE.md` in the project root — **only if it is a live git clone
    or a symlink.** A plain copied folder is a snapshot; it silently ages and there

@@ -73,3 +73,68 @@ transferable rule is Alex's call, not the agent's.
 Candidate weakness, unconfirmed: four structurally identical discipline sections run
 consecutively, each separated by an identical marquee band. If it holds against the live
 page it is `repeated-composition-risk`; from static frames it is an observation only.
+
+---
+
+## 2026-09-20 11:40 · QUICK — judgement, by delegation
+
+- **submitted:** already in the vault since this morning's QUICK pass
+- **action:** existing record judged; shots arrived meanwhile from the auto-capture Action (412d575)
+- **previous rating / dialectStatus:** 2 / unreviewed — repository defaults, never a judgement
+- **capture limitation:** `partial evidence — 4 canvas element(s) — motion and WebGL state are not preserved`.
+  The page shots and both filmstrips are real; the hero is a WebGL scene and nothing below
+  describes it in motion.
+
+### Alex's comment — verbatim, never edited
+
+> horoshij site bil oceni sam please
+
+### What is his and what is the agent's
+
+His: **the site is good**, and an explicit delegation to judge it. That is an overall
+reaction, so it moves `rating` and licenses a `dialectStatus` — and it is the whole of what
+he said. Everything below is the agent's reading under that delegation, recorded in
+`judgementBy`, and it is **not** evidence of Alex's taste. Only `Source: Alex` rows with IN
+or OUT count in distillation, and there are none here beyond the overall reaction.
+
+### Confirmed changes to the record
+
+- `rating` 2 → **3** — reference. It earns it on one mechanism (below), not on the whole page.
+- `dialectStatus` unreviewed → **hybrid**. `dialects` stays empty, as on `porsche-com-usa`.
+- `note` rewritten in Russian; `works` / `weaknesses` split out
+- `tags.composition` `dominant-mass` · `directed-eye` · `editorial-inventory` ·
+  `compositional-resolution`; `typography` gains `type-as-mass` · `numeral-as-anchor`;
+  `layout` `air` · `bleed` · `asymmetry`; `imagery` gains `art-direction`
+- `tags.motion` deliberately left **empty** — the capture does not preserve it and nothing
+  was verified running
+- `tags.risks` `repeated-composition-risk` · `mobile-recomposition-risk`
+- `judgementBy` added
+
+### Layer judgements
+
+| Layer | Observation | Source | Judgement | Evidence limit |
+|---|---|---|---|---|
+| composition | Hero: one dominant mass (the pennant bundle, bleeding right) against one small type mass at lower left; the fan converges and directs the eye down-left into the paragraph. Ending resolves — `BUILD` at full width, then the wordmark plate. | agent | IN | |
+| hierarchy | Numbered sections; the ordinal set as a superscript beside the script title; one event per screen in the upper half, four identical blocks in the lower. | agent | contextual | strong at the top, flattens after section 02 |
+| typography | Three-way collision at every section head: script display, engraved plate, oversized grotesque running off the right edge. Script numerals 1–3 as column markers. Helvetica Now carries all structure. | agent | IN | |
+| colour | Off-white ground, near-black text, and one accent per discipline — green, pink, red — each repeated in the marquee band that follows it. Colour is what separates otherwise identical blocks. | agent | IN | |
+| imagery | Client logos printed on woven cloth in 3D; 19th-century engravings at section heads; game and product renders in the closing mosaic. | agent | IN | |
+| spacing / density | Deep intervals between sections; hairline-ruled full-width rows; the closing mosaic deliberately off-grid. | agent | IN | |
+| motion | **Not verified.** WebGL hero and marquee bands are present in the markup; the capture preserves neither. | agent | unreviewed | `captureError` records the 4 canvas elements |
+| interaction | Row arrows, dark LEARN MORE pills, a horizontally scrolling work row cut by the viewport edge. Hover states not tested. | agent | unreviewed | |
+| design dialect | Shares `auction-editorial`'s decision logic — metadata composed as a record, hierarchy from space and scale — while the section heads and the closing word behave like `expressive-poster`. Neither alone accounts for it. | agent | contextual | recorded as `hybrid`; `dialects` left empty |
+
+**Judgement rules for this table.** A layer Alex did not mention and the agent did
+not directly verify stays out of the table entirely — an empty row is a claim.
+"not sure", "neutral", "not bad", "ни туда ни сюда" are `unreviewed`, never
+forced into IN or OUT. Only `Source: Alex` rows with IN or OUT count as evidence
+in distillation.
+
+### The transferable lesson
+
+**Make the proof the hero.** A client roster is evidence, and evidence is normally
+demoted to a grey logo strip. Rendered as a physical object — logos printed on cloth,
+fanned into one sculpture — the same evidence carries the entire first screen, and the page
+is freed from stating it twice. The test before reusing it: the object has to be *made*, not
+arranged. The weak half of this same page proves the point — the `Trusted by` boxes further
+down are the conventional version of the identical argument, and they read as filler.

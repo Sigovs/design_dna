@@ -25,7 +25,17 @@ correct** — that is Alex's review, and the claims below are marked accordingly
 | **Usable `in`** (human-set) | **25** | `beings-co` (3) · `ciridae-com` (3) · `ruadh-com` (2) · `electrafilmworks-com` (2) · `thenewmobileworkforce-…-back-at-hq` (2) · `trionn-com` (2) · `kinncollective-co-uk` (2) · `augen-pro` (2) · `i-pinimg-…-46d9d54b` (2) · `organimo-com` (3) · `immersive-g-com` (3) · `rolls-roycemotorcars-…-home-html` (3) · `obys-agency` (2) · `mclaren-com-cars-gl-en` (2) · `semlerpremium-dk-showroom` (3) · `semlerpremium-dk-brands-porsche-911-gt3-…` (3) · `polestar-com-us` (2) · `semlerpremium-dk` (2) · `rimac-automobili-com-nevera` (2) · `oilstainlab-com` (2) · `hispanosuizacars-com` (2) · `morningstar-ventures` (3) · `rekorderstudios-com` (3) · `eco-com` (2) · `mugenstudio-framer-website` (2) |
 | **Usable `out`** | **14** | `rmsothebys-com` (1) · `thegentlewoman-co-uk` (1) · `hbbody-com-en-home` (2) · `rivian-com` (2) · `lapz-io` (3) |
 | **Partial / contextual** (`hybrid`) | **1** | `porsche-com-usa` (2) |
-| **Not yet a judgement** (`unreviewed`) | **0** | — every record carries a judgement again. Nine of them were set by an agent under Alex's explicit delegation on 2026-08-31 and are marked `judgementBy` in the record, so his hand and the agent's stay distinguishable. |
+| **Not yet a judgement** (`unreviewed`) | **1** | `pensatori-irrazionali-com` (2) — submitted 2026-09-20 as a bare URL, with no comment. Every other record carries a judgement. Nine of those were set by an agent under Alex's explicit delegation on 2026-08-31 and are marked `judgementBy` in the record, so his hand and the agent's stay distinguishable. |
+
+> **`unreviewed` returns to the table at 1, 2026-09-20.** `pensatori-irrazionali-com`
+> entered from a bare URL with no comment attached, so there is nothing of Alex's to
+> record: rating and `dialectStatus` are repository defaults, the note is `TODO`, and
+> every row in `vault/reviews/pensatori-irrazionali-com.md` is `Source: agent` /
+> `unreviewed`. It also carries **no shots** — the capture ran in a cloud session whose
+> egress gateway refuses CONNECT for a headless browser to any host, so the page was read
+> live in a browser instead and the limitation is written into `captureError`. It
+> contributes nothing to distillation until Alex judges it and `npm run capture-missing`
+> shoots it.
 
 > **A new kind of record, 2026-08-31 — and the run of "no unjudged entry" ends
 > deliberately.** Nine print spreads were entered under a new kind, print-composition:

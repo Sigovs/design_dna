@@ -2705,5 +2705,46 @@
     "works": "Слово, набранное в массу. Две равновесные массы вместо доминанты и подчинённого. Клин грунта как связка.",
     "weaknesses": "Читаемость заголовка принесена в жертву фактуре — слово собирается не сразу. Работает только на развороте, где обе массы видны одновременно; при скролле распадается.",
     "judgementBy": "agent, under Alex's explicit delegation 2026-08-31 — not his own reading"
+  },
+  {
+    "id": "pensatori-irrazionali-com",
+    "kind": "site",
+    "url": "https://pensatori-irrazionali.com/",
+    "source": "",
+    "title": "Pensatori Irrazionali",
+    "added": "2026-09-20",
+    "rating": 2,
+    "dialectStatus": "unreviewed",
+    "dialects": [],
+    "tags": {
+      "composition": [],
+      "risks": [],
+      "typography": [
+        "grotesque",
+        "big-type",
+        "type-crossing-subject"
+      ],
+      "layout": [],
+      "motion": [],
+      "color": [
+        "neutral",
+        "bold-accent"
+      ],
+      "imagery": [
+        "illustration",
+        "product"
+      ]
+    },
+    "note": "TODO",
+    "shots": {
+      "full": null,
+      "hero": null,
+      "mobile": null,
+      "strip": [],
+      "stripMobile": []
+    },
+    "extras": [],
+    "captureError": "shots pending — capture.mjs could not run on 2026-09-20: the cloud session's egress policy refuses CONNECT for a headless browser to any external host (net::ERR_TUNNEL_CONNECTION_FAILED on every URL tried, including known-good vault entries), so this is an environment limit and not a bot wall on the site itself. The page was read live in a browser instead, at 819x925 and at an emulated 1440x900; that observation is in agentObservation and in vault/reviews/. Run `npm run capture-missing` on a machine with the repo to shoot it.",
+    "agentObservation": "Agency site for an Italian-European creative house (Next.js, Three.js/WebGL, ~12.5k px document at 819px wide — real scroll, not a pinned single screen). Warm off-white ground, near-black text, one bright green accent used only for the small section dot and for full-width marquee bands. Two typefaces: Helvetica Now for everything structural, and Ballet — a thin script — for the section titles and for oversized numerals.\n\nThe hero is the move worth studying: the client logo strip, normally the dullest band on an agency site, is built instead as a 3D sculpture of cloth pennants — etisalat, Uber, ESL, Star Wars, Burger King, Fashion Nova, mashreq, LEGO, Twitch — each logo printed on woven fabric with real weave texture, the bundle fanning from the right edge and bleeding off it. The only text on the first screen is one three-line paragraph at lower left in large Helvetica. Proof of client roster and the hero image are the same object, so nothing has to be said twice.\n\nSection (01) Works is an editorial list rather than a card grid: one client per full-width row, name set in very large grotesque, \"Corporate\" in small type at mid-column, the client mark at right, a hairline between rows, an arrow at the right edge. Section titles are set in Ballet at display size and run behind or across a 19th-century engraved plate (a Pegasus, a heraldic lion) — type crossing the subject, at the section head rather than in the hero.\n\nDisciplines (Branding, Web Development, Game Design, Video Production) each use one spec table: five label/value rows, hairline-ruled, label left and value flush right, a small green dot before the heading, a large script numeral as the column marker, and a dark LEARN MORE pill. Between each pair sits a full-bleed green marquee band repeating \"LEARN MORE ABOUT <X> — LET'S WORK\".\n\nObserved, not yet judged: the four discipline sections are structurally identical and consecutive, separated by identical marquee bands — a candidate for repeated-composition, to be confirmed against the live page rather than from static frames. Scrolling to ~12,000 px returned the view to the opening composition; that is consistent with a looping scroll but was not proven. Large stretches of the mid-page render as empty in static frames, which is a signal that those sections are scroll-linked and that page shots will understate the page — the filmstrip is what will carry it."
   }
 ]

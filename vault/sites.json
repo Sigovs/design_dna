@@ -1,5 +1,62 @@
 [
   {
+    "id": "coffee-tech-com",
+    "kind": "site",
+    "url": "https://www.coffee-tech.com/",
+    "source": "",
+    "title": "CoffeeTech",
+    "added": "2026-09-20",
+    "rating": 2,
+    "dialectStatus": "unreviewed",
+    "dialects": [],
+    "tags": {
+      "composition": [],
+      "risks": [],
+      "typography": [
+        "grotesque",
+        "big-type"
+      ],
+      "layout": [],
+      "motion": [],
+      "color": [
+        "neutral",
+        "bold-accent"
+      ],
+      "imagery": [
+        "product",
+        "photography"
+      ]
+    },
+    "note": "TODO",
+    "shots": {
+      "full": "shots/coffee-tech-com/full.jpg",
+      "hero": "shots/coffee-tech-com/hero.jpg",
+      "mobile": "shots/coffee-tech-com/mobile.jpg",
+      "strip": [
+        "shots/coffee-tech-com/strip-1.jpg",
+        "shots/coffee-tech-com/strip-2.jpg",
+        "shots/coffee-tech-com/strip-3.jpg",
+        "shots/coffee-tech-com/strip-4.jpg",
+        "shots/coffee-tech-com/strip-5.jpg",
+        "shots/coffee-tech-com/strip-6.jpg",
+        "shots/coffee-tech-com/strip-7.jpg",
+        "shots/coffee-tech-com/strip-8.jpg"
+      ],
+      "stripMobile": [
+        "shots/coffee-tech-com/strip-m-1.jpg",
+        "shots/coffee-tech-com/strip-m-2.jpg",
+        "shots/coffee-tech-com/strip-m-3.jpg",
+        "shots/coffee-tech-com/strip-m-4.jpg",
+        "shots/coffee-tech-com/strip-m-5.jpg",
+        "shots/coffee-tech-com/strip-m-6.jpg"
+      ],
+      "navScrolled": null
+    },
+    "extras": [],
+    "captureError": null,
+    "agentObservation": "Verified from the page itself: Webflow build (page-wrapper, w-dyn-list), gsap present, no canvas and no video, document 5 331 px at 1024 wide, 6 sticky/fixed elements, Inter throughout. Ground is warm light grey rgb(229,226,221) with near-black text rgb(13,14,19) and a terracotta rgb(200,96,61) that is both the loader field and the accent. Hero is dark: a black roasting machine photographed against near-black with \"Coffee Roasting Reinvented\" set large above it. Structure: hero, intro paragraph, a full-width marquee band reading \"Beyond your expectations /\", a four-item product grid (FZ94 Evo, Silon ZR7, Ghibli R90, Lab Extractor) with an oversized \"See all products\" line rule, an Our Specialty row of three image cards (Coffee, Cocoa, Nuts), numbered testimonials (01), an Approach tab set (Technology / Efficiency / Sustainability) and a blog list. A manufacturer site of normal length — not a scroll piece; nothing here was judged."
+  },
+  {
     "id": "pensatori-irrazionali-com",
     "kind": "site",
     "url": "https://pensatori-irrazionali.com/",
@@ -74,6 +131,79 @@
     "judgementBy": "agent, under Alex’s explicit delegation 2026-09-20 — his own reaction was \"хороший сайт был, оцени сам\", so the rating, the status and every layer reading below are the agent’s, not his",
     "works": "Пруф и герой — один объект: логотипы клиентов как тканевая скульптура вместо логополоски. Трёхшрифтовое столкновение в заголовке секции как повторяемая система. Инвентарь клиентов набран записью, а не карточками. Акцентный цвет как единственный различитель одинаковых блоков. Композиционное разрешение в финале.",
     "weaknesses": "Четыре секции дисциплин структурно идентичны и идут подряд — держит их только цвет, и к четвёртой приём выдыхается. Сетка «Trusted by» из боксов с логотипами — единственное конвенциональное место на странице, и оно ослабляет сам аргумент, который герой уже доказал сильнее. На 390px крупные заголовки уезжают за край так, что фраза перестаёт читаться («By Pensato…»): на десктопе это намеренный вылет, на мобильном ближе к переполнению."
+  },
+  {
+    "id": "unitedcarriers-com",
+    "kind": "site",
+    "url": "https://unitedcarriers.com/",
+    "source": "",
+    "title": "United Carriers",
+    "added": "2026-09-20",
+    "rating": 3,
+    "dialectStatus": "in",
+    "dialects": [
+      "immersive-authored-world"
+    ],
+    "tags": {
+      "composition": [
+        "concept-led-interface",
+        "product-storytelling",
+        "directed-eye"
+      ],
+      "risks": [
+        "narrative-dilution-risk"
+      ],
+      "typography": [
+        "grotesque",
+        "big-type",
+        "mono-details"
+      ],
+      "layout": [
+        "bleed",
+        "asymmetry"
+      ],
+      "motion": [
+        "scroll-scrub",
+        "scroll-reveal",
+        "parallax",
+        "state-transition"
+      ],
+      "color": [
+        "dark",
+        "neutral",
+        "monochrome"
+      ],
+      "imagery": [
+        "product",
+        "art-direction",
+        "photography"
+      ]
+    },
+    "note": "Скролл ведёт один груз через всю страницу. Ричстакер поднимает контейнер на белом фоне, переставляет его на шасси, дальше машина едет — фон становится чёрным, разметка бежит навстречу, в углу считает спидометр «00 KM/H». Это не набор анимированных секций, а один непрерывный проезд: `home-service` — 10 213 px, почти половина документа, `home-why` — ещё 5 532 px и sticky. Около 70% страницы — два длинных запиненных пролёта.\n\nЛучший ход дальше: камера переворачивается сверху вниз, и та же фура едет вверх по дороге узкой вертикальной полосой по центру экрана, а блоки «почему мы» проходят справа. Дорога становится осью скролла — вертикальная прокрутка и есть движение груза. Механика и содержание совпали.\n\nБелое → чёрное работает как смена сцены, а не как «тёмная секция»: день на терминале, ночь на трассе. Герой отдельно — 3D-Земля из космоса, ночная сторона в огнях, дуги маршрутов с метками стран.\n\nТехника: GSAP 3.15 + Lenis 1.3.23 + Three.js, 28 sticky/fixed элементов, документ 22 569 px. BT Steinhart и BT Steinhart Mono.",
+    "works": "Один объект несёт весь нарратив — контейнер поднимают, ставят на фуру, везут. Дорога как ось скролла при виде сверху: прокрутка буквально равна движению груза. Смена белого на чёрное как смена сцены. Спидометр и счётчики привязаны к скроллу, а не к таймеру.",
+    "weaknesses": "Хвост страницы не держит заданный уровень: отзывы двумя колонками с портретами, партнёры, FAQ — обычная корпоративная верстка после кинематографичного пролёта. История заканчивается раньше страницы. Плюс цена входа: 22,5 тыс. px документа и 28 sticky-элементов на GSAP+Lenis — это бюджет, который окупается только если пролёт действительно рассказывает историю.",
+    "shots": {
+      "full": "shots/unitedcarriers-com/full.jpg",
+      "hero": "shots/unitedcarriers-com/hero.jpg",
+      "mobile": "shots/unitedcarriers-com/mobile.jpg",
+      "strip": [
+        "shots/unitedcarriers-com/strip-1.jpg",
+        "shots/unitedcarriers-com/strip-2.jpg",
+        "shots/unitedcarriers-com/strip-3.jpg",
+        "shots/unitedcarriers-com/strip-4.jpg",
+        "shots/unitedcarriers-com/strip-5.jpg",
+        "shots/unitedcarriers-com/strip-6.jpg",
+        "shots/unitedcarriers-com/strip-7.jpg",
+        "shots/unitedcarriers-com/strip-8.jpg"
+      ],
+      "stripMobile": [
+        "shots/unitedcarriers-com/strip-m-1.jpg"
+      ],
+      "navScrolled": null
+    },
+    "extras": [],
+    "captureError": "partial evidence — 6 canvas element(s) — motion and WebGL state are not preserved by a static shot",
+    "agentObservation": "Verified from the page itself, not inferred: gsap 3.15.0, lenis 1.3.23, THREE present, one looping muted background video, 5 canvases, document 22 569 px at 1024 wide. Section heights measured: home-hero 1920 (black), home-intro 1022 (white), home-service 10 213, home-why 5 532 and position:sticky, home-testi 2290, home-partners 1106, home-ins 580, home-faq 506. 28 elements at position sticky or fixed. ScrollTrigger is not exposed on window, so the scrub was read from rendered frames at fixed scroll offsets rather than from its configuration — the frames show the crane lift, the transfer to the chassis, the drive with the ground turned black, and the top-down road band, in that order."
   },
   {
     "id": "italian-rockstar-laboratorio",
@@ -2781,106 +2911,5 @@
     "works": "Worth stealing: (1) the footer caption is the only sentence on the page and it carries the entire editorial message, sitting on a hairline rule with the pagination at the far right — metadata as composition; (2) the photography is black-and-white, which is what lets a single saturated accent work without the page becoming about colour.",
     "weaknesses": "As a website, the project fails. The desktop navigation is ugly, the footer is unresolved, and the initial visual idea never develops into a coherent web experience. One decent cover does not make this a design reference.",
     "unsorted": []
-  },
-  {
-    "id": "unitedcarriers-com",
-    "kind": "site",
-    "url": "https://unitedcarriers.com/",
-    "source": "",
-    "title": "United Carriers",
-    "added": "2026-09-20",
-    "rating": 3,
-    "dialectStatus": "in",
-    "dialects": [
-      "immersive-authored-world"
-    ],
-    "tags": {
-      "composition": [
-        "concept-led-interface",
-        "product-storytelling",
-        "directed-eye"
-      ],
-      "risks": [
-        "narrative-dilution-risk"
-      ],
-      "typography": [
-        "grotesque",
-        "big-type",
-        "mono-details"
-      ],
-      "layout": [
-        "bleed",
-        "asymmetry"
-      ],
-      "motion": [
-        "scroll-scrub",
-        "scroll-reveal",
-        "parallax",
-        "state-transition"
-      ],
-      "color": [
-        "dark",
-        "neutral",
-        "monochrome"
-      ],
-      "imagery": [
-        "product",
-        "art-direction",
-        "photography"
-      ]
-    },
-    "note": "Скролл ведёт один груз через всю страницу. Ричстакер поднимает контейнер на белом фоне, переставляет его на шасси, дальше машина едет — фон становится чёрным, разметка бежит навстречу, в углу считает спидометр «00 KM/H». Это не набор анимированных секций, а один непрерывный проезд: `home-service` — 10 213 px, почти половина документа, `home-why` — ещё 5 532 px и sticky. Около 70% страницы — два длинных запиненных пролёта.\n\nЛучший ход дальше: камера переворачивается сверху вниз, и та же фура едет вверх по дороге узкой вертикальной полосой по центру экрана, а блоки «почему мы» проходят справа. Дорога становится осью скролла — вертикальная прокрутка и есть движение груза. Механика и содержание совпали.\n\nБелое → чёрное работает как смена сцены, а не как «тёмная секция»: день на терминале, ночь на трассе. Герой отдельно — 3D-Земля из космоса, ночная сторона в огнях, дуги маршрутов с метками стран.\n\nТехника: GSAP 3.15 + Lenis 1.3.23 + Three.js, 28 sticky/fixed элементов, документ 22 569 px. BT Steinhart и BT Steinhart Mono.",
-    "works": "Один объект несёт весь нарратив — контейнер поднимают, ставят на фуру, везут. Дорога как ось скролла при виде сверху: прокрутка буквально равна движению груза. Смена белого на чёрное как смена сцены. Спидометр и счётчики привязаны к скроллу, а не к таймеру.",
-    "weaknesses": "Хвост страницы не держит заданный уровень: отзывы двумя колонками с портретами, партнёры, FAQ — обычная корпоративная верстка после кинематографичного пролёта. История заканчивается раньше страницы. Плюс цена входа: 22,5 тыс. px документа и 28 sticky-элементов на GSAP+Lenis — это бюджет, который окупается только если пролёт действительно рассказывает историю.",
-    "shots": {
-      "full": null,
-      "hero": null,
-      "mobile": null,
-      "strip": [],
-      "stripMobile": []
-    },
-    "extras": [],
-    "captureError": "shots pending — the cloud session cannot run a headless browser (its egress gateway refuses CONNECT to every external host) and the copy of playwright in this working tree has no Linux browser binaries. The page was read live in a browser instead, at 1024x768 and 800x863, scrolling by position; the scrub frames in the review sidecar come from that. The auto-capture Action shoots it on push, as it did for pensatori-irrazionali-com.",
-    "agentObservation": "Verified from the page itself, not inferred: gsap 3.15.0, lenis 1.3.23, THREE present, one looping muted background video, 5 canvases, document 22 569 px at 1024 wide. Section heights measured: home-hero 1920 (black), home-intro 1022 (white), home-service 10 213, home-why 5 532 and position:sticky, home-testi 2290, home-partners 1106, home-ins 580, home-faq 506. 28 elements at position sticky or fixed. ScrollTrigger is not exposed on window, so the scrub was read from rendered frames at fixed scroll offsets rather than from its configuration — the frames show the crane lift, the transfer to the chassis, the drive with the ground turned black, and the top-down road band, in that order."
-  },
-  {
-    "id": "coffee-tech-com",
-    "kind": "site",
-    "url": "https://www.coffee-tech.com/",
-    "source": "",
-    "title": "CoffeeTech",
-    "added": "2026-09-20",
-    "rating": 2,
-    "dialectStatus": "unreviewed",
-    "dialects": [],
-    "tags": {
-      "composition": [],
-      "risks": [],
-      "typography": [
-        "grotesque",
-        "big-type"
-      ],
-      "layout": [],
-      "motion": [],
-      "color": [
-        "neutral",
-        "bold-accent"
-      ],
-      "imagery": [
-        "product",
-        "photography"
-      ]
-    },
-    "note": "TODO",
-    "shots": {
-      "full": null,
-      "hero": null,
-      "mobile": null,
-      "strip": [],
-      "stripMobile": []
-    },
-    "extras": [],
-    "captureError": "shots pending, and the live read was only partial. The cloud session cannot run a headless browser (egress gateway refuses CONNECT to every external host) and this working tree has no Linux playwright binaries, so the page was read in a browser on Alex’s machine — but that pane returned stale frames: at scroll offsets where the DOM reports a light section with a running marquee, the screenshot came back as a flat terracotta field, which is the loader colour. The hero and one products/specialty screen were seen properly; the middle of the page was read from the DOM only. The auto-capture Action shoots it on push, and the judgement waits for those shots.",
-    "agentObservation": "Verified from the page itself: Webflow build (page-wrapper, w-dyn-list), gsap present, no canvas and no video, document 5 331 px at 1024 wide, 6 sticky/fixed elements, Inter throughout. Ground is warm light grey rgb(229,226,221) with near-black text rgb(13,14,19) and a terracotta rgb(200,96,61) that is both the loader field and the accent. Hero is dark: a black roasting machine photographed against near-black with \"Coffee Roasting Reinvented\" set large above it. Structure: hero, intro paragraph, a full-width marquee band reading \"Beyond your expectations /\", a four-item product grid (FZ94 Evo, Silon ZR7, Ghibli R90, Lab Extractor) with an oversized \"See all products\" line rule, an Our Specialty row of three image cards (Coffee, Cocoa, Nuts), numbered testimonials (01), an Approach tab set (Technology / Efficiency / Sustainability) and a blog list. A manufacturer site of normal length — not a scroll piece; nothing here was judged."
   }
 ]

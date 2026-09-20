@@ -22,10 +22,35 @@ correct** — that is Alex's review, and the claims below are marked accordingly
 
 | Class | Count | Entry ids |
 |---|---|---|
-| **Usable `in`** (human-set) | **26** | `beings-co` (3) · `ciridae-com` (3) · `ruadh-com` (2) · `electrafilmworks-com` (2) · `thenewmobileworkforce-…-back-at-hq` (2) · `trionn-com` (2) · `kinncollective-co-uk` (2) · `augen-pro` (2) · `i-pinimg-…-46d9d54b` (2) · `organimo-com` (3) · `immersive-g-com` (3) · `rolls-roycemotorcars-…-home-html` (3) · `obys-agency` (2) · `mclaren-com-cars-gl-en` (2) · `semlerpremium-dk-showroom` (3) · `semlerpremium-dk-brands-porsche-911-gt3-…` (3) · `polestar-com-us` (2) · `semlerpremium-dk` (2) · `rimac-automobili-com-nevera` (2) · `oilstainlab-com` (2) · `hispanosuizacars-com` (2) · `morningstar-ventures` (3) · `rekorderstudios-com` (3) · `eco-com` (2) · `mugenstudio-framer-website` (2) · `unitedcarriers-com` (3) |
-| **Usable `out`** | **14** | `rmsothebys-com` (1) · `thegentlewoman-co-uk` (1) · `hbbody-com-en-home` (2) · `rivian-com` (2) · `lapz-io` (3) |
+| **Usable `in`** (human-set) | **27** | `beings-co` (3) · `ciridae-com` (3) · `ruadh-com` (2) · `electrafilmworks-com` (2) · `thenewmobileworkforce-…-back-at-hq` (2) · `trionn-com` (2) · `kinncollective-co-uk` (2) · `augen-pro` (2) · `i-pinimg-…-46d9d54b` (2) · `organimo-com` (3) · `immersive-g-com` (3) · `rolls-roycemotorcars-…-home-html` (3) · `obys-agency` (2) · `mclaren-com-cars-gl-en` (2) · `semlerpremium-dk-showroom` (3) · `semlerpremium-dk-brands-porsche-911-gt3-…` (3) · `polestar-com-us` (2) · `semlerpremium-dk` (2) · `rimac-automobili-com-nevera` (2) · `oilstainlab-com` (2) · `hispanosuizacars-com` (2) · `morningstar-ventures` (3) · `rekorderstudios-com` (3) · `eco-com` (2) · `mugenstudio-framer-website` (2) · `unitedcarriers-com` (3) · `hashgraphvc-com` (3) |
+| **Usable `out`** | **16** | `rmsothebys-com` (1) · `thegentlewoman-co-uk` (1) · `hbbody-com-en-home` (2) · `rivian-com` (2) · `lapz-io` (3) · `collabcapitolium-fr` (3) · `coffee-tech-com` (2) |
 | **Partial / contextual** (`hybrid`) | **2** | `porsche-com-usa` (2) · `pensatori-irrazionali-com` (3) |
-| **Not yet a judgement** (`unreviewed`) | **1** | `coffee-tech-com` (2) — entered 2026-09-20; Alex delegated the judgement, but the live read was partial and the shots had not landed, so it waits rather than carrying an invented verdict. Every other record carries a judgement; ten of those were set by an agent under explicit delegation and are marked `judgementBy`. |
+| **Not yet a judgement** (`unreviewed`) | **0** | — every record carries a judgement again. Thirteen were set by an agent under Alex’s explicit delegation and are marked `judgementBy` in the record, so his hand and the agent’s stay distinguishable. |
+
+> **Four more, 2026-09-20 evening, three of them judged by delegation.** Alex submitted a
+> run of references and said *"sam oceni ja v pechale"* — so `hashgraphvc-com`,
+> `collabcapitolium-fr` and `coffee-tech-com` carry agent judgements, every one marked
+> `judgementBy` and every one reversible by him. His own words survive as **layer** verdicts
+> only: "3d scrolling story" for Hashgraph, and "large images · красивая работа со шрифтом ·
+> академическая композиция" for Capitolium, which are three `Source: Alex` IN rows on
+> imagery, typography and composition.
+>
+> `hashgraphvc-com` **3 / in · immersive-authored-world** — the dialect reaches 7. One
+> symbolic event carries the piece: a glowing shard rises out of deep water and breaks the
+> surface, and the headline only arrives once the scene has already made the point. Cost
+> recorded honestly: full scroll-jacking, an audio gate, a long preloader.
+>
+> `collabcapitolium-fr` **3 / out** — and this is the interesting one. It decides the way a
+> printed book decides: chapters I–III with a fixed chapter plate, photographs set as plates
+> with margins, one dominant per spread, black-and-white used as a tonal level. No stored
+> dialect resolves choices that way, so it is kept as the **first record that would count
+> toward a classical book-editorial dialect**. One record is not a dialect; the threshold in
+> vault/README.md decides.
+>
+> `coffee-tech-com` **2 / out**, judged once the Action's shots existed rather than from the
+> stale frames that blocked it earlier. Kept as a benchmark for **competent-and-unremarkable**:
+> nothing wrong, nothing invented, every move the current Webflow-editorial default.
+> `tags.composition` left empty on purpose — there is no compositional merit to confirm.
 
 > **Two submissions, 2026-09-20 evening.** `unitedcarriers-com` — Alex: *"horoshij site
 > mnogo animacii mne rnavistaja scroo scrub"* and *"ahuenjuj siate s animacijaj i scrollom

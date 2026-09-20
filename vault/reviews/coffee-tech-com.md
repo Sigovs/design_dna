@@ -59,3 +59,33 @@ not directly verify stays out of the table entirely — an empty row is a claim.
 "not sure", "neutral", "not bad", "ни туда ни сюда" are `unreviewed`, never
 forced into IN or OUT. Only `Source: Alex` rows with IN or OUT count as evidence
 in distillation.
+
+---
+
+## 2026-09-20 12:50 · judgement, once the shots existed
+
+The Action captured it (`c6a9f7f`) and the full page was read from `shots/coffee-tech-com/full.jpg`
+rather than from the pane that had been returning stale frames. Judged under the same standing
+delegation, recorded in `judgementBy`.
+
+- `rating` **2** — good · `dialectStatus` **out** · `dialects` empty
+- `note` / `works` / `weaknesses` written
+
+### Layer judgements
+
+| Layer | Observation | Source | Judgement | Evidence limit |
+|---|---|---|---|---|
+| composition | Hero sets the headline in cream Inter at full width over a black roasting machine shot black-on-black, readable by contour and highlight alone. Below: founder portrait with a facsimile signature, a bleeding marquee, a four-item product grid, three specialty cards, a numbered testimonial. | agent | contextual | |
+| typography | Inter only, at display size for the headline, the marquee and the "See all products" rule. Competent, unremarkable. | agent | contextual | |
+| colour | Warm light grey ground, near-black text, terracotta accent — but the terracotta fills the whole screen during the loader and is then reduced to a small accent, so the first frame promises something the page does not keep. | agent | OUT | |
+| imagery | Product renders on white, close-up bean photography, one real portrait. Even in tone, cleanly shot. | agent | IN | |
+| design dialect | Decisions come from the current Webflow-editorial default, not from any stored dialect. | agent | contextual | recorded `out` |
+
+### Why it is kept at 2 and `out`
+
+Nothing here is wrong, and nothing here is invented. Every move — the oversized headline over
+a dark product shot, the bracketed utility labels, the bleeding marquee, the numbered
+testimonial — is today's house style of a whole class of sites. The record earns its place as
+a **benchmark for competent-and-unremarkable**: this is what a careful build looks like when
+no decision is the designer's own. `tags.composition` is deliberately left empty; there is no
+compositional merit here to confirm.

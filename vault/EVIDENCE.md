@@ -22,10 +22,26 @@ correct** — that is Alex's review, and the claims below are marked accordingly
 
 | Class | Count | Entry ids |
 |---|---|---|
-| **Usable `in`** (human-set) | **25** | `beings-co` (3) · `ciridae-com` (3) · `ruadh-com` (2) · `electrafilmworks-com` (2) · `thenewmobileworkforce-…-back-at-hq` (2) · `trionn-com` (2) · `kinncollective-co-uk` (2) · `augen-pro` (2) · `i-pinimg-…-46d9d54b` (2) · `organimo-com` (3) · `immersive-g-com` (3) · `rolls-roycemotorcars-…-home-html` (3) · `obys-agency` (2) · `mclaren-com-cars-gl-en` (2) · `semlerpremium-dk-showroom` (3) · `semlerpremium-dk-brands-porsche-911-gt3-…` (3) · `polestar-com-us` (2) · `semlerpremium-dk` (2) · `rimac-automobili-com-nevera` (2) · `oilstainlab-com` (2) · `hispanosuizacars-com` (2) · `morningstar-ventures` (3) · `rekorderstudios-com` (3) · `eco-com` (2) · `mugenstudio-framer-website` (2) |
+| **Usable `in`** (human-set) | **26** | `beings-co` (3) · `ciridae-com` (3) · `ruadh-com` (2) · `electrafilmworks-com` (2) · `thenewmobileworkforce-…-back-at-hq` (2) · `trionn-com` (2) · `kinncollective-co-uk` (2) · `augen-pro` (2) · `i-pinimg-…-46d9d54b` (2) · `organimo-com` (3) · `immersive-g-com` (3) · `rolls-roycemotorcars-…-home-html` (3) · `obys-agency` (2) · `mclaren-com-cars-gl-en` (2) · `semlerpremium-dk-showroom` (3) · `semlerpremium-dk-brands-porsche-911-gt3-…` (3) · `polestar-com-us` (2) · `semlerpremium-dk` (2) · `rimac-automobili-com-nevera` (2) · `oilstainlab-com` (2) · `hispanosuizacars-com` (2) · `morningstar-ventures` (3) · `rekorderstudios-com` (3) · `eco-com` (2) · `mugenstudio-framer-website` (2) · `unitedcarriers-com` (3) |
 | **Usable `out`** | **14** | `rmsothebys-com` (1) · `thegentlewoman-co-uk` (1) · `hbbody-com-en-home` (2) · `rivian-com` (2) · `lapz-io` (3) |
 | **Partial / contextual** (`hybrid`) | **2** | `porsche-com-usa` (2) · `pensatori-irrazionali-com` (3) |
-| **Not yet a judgement** (`unreviewed`) | **0** | — every record carries a judgement again. Ten of them were set by an agent under Alex’s explicit delegation — nine on 2026-08-31, one on 2026-09-20 — and are marked `judgementBy` in the record, so his hand and the agent’s stay distinguishable. |
+| **Not yet a judgement** (`unreviewed`) | **1** | `coffee-tech-com` (2) — entered 2026-09-20; Alex delegated the judgement, but the live read was partial and the shots had not landed, so it waits rather than carrying an invented verdict. Every other record carries a judgement; ten of those were set by an agent under explicit delegation and are marked `judgementBy`. |
+
+> **Two submissions, 2026-09-20 evening.** `unitedcarriers-com` — Alex: *"horoshij site
+> mnogo animacii mne rnavistaja scroo scrub"* and *"ahuenjuj siate s animacijaj i scrollom
+> story telling"*, both about the same page. **rating 3**, and he chose **in ·
+> immersive-authored-world** when asked, which takes that dialect to 6 `in` records. No
+> `judgementBy`: this one is his. What it is kept for — **scroll as the process itself**:
+> one container is lifted, transferred to a chassis and driven, across two pinned runs that
+> are about 70% of the document, and once the camera goes top-down the road runs along the
+> scroll axis so that scrolling *is* the cargo moving. Recorded weakness, and the reason for
+> `narrative-dilution-risk`: the story ends before the page does, and the tail returns to
+> ordinary corporate layout.
+>
+> `coffee-tech-com` entered the same evening and is **deliberately left unreviewed**. Alex
+> delegated it — *"sam oceni"* — but the browser pane returned stale frames for the middle of
+> the page, and a verdict written from frames that never rendered is the failure the review
+> file exists to prevent. It waits for the Action's shots.
 
 > **Judged by delegation, 2026-09-20 — and `unreviewed` returns to zero the same day it
 > appeared.** `pensatori-irrazionali-com` entered in the morning from a bare URL, with no

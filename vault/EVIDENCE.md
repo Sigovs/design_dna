@@ -23,9 +23,9 @@ correct** — that is Alex's review, and the claims below are marked accordingly
 | Class | Count | Entry ids |
 |---|---|---|
 | **Usable `in`** (human-set) | **27** | `beings-co` (3) · `ciridae-com` (3) · `ruadh-com` (2) · `electrafilmworks-com` (2) · `thenewmobileworkforce-…-back-at-hq` (2) · `trionn-com` (2) · `kinncollective-co-uk` (2) · `augen-pro` (2) · `i-pinimg-…-46d9d54b` (2) · `organimo-com` (3) · `immersive-g-com` (3) · `rolls-roycemotorcars-…-home-html` (3) · `obys-agency` (2) · `mclaren-com-cars-gl-en` (2) · `semlerpremium-dk-showroom` (3) · `semlerpremium-dk-brands-porsche-911-gt3-…` (3) · `polestar-com-us` (2) · `semlerpremium-dk` (2) · `rimac-automobili-com-nevera` (2) · `oilstainlab-com` (2) · `hispanosuizacars-com` (2) · `morningstar-ventures` (3) · `rekorderstudios-com` (3) · `eco-com` (2) · `mugenstudio-framer-website` (2) · `unitedcarriers-com` (3) · `hashgraphvc-com` (3) |
-| **Usable `out`** | **16** | `rmsothebys-com` (1) · `thegentlewoman-co-uk` (1) · `hbbody-com-en-home` (2) · `rivian-com` (2) · `lapz-io` (3) · `collabcapitolium-fr` (3) · `coffee-tech-com` (2) |
+| **Usable `out`** | **7** | `rmsothebys-com` (1) · `thegentlewoman-co-uk` (1) · `hbbody-com-en-home` (2) · `rivian-com` (2) · `lapz-io` (3) · `collabcapitolium-fr` (3) · `coffee-tech-com` (2) |
 | **Partial / contextual** (`hybrid`) | **2** | `porsche-com-usa` (2) · `pensatori-irrazionali-com` (3) |
-| **Not yet a judgement** (`unreviewed`) | **0** | — every record carries a judgement again. Thirteen were set by an agent under Alex’s explicit delegation and are marked `judgementBy` in the record, so his hand and the agent’s stay distinguishable. |
+| **Not yet a judgement** (`unreviewed`) | **0** | — every record carries a judgement again. Four were set by an agent under Alex’s explicit delegation and are marked `judgementBy` in the record, so his hand and the agent’s stay distinguishable. |
 
 > **Four more, 2026-09-20 evening, three of them judged by delegation.** Alex submitted a
 > run of references and said *"sam oceni ja v pechale"* — so `hashgraphvc-com`,
@@ -106,6 +106,15 @@ correct** — that is Alex's review, and the claims below are marked accordingly
 > calls the most valuable kind and the only raw material a new dialect can be built
 > from. That is the honest classification: the mode they describe matches none of
 > the ten.
+>
+> **Removed 2026-09-20, at Alex’s call.** The nine records carried an observation and
+> no evidence: the spreads were pasted into a conversation and never written to
+> disk, so `shots` stayed `null` and the gallery showed nine “capture failed” tiles
+> with nothing behind them. Alex, shown this: *"ubiraj naher"*. Nothing in the
+> synthesis below cites them, and every claim they would have supported was already
+> carried by site records — so the distillation is unchanged. The entries, their
+> review files and their agent judgements remain in git history (commit `9cec3a9`
+> and after) should the scans ever turn up.
 >
 > **The original reasoning for holding them back still stands and is kept below.** `rating`, `dialectStatus` and `note` are his,
 > and enthusiasm expressed in conversation — *"вот это класс"*, *"прям балдёж"* —

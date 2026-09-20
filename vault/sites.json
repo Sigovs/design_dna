@@ -62,6 +62,135 @@
     "judgementBy": "agent, under Alex’s delegation 2026-09-20 (\"sam oceni ja v pechale\") — the reading, the rating and the status are the agent’s, not his, and he can overturn any of them"
   },
   {
+    "id": "collabcapitolium-fr",
+    "kind": "site",
+    "url": "https://www.collabcapitolium.fr/",
+    "source": "",
+    "title": "Capitolium — TéFéCé x Stade Toulousain",
+    "added": "2026-09-20",
+    "rating": 3,
+    "dialectStatus": "out",
+    "dialects": [],
+    "tags": {
+      "composition": [
+        "dominant-mass",
+        "optical-balance",
+        "tonal-structure",
+        "intentional-crop",
+        "rhythm-variation"
+      ],
+      "risks": [],
+      "typography": [
+        "display-serif",
+        "editorial",
+        "big-type"
+      ],
+      "layout": [
+        "air",
+        "strict-grid"
+      ],
+      "motion": [],
+      "color": [
+        "neutral",
+        "bold-accent"
+      ],
+      "imagery": [
+        "photography",
+        "art-direction"
+      ]
+    },
+    "note": "Страница построена как книга, а не как лендинг. Главы I, II, III, в нижнем центре постоянная табличка в рамке «CHAPITRE N», и каждая глава открывается полнокадровой фотографией с золотым «CAPITOLIUM» антиквой поверх и рукописным словом, наполовину уходящим за край.\n\nКомпозиция академическая в прямом смысле: кадры стоят как вклейки — с полями, рамками и линейками, а не встык; портрет игрока на расписной лестнице Капитолия слева, разворот арок справа, между ними текстовый блок кремовой карточкой с выключенным по формату столбцом. Поля работают как часть композиции, а не как отступ. Часть фотографий переведена в чёрно-белое — тон становится структурой, а не украшением.\n\nДва клубных герба поставлены в триптих через знак «=» — вся идея коллаборации сказана одним разворотом, без слов.\n\nШрифты: Gin (дисплейная антиква), Times в корпусе, Edwardian Script для подписи «Qui se Ressemble, Rassemble», Rubik на служебном. Палитра — кремовый rgb(240,227,207) и золото rgb(195,166,119). Документ 64 466 px, 84 изображения, 11 видео, GSAP + Lenis.",
+    "works": "Книжная структура вместо секций: главы с нумерацией, постоянный маркер главы, одна доминанта на разворот. Кадр как вклейка — поля и рамка входят в композицию. Чёрно-белое как тональный уровень, а не как приём. Один разворот вместо абзаца: два герба и знак равенства объясняют коллаборацию быстрее любого текста. Сочетание дисплейной антиквы, каллиграфии и гротеска разведено по ролям и ни разу не перепутано.",
+    "weaknesses": "Цена входа: 64 тыс. px, 84 изображения и 11 видео — это кампанейский сайт с коротким сроком жизни, и переносить такую плотность на что-то, что должно жить годами и обновляться, нельзя. Вход закрыт баннером кук и гейтом «ENTRER» до первого кадра. Выключка по формату в узкой колонке местами рвёт межсловные пробелы. Мобильная раскладка не проверена.",
+    "shots": {
+      "full": "shots/collabcapitolium-fr/full.jpg",
+      "hero": "shots/collabcapitolium-fr/hero.jpg",
+      "mobile": "shots/collabcapitolium-fr/mobile.jpg",
+      "strip": [
+        "shots/collabcapitolium-fr/strip-1.jpg",
+        "shots/collabcapitolium-fr/strip-2.jpg",
+        "shots/collabcapitolium-fr/strip-3.jpg",
+        "shots/collabcapitolium-fr/strip-4.jpg",
+        "shots/collabcapitolium-fr/strip-5.jpg",
+        "shots/collabcapitolium-fr/strip-6.jpg",
+        "shots/collabcapitolium-fr/strip-7.jpg",
+        "shots/collabcapitolium-fr/strip-8.jpg"
+      ],
+      "stripMobile": [
+        "shots/collabcapitolium-fr/strip-m-1.jpg",
+        "shots/collabcapitolium-fr/strip-m-2.jpg",
+        "shots/collabcapitolium-fr/strip-m-3.jpg",
+        "shots/collabcapitolium-fr/strip-m-4.jpg",
+        "shots/collabcapitolium-fr/strip-m-5.jpg",
+        "shots/collabcapitolium-fr/strip-m-6.jpg"
+      ],
+      "navScrolled": null
+    },
+    "extras": [],
+    "captureError": "partial evidence — 3 canvas element(s) — motion and WebGL state are not preserved by a static shot",
+    "agentObservation": "Verified: document 64 466 px at 1280 wide, 84 img elements, 11 video elements, 3 canvases, gsap and lenis present. Body background rgb(240,227,207), body colour rgb(195,166,119). Font families in use: Gin (display serif), Times, Edwardian Script, Rubik. Title reads \"Capitolium | TéFéCé x Stade Toulousain\" — a Nike collaboration between the Toulouse football and rugby clubs. Chapter plate observed at chapters I, II and III; chapter openers place the wordmark over full-bleed photography of the Capitole.",
+    "judgementBy": "agent, under Alex’s delegation 2026-09-20 (\"sam oceni ja v pechale\") — the reading, the rating and the status are the agent’s, not his, and he can overturn any of them"
+  },
+  {
+    "id": "hashgraphvc-com",
+    "kind": "site",
+    "url": "https://hashgraphvc.com/",
+    "source": "",
+    "title": "Hashgraph Ventures",
+    "added": "2026-09-20",
+    "rating": 3,
+    "dialectStatus": "in",
+    "dialects": [
+      "immersive-authored-world"
+    ],
+    "tags": {
+      "composition": [
+        "dominant-mass",
+        "visual-silence",
+        "concept-led-interface"
+      ],
+      "risks": [],
+      "typography": [
+        "grotesque",
+        "big-type"
+      ],
+      "layout": [
+        "bleed"
+      ],
+      "motion": [
+        "scroll-scrub",
+        "state-transition",
+        "parallax"
+      ],
+      "color": [
+        "dark",
+        "monochrome"
+      ],
+      "imagery": [
+        "art-direction"
+      ]
+    },
+    "note": "Скролл не листает страницу — он ведёт камеру. Документ всё время ровно в высоту окна (720 px при 720 px вьюпорта), обычной прокрутки нет вообще: колесо двигает 3D-сцену.\n\nИстория: тёмное ночное море, вдали в глубине загорается точка, всплывает светящийся осколок — тот самый треугольник из логотипа, — выходит над водой и зависает; только тогда снизу слева проявляется «THE NEXT WAVE OF VENTURE CAPITAL». Дальше камера уходит под воду: лучи сверху, взвесь, дрейфующие обломки, столб пузырей. В глубине разделы — портреты команды собраны из тех же частиц, что и вода.\n\nВход через гейт: «ENTER WITH AUDIO / ENTER WITHOUT AUDIO». Звук заявлен частью работы, а не украшением. Три шрифта — Parabole, Neue Montreal и собственный Hashgraph; текста мало, он появляется только там, где сцена остановилась.\n\nТехника: Three.js + GSAP + Lenis, фон rgb(0,2,9), зерно поверх всего кадра.",
+    "works": "Одно символическое событие на всю работу: объект поднимается из глубины и выходит на поверхность — это и есть тезис фонда, произнесённый без слов. Заголовок появляется только после того, как сцена его заслужила. Свет как единственный источник иерархии в почти чёрном кадре. Портреты команды из той же материи, что и среда, — мир не распадается на «сцену» и «контент». Пауза как часть ритма: между событиями долгие спокойные кадры.",
+    "weaknesses": "Полный scroll-jacking: документ никогда не выше вьюпорта, позиции в странице нет, поделиться местом в истории нельзя, поиск по странице бесполезен. Вход стоит дорого — длинный прелоадер плюс гейт с выбором звука до того, как показано хоть что-то. Содержание фонда (портфель, команда) выдаётся медленно и только тем, кто досмотрел. На слабой машине это всё окажется дороже, чем стоит сам текст, который в итоге сообщают.",
+    "shots": {
+      "full": "shots/hashgraphvc-com/full.jpg",
+      "hero": "shots/hashgraphvc-com/hero.jpg",
+      "mobile": "shots/hashgraphvc-com/mobile.jpg",
+      "strip": [
+        "shots/hashgraphvc-com/strip-1.jpg"
+      ],
+      "stripMobile": [
+        "shots/hashgraphvc-com/strip-m-1.jpg"
+      ],
+      "navScrolled": null
+    },
+    "extras": [],
+    "captureError": "partial evidence — 2 canvas element(s) — motion and WebGL state are not preserved by a static shot",
+    "agentObservation": "Verified: THREE, gsap and lenis present, 2 canvases, 14 sticky/fixed elements, document height equals viewport height at every scroll position — no document scroll at all. Fonts ParaboleWeb, NeueMontrealWeb, HashgraphWeb. Background rgb(0,2,9). Entry gate offers audio on or off; a sound toggle stays in the top right afterwards. Sections are numbered — \"(03) TEAM\" sits bottom-left in the deep-water chapter — and team members are paged with prev/next controls rather than listed.",
+    "judgementBy": "agent, under Alex’s delegation 2026-09-20 (\"sam oceni ja v pechale\") — the reading, the rating and the status are the agent’s, not his, and he can overturn any of them"
+  },
+  {
     "id": "pensatori-irrazionali-com",
     "kind": "site",
     "url": "https://pensatori-irrazionali.com/",
@@ -2594,112 +2723,5 @@
     "works": "Worth stealing: (1) the footer caption is the only sentence on the page and it carries the entire editorial message, sitting on a hairline rule with the pagination at the far right — metadata as composition; (2) the photography is black-and-white, which is what lets a single saturated accent work without the page becoming about colour.",
     "weaknesses": "As a website, the project fails. The desktop navigation is ugly, the footer is unresolved, and the initial visual idea never develops into a coherent web experience. One decent cover does not make this a design reference.",
     "unsorted": []
-  },
-  {
-    "id": "hashgraphvc-com",
-    "kind": "site",
-    "url": "https://hashgraphvc.com/",
-    "source": "",
-    "title": "Hashgraph Ventures",
-    "added": "2026-09-20",
-    "rating": 3,
-    "dialectStatus": "in",
-    "dialects": [
-      "immersive-authored-world"
-    ],
-    "tags": {
-      "composition": [
-        "dominant-mass",
-        "visual-silence",
-        "concept-led-interface"
-      ],
-      "risks": [],
-      "typography": [
-        "grotesque",
-        "big-type"
-      ],
-      "layout": [
-        "bleed"
-      ],
-      "motion": [
-        "scroll-scrub",
-        "state-transition",
-        "parallax"
-      ],
-      "color": [
-        "dark",
-        "monochrome"
-      ],
-      "imagery": [
-        "art-direction"
-      ]
-    },
-    "note": "Скролл не листает страницу — он ведёт камеру. Документ всё время ровно в высоту окна (720 px при 720 px вьюпорта), обычной прокрутки нет вообще: колесо двигает 3D-сцену.\n\nИстория: тёмное ночное море, вдали в глубине загорается точка, всплывает светящийся осколок — тот самый треугольник из логотипа, — выходит над водой и зависает; только тогда снизу слева проявляется «THE NEXT WAVE OF VENTURE CAPITAL». Дальше камера уходит под воду: лучи сверху, взвесь, дрейфующие обломки, столб пузырей. В глубине разделы — портреты команды собраны из тех же частиц, что и вода.\n\nВход через гейт: «ENTER WITH AUDIO / ENTER WITHOUT AUDIO». Звук заявлен частью работы, а не украшением. Три шрифта — Parabole, Neue Montreal и собственный Hashgraph; текста мало, он появляется только там, где сцена остановилась.\n\nТехника: Three.js + GSAP + Lenis, фон rgb(0,2,9), зерно поверх всего кадра.",
-    "works": "Одно символическое событие на всю работу: объект поднимается из глубины и выходит на поверхность — это и есть тезис фонда, произнесённый без слов. Заголовок появляется только после того, как сцена его заслужила. Свет как единственный источник иерархии в почти чёрном кадре. Портреты команды из той же материи, что и среда, — мир не распадается на «сцену» и «контент». Пауза как часть ритма: между событиями долгие спокойные кадры.",
-    "weaknesses": "Полный scroll-jacking: документ никогда не выше вьюпорта, позиции в странице нет, поделиться местом в истории нельзя, поиск по странице бесполезен. Вход стоит дорого — длинный прелоадер плюс гейт с выбором звука до того, как показано хоть что-то. Содержание фонда (портфель, команда) выдаётся медленно и только тем, кто досмотрел. На слабой машине это всё окажется дороже, чем стоит сам текст, который в итоге сообщают.",
-    "shots": {
-      "full": null,
-      "hero": null,
-      "mobile": null,
-      "strip": [],
-      "stripMobile": []
-    },
-    "extras": [],
-    "captureError": "shots pending. The page is gated: a preloader, then \"ENTER WITH AUDIO / ENTER WITHOUT AUDIO\". capture.mjs may click one whitelisted control, and \"enter\" is on that list, so the Action should get past it — but the document never exceeds the viewport (720px at a 720px viewport), so a full-page shot cannot hold the piece and the filmstrip will only sample whatever scroll positions the tool visits. Read live in a browser instead, entering without audio and advancing by wheel; the frames in the review sidecar come from that.",
-    "agentObservation": "Verified: THREE, gsap and lenis present, 2 canvases, 14 sticky/fixed elements, document height equals viewport height at every scroll position — no document scroll at all. Fonts ParaboleWeb, NeueMontrealWeb, HashgraphWeb. Background rgb(0,2,9). Entry gate offers audio on or off; a sound toggle stays in the top right afterwards. Sections are numbered — \"(03) TEAM\" sits bottom-left in the deep-water chapter — and team members are paged with prev/next controls rather than listed.",
-    "judgementBy": "agent, under Alex’s delegation 2026-09-20 (\"sam oceni ja v pechale\") — the reading, the rating and the status are the agent’s, not his, and he can overturn any of them"
-  },
-  {
-    "id": "collabcapitolium-fr",
-    "kind": "site",
-    "url": "https://www.collabcapitolium.fr/",
-    "source": "",
-    "title": "Capitolium — TéFéCé x Stade Toulousain",
-    "added": "2026-09-20",
-    "rating": 3,
-    "dialectStatus": "out",
-    "dialects": [],
-    "tags": {
-      "composition": [
-        "dominant-mass",
-        "optical-balance",
-        "tonal-structure",
-        "intentional-crop",
-        "rhythm-variation"
-      ],
-      "risks": [],
-      "typography": [
-        "display-serif",
-        "editorial",
-        "big-type"
-      ],
-      "layout": [
-        "air",
-        "strict-grid"
-      ],
-      "motion": [],
-      "color": [
-        "neutral",
-        "bold-accent"
-      ],
-      "imagery": [
-        "photography",
-        "art-direction"
-      ]
-    },
-    "note": "Страница построена как книга, а не как лендинг. Главы I, II, III, в нижнем центре постоянная табличка в рамке «CHAPITRE N», и каждая глава открывается полнокадровой фотографией с золотым «CAPITOLIUM» антиквой поверх и рукописным словом, наполовину уходящим за край.\n\nКомпозиция академическая в прямом смысле: кадры стоят как вклейки — с полями, рамками и линейками, а не встык; портрет игрока на расписной лестнице Капитолия слева, разворот арок справа, между ними текстовый блок кремовой карточкой с выключенным по формату столбцом. Поля работают как часть композиции, а не как отступ. Часть фотографий переведена в чёрно-белое — тон становится структурой, а не украшением.\n\nДва клубных герба поставлены в триптих через знак «=» — вся идея коллаборации сказана одним разворотом, без слов.\n\nШрифты: Gin (дисплейная антиква), Times в корпусе, Edwardian Script для подписи «Qui se Ressemble, Rassemble», Rubik на служебном. Палитра — кремовый rgb(240,227,207) и золото rgb(195,166,119). Документ 64 466 px, 84 изображения, 11 видео, GSAP + Lenis.",
-    "works": "Книжная структура вместо секций: главы с нумерацией, постоянный маркер главы, одна доминанта на разворот. Кадр как вклейка — поля и рамка входят в композицию. Чёрно-белое как тональный уровень, а не как приём. Один разворот вместо абзаца: два герба и знак равенства объясняют коллаборацию быстрее любого текста. Сочетание дисплейной антиквы, каллиграфии и гротеска разведено по ролям и ни разу не перепутано.",
-    "weaknesses": "Цена входа: 64 тыс. px, 84 изображения и 11 видео — это кампанейский сайт с коротким сроком жизни, и переносить такую плотность на что-то, что должно жить годами и обновляться, нельзя. Вход закрыт баннером кук и гейтом «ENTRER» до первого кадра. Выключка по формату в узкой колонке местами рвёт межсловные пробелы. Мобильная раскладка не проверена.",
-    "shots": {
-      "full": null,
-      "hero": null,
-      "mobile": null,
-      "strip": [],
-      "stripMobile": []
-    },
-    "extras": [],
-    "captureError": "shots pending. Two gates before content: a French cookie banner (declined — non-essential refused) and an \"ENTRER\" splash. capture.mjs may click one whitelisted control per visit, and the whitelist covers \"enter\" but the banner may consume that one click, so the capture may stop at the splash — check the shots when they land. Read live in a browser instead, past both gates.",
-    "agentObservation": "Verified: document 64 466 px at 1280 wide, 84 img elements, 11 video elements, 3 canvases, gsap and lenis present. Body background rgb(240,227,207), body colour rgb(195,166,119). Font families in use: Gin (display serif), Times, Edwardian Script, Rubik. Title reads \"Capitolium | TéFéCé x Stade Toulousain\" — a Nike collaboration between the Toulouse football and rugby clubs. Chapter plate observed at chapters I, II and III; chapter openers place the wordmark over full-bleed photography of the Capitole.",
-    "judgementBy": "agent, under Alex’s delegation 2026-09-20 (\"sam oceni ja v pechale\") — the reading, the rating and the status are the agent’s, not his, and he can overturn any of them"
   }
 ]

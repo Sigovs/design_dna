@@ -32,3 +32,4 @@ dependency nobody decided to take.
 | | what it is | licence | vendored |
 |---|---|---|---|
 | [scrollcraft](scrollcraft/) | a Claude Code skill that builds scroll-driven pages against a stated design floor — ten device families, a variety rule, a fingerprint gate, and a verification harness that screenshots its own scroll | MIT | 2026-08-26 |
+| [posthuman-explorer-chat](posthuman-explorer-chat/) | a ChatGPT conversation from 2026-09-06 surveying the nexu-io toolchain and drafting `GDBURO_PRODUCTION_PIPELINE.md`; kept as text, the page export was not committed | Alex’s own | 2026-09-21 |

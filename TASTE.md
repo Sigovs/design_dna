@@ -723,7 +723,7 @@ MOTION READ runs after the Composition Read and Plan, because time is scheduled
 against a structure that already exists.
 
 **Instrumental skills sit outside this table, and outside both tiers.**
-[gsap-implementation](skills/gsap-implementation/SKILL.md) is one of two. `G1`–`G8`
+[gsap-implementation](skills/gsap-implementation/SKILL.md) is one of three. `G1`–`G8`
 are engineering contracts on how a motion system is built and how it fails — context
 and teardown, scoped selectors, timeline membership, token governance, `matchMedia`
 branching, property ownership and overwrite, progressive enhancement over visible
@@ -733,13 +733,39 @@ presence: it loads only after `motion-judgment` has approved a role and the regi
 is set, and its most common correct output is *no GSAP*. Nothing in it may appear in
 a report as the reason for a design decision — a tool is never a direction (§2).
 
-[scroll-site](skills/scroll-site/SKILL.md) is the other, and it is a procedure rather
+[scroll-site](skills/scroll-site/SKILL.md) is the second, and it is a procedure rather
 than a contract: it resolves the system, names the four-plugin stack as reference
 material that binds nothing, scaffolds the project, and holds the concept gate shut
 until `BRIEF.md` exists — the feeling curve, the peak, the grammar, the signature
 move, the shot list, the budget. It carries no rule identifiers of its own for the
 same reason the entry point does not: giving a loader taste would put taste in two
 places at once.
+
+[motion-framer](skills/motion-framer/SKILL.md) is the third, and it is **vendored,
+not authored** — third-party documentation for Motion / Framer Motion, kept
+verbatim so it can be re-synced from upstream. It stands in the same relation to
+`motion-judgment` that `gsap-implementation` does: it describes how a declarative
+animation system is written, never whether one is wanted. **It loads only after a
+motion role has been approved and the project is actually React** — every example
+in it is JSX, so on a build-free or vanilla project it is the wrong instrument and
+reaching for it is how a static page acquires a framework nobody asked for.
+
+Two things about it are known to collide with this repo and are recorded here
+rather than edited into the file, because the file is upstream's:
+
+- **Its reduced-motion pattern is `transition: { duration: 0 }`**, which snaps
+  rather than arrives. That is not a designed static path and does not satisfy
+  [motion-taste](skills/motion-taste/SKILL.md#invariant). Author the still state;
+  `useReducedMotion` selects it, it does not excuse its absence.
+- **Its `description` triggers broadly** — "micro-interactions, page transitions,
+  hover effects" — which would put a library in front of the MOTION READ. The
+  order in §3 is unchanged by its presence: `motion-judgment` decides, `motion-taste`
+  sets the character, and only then does any implementation skill load.
+
+Its bundled `scripts/` are boilerplate generators (`argparse` only, they write to a
+path you pass them) and its `assets/starter_motion/` is a Vite template. Its
+SKILL.md advertises `references/variants_patterns.md` and `references/gesture_guide.md`;
+**upstream ships neither** — only `api_reference.md` exists.
 
 ---
 

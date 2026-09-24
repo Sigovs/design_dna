@@ -26,6 +26,9 @@ Thumbs.db
 # local agent config (not part of the taste system) — with one exception below.
 # .claude/rules/ IS part of the standard: the build rules have to survive a clone,
 # and a design DNA that only exists on one machine is not a design DNA.
+# `!.claude/` undoes the global ignore (~/.gitignore_global has `.claude/`), which
+# otherwise hides the whole folder and silently defeats the exception below.
+!.claude/
 .claude/*
 !.claude/rules/
 

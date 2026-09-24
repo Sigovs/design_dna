@@ -66,7 +66,7 @@ plain copied folder is a snapshot, and the skill is told to skip it.
 ```
 design_dna/
 ├── CLAUDE.md · AGENTS.md           # working style, mirrored verbatim — and the DESIGN DNA pointer
-├── .claude/rules/design-dna.md     # the build standard — DNA1–DNA89, the cinematic / 3D execution layer
+├── .claude/rules/design-dna.md     # the build standard — DNA1–DNA94, the cinematic / 3D execution layer
 ├── TASTE.md                        # the manifest — agents read this first
 ├── PROCESS.md                      # how a project runs — hero-first, and the two steps that get skipped
 ├── skills/                         # each split INVARIANT / DIALECT

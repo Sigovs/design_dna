@@ -21,7 +21,7 @@ yields **out loud**, in the report.
 |---|---|---|
 | 1 | **Truth and access** — never yields to anything | `color I1` `I2` `I3` `I6` · `CP1`–`CP7` · `GI3` · `DM4` `DM5` · `U6` `U7` `U12` |
 | 2 | **`TASTE.md` + the INVARIANT tier of `skills/`** | `C1`–`C22` · `I1`–`I10` · `DM1`–`DM10` · `MJ1`–`MJ11` · `U1`–`U19` · `G1`–`G8` |
-| 3 | **This file** — `DNA1`–`DNA89`, the build standard | camera language, shot list, lighting, annotation craft |
+| 3 | **This file** — `DNA1`–`DNA94`, the build standard | camera language, shot list, lighting, annotation craft |
 | 4 | **The selected dialect's DIALECT tier** | `auction-editorial` · `cinematic-industrial` · `immersive-authored-world` |
 | 5 | **Plugins and `external/`** — reference only, binds nothing | `frontend-design` · Scrollcraft · `threejs-webgl` · `gsap-scrolltrigger` |
 
@@ -288,7 +288,7 @@ scrubbed sequence becomes a composed still, not a blank frame. Meaning survives.
 
 ---
 
-## 13. GSAP / ScrollTrigger usage
+## 13. GSAP / ScrollTrigger / Lenis usage
 
 `skills/gsap-implementation` (`G1`–`G8`) is authoritative here and is loaded **after**
 motion has an approved role. It cannot authorize motion, and neither can this
@@ -310,6 +310,28 @@ document-global selector is a defect even when it works.
 **`DNA48` — `scrub` is a decision, not a decoration.** A number (≈0.5–1) is lag with
 weight; `true` is exact. Snap only where the content genuinely has discrete states,
 never to hide an unresolved layout.
+
+**`DNA90` — Lenis ships on every project.** Every page, scroll-led or not, runs
+Lenis as its scroll layer. This is Alex's standing instruction, not a per-project
+choice: it is not argued in the report, and it is not left out because a page is
+short or static. It is a stack decision, never an aesthetic one, so it lives here
+and never in `TASTE.md`. **It goes in with the first build**, before any sticky,
+pinned or scroll-linked section is tuned — tuning against native wheel steps and
+adding Lenis afterwards means tuning twice. The contract it ships under:
+
+- **Reduced motion turns it off.** Under `prefers-reduced-motion: reduce`, Lenis
+  is not constructed and the page scrolls natively (`DM4`, `MJ9`, motion `I1`).
+- **The visitor keeps the transport (`MJ6`).** `anchors: true`, keyboard and
+  focus scrolling intact, and every nested scroller (a modal, a drawer, a table)
+  marked `data-lenis-prevent` or covered by `allowNestedScroll`.
+- **One loop.** With GSAP on the page, Lenis runs on `gsap.ticker` with
+  `autoRaf: false` and feeds `ScrollTrigger.update` (`scroll-site` Step 2b).
+  Without GSAP, `autoRaf: true`. Never beside `ScrollSmoother`, and never beside
+  Locomotive Scroll — whose one allowed case replaces Lenis (`DNA91`).
+- **Its stylesheet ships with it** (`lenis/dist/lenis.css`), and it is destroyed
+  on route unmount (`G1`).
+- **Verification scrolls through it:** `lenis.scrollTo(y, { immediate: true })`,
+  never `window.scrollTo`.
 
 ---
 
@@ -406,6 +428,14 @@ background alternates without a reason reads as sections pasted together.
 **`DNA66` — Route transitions clean up after themselves (`G1`)**: triggers killed,
 scroll position restored, and no transition long enough to hide a failed load.
 
+**`DNA92` — A route transition is a real page change.** `<title>`, meta and the
+canonical update with the route; focus moves to the new page's first heading or
+main landmark, and the change is announced (`color I3`, `U12`). The incoming page
+holds its initial state until its entrance begins — no flash of the final frame —
+and during a crossfade both containers are taken out of flow so neither shifts the
+layout. Under reduced motion the transition is an instant swap with the same focus
+and head handling.
+
 ---
 
 ## 18. Responsive behaviour
@@ -443,6 +473,22 @@ headline is HTML text, present in the document, styled to its final size.
 
 **`DNA75` — The loop stops when nothing is watching.** Pause on hidden tab and when
 the canvas is offscreen; dispose geometries, materials and textures on unmount.
+
+**`DNA93` — 3D assets are budgeted like images, per role.** Geometry ships
+compressed (Draco or meshopt), textures ship GPU-compressed (KTX2 / Basis), and
+occlusion, roughness and metalness are packed into one ORM map. Texture size
+follows the object's role, not its source: background 512, standard 1024, hero
+2048 — and 2048 only when the shot actually reaches macro distance (`DNA50`).
+Texture memory stays near 100–150 MB on desktop and 30–50 MB on mobile; the hero
+triangle count is stated in the budget (`DNA72`), not discovered in the profiler.
+Colour textures are sRGB, data textures linear (`DNA56`), normal maps OpenGL Y+.
+
+**`DNA94` — Embedded animation files obey the same loop rules as the canvas.**
+Lottie, Rive, video loops and R3F scenes load when they approach the viewport,
+pause offscreen and on a hidden tab, and are destroyed on unmount (`DNA75`, `G1`).
+R3F renders on demand (`frameloop="demand"`) unless the scene is genuinely moving.
+Lottie ships as dotLottie, on the canvas renderer when it is large. Under reduced
+motion each one shows an authored still, never its first or a blank frame (`DM4`).
 
 **`DNA76` — DOM animation is transform and opacity only** (motion `I4`). Nothing
 animates a property that triggers layout.
@@ -491,6 +537,34 @@ has already scrolled past once.
 **`DNA85` — Judging against the wrong thing.** Comparing the build to the previous
 build instead of to the reference is how a page drifts a long way from its concept
 while every individual step looks like an improvement.
+
+**`DNA91` — Off-default libraries, and the only case each one is allowed.** These
+are not part of the stack. Each may appear only in the case named here, the report
+names the case in one line, and no case waives a layer-1 floor. Outside its case
+the library is a `DNA82` item.
+
+- **AOS / scroll-reveal libraries** — only where the stack cannot take a build
+  step or GSAP (a CMS or page builder, a client-hosted template). One reveal
+  pattern for the whole page, with a declared role (`MJ1`), `once: true`, off
+  under reduced motion, and content visible when the script never runs (`DNA39`)
+  — AOS hides content in CSS by default, so that default is overridden. Where
+  scroll-driven CSS is available it wins (`DNA45`).
+- **Magic UI / React Bits** — only on a React project, only for the *mechanism*
+  of one component the page genuinely needs, and only after it is rebuilt on the
+  project's tokens (motion `I3`, `G4`) so nothing of the library's look survives.
+  Never the signature move (`DNA37`), never more than one per page.
+- **Vanilla-Tilt** — only on an object that *is* the subject (a vehicle, a lot, a
+  product in a catalog), never on text or UI. Pointer-only by design, so it is
+  absent on touch and under reduced motion, and nothing depends on it (`DM7`).
+- **Vanta / Zdog** — only as the one depth idea of a first screen with
+  dimensionality role SUPPORT (`DM6`), never behind body copy (`DM9`), paused
+  offscreen (`DNA75`), and a composed still under reduced motion and on mobile.
+- **Locomotive Scroll** — only where an existing site already runs it and the
+  mandate is REFRESH or REDESIGN. It then replaces Lenis on that project, under the
+  same contract as `DNA90`. Never both, and never chosen for a new build.
+- **`modern-web-design` and other trend digests** — reference only (layer 5),
+  for vocabulary and for spotting what already looks dated. Never the reason for a
+  decision, and never a source of rules.
 
 ---
 

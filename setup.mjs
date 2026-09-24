@@ -59,7 +59,7 @@ ramp, motion or composition decision.
 1. \`${join(DNA_ROOT, 'TASTE.md')}\`
    — the manifest: operating rules, the two tiers, the Design Read, the dialect index.
 2. \`${join(DNA_ROOT, '.claude', 'rules', 'design-dna.md')}\`
-   — the build standard, \`DNA1\`–\`DNA89\`.
+   — the build standard, \`DNA1\`–\`DNA94\`.
 3. \`${join(DNA_ROOT, 'skills')}\` — load the skills the task actually touches.
 4. Fallback if this machine has no working copy: ${REPO_URL}
 
@@ -70,6 +70,11 @@ ramp, motion or composition decision.
 Load the **\`scroll-site\`** skill first. It carries the stack, the scaffold, the
 concept gate and the definition of done.
 
+## Stack
+
+**Lenis ships on this project (\`DNA90\`)**, off under reduced motion, on one
+loop with GSAP when GSAP is present.
+
 ## The concept gate
 
 **\`BRIEF.md\` is complete before the first line of markup (\`DNA1\`).** An empty
@@ -79,7 +84,7 @@ section in it is an unfinished gate, not a detail to fill in later.
 
 1. Truth and access — contrast, provenance, reduced motion, discoverability.
 2. \`TASTE.md\` and the INVARIANT tier of the skills.
-3. The build standard, \`DNA1\`–\`DNA89\`.
+3. The build standard, \`DNA1\`–\`DNA94\`.
 4. The selected dialect, and this project's own direction below.
 5. Plugins — \`frontend-design\`, Scrollcraft, \`threejs-webgl\`,
    \`gsap-scrolltrigger\`. **Reference only. They bind nothing** and are never the

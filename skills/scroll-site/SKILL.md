@@ -23,13 +23,13 @@ Follow [design-dna Step 1](../design-dna/SKILL.md) and say which path won.
 Then read, in this order:
 
 1. `TASTE.md` — operating rules, the two tiers, the Design Read, the dialect index.
-2. `.claude/rules/design-dna.md` — the build standard, `DNA1`–`DNA89`.
+2. `.claude/rules/design-dna.md` — the build standard, `DNA1`–`DNA94`.
 3. The skills the work touches. For a cinematic scroll build that is always
    `academic-composition`, `dimensionality`, `motion-judgment`, `anti-patterns`,
    and `gsap-implementation` once motion has an approved role.
 
 **If the build standard cannot be read, stop and say so.** A cinematic build
-without `DNA1`–`DNA89` is the case where an agent produces a competent-looking
+without `DNA1`–`DNA94` is the case where an agent produces a competent-looking
 template and nothing in the output shows that the standard was missing.
 
 ---
@@ -92,7 +92,8 @@ you did not have to hand-author · `CustomEase`, `CustomWiggle`, `CustomBounce` 
 `Physics2D`, `InertiaPlugin` · `Observer` — one input abstraction over wheel,
 touch and pointer · `MotionPathPlugin` · `ScrollSmoother`.
 
-**Lenis is the smooth-scroll layer, and it is not optional-by-default any more.**
+**Lenis is the smooth-scroll layer, and it ships on every project (`DNA90`)** —
+scroll-led or not. Under `prefers-reduced-motion: reduce` it is not constructed.
 It is what nearly every scroll-led site of the last two years is running, and its
 absence is why a hand-rolled build feels stiff next to them in a way that no
 amount of easing on the individual tweens fixes.

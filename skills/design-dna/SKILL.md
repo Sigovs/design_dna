@@ -85,7 +85,7 @@ vague one.
 
 ## Step 2b — if something is being BUILT, also read the build standard
 
-`.claude/rules/design-dna.md`, beside the manifest — `DNA1`–`DNA89`. It is the
+`.claude/rules/design-dna.md`, beside the manifest — `DNA1`–`DNA94`. It is the
 execution layer: the concept gate, the shot vocabulary, camera language, lighting
 and materials, scroll storytelling, annotation craft, the performance and
 accessibility floors, and the definition of done. `TASTE.md` decides what is good;

@@ -16,7 +16,7 @@ client list is Alex's business, not the repository's.
 
 **Load the `design-dna` skill before any visual decision**, then follow the load order it sets:
 `TASTE.md` → the relevant `skills/` → `.claude/rules/design-dna.md` (the build standard,
-`DNA1`–`DNA89`) → the selected dialect. Plugins and `external/` are technique reference only and
+`DNA1`–`DNA94`) → the selected dialect. Plugins and `external/` are technique reference only and
 bind nothing. That system is the authority on *what good looks like*, it is versioned, and it
 changes; a copy of its rules inside an agent file would go stale silently and start giving
 answers the system has already moved past.

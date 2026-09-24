@@ -14,7 +14,7 @@ palette, type scale, spacing ramp, motion or composition decision. It is the
 default visual and interaction standard for all future work here, and it outranks
 default agent taste.
 
-It carries the detail as `DNA1`–`DNA89`: visual direction and the concept gate ·
+It carries the detail as `DNA1`–`DNA94`: visual direction and the concept gate ·
 typography hierarchy · spacing and composition · grid and alignment · colour and
 contrast · image treatment · cinematic art direction · premium automotive and
 editorial presentation · scroll storytelling · motion choreography · GSAP and

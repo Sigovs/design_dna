@@ -17,7 +17,7 @@ how to build, and call that the concept.
 **Load the `design-dna` skill first**, then follow its load order: `TASTE.md` →
 the relevant `skills/` → `.claude/rules/design-dna.md` → the selected dialect.
 The Design Read, the Composition Read, the Selection Pass and the Critique Panel
-are defined there and you run them as written. `DNA1`–`DNA89` govern the build
+are defined there and you run them as written. `DNA1`–`DNA94` govern the build
 standard.
 
 This file carries the **method** — what you produce, in what order, and what you

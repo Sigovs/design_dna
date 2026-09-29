@@ -106,6 +106,38 @@ relationships and shrink the absolutes.
 breakpoints. Collapsing them at small widths means the majority of real traffic
 sees a layout with no structure — a wireframe of the design rather than the design.
 
+### I5 — Nothing touches by default: every element has padding and air
+
+**No two elements meet unless the brief asks for it.** Text never sticks to text,
+buttons never sit flush against each other, a label never rides a rule, a card
+never butts into its neighbour, and nothing — copy, card, image — slides up under
+fixed chrome with no gap. Every element carries its own inner padding and keeps
+visible air to whatever is next to it, at every viewport and at every point of
+every animation, pin and scroll state.
+
+- **Minimum air between siblings:** one step of the scale (`--s-3`, 12px) between
+  inline neighbours (button to button, label to value, icon to text); a larger
+  step between blocks. Never `gap: 0`, never negative margins that bring two
+  pieces of content into contact.
+- **Every container has inner padding.** Text never meets the edge of its card,
+  band, badge or button.
+- **Fixed chrome is a boundary too.** Content that scrolls under a header must stop
+  short of it, or the header must clear the content — they never touch or overlap
+  as a resting state.
+- **Contact is an opt-in, named in the brief.** An overlap, a lock-up, a joined
+  button group or a type collision is legitimate only when it was asked for, and
+  then it is committed ([C9](../academic-composition/SKILL.md#invariant): commit or
+  clear), never a near-miss.
+- **Checked on the render, not in the source.** Measure the gaps between visible
+  boxes at desktop, tablet and phone, and through pinned and animated states; a
+  gap that exists in CSS but collapses mid-animation is a failure.
+
+*Why:* two things that touch read as one thing, or as a mistake. Alex's standing
+instruction (2026-09-29, Robb Francis): "elements never join each other by
+default, texts never stick together, buttons never stick to each other unless I
+ask — there is always padding and air." Crowding is the fastest tell of a layout
+assembled rather than composed, and it survives every other polish pass.
+
 ---
 
 ## DIALECT
@@ -197,6 +229,7 @@ narrower, but never to zero (I4).
 - [ ] Text stacks use deliberate, differentiated gaps; internal < external.
 - [ ] Nothing exists purely to fill space.
 - [ ] Gutters present at every width; relationships preserved, not collapsed.
+- [ ] Nothing touches: every element has inner padding and air to its neighbours, through every pinned and animated state (I5).
 
 **Dialect — when auction-editorial is active**
 - [ ] You took the larger step on at least one call you hesitated over.

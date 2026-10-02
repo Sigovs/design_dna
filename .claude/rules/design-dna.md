@@ -21,7 +21,7 @@ yields **out loud**, in the report.
 |---|---|---|
 | 1 | **Truth and access** — never yields to anything | `color I1` `I2` `I3` `I6` · `CP1`–`CP7` · `GI3` · `DM4` `DM5` · `U6` `U7` `U12` |
 | 2 | **`TASTE.md` + the INVARIANT tier of `skills/`** | `C1`–`C22` · `I1`–`I10` · `DM1`–`DM10` · `MJ1`–`MJ11` · `U1`–`U19` · `G1`–`G8` |
-| 3 | **This file** — `DNA1`–`DNA94`, the build standard | camera language, shot list, lighting, annotation craft |
+| 3 | **This file** — `DNA1`–`DNA95`, the build standard | camera language, shot list, lighting, annotation craft |
 | 4 | **The selected dialect's DIALECT tier** | `auction-editorial` · `cinematic-industrial` · `immersive-authored-world` |
 | 5 | **Plugins and `external/`** — reference only, binds nothing | `frontend-design` · Scrollcraft · `threejs-webgl` · `gsap-scrolltrigger` |
 
@@ -310,6 +310,29 @@ document-global selector is a defect even when it works.
 **`DNA48` — `scrub` is a decision, not a decoration.** A number (≈0.5–1) is lag with
 weight; `true` is exact. Snap only where the content genuinely has discrete states,
 never to hide an unresolved layout.
+
+**`DNA95` — Default for a text + media split: the pinned section with a scroll-scrubbed text exit.**
+Alex's standing pattern (Pagani of Miami, 2 Oct 2026, "The Atelier"), and the first
+answer whenever a large split section is being argued over slide-ins, slide-outs or
+a second animated layer. It replaces those debates rather than adding to them.
+
+- **Pin** the section when its top reaches the top of the viewport (`pin: true`,
+  one pinned section at a time, `DNA47`).
+- **Hold** first: roughly half of the pinned distance is a read pause where nothing
+  moves, so the words can actually be read.
+- **Exit, scrubbed:** the text block alone rises (~60–90 px) and fades to 0, linear
+  (`ease: 'none'`), a small scrub (≈0.35) — reversible, it returns on the way back.
+- **Release** the moment the text is gone; the page then moves on normally.
+- **The media does not perform.** A photograph stays still or drifts; a film plays as
+  an ambient loop (`DNA94`). No reveal choreography is added on top of the exit.
+- **Length:** ≈0.9 viewport of pinned scroll on desktop. Phone and
+  `prefers-reduced-motion`: no pin, the section scrolls in the flow.
+- Animate the text block's own `opacity`/`y`, never `autoAlpha` on elements another
+  reveal already owns (`G6`).
+
+*Why:* it gives reading time without a long pin, has one moving part, reverses
+cleanly, and closes off the slide-in / slide-out / split-reveal variations that cost
+rounds of iteration and rarely look better.
 
 **`DNA90` — Lenis ships on every project.** Every page, scroll-led or not, runs
 Lenis as its scroll layer. This is Alex's standing instruction, not a per-project

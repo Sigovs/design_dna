@@ -329,6 +329,9 @@ a second animated layer. It replaces those debates rather than adding to them.
   `prefers-reduced-motion`: no pin, the section scrolls in the flow.
 - Animate the text block's own `opacity`/`y`, never `autoAlpha` on elements another
   reveal already owns (`G6`).
+- **If the block is centred with `transform: translate(-50%)` in CSS, hand that to GSAP as
+  `yPercent: -50` first** and tween `y` from 0. Otherwise GSAP reads the centring as a
+  pixel `y` and the "exit" runs downward (it did, on Pagani's Service, 2 Oct 2026).
 
 *Why:* it gives reading time without a long pin, has one moving part, reverses
 cleanly, and closes off the slide-in / slide-out / split-reveal variations that cost

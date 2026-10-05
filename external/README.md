@@ -33,3 +33,6 @@ dependency nobody decided to take.
 |---|---|---|---|
 | [scrollcraft](scrollcraft/) | a Claude Code skill that builds scroll-driven pages against a stated design floor — ten device families, a variety rule, a fingerprint gate, and a verification harness that screenshots its own scroll | MIT | 2026-08-26 |
 | [posthuman-explorer-chat](posthuman-explorer-chat/) | a ChatGPT conversation from 2026-09-06 surveying the nexu-io toolchain and drafting `GDBURO_PRODUCTION_PIPELINE.md`; kept as text, the page export was not committed | Alex’s own | 2026-09-21 |
+| [no-ai-slop](no-ai-slop/) | a copy skill: strips machine-default writing tics (banned words, "not X, it's Y", colon reveals, puffery, recap endings) while keeping the writer's voice; has a detect-only mode and a pass/fail eval | MIT | 2026-10-05 |
+| [kill-ai-slop](kill-ai-slop/) | a visual + copy de-slop pass: 35-tell taxonomy, detection notes, and a dependency-free scanner (`scan.mjs`) that prints file:line hits for triage | Apache-2.0 | 2026-10-05 |
+| [anti-ui-slop](anti-ui-slop/) | UIZZE's router to six short playbooks (new work, operate, polish, distill, audit, iOS); the audit returns ≤3 findings with evidence and the smallest fix | Apache-2.0 | 2026-10-05 |

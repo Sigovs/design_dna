@@ -50,8 +50,10 @@ Three findings, all fixed:
 
 1. **The three-findings audit format** as the shape of the "Product Usefulness"
    gate (Gate 3) report: evidence plus the smallest fix, capped at three.
-2. **Inert-interaction check** as an explicit line in the delivery gates. In a
-   prototype, a dead primary button is the first thing a client clicks.
+
+**Rejected (Alex, 2026-10-05):** an inert-interaction check in the delivery gates.
+Our deliverables are mockups, and dead buttons in a mockup are not a defect. The
+audit's "inert controls" finding does not apply to mockup work.
 
 ## Status
 

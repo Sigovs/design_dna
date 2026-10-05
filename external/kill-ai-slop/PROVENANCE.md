@@ -56,9 +56,10 @@ as an atmospheric gradient.
 
 1. **Run `scan.mjs` as a pre-delivery step** next to the gates in `gates/`. It costs
    seconds and found a real failure (#34) that our own review had let through.
-2. **Promote #34** into `anti-patterns` as an INVARIANT candidate, worded our way:
-   "monospace is a data voice; UI chrome in mono on a near-black ground is a
-   template, not a decision".
+2. **#34 as an `anti-patterns` candidate:** "monospace is a data voice; UI chrome in
+   mono on a near-black ground is a template, not a decision". **On hold:** Alex is
+   not sure about it yet (2026-10-05). Do not promote it, and do not cite it as a
+   rule.
 
 ## Status
 

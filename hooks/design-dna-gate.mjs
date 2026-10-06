@@ -227,7 +227,7 @@ function manifest(home, brief, cwd) {
   lines.push('READ IN THIS ORDER, from that directory. Do not paraphrase from memory — these carry hard numbers and hard bans:');
   lines.push('  1. TASTE.md — the operating rules, the two tiers, the Design Read, the Composition Read, the Critique Panel, the delivery gates.');
   lines.push('  2. .claude/rules/design-dna.md — the build standard, DNA1-DNA89.');
-  lines.push('  3. skills/academic-composition, skills/dimensionality, skills/motion-judgment, skills/anti-patterns — always, for a cinematic or 3D build.');
+  lines.push('  3. skills/academic-composition, skills/dimensionality, skills/motion-judgment, skills/anti-patterns — always, for a cinematic or 3D build; skills/threejs-art-direction whenever there is Three.js / WebGL / a 3D object.');
   lines.push('  4. skills/gsap-implementation — only once motion has an approved role.');
   lines.push('  5. skills/scroll-site — FIRST, whenever the build is scroll-led or cinematic. It carries the concept gate.');
   lines.push('  6. vault/sites.json and vault/EVIDENCE.md — querying the vault is not optional (TASTE.md 6). State the tally: N relevant, M unusable for missing notes.');

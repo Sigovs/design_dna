@@ -77,7 +77,7 @@ hook. It also points at whichever of these to load for the task at hand:
 
 `academic-composition` · `anti-patterns` · `spacing-taste` · `typography-taste` ·
 `color-taste` · `generated-imagery` · `dimensionality` · `motion-judgment` ·
-`motion-taste`
+`motion-taste` · `threejs-art-direction` (whenever the work has Three.js / WebGL / a 3D object)
 
 Load them from the same location the manifest came from. Do not paraphrase them
 from memory — they hold hard numbers and hard bans, and a remembered rule is a

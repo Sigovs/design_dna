@@ -74,6 +74,7 @@ design_dna/
 │   │   ├── SKILL.md                # I: masses-before-components, decided centre, dominant, tone, eye path, resolution
 │   │   └── references/             # the academic method, routed to per task (not loaded wholesale)
 │   ├── dimensionality/SKILL.md     # role-gated · I: removability, first read, budget, per-frame AA, one depth idea
+│   ├── threejs-art-direction/SKILL.md # TA1–TA12 · 3D as page composition: form, PBR, light, crop, scroll pin + hold, budget · D: dark, low-key
 │   ├── spacing-taste/SKILL.md      # I: hierarchy, tokens, internal<external · D: air-first, bottom-heavy
 │   ├── typography-taste/SKILL.md   # I: legible rank, optical correction, icons as glyphs · D: didone + grotesque + mono
 │   ├── design-dna/SKILL.md         # the entry point — no rules, routes to TASTE.md (globally junctioned)

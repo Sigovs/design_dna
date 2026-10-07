@@ -80,7 +80,7 @@ design_dna/
 │   ├── design-dna/SKILL.md         # the entry point — no rules, routes to TASTE.md (globally junctioned)
 │   ├── scroll-site/SKILL.md        # instrumental · the cinematic setup, the stack, the concept gate, done
 │   ├── color-taste/SKILL.md        # I: AA, no hue-only meaning, scrims · D: neutral dark base, smoky accents
-│   ├── generated-imagery/SKILL.md  # cross-dialect · I: origin declared, never depicts the real thing, provenance, survives a phone photo
+│   ├── generated-imagery/SKILL.md  # cross-dialect · I: origin declared, never depicts the real thing, provenance, survives a phone photo, motion checked in motion
 │   ├── content-provenance/SKILL.md # cross-dialect · I: ledger before the claim, coverage not validity, no prior concept as a source, shape never invented to fill a slot
 │   ├── motion-judgment/            # cross-dialect · whether to move at all, and what for
 │   │   ├── SKILL.md                # I: declared role, one primary idea, subject over amount, stoppable frames

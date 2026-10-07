@@ -1,6 +1,6 @@
 ---
 name: generated-imagery
-description: Standing discipline for synthetic imagery — eight invariants (GI1–GI8) binding every generated, upscaled or AI-edited image in any project, whatever produced it. Covers origin declared before generation, the prompt derived from the brief rather than typed from taste, the ban on depicting a real product, premises or person, no baked-in type or UI in the frame, the reading zone held at generation instead of patched with a scrim, provenance travelling with the file, the composition surviving an ordinary photograph, and mobile frames authored rather than cropped. Tool-agnostic; the repo's own generator is an implementation note, not a rule. Use before generating any image, and when auditing imagery whose origin is unclear.
+description: Standing discipline for synthetic imagery — nine invariants (GI1–GI9) binding every generated, upscaled or AI-edited image or video clip in any project, whatever produced it. Covers origin declared before generation, the prompt derived from the brief rather than typed from taste, the ban on depicting a real product, premises or person, no baked-in type or UI in the frame, the reading zone held at generation instead of patched with a scrim, provenance travelling with the file, the composition surviving an ordinary photograph, mobile frames authored rather than cropped, and generated motion verified in motion — static parts stay static. Tool-agnostic; the repo's own generator is an implementation note, not a rule. Use before generating any image, and when auditing imagery whose origin is unclear.
 ---
 
 # Generated Imagery
@@ -27,7 +27,7 @@ generating everyone is looking at a picture instead of at the question.
 
 ## INVARIANT
 
-Eight rules. They bind whatever dialect was selected, including
+Nine rules. They bind whatever dialect was selected, including
 `brief-derived / no stored dialect`.
 
 ### GI1 — The origin is declared before anything is generated
@@ -145,6 +145,27 @@ separately-authored-mobile rule that recurs across `dimensionality` and
 `motion-judgment`. Note that hiding the image instead is already banned by
 [D7](../anti-patterns/SKILL.md#dialect) — the choice is *author it*, not *drop it*.
 
+
+### GI9 — Generated motion is verified in motion; what stands still stays still
+
+A generated video clip is inspected **at playback speed and frame by frame on the
+parts that must not move**, never only from stills or contact sheets. Before a clip
+ships, crop every element whose physics the eye knows — the wheels of a parked car
+(spinner and spoke pattern, 6–12 fps strips), architecture, signage, hands, faces —
+and step through it. A clip in which a static object moves on its own, a wheel turns
+on a car that is not moving, or a part changes its design mid-shot is **rejected,
+not trimmed around and not graded over**. If only a section survives, only that
+section is used, with an honest cut.
+
+The same clip still obeys GI5: a moving film is never laid under the copy as a
+scrim-rescued field; it takes its own place in the composition.
+
+*Why:* a contact sheet samples the frames a model got right and hides the motion it
+got wrong. Wheels turning on a parked car read instantly to anyone who has looked at
+a car, and they read as fake — a 2/10 verdict on an otherwise finished hero
+(Golden Lion Auctions, Oct 2026). Combined with GI3, a generated clip of the lot
+being sold is not available at all; real footage or a captured 3D scene is.
+
 ---
 
 ## DIALECT
@@ -176,7 +197,7 @@ Then assemble the prompt from the brief (GI2), generate, and label (GI6).
 
 Ask of every image: **can I tell where this came from?** If not, that is GI6 and it
 is fixable in a minute. Then: is there a scrim rescuing text over it (GI5)? Is
-there type inside it (GI4)? Is the mobile version a crop (GI8)? Does the page still
+there type inside it (GI4)? Is the mobile version a crop (GI8)? Was the clip checked in motion, and does anything that should stand still move (GI9)? Does the page still
 work with the image replaced by a grey box (GI7)?
 
 An image that fails GI3 is removed. Not re-prompted, not disclosed in small print —

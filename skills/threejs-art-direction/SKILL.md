@@ -27,6 +27,15 @@ they bind nothing about taste. Where one of them and this skill disagree on a vi
 matter, this skill wins; on an API matter, the official docs for the installed
 revision win over both.
 
+**Real capture over generated motion.** When a page needs cinematic movement around
+a real object (a car being sold, a room), prefer a captured 3D scene to generated
+video: a phone orbit of the object processed into a Gaussian splat (Postshot,
+Polycam, Luma) and rendered in Three.js with **Spark** (`@sparkjsdev/spark`,
+sparkjs.dev, MIT), with the camera driven by scroll per TA7. It is the real object,
+so it cannot mutate or move its parts the way generated clips do
+([GI3](../generated-imagery/SKILL.md#invariant), [GI9](../generated-imagery/SKILL.md#invariant)).
+This is a technique note, not a rule; TA1–TA12 bind the splat like any other 3D.
+
 **Order of work:** dimensionality role → composition (where, how big, what crop) →
 form → material → light → motion → budget → verification. Styling a shader before the
 object has a place on the page is how a scene ends up advertising its renderer.

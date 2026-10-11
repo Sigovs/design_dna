@@ -25,7 +25,22 @@ correct** — that is Alex's review, and the claims below are marked accordingly
 | **Usable `in`** (human-set) | **27** | `beings-co` (3) · `ciridae-com` (3) · `ruadh-com` (2) · `electrafilmworks-com` (2) · `thenewmobileworkforce-…-back-at-hq` (2) · `trionn-com` (2) · `kinncollective-co-uk` (2) · `augen-pro` (2) · `i-pinimg-…-46d9d54b` (2) · `organimo-com` (3) · `immersive-g-com` (3) · `rolls-roycemotorcars-…-home-html` (3) · `obys-agency` (2) · `mclaren-com-cars-gl-en` (2) · `semlerpremium-dk-showroom` (3) · `semlerpremium-dk-brands-porsche-911-gt3-…` (3) · `polestar-com-us` (2) · `semlerpremium-dk` (2) · `rimac-automobili-com-nevera` (2) · `oilstainlab-com` (2) · `hispanosuizacars-com` (2) · `morningstar-ventures` (3) · `rekorderstudios-com` (3) · `eco-com` (2) · `mugenstudio-framer-website` (2) · `unitedcarriers-com` (3) · `hashgraphvc-com` (3) |
 | **Usable `out`** | **7** | `rmsothebys-com` (1) · `thegentlewoman-co-uk` (1) · `hbbody-com-en-home` (2) · `rivian-com` (2) · `lapz-io` (3) · `collabcapitolium-fr` (3) · `coffee-tech-com` (2) |
 | **Partial / contextual** (`hybrid`) | **2** | `porsche-com-usa` (2) · `pensatori-irrazionali-com` (3) |
-| **Not yet a judgement** (`unreviewed`) | **0** | — every record carries a judgement again. Four were set by an agent under Alex’s explicit delegation and are marked `judgementBy` in the record, so his hand and the agent’s stay distinguishable. |
+| **Not yet a judgement** (`unreviewed`) | **3** | `chicagomotorcars-com` (2, default) · `marshallgoldman-com` (2, default) · `forgeautomotive-co-uk` (2, default). The first two are client-cited structural references (footer location cards, duPont REGISTRY Select); the third is Alex-sent for scroll choreography and art direction. All three wait for Alex. Of the other records, four were set by an agent under Alex’s explicit delegation and are marked `judgementBy` in the record, so his hand and the agent’s stay distinguishable. |
+
+> **Two client-cited references, 2026-10-08, both left `unreviewed`.** `chicagomotorcars-com`
+> and `marshallgoldman-com` entered for one structural question, footer location cards for
+> duPont REGISTRY Select, and not as taste. Neither came with a comment from Alex, so neither
+> carries a status. **`chicagomotorcars-com` is Alex's own build** (the live location section
+> ships from `C:\____WORK\CHICAGO MOTOR CARS\index.html`), so it is self-work in the external
+> vault and **must not count toward any claim or distillation threshold here**. It is a
+> `projects/` self-similarity question. `marshallgoldman-com` runs on the same All Auto Network
+> platform; design authorship is not established. Neither is cited by any claim below.
+>
+> **`forgeautomotive-co-uk`, same day, also `unreviewed`.** Sent by Alex as a reference for
+> scroll choreography, typography, pacing and transitions (duPont REGISTRY Select). It carries a
+> curator's read in `note` / `works` / `weaknesses` and local scroll recordings made under the
+> TASTE §6(d) live-visit exception, but no judgement. Status and rating are defaults awaiting
+> Alex. It is not cited by any claim below.
 
 > **Four more, 2026-09-20 evening, three of them judged by delegation.** Alex submitted a
 > run of references and said *"sam oceni ja v pechale"* — so `hashgraphvc-com`,

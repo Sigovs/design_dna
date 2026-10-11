@@ -1,5 +1,279 @@
 [
   {
+    "id": "chicagomotorcars-com",
+    "kind": "site",
+    "url": "https://www.chicagomotorcars.com/",
+    "source": "",
+    "title": "Chicago Motor Cars",
+    "added": "2026-10-08",
+    "rating": 2,
+    "dialectStatus": "unreviewed",
+    "dialects": [],
+    "tags": {
+      "composition": [],
+      "risks": [
+        "asset-dependency-risk"
+      ],
+      "typography": [
+        "grotesque",
+        "big-type"
+      ],
+      "layout": [],
+      "motion": [
+        "state-transition"
+      ],
+      "color": [
+        "dark",
+        "bold-accent"
+      ],
+      "imagery": [
+        "photography"
+      ]
+    },
+    "note": "PROVENANCE — READ FIRST. This is Alex's own work, not someone else's. The live homepage, this location section included, ships from his build: C:\\____WORK\\CHICAGO MOTOR CARS\\index.html (line 1747, \"Four showrooms, one opening\" / \"Come see what's on the floor\"), on the All Auto Network platform (\"Powered By: All Auto Network\", theme aanWordpress). It is here only because the duPont REGISTRY Select client cited it as a structural reference for footer location cards (2026-10-08). The vault holds other people's work, so distill and any Design Read must NOT count this record as independent external evidence of taste. Any pattern it shares with Alex's other projects is a self-similarity question for projects/, not vault support. Related project record: projects/chicago-motor-cars-concept-2.md (abandoned).\n\nSCOPE. Footer location-card structure only. This is not an art-direction reference.\n\nTHE STRUCTURE. The location block is the last mass before the link footer. It shares the footer's #080808 ground and is split from it by one hairline. Reading order: (1) an eyebrow, \"FOUR SHOWROOMS, ONE OPENING\", which counts the network and pre-announces the fifth site; (2) a two-line display line in bold grotesque, \"Come see what's on the floor.\", an invitation rather than a \"Locations\" label; (3) one row of five photo cards, built as a horizontal accordion. One card is open (~470px at 1440) and four are closed (~196px each).\n\nThe open card stacks over a dark-graded aerial night photo, with a muted looping video set to preload=\"none\": pin + city in bold → full street address (15px) → a red phone pill (tel:, the only saturated element in the block) → an outline \"Get directions\" pill (a Google Maps directions URL with the destination already filled in) → four social circles. Those links point to each location's own accounts where one exists (Rock Hill → @chicagomotorcarssc, Kansas City → @chicagomotorcarskc) and to the main account otherwise. A closed card shows only pin + city, set at the bottom.\n\nHovering a card opens it (flex-grow, 0.52s, cubic-bezier(.32,0,.24,1)). Moving the pointer away returns to the default, West Chicago, the flagship. A click does not keep a card open. Focus inside a card opens it, so keyboard users can reach the content. The hovered card's right edge stays put while its siblings resize, so the pointer stays inside it (U14 does not trigger; I spot-checked card 3, not every edge).\n\nAt 390px the accordion is dropped. All five cards stack fully open, each with the photo on top, then city, address, a full-width red phone button, a full-width outline directions button, and the socials. That recomposes for touch instead of shrinking the desktop row (C12), and nothing is hidden on mobile (U7).\n\nWHY IT WORKS. Five equal location cards in a row would be a metronome. The accordion keeps exactly one dominant and four subordinates at any moment (C1), and the default dominant is the flagship, which is an editorial ranking, not an alphabetical one. The information order follows the visitor's decision: which city → is it near me → call → go. Only the call action is red, so the primary action is unambiguous. Putting the block at the end of the page, under the inventory, is C20 applied correctly: operational truth is present but subordinate. That is the exact opposite of Concept 2, which made \"four rooms\" the brand proposition and was abandoned for it.",
+    "shots": {
+      "full": "shots/chicagomotorcars-com/full.jpg",
+      "hero": "shots/chicagomotorcars-com/hero.jpg",
+      "mobile": "shots/chicagomotorcars-com/mobile.jpg",
+      "strip": [
+        "shots/chicagomotorcars-com/strip-1.jpg",
+        "shots/chicagomotorcars-com/strip-2.jpg",
+        "shots/chicagomotorcars-com/strip-3.jpg",
+        "shots/chicagomotorcars-com/strip-4.jpg",
+        "shots/chicagomotorcars-com/strip-5.jpg",
+        "shots/chicagomotorcars-com/strip-6.jpg",
+        "shots/chicagomotorcars-com/strip-7.jpg",
+        "shots/chicagomotorcars-com/strip-8.jpg"
+      ],
+      "stripMobile": [
+        "shots/chicagomotorcars-com/strip-m-1.jpg",
+        "shots/chicagomotorcars-com/strip-m-2.jpg",
+        "shots/chicagomotorcars-com/strip-m-3.jpg",
+        "shots/chicagomotorcars-com/strip-m-4.jpg",
+        "shots/chicagomotorcars-com/strip-m-5.jpg",
+        "shots/chicagomotorcars-com/strip-m-6.jpg"
+      ],
+      "navScrolled": null
+    },
+    "extras": [
+      {
+        "file": "shots/chicagomotorcars-com/footer-locations-1440.jpg",
+        "label": "Footer location cards, 1440, resting state (West Chicago open by default) plus the link footer",
+        "kind": "uploaded",
+        "url": null,
+        "added": "2026-10-08",
+        "error": null
+      },
+      {
+        "file": "shots/chicagomotorcars-com/location-cards-1440-hover-rockhill.jpg",
+        "label": "Location cards, 1440, hover state: Rock Hill expanded, the others collapsed",
+        "kind": "uploaded",
+        "url": null,
+        "added": "2026-10-08",
+        "error": null
+      },
+      {
+        "file": "shots/chicagomotorcars-com/footer-locations-390.jpg",
+        "label": "Footer location cards, 390 (iPhone 13, 2x): accordion dropped, all five stacked fully open",
+        "kind": "uploaded",
+        "url": null,
+        "added": "2026-10-08",
+        "error": null
+      }
+    ],
+    "captureError": "partial evidence — desktop full.jpg clipped at 14,000px of a 20,024px document, and mobile.jpg at 14,000 of 17,030, so the location section and footer are absent from both full-page shots. The close-ups in extras (footer-locations-1440/390, location-cards-1440-hover-rockhill) carry that evidence. The hover expansion and focus behaviour were observed directly in a scripted browser on 2026-10-08. The muted per-card video was observed playing but was not recorded. Measured document height differs between passes (20,024 during capture, 11,182 after a full scroll), consistent with lazy-loaded content.",
+    "works": "(1) One open card and N closed ones: a row of peers with a guaranteed dominant, flagship by default. (2) Decision-ordered content: city → address → call (the one accent) → directions → socials. (3) A directions deep link with the destination already filled in, which means one tap to navigation. (4) Social links scoped to each location where that location has its own accounts. (5) Mobile turns the accordion into a full stack, with full-width touch targets and nothing behind hover. (6) An eyebrow that counts the network (\"four showrooms, one opening\") instead of labelling it.",
+    "weaknesses": "(1) On desktop, four of the five addresses and phone numbers exist only behind hover. A visitor scanning for \"which one is near me\" sees city names and nothing else. City names are visible, so this is progressive disclosure, not a strict U12 failure. But on a touch device at desktop width, the tap behaviour was not verified. (2) No opening hours anywhere, and no map: the aerial images stand in for a map but cannot do a map's job. (3) The photography is graded so dark that closed cards read as near-black texture. The image does not help anyone recognise the building, so it is mood, not information. (4) Newport Beach is a placeholder card: \"California — opening soon\", with the main 630 number and a \"Get directions\" pill for a site that is not open, on a dark palm placeholder image. The device depends on every location owning real aerial footage (C17, asset-dependency-risk), and the weakest card shows what happens without it. CP4: a placeholder must look like one. (5) The closed label truncates to \"Newport Bea…\" at 1440, a clipped key label. (6) On mobile the same four social icons repeat on all five cards: 20 circles of near-noise. (7) BEYOND THE FOOTER, DO NOT BORROW: this is Alex's own site, so borrowing from it is self-citation, not reference. In hero.jpg the nav icons overlap the EVENTS item and the headline is caught mid-entrance (\"worth chasing.\" without its first line). Those are capture-time states, but they are visible. The Instagram feed and reviews blocks are stock dealer furniture."
+  },
+  {
+    "id": "forgeautomotive-co-uk",
+    "kind": "site",
+    "url": "https://forgeautomotive.co.uk/",
+    "source": "",
+    "title": "Forge Automotive",
+    "added": "2026-10-08",
+    "rating": 2,
+    "dialectStatus": "unreviewed",
+    "dialects": [],
+    "tags": {
+      "composition": [],
+      "risks": [
+        "asset-dependency-risk",
+        "repeated-composition-risk",
+        "decorative-information-legibility-risk"
+      ],
+      "typography": [
+        "display-serif",
+        "grotesque",
+        "big-type"
+      ],
+      "layout": [
+        "bleed",
+        "asymmetry",
+        "air"
+      ],
+      "motion": [
+        "scroll-reveal",
+        "state-transition"
+      ],
+      "color": [
+        "dark",
+        "bold-accent"
+      ],
+      "imagery": [
+        "photography",
+        "art-direction",
+        "product"
+      ]
+    },
+    "note": "CURATOR'S READ — status unreviewed, Alex judges. Sent by Alex 2026-10-08 as a reference for scroll choreography, typography, cinematic pacing, transitions and overall art direction (duPont REGISTRY Select). Its value is TEMPORAL, so the live-visit exception in TASTE §6(d) was used: scroll recordings at 1920 and 390 were made on 2026-10-08 (see captureError for files). Everything about motion below was observed in those recordings, not inferred.\n\nWHAT IT IS. A bespoke-build atelier homepage (Next.js, Lenis virtual scroll). The body does not scroll: overflow is hidden, the document is exactly one viewport tall, and the wheel drives a timeline. A thin rule at the bottom of the viewport fills left to right as the only transport indicator. An ENTER gate comes first.\n\nTHE SEQUENCE (1920). Gate: black, one tracked-caps line, ENTER → H1 \"For Those Who Refuse Ordinary\", light narrow display serif, words resolving out of blur in place → it blurs out and \"We Don't Modify Vehicles / We Build Them For You\" resolves in the same spot → a small image window (leather, red stitching) opens at the centre over the blurred statement and grows to near full frame, carrying \"Our Approach To Every Build\" and a marque row → a pinned triad (01/03 Identity · Insight · Cohesion): a framed square photo sitting on a blurred, enlarged copy of itself as the ground, a counter, and the heading's last letters swept with a red tint as it arrives → a manifesto (\"A vehicle should say something before it moves…\") whose lines fill from grey to white with scroll → six services as a 50/50 split, copy left on textured black, full-height image right; each next image wipes up from below inside the same column while the copy swaps → one word, \"Ordinary\", with a red GT3 RS shot top-down rising up through it between dark off-roaders; the word becomes \"Ends Here\" → Previous Builds (red headlight close-up crops) → Available Stock (smoky studio line-up) → close: \"Are you ready to / Refuse Ordinary\" over three rear views, CTA, back to top.\n\nTHE GENERATIVE SYSTEM — why it reads as designed rather than assembled.\n(1) Type resolves; images travel. Headlines never slide. They come in and go out through blur and opacity in a fixed spot, so the reading position is constant. All the spatial travel (window growth, column wipes, the car rising) belongs to photography. Two kinds of motion, two jobs, no overlap.\n(2) The chrome never moves. Logo, socials, NAVIGATE and the progress rule hold still for the whole page. Against a fixed frame the one moving element per beat reads as a decision.\n(3) Handover by image. Almost no chapter ends on empty ground: the next chapter's image appears inside the current one (the window over the statement, the next service image inside the current image column, the car through the word). Seams are carried by the incoming subject, not by a fade to black.\n(4) One copy idea spans the page. \"Refuse Ordinary\" opens it, \"Ordinary / Ends Here\" completes it two thirds down, and \"Are you ready to Refuse Ordinary\" closes it. The headline system is a single sentence distributed over the scroll, which is what makes the pacing feel authored.\n(5) Contrast is spent in one place per beat. The ground is near-black with a faint texture. White display serif carries the hierarchy. The only hue is red, and it arrives almost entirely through the subject (stitching, M3 tail-lights, the GT3 RS, a headlight), plus the one letter tint. UI owns no colour.\n(6) Two voices. A light, narrow display serif, set large and loose, owns every headline. Geist Sans owns body copy (22px at 80% white). 12px tracked caps own labels, nav and CTAs. Hierarchy comes from scale and voice, not weight.\n(7) Pacing alternates density. Statement (type only) → image event → pinned triad → type-only manifesto → repetitive service run → one-word spectacle → line-up → close. Loud and quiet beats alternate, apart from the service run.\n\nTRANSFERABLE VERSUS NOT. Transferable: the split between how type moves and how images move, the still chrome, handover by the incoming image, one phrase distributed across the page, colour sourced from the subject. Not transferable: the \"Ordinary\" beat and the finale depend on a commissioned studio shoot of saturated cars on black, so they are this brand's asset rather than a device (C17). The marque row and the manufacturer badges in the photography belong to a tuner's world.",
+    "shots": {
+      "full": "shots/forgeautomotive-co-uk/full.jpg",
+      "hero": "shots/forgeautomotive-co-uk/hero.jpg",
+      "mobile": "shots/forgeautomotive-co-uk/mobile.jpg",
+      "strip": [
+        "shots/forgeautomotive-co-uk/strip-1.jpg"
+      ],
+      "stripMobile": [
+        "shots/forgeautomotive-co-uk/strip-m-1.jpg"
+      ],
+      "navScrolled": null
+    },
+    "extras": [
+      {
+        "file": "shots/forgeautomotive-co-uk/hero-settled-1920.jpg",
+        "label": "Hero at 1920 once the H1 has resolved (~3s after ENTER); the canonical hero.jpg caught it mid-blur",
+        "kind": "uploaded",
+        "url": null,
+        "added": "2026-10-08",
+        "error": null
+      },
+      {
+        "file": "shots/forgeautomotive-co-uk/scroll-sheet-1920.jpg",
+        "label": "Scroll sequence contact sheet, 1920: gate → H1 → statement → image window → triad → manifesto → services → Ordinary/Ends Here → builds → stock → close (one frame per 540px wheel step)",
+        "kind": "uploaded",
+        "url": null,
+        "added": "2026-10-08",
+        "error": null
+      },
+      {
+        "file": "shots/forgeautomotive-co-uk/scroll-sheet-390.jpg",
+        "label": "Scroll sequence contact sheet, 390: the mobile choreography, re-authored for portrait (one frame per 422px wheel step)",
+        "kind": "uploaded",
+        "url": null,
+        "added": "2026-10-08",
+        "error": null
+      },
+      {
+        "file": "shots/forgeautomotive-co-uk/reduced-motion-1920.jpg",
+        "label": "prefers-reduced-motion: reduce, 1s after ENTER: H1 and the second statement overlapping, i.e. no designed static state",
+        "kind": "uploaded",
+        "url": null,
+        "added": "2026-10-08",
+        "error": null
+      }
+    ],
+    "captureError": "partial evidence. The page is scroll-jacked: body overflow is hidden, the document is 900px against a 900px viewport, and Lenis drives the scroll. capture.mjs therefore got one strip frame per pass, and its hero.jpg caught the H1 mid-blur. The intro gate was ENTER, which is on the whitelist; pressing it also accepts analytics cookies. The temporal evidence was recorded separately on 2026-10-08 under the TASTE §6(d) live-visit exception, with local Playwright (Chromium) plus ffmpeg and no paid service: shots/forgeautomotive-co-uk/scroll-1920.webm (45s, 1920×1080, 540px wheel steps every ~650ms) and shots/forgeautomotive-co-uk/scroll-390.webm (62s, 390×844, 422px steps). Contact sheets and the settled hero are in extras. The video files are not in shots/extras because the gallery renders those as images. Not verified: hover states, the NAVIGATE overlay, inner pages, touch-swipe behaviour on a real device (the 390 pass used wheel input), and the frame rate under load.",
+    "works": "(1) Text resolves in place (blur/opacity) while photography does all the spatial travel: the eye's reading spot never moves. (2) Fixed chrome (logo, nav, socials, progress rule) frames each single moving element. (3) Chapters hand over through the incoming image (window opening over the statement, wipe inside the same column, the car rising through the word), so seams never drop to empty ground. (4) One sentence spread across the page (\"Refuse Ordinary\" → \"Ordinary / Ends Here\" → \"Are you ready to Refuse Ordinary\") gives the scroll a narrative arc. (5) A red accent spent through photography, not UI. (6) A blurred enlarged copy of a framed photo used as its own ground in the triad: depth and colour continuity from one asset. (7) The manifesto's lines fill grey→white with scroll, which is the one place scrub is tied to reading. (8) Mobile is re-authored, not shrunk: the split becomes image-over-text and the next image rises through the frame, and the \"Ordinary\" beat is recomposed for portrait (C12).",
+    "weaknesses": "(1) Scroll-jacked. The document is one viewport tall and Lenis drives everything, so the visitor loses native scroll speed and position. Reaching the end took ~43 wheel steps of 540px at 1920 (45s recording) and ~63 at 390. The progress rule is the only wayfinding, and there are no section anchors. (2) Content waits on choreography (MJ7). The H1 needs about 3s after ENTER to resolve, and the capture tool's own hero.jpg shows a blank page with one blurred \"For\". Any static, crawler or no-JS reading gets almost nothing. (3) Reduced motion is not designed (motion-taste invariant, MJ9). With prefers-reduced-motion: reduce, 1s after ENTER, the H1 and the second statement are both on screen and overlap (reduced-motion-1920.jpg). (4) The service run is a metronome. Six identical 50/50 beats where only the image and the word change (C7, repeated-composition-risk). It is the one stretch where the pacing goes flat. (5) The effects themselves are generic: blur-in word reveals, a letter colour sweep, grey→white line fill and clip-wipes are the stock award-site idiom. What is authored is the sequencing and the handovers, not the effects, so copying the effects copies the weakest layer. (6) Functional text under the 14px floor: nav, SERVICE labels and every CTA are 12px tracked caps, and SERVICE sits at 55% opacity (typography I7, decorative-information-legibility-risk). (7) \"Start your project\" repeats about ten times, once per beat: repeated primary CTA. (8) The ENTER gate bundles analytics-cookie consent into entry (\"by pressing enter … you accept\"), which is consent by obstruction. (9) Mid-transition legibility: on 390, copy sits over the incoming image during each wipe for a beat. (10) Asset dependency: the \"Ordinary\" beat, the finale and the line-up need one consistent studio shoot of saturated cars on black (asset-dependency-risk). The homepage carries no build facts, prices or detail, so it sells a mood and defers every fact to inner pages."
+  },
+  {
+    "id": "marshallgoldman-com",
+    "kind": "site",
+    "url": "https://www.marshallgoldman.com/",
+    "source": "",
+    "title": "Marshall Goldman Motor Sales",
+    "added": "2026-10-08",
+    "rating": 2,
+    "dialectStatus": "unreviewed",
+    "dialects": [],
+    "tags": {
+      "composition": [],
+      "risks": [
+        "repeated-composition-risk"
+      ],
+      "typography": [],
+      "layout": [],
+      "motion": [],
+      "color": [
+        "bold-accent"
+      ],
+      "imagery": [
+        "photography"
+      ]
+    },
+    "note": "SCOPE. Client-cited (duPont REGISTRY Select, 2026-10-08) for footer location-card structure only. This is not an art-direction reference. Verified as the real dealer: marshallgoldman.com, title \"Marshall Goldman Motor Sales\", Beverly Hills at 8833 Wilshire Blvd, plus Cleveland, Newport Beach and Baltimore. Built on the same All Auto Network platform as Alex's agency work (theme aanWordpress). Authorship of the design is not established, so treat its independence from Alex's own work as unverified.\n\nTWO LOCATION SURFACES, and the client most likely means the second.\n\n(a) Mid-page, \"EXPLORE OUR LOCATIONS\", on white. A centred, very widely tracked Futura caps headline (~70px) over four equal white cards (~330px, soft shadow, small radius). Each card has an oblique satellite photo of the site, ~220px tall and Google-Earth-like. Below it: city in red tracked caps → centred street address at 18px → an outline phone pill with a red handset → a red full-width \"Book A Private Visit\" button. That button sits at opacity:0 and appears only on hover.\n\n(b) In the footer, \"CONNECT WITH US\", on a charcoal-to-oxblood ground. A red brand overline sits over a white tracked headline. Below it, four equal columns: city in tracked caps → street → city, state, ZIP on its own line → an outline phone pill. A hairline separates this from a six-column link farm, whose Inventory column includes one inventory link per location. Then badges, socials, legal.\n\nAt 390px the footer columns stack into a clean list, with hairlines between cities. The mid-page cards stack with large gaps, and the visit button never appears.\n\nWHY THE FOOTER COLUMNS WORK. Of the two cited sites, this has the plainest and most scannable order: city → street → city/state/ZIP → phone. It is identical in every column, and all four locations are visible at once at equal weight, with no interaction. It suits a network that presents its locations as peers. Splitting the postal address into two lines, with the ZIP, reads like an address and not a sentence. The structural idea worth taking is in the link footer, not the cards: \"Baltimore Inventory\", \"Beverly Hills Inventory\" and so on make location a route into stock, not just contact data.",
+    "shots": {
+      "full": "shots/marshallgoldman-com/full.jpg",
+      "hero": "shots/marshallgoldman-com/hero.jpg",
+      "mobile": "shots/marshallgoldman-com/mobile.jpg",
+      "strip": [
+        "shots/marshallgoldman-com/strip-1.jpg",
+        "shots/marshallgoldman-com/strip-2.jpg",
+        "shots/marshallgoldman-com/strip-3.jpg",
+        "shots/marshallgoldman-com/strip-4.jpg",
+        "shots/marshallgoldman-com/strip-5.jpg",
+        "shots/marshallgoldman-com/strip-6.jpg",
+        "shots/marshallgoldman-com/strip-7.jpg",
+        "shots/marshallgoldman-com/strip-8.jpg"
+      ],
+      "stripMobile": [
+        "shots/marshallgoldman-com/strip-m-1.jpg",
+        "shots/marshallgoldman-com/strip-m-2.jpg",
+        "shots/marshallgoldman-com/strip-m-3.jpg",
+        "shots/marshallgoldman-com/strip-m-4.jpg",
+        "shots/marshallgoldman-com/strip-m-5.jpg",
+        "shots/marshallgoldman-com/strip-m-6.jpg"
+      ],
+      "navScrolled": "shots/marshallgoldman-com/nav-scrolled.jpg"
+    },
+    "extras": [
+      {
+        "file": "shots/marshallgoldman-com/footer-locations-1440.jpg",
+        "label": "Footer \"Connect with us\": four location columns plus the link footer, 1440",
+        "kind": "uploaded",
+        "url": null,
+        "added": "2026-10-08",
+        "error": null
+      },
+      {
+        "file": "shots/marshallgoldman-com/footer-locations-390.jpg",
+        "label": "Footer location columns stacked, 390 (iPhone 13, 2x)",
+        "kind": "uploaded",
+        "url": null,
+        "added": "2026-10-08",
+        "error": null
+      },
+      {
+        "file": "shots/marshallgoldman-com/location-cards-1440.jpg",
+        "label": "Mid-page \"Explore our locations\" cards, 1440, resting state (visit button hidden)",
+        "kind": "uploaded",
+        "url": null,
+        "added": "2026-10-08",
+        "error": null
+      },
+      {
+        "file": "shots/marshallgoldman-com/location-cards-1440-hover.jpg",
+        "label": "One location card on hover: \"Book A Private Visit\" revealed, 1440",
+        "kind": "uploaded",
+        "url": null,
+        "added": "2026-10-08",
+        "error": null
+      },
+      {
+        "file": "shots/marshallgoldman-com/location-cards-390.jpg",
+        "label": "Mid-page location cards stacked, 390 (iPhone 13, 2x): visit button absent",
+        "kind": "uploaded",
+        "url": null,
+        "added": "2026-10-08",
+        "error": null
+      }
+    ],
+    "captureError": null,
+    "works": "(1) Footer location columns: a uniform four-field order (city, street, city/state/ZIP, phone), all locations visible at equal weight, zero interaction. (2) Location as a filter: one inventory link per location in the link footer. (3) At 390 the footer stacks into a hairline-separated list. It is the most usable mobile location list of the two sites. (4) The satellite image identifies the actual site honestly, without pretending it is a showroom photograph.",
+    "weaknesses": "(1) The primary conversion on each card, \"Book A Private Visit\", is opacity:0 until hover. It is invisible at rest on desktop and never appears on touch. That is a U12 symptom (task route carried only by hover) and a U7 parity failure at 390. (2) The same four addresses and phones appear twice, once in the mid-page cards and again in the footer: redundant rather than layered. (3) No hours, no directions link (addresses are plain text, not map links), no email, no per-location social links. (4) The satellite photos look like map-service captures (licensing not verified). They read as survey imagery, and a strip-mall roof from above lowers perceived value for a luxury dealer. (5) The addresses are centred and wrap unevenly, so card heights differ (Baltimore's is shorter) and the row's bottoms are ragged. (6) BEYOND THE FOOTER, DO NOT BORROW: a generic dealer template. A solid red header bar, a dated search band, a News/Events card grid, a \"GET ACCESS\" icon checklist, a team photo under \"WHY CHOOSE US\", wave dividers, a numbered three-step sell-your-car band, a testimonials slider. One widely tracked Futura voice serves every heading level (typography I8: roles without distinct voices), and every section is the same centred-headline-over-grid (repeated-composition-risk; C19: the page never establishes a dominant after the hero). Take the footer column order and the inventory-by-location links; leave everything else."
+  },
+  {
     "id": "coffee-tech-com",
     "kind": "site",
     "url": "https://www.coffee-tech.com/",

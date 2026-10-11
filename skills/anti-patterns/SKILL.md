@@ -1,6 +1,6 @@
 ---
 name: anti-patterns
-description: Failure modes in two tiers — INVARIANT universal failures (weak hierarchy, inaccessible contrast, gratuitous motion, arbitrary spacing, inconsistent tokens, uncounted persistent overlays, competing art directions inside one page, horizontal page scroll, content parity across viewports, controlled irregularity that stops being legible or intentional, depth cues incoherent with the spatial model they imply, task-relevant routes that cannot be discovered without hover, completed animation or guessing or told apart from the route beside them, opaque surfaces that cross live content, expansions that move the list they live in, sections designed as independent microsites, decorative layers that fail by painting nothing, hard-edged layers over a deliberately transparent ground, and elements clipped into invisibility by a container whose box changes size at another viewport, and fill-mode animations that keep owning a property so a later transition snaps instead of running, and hidden elements that keep their space so the gap they leave has nothing to point at) and DIALECT trope bans (AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, underlined nav, repeated primary CTAs, imagery hidden on mobile, the default Spline aesthetic, ambient motion behind body copy, template anonymity — each with a yields-when). Use as the final gate before shipping any visual work, and whenever choosing between a container and open air.
+description: Failure modes in two tiers — INVARIANT universal failures (weak hierarchy, inaccessible contrast, gratuitous motion, arbitrary spacing, inconsistent tokens, uncounted persistent overlays, competing art directions inside one page, horizontal page scroll, content parity across viewports, controlled irregularity that stops being legible or intentional, depth cues incoherent with the spatial model they imply, task-relevant routes that cannot be discovered without hover, completed animation or guessing or told apart from the route beside them, opaque surfaces that cross live content, expansions that move the list they live in, sections designed as independent microsites, decorative layers that fail by painting nothing, hard-edged layers over a deliberately transparent ground, and elements clipped into invisibility by a container whose box changes size at another viewport, and fill-mode animations that keep owning a property so a later transition snaps instead of running, and hidden elements that keep their space so the gap they leave has nothing to point at, and data surfaces designed only in their populated state) and DIALECT trope bans (AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, underlined nav, repeated primary CTAs, imagery hidden on mobile, the default Spline aesthetic, ambient motion behind body copy, template anonymity — each with a yields-when). Use as the final gate before shipping any visual work, and whenever choosing between a container and open air.
 ---
 
 # Anti-Patterns
@@ -721,6 +721,63 @@ doing the damage cannot be seen in the screenshot either party is holding.
 > where `@media (hover: none)` shows it inline and it earns its height — the ink
 > gap went 84 → 24.
 
+### U22 — A surface designed only in the state it was drawn in
+
+**Every surface that fetches, filters, transforms or accepts data has five states,
+and all five are designed: loading, empty, error, populated and edge. A build that
+renders only the populated state has not been finished. Most of it has simply not
+been designed yet.**
+
+The populated state is the one in the mockup, the one in the screenshot, the one
+the client approves. The other four only show up in use: a slow connection, a
+filter that matches nothing, a failed enquiry, a 90-character model name. And they
+show up on exactly the surfaces that carry the visitor's task. An inventory grid,
+a search, a filter bar, an enquiry form, a booking slot. On an editorial page they
+are few, which is why nobody looks for them, and why the first one a visitor hits
+looks like the page broke.
+
+**What each state owes:**
+
+- **Loading** is chosen by expected duration, not by what the component library
+  ships. Under ~300ms nothing appears. Up to ~10s, a placeholder shaped like the
+  content it stands for (motion-taste: skeletons over spinners, and no layout shift
+  when content lands). Past ~10s, determinate progress with a way to cancel. Past
+  ~60s, stop animating and show an error with a next step. **No indicator runs
+  without a timeout.**
+- **Empty** is a designed state with a job, never a blank and never a bare "No
+  data". A filter that returns nothing echoes what was asked and offers the
+  nearest way out: clear a filter, widen the range, talk to a person.
+- **Error** answers three questions in order: what happened, why (if it is
+  knowable), what the visitor can do now. **The visitor's input survives the
+  error.** A form that clears itself on a failed submit has punished the visitor
+  for the system's fault. Severity matches scope: a field error stays on the field,
+  and one failed section never takes the whole page down.
+- **Edge** is the populated state at its limits: the longest real name, the
+  missing optional photo, one result, a thousand results. The layout holds. That
+  is where [U19](#invariant) clipping and [U7](#invariant) parity failures hide.
+
+**Error is never shown as empty.** "Nothing found" after a request that failed
+tells the visitor that the stock does not exist. On a dealer or auction page that
+is a lie about the business.
+
+State changes are announced: an error message in a live region that already
+exists in the DOM before the message lands, and focus moved to the first failing
+field. A toast that disappears on its own can be paused on hover and focus.
+
+*Why it's universal:* it is the commonest silent failure in generated UI, and it
+fails in the same place [C14](../academic-composition/SKILL.md#invariant) protects,
+the means of the visitor's task. No aesthetic excuses a dead end. A page with
+perfect composition and a blank results grid has deleted the visitor's route at the
+moment they used it.
+
+> **Evidence: not yet recorded on our own work.** The rule is argued in from
+> [external/open-design-craft](../../external/open-design-craft/PROVENANCE.md)
+> (`craft/state-coverage.md`, Apache-2.0), which distils WCAG 2.2, NN/g, Material 3,
+> Apple HIG and Baymard. The same gap was flagged independently in
+> [external/anti-ui-slop](../../external/anti-ui-slop/PROVENANCE.md) on 2026-10-05,
+> and "Real states" has stood unbacked in the QA checklist of MASTER_CLAUDE.md §8.
+> Replace this note with the first measured case from a build.
+
 ---
 
 ## DIALECT
@@ -949,6 +1006,7 @@ structure.
 - [ ] Every declared decorative layer verified as actually painting — the region it covers measured, and not uniform.
 - [ ] Wherever a ground is deliberately transparent, every layer landing in that region audited for a hard edge.
 - [ ] Every task-relevant route findable without hover, animation or guessing, and legible before commitment.
+- [ ] Every surface that fetches, filters or accepts data renders loading, empty, error, populated and edge — error never shown as empty, input survives a failed submit, no indicator without a timeout (U22).
 - [ ] Every price, count, date, duration, guarantee and superlative has a recorded source that is not a prior concept, a design read or an agent's own output.
 - [ ] No content was invented to fill a slot — where the honest content is three items, the composition holds three.
 

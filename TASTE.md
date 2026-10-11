@@ -90,6 +90,7 @@ The invariants, by domain — full text in the linked skills:
 | **A layer that fails paints nothing** — an unresolved `var()`, a swallowed token, a negative-z child with no stacking context: no error, no artefact, and an absent light is indistinguishable from a design that was never lit. A declared layer is verified by measuring its region, not by looking at it | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
 | **A hard edge is hidden only by the ground beneath it** — a glow box, a scrim, a capped tint: invisible while the ground under them is opaque, a drawn line the moment a composition puts something transparent underneath | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
 | **A clipping container makes a layout error invisible** — an element anchored to a box whose size is viewport-dependent, or copy inside a fixed proportion whose padding still scales: past the crossing point the parent's `overflow` eats it rather than showing it misplaced. Audit by comparing rects against the clipping ancestor at the narrow end of every band, where a 3px clearance is a failure, not a pass | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
+| **A surface designed only in the state it was drawn in** — anything that fetches, filters or accepts data designs loading, empty, error, populated and edge; error is never shown as empty, input survives a failed submit, no indicator runs without a timeout | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
 
 ### DIALECT
 

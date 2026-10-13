@@ -760,7 +760,12 @@ while it is honest.
 5. **Amount is a dialect question; intent never is.** How much air, how dark, how
    quiet, how irregular — all respond to the brief, audience, and density needs.
    That the spacing is deliberate, the contrast passes, the ranking is truthful, and
-   the tokens are consistent does not.
+   the tokens are consistent does not. Neither does the idea: **the concept
+   sentence passes the Concept Gate before anything is built on it** — it does not
+   open on a style, a tool or a layout; it fits in one sentence; its main technique
+   cannot be swapped without changing what it means; complexity does not stand in
+   for it; a familiar move needs a reason from this project; variety is not a point
+   of view; and it is carried to the last section, not left in the hero.
 
 ---
 

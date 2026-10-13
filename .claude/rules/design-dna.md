@@ -70,7 +70,11 @@ negotiable only by a stated brief requirement.
 **`DNA1` — No markup before the concept exists in writing.** Four lines of Design
 Read (`TASTE.md` §2: deliverable / audience / family · mandate · dialect ·
 dimensionality role), one sentence of concept, and the named peak. An unstated
-mandate is REDESIGN, never invention.
+mandate is REDESIGN, never invention. The sentence passes the Concept Gate
+(`TASTE.md` §2, `CG1`–`CG7`) before the feeling curve or any device exists: it does
+not open on a style, a tool or a layout; its main technique cannot be swapped
+without changing its meaning; and it is carried by every section, not only the
+hero. A fail is answered by rewriting the idea, never by adding means.
 
 **`DNA2` — The aesthetic family is nameable and specific.** *auction-catalog*,
 *technical-luxury*, *nocturne-industrial*. "Modern", "clean" and "minimal" are

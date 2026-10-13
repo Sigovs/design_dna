@@ -26,7 +26,8 @@ decide *identically*.
 4. **Invariants are not negotiable. Dialect rules are.** Know which is which
    before you break anything.
 5. **State your Design Read first** (§2) — reading, mandate, dialect,
-   dimensionality. It takes four lines and prevents most drift.
+   dimensionality. It takes four lines and prevents most drift. Then the
+   concept in one sentence, through the **Concept Gate** (§2, `CG1`–`CG7`).
 6. **Every significant decision names what it strengthens** (§2c) — concept,
    character, hierarchy, or usability. A reaction ("feels premium") is not an
    explanation, and neither quietness nor loudness is a justification by itself.
@@ -314,6 +315,38 @@ composition is made of. Its three answers and their obligations are in
 
 **Promoting SUPPORT → MAIN mid-project requires re-running this Design Read**, since
 it changes the dominant, the eye path, and usually the dialect. Demotion never does.
+
+### The Concept Gate — the sentence is tested before anything is built on it
+
+The Design Read says *what kind of thing* this is. The concept says *what this one
+means*. One sentence is required by `DNA1`; this gate decides whether the sentence
+is a concept or a caption. It runs **after the Design Read and before the feeling
+curve, the Composition Read and any device is chosen**, once per page — and once
+per direction in EXPLORE.
+
+```
+Concept: <one sentence>
+Concept Gate: PASS | FAIL — <CG ids that fail, and why in one clause each>
+```
+
+**Fail if any of these holds:**
+
+| | Fails when | The test |
+|---|---|---|
+| **CG1** | **the direction begins with a style, a technology or a layout** | Read the first clause. If it names a dialect, a library, a grid or a device — *"dark editorial"*, *"a pinned scroll"*, *"a split hero"*, *"a 3D site"* — the means arrived before the idea. The family and the tool are answers to the idea, never its opening. |
+| **CG2** | **the governing idea cannot be stated in one sentence** | One sentence, no list, no *"and also"*, and one that could be wrong. Two ideas that need each other are one idea not yet found; two that do not are two pages. |
+| **CG3** | **the main technique can be replaced without changing the meaning** | Swap the signature move or the main device for its nearest neighbour — pin for fade, scene for photograph, scrub for cut. If the sentence still holds untouched, the technique is decoration: remove it, or restate the idea until it depends on it. |
+| **CG4** | **visual complexity compensates for a weak idea** | Strip to the static build (`MJ5`) — one face, no motion, no scenery layer. If what is left has no point, the layers were carrying an absent idea. A device count that rises while the sentence stays vague is the symptom. |
+| **CG5** | **the result repeats the agent's familiar style without project-specific necessity** | Hold it against the last builds and `projects/` (`DNA36`). Every move it shares with them names the fact *of this project* that requires it. "It worked last time" and "it is the house look" are not facts about this project. |
+| **CG6** | **generated variety is mistaken for a point of view** | Many options are not a position. Directions that share one sentence are one direction in several costumes (§2d); a pile of variants is converged by the [Selection Pass](#the-selection-pass--every-significant-decision-states-what-it-strengthens), with the losers named — never by presenting the pile. |
+| **CG7** | **the governing idea exists only in the hero and disappears through the page** | In the [section-language ledger](#the-section-language-ledger--auditing-the-whole-page), every section states in one clause how it carries the sentence — down to the last mass (`C19`, `C21`). A section that cannot is rewritten or demoted to support; it does not quietly become a template. |
+
+**A fail is answered by rewriting the idea, never by adding means.** More scenery,
+another device or a stronger grade on a failing sentence is CG4 committing itself.
+**A component or fix inside an approved page inherits its concept** and does not
+re-run the gate — but it may not contradict the sentence. The gate is checked again
+on the render: CG3 and CG7 are failures a build can introduce after the sentence
+passed on paper.
 
 ### 2a. The Composition Read and Plan
 

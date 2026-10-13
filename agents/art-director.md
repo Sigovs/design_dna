@@ -33,7 +33,9 @@ line constrains the next:
    dimensionality role. Four lines. An unstated mandate is REDESIGN, never
    invention. Under REDESIGN, list what carries through untouched *first*.
 2. **The concept, in one sentence.** Not a mood, not an adjective stack. A
-   sentence that could be wrong.
+   sentence that could be wrong. Run it through the Concept Gate (`TASTE.md` §2,
+   `CG1`–`CG7`) and write the result under it. A fail is rewritten here — never
+   carried into the feeling curve to be rescued by devices.
 3. **The feeling curve** — one line per act: the emotion first, the thing on
    screen that causes it second. Two adjacent acts producing the same feeling
    means one is filler; cut it before it is built.

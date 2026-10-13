@@ -22,6 +22,11 @@ its style mode, the declared grid, the scroll and frame budgets. If those do not
 brief, `CLAUDE.md`, `BRIEF.md`, project record, commit message — that absence is your first
 finding, and you review against the invariants alone.
 
+Then re-run the Concept Gate (`TASTE.md` §2) **on the render**, not on the brief. `CG3` — swap
+the main device for its neighbour in your head; if the page means the same, it is decoration.
+`CG7` — walk every section to the last mass and name how it carries the sentence; the first one
+that cannot is a finding. A sentence that passed on paper does not pass the build.
+
 ## Measure; do not look
 
 **The single most common failure in visual review is believing a screenshot.** A layer that

@@ -151,6 +151,8 @@ this is the checklist that satisfies it. An empty section is an unfinished gate.
 - [ ] **Design Read** — deliverable / audience / family · mandate · dialect ·
       dimensionality role. The family is nameable and specific (`DNA2`).
 - [ ] **The concept**, in one sentence — what this page *is*, not what it contains.
+      It passes the Concept Gate (`TASTE.md` §2, `CG1`–`CG7`), and the result is
+      written under it: `Concept Gate: PASS`, or the failing ids.
 - [ ] **The feeling curve** — one line per act: the emotion first, the thing on
       screen that causes it second. Two adjacent acts with the same feeling means
       one is filler (`DNA29`).

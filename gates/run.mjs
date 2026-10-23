@@ -25,6 +25,7 @@ import { audit as auditHero, sourceEvidence } from './hero.mjs';
 import { measure as measureEvent } from './event.mjs';
 import { measure as measureComposition } from './composition.mjs';
 import { audit as auditVault } from './vault.mjs';
+import { audit as auditA11y } from './a11y.mjs';
 import { launchChromium } from '../lib/browser.mjs';
 
 /* the working copy this file lives in — the vault is read from here, never from a
@@ -128,6 +129,11 @@ for (const vp of viewports) {
   g1.measured[vp.label].errors = errors;
   await ctx.close();
 }
+/* keyboard, touch targets, reduced motion, the Lenis contract — DNA68/78/79/90.
+   Driven rather than read: Tab and Enter are pressed, the page is rendered twice
+   with the motion preference flipped. Dialogs are only opened when the
+   declaration names their triggers (`a11y.dialogs`). See gates/a11y.mjs. */
+g1.a11y = await auditA11y({ browser, url, viewports, decl });
 g1.commitments = (decl.commitments || []).map((c) => {
   const actual = c.viewport ? g1.measured[c.viewport]?.[c.metric] : g1.measured[viewports[0].label]?.[c.metric];
   const ok = c.max != null ? actual <= c.max : c.min != null ? actual >= c.min : actual === c.equals;
@@ -139,6 +145,7 @@ g1.blockers = [
   ...a1Runs.flatMap((r) => r.problems.map((p) => `A1 ${r.label}: ${p}`)),
   ...g1.commitments.filter((c) => !c.pass).map((c) => `commitment ${c.metric}: ${c.actual}`),
   ...Object.entries(g1.measured).filter(([, m]) => m.horizontalOverflow).map(([k]) => `${k}: horizontal page scroll`),
+  ...g1.a11y.findings.map((f) => `${f.viewport} [${f.rule}]: ${f.detail}`),
   ...Object.entries(g1.measured).flatMap(([k, m]) => m.errors.map((e) => `${k}: ${e}`)),
 ];
 g1.verdict = g1.blockers.length === 0 ? 'pass' : 'fail';

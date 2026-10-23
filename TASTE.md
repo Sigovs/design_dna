@@ -872,6 +872,19 @@ Adopting this file means adopting how the work gets done, not only how it looks:
   **Three questions at most, at once.** And if a reasonable, reversible assumption is
   available, take it and disclose it rather than stopping — a blocked task costs more
   than a stated assumption that turns out wrong.
+
+  **A disclosed assumption carries its cost.** One line: what was assumed, the default
+  taken, and what it costs if it is wrong — *"Assumed the phone stays in the header on
+  mobile → kept; if wrong, the header loses its sell button below 430px."* An
+  assumption without its cost cannot be weighed, so it reads as a guess.
+- **Content reality is settled before layout, not discovered after.** For every list,
+  grid or result set, ask how it looks with **zero, one and the most** items. For every
+  slot holding real text, ask for **the longest string it will really carry**: the
+  longest model name, a six-figure price, a 400-word owner's write-up. Answer from the
+  live data where it exists, and ask only when it does not. Zero items is U22's empty
+  state. One and the most are where a four-up grid or a sticky card is shown to have
+  been designed for three items. (Taken from `grill-me` in
+  [external/ux-ui-agent-skills](external/ux-ui-agent-skills/PROVENANCE.md).)
 - **Senior decisions, flagged afterwards.** Decide, build, then surface the close
   calls in the report under *Judgment calls*. Taste questions are answered in the
   work, reviewed in the report.

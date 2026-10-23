@@ -67,6 +67,7 @@ composition is good.
 | `structure.mjs` | Finds repeated modules by rendered geometry. Reads no class names. |
 | `hero.mjs` | Closed-form `object-fit` mapping, per-sample subject boxes, annotated evidence images. |
 | `content.mjs` | Harvests claim-shaped strings from the render and requires each to map to a ledger entry. |
+| `a11y.mjs` | Part of Gate 1. Drives the keyboard (Tab reachability, Enter/Space on stateful custom controls, arrows in composite widgets), measures touch targets (44px under 900px wide, per DNA68; 24px on desktop, per WCAG 2.5.8, with its spacing and inline exceptions), renders twice to compare `prefers-reduced-motion` (no policy, motion still running, content lost), checks the Lenis contract (present; absent under reduce, per DNA90), and opens the dialogs declared in `a11y.dialogs` to check trap, Escape and focus return. Adapted from ux-ui-agent-skills (MIT); see `external/ux-ui-agent-skills/`. |
 
 ## The three mechanisms in `seal.mjs`
 
@@ -136,7 +137,8 @@ the source master and obvious on the render.
 ## Tests
 
 ```sh
-npm run test:gates        # all four suites
+npm run test:gates        # all five suites
+npm run test:a11y         # keyboard, targets, reduced motion, Lenis — bad cases and known false positives
 npm run test:a1           # ownership vs media coverage, competition, declaration honesty
 npm run test:structure    # wrapper-evasion regressions
 npm run test:content      # coverage, banned sources, dated figures
@@ -203,3 +205,33 @@ Two instrument fixtures hold the ends of the scale. `a1-composed-low-media` pass
 on **6%** media coverage. `a1-two-events` fails at **100%** media coverage, on
 competition. Neither is a design, neither carries a verdict from Alex, and neither
 may ever be cited as taste evidence.
+
+## Keyboard, targets and reduced motion are driven, not read
+
+`a11y.mjs` exists because DNA68, DNA78, DNA79 and DNA90 were written down and never
+measured: each was "checked" by reading the source. It runs inside Gate 1 and needs
+nothing declared to do its main work. One field is optional:
+
+```json
+"a11y": {
+  "dialogs": [{ "open": "[data-inq-open]" }],
+  "touchTarget": 44, "pointerTarget": 24, "lenis": true
+}
+```
+
+`dialogs` lists the triggers to open. A dialog is never found by guessing, because
+guessing clicks things a visitor would not. The first trigger visible at the viewport
+is the one used, since pages often repeat a trigger in a dock that only exists on
+phones. `dialog` defaults to `[role="dialog"],dialog[open]`. `lenis: false` is for a
+page that truly has no scroll layer. It is a deliberate exception and the report must
+name it.
+
+The first run on a real build (Tucson v4, 2026-10-25) produced three false positives:
+
+- a rail's "Next" button that tabbing to the last card disables;
+- a GSAP `.pin-spacer` and SplitText word wrappers that exist only when motion is allowed;
+- a native `<dialog>` whose first trigger sat in the phone-only dock.
+
+Each one is now a CLEAN case in `test/a11y.test.mjs`. The one finding that held up was
+real: footer links 42px tall on a phone, 2px under DNA68.
+

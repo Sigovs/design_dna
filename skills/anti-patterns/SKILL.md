@@ -852,8 +852,8 @@ never a text shadow — that one is an invariant, not a preference.
 stats, boxed form sections, panel-in-panel.
 
 *Why:* a box is a heavy, permanent separator applied to a problem that is usually
-insufficient spacing. Boxes also multiply — one card invites a grid of cards, and a
-grid of cards is the template look. Preferred order: (1) whitespace alone;
+insufficient spacing. (A grid of cards for parallel content is not this failure; the
+card-grid ban was cancelled 2026-10-25, see `DNA9`.) Preferred order: (1) whitespace alone;
 (2) a 1px hairline; (3) a subtle background shift with no border; (4) an actual
 bordered card.
 
@@ -979,7 +979,7 @@ structure.
 
 **Before any of it — the delivery gates** ([TASTE.md §7a](../../TASTE.md#7-delivery-gates-and-report-format))
 - [ ] All six chain artefacts exist, were computed against **this** build, and are in order — `npm run gate5` validates rather than refuses. A claimed gate with no artefact is NOT RUN.
-- [ ] Structural repetition checked **semantically**, not by class name. `cards: 0` never passes a layout containing card-equivalent repeated masses.
+- [ ] Structural repetition checked **semantically**, not by class name. Equal card grids are allowed (`DNA9`); repeated section formulas are not.
 - [ ] Every structural finding disposed of by hand, and the written section-by-section formula inventory reconciled against the detector. An empty detector report is not originality.
 - [ ] No two sections share a compositional formula. Four equal modules are one module shown four times, however they are nested.
 - [ ] Every operation the Design Read committed to survived into the render — or is named as lost, which is a failure and not a footnote.

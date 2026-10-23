@@ -171,7 +171,9 @@ for (const vp of viewports) {
   g2.detector[vp.label] = report;
   if (vp.label === (decl.primaryViewport || 'desktop')) {
     const carried = new Map((prev2?.findings || []).map((f) => [keyOf(f), f]));
-    g2.findings = findings.map((f) => ({ ...f, ...(carried.get(keyOf(f)) ? { disposition: carried.get(keyOf(f)).disposition, reason: carried.get(keyOf(f)).reason } : {}) }));
+    /* equal parallel units (card grids) are information, not findings — the ban was cancelled 2026-10-25 (DNA9) */
+    g2.parallelUnits = findings.filter((f) => f.kind === 'parallel-units');
+    g2.findings = findings.filter((f) => f.kind !== 'parallel-units').map((f) => ({ ...f, ...(carried.get(keyOf(f)) ? { disposition: carried.get(keyOf(f)).disposition, reason: carried.get(keyOf(f)).reason } : {}) }));
   }
   await page.screenshot({ path: join(gatesDir, `evidence/full-${vp.label}.png`), fullPage: true }).catch(() => {});
   await ctx.close();

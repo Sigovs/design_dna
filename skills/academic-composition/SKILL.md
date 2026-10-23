@@ -904,8 +904,10 @@ non-containing members, and requires their widths to agree within 4%.
 **It reads no class names, and that is the whole point.** A count of `.card`
 selectors, border radii or explicit borders proves nothing — the rejected concept
 carried none of them and shipped four card-equivalent vehicle modules, so the review
-reported `cards: 0` and the page went out. **`cards: 0` may never pass a layout that
-contains card-equivalent repeated masses.** Extra wrappers, nested divs, a `<ul>`, or
+reported `cards: 0` and the page went out. The detector still measures repeated units
+by geometry, but **since 2026-10-25 equal parallel units are reported as information,
+not findings** — card grids are allowed (`DNA9`). Repeated *section formulas* and band
+runs are still findings. Extra wrappers, nested divs, a `<ul>`, or
 a flex row instead of a grid change the DOM and change nothing a reader sees, so they
 change nothing the detector measures.
 

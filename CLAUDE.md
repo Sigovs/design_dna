@@ -42,8 +42,8 @@ done.
 3. Composition beats adding UI.
 4. Strong hierarchy, deliberate negative space, asymmetry where it earns it, bold
    scale change.
-5. No repetitive cards, no repeated equal columns, no pill clusters, no icon per
-   feature, no decorative noise.
+5. No pill clusters, no icon per feature, no decorative noise. (Card grids are
+   allowed — the ban was cancelled by Alex on 2026-10-25; see `DNA9`.)
 6. Scroll animation has narrative purpose or it does not exist.
 7. Cinematic pages are thought in shots: reveal, push-in, dolly, orbit, macro,
    interruption, release.

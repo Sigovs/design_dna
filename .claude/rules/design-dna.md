@@ -47,8 +47,8 @@ negotiable only by a stated brief requirement.
 3. Composition beats adding UI.
 4. Strong hierarchy, deliberate negative space, asymmetry where it earns it, bold
    scale change.
-5. No repetitive cards, no repeated equal columns, no pill clusters, no icon per
-   feature, no decorative noise.
+5. No pill clusters, no icon per feature, no decorative noise. (Card grids are
+   allowed — the ban was cancelled by Alex on 2026-10-25; see `DNA9`.)
 6. Scroll animation has narrative purpose or it does not exist.
 7. Cinematic pages are thought in shots: reveal, push-in, dolly, orbit, macro,
    interruption, release.
@@ -110,10 +110,12 @@ levels differ by at least ~1.6×, or they are one level wearing two sizes (`I1`)
 and sections exhale downward — more space below than above (spacing `D2`, composition `D5`).
 Empty space not doing this is unfinished layout, not restraint.
 
-**`DNA9` — Repeated equal columns are a decision that must be argued.** Three equal
-cards is right only when the content is genuinely parallel and equal in rank.
-Otherwise it is a sequence, a table, a list, or one dominant plus two subordinates
-(`C1`). Content shape is never invented to fill a grid (`CP7`).
+**`DNA9` — Card grids are an ordinary tool.** *The ban on grids of equal cards was
+cancelled by Alex on 2026-10-25, "raz i navsegda".* A grid of equal cards is a
+legitimate way to present inventory and any parallel content, and it needs no
+argument. The reflex it produced — replacing every grid with a hairline-ruled list —
+is the failure that got it cancelled. What still binds: content shape is never
+invented to fill a grid (`CP7`).
 
 ---
 
@@ -240,9 +242,10 @@ outrank the buyer's motivation (`C20`), and every figure maps to a ledger entry
 per feature, no gradient CTA. If a section looks thin the answer is proportion, scale
 and air — not another element.
 
-**`DNA34` — Editorial furniture outperforms another card.** A caption set in mono, a
-hairline rule, a folio number, a running head, a dateline: these buy perceived value
-at a fraction of the visual cost of a card grid.
+**`DNA34` — Editorial furniture is one option among others.** A caption set in mono, a
+hairline rule, a folio number, a running head, a dateline can buy perceived value
+cheaply. It is not a default and not a substitute for a card grid (cancelled
+anti-card stance, 2026-10-25, see `DNA9`).
 
 ---
 
@@ -551,7 +554,7 @@ additions — the shapes this kind of work fails into specifically.
 
 **`DNA82` — Banned by default; each requires a written argument to appear.**
 Generic SaaS or dashboard shells · hero + three feature cards + logo strip + FAQ ·
-equal-column card grids as a first answer · pill and badge clusters · an icon per
+pill and badge clusters · an icon per
 feature · gradient buttons · decorative drop shadows · boxes inside boxes ·
 parallax applied to everything · counters that count for no reason ·
 "scroll to explore" as the only idea on the first screen.

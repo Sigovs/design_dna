@@ -1167,7 +1167,7 @@ never recorded as taste evidence — nothing about the design has been learned.
 > coherent, and it failed task hierarchy, inventory discoverability and desire; the
 > register became the product. `projects/fixtures/cmc-index3-conventional` was the
 > page built to correct that, and the correction restored every banned structure at
-> once: four equal inventory cards, four equal process columns, repeated horizontal
+> once (the card grid among them is no longer banned — `DNA9`, 2026-10-25): four equal inventory cards, four equal process columns, repeated horizontal
 > bands, a cropped hero, and four fabricated prices.
 >
 > **The correction applied to one produced the other.** That is why they are one
@@ -1261,8 +1261,9 @@ large element repeats what the small one already said.
 concept carried none of them and shipped four card-equivalent modules, and a
 class-name detector reported `cards: 0`. `gates/structure.mjs` finds repeated units
 by **rendered geometry**, so extra wrappers, nested divs, a `<ul>` or a flex row
-instead of a grid cannot hide them. **`cards: 0` may never pass a layout containing
-card-equivalent repeated masses.**
+instead of a grid cannot hide them. **Since 2026-10-25 a grid of equal cards is not a
+finding** — Alex cancelled the card-grid ban (`DNA9`); parallel units are reported as
+information. Repeated section formulas and band runs are still findings.
 
 **The detector is a detector, not an oracle.** It cannot see absolutely-positioned
 repeats, masses that repeat across scroll, or repetition that is compositional rather

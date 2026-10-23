@@ -208,6 +208,16 @@ treatment, voice, signature layout move — as a list, not as a promise. A carri
 you did not name is a carrier you will quietly replace. **The result must remain
 recognisable as the same brand**, and §7 closes on exactly that question.
 
+**A carrier is the client's, never ours.** The brand is the client's own identity:
+name, logo, sign, facts and words. Our previous build for that client is not a
+carrier. That includes its ground, palette, typefaces and design rules. When Alex
+asks for a new design or an experiment, that build is usually exactly what is being
+replaced, so it is reference at most. Light or dark, palette and type are decided
+again from evidence, never inherited. `[R tucson index_experiment, 2026-10-25]`: the
+agent declared REDESIGN and carried its own v4 tokens (concrete paper, the green
+action colour, Zodiak + Switzer) as "brand". The page started from the design Alex
+wanted to replace, and he rated it 1/10.
+
 **Default when the brief does not say: REDESIGN.** An unstated mandate is never
 read as licence to invent. If you believe the brief actually wants a REBRAND, say
 so and name the evidence in the brief that says so; absence of a brand description

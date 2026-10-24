@@ -2,6 +2,16 @@
 
 Five gates, in order, and the machinery that stops any of them being skipped.
 
+> **Since 2026-10-25 (Alex, step 3) only Gate 1 binds.** Its checks are the floors
+> that still hold: keyboard and visible focus, 44px targets, reduced motion with
+> nothing hidden, no horizontal scroll, no console errors. Every other artefact is a
+> report — missing, stale, failing or out of order is listed in `notes`, never in
+> `problems`. `.gates/declare.json` is optional, and Gate 4 without a ledger lists
+> the claim-shaped strings to check instead of failing. `gate5` refuses only on
+> Gate 1, then prints the whole-page read (`TASTE.md` §0 rule 7). The text below
+> describes what each instrument measures; where it says *blocks* or *refuses*, read
+> *reports*.
+
 ```
 Gate 1  Measurable Conformance                    gate1.json   (+ composition.json, hero.json)
 Gate 2  Structural and Authorship Conformance     gate2.json   (+ authorship.json)

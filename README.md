@@ -119,10 +119,10 @@ design_dna/
 ├── setup.mjs                       # npm run setup -- <dir> — scaffolds a project against the live rules
 ├── brief.mjs                       # npm run brief / brief:check — the brief compiler
 ├── art.mjs                         # npm run art / art:dry — compiled brief → generated imagery
-├── gates/                          # the five-gate chain — a gate is run when its artefact exists
+├── gates/                          # the gates — only Gate 1 binds since 2026-10-25; the rest report
 │   ├── README.md                   # the order, the three seal mechanisms, the detector's limits
 │   ├── run.mjs                     # npm run gates — runs 1–4, writes the six artefacts, seals
-│   ├── gate5.mjs                   # npm run gate5 — refuses the handoff unless the chain validates
+│   ├── gate5.mjs                   # npm run gate5 — refuses only on Gate 1, then the whole-page read
 │   ├── event.mjs                   # A1 — event ownership vs media coverage vs competition
 │   ├── structure.mjs               # repetition by rendered geometry; reads no class names
 │   ├── hero.mjs                    # closed-form cover mapping, per-sample boxes, annotated evidence
@@ -627,46 +627,22 @@ The canonical summary of what the two tiers add up to. **If a change to
 same commit** — this is the surface Alex reads to catch drift, so it is only useful
 while it is honest.
 
-0. **Delivery runs five gates, in order, and the last one is Alex's.** **Gate 1 —
-   Measurable Conformance** measures the render against commitments the Read declared
-   in advance, with one floor it may not lower: on identity-led and image-led pages
-   **one governing event owns the first screen, and everything else defers to it**.
-   That is measured as a composed system — subject, identity mass, supporting record,
-   active field, CTA cluster and reserved space, each declared as a named component
-   mapping to a rendered selector, never as a single full-viewport wrapper — with
-   `eventCoverage` and `competition` deciding and **`mediaCoverage` reported and never
-   decisive**. A composition owning its first screen on a fifth of a viewport of image
-   passes; a full-bleed photograph carrying two independent events of equal rank fails.
-   **Gate 2 — Structural and Authorship
-   Conformance** asks of every device present what work it does — a full-screen hero
-   names its event, a bleed names the chapter it separates, scale contrast says what
-   the small type cannot, an overlap changes rank, emptiness is a pause between two
-   events, two sections sharing one formula are one section — and asks whether the
-   operations the Read committed to actually survived into the render. **Gate 3 —
-   Product Usefulness** asks whether a person can do the thing they came to do.
-   **Gate 4 — Content Provenance** requires every claim-shaped string to map to a
-   ledger entry. **Gate 5 — Human Desirability** is a human verdict: clean desktop
-   and mobile screenshots, no Design Read and no rationale attached, and approve /
-   revise / reject from Alex; absence of approval is an unfinished gate, never a pass.
-
-   **A gate is run when its artefact exists, not when a report says it passed.** The
-   six chain artefacts must exist, be computed against this build, and be produced in
-   order; `npm run gate5` refuses the handoff otherwise, and a refusal there is a
-   workflow failure that teaches nothing about the design. **Gates 2 and 3 are
-   conjunctive** — authorship and usefulness are both required and neither is ever
-   traded for the other. **Structural repetition is measured semantically, never by
-   class name:** `cards: 0` may not pass a layout containing card-equivalent repeated
-   masses, and an empty detector report is not evidence of originality. A `defer` on
-   the central proposition, the dominant, the Anchor, desire or perceived value blocks
-   delivery outright, and if the defence is stronger than the artefact that is evidence
-   against shipping. **Passing Gate 1 proves the means are present and nothing else** —
-   `npm run fixtures` keeps four rejected artefacts on file across four failure
-   classes: means absent, means present doing no work, authored-and-useless, and
-   useful-and-unauthored — plus two instrument fixtures that calibrate A1 and carry
-   no verdict at all. A hero owns the first screen as a **scene**, not as an object
-   enlarged to the viewport edges — the air around the subject is part of the governing
-   event — and it is verified on the **delivered composited render**, never on the
-   source asset, with the worst sample governing when the subject moves.
+0. **Before showing: one idea, the binding floors, the whole-page read, then Alex's
+   score.** *Relaxed by Alex on 2026-10-25 (steps 1–3).* A build owes one sentence of
+   governing idea before markup, carried through every section. Before anything is
+   shown, **Gate 1** must pass its binding checks on the render: keyboard and visible
+   focus, 44px targets, reduced motion with nothing hidden, no horizontal scroll, no
+   console errors. Then the page is read **top to bottom as one object**: does every
+   section carry the same idea, does it feel finished and connected, does the buyer's
+   UX work at 1440 and 390? Then it is opened in the browser and **Alex gives a score
+   out of 10**; silence is not approval. The Design Read, Concept Gate, three-direction
+   EXPLORE, Critique Panel, section ledger, vault query and the sealed gate chain are
+   advice. Gates 2–4 still run as reports: A1 is measured and never blocks, a grid of
+   equal cards is information rather than a finding, and Gate 4 lists every
+   claim-shaped string so each can be checked against a real source — no ledger file
+   is required, and a prior concept or an agent is still never a source.
+   `npm run fixtures` keeps four rejected artefacts on file as calibration for the
+   instruments.
 1. **Two tiers, and the tier decides everything.** Invariants are universal
    quality laws and never yield; dialect rules are aesthetic positions, each with a
    stated `yields when:`. Yielding for a stated reason is correct practice —

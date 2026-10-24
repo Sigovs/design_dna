@@ -55,6 +55,8 @@ the design; it removes the ability to use it.
 
 ### I4 — Legibility over imagery is fixed at the background layer
 
+> **Advice, not an invariant — relaxed by Alex on 2026-10-25 (step 3).** A plate, panel or scrim under text over a photograph is allowed; the fix no longer has to be found in the image first. What still binds: AA measured on the composited render, at the pixels the glyphs actually cover, at every breakpoint (I1, I6). Degrading the text with shadows or outlines is still not a fix.
+
 Text over a photograph or video must meet I1 **against the lightest (or darkest)
 region it actually overlaps** — not against the image's average.
 

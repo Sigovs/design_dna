@@ -87,8 +87,8 @@ final report only — not as questions mid-task.
 **EXPLORE is not an exception to this.** Presenting three finished directions is a
 deliverable, not a question that hands design responsibility back to Alex — and
 inside each direction every decision is still made autonomously, with no options
-offered and nothing deferred. Use it only when no visual direction has been chosen;
-a small change, a fix, an urgent revision or "just do it" is BUILD.
+offered and nothing deferred. Since 2026-10-25 (Alex, step 3) it runs only when Alex
+asks for options; otherwise build one strong direction (BUILD).
 
 ### Clarifying questions
 
@@ -143,7 +143,8 @@ autonomy rules above — change one, change both.
 move a rule between tiers as a side effect of another edit — a tier change is its
 own decision and needs its own argument in the commit.
 
-**Declarations before techniques.** The Design Read outputs four lines —
+**Declarations before techniques** — advice since 2026-10-25 (Alex, step 3); the
+one-sentence idea is what is owed. The Design Read outputs four lines —
 deliverable/audience/family, **mandate** (REBRAND / REDESIGN / REFRESH), **dialect**,
 and **dimensionality role** (MAIN / SUPPORT / ABSENT). Each is declared before the
 thing it governs: the mandate before the dialect, because a dialect executes an
@@ -190,6 +191,7 @@ CARRIED / TASK / MEANS block, no DECISIONS / rejected / why list, no equivalent
 reasoning protocol, no abstract design-theory language, no section references like
 "§2c", and no re-confirming files that did not change.
 
-The procedures themselves are unchanged — the Design Read, the Composition Read and
-Plan, the Selection Pass and the critique panel still run. They inform the work;
-they are not the report.
+Since 2026-10-25 (Alex, step 3) the Design Read, the Composition Read and Plan, the
+critique panel and the gate chain are advice. What runs every time: one sentence of
+idea before markup, Gate 1's binding checks, and the whole-page read top to bottom
+(`TASTE.md` §0 rule 7) before Alex is asked for a score out of 10.

@@ -1,6 +1,6 @@
 ---
 name: scroll-site
-description: The setup and the concept gate for a scroll-driven or cinematic build — a scrollytelling page, a pinned-sequence landing page, an Apple-style scroll experience, a 3D or WebGL product or automotive site, a page where scrolling plays a video or moves a camera. Load it BEFORE any markup whenever the work is scroll-led, cinematic, or has 3D in it. It resolves the design system, verifies the plugin stack, scaffolds the project, and refuses to let a build start before its concept artefact exists. It carries no aesthetic rules of its own — TASTE.md and .claude/rules/design-dna.md carry those.
+description: The setup and the concept gate for a scroll-driven or cinematic build — a scrollytelling page, a pinned-sequence landing page, an Apple-style scroll experience, a 3D or WebGL product or automotive site, a page where scrolling plays a video or moves a camera. Load it BEFORE any markup whenever the work is scroll-led, cinematic, or has 3D in it. It resolves the design system, verifies the plugin stack, scaffolds the project, and asks for the one-sentence idea before markup (the full BRIEF.md checklist is advice since 2026-10-25). It carries no aesthetic rules of its own — TASTE.md and .claude/rules/design-dna.md carry those.
 ---
 
 # Scroll site — setup and the concept gate
@@ -145,14 +145,19 @@ ages, and the resolution order already finds the live one.
 
 ## Step 4 — the concept gate
 
-**`BRIEF.md` is complete before the first line of markup.** `DNA1` states the rule;
-this is the checklist that satisfies it. An empty section is an unfinished gate.
+> **Advice — relaxed by Alex on 2026-10-25 (step 3).** Only the concept sentence is
+> owed before markup (`DNA1`). The rest of this checklist is a planning aid: fill in
+> what helps, leave the rest, and no section blocks the build. The claims ledger is
+> optional too (`CP1`); prices and facts still come only from a real source.
+
+**`BRIEF.md` collects the plan before the first line of markup.** `DNA1` states the
+rule; this is the checklist that serves it.
 
 - [ ] **Design Read** — deliverable / audience / family · mandate · dialect ·
       dimensionality role. The family is nameable and specific (`DNA2`).
 - [ ] **The concept**, in one sentence — what this page *is*, not what it contains.
-      It passes the Concept Gate (`TASTE.md` §2, `CG1`–`CG7`), and the result is
-      written under it: `Concept Gate: PASS`, or the failing ids.
+      The Concept Gate (`TASTE.md` §2, `CG1`–`CG7`) is a useful test of it, not a
+      required line.
 - [ ] **The feeling curve** — one line per act: the emotion first, the thing on
       screen that causes it second. Two adjacent acts with the same feeling means
       one is filler (`DNA29`).

@@ -37,6 +37,8 @@ as production ones — see CP5.
 
 ### CP1 — The ledger exists before the claim is typed
 
+> **Advice, not an invariant — relaxed by Alex on 2026-10-25 (step 3).** No ledger file is required, and Gate 4 no longer fails on its absence. The rule that stays: every price, count, date and promise on the page comes from a real source — the client, their live site, their data — never from a previous concept, an agent or a guess (CP3, CP4, CP7). Gate 4 lists the claim-shaped strings it finds so each can be checked against its source.
+
 Every project that displays a claim has a **content ledger**: one entry per claim,
 recorded before that claim reaches a layout. An entry is
 
@@ -52,6 +54,8 @@ is in exactly the state the rejected concept was in, and reading through it look
 for suspicious figures reproduces the review that already failed.
 
 ### CP2 — Coverage is the mechanism, not validity
+
+> **Advice, not an invariant — relaxed by Alex on 2026-10-25 (step 3).** Follows CP1: without a required ledger, coverage is not enforced. Gate 4 still harvests every claim-shaped string from the rendered page and lists it — the useful half of this rule.
 
 Checking that the recorded claims are true is necessary and catches nothing, because
 the fabricated ones were never recorded. So the test runs the other way: **every

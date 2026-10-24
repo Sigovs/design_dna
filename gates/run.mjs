@@ -5,8 +5,8 @@
  *
  * Runs Gate 1 → 4 in order and writes one artefact per gate into
  * <project>/.gates/. Gate 5 is Alex's verdict and is never produced here; see
- * gates/gate5.mjs, which refuses to hand over screenshots unless this chain
- * validates.
+ * gates/gate5.mjs. Since 2026-10-25 (Alex, step 3) only Gate 1's binding checks
+ * can fail the run; Gates 2–4 and the delegated artefacts are reports.
  *
  * THE HUMAN HALVES PERSIST. Every artefact that needs judgement is written with
  * its questions and `null` answers; a person fills them in; a re-run carries the
@@ -38,14 +38,11 @@ const pageName = (args.find((a) => a.startsWith('--page=')) || '--page=index.htm
 const gatesDir = join(root, '.gates');
 mkdirSync(gatesDir, { recursive: true });
 
+/* The declaration is optional since 2026-10-25 (Alex, step 3). Without one, Gate 1
+   still measures the binding floors; commitments, A1, hero and means are simply
+   not measured. */
 const declPath = join(root, '.gates', 'declare.json');
-if (!existsSync(declPath)) {
-  console.error(`no declaration at ${declPath}\n` +
-    `A build declares what it commits to BEFORE it is measured — Gate 1's whole point.\n` +
-    `See gates/README.md for the shape.`);
-  process.exit(2);
-}
-const decl = JSON.parse(readFileSync(declPath, 'utf8'));
+const decl = existsSync(declPath) ? JSON.parse(readFileSync(declPath, 'utf8')) : {};
 const { seal: srcSeal, fileCount } = sourceSeal(root);
 const stamp = () => new Date().toISOString();
 const read = (f) => (existsSync(join(gatesDir, f)) ? JSON.parse(readFileSync(join(gatesDir, f), 'utf8')) : null);
@@ -298,14 +295,21 @@ write('product.json', p);
 const { ctx: cctx, page: cpage } = await open(viewports[0]);
 const hits = await harvest(cpage);
 await cctx.close();
-const ledger = read('content-ledger.json');
-const validation = validateContent({ hits, ledger, build: decl.build || {} });
+/* No ledger is not a failure since 2026-10-25 (Alex, step 3, CP1/CP2 advice): the
+   harvested claims are listed so each can be checked against its real source. A
+   ledger, where one exists, is still validated in full. A previous run's artefact
+   with no entries is not a ledger. */
+const prevLedger = read('content-ledger.json');
+const ledger = prevLedger && [].concat(prevLedger.claims || prevLedger).length ? prevLedger : null;
+const validation = ledger ? validateContent({ hits, ledger, build: decl.build || {} }) : null;
 const c = {
   gate: 'Gate 4 · Content Provenance', sourceSeal: srcSeal,
   build: decl.build || {}, claims: (ledger && (ledger.claims || ledger)) || [],
   harvested: hits, validation,
+  claimsToCheck: validation ? undefined : hits.map((h) => `${h.class}: "${h.text}" at ${h.where}`),
   humanConfirmed: !!(ledger && (ledger.claims || ledger).length),
-  blockers: validation.problems, verdict: validation.verdict, finishedAt: stamp(),
+  blockers: validation ? validation.problems : [],
+  verdict: validation ? validation.verdict : 'report', finishedAt: stamp(),
 };
 write('content-ledger.json', c);
 
@@ -314,17 +318,24 @@ await srv.close();
 
 /* ── the chain ───────────────────────────────────────────────────────────── */
 const chain = validateChain(root, gatesDir);
-write('chain.json', { checkedAt: stamp(), seal: chain.seal, sourceSeal: chain.sourceSeal, ok: chain.ok, problems: chain.problems });
+write('chain.json', { checkedAt: stamp(), seal: chain.seal, sourceSeal: chain.sourceSeal, ok: chain.ok, problems: chain.problems, notes: chain.notes });
 
+/* only Gate 1 binds since 2026-10-25 (Alex, step 3); the rest print as reports */
 const line = (s) => console.log(s);
 line(`\ngates — ${root}`);
 for (const g of [g1, g2, a, h, p, c]) {
-  line(`  ${g.verdict === 'pass' ? '\x1b[32m✓\x1b[0m' : '\x1b[31m✗\x1b[0m'} ${g.gate}`);
+  const binding = g === g1;
+  const mark = g.verdict === 'pass' ? '\x1b[32m✓\x1b[0m' : binding ? '\x1b[31m✗\x1b[0m' : '\x1b[33m·\x1b[0m';
+  line(`  ${mark} ${g.gate}${binding ? '' : '  (report)'}`);
   for (const b of g.blockers || []) line(`      · ${b}`);
+}
+if (c.claimsToCheck?.length) {
+  line(`\n  claims to check against their real source (no ledger — CP3/CP7 still bind):`);
+  for (const s of c.claimsToCheck) line(`      · ${s}`);
 }
 line(`\n  chain seal ${chain.seal.slice(0, 16)}…  ${chain.ok ? '\x1b[32mvalid\x1b[0m' : '\x1b[31mINVALID\x1b[0m'}`);
 for (const pr of chain.problems) line(`      · ${pr}`);
 line(chain.ok
-  ? `\n\x1b[32mGate 5 may be requested: npm run gate5 -- ${root}\x1b[0m\n`
-  : `\n\x1b[31mGate 5 refused — the chain does not validate.\x1b[0m\n`);
+  ? `\n\x1b[32mBinding checks pass. Read the page top to bottom (TASTE §0 rule 7), then: npm run gate5 -- ${root}\x1b[0m\n`
+  : `\n\x1b[31mGate 1 binding checks fail — fix them before showing.\x1b[0m\n`);
 process.exit(chain.ok ? 0 : 1);

@@ -91,6 +91,8 @@ awkward mid-range headlines are where generated work most often breaks.
 
 ### I4 — Uppercase is tracked and short
 
+> **Advice, not an invariant — relaxed by Alex on 2026-10-25 (step 3).** Large uppercase headlines, set as long as the concept wants, are legitimate: a poster, a parade, a bill. Tracking at display size is an optical call, not a rule. What still holds: small uppercase at label size gets tracking so it does not jam, and body-length text is not set in capitals (legible hierarchy I1).
+
 If you use uppercase, add tracking (≥0.08em, more as size drops) and keep it to a
 few words. Never a full sentence, never a paragraph.
 

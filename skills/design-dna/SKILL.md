@@ -120,6 +120,13 @@ and optional unless the order is written down.
 
 ## PAGE-AS-OBJECT — MANDATORY CONTEXT RULE
 
+> **Kept, and simplified by Alex on 2026-10-25 (step 3).** What still binds: a section
+> is judged inside its page — look at the whole page and its neighbours before deciding,
+> and before calling anything done, run the whole-page read top to bottom (`TASTE.md`
+> §0 rule 7: one idea · finished · the buyer's UX). That read is the one process step
+> that survived step 3, because the cohesion of the whole page is what Alex scores
+> first. Writing the rhythm read down (step 4 below) is advice, not paperwork owed.
+
 **Never design or critique a section as an isolated composition when it belongs to
 an existing page. The PAGE is the primary composition; a SECTION is a local event
 inside it.**

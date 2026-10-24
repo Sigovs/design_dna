@@ -463,6 +463,8 @@ Depth:
 
 ### C17 — The composition declares what it depends on
 
+> **Advice, not an invariant — relaxed by Alex on 2026-10-25 (step 3).** No declaration required. Worth noticing when a page only works with one exceptional asset; not a gate.
+
 **When a composition's identity is carried by one class of asset — the photography,
 the film, the artwork, the one exceptional hero frame — or by one condition holding
 — the exact sequence of sections, the motion between them, the content arriving at

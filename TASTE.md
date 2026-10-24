@@ -25,12 +25,25 @@ decide *identically*.
    they contain hard numbers and hard bans.
 4. **Invariants are not negotiable. Dialect rules are.** Know which is which
    before you break anything.
-5. **State your Design Read first** (§2) — reading, mandate, dialect,
-   dimensionality. It takes four lines and prevents most drift. Then the
-   concept in one sentence, through the **Concept Gate** (§2, `CG1`–`CG7`).
+5. **Say the idea in one sentence before building.** One governing idea, carried
+   through every section. *Relaxed by Alex on 2026-10-25 (step 3):* the four-line
+   Design Read, the Concept Gate (`CG1`–`CG7`), the three-direction EXPLORE, the
+   Critique Panel, the section-language ledger, the sealed gate chain and the
+   mandatory vault query are **advice** — tools to reach for when they help, never
+   steps a build must pass. They stay documented below for that use.
 6. **Every significant decision names what it strengthens** (§2c) — concept,
    character, hierarchy, or usability. A reaction ("feels premium") is not an
    explanation, and neither quietness nor loudness is a justification by itself.
+7. **Before showing anything, read the page top to bottom as one object.** It
+   replaces the process above, and it is not optional. Scroll the whole rendered
+   page at 1440 and 390 and answer three things:
+   - **One idea:** does every section carry the same governing idea down to the
+     footer, or does it become a kit of devices or a template halfway down?
+   - **Finished:** do the sections connect as one piece, top to bottom?
+   - **The buyer's UX:** can a buyer find what is for sale, understand it, compare
+     it and act, at both widths, with keyboard as well as touch?
+   Fix what fails before showing. Then open the page in the browser and ask Alex
+   for a score out of 10.
 
 ---
 
@@ -58,7 +71,7 @@ The invariants, by domain — full text in the linked skills:
 | **The means of the visitor's task survive the composition** — no compositional move may delete the means of doing what they came to do | [composition](skills/academic-composition/SKILL.md#invariant) |
 | **Major masses before components** — the page is describable as 3–7 masses before any card, column or grid is named | [composition](skills/academic-composition/SKILL.md#invariant) |
 | **The compositional centre is decided, not inherited** — semantic, optical, geometric and centre-of-action are distinguished, and one is declared to govern | [composition](skills/academic-composition/SKILL.md#invariant) |
-| **The composition declares what it depends on** — an identity carried by one class of asset, or by one condition holding, names the dependency, separates an authored constraint from an operational risk, and survives the plausible variation its own use guarantees | [composition](skills/academic-composition/SKILL.md#invariant) |
+| *(advice since 2026-10-25)* **The composition declares what it depends on** — an identity carried by one class of asset, or by one condition holding, names the dependency, separates an authored constraint from an operational risk, and survives the plausible variation its own use guarantees | [composition](skills/academic-composition/SKILL.md#invariant) |
 | **The page is the composition** — a section is a local event inside it, judged in scroll context and at two scales; a strong local composition that damages the distant read has failed | [composition](skills/academic-composition/SKILL.md#invariant) |
 | **The page holds its standard to the last mass** — the masses after the opening stay ranked, connected and resolved, and the ending is designed rather than left over | [composition](skills/academic-composition/SKILL.md#invariant) |
 | **The first screen identifies what this is** — or the Read declares that withholding it is the subject | [composition](skills/academic-composition/SKILL.md#invariant) |
@@ -135,6 +148,8 @@ buys you.
 ---
 
 ## 2. The Design Read
+
+> **Advice, not a gate — relaxed by Alex on 2026-10-25 (step 3).** The four-line Design Read, the mandate/style/dimensionality lines, the hero declaration and the Concept Gate below are optional tools. What a build owes before markup is one sentence of governing idea (§0, rule 5); what it owes before showing is the whole-page read (§0, rule 7). The mandate *question* still matters — never carry our previous build's palette or type as the client's brand — but it no longer has to be written down.
 
 **A compiled brief comes first, where one exists.** `npm run brief` gathers the eligible
 evidence and the agent authors the direction into it ([projects/briefs/](projects/briefs/));
@@ -334,6 +349,8 @@ it changes the dominant, the eye path, and usually the dialect. Demotion never d
 
 ### The Concept Gate — the sentence is tested before anything is built on it
 
+> **Advice — relaxed by Alex on 2026-10-25 (step 3).** No PASS/FAIL line is required. The seven tests are still the quickest way to find out why an idea is weak; CG7 (the idea dies after the hero) is checked anyway in the whole-page read (§0, rule 7).
+
 The Design Read says *what kind of thing* this is. The concept says *what this one
 means*. One sentence is required by `DNA1`; this gate decides whether the sentence
 is a concept or a caption. It runs **after the Design Read and before the feeling
@@ -365,6 +382,8 @@ on the render: CG3 and CG7 are failures a build can introduce after the sentence
 passed on paper.
 
 ### 2a. The Composition Read and Plan
+
+> **Advice — relaxed by Alex on 2026-10-25 (step 3).** Not required before building. Use it when a page is not working and you need to know why.
 
 > **THE PAGE IS THE COMPOSITION.** A section is only a local event inside it.
 >
@@ -428,6 +447,8 @@ The short form — artistic image, masses, centres, dominance, direction, rhythm
 negative space, responsive, diagnosis — serves section-level work and critique.
 
 ### 2b. The Critique Panel
+
+> **Advice — relaxed by Alex on 2026-10-25 (step 3).** The five-critic panel and its disposition table no longer run by default. The whole-page read (§0, rule 7) replaces it before a handoff.
 
 Five critics, each in role, **3–6 lines each**. **No consensus is required** — the
 panel's value is disagreement that survives contact with the work.
@@ -590,6 +611,8 @@ specific intended effect**, not the name of a style.
 
 #### The section-language ledger — auditing the whole page
 
+> **Advice — relaxed by Alex on 2026-10-25 (step 3).** No written ledger. Its question — does every section belong to the same idea — is asked in the whole-page read (§0, rule 7).
+
 **Diagnostic, not a demand that sections look identical.** Variation is how a page
 develops ([C7](skills/academic-composition/SKILL.md#invariant)); what this catches
 is variation that changes *art direction* rather than pace.
@@ -658,6 +681,8 @@ dialect ([auction-editorial P4](dialects/auction-editorial.md#p4--one-committed-
 The budget is the general form of the same discipline.
 
 ### 2d. EXPLORE — three directions before one is chosen
+
+> **Advice — relaxed by Alex on 2026-10-25 (step 3).** Three directions before one is chosen is no longer the default for an unchosen direction. Build one strong direction (BUILD) unless Alex asks for options.
 
 **Run the shared analysis once**, not three times: the mandate; the brand and
 content invariants; the visitor's task and the means serving it; the evidence and
@@ -927,6 +952,8 @@ Adopting this file means adopting how the work gets done, not only how it looks:
 
 ## 6. Vault hook — the vault→design loop
 
+> **Optional — relaxed by Alex on 2026-10-25 (step 3).** Querying the vault before a build is no longer required, and the tally line is not owed. Read it when a reference would help; when you do, the rules below on reading it still apply.
+
 `vault/` is the visual reference library: captured shots, uploaded images, and the
 notes on *why* each one works. It is live, and querying it is **not optional** —
 it is the step that makes this DNA evidence-based rather than a set of assertions.
@@ -1142,6 +1169,8 @@ drive two concrete decisions, is in
 ## 7. Delivery gates and report format
 
 ### 7a. The delivery gates — run before the report is written
+
+> **Relaxed by Alex on 2026-10-25 (step 3).** The sealed chain no longer blocks a handoff: `npm run gate5` reports the artefacts and refuses only when Gate 1's binding checks fail or were never run. Gate 1 still binds: keyboard and visible focus, 44px targets, reduced motion with nothing hidden, no horizontal scroll, no console errors. Gate 2, the delegated artefacts, Gate 3 and Gate 4 are reports — read them, they no longer stop you. The whole-page read (§0, rule 7) and Alex's score out of 10 (Gate 5) are what stand before a handoff. The text below is kept as the description of what each check measures.
 
 **Five gates, in this order, and none of them is skippable.**
 
@@ -1369,6 +1398,8 @@ These bind alongside the five gates; they are not steps in the chain.
 | **Coherence is not quality** — the verifiable checks cannot establish that the work is good | [§2c](#2c-selection-coherence-and-device-discipline) |
 
 ### 7b. Report format
+
+> **Shortened by Alex on 2026-10-25 (step 3).** The report is short: what was built and the idea in one sentence, the whole-page read (one idea · finished · buyer UX) with what was fixed, Gate 1's binding checks, any claim whose source is not yet confirmed, close judgment calls, and what was not verified. The full list below is optional.
 
 End any visual work with:
 

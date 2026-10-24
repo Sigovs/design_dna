@@ -12,14 +12,20 @@
  *             with their finish times. Out-of-order timestamps fail.
  *
  * Gate 5 is never sealed: it is Alex's verdict and the system may not record it.
+ *
+ * Since 2026-10-25 (Alex, step 3) only BINDING artefacts can refuse a handoff —
+ * Gate 1, which carries the floors that still bind: keyboard and focus, 44px
+ * targets, reduced motion, no horizontal scroll, no console errors. Every other
+ * artefact is a report: missing, stale, failing or out of order lands in
+ * `notes`, never in `problems`.
  */
 import { createHash } from 'node:crypto';
 import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
 
-/* the six artefacts that must exist, in the order they must have been produced */
+/* the artefacts, in the order they are produced; only `binding` ones can refuse */
 export const CHAIN = [
-  { file: 'gate1.json', gate: 'Gate 1 · Measurable Conformance' },
+  { file: 'gate1.json', gate: 'Gate 1 · Measurable Conformance', binding: true },
   { file: 'vault.json', gate: 'Gate 1 · delegated — the vault was read' },
   { file: 'gate2.json', gate: 'Gate 2 · Structural and Authorship Conformance' },
   { file: 'authorship.json', gate: 'Gate 2 · delegated — authorship preservation' },
@@ -70,30 +76,31 @@ export function readArtifacts(gatesDir) {
 export function validateChain(root, gatesDir) {
   const src = sourceSeal(root);
   const artifacts = readArtifacts(gatesDir);
-  const problems = [];
+  const problems = [], notes = [];
 
   for (const a of artifacts) {
-    if (!a.present) { problems.push(`${a.gate}: NOT RUN — ${a.file} is missing`); continue; }
-    if (a.unreadable) { problems.push(`${a.gate}: ${a.file} is unreadable — ${a.unreadable}`); continue; }
+    const out = a.binding ? problems : notes;
+    if (!a.present) { out.push(`${a.gate}: NOT RUN — ${a.file} is missing`); continue; }
+    if (a.unreadable) { out.push(`${a.gate}: ${a.file} is unreadable — ${a.unreadable}`); continue; }
     if (a.data.sourceSeal !== src.seal) {
-      problems.push(`${a.gate}: STALE — ${a.file} was computed against a different build; it reverts to not-run`);
+      out.push(`${a.gate}: STALE — ${a.file} was computed against a different build; it reverts to not-run`);
     }
     if (a.data.verdict !== 'pass') {
-      problems.push(`${a.gate}: verdict is "${a.data.verdict ?? 'missing'}"`);
+      out.push(`${a.gate}: verdict is "${a.data.verdict ?? 'missing'}"`);
     }
     if (a.data.verdict === 'pass' && a.data.humanConfirmed === false) {
-      problems.push(`${a.gate}: passes on machine checks only — humanConfirmed is false`);
+      out.push(`${a.gate}: passes on machine checks only — humanConfirmed is false`);
     }
   }
 
   const times = artifacts.filter((a) => a.present && a.data?.finishedAt).map((a) => Date.parse(a.data.finishedAt));
   if (times.length === artifacts.length) {
     for (let i = 1; i < times.length; i++) {
-      if (!(times[i] >= times[i - 1])) problems.push(`ORDER: ${artifacts[i].file} finished before ${artifacts[i - 1].file}`);
+      if (!(times[i] >= times[i - 1])) notes.push(`ORDER: ${artifacts[i].file} finished before ${artifacts[i - 1].file}`);
     }
   }
 
   const h = createHash('sha256').update(src.seal);
   for (const a of artifacts) h.update(a.hash || 'MISSING');
-  return { ok: problems.length === 0, seal: h.digest('hex'), sourceSeal: src.seal, fileCount: src.fileCount, artifacts, problems };
+  return { ok: problems.length === 0, seal: h.digest('hex'), sourceSeal: src.seal, fileCount: src.fileCount, artifacts, problems, notes };
 }

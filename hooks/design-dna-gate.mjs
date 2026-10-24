@@ -172,7 +172,7 @@ function bindings(path) {
 
   if (SURFACE.test(p)) {
     set.push(
-      'COMPOSITION — the Composition Read and Plan run BEFORE grid, component, token or surface decisions (TASTE.md 2a). Major masses before components (C15). The dominant is the subject, not the device presenting it (C13). Read the page as a whole (C21 — advice since 2026-10-25).',
+      'COMPOSITION — one governing idea, carried through every section. Before showing, read the page top to bottom as one object: one idea · finished · the buyer\'s UX (TASTE §0 rule 7 — the one process step that binds since 2026-10-25). The Composition Read and Plan are advice.',
       'TYPE — hierarchy legible, functional text never below 14px (I7), a display face verified in the render at the size the page sets it (I10).',
       'SPACE — tokenised, internal gaps smaller than external, no magic numbers (spacing I1-I4, U4, U5).',
       'COLOUR — AA measured on the COMPOSITED RENDER, not on tokens, at every breakpoint (color I1/I6, DNA21, DNA77).',
@@ -192,7 +192,7 @@ function bindings(path) {
 
   if (/(motion|scroll|gsap|timeline|anim)/.test(p) && SCRIPT.test(p)) {
     set.push(
-      'MOTION JUDGMENT runs before implementation — the role is declared before the effect (MJ1), every stoppable frame is a designed frame (MJ4), the user keeps the transport (MJ6), reduced motion keeps the meaning (MJ9). MJ2, MJ5, MJ10, MJ11 are advice since 2026-10-25 — layered, spectacular motion is allowed. The MOTION READ has a Cut line and a Cost line, and neither may be empty.',
+      'MOTION — every stoppable frame is a designed frame (MJ4), the user keeps the transport (MJ6), reduced motion keeps the meaning with nothing hidden (MJ9). MJ1, MJ2, MJ5, MJ10, MJ11 and the MOTION READ are advice since 2026-10-25 — know what each motion is for; layered, spectacular motion is allowed.',
       'GSAP CONTRACTS — lowest sufficient method, and the report says which and why (DNA45). Everything inside gsap.context() with reversible teardown (G1) and scoped selectors (G2). matchMedia branches; mobile choreography is authored, never shrunk (G5). Content visible and usable with the script removed (G7). Refresh tied to real geometry change (G8).',
     );
   }
@@ -225,30 +225,27 @@ function manifest(home, brief, cwd) {
   lines.push(`Resolved: ${home}  <- say this path, in one line, at the top of the report.`);
   lines.push('');
   lines.push('READ IN THIS ORDER, from that directory. Do not paraphrase from memory — these carry hard numbers and hard bans:');
-  lines.push('  1. TASTE.md — the operating rules, the two tiers, the Design Read, the Composition Read, the Critique Panel, the delivery gates.');
+  lines.push('  1. TASTE.md — the operating rules (§0: rule 5, one sentence of idea; rule 7, the whole-page read before showing) and the two tiers. The Design Read, Concept Gate, EXPLORE, Critique Panel, section ledger and sealed chain are advice since 2026-10-25.');
   lines.push('  2. .claude/rules/design-dna.md — the build standard, DNA1-DNA89.');
   lines.push('  3. skills/academic-composition, skills/dimensionality, skills/motion-judgment, skills/anti-patterns — always, for a cinematic or 3D build; skills/threejs-art-direction whenever there is Three.js / WebGL / a 3D object.');
   lines.push('  4. skills/gsap-implementation — only once motion has an approved role.');
-  lines.push('  5. skills/scroll-site — FIRST, whenever the build is scroll-led or cinematic. It carries the concept gate.');
-  lines.push('  6. vault/sites.json and vault/EVIDENCE.md — querying the vault is not optional (TASTE.md 6). State the tally: N relevant, M unusable for missing notes.');
+  lines.push('  5. skills/scroll-site — FIRST, whenever the build is scroll-led or cinematic. It carries the stack and the scaffold.');
+  lines.push('  6. vault/sites.json and vault/EVIDENCE.md — optional since 2026-10-25 (TASTE.md 6); read them when a reference would help.');
   lines.push('');
   lines.push('ORDER OF AUTHORITY: 1 truth and access · 2 TASTE.md and the INVARIANT tier · 3 DNA1-DNA89 · 4 the selected dialect · 5 plugins, which bind NOTHING and are never the reason for a decision. A tool is never a direction.');
   lines.push('');
 
-  if (!brief.exists) {
-    lines.push('CONCEPT GATE: BRIEF.md DOES NOT EXIST in this project. DNA1 — no markup before the concept exists in writing.');
-  } else if (brief.empty.length) {
-    lines.push(
-      `CONCEPT GATE: BRIEF.md is INCOMPLETE — ${brief.filled}/${brief.total} sections answered. An empty section is an unfinished gate, not a detail to fill in later (DNA1).`,
-    );
-    lines.push(`  Unanswered: ${brief.empty.join(' · ')}`);
-  } else {
-    lines.push(`CONCEPT GATE: BRIEF.md is answered in all ${brief.total} sections. Judge whether the answers are real before building on them.`);
+  /* BRIEF.md is advice since 2026-10-25 (Alex, step 3): its state is reported, never a shut gate */
+  lines.push('IDEA (DNA1): say the governing idea in one sentence before the first line of markup.');
+  if (brief.exists) {
+    lines.push(brief.empty.length
+      ? `  BRIEF.md: ${brief.filled}/${brief.total} sections answered (optional).`
+      : `  BRIEF.md: answered in all ${brief.total} sections.`);
   }
 
   lines.push('');
-  lines.push('BUILD ORDER, and never the other way round: BRIEF.md -> the static page, standing alone with no motion -> motion, once each device has a declared role -> 3D, if the dimensionality role is MAIN or SUPPORT.');
-  lines.push('DONE MEANS: opened in a browser at desktop AND mobile, screenshots taken, compared against the reference rather than against the previous build, the scroll stopped at ~8 positions with each judged as a composed frame, the reduced-motion and scripts-removed paths both opened, AA measured on the composited render. None of it is satisfied by describing it (DNA86-DNA89).');
+  lines.push('BINDING FLOORS: AA contrast on the composited render · 14px functional text · keyboard + visible focus · 44px targets · reduced motion with nothing hidden · no horizontal scroll · mobile composed separately · Lenis from the first build · real facts and prices only.');
+  lines.push('DONE MEANS: opened in a browser at 1440 AND 390, the reduced-motion and scripts-removed paths opened, Gate 1 binding checks pass (npm run gates), then the whole-page read top to bottom — one idea · finished · the buyer\'s UX (TASTE §0 rule 7) — and Alex asked for a score out of 10 (DNA86-DNA89).');
   lines.push('WORKING STYLE: never ask yes/no questions to resolve taste — make the senior call and note it under Judgment calls. Questions about facts are allowed, three at most.');
 
   if (cwd) lines.push(`\nProject: ${cwd}`);
@@ -286,21 +283,9 @@ function main() {
     const set = bindings(path);
     if (!set.length) return;
 
-    const brief = briefState(cwd, home);
     const lines = ['DESIGN DNA APPLIES TO THIS EDIT — these bind regardless of any project theme.'];
     lines.push('');
 
-    if (SURFACE.test(path)) {
-      if (!brief.exists) {
-        lines.push('!! DNA1 — BRIEF.md does not exist and this is markup. The concept gate is shut. Write the concept before the first line.');
-        lines.push('');
-      } else if (brief.empty.length) {
-        lines.push(
-          `!! DNA1 — BRIEF.md has ${brief.empty.length} unanswered section(s): ${brief.empty.join(' · ')}. An empty section is an unfinished gate.`,
-        );
-        lines.push('');
-      }
-    }
 
     for (const rule of set) lines.push('- ' + rule);
 

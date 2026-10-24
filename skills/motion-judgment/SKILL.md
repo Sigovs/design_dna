@@ -52,6 +52,8 @@ to move at all is not a matter of taste position, so it does not yield to one.
 
 ### MJ1 — The role is declared before the effect
 
+> **Advice, not an invariant — relaxed by Alex on 2026-10-25 (step 3).** No written declaration before building. Know what each motion is for and say it in the report if asked. What still binds: MJ6 (the user keeps the transport), MJ9 (reduced motion keeps the meaning, nothing hidden), gsap G7 (content works with scripts removed).
+
 **Every motion system states, in one sentence and before it is built, what job it
 does.** A system with no answerable role is not refined; it is removed.
 

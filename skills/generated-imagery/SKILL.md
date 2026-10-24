@@ -112,6 +112,8 @@ different subject. A prohibition cannot survive a subject that contradicts it.
 
 ### GI5 — The reading zone is held at generation, not patched afterwards
 
+> **Advice, not an invariant — relaxed by Alex on 2026-10-25 (step 3).** Holding a calm zone at generation is a good habit, not a requirement. A plate or scrim over a generated image is a legitimate fix, provided contrast is measured on the composited render (color I1, I6).
+
 Any image that will carry text over it is generated with a tonally calm, low-detail,
 even-value region where that text will sit — named before generating, not found
 afterwards.

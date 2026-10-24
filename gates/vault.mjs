@@ -48,8 +48,8 @@ export function audit(vaultDir, decl) {
   const read = decl?.vaultRead;
   if (!read) {
     out.blockers.push(
-      'vaultRead is not declared. TASTE.md §6: querying the vault is not optional — '
-      + 'it is what makes this evidence-based rather than asserted. An absent declaration '
+      'vaultRead is not declared. The vault is optional since 2026-10-25 (TASTE.md §6, step 3) — '
+      + 'this artefact is a report and does not block. An absent declaration '
       + 'is NOT RUN, not "nothing applied".');
     return out;
   }

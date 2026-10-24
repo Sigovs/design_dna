@@ -8,6 +8,11 @@
  * gate result was a sentence in a report rather than an artefact on disk. These
  * tests assert the three mechanisms that replaced the sentence — presence,
  * staleness, order — against a real temporary build.
+ *
+ * Since 2026-10-25 (Alex, step 3) only the binding artefact — Gate 1 — can
+ * refuse the chain. Every other artefact reports the same three mechanisms as
+ * notes. These tests assert both halves: the floor still blocks, the rest never
+ * does.
  */
 import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -54,23 +59,34 @@ check(v.artifacts.length === CHAIN.length && v.fileCount === 2,
   `all ${CHAIN.length} artefacts read, over a ${v.fileCount}-file build`);
 
 /* ── PRESENCE — a missing artefact is NOT RUN, never a silent pass ────────── */
+const BINDING = CHAIN.filter((c) => c.binding);
+const REPORTS = CHAIN.filter((c) => !c.binding);
+check(BINDING.length === 1 && BINDING[0].file === 'gate1.json',
+  `only Gate 1 binds — the floors: keyboard, targets, reduced motion, overflow, errors`);
 for (const c of CHAIN) {
   writeChain(seal0, { skip: [c.file] });
   const r = validateChain(root, gatesDir);
-  check(!r.ok && r.problems.some((p) => p.includes('NOT RUN') && p.includes(c.file)),
-    `PRESENCE — missing ${c.file} reports NOT RUN`);
+  if (c.binding) {
+    check(!r.ok && r.problems.some((p) => p.includes('NOT RUN') && p.includes(c.file)),
+      `PRESENCE — missing ${c.file} reports NOT RUN and refuses`);
+  } else {
+    check(r.ok && r.notes.some((p) => p.includes('NOT RUN') && p.includes(c.file)),
+      `PRESENCE — missing ${c.file} is reported as a note and does not refuse`);
+  }
 }
 writeChain(seal0, { skip: CHAIN.map((c) => c.file) });
-check(validateChain(root, gatesDir).problems.length === CHAIN.length,
-  `PRESENCE — an empty .gates directory reports all ${CHAIN.length} as not run, not "no problems found"`);
+v = validateChain(root, gatesDir);
+check(!v.ok && v.problems.length === BINDING.length && v.notes.length === REPORTS.length,
+  `PRESENCE — an empty .gates directory refuses on Gate 1 and notes the other ${REPORTS.length}, not "no problems found"`);
 
 /* ── STALENESS — editing the page after the gates ran reverts them ────────── */
 writeChain(seal0);
 check(validateChain(root, gatesDir).ok, `chain valid before the edit`);
 writeFileSync(join(root, 'style.css'), 'p{color:blue}');
 v = validateChain(root, gatesDir);
-check(!v.ok && v.problems.every((p) => p.includes('STALE')) && v.problems.length === CHAIN.length,
-  `STALENESS — one edited byte reverts all ${CHAIN.length} gates to not-run`);
+check(!v.ok && v.problems.every((p) => p.includes('STALE')) && v.problems.length === BINDING.length
+  && v.notes.filter((p) => p.includes('STALE')).length === REPORTS.length,
+  `STALENESS — one edited byte reverts all ${CHAIN.length} gates to not-run, and Gate 1 refuses`);
 check(sourceSeal(root).seal !== seal0, `the source seal itself changed`);
 
 /* a NEW file counts as an edit, not just a changed one */
@@ -94,25 +110,29 @@ const shuffled = CHAIN.map((_, i) => T0 + i * 60000);
 [shuffled[2], shuffled[4]] = [shuffled[4], shuffled[2]];
 writeChain(seal1, { times: shuffled });
 v = validateChain(root, gatesDir);
-check(!v.ok && v.problems.some((p) => p.startsWith('ORDER:')),
-  `ORDER — an artefact finishing before the one it depends on fails`);
-check(v.problems.some((p) => p.includes('product.json') || p.includes('authorship.json')),
+check(v.ok && v.notes.some((p) => p.startsWith('ORDER:')),
+  `ORDER — an artefact finishing out of sequence is noted, not refused`);
+check(v.notes.some((p) => p.includes('product.json') || p.includes('authorship.json')),
   `ORDER — the out-of-sequence artefact is named`);
 
-/* ── a failing gate is not a passing chain ────────────────────────────────── */
+/* ── a failing Gate 1 refuses; a failing report does not ──────────────────── */
+writeChain(seal1, { verdicts: { 'gate1.json': 'fail' } });
+v = validateChain(root, gatesDir);
+check(!v.ok && v.problems.some((p) => p.includes('Gate 1') && p.includes('fail')),
+  `a failed Gate 1 breaks the chain — the binding floors cannot be traded away`);
 writeChain(seal1, { verdicts: { 'product.json': 'fail' } });
 v = validateChain(root, gatesDir);
-check(!v.ok && v.problems.some((p) => p.includes('Gate 3') && p.includes('fail')),
-  `a single failed gate breaks the chain — Gate 3 cannot be traded away`);
+check(v.ok && v.notes.some((p) => p.includes('Gate 3') && p.includes('fail')),
+  `a failed Gate 3 is reported and does not refuse`);
 writeChain(seal1, { verdicts: { 'gate2.json': 'fail' } });
-check(!validateChain(root, gatesDir).ok,
-  `and neither can Gate 2 — authorship and usefulness are conjunctive`);
+check(validateChain(root, gatesDir).ok,
+  `and neither does a failed Gate 2`);
 
 /* ── a machine-only pass is not a pass ────────────────────────────────────── */
 writeChain(seal1, { human: { 'hero.json': false } });
 v = validateChain(root, gatesDir);
-check(!v.ok && v.problems.some((p) => p.includes('humanConfirmed is false')),
-  `hero.json passing on machine checks alone is refused — the subject box needs eyes on it`);
+check(v.ok && v.notes.some((p) => p.includes('humanConfirmed is false')),
+  `hero.json passing on machine checks alone is noted — the subject box still wants eyes on it`);
 
 /* ── the seal changes when anything in the chain changes ──────────────────── */
 writeChain(seal1);

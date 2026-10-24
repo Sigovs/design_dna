@@ -19,8 +19,8 @@ yields **out loud**, in the report.
 
 | | Layer | Examples |
 |---|---|---|
-| 1 | **Truth and access** — never yields to anything | `color I1` `I2` `I3` `I6` · `CP1`–`CP7` · `GI3` · `DM4` `DM5` · `U6` `U7` `U12` |
-| 2 | **`TASTE.md` + the INVARIANT tier of `skills/`** | `C1`–`C21` (C20 advice, C22 retired) · `I1`–`I10` · `DM1`–`DM10` · `MJ1`–`MJ11` (MJ2, MJ10 advice) · `U1`–`U19` · `G1`–`G8` |
+| 1 | **Truth and access** — never yields to anything | `color I1` `I2` `I3` `I6` · `CP3`–`CP7` (CP1/CP2 ledger advice) · `GI3` · `DM4` `DM5` · `U6` `U7` `U12` |
+| 2 | **`TASTE.md` + the INVARIANT tier of `skills/`** | `C1`–`C21` (C17, C20 advice, C22 retired) · `I1`–`I10` (typography I4, color I4 advice) · `DM1`–`DM10` · `MJ1`–`MJ11` (MJ1, MJ2, MJ10 advice) · `U1`–`U19` · `G1`–`G8` |
 | 3 | **This file** — `DNA1`–`DNA95`, the build standard | camera language, shot list, lighting, annotation craft |
 | 4 | **The selected dialect's DIALECT tier** | `auction-editorial` · `cinematic-industrial` · `immersive-authored-world` |
 | 5 | **Plugins and `external/`** — reference only, binds nothing | `frontend-design` · Scrollcraft · `threejs-webgl` · `gsap-scrolltrigger` |
@@ -65,16 +65,14 @@ negotiable only by a stated brief requirement.
 
 ---
 
-## 2. Visual direction and the concept gate
+## 2. Visual direction and the idea
 
-**`DNA1` — No markup before the concept exists in writing.** Four lines of Design
-Read (`TASTE.md` §2: deliverable / audience / family · mandate · dialect ·
-dimensionality role), one sentence of concept, and the named peak. An unstated
-mandate is REDESIGN, never invention. The sentence passes the Concept Gate
-(`TASTE.md` §2, `CG1`–`CG7`) before the feeling curve or any device exists: it does
-not open on a style, a tool or a layout; its main technique cannot be swapped
-without changing its meaning; and it is carried by every section, not only the
-hero. A fail is answered by rewriting the idea, never by adding means.
+**`DNA1` — One sentence of idea before markup.** *Relaxed by Alex on 2026-10-25
+(step 3):* the four-line Design Read, the Concept Gate (`CG1`–`CG7`), a complete
+`BRIEF.md` and the named peak are advice, not a gate. What stays: say the governing
+idea in one sentence before building, and carry it through every section. Before
+showing anything, read the finished page top to bottom as one object and check the
+UX as the buyer would (`TASTE.md` §0, rule 7).
 
 **`DNA2` — The aesthetic family is nameable and specific.** *auction-catalog*,
 *technical-luxury*, *nocturne-industrial*. "Modern", "clean" and "minimal" are
@@ -141,7 +139,8 @@ since 2026-10-25).
 
 **`DNA14` — The floor and the proof.** Functional text never below 14px (`I7`). A
 display face is verified in the render at every size the page sets it, not at the
-size it was chosen at (`I10`). Uppercase is tracked and short (`I4`).
+size it was chosen at (`I10`). Small uppercase at label size is tracked; large
+uppercase headlines of any length are allowed (`I4`, advice since 2026-10-25).
 
 **`DNA15` — Body text is built for reading.** 60–75 characters of measure, and line
 breaks at display sizes are chosen rather than inherited from the viewport (`I6`).
@@ -180,8 +179,10 @@ every moving layer (`color I1`, `I6`, `DM5`). When text over an image fails, the
 fix is usually a differently *constructed* scrim rather than a deeper one — and a
 scrim is a sibling of the copy, never a child of it.
 
-**`DNA22` — A dark ground is the cinematic default and still a decision.** State why
-it is right for this subject. Meaning is never carried by hue alone (`color I2`).
+**`DNA22` — The ground has no default.** *Relaxed by Alex on 2026-10-25 (step 3):*
+dark is no longer the cinematic default. Light, dark, saturated colour fields or a
+mix are chosen fresh for each concept. Meaning is never carried by hue alone
+(`color I2`).
 
 ---
 
@@ -190,8 +191,10 @@ it is right for this subject. Meaning is never carried by hue alone (`color I2`)
 **`DNA23` — One image system per page.** One grade, one logic of light direction,
 one crop language — unless mixing them is the concept (`U11` is advice).
 
-**`DNA24` — The reading zone is held at capture or generation**, never patched with
-a scrim afterwards (`GI5`).
+**`DNA24` — Text over an image is readable, by whatever means.** A calm zone held
+at capture or generation, a plate, a panel or a scrim are all allowed (`GI5`,
+`color I4` advice since 2026-10-25). Contrast is measured on the composited render
+(`DNA21`).
 
 **`DNA25` — Synthetic imagery is never passed off as the real item for sale, the
 real premises or a real person (`GI3`)** — atmosphere scenes, generic vehicles and
@@ -236,8 +239,8 @@ more. Anything permanently on screen is part of the composition and is composed
 **`DNA32` — Specification is evidence, not decoration.** The chain is *technical
 fact → observable consequence → value to this buyer*. A spec that stops at the fact
 is a datasheet; a claim that skips the fact is marketing. Operational truth should
-not outrank the buyer's motivation (`C20`, advice since 2026-10-25), and every figure maps to a ledger entry
-(`CP1`, `CP5`).
+not outrank the buyer's motivation (`C20`, advice since 2026-10-25), and every figure comes from a real
+source (`CP3`, `CP5`; the ledger file itself is advice since 2026-10-25).
 
 **`DNA33` — Premium is subtraction.** No badge rows, no trust-pill clusters, no icon
 per feature, no gradient CTA. If a section looks thin the answer is proportion, scale
@@ -252,8 +255,10 @@ anti-card stance, 2026-10-25, see `DNA9`).
 
 ## 11. Scroll storytelling
 
-**`DNA35` — Every scroll device has a declared narrative role (`MJ1`).** Whether
-it earns its advance (`MJ10`) is advice for the report since 2026-10-25. "Because ScrollTrigger can" is not a role.
+**`DNA35` — Every scroll device has a narrative job (`MJ1`).** Nothing has to be
+declared in writing first, and whether it earns its advance (`MJ10`) is advice for
+the report — both relaxed by Alex on 2026-10-25. "Because ScrollTrigger can" is
+still not a job.
 
 **`DNA36` — The page grammar is declared, and varied between builds.** Filmic
 one-shot · chaptered editorial · live surface · continuous world · typographic
@@ -448,7 +453,7 @@ than no label.
 render (`color I6`). If it cannot be read at mobile scale it becomes a list below the
 frame — never smaller type.
 
-**`DNA63` — Every annotated number maps to a ledger entry (`CP1`–`CP5`).** A dated
+**`DNA63` — Every annotated number comes from a real source (`CP3`–`CP5`).** A dated
 figure carries its date in the render. A placeholder is visibly a placeholder.
 
 ---
@@ -618,9 +623,13 @@ right in motion is not finished.
 **`DNA88` — The reduced-motion path and the scripts-removed path are both opened**
 before delivery, not described.
 
-**`DNA89` — Where the repository's delivery chain applies, the five gates run in order
-and Gate 5 is Alex's.** Absence of approval is an unfinished gate, never a pass, and a
-gate is run when its artefact exists — not when a report says it passed.
+**`DNA89` — Before showing: the whole-page read, the binding checks, then Alex's
+score.** *Relaxed by Alex on 2026-10-25 (step 3):* the sealed gate chain no longer
+blocks a handoff. What stays: read the page top to bottom as one object, so one idea
+runs through every section and the UX works for the buyer (`TASTE.md` §0, rule 7).
+Gate 1's binding checks pass: keyboard and visible focus, 44px targets, reduced
+motion with nothing hidden, no horizontal scroll, no console errors. Then open the
+page in the browser and ask Alex for a score out of 10. Silence is not approval.
 
 ---
 

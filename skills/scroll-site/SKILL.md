@@ -23,13 +23,13 @@ Follow [design-dna Step 1](../design-dna/SKILL.md) and say which path won.
 Then read, in this order:
 
 1. `TASTE.md` — operating rules, the two tiers, the Design Read, the dialect index.
-2. `.claude/rules/design-dna.md` — the build standard, `DNA1`–`DNA94`.
+2. `.claude/rules/design-dna.md` — the build standard, `DNA1`–`DNA97`.
 3. The skills the work touches. For a cinematic scroll build that is always
    `academic-composition`, `dimensionality`, `motion-judgment`, `anti-patterns`,
    and `gsap-implementation` once motion has an approved role.
 
 **If the build standard cannot be read, stop and say so.** A cinematic build
-without `DNA1`–`DNA94` is the case where an agent produces a competent-looking
+without `DNA1`–`DNA97` is the case where an agent produces a competent-looking
 template and nothing in the output shows that the standard was missing.
 
 ---

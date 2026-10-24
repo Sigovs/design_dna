@@ -21,9 +21,9 @@ yields **out loud**, in the report.
 |---|---|---|
 | 1 | **Truth and access** — never yields to anything | `color I1` `I2` `I3` `I6` · `CP3`–`CP7` (CP1/CP2 ledger advice) · `GI3` · `DM4` `DM5` · `U6` `U7` `U12` |
 | 2 | **`TASTE.md` + the INVARIANT tier of `skills/`** | `C1`–`C21` (C17, C20 advice, C22 retired) · `I1`–`I10` (typography I4, color I4 advice) · `DM1`–`DM10` · `MJ1`–`MJ11` (MJ1, MJ2, MJ10 advice) · `U1`–`U19` · `G1`–`G8` |
-| 3 | **This file** — `DNA1`–`DNA95`, the build standard | camera language, shot list, lighting, annotation craft |
+| 3 | **This file** — `DNA1`–`DNA97`, the build standard | camera language, shot list, lighting, annotation craft |
 | 4 | **The selected dialect's DIALECT tier** | `auction-editorial` · `cinematic-industrial` · `immersive-authored-world` |
-| 5 | **Plugins and `external/`** — reference only, binds nothing | `frontend-design` · Scrollcraft · `threejs-webgl` · `gsap-scrolltrigger` |
+| 5 | **Plugins and `external/`** — reference only, binds nothing | `frontend-design` · Scrollcraft · `threejs-webgl` · `gsap-scrolltrigger` · Awwwards and other galleries, 21st.dev (standing sources, `DNA96`–`DNA97`) |
 
 **Layer 5 is material, not instruction.** `external/README.md` states the rule and
 it applies to the installed plugins identically: an agent that has read `TASTE.md`,
@@ -87,6 +87,55 @@ waiver on `I7` or `color I6`.
 **`DNA4` — The page holds its standard to the last mass (`C19`)** — footer, legal
 line and contact block included. One language per page (`C21`, `U11`, `U15`) is
 advice since 2026-10-25: a deliberate change of style between sections is allowed.
+
+---
+
+## 2b. Sourcing solutions and inspiration
+
+*Alex, 2026-10-25.* Two standing outside sources, used on my own initiative and not
+only when asked: **inspiration galleries** for the direction (`DNA97`), and
+**21st.dev** for ready solutions to individual blocks (`DNA96`). The vault comes
+first, because it holds Alex's own judgements. Outside sources widen what the vault
+cannot cover.
+
+**`DNA97` — Look for real sites when a request names a style, a sector or a theme.**
+"Do brutalism", "something like a watch atelier", a sector the vault has not seen, a
+mood image: in each case search the inspiration galleries before deciding the
+direction. The galleries are **Awwwards** (by style, category and Site of the Day),
+**Godly**, **SiteInspire**, **Land-book**, **Lapa Ninja**, **One Page Love** and
+**Httpster**, plus the studios behind any strong find. Use WebSearch and WebFetch, or
+open them in the browser when motion matters.
+- Look at **3–6 real sites**, not one.
+- **Read them like vault entries.** Take the principle, never the pixels: *the
+  reference solves X by Y, which here means Z*, with Z different from Y (`TASTE.md`
+  §6). Brutalism found on Awwwards is evidence of how others resolve it, never a
+  layout to trace.
+- Before building, say in 3–5 lines what is taken and what is not, with links.
+- **Offer the strongest find for the vault.** It goes in through
+  `REVIEW: <url>` with Alex's own comment, since an unjudged find is not taste
+  evidence.
+
+**`DNA96` — 21st.dev is a standing source of solutions for any block.** Before
+building a block, search 21st.dev through its MCP server (`21st`) and look at several
+variants, not the first hit. That covers reviews and testimonials,
+gradients and backgrounds, heroes, navigation, pricing, FAQ, forms, CTAs, cards,
+galleries, stats, logo rows, footers, buttons and micro-interactions. Take a solution
+when it is better than one invented from scratch, and take the one that serves the
+page's idea best.
+
+Then make it belong to the page:
+- **Restyle it** to the project's type, colour, spacing and radius. Never ship a
+  component's default skin.
+- **Port it** to the project's stack. A vanilla page gets the solution in HTML, CSS
+  and JS; React is never added just to host a component.
+- **Replace the demo content.** Sample names, ratings, quotes, logos and prices in a
+  component are placeholders, never facts (`CP3`, `CP4`).
+
+What still binds: the floors (AA, 14px, keyboard and focus, 44px targets, reduced
+motion, no horizontal scroll), and one idea carried through the page (`TASTE.md` §0
+rule 7). A page assembled from good components with no idea between them is the
+kit-of-devices failure that scored 3/10. The report names which 21st components were
+used and what was changed.
 
 ---
 

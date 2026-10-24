@@ -172,6 +172,7 @@ function bindings(path) {
 
   if (SURFACE.test(p)) {
     set.push(
+      'SOURCING — check 21st.dev (MCP `21st`) for a ready solution to this block before inventing one; several variants, restyled to the project, demo content replaced (DNA96).',
       'COMPOSITION — one governing idea, carried through every section. Before showing, read the page top to bottom as one object: one idea · finished · the buyer\'s UX (TASTE §0 rule 7 — the one process step that binds since 2026-10-25). The Composition Read and Plan are advice.',
       'TYPE — hierarchy legible, functional text never below 14px (I7), a display face verified in the render at the size the page sets it (I10).',
       'SPACE — tokenised, internal gaps smaller than external, no magic numbers (spacing I1-I4, U4, U5).',
@@ -226,13 +227,13 @@ function manifest(home, brief, cwd) {
   lines.push('');
   lines.push('READ IN THIS ORDER, from that directory. Do not paraphrase from memory — these carry hard numbers and hard bans:');
   lines.push('  1. TASTE.md — the operating rules (§0: rule 5, one sentence of idea; rule 7, the whole-page read before showing) and the two tiers. The Design Read, Concept Gate, EXPLORE, Critique Panel, section ledger and sealed chain are advice since 2026-10-25.');
-  lines.push('  2. .claude/rules/design-dna.md — the build standard, DNA1-DNA89.');
+  lines.push('  2. .claude/rules/design-dna.md — the build standard, DNA1-DNA97.');
   lines.push('  3. skills/academic-composition, skills/dimensionality, skills/motion-judgment, skills/anti-patterns — always, for a cinematic or 3D build; skills/threejs-art-direction whenever there is Three.js / WebGL / a 3D object.');
   lines.push('  4. skills/gsap-implementation — only once motion has an approved role.');
   lines.push('  5. skills/scroll-site — FIRST, whenever the build is scroll-led or cinematic. It carries the stack and the scaffold.');
-  lines.push('  6. vault/sites.json and vault/EVIDENCE.md — optional since 2026-10-25 (TASTE.md 6); read them when a reference would help.');
+  lines.push('  6. vault/sites.json and vault/EVIDENCE.md — optional since 2026-10-25 (TASTE.md 6); read them first when a reference would help, then the outside galleries (DNA97).');
   lines.push('');
-  lines.push('ORDER OF AUTHORITY: 1 truth and access · 2 TASTE.md and the INVARIANT tier · 3 DNA1-DNA89 · 4 the selected dialect · 5 plugins, which bind NOTHING and are never the reason for a decision. A tool is never a direction.');
+  lines.push('ORDER OF AUTHORITY: 1 truth and access · 2 TASTE.md and the INVARIANT tier · 3 DNA1-DNA97 · 4 the selected dialect · 5 plugins, which bind NOTHING and are never the reason for a decision. A tool is never a direction.');
   lines.push('');
 
   /* BRIEF.md is advice since 2026-10-25 (Alex, step 3): its state is reported, never a shut gate */
@@ -243,6 +244,8 @@ function manifest(home, brief, cwd) {
       : `  BRIEF.md: answered in all ${brief.total} sections.`);
   }
 
+  lines.push('INSPIRATION (DNA97): when a request names a style (e.g. brutalism), a sector or a theme, search Awwwards, Godly, SiteInspire, Land-book, Lapa Ninja, One Page Love, Httpster — 3-6 real sites, vault first. Take the principle, never the pixels; say in 3-5 lines what is taken and what is not, with links; offer the best find for the vault via REVIEW.');
+  lines.push('SOURCING (DNA96): before building any block — reviews, gradients/backgrounds, hero, nav, pricing, FAQ, forms, CTA, cards, gallery, stats, footer, buttons — search 21st.dev via the `21st` MCP, compare several variants, take the one that serves the idea, restyle it to the project tokens and port it to the stack. Demo names, ratings, logos and prices are placeholders, never facts.');
   lines.push('');
   lines.push('BINDING FLOORS: AA contrast on the composited render · 14px functional text · keyboard + visible focus · 44px targets · reduced motion with nothing hidden · no horizontal scroll · mobile composed separately · Lenis from the first build · real facts and prices only.');
   lines.push('DONE MEANS: opened in a browser at 1440 AND 390, the reduced-motion and scripts-removed paths opened, Gate 1 binding checks pass (npm run gates), then the whole-page read top to bottom — one idea · finished · the buyer\'s UX (TASTE §0 rule 7) — and Alex asked for a score out of 10 (DNA86-DNA89).');

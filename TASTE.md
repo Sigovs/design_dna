@@ -764,7 +764,7 @@ its own `yields when:`.
 | [spacing-taste](skills/spacing-taste/SKILL.md) | Spatial hierarchy is deliberate; spacing is tokenised; internal gaps < external gaps. | Air-first — generous space, bottom-heavy composition, whitespace as a status signal. |
 | [typography-taste](skills/typography-taste/SKILL.md) | Hierarchy is legible; roles are bounded and distinct from voices; type is optically corrected at every size; functional text never below 14px. | Editorial contrast — expressive display + quiet grotesque + mono, italic signature word, spec plates. |
 | [color-taste](skills/color-taste/SKILL.md) | AA verified every change; never meaning by hue alone; legibility fixed at the background layer. | Chromatic restraint — neutral dark base, smoky desaturated accents used as a setting. |
-| [generated-imagery](skills/generated-imagery/SKILL.md) | **Cross-dialect.** Origin declared before generation; the prompt derived from the brief, never typed from taste; nothing synthetic depicts a real product, place or person; no type, UI or logo inside the frame; the reading zone held at generation rather than patched with a scrim afterwards; provenance travelling with the file permanently; the composition surviving an ordinary photograph; mobile frames authored rather than cropped; generated motion verified in motion, static parts staying static. | **None.** Whether an image may be synthetic is not an aesthetic position, and a preferred generated look would be the AI-default arriving through the back door. |
+| [generated-imagery](skills/generated-imagery/SKILL.md) | **Cross-dialect.** Origin declared before generation; the prompt derived from the brief, never typed from taste; nothing synthetic is passed off as the real product, place or person, while disclosed synthetic art direction stays allowed and missing photography is never a reason to fall back to diagrams or placeholders; no type, UI or logo inside the frame; the reading zone held at generation rather than patched with a scrim afterwards; provenance travelling with the file permanently; the composition surviving an ordinary photograph; mobile frames authored rather than cropped; generated motion verified in motion, static parts staying static. | **None.** Whether an image may be synthetic is not an aesthetic position, and a preferred generated look would be the AI-default arriving through the back door. |
 | [motion-judgment](skills/motion-judgment/SKILL.md) | **Cross-dialect.** Role declared before effect; one primary temporal idea per viewport; the subject decides rather than the amount; every stoppable frame is a designed frame; the static build stands alone; the user keeps the transport; comprehension never waits on choreography; mobile authored separately; reduced motion preserves meaning; a device that spends the visitor's advance returns it in understanding; motion bound to roles rather than to instances. Contains the MOTION READ and PLAN; routes to `references/` for category judgment, the audit rubric and implementation. | **None.** Whether to move is not a taste position — the house motion feel lives in `motion-taste`. |
 | [content-provenance](skills/content-provenance/SKILL.md) | **Cross-dialect.** The ledger exists before the claim is typed; coverage rather than validity is the mechanism; a prior concept, design read or agent output is never a source; a placeholder is visibly a placeholder; a dated figure carries its date in the render; a promise is a claim about the business, not a piece of copy; content shape is never invented to fill a composition. | **None.** Whether a number is true is not an aesthetic position. |
 | [motion-taste](skills/motion-taste/SKILL.md) | Reduced-motion path for everything; state changes perceivable with keyboard parity; no jank. | Calm and physical — crossfade over travel, subtle hover, motion never as identity. |
@@ -901,10 +901,19 @@ Adopting this file means adopting how the work gets done, not only how it looks:
   between steps. Stop outright only for an external blocker (auth, missing
   credentials, a locked file) — and then state exactly what Alex must do.
 - **One exception, on Alex's instruction (2026-10-25): the build-plan pop-up.**
-  Every build opens with a single pop-up (two `AskUserQuestion` screens, from
-  `npm run plan`) that lays out the plan stage by stage — Концепт · Сборка · После · Генерация — with the skills named in each option
-  (build standard `DNA99`). It asks about process and tools, never about taste. After
-  it, no further confirmations.
+  Every build runs through a single pop-up (from `npm run plan`, a stage spanning as
+  many `AskUserQuestion` dialogs as it needs) that lays out the plan stage by stage —
+  Бриф → Концепт → Ассеты → Сборка → Проверка — with the skills named in each option
+  (build standard `DNA99`). Its stages are asked as lifecycle gates, each when its
+  evidence exists. The routing questions are about process and tools; beyond the
+  pop-up, no further confirmations.
+- **Asking for taste and asking for approval are different things** (Alex,
+  2026-10-24). The agent never asks Alex to invent taste, choose arbitrary style
+  ingredients or do its creative work. That rule does not prohibit art-direction
+  approval once the agent has produced concrete evidence: the direction board,
+  visual contract or asset plan is shown, and the question is approve · revise ·
+  reject. Approval is required precisely because Alex remains the art director, and
+  it holds only for what was shown (`DNA99`).
 - **Clarifying questions are allowed, and bounded.** **A clarifying question is justified only when its answer could change the
   architecture, the scope, the factual accuracy, or what has to be delivered — never
   when it would merely refine taste.**

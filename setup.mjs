@@ -177,8 +177,8 @@ _Authored separately. Fewer acts, different devices, or no 3D at all._
 
 ## 10. Assets (\`GI3\`, \`GI6\`)
 
-_Real, licensed, or generated. Generated assets depict nothing real and carry
-provenance._
+_Real, licensed, or generated. Generated assets are never passed off as the real
+item, premises or person, are disclosed as artwork, and carry provenance._
 
 ## 11. Claims ledger (\`CP1\`)
 

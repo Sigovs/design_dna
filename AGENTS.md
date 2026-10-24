@@ -14,7 +14,7 @@ palette, type scale, spacing ramp, motion or composition decision. It is the
 default visual and interaction standard for all future work here, and it outranks
 default agent taste.
 
-It carries the detail as `DNA1`–`DNA99`: visual direction and the idea · sourcing and tools (galleries, 21st.dev, genjutsu, slop scan, the build-plan pop-up) ·
+It carries the detail as `DNA1`–`DNA101`: visual direction and the idea · sourcing and tools (galleries, 21st.dev, genjutsu, slop scan, the moodboard motion scan, the compositing plan before generation, the build-plan pop-up) ·
 typography hierarchy · spacing and composition · grid and alignment · colour and
 contrast · image treatment · cinematic art direction · premium automotive and
 editorial presentation · scroll storytelling · motion choreography · GSAP and
@@ -89,6 +89,13 @@ deliverable, not a question that hands design responsibility back to Alex — an
 inside each direction every decision is still made autonomously, with no options
 offered and nothing deferred. Since 2026-10-25 (Alex, step 3) it runs only when Alex
 asks for options; otherwise build one strong direction (BUILD).
+
+**Approval gates are not confirmation questions.** Never ask Alex to invent taste,
+choose arbitrary style ingredients or do the creative work. Once concrete evidence
+exists (a direction board, a visual contract, an asset plan with its paid list), the
+build-plan gates (`DNA99`) ask approve · revise · reject on what was shown.
+Approval is owed because Alex remains the art director. It is tied to the shown
+version, so a changed direction or plan is approved again.
 
 ### Clarifying questions
 

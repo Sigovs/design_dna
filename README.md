@@ -66,7 +66,7 @@ plain copied folder is a snapshot, and the skill is told to skip it.
 ```
 design_dna/
 ├── CLAUDE.md · AGENTS.md           # working style, mirrored verbatim — and the DESIGN DNA pointer
-├── .claude/rules/design-dna.md     # the build standard — DNA1–DNA99, the cinematic / 3D execution layer
+├── .claude/rules/design-dna.md     # the build standard — DNA1–DNA101, the cinematic / 3D execution layer
 ├── TASTE.md                        # the manifest — agents read this first
 ├── PROCESS.md                      # how a project runs — hero-first, and the two steps that get skipped
 ├── skills/                         # each split INVARIANT / DIALECT
@@ -80,7 +80,7 @@ design_dna/
 │   ├── design-dna/SKILL.md         # the entry point — no rules, routes to TASTE.md (globally junctioned)
 │   ├── scroll-site/SKILL.md        # instrumental · the cinematic setup, the stack, the concept gate, done
 │   ├── color-taste/SKILL.md        # I: AA, no hue-only meaning, scrims · D: neutral dark base, smoky accents
-│   ├── generated-imagery/SKILL.md  # cross-dialect · I: origin declared, never depicts the real thing, provenance, survives a phone photo, motion checked in motion
+│   ├── generated-imagery/SKILL.md  # cross-dialect · I: origin declared, never passed off as the real thing, provenance, survives a phone photo, motion checked in motion
 │   ├── content-provenance/SKILL.md # cross-dialect · I: ledger before the claim, coverage not validity, no prior concept as a source, shape never invented to fill a slot
 │   ├── motion-judgment/            # cross-dialect · whether to move at all, and what for
 │   │   ├── SKILL.md                # I: declared role, one primary idea, subject over amount, stoppable frames
@@ -713,8 +713,10 @@ while it is honest.
    against instances silently applies to nothing on the next page.
    **Synthetic imagery is governed before it exists** — the origin of every image
    position is declared before a prompt does, the prompt is derived from the brief
-   rather than typed from taste, nothing generated ever depicts a real product,
-   premises or person, no type or interface is baked into a frame, the region text
+   rather than typed from taste, nothing generated is ever passed off as the real
+   product, premises or person (disclosed synthetic art direction is allowed, and
+   missing photography is no reason to fall back to diagrams or placeholders), no
+   type or interface is baked into a frame, the region text
    will sit over is held at generation instead of rescued with a scrim, provenance
    stays on the file permanently, the composition still reads with an ordinary
    photograph in place, and a mobile frame is composed rather than cropped.
@@ -754,7 +756,9 @@ would change the architecture, the scope, the accuracy or the deliverable:** a
 business goal, real content or constraints, a brand element that must stay fixed, a
 genuinely ambiguous audience, the scope of the request, or a contradiction. Taste is
 never the subject of a question, and where a reversible assumption exists it is
-taken and disclosed rather than raised. Close calls get
+taken and disclosed rather than raised. Approval is different: once a direction
+board or an asset plan has been shown, the build-plan gates ask approve · revise ·
+reject, because Alex remains the art director. Close calls get
 flagged in the final report under *Judgment calls*, one line each — that's the
 review surface, not a stream of questions mid-task. Anything that violates the
 DNA because of a real external constraint gets named under *Known compromises*.

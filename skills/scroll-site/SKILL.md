@@ -23,13 +23,13 @@ Follow [design-dna Step 1](../design-dna/SKILL.md) and say which path won.
 Then read, in this order:
 
 1. `TASTE.md` — operating rules, the two tiers, the Design Read, the dialect index.
-2. `.claude/rules/design-dna.md` — the build standard, `DNA1`–`DNA99`.
+2. `.claude/rules/design-dna.md` — the build standard, `DNA1`–`DNA101`.
 3. The skills the work touches. For a cinematic scroll build that is always
    `academic-composition`, `dimensionality`, `motion-judgment`, `anti-patterns`,
    and `gsap-implementation` once motion has an approved role.
 
 **If the build standard cannot be read, stop and say so.** A cinematic build
-without `DNA1`–`DNA99` is the case where an agent produces a competent-looking
+without `DNA1`–`DNA101` is the case where an agent produces a competent-looking
 template and nothing in the output shows that the standard was missing.
 
 ---
@@ -176,6 +176,8 @@ rule; this is the checklist that serves it.
       frame budget, LCP target (`DNA38`, `DNA72`, `DM3`).
 - [ ] **Asset origin** — real, licensed, or generated; generated assets carry
       provenance and depict nothing real (`GI3`, `GI6`).
+- [ ] **The compositing plan**, before any paid generation, whenever an element
+      has to move, scale or persist on its own (`DNA101`).
 - [ ] **The claims ledger** — every claim-shaped string with a source (`CP1`).
 
 **If a reference image or storyboard exists, it goes in `BRIEF.md` and it is the

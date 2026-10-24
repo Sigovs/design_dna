@@ -1,6 +1,6 @@
 ---
 name: generated-imagery
-description: Standing discipline for synthetic imagery — nine invariants (GI1–GI9) binding every generated, upscaled or AI-edited image or video clip in any project, whatever produced it. Covers origin declared before generation, the prompt derived from the brief rather than typed from taste, the ban on depicting a real product, premises or person, no baked-in type or UI in the frame, the reading zone held at generation instead of patched with a scrim, provenance travelling with the file, the composition surviving an ordinary photograph, mobile frames authored rather than cropped, and generated motion verified in motion — static parts stay static. Tool-agnostic; the repo's own generator is an implementation note, not a rule. Use before generating any image, and when auditing imagery whose origin is unclear.
+description: Standing discipline for synthetic imagery — nine invariants (GI1–GI9) binding every generated, upscaled or AI-edited image or video clip in any project, whatever produced it. Covers origin declared before generation, the prompt derived from the brief rather than typed from taste, the ban on passing synthetic imagery off as the real product, premises or person (disclosed synthetic art direction stays allowed), no baked-in type or UI in the frame, the reading zone held at generation instead of patched with a scrim, provenance travelling with the file, the composition surviving an ordinary photograph, mobile frames authored rather than cropped, and generated motion verified in motion — static parts stay static. Tool-agnostic; the repo's own generator is an implementation note, not a rule. Use before generating any image, and when auditing imagery whose origin is unclear.
 ---
 
 # Generated Imagery
@@ -91,6 +91,17 @@ better than the workshop and a team photograph of people who do not work there.
 Where the real asset is poor and the real asset is what the page is about, the
 answer is composition — crop, scale, sequence, type doing more work — or
 photography. It is never a convincing substitute.
+
+**GI3 protects factual truth; it does not ban synthetic art direction.** *Alex,
+2026-10-24.* A generated hero object, a staged ritual, a brand world or a concept
+product is allowed, as the scene's subject and not only inside it, whenever it makes
+no factual claim about a specific item for sale, the actual premises or an actual
+person, and the page discloses it as generated artwork (GI6). **No production
+photography is never, by itself, a reason to replace the concept with diagrams,
+placeholders or SVG.** If the concept needs an image and that image states nothing
+false, it is generated and labelled. A placeholder stands in only for content that
+has to be real and is not yet available: the listed car, the real team, the actual
+room (`CP4`).
 
 ### GI4 — No type, no UI, no logo, no signage in the frame
 
@@ -202,8 +213,9 @@ what it may claim, and what has to be true of it.
 1. **What does this position depend on?** Declare the origin (GI1). If the answer is
    `none`, stop here — that is a result, not a gap.
 2. **What is it allowed to claim?** If the position needs the real car, the real
-   room or a real person, generation is not available (GI3). A scene, a street or
-   a generic vehicle in atmosphere is fine, labelled.
+   room or a real person, generation is not available (GI3). A scene, a street, a
+   generic vehicle or a disclosed art-directed subject is fine, labelled. Having no
+   photography is not a reason to stop here.
 3. **Where does the text sit?** Name the reading zone before the prompt exists (GI5).
 4. **What does this look like with a phone photo instead?** If the answer is "it
    breaks", fix the composition first (GI7).

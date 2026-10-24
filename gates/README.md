@@ -147,9 +147,10 @@ the source master and obvious on the render.
 ## Tests
 
 ```sh
-npm run test:gates        # all six suites
+npm run test:gates        # all seven suites
 npm run test:a11y         # keyboard, targets, reduced motion, Lenis — bad cases and known false positives
-npm run test:plan         # the build-plan pop-up: radio exclusivity, Bootstrap/Tailwind, scroll-site, Lenis, persistence
+npm run test:plan         # the build-plan pop-up: lifecycle Бриф → Концепт → Ассеты → Сборка → Проверка, approval gates and their invalidation, BRIEF.md as source of facts, realtime 3D, DNA100 → Концепт/Сборка, DNA101 → Ассеты, radios, scroll architecture vs operations, exclusive boxes, evidence-only recommendations, v1 migration, Bootstrap/Tailwind, GSAP/Lenis, persistence
+npm run test:layers       # the compositing plan (DNA101): alpha subjects, flattened images, HUD as SVG/HTML, paid vs local, approval
 npm run test:a1           # ownership vs media coverage, competition, declaration honesty
 npm run test:structure    # wrapper-evasion regressions
 npm run test:content      # coverage, banned sources, dated figures

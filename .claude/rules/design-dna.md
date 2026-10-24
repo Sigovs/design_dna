@@ -21,7 +21,7 @@ yields **out loud**, in the report.
 |---|---|---|
 | 1 | **Truth and access** — never yields to anything | `color I1` `I2` `I3` `I6` · `CP3`–`CP7` (CP1/CP2 ledger advice) · `GI3` · `DM4` `DM5` · `U6` `U7` `U12` |
 | 2 | **`TASTE.md` + the INVARIANT tier of `skills/`** | `C1`–`C21` (C17, C20 advice, C22 retired) · `I1`–`I10` (typography I4, color I4 advice) · `DM1`–`DM10` · `MJ1`–`MJ11` (MJ1, MJ2, MJ10 advice) · `U1`–`U19` · `G1`–`G8` |
-| 3 | **This file** — `DNA1`–`DNA99`, the build standard | camera language, shot list, lighting, annotation craft |
+| 3 | **This file** — `DNA1`–`DNA101`, the build standard | camera language, shot list, lighting, annotation craft |
 | 4 | **The selected dialect's DIALECT tier** | `auction-editorial` · `cinematic-industrial` · `immersive-authored-world` |
 | 5 | **Plugins and `external/`** — reference only, binds nothing | `frontend-design` · Scrollcraft · `threejs-webgl` · `gsap-scrolltrigger` · Awwwards and other galleries, 21st.dev (standing sources, `DNA96`–`DNA97`) |
 
@@ -152,35 +152,238 @@ After the build: `no-ai-slop` on the copy, and `impeccable` `audit` then `polish
 (`bolder` when the page came out timid). Never `impeccable` `shape`/`init`/`generate`,
 since those set a direction of their own.
 
-**`DNA99` — A build opens with one pop-up: the plan, by stage, with the skills
-named.** *Alex, 2026-10-25.* Once the brief is in hand, and before the first search
-or file, ask the **one** pop-up, one stage per tab. Each option names the skills and
-tools it runs, the recommended one goes first, and skill-set tabs are `multiSelect`.
-Alex ticks, and then the build runs without further confirmations. The fal.ai cost
-list (job, model, price, total) is the only other approval, and it goes into the
-**Генерация** tab whenever the jobs are already known.
+**`DNA100` — A moodboard is scanned for motion before the stack is chosen.**
+*Alex, 2026-10-24.* A moodboard is not only a style reference. Before the pop-up's
+Концепт stage is asked, read whether its static composition implies time, sequence or changing
+state. A signal counts as strong when it is visible in the composition itself, not
+inferred from a caption or a mood word:
+- the same subject repeated at different scales;
+- progressive movement from context to detail;
+- one persistent visual anchor across several scenes;
+- overlays, guides, reticles or measurements aimed at changing targets;
+- interrupted or incomplete information that expects revelation;
+- overlapping masses that imply foreground/background movement;
+- a long vertical composition that reads as a storyboard;
+- visual cause and effect between adjacent frames;
+- a subject whose meaning changes through inspection, assembly, comparison,
+  transformation or verification.
+
+**Three or more strong signals mean a scroll-based interaction thesis, proposed
+before the Сборка stage** and written as explicit states, never as "use parallax"
+or "add scroll animation":
+1. **Persistent** — what stays on screen throughout.
+2. **Change** — what changes, state by state.
+3. **Learned** — what the visitor knows after the change that they did not before.
+4. **Why scroll** — why scroll position, rather than time, a click or nothing, has
+   to control it.
+5. **Reduced motion** — the equivalent that carries the same meaning (`DNA43`).
+
+With fewer than three, the report names the count and the signals, the moodboard
+is read for style, and no thesis is forced (`MJ1`). The thesis feeds the plan: the
+scan (`--scan scan.json`: signals with their evidence, the five states, its
+recommendations) is shown in the pop-up's Концепт stage and marks Сборка's options,
+unless Концепт answers «Только стиль». A recommendation can also be given directly
+(`--recommend scrollArchitecture=pinned --evidence pinned="…"`), and the answer to
+question 4 becomes `reasons.pinned`. It may also
+recommend supporting scroll operations, each one naming the visible evidence that
+asks for it: repeated object states for a pinned sequence, separated planes for
+layer parallax, concealed or cropped masses for masks, a changing type rank for
+progress-driven typography. Parallax is never recommended because a page is
+cinematic, and pinning is never recommended for every section. One governing
+pinned sequence beside native chapters is a normal answer. It is a proposal, not a
+decision: the scroll architecture, operations and engine are still chosen in the
+pop-up, and a thesis never
+adds GSAP or Lenis by itself (`DNA99`, `DNA90`). It is the evidence that
+`genjutsu:cast` (`DNA98`) builds its interaction thesis on, never replaced by it.
+
+**`DNA101` — The compositing plan comes before generation.** *Alex, 2026-10-24,
+from a live experiment in which the concept correctly found a scroll-driven
+persistent subject and the generation plan then flattened subject, environment and
+atmosphere into finished rectangles. The look survived and the idea did not: the
+subject could no longer move on its own.* **Generation follows the compositing
+plan; the plan never follows whatever flattened images happen to come back.** The
+pre-build order is:
+
+> concept → moodboard motion scan (`DNA100`) → interaction thesis →
+> **compositing-layer scan** → generation plan and approval → build plan →
+> implementation
+
+In the pop-up (`DNA99`) these are the Концепт, Ассеты and Сборка stages.
+
+**It activates** once the concept and motion thesis are known and before any paid
+generation is proposed, when the composition or motion needs any of these: one
+subject persisting across chapters · foreground and background at different rates
+· a subject scaling independently of its environment · text, HUD or measurements
+tracking a moving subject · one object moving between scenes · controlled overlap
+of independent masses · an object repositioned separately for desktop and mobile ·
+scroll revealing or magnifying parts of one subject · atmosphere (smoke, dust,
+light, particles) moving on its own · foreground, middle-ground and background
+explicitly behaving differently. Animation alone does not activate it: a static
+full-bleed scene, an ordinary crop change or a plain opacity reveal needs no alpha
+subject.
+
+**The compositing plan** is written before the generation budget is approved. Per
+asset: ID · subject · role (background plate · middle-ground · persistent
+foreground subject · atmosphere · interface/HUD · typography · mask/matte) ·
+source (supplied · generated · extracted locally · HTML/CSS · SVG · WebGL/3D) ·
+format · whether genuine alpha is required · whether exact identity must hold
+across scenes · desktop, mobile and reduced-motion behaviour · the approved master
+it derives from · paid generation or local derivative. It states outright which
+elements may be flattened together and which stay independent. Interface, HUD,
+copy and data are SVG or HTML, never a raster generation.
+
+**An independent subject is a real isolated asset or a genuinely independent
+render.** An alpha asset keeps the complete silhouette, fine edge highlights,
+transparent or reflective boundaries, attachments and protruding details; it
+carries no baked background, and no baked smoke, shadow or environment unless the
+plan assigns them to that layer; it has no dark or light halo; it has a genuine
+alpha channel, with PNG as the lossless master and WebP/AVIF derived locally. None
+of these substitutes for it: blend-mode tricks · a rectangle moved as if it were an
+object · a rough clipping path around a complex subject · background-colour
+matching · a mask that destroys reflections or edges · a nominally identical
+product regenerated per scene · a flattened hero when the subject must outlive it.
+
+**Master identity.** One product, person, vehicle or object across several assets
+starts from one approved MASTER source. Later views derive from it wherever that is
+technically possible, its invariant identity features are written down, and a
+derivative that silently changes them is rejected. Shared palette or category does
+not make unrelated generations a family. The plan separates MASTER source
+generation · paid derived generation · local crop · local resize · local background
+extraction · responsive derivative. **File count is never reported as generation
+count.**
+
+**Approval (`GI1`, and the «Ассеты · одобрение» gate of `DNA99`).** Before paid
+generation, show the compositing plan, the number of paid source generations, the
+expected cost, the local derivatives that need no generation, the alpha assets
+required, and any risk that a source will not extract cleanly. Approval covers only
+those listed sources and that budget; any further paid generation needs approval
+again. Local resizing, format conversion and optimisation do not. The approval
+(`assets.planApproval` and the budget) records the plan's identity, so a changed
+plan, paid list or budget reopens it.
+
+**Build gate.** Motion implementation does not start until the independent layers
+exist or are stood in for by honest temporary placeholders: development or debug
+view only, each naming the layer it represents, never shown as visitor-facing
+design and never used to claim the interaction is visually validated. If a layer
+cannot be obtained, go back to the composition or motion plan. The governing idea
+is never silently flattened. Separately, `npm run plan -- <project> --gate
+implementation` stays closed until the asset plan is approved.
+
+A plan for a persistent product scene might read: environment/operator, background
+plate, generated, no alpha · master product, persistent foreground,
+generated/extracted, alpha · smoke, atmosphere, generated or procedural, alpha
+preferred · reticle/HUD, interface, SVG/HTML · copy and data, typography, HTML.
+That illustrates the rule and is not a formula. `DNA101` selects no technology:
+GSAP, Lenis and Three.js are still chosen in the build plan, for their own reasons.
+`npm run layers -- <plan.json> [--approval <approval.json | build-plan.json>]` validates a plan and
+prints the approval summary.
+
+**`DNA99` — A build runs through one pop-up: five stages, asked as lifecycle
+gates, with the skills named.** *Alex, 2026-10-25; lifecycle and approval gates
+2026-10-24.*
+
+> **Бриф → Концепт → Ассеты → Сборка → Проверка**
+
+The stages are not six dialogs fired before work starts. Each is asked when the
+evidence it needs exists:
+
+1. **Бриф** — after `BRIEF.md` has been read and its gaps identified.
+2. **Концепт** — routing, before concept exploration.
+3. **Концепт · одобрение** — after the actual direction board, visual contract and
+   thesis have been shown.
+4. **Ассеты** — once the concept is approved.
+5. **Ассеты · одобрение** — after the `DNA101` compositing plan and the paid list
+   exist; before paid generation or implementation.
+6. **Сборка** — after the concept, and under `DNA101` the assets, are approved.
+7. **Проверка** — after implementation.
+
+**`BRIEF.md` stays the factual source of truth.** The Бриф stage reads and
+summarises it, records the task type and the sources, asks only the gaps it leaves
+open, and records missing content. A complete `BRIEF.md` raises no gap question.
+«Всё есть» against unanswered sections is refused, because facts are not invented.
+The checkboxes never become the brief.
+
+**The approval gates.** `concept.approval` and `assets.planApproval` each take
+`approved`, `revise` or `reject`, and the paid list and budget are approved beside
+the plan.
+- Implementation does not begin unless the concept is approved and, where
+  `DNA101` applies, the asset plan is approved. Paid generation does not begin
+  unless the asset plan and its paid list and budget are approved.
+- An approval records the identity of what was shown: a hash of the governing idea,
+  the board, the visual contract and the thesis, or of the whole compositing plan.
+  Changing any of them, including the paid list or budget, makes the gate read
+  "it changed", and a new approval is needed.
+- `revise` and `reject` close the gate. The same unchanged direction or plan cannot
+  then be approved as it was.
+- A gate's question cannot be asked or answered until its evidence has been shown.
+- `npm run plan -- <project> --gate implementation|generation` exits 1 while a gate
+  is closed, and says why. It re-reads the recorded board and plan files.
+
+**These approvals are art direction, not taste questions.** The agent never asks
+Alex to invent taste, pick arbitrary style ingredients or do its creative work.
+Once it has produced concrete evidence, approve · revise · reject is the question
+that is owed, because Alex remains the art director (`TASTE.md` §5).
 
 **The pop-up is defined in code, not retyped:** `lib/build-plan.mjs` holds the
-groups, options and rules, and `npm run plan -- <project>` drives it. `AskUserQuestion`
-takes four questions per call, so the one pop-up runs as **two screens**:
+stages, steps, groups, options, gates and rules, and `npm run plan -- <project>`
+drives it. `AskUserQuestion` takes four questions per dialog and four options per
+question, so a step spans as many dialogs as it needs: **Сборка 1/2**, **Сборка
+2/2**. Every question opens with its dialog's label. It cannot clear one box when
+another is ticked. `toggle()` records how the exclusive boxes («Нет операций»,
+«Всё есть», «Только мудборд») behave live, and a submitted answer with both ticked
+is refused, never guessed.
 
-1. `npm run plan -- <project> --ask` — **Сборка 1–4**, four radio groups.
-2. `npm run plan -- <project> --ask --scroll <answer>` — **Сборка 5** (supporting
-   skills, checkboxes) beside **Концепт · После · Генерация**. It comes second
-   because `scroll-site` is recommended only once a pinned sequence is chosen.
-3. `npm run plan -- <project> --answers <json> [--reason gsap|pinned|lenis="…"]` —
-   validates, writes `<project>/build-plan.json`, prints the plan the build follows.
+- `--ask --list` gives the steps in order, with what each gate is still waiting for.
+- `--ask --stage <step> [--part <n>]` gives one dialog. Its evidence flags are
+  `--scan` (the `DNA100` scan), `--no-thesis` (Концепт chose «Только стиль»),
+  `--board`, `--idea` and `--contract` (the shown direction; the idea defaults to
+  `BRIEF.md`'s concept section), `--compositing` (the `DNA101` plan),
+  `--recommend <field>=<option> --evidence <option>="…"`, and `--scroll
+  <architecture>` for Сборка 2/2.
+- `--answers <json>` merges the answered steps into `<project>/build-plan.json`,
+  checking each against what must already stand. Сборка sits at the top level; the
+  other stages sit under `brief`, `concept`, `assets` and `review`. Reasons go in
+  `--reason <key>="…"`, implementation notes in `--note "…"` and 3D fallbacks in
+  `--fallback mobile|reducedMotion="…"`. A version-1 plan is read as version 2
+  without losing its meaning, and a plan from before the 3D question reads as
+  `3d: none`.
 
-| tab (header) | the question, roughly | options |
+A recommendation only marks an option; the plan is built from what was answered.
+
+| step · question | kind | options |
 |---|---|---|
-| **Концепт** | how we find the idea | vault + galleries (DNA97) · `genjutsu:cast` for the interaction thesis · a mood image only |
+| **Бриф** · task | one, radio | new site · redesign (default when unstated) · refresh · a section or block |
+| **Бриф** · sources | checkboxes | the request or brief · the current site · the brandbook · references or a moodboard |
+| **Бриф** · requirements | checkboxes, may be empty | real facts and prices (CP) · leads and conversion · CMS or integration · handoff to developers |
+| **Бриф** · missing | checkboxes, only while `BRIEF.md` leaves gaps | real photographs · copy · facts and prices · nothing (exclusive). Missing photography never cancels the concept (`GI3`) |
+| **Концепт** · mode | one, radio | one direction (BUILD, default) · three directions (EXPLORE, when Alex asks) |
+| **Концепт** · idea search | checkboxes | vault + galleries (DNA97) · `genjutsu:cast` for the interaction thesis · a moodboard only (exclusive) |
+| **Концепт** · moodboard | one, radio, carries the `DNA100` scan | thesis → Сборка (three or more signals and all five states) · style only · no moodboard |
+| **Концепт · одобрение** · direction | one, radio, after the board is shown | approve · revise · reject |
+| **Ассеты** · images | checkboxes | supplied assets · fal.ai generation (disclosed art direction, `GI3`) · placeholders for facts only (`CP4`) |
+| **Ассеты** · compositing | one, radio, carries the `DNA101` plan | layers per DNA101 · flat images |
+| **Ассеты · одобрение** · asset plan | one, radio, after the plan is shown | approve · revise · reject |
+| **Ассеты · одобрение** · budget | one, radio, shows paid sources, cost, local derivatives, alpha, extraction risk | approve the list · no paid generation · revise the plan |
 | **Сборка** · base stack | one, radio | Astro + Tailwind (a new standalone site) · Bootstrap 5 (dealer sites, existing templates, handoff) · the project's existing stack (first choice when modifying an established build) · plain HTML / CSS / JS |
 | **Сборка** · motion engine | one, radio | GSAP (authored timelines, scrub, coordinated scenes) · CSS / WAAPI (simple transitions and reveals) · no motion |
-| **Сборка** · scroll behavior | one, radio | standard page · scroll-triggered reveals (readable without them) · pinned scrollytelling / scrub sequence |
-| **Сборка** · scroll engine | one, radio | native scroll (default) · Lenis (only with a demonstrated need, `DNA90`) |
-| **Сборка** · supporting skills | checkboxes | 21st.dev blocks (DNA96) · kill-ai-slop scan per pass (DNA98) · `scroll-site` (selected automatically for a pinned sequence) |
-| **После** | the passes after the build | `no-ai-slop` on copy · `impeccable audit` + `polish` · `bolder` · Gate 1 + whole-page read (always, not optional) |
-| **Генерация** | imagery | fal.ai with the listed jobs and total · placeholders only · Alex's own assets |
+| **Сборка** · scroll architecture | one, radio: the page's governing structure | native document · pinned / scrub sequence · scroll-snap chapters · horizontal passage |
+| **Сборка** · scroll engine | one, radio | native scroll (default) · Lenis (only when controlled smoothing materially supports the thesis; with ScrollTrigger, explicit synchronisation and native keyboard, anchor, focus and reduced-motion behaviour kept, `DNA90`) |
+| **Сборка** · scroll operations | checkboxes, beside any architecture | scroll-triggered reveals · layer parallax · sticky elements · masks / wipes · progress-driven typography · chapter transitions · scroll progress indicator · none (exclusive) |
+| **Сборка** · 3D | one, radio | no realtime 3D (default) · Three.js (framework-independent) · React Three Fiber (React stack only) · an external or embedded scene |
+| **Сборка** · supporting skills | checkboxes | 21st.dev blocks (DNA96) · kill-ai-slop scan per pass (DNA98) · `scroll-site` (selected automatically for a pinned sequence) · `threejs-webgl` (recommended for Three.js or R3F, never added) |
+| **Проверка** · capture | checkboxes, beyond what is always checked | every breakpoint 1920–390 · scroll stops (DNA87) · a scroll recording |
+| **Проверка** · quality passes | checkboxes, may be empty | `no-ai-slop` on copy · `impeccable audit` + `polish` · `bolder` |
+
+**Realtime 3D is its own decision, never a note.** Anything but «none» needs
+written evidence and a recorded mobile and reduced-motion fallback. React Three
+Fiber needs a stack that declares React. An external scene is embedded or hosted
+elsewhere, not a local Three.js build. A moodboard signal alone cannot recommend 3D.
+`DNA101` recommends it only when the compositing plan holds an independently
+controlled volumetric subject, camera or scene, and even then it never selects it.
+
+**Проверка always runs** Gate 1, the whole-page read, the browser at 1440 and 390,
+and the reduced-motion and scripts-off paths (`DNA86`–`DNA89`). The stage only adds
+to them.
 
 **Сборка closes on one line, shown in the pop-up:** *"Choose the lightest stack that
 can faithfully execute the approved concept. Tools may execute the idea. Tools may
@@ -188,10 +391,10 @@ not become the idea."* What the plan enforces:
 - Every group starts on its lightest option. GSAP, Lenis, Three.js, Bootstrap and
   Tailwind are never added because they are installed or available, and every
   nonessential dependency is left out (`DNA45`).
-- GSAP, a pinned sequence and Lenis each need a stated reason. A pinned sequence is
-  for content that has meaningful states, never decoration or cover for thin
-  content, and its reduced-motion path stays complete (`DNA43`). It does not imply
-  Lenis.
+- GSAP, a pinned sequence, Lenis and realtime 3D each need a stated reason. A pinned
+  sequence is for content that has meaningful states, never decoration or cover for
+  thin content, and its reduced-motion path stays complete (`DNA43`). It does not
+  imply Lenis.
 - Bootstrap and Tailwind are never combined, unless the project already runs both
   and the brief requires keeping them, which is the existing-stack choice.
   Bootstrap is infrastructure, not a direction: no default Bootstrap cards, nav,
@@ -200,9 +403,9 @@ not become the idea."* What the plan enforces:
   changing a technology never reopens the approved visual contract.
 
 Options are written in Russian, and skill names are kept exactly as they are called.
-This is a question about the **process and the tools**, which is why it is allowed.
-`TASTE.md` §5 still forbids taste questions: the pop-up never asks about style,
-layout, colour or "do you like this".
+The routing questions are about **process and tools**; the gates are approve ·
+revise · reject on evidence already shown. Neither asks Alex to supply style,
+layout or colour.
 
 ---
 
@@ -313,8 +516,11 @@ at capture or generation, a plate, a panel or a scrim are all allowed (`GI5`,
 (`DNA21`).
 
 **`DNA25` — Synthetic imagery is never passed off as the real item for sale, the
-real premises or a real person (`GI3`)** — atmosphere scenes, generic vehicles and
-the city are allowed and labelled, and provenance travels with the file (`GI6`).
+real premises or a real person (`GI3`)** — atmosphere scenes, generic vehicles, the
+city and disclosed art-directed subjects are allowed and labelled, and provenance
+travels with the file (`GI6`). GI3 protects factual truth, not a medium: missing
+production photography is never, by itself, a reason to swap the concept for
+diagrams, placeholders or SVG.
 Mobile is composed, by a considered crop or a separate frame (`GI8` advice, `DM10`).
 
 **`DNA26` — Crops are intentional (`C9`).** No accidental tangency between a

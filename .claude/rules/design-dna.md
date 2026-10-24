@@ -21,7 +21,7 @@ yields **out loud**, in the report.
 |---|---|---|
 | 1 | **Truth and access** — never yields to anything | `color I1` `I2` `I3` `I6` · `CP3`–`CP7` (CP1/CP2 ledger advice) · `GI3` · `DM4` `DM5` · `U6` `U7` `U12` |
 | 2 | **`TASTE.md` + the INVARIANT tier of `skills/`** | `C1`–`C21` (C17, C20 advice, C22 retired) · `I1`–`I10` (typography I4, color I4 advice) · `DM1`–`DM10` · `MJ1`–`MJ11` (MJ1, MJ2, MJ10 advice) · `U1`–`U19` · `G1`–`G8` |
-| 3 | **This file** — `DNA1`–`DNA97`, the build standard | camera language, shot list, lighting, annotation craft |
+| 3 | **This file** — `DNA1`–`DNA99`, the build standard | camera language, shot list, lighting, annotation craft |
 | 4 | **The selected dialect's DIALECT tier** | `auction-editorial` · `cinematic-industrial` · `immersive-authored-world` |
 | 5 | **Plugins and `external/`** — reference only, binds nothing | `frontend-design` · Scrollcraft · `threejs-webgl` · `gsap-scrolltrigger` · Awwwards and other galleries, 21st.dev (standing sources, `DNA96`–`DNA97`) |
 
@@ -90,7 +90,7 @@ advice since 2026-10-25: a deliberate change of style between sections is allowe
 
 ---
 
-## 2b. Sourcing solutions and inspiration
+## 2b. Sourcing solutions, inspiration and tools
 
 *Alex, 2026-10-25.* Two standing outside sources, used on my own initiative and not
 only when asked: **inspiration galleries** for the direction (`DNA97`), and
@@ -136,6 +136,42 @@ motion, no horizontal scroll), and one idea carried through the page (`TASTE.md`
 rule 7). A page assembled from good components with no idea between them is the
 kit-of-devices failure that scored 3/10. The report names which 21st components were
 used and what was changed.
+
+**`DNA98` — Two tools are wired into every build.** *Alex, 2026-10-25.*
+- **At the concept: `genjutsu:cast`.** It proposes the interaction thesis, the
+  signature move, alongside the one-sentence idea. The thesis serves the idea and
+  never replaces it. It is built once the static page stands, because content must
+  work without scripts (`G7`). `genjutsu:paint` is not used: it brings a design
+  system of its own, which would be a second art director.
+- **During the build: the kill-ai-slop scanner.** Run `npm run slop -- <project>`
+  after every substantial pass of markup and CSS, not only at the end. Each hit is
+  either fixed or marked `deslop-ignore <id>` with a reason in the same comment. A
+  hit is a lead to read, not a verdict (`external/kill-ai-slop`).
+
+After the build: `no-ai-slop` on the copy, and `impeccable` `audit` then `polish`
+(`bolder` when the page came out timid). Never `impeccable` `shape`/`init`/`generate`,
+since those set a direction of their own.
+
+**`DNA99` — A build opens with one pop-up: the plan, by stage, with the skills
+named.** *Alex, 2026-10-25.* Once the brief is in hand, and before the first search
+or file, ask **one** `AskUserQuestion` with up to four tabs, one tab per stage. Each
+option names the skills and tools it runs, the recommended one goes first, and
+skill-set tabs are `multiSelect`. Alex ticks, and then the build runs without
+further confirmations. The fal.ai cost list (job, model, price, total) is the only
+other approval, and it goes into the **Генерация** tab whenever the jobs are already
+known.
+
+| tab (header) | the question, roughly | typical options |
+|---|---|---|
+| **Концепт** | how we find the idea | vault + galleries (DNA97) · `genjutsu:cast` for the interaction thesis · a mood image only |
+| **Сборка** | stack and build tools | Astro + Tailwind + GSAP + Lenis · 21st.dev blocks (DNA96) · kill-ai-slop scan per pass · `scroll-site` if scroll-led |
+| **После** | the passes after the build | `no-ai-slop` on copy · `impeccable audit` + `polish` · `bolder` · Gate 1 + whole-page read (always, not optional) |
+| **Генерация** | imagery | fal.ai with the listed jobs and total · placeholders only · Alex's own assets |
+
+Options are written in Russian, and skill names are kept exactly as they are called.
+This is a question about the **process and the tools**, which is why it is allowed.
+`TASTE.md` §5 still forbids taste questions: the pop-up never asks about style,
+layout, colour or "do you like this".
 
 ---
 

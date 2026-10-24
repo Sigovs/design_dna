@@ -900,6 +900,11 @@ Adopting this file means adopting how the work gets done, not only how it looks:
 - **No yes/no or confirmation questions about taste.** Don't pause for permission
   between steps. Stop outright only for an external blocker (auth, missing
   credentials, a locked file) — and then state exactly what Alex must do.
+- **One exception, on Alex's instruction (2026-10-25): the build-plan pop-up.**
+  Every build opens with a single `AskUserQuestion` that lays out the plan stage by
+  stage — Концепт · Сборка · После · Генерация — with the skills named in each option
+  (build standard `DNA99`). It asks about process and tools, never about taste. After
+  it, no further confirmations.
 - **Clarifying questions are allowed, and bounded.** **A clarifying question is justified only when its answer could change the
   architecture, the scope, the factual accuracy, or what has to be delivered — never
   when it would merely refine taste.**

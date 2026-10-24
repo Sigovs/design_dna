@@ -72,8 +72,10 @@ concept gate and the definition of done.
 
 ## Stack
 
-**Lenis ships on this project (\`DNA90\`)**, off under reduced motion, on one
-loop with GSAP when GSAP is present.
+**The stack is the build plan's (\`DNA99\`)**: \`npm run plan -- <this project>\` in the
+design_dna working copy writes \`build-plan.json\`. Native scroll by default; Lenis
+only when the plan chose it (\`DNA90\`), then off under reduced motion, on one loop
+with GSAP when GSAP is present.
 
 ## The concept gate
 

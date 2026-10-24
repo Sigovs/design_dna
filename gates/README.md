@@ -77,7 +77,7 @@ composition is good.
 | `structure.mjs` | Finds repeated modules by rendered geometry. Reads no class names. |
 | `hero.mjs` | Closed-form `object-fit` mapping, per-sample subject boxes, annotated evidence images. |
 | `content.mjs` | Harvests claim-shaped strings from the render and requires each to map to a ledger entry. |
-| `a11y.mjs` | Part of Gate 1. Drives the keyboard (Tab reachability, Enter/Space on stateful custom controls, arrows in composite widgets), measures touch targets (44px under 900px wide, per DNA68; 24px on desktop, per WCAG 2.5.8, with its spacing and inline exceptions), renders twice to compare `prefers-reduced-motion` (no policy, motion still running, content lost), checks the Lenis contract (present; absent under reduce, per DNA90), and opens the dialogs declared in `a11y.dialogs` to check trap, Escape and focus return. Adapted from ux-ui-agent-skills (MIT); see `external/ux-ui-agent-skills/`. |
+| `a11y.mjs` | Part of Gate 1. Drives the keyboard (Tab reachability, Enter/Space on stateful custom controls, arrows in composite widgets), measures touch targets (44px under 900px wide, per DNA68; 24px on desktop, per WCAG 2.5.8, with its spacing and inline exceptions), renders twice to compare `prefers-reduced-motion` (no policy, motion still running, content lost), checks the Lenis contract (present when `build-plan.json` chose it; absent under reduce, per DNA90), and opens the dialogs declared in `a11y.dialogs` to check trap, Escape and focus return. Adapted from ux-ui-agent-skills (MIT); see `external/ux-ui-agent-skills/`. |
 
 ## The three mechanisms in `seal.mjs`
 
@@ -147,8 +147,9 @@ the source master and obvious on the render.
 ## Tests
 
 ```sh
-npm run test:gates        # all five suites
+npm run test:gates        # all six suites
 npm run test:a11y         # keyboard, targets, reduced motion, Lenis — bad cases and known false positives
+npm run test:plan         # the build-plan pop-up: radio exclusivity, Bootstrap/Tailwind, scroll-site, Lenis, persistence
 npm run test:a1           # ownership vs media coverage, competition, declaration honesty
 npm run test:structure    # wrapper-evasion regressions
 npm run test:content      # coverage, banned sources, dated figures
@@ -232,9 +233,10 @@ nothing declared to do its main work. One field is optional:
 `dialogs` lists the triggers to open. A dialog is never found by guessing, because
 guessing clicks things a visitor would not. The first trigger visible at the viewport
 is the one used, since pages often repeat a trigger in a dock that only exists on
-phones. `dialog` defaults to `[role="dialog"],dialog[open]`. `lenis: false` is for a
-page that truly has no scroll layer. It is a deliberate exception and the report must
-name it.
+phones. `dialog` defaults to `[role="dialog"],dialog[open]`. Lenis is required only
+when `lenis: true`, or when the project's `build-plan.json` chose it as the scroll
+engine (`DNA90`); native scroll is the default. Wherever Lenis runs, it must not be
+constructed under reduced motion.
 
 The first run on a real build (Tucson v4, 2026-10-25) produced three false positives:
 

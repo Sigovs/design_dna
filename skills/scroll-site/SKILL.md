@@ -92,11 +92,11 @@ you did not have to hand-author · `CustomEase`, `CustomWiggle`, `CustomBounce` 
 `Physics2D`, `InertiaPlugin` · `Observer` — one input abstraction over wheel,
 touch and pointer · `MotionPathPlugin` · `ScrollSmoother`.
 
-**Lenis is the smooth-scroll layer, and it ships on every project (`DNA90`)** —
-scroll-led or not. Under `prefers-reduced-motion: reduce` it is not constructed.
-It is what nearly every scroll-led site of the last two years is running, and its
-absence is why a hand-rolled build feels stiff next to them in a way that no
-amount of easing on the individual tweens fixes.
+**Lenis is the smooth-scroll layer when the build plan chooses it (`DNA90`).**
+Native scroll is the default, and a pinned sequence does not imply Lenis: it is
+chosen, with the reason written into `build-plan.json`, only when the motion
+direction shows a real need for managed smooth scrolling. Under
+`prefers-reduced-motion: reduce` it is not constructed.
 
 **Wire Lenis and ScrollTrigger together explicitly, or each will fight the other:**
 
@@ -117,7 +117,7 @@ and then measures reports every scroll-driven animation as broken, and the
 animation is fine. Use `lenis.scrollTo(y, { immediate: true })` in tests.
 
 `ScrollSmoother` does a similar job to Lenis and the two must never both be on
-the same page. Pick one — Lenis unless there is a stated reason.
+the same page. Pick at most one, and only with a stated reason.
 
 ---
 

@@ -154,19 +154,50 @@ since those set a direction of their own.
 
 **`DNA99` — A build opens with one pop-up: the plan, by stage, with the skills
 named.** *Alex, 2026-10-25.* Once the brief is in hand, and before the first search
-or file, ask **one** `AskUserQuestion` with up to four tabs, one tab per stage. Each
-option names the skills and tools it runs, the recommended one goes first, and
-skill-set tabs are `multiSelect`. Alex ticks, and then the build runs without
-further confirmations. The fal.ai cost list (job, model, price, total) is the only
-other approval, and it goes into the **Генерация** tab whenever the jobs are already
-known.
+or file, ask the **one** pop-up, one stage per tab. Each option names the skills and
+tools it runs, the recommended one goes first, and skill-set tabs are `multiSelect`.
+Alex ticks, and then the build runs without further confirmations. The fal.ai cost
+list (job, model, price, total) is the only other approval, and it goes into the
+**Генерация** tab whenever the jobs are already known.
 
-| tab (header) | the question, roughly | typical options |
+**The pop-up is defined in code, not retyped:** `lib/build-plan.mjs` holds the
+groups, options and rules, and `npm run plan -- <project>` drives it. `AskUserQuestion`
+takes four questions per call, so the one pop-up runs as **two screens**:
+
+1. `npm run plan -- <project> --ask` — **Сборка 1–4**, four radio groups.
+2. `npm run plan -- <project> --ask --scroll <answer>` — **Сборка 5** (supporting
+   skills, checkboxes) beside **Концепт · После · Генерация**. It comes second
+   because `scroll-site` is recommended only once a pinned sequence is chosen.
+3. `npm run plan -- <project> --answers <json> [--reason gsap|pinned|lenis="…"]` —
+   validates, writes `<project>/build-plan.json`, prints the plan the build follows.
+
+| tab (header) | the question, roughly | options |
 |---|---|---|
 | **Концепт** | how we find the idea | vault + galleries (DNA97) · `genjutsu:cast` for the interaction thesis · a mood image only |
-| **Сборка** | stack and build tools | Astro + Tailwind + GSAP + Lenis · 21st.dev blocks (DNA96) · kill-ai-slop scan per pass · `scroll-site` if scroll-led |
+| **Сборка** · base stack | one, radio | Astro + Tailwind (a new standalone site) · Bootstrap 5 (dealer sites, existing templates, handoff) · the project's existing stack (first choice when modifying an established build) · plain HTML / CSS / JS |
+| **Сборка** · motion engine | one, radio | GSAP (authored timelines, scrub, coordinated scenes) · CSS / WAAPI (simple transitions and reveals) · no motion |
+| **Сборка** · scroll behavior | one, radio | standard page · scroll-triggered reveals (readable without them) · pinned scrollytelling / scrub sequence |
+| **Сборка** · scroll engine | one, radio | native scroll (default) · Lenis (only with a demonstrated need, `DNA90`) |
+| **Сборка** · supporting skills | checkboxes | 21st.dev blocks (DNA96) · kill-ai-slop scan per pass (DNA98) · `scroll-site` (selected automatically for a pinned sequence) |
 | **После** | the passes after the build | `no-ai-slop` on copy · `impeccable audit` + `polish` · `bolder` · Gate 1 + whole-page read (always, not optional) |
 | **Генерация** | imagery | fal.ai with the listed jobs and total · placeholders only · Alex's own assets |
+
+**Сборка closes on one line, shown in the pop-up:** *"Choose the lightest stack that
+can faithfully execute the approved concept. Tools may execute the idea. Tools may
+not become the idea."* What the plan enforces:
+- Every group starts on its lightest option. GSAP, Lenis, Three.js, Bootstrap and
+  Tailwind are never added because they are installed or available, and every
+  nonessential dependency is left out (`DNA45`).
+- GSAP, a pinned sequence and Lenis each need a stated reason. A pinned sequence is
+  for content that has meaningful states, never decoration or cover for thin
+  content, and its reduced-motion path stays complete (`DNA43`). It does not imply
+  Lenis.
+- Bootstrap and Tailwind are never combined, unless the project already runs both
+  and the brief requires keeping them, which is the existing-stack choice.
+  Bootstrap is infrastructure, not a direction: no default Bootstrap cards, nav,
+  accordions, buttons, spacing or type survive into the page.
+- A supporting skill never changes the approved direction, stack or content, and
+  changing a technology never reopens the approved visual contract.
 
 Options are written in Russian, and skill names are kept exactly as they are called.
 This is a question about the **process and the tools**, which is why it is allowed.
@@ -438,13 +469,18 @@ a second animated layer. It replaces those debates rather than adding to them.
 cleanly, and closes off the slide-in / slide-out / split-reveal variations that cost
 rounds of iteration and rarely look better.
 
-**`DNA90` — Lenis ships on every project.** Every page, scroll-led or not, runs
-Lenis as its scroll layer. This is Alex's standing instruction, not a per-project
-choice: it is not argued in the report, and it is not left out because a page is
-short or static. It is a stack decision, never an aesthetic one, so it lives here
-and never in `TASTE.md`. **It goes in with the first build**, before any sticky,
-pinned or scroll-linked section is tuned — tuning against native wheel steps and
-adding Lenis afterwards means tuning twice. The contract it ships under:
+**`DNA90` — Native scroll by default; Lenis when the build plan chooses it.**
+*Alex, 2026-10-24, replacing "Lenis ships on every project".* The scroll engine is
+its own decision in the build-plan pop-up (`DNA99`), and native scroll is the
+default. Lenis is chosen only when the approved motion direction shows a real need
+for managed smooth scrolling, and the reason is written into `build-plan.json`.
+Lenis is a scroll engine, not a scrollytelling concept: a pinned sequence does not
+require it, and a standard page does not get it without a documented reason. It is
+a stack decision, never an aesthetic one, so it lives here and never in `TASTE.md`.
+**When it is chosen, it goes in with the first build**, before any sticky, pinned or
+scroll-linked section is tuned, because tuning against native wheel steps and adding
+Lenis afterwards means tuning twice. Gate 1 requires it only when the plan chose it.
+The contract it ships under:
 
 - **Reduced motion turns it off.** Under `prefers-reduced-motion: reduce`, Lenis
   is not constructed and the page scrolls natively (`DM4`, `MJ9`, motion `I1`).

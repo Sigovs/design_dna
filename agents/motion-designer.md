@@ -101,7 +101,7 @@ GSAP is free in full, so the plugins that used to be out of reach are simply
 available: `SplitText` for line, word and character choreography, `MorphSVG`,
 `DrawSVG`, `Flip` for a layout change you did not hand-author, `ScrambleText`,
 `CustomWiggle` and `CustomBounce` for easing that is not on the standard curve,
-`Physics2D`, `Observer`, `MotionPathPlugin`. Lenis owns the scroll.
+`Physics2D`, `Observer`, `MotionPathPlugin`. Lenis owns the scroll when the build plan chose it.
 `skills/scroll-site` Step 2b carries the wiring and its traps.
 
 **Availability is not a reason.** Every one of these still has to earn its place

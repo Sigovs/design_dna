@@ -1,7 +1,7 @@
 /* Keyboard, targets, reduced motion — the invariants nothing measured.
  *
  * DNA68 (touch targets), DNA78 (keyboard parity), DNA79 and motion I1 (reduced
- * motion is a designed state) and DNA90 (Lenis, off under reduce) were all
+ * motion is a designed state) and DNA90 (Lenis, when chosen, off under reduce) were all
  * written down and none of them had a gate. Each was "checked" by reading the
  * source, which is how a <div> with a click handler, a 30px close button and a
  * page that reveals its copy only by animation all ship looking finished.
@@ -379,10 +379,10 @@ export async function audit({ browser, url, viewports, decl = {} }) {
     if (normal.declares && !normal.policy) f('motion I1', 'the page animates and ships no @media (prefers-reduced-motion: reduce)');
     if (reduced.moving.length) f('motion I1', `${reduced.moving.length} element(s) still move under reduce — ${reduced.moving.slice(0, 4).join('; ')}`);
     if (lost.length) f('DNA79', `${lost.length} element(s) visible normally are invisible under reduce — ${lost.slice(0, 4).join('; ')}`);
-    if (cfg.lenis !== false) {
-      if (!normal.lenis) f('DNA90', 'no Lenis on the page (window.__lenis or html.lenis) — it ships on every project');
-      if (reduced.lenis) f('DNA90', 'Lenis is constructed under prefers-reduced-motion: reduce');
-    }
+    /* Native scroll is the default; Lenis is required only when the build plan
+       chose it. Wherever it runs, it stays off under reduce. */
+    if (cfg.lenis === true && !normal.lenis) f('DNA90', 'the build plan chose Lenis and the page has none (window.__lenis or html.lenis)');
+    if (reduced.lenis) f('DNA90', 'Lenis is constructed under prefers-reduced-motion: reduce');
   }
 
   out.verdict = out.findings.length ? 'fail' : 'pass';

@@ -27,6 +27,7 @@ import { measure as measureComposition } from './composition.mjs';
 import { audit as auditVault } from './vault.mjs';
 import { audit as auditA11y } from './a11y.mjs';
 import { launchChromium } from '../lib/browser.mjs';
+import { load as loadPlan } from '../lib/build-plan.mjs';
 
 /* the working copy this file lives in — the vault is read from here, never from a
    copy beside the project, for the same reason the skill refuses a copied folder */
@@ -127,10 +128,14 @@ for (const vp of viewports) {
   await ctx.close();
 }
 /* keyboard, touch targets, reduced motion, the Lenis contract — DNA68/78/79/90.
+   Lenis is required only when build-plan.json chose it (or a11y.lenis says so).
    Driven rather than read: Tab and Enter are pressed, the page is rendered twice
    with the motion preference flipped. Dialogs are only opened when the
    declaration names their triggers (`a11y.dialogs`). See gates/a11y.mjs. */
-g1.a11y = await auditA11y({ browser, url, viewports, decl });
+const plan = loadPlan(root);
+const a11yCfg = { ...decl.a11y };
+if (a11yCfg.lenis === undefined && plan) a11yCfg.lenis = plan.scrollEngine === 'lenis';
+g1.a11y = await auditA11y({ browser, url, viewports, decl: { ...decl, a11y: a11yCfg } });
 g1.commitments = (decl.commitments || []).map((c) => {
   const actual = c.viewport ? g1.measured[c.viewport]?.[c.metric] : g1.measured[viewports[0].label]?.[c.metric];
   const ok = c.max != null ? actual <= c.max : c.min != null ? actual >= c.min : actual === c.equals;

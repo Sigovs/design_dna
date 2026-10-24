@@ -6,7 +6,8 @@
  * Each BAD case is a defect that reads as finished in a screenshot: a div that
  * looks like a button, a close × that is 20px, copy that exists only once an
  * entrance animation has run, Lenis running for a visitor who asked for no
- * motion, a dialog Tab walks straight out of. The gate is required to find
+ * motion (or missing where the build plan chose it), a dialog Tab walks
+ * straight out of. A page with no Lenis is clean: native scroll is the default. The gate is required to find
  * each one by driving the page.
  *
  * The CLEAN cases are the other half, and they are taken from false positives
@@ -75,9 +76,15 @@ const CASES = [
     expect: ['motion'],
   },
   {
-    name: 'BAD — no Lenis at all',
+    name: 'BAD — the build plan chose Lenis and the page has none',
     html: PAGE(`<p>Text</p>`, '', ''),
+    lenis: true,
     expect: ['motion'],
+  },
+  {
+    name: 'CLEAN — native scroll, no Lenis (the default)',
+    html: PAGE(`<p>Text</p>`, '', ''),
+    expect: [],
   },
   {
     name: 'BAD — dialog without aria-modal that Tab walks out of',
@@ -118,7 +125,7 @@ const browser = await launchChromium();
 
 for (const [i, c] of CASES.entries()) {
   const viewports = c.viewport ? VP.filter((v) => v.label === c.viewport) : VP;
-  const r = await audit({ browser, url: `${srv.origin}/c${i}.html`, viewports, decl: { primaryViewport: viewports[0].label, a11y: { dialogs: c.dialogs || [] } } });
+  const r = await audit({ browser, url: `${srv.origin}/c${i}.html`, viewports, decl: { primaryViewport: viewports[0].label, a11y: { dialogs: c.dialogs || [], lenis: c.lenis } } });
   const got = [...new Set(r.findings.map((f) => f.id))].sort();
   const want = [...c.expect].sort();
   const pass = want.length ? want.every((w) => got.includes(w)) : got.length === 0;

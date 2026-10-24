@@ -140,9 +140,10 @@ g1.commitments = (decl.commitments || []).map((c) => {
   return { ...c, actual, pass: !!ok };
 });
 const a1Runs = Object.values(g1.a1);
+/* A1 is a measurement for the report since 2026-10-25 (Alex): it no longer
+   blocks. An undeclared event is simply not measured. */
+g1.a1Notes = a1Runs.flatMap((r) => r.problems.map((p) => `A1 ${r.label}: ${p}`));
 g1.blockers = [
-  ...(decl.a1 ? [] : ['A1 not declared — the governing event must be declared through named components before the first screen can be measured']),
-  ...a1Runs.flatMap((r) => r.problems.map((p) => `A1 ${r.label}: ${p}`)),
   ...g1.commitments.filter((c) => !c.pass).map((c) => `commitment ${c.metric}: ${c.actual}`),
   ...Object.entries(g1.measured).filter(([, m]) => m.horizontalOverflow).map(([k]) => `${k}: horizontal page scroll`),
   ...g1.a11y.findings.map((f) => `${f.viewport} [${f.rule}]: ${f.detail}`),
@@ -252,6 +253,7 @@ if (decl.hero) {
   }
   const machineOk = h.viewports.every((v) => v.verdict === 'pass');
   h.blockers = h.viewports.flatMap((v) => v.problems.map((p) => `${v.label}: ${p}`));
+  h.notes = h.viewports.flatMap((v) => v.notes.map((n) => `${v.label}: ${n}`));
   if (!h.humanConfirmed) h.blockers.push('humanConfirmed is false — the annotated source frame must be checked by a person: a wrongly declared subjectBox cannot produce a pass');
   h.verdict = machineOk && h.humanConfirmed ? 'pass' : 'fail';
 } else {

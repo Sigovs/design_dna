@@ -91,8 +91,9 @@ one either. The test: describe it to someone who has seen the other builds — i
 they cannot tell it apart, it is not a signature move and you have not made one
 yet.
 
-It gets the real budget. Everything around it stays quiet, because two competing
-effects in one viewport read as neither (`DNA41`, `MJ2`).
+It gets the real budget. Other motion may run beside it when the concept wants
+layers — `MJ2` and the old two-signature cap are advice since 2026-10-25 — but
+say what each layer does, and cut one that only competes.
 
 ## What the stack makes possible
 
@@ -104,7 +105,7 @@ available: `SplitText` for line, word and character choreography, `MorphSVG`,
 `skills/scroll-site` Step 2b carries the wiring and its traps.
 
 **Availability is not a reason.** Every one of these still has to earn its place
-under `MJ1` and `MJ10`, and a build that reaches for a plugin to show it has the
+under `MJ1` (and report it against `MJ10`, advice since 2026-10-25), and a build that reaches for a plugin to show it has the
 plugin is the same defect as a build with no motion, arriving from the other
 side. Reach for one because the beat needs it.
 

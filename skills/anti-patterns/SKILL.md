@@ -994,7 +994,7 @@ structure.
 
 **Invariant — must all pass**
 - [ ] Hierarchy unambiguous; emphasis encodes ranking truthfully.
-- [ ] Operational truth — locations, logistics, filters, metadata — does not outrank the buyer's motivation (C20).
+- [ ] Operational truth — locations, logistics, filters, metadata — does not outrank the buyer's motivation (C20 — advice since 2026-10-25).
 - [ ] All contrast meets AA; no hue-only meaning; focus visible.
 - [ ] No motion without a job; reduced-motion path everywhere; no layout animation.
 - [ ] Spacing deliberate; internal gaps < external; gutters never zero.

@@ -62,13 +62,21 @@ inside the prompt to get a better result is not.** If the direction is wrong, th
 brief is edited and the change is a decision with a reason. Prompt-tuning your way
 out of a direction is how the brief stops describing the project.
 
-### GI3 — Nothing synthetic depicts a real product, place or person
+### GI3 — Nothing synthetic is passed off as the real product, premises or person
 
-A generated image may carry atmosphere, material, light, texture, landscape,
-abstraction and generic context. It may **never** stand in for:
+*Narrowed by Alex on 2026-10-25.* The old rule banned depicting anything real and
+kept every page at the ceiling of the client's own photographs. Generated
+**scenes** are now allowed: atmosphere, landscape, the city and its streets, light,
+material, and a **generic vehicle or object inside the scene**, as long as it is
+not presented as stock. The page carries one plain line saying the scenes are
+generated artwork (GI6 travels with the file as before).
+
+What stays banned is the false statement. A generated image may **never** stand in
+for:
 
 - **the actual item being sold** — this specific car, this specific watch, this
-  specific property;
+  specific property. A generated car never sits next to a price, a listing link or
+  a stock number, and never looks like a car the dealer has on the floor;
 - **the actual premises** — the showroom, the workshop, the office as they are;
 - **an actual person** — staff, client, testimonial, founder.
 
@@ -186,7 +194,8 @@ what it may claim, and what has to be true of it.
 1. **What does this position depend on?** Declare the origin (GI1). If the answer is
    `none`, stop here — that is a result, not a gap.
 2. **What is it allowed to claim?** If the position needs the real car, the real
-   room or a real person, generation is not available (GI3).
+   room or a real person, generation is not available (GI3). A scene, a street or
+   a generic vehicle in atmosphere is fine, labelled.
 3. **Where does the text sit?** Name the reading zone before the prompt exists (GI5).
 4. **What does this look like with a phone photo instead?** If the answer is "it
    breaks", fix the composition first (GI7).

@@ -121,6 +121,10 @@ communicative motion is tasteful is a dialect question (D4).
 
 *auction-editorial — strong defaults, each with a stated exit.*
 
+> **These bind only when Alex has named auction-editorial** (TASTE §1, 2026-10-25).
+> Outside it there is no 8px travel cap, no 2px hover lift, no crossfade-only
+> rule and no one-ambient-moment budget.
+
 Calm and physical. Strong defaults, not laws.
 
 ### D1 — Crossfade over carousel-whoosh

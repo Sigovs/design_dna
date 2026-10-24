@@ -236,20 +236,25 @@ is not that evidence.
 - **brief-derived / no stored dialect** — the right answer whenever no stored
   dialect fits.
 
-**`auction-editorial` is not a silent universal default.** It is the preferred
-fallback in exactly two situations: the brief and brand are compatible with it,
-**or** Alex explicitly asks for a taste-led direction. An underspecified brief
-must not auto-become auction-editorial — an absent brief is not a compatible
-brief. When the brief is thin, derive the dialect from what you *do* know
-(audience, function, sector, density needs) and say `brief-derived`. If you then
-lean on auction-editorial anyway, you must be able to name the compatibility
-you found; "nothing else was specified" is not one.
+**`auction-editorial` is used only when Alex names it.** *Tightened by Alex on
+2026-10-25.* It is not a fallback for a compatible brief, not the answer to a
+taste-led request and not a quiet habit. Its expressions — hairlines instead of
+containers, mono micro-labels, spec plates, subtract-don't-add (P1), one committed
+gesture (P4), motion seasons (P8), the 8px travel and 2px hover lift — **and every
+`DIALECT` section in `skills/` written for it** stay out of a build unless he has
+named the dialect for that project. When nothing is named, derive the direction
+from the brief and say `brief-derived`; "it fits" is not a licence. Why: in the
+Tucson experiments these habits made every version restrained, and the one run
+without them (index_experiment v4) was the first Alex found interesting.
 
 ### The hero declaration — required whenever a hero exists
 
-> **FULL-SCREEN SCENE, NOT FULL-FRAME OBJECT.**
+> ~~FULL-SCREEN SCENE, NOT FULL-FRAME OBJECT.~~ **Retired 2026-10-25 with
+> [C22](skills/academic-composition/SKILL.md#invariant).** An object cropped edge
+> to edge is a legitimate frame. The declaration below is still useful as a
+> checklist for a scene-led hero; it is no longer a gate.
 
-**Alex's stated default, recorded 2026-08-13 on his direct instruction and not
+**Alex's former default, recorded 2026-08-13 on his direct instruction and not
 inferred from any project:** a hero almost always owns the full first screen.
 **What is full-screen is the scene — the photographic field — never the scale of
 the subject inside it.** A car, a person or any other principal object is not
@@ -277,7 +282,8 @@ Declare these nine, before the hero is built:
 
 **And declare the governing event itself, as a system.** Viewport ownership is a
 claim about a composed whole, so it is stated as one — this is what A1 is measured
-against, and a first screen with no such declaration cannot pass Gate 1:
+against. Declare it when you want the first screen measured; an undeclared
+screen is simply not measured (A1 is report-only since 2026-10-25):
 
 | | |
 |---|---|
@@ -464,8 +470,9 @@ to spot-checking the pass:
    every section?
 5. **Are typography roles being confused with new visual voices?**
    ([typography I8](skills/typography-taste/SKILL.md#invariant).)
-6. **Would removing roughly 20% of the visual devices improve the work?** Say which
-   20%, and what happens if they go.
+6. **Is any device doing nothing?** Name it only if it has no job at all. *The
+   old "remove roughly 20%" question was dropped by Alex on 2026-10-25 — it
+   pushed every review toward subtraction.*
 
 **The critic may not answer question 6 with a reflex.** "Simplify" is not a
 finding. Each removal is argued: *what is strengthened* by its absence, and *what is
@@ -625,6 +632,10 @@ a reader is keeping score of.
 Depth: [unity-and-plastic-connection](skills/academic-composition/references/unity-and-plastic-connection.md).
 
 #### The device budget — a device earns its place by having a distinct job
+
+> **Advice, not a gate — relaxed by Alex on 2026-10-25.** There is no budget.
+> Name each device's job in the report; duplication is worth noticing, not a
+> reason to refuse a device.
 
 **Before adding a visual device, name its specific job, and ask whether a device
 already in the page can do that job. If it has no distinct job, or duplicates one
@@ -821,7 +832,7 @@ live only in the dialect files.
 
 | Dialect | Status | What it is |
 |---|---|---|
-| [auction-editorial](dialects/auction-editorial.md) | confirmed | The house dialect. Split into **PRINCIPLES** (compositional logic and decision tendencies) and **EXPRESSIONS** (optional visual manifestations). The expressions are not a checklist — a design can belong to this dialect while using few of them. |
+| [auction-editorial](dialects/auction-editorial.md) | confirmed | The house dialect — **used only when Alex names it** (§1, 2026-10-25). Split into **PRINCIPLES** (compositional logic and decision tendencies) and **EXPRESSIONS** (optional visual manifestations). The expressions are not a checklist — a design can belong to this dialect while using few of them. |
 | [immersive-authored-world](dialects/immersive-authored-world.md) | confirmed | The page as a staged spatial experience rather than a document: one symbolic central event, layered depth, typography and interface belonging to the world, motion that changes narrative state, spectacle separated by silence. Carries a strict effect hierarchy and an INVARIANT COMPLIANCE section. |
 
 **Selection and combination are governed by
@@ -1182,14 +1193,15 @@ ratio, overlap count, ground changes, hero safe zones, whatever the direction
 actually rests on. What is fixed is that they are **stated in advance and checked
 in the render**, so a Read cannot describe a page the artefact never became.
 
-**One floor is not the Read's to lower.** On identity-led and image-led pages,
-**one governing event owns the first screen, and everything else defers to it** —
-[A1](vault/EVIDENCE.md#a--demonstrated), restored 2026-08-13 from six of Alex's own
-records. A Read may commit above it and may only go below it by declaring the yield
-A1 states — a visitor arriving with a task rather than a first impression.
+**A1 is a measurement, not a floor** — *relaxed by Alex on 2026-10-25.* On
+identity-led and image-led pages, **one governing event owning the first screen**
+([A1](vault/EVIDENCE.md#a--demonstrated), from six of Alex's own records) is still
+a strong pattern, and Gate 1 still measures it when an event is declared. The
+numbers go in the report (`g1.a1Notes`); they no longer block, and a first screen
+built from two events or none is allowed when the concept wants it.
 
 **A1 is not "a large image occupies the viewport", and is not measured as one.**
-Three separate numbers, and only two of them can fail a build:
+Three separate numbers, all reported; since 2026-10-25 none of them fails a build:
 
 | | |
 |---|---|

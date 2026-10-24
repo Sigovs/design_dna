@@ -73,6 +73,11 @@ intention*. A page can declare intent and still animate without it.
 
 ### MJ2 — One primary temporal idea per viewport
 
+> **Advice, not an invariant — relaxed by Alex on 2026-10-25.** Several temporal
+> ideas may run in one viewport when the concept wants layered, simultaneous
+> motion. Use the bands below to describe what the page does and report it; they
+> no longer fail a build.
+
 **Motion is ranked, not levelled.** Five bands, and the top one is singular:
 
 | Band | What it is | Budget |
@@ -312,6 +317,10 @@ Floor: [motion-taste I1](../motion-taste/SKILL.md#invariant) and
 
 ### MJ10 — A device earns its advance by what it delivers
 
+> **Advice, not an invariant — relaxed by Alex on 2026-10-25.** Spectacle may be
+> the point. Run the removal test and report what it found; it no longer blocks a
+> device. MJ6 (the visitor keeps the transport) still binds.
+
 **A device that consumes the visitor's advance — a scroll-linked sequence, a staged
 reveal, a drag exploration, a chapter transition, a pinned scene — is justified by
 what each of its stages tells them about the subject, never by what it demonstrates
@@ -475,7 +484,7 @@ Then, and only then:
 
 - [ ] The page works with every animation removed `MJ5`
 - [ ] Every motion system has a role from the MJ1 list, written down `MJ1`
-- [ ] Exactly one primary temporal idea per viewport `MJ2`
+- [ ] Primary temporal ideas per viewport counted and reported `MJ2` (advice)
 - [ ] The amount of motion is argued from what the subject *is* `MJ3`
 - [ ] Every stoppable frame is legible — checked at 25 / 50 / 75% `MJ4`
 - [ ] The reader still controls pacing `MJ6`

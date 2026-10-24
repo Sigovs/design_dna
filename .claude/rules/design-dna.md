@@ -20,7 +20,7 @@ yields **out loud**, in the report.
 | | Layer | Examples |
 |---|---|---|
 | 1 | **Truth and access** — never yields to anything | `color I1` `I2` `I3` `I6` · `CP1`–`CP7` · `GI3` · `DM4` `DM5` · `U6` `U7` `U12` |
-| 2 | **`TASTE.md` + the INVARIANT tier of `skills/`** | `C1`–`C22` · `I1`–`I10` · `DM1`–`DM10` · `MJ1`–`MJ11` · `U1`–`U19` · `G1`–`G8` |
+| 2 | **`TASTE.md` + the INVARIANT tier of `skills/`** | `C1`–`C21` (C20 advice, C22 retired) · `I1`–`I10` · `DM1`–`DM10` · `MJ1`–`MJ11` (MJ2, MJ10 advice) · `U1`–`U19` · `G1`–`G8` |
 | 3 | **This file** — `DNA1`–`DNA95`, the build standard | camera language, shot list, lighting, annotation craft |
 | 4 | **The selected dialect's DIALECT tier** | `auction-editorial` · `cinematic-industrial` · `immersive-authored-world` |
 | 5 | **Plugins and `external/`** — reference only, binds nothing | `frontend-design` · Scrollcraft · `threejs-webgl` · `gsap-scrolltrigger` |
@@ -129,8 +129,8 @@ quotation marks, icons and circular forms are corrected by eye at the size the p
 actually sets them.
 
 **`DNA12` — Full bleed is a chapter device.** A bleed names the seam it separates;
-it is not a way to make a section feel bigger. A full-screen field is a scene, not
-an object enlarged to the viewport edges (`C22`).
+it is not a way to make a section feel bigger. An object cropped edge to edge is a
+legitimate dramatic frame (`C22` was retired by Alex on 2026-10-25).
 
 ---
 
@@ -193,8 +193,9 @@ one crop language. Two grades in one page is `U11` arriving through the assets.
 **`DNA24` — The reading zone is held at capture or generation**, never patched with
 a scrim afterwards (`GI5`).
 
-**`DNA25` — Synthetic imagery never depicts a real product, place or person
-(`GI3`)**, provenance travels with the file (`GI6`), and mobile frames are authored
+**`DNA25` — Synthetic imagery is never passed off as the real item for sale, the
+real premises or a real person (`GI3`)** — atmosphere scenes, generic vehicles and
+the city are allowed and labelled, provenance travels with the file (`GI6`), and mobile frames are authored
 rather than cropped (`GI8`, `DM10`).
 
 **`DNA26` — Crops are intentional (`C9`).** No accidental tangency between a
@@ -234,8 +235,8 @@ more. Anything permanently on screen is part of the composition and is composed
 
 **`DNA32` — Specification is evidence, not decoration.** The chain is *technical
 fact → observable consequence → value to this buyer*. A spec that stops at the fact
-is a datasheet; a claim that skips the fact is marketing. Operational truth does not
-outrank the buyer's motivation (`C20`), and every figure maps to a ledger entry
+is a datasheet; a claim that skips the fact is marketing. Operational truth should
+not outrank the buyer's motivation (`C20`, advice since 2026-10-25), and every figure maps to a ledger entry
 (`CP1`, `CP5`).
 
 **`DNA33` — Premium is subtraction.** No badge rows, no trust-pill clusters, no icon
@@ -251,8 +252,8 @@ anti-card stance, 2026-10-25, see `DNA9`).
 
 ## 11. Scroll storytelling
 
-**`DNA35` — Every scroll device has a declared narrative role (`MJ1`) and earns its
-advance by what it delivers (`MJ10`).** "Because ScrollTrigger can" is not a role.
+**`DNA35` — Every scroll device has a declared narrative role (`MJ1`).** Whether
+it earns its advance (`MJ10`) is advice for the report since 2026-10-25. "Because ScrollTrigger can" is not a role.
 
 **`DNA36` — The page grammar is declared, and varied between builds.** Filmic
 one-shot · chaptered editorial · live surface · continuous world · typographic
@@ -277,12 +278,14 @@ runs does not exist.
 
 ## 12. Motion choreography
 
-**`DNA40` — One primary temporal idea per viewport (`MJ2`), and every frame the
-visitor can stop on is a designed frame (`MJ4`).**
+**`DNA40` — Every frame the visitor can stop on is a designed frame (`MJ4`).**
+One primary temporal idea per viewport (`MJ2`) is advice, reported rather than
+enforced — relaxed by Alex on 2026-10-25.
 
-**`DNA41` — Two signature interactions at most.** Dozens of micro-effects read as
-noise, and the subject decides the motion rather than the amount (`MJ3`,
-motion `D4`).
+**`DNA41` — The subject decides the motion rather than the amount (`MJ3`).**
+Layered, simultaneous motion is allowed. The old cap of two signature interactions
+was dropped by Alex on 2026-10-25; dozens of micro-effects that say nothing are
+still gratuitous (motion `I5`).
 
 **`DNA42` — Durations and easing come from project tokens (motion `I3`, `G4`).**
 Scrubbed motion is linear unless the concept explicitly wants weight; entrances ease
@@ -453,7 +456,7 @@ figure carries its date in the render. A placeholder is visibly a placeholder.
 
 **`DNA64` — A seam says what changed.** Chapter, scale, time of day, ground, or
 subject. One transition applied at every boundary regardless of what that boundary
-expresses is a defect, not a system (`MJ2`).
+expresses is a defect, not a system (`C21`).
 
 **`DNA65` — Ground and colour travel is continuous, or it is a cut.** A page whose
 background alternates without a reason reads as sections pasted together.

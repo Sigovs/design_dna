@@ -5,6 +5,9 @@
  * cover` in a differently-proportioned box, and nobody re-measured the subject
  * in the delivered composition. C22 was quoted in the same file that broke it.
  *
+ * C22 itself was retired on 2026-10-25 (Alex). Cropping, overlap and `cover`
+ * are now reported as notes; only sharpness and missing samples fail.
+ *
  * So the subject is declared once in source-frame coordinates and this module
  * computes, in closed form, where that box actually lands at every required
  * viewport. `cover` mapping is fully determined by natural size, box size and
@@ -216,12 +219,16 @@ export async function audit({ page, spec, outDir, label }) {
     };
   }
 
-  const problems = [];
-  if (worst?.clipped.length) problems.push(`subject clipped at ${worst.clipped.join(', ')} (worst sample t=${worst.t})`);
-  if (worst && worst.navOverlap > 0.02) problems.push(`subject overlaps navigation by ${(worst.navOverlap * 100).toFixed(1)}%`);
-  if (worst && worst.copyOverlap > 0.06) problems.push(`subject overlaps headline/CTA by ${(worst.copyOverlap * 100).toFixed(1)}%`);
-  if (textSafe && worst && worst.textSafeOverlap > 0.02) problems.push(`subject enters the declared text-safe region by ${(worst.textSafeOverlap * 100).toFixed(1)}%`);
-  if (geo.fit === 'cover' && !spec.coverProof) problems.push('object-fit: cover declared without coverProof — C22 requires rendered proof');
+  /* C22 was retired by Alex on 2026-10-25: an object cropped edge to edge, a
+     subject under the type, `cover` without proof are choices, not defects.
+     The geometry is still measured and drawn, and reported as notes. Legibility
+     of type over the subject is the contrast invariants' job, not this one's. */
+  const problems = [], notes = [];
+  if (worst?.clipped.length) notes.push(`subject cropped at ${worst.clipped.join(', ')} (worst sample t=${worst.t})`);
+  if (worst && worst.navOverlap > 0.02) notes.push(`subject under navigation by ${(worst.navOverlap * 100).toFixed(1)}%`);
+  if (worst && worst.copyOverlap > 0.06) notes.push(`subject under headline/CTA by ${(worst.copyOverlap * 100).toFixed(1)}%`);
+  if (textSafe && worst && worst.textSafeOverlap > 0.02) notes.push(`subject enters the declared text-safe region by ${(worst.textSafeOverlap * 100).toFixed(1)}%`);
+  if (geo.fit === 'cover' && !spec.coverProof) notes.push('object-fit: cover without coverProof');
   if (sharp && sharp.pass === false) problems.push(`hero subject is soft: median Laplacian variance ${sharp.median} vs reference ${sharp.reference} (${(sharp.ratioToReference * 100).toFixed(0)}% of the page's sharpest subject)`);
   if (!samples.length) problems.push('no subject samples declared — a moving subject needs per-sample boxes or a union box');
 
@@ -250,7 +257,7 @@ export async function audit({ page, spec, outDir, label }) {
   }
 
   return {
-    label, verdict: problems.length ? 'fail' : 'pass', problems,
+    label, verdict: problems.length ? 'fail' : 'pass', problems, notes,
     geometry: { hero: geo.hero, media: geo.media, fit: geo.fit, position: geo.position, natural },
     samples, worst, sharpness: sharp, evidence,
   };

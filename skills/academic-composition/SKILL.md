@@ -611,6 +611,10 @@ A page can pass every seam and still arrive at a formless tail.
 
 ### C20 — Operational truth does not outrank the buyer's motivation
 
+> **Advice, not a gate — relaxed by Alex on 2026-10-25.** Report it when it
+> applies; it no longer blocks a direction, and an inventory- or place-led concept
+> may be chosen on purpose.
+
 **A composition may organise its supporting content around what is operationally
 true — locations, logistics, process, structure, metadata, filters, inventory
 administration. It may not let that material displace the buyer's primary
@@ -701,6 +705,13 @@ separate website inside a page. It rests on no single vault record and is not
 evidence of a demonstrated preference.
 
 ### C22 — A full-screen field is a scene, not an enlarged object
+
+> **RETIRED by Alex on 2026-10-25.** An object cropped edge to edge, a subject
+> under the type and `cover` are legitimate frames — the floor panels of the
+> Tucson experiment depend on them. Nothing below binds any more. What still
+> binds lives elsewhere: type over the subject must be legible on the composited
+> render (color invariants), and mobile is still composed rather than inherited
+> (C12). The text is kept as the record of what the rule was.
 
 **When a composition claims the full first screen, what fills it is the scene. The
 principal object is scaled by the framing of the source photograph, never by the
@@ -881,8 +892,8 @@ sentence about the page, not a restatement of the device.
 | **Motion** | How does the scene read after it that it did not before? | The reading is unchanged |
 | **Sections that look different** | Write out each section's compositional formula. | Two formulas match — they are one section shown twice |
 
-**The hero gets four more, because geometry cannot answer them**
-([C22](#invariant)): does the air work as part of the composition · does the object
+**The hero may get four more** (from the retired [C22](#invariant) — ask them only
+if the concept is a scene with air, never as a gate): does the air work as part of the composition · does the object
 read whole and confidently · has the full-screen hero become a mechanically enlarged
 photograph · do object, type and emptiness form **one** scene.
 

@@ -47,6 +47,8 @@ empty is how a page acquires a dependency it never needed.
 
 ### GI2 — The prompt is derived from the declared direction, never typed from taste
 
+> **Advice, not an invariant — relaxed by Alex on 2026-10-25.** A prompt may be typed from taste and iterated freely.
+
 A prompt is assembled from what the brief already says — art direction, imagery,
 colour, prohibitions — and from the invariants. It is not composed freehand at the
 moment of generating.
@@ -133,6 +135,8 @@ about whether it can be reused. **Label it once at birth or argue about it forev
 
 ### GI7 — The composition survives an ordinary photograph
 
+> **Advice, not an invariant — relaxed by Alex on 2026-10-25.** A concept may depend on a generated image. Say so in the report.
+
 Build and judge the composition against a plain, badly-lit, phone-shot version of
 the image. The generated frame is the upgrade, never the requirement.
 
@@ -143,6 +147,8 @@ and the replacement always comes. A layout that only reads with the generated he
 in place is not finished; it is a mockup that shipped.
 
 ### GI8 — Mobile frames are generated, not cropped
+
+> **Advice, not an invariant — relaxed by Alex on 2026-10-25.** A considered crop is fine; generate a separate frame only when the crop breaks the subject.
 
 A mobile image is generated at its own aspect with its own composition. A centre
 crop of a 16:9 frame is not a mobile image — the subject drifts, the reading zone

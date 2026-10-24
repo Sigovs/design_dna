@@ -210,6 +210,8 @@ every persistent layer present, not with them mocked away.
 
 ### U11 — Competing art directions inside one page
 
+> **Advice, not an invariant — relaxed by Alex on 2026-10-25.** See C21. Deliberate stylistic shifts are allowed; accidental drift is still worth naming.
+
 **One page is one authored whole.** When sections stop belonging to the same
 direction, the page is several designs sharing a URL — and the reader pays for it
 even though every individual section reviews well.
@@ -415,6 +417,8 @@ component looks right in a screenshot and cannot be operated.
 ---
 
 ### U15 — Section-as-microsite
+
+> **Advice, not an invariant — relaxed by Alex on 2026-10-25.** See C21.
 
 **Each new section is treated as an independent art-direction exercise instead of
 as a chapter of the page it belongs to.**

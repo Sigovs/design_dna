@@ -79,6 +79,8 @@ for another.
 
 ### I5 — The accent is derived, and the derivation is stated
 
+> **Advice, not an invariant — relaxed by Alex on 2026-10-25.** An accent may be chosen freely for the concept. Say why in one line; AA (I1/I6) still binds.
+
 An accent is never chosen. It is **derived from something the project actually
 contains**, and the derivation is stated in one line before the palette is used.
 An accent that cannot name its source is a default, and the default is whatever

@@ -177,6 +177,8 @@ because they are read for hours.
 
 ### I8 — A role is not a voice
 
+> **Advice, not an invariant — relaxed by Alex on 2026-10-25.** A page may run as many typographic voices as its concept wants — a magazine, a poster, a bill. Legible hierarchy (I1) still binds.
+
 Two different things, and the words are not interchangeable:
 
 - **A role is a functional job text does** — display, lead, body, label, caption,

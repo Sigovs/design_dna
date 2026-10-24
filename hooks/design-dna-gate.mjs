@@ -172,11 +172,11 @@ function bindings(path) {
 
   if (SURFACE.test(p)) {
     set.push(
-      'COMPOSITION — the Composition Read and Plan run BEFORE grid, component, token or surface decisions (TASTE.md 2a). Major masses before components (C15). The dominant is the subject, not the device presenting it (C13). The page is the composition; a section is a local event inside it (C21, U15).',
-      'TYPE — hierarchy legible, functional text never below 14px (I7), a role is not a voice (I8), a display face verified in the render at the size the page sets it (I10).',
+      'COMPOSITION — the Composition Read and Plan run BEFORE grid, component, token or surface decisions (TASTE.md 2a). Major masses before components (C15). The dominant is the subject, not the device presenting it (C13). Read the page as a whole (C21 — advice since 2026-10-25).',
+      'TYPE — hierarchy legible, functional text never below 14px (I7), a display face verified in the render at the size the page sets it (I10).',
       'SPACE — tokenised, internal gaps smaller than external, no magic numbers (spacing I1-I4, U4, U5).',
       'COLOUR — AA measured on the COMPOSITED RENDER, not on tokens, at every breakpoint (color I1/I6, DNA21, DNA77).',
-      'BANS — no gradient controls, no decorative shadows, no boxes where air and a hairline work, no underlined nav, no template anonymity (anti-patterns D1-D10).',
+      'DIALECT — auction-editorial and its bans (anti-patterns D1-D10, the 8px/2px motion rules, hairlines over boxes) apply ONLY when Alex has named that dialect (TASTE §1, 2026-10-25).',
       'SILENT FAILURES — a declared decorative layer is verified by MEASURING its region, not by looking (U16). A hard edge over a transparent ground draws a line (U17). A clipping container hides a layout error at the narrow end of every band (U19). A fill-mode entrance owns its property forever and makes a later transition snap (U20).',
     );
   }
@@ -185,14 +185,14 @@ function bindings(path) {
     set.push(
       'CAMERA — move the camera and its target; never spin the model (DNA49). Each act names exactly one shot: reveal / push-in / dolly / orbit / macro / interruption / release (DNA50). FOV is art direction: 28-40 compresses and reads heroic, 45-60 reads inhabited (DNA51). Scroll drives a TARGET; damping drives the camera (DNA53). 3D framing obeys 2D composition — off-centre with counterweight, no tangency between silhouette and frame edge (DNA52).',
       'LIGHT + MATERIAL — lighting is designed before it is coded, and an HDRI environment is never optional (DNA55, DNA58). Colour management on, ACES Filmic, exposure tuned as a design value (DNA56). Material presets are a floor, not a look (DNA57). Contact shadow always (DNA59).',
-      'DIMENSIONALITY — the role (MAIN / SUPPORT / ABSENT) is declared before any technique. Content survives removal at SUPPORT (DM1); no scene gates the first read (DM2); the budget is declared up front (DM3); reduced motion is an AUTHORED still, not a stopped animation (DM4); one depth idea per view (DM6); mobile authored separately, including the option of not existing (DM10).',
+      'DIMENSIONALITY — the role (MAIN / SUPPORT / ABSENT) is declared before any technique. Content survives removal at SUPPORT (DM1); no scene gates the first read (DM2); the budget is declared up front (DM3); reduced motion is an AUTHORED still, not a stopped animation (DM4); depth ideas counted (DM6, advice); mobile authored separately, including the option of not existing (DM10).',
       'THE 3D TELLS — a turntable, ambient-only light, no environment map, no tone mapping, no contact shadow, a camera that only rotates, a scene that appears before the page has said what it is (DNA83).',
     );
   }
 
   if (/(motion|scroll|gsap|timeline|anim)/.test(p) && SCRIPT.test(p)) {
     set.push(
-      'MOTION JUDGMENT runs before implementation — the role is declared before the effect (MJ1), one primary temporal idea per viewport (MJ2), every stoppable frame is a designed frame (MJ4), the static build stands alone (MJ5), the user keeps the transport (MJ6), a device earns the advance it consumes (MJ10), motion is bound to roles rather than to instances (MJ11). The MOTION READ has a Cut line and a Cost line, and neither may be empty.',
+      'MOTION JUDGMENT runs before implementation — the role is declared before the effect (MJ1), every stoppable frame is a designed frame (MJ4), the user keeps the transport (MJ6), reduced motion keeps the meaning (MJ9). MJ2, MJ5, MJ10, MJ11 are advice since 2026-10-25 — layered, spectacular motion is allowed. The MOTION READ has a Cut line and a Cost line, and neither may be empty.',
       'GSAP CONTRACTS — lowest sufficient method, and the report says which and why (DNA45). Everything inside gsap.context() with reversible teardown (G1) and scoped selectors (G2). matchMedia branches; mobile choreography is authored, never shrunk (G5). Content visible and usable with the script removed (G7). Refresh tied to real geometry change (G8).',
     );
   }

@@ -195,6 +195,8 @@ screen and cannot be read.
 
 ### MJ5 — The static build stands alone first
 
+> **Advice, not an invariant — relaxed by Alex on 2026-10-25.** Motion-led concepts may be designed in motion from the start. What still binds: content is visible and usable with scripts removed (gsap G7) and under reduced motion (MJ9).
+
 **Design and evaluate the page with every animation removed.** Hierarchy, reading
 order, meaning and the means of the visitor's task must all survive with nothing
 moving. Motion is added to a page that already works.
@@ -377,6 +379,8 @@ the scope clause above keeps it away from micro-feedback.
 > ambitious motion rather than a complaint about bad work.
 
 ### MJ11 — Motion is bound to roles, not to instances
+
+> **Advice, not an invariant — relaxed by Alex on 2026-10-25.**
 
 **A motion system written against one page's specific sections is that page's
 choreography, not a system — and the moment a second page exists, the difference

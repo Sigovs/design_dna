@@ -81,6 +81,8 @@ documented, and is the only source of spacing values.
 
 ### I3 — Every element earns its place
 
+> **Advice, not an invariant — relaxed by Alex on 2026-10-25.** Subtraction is not a default. Report an element that does nothing; do not cut one because the page could survive without it.
+
 No element exists because a region looked empty. If you cannot state an element's
 communicative job in one line, delete it. This applies equally to a decorative
 flourish in an airy layout and to a redundant panel in a dense one.
@@ -107,6 +109,8 @@ breakpoints. Collapsing them at small widths means the majority of real traffic
 sees a layout with no structure — a wireframe of the design rather than the design.
 
 ### I5 — Nothing touches by default: every element has padding and air
+
+> **Advice, not an invariant — relaxed by Alex on 2026-10-25.** Collage, overlap, type touching type and dense paste-up are legitimate. Functional controls still keep their touch targets (DNA68).
 
 **No two elements meet unless the brief asks for it.** Text never sticks to text,
 buttons never sit flush against each other, a label never rides a rule, a card

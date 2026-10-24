@@ -656,6 +656,8 @@ while doing exactly that.
 
 ### C21 — The page is the composition
 
+> **Advice, not an invariant — relaxed by Alex on 2026-10-25.** A page may change art direction between sections when that change is the idea. Read the page as a whole and report what it does; it no longer blocks.
+
 **A section is not an autonomous poster.** Its success depends on what precedes it,
 what follows it, and **what visual devices the page has already spent.**
 

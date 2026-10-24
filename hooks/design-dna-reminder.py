@@ -52,8 +52,9 @@ MESSAGE = (
     "verified on every palette change · spacing from a documented token scale, "
     "internal gaps smaller than external · functional text never below 14px · a "
     "designed static path for every animation · figure-ground clarity and a "
-    "decided compositional centre · the anti-pattern bans (no gradient buttons, "
-    "no underlined nav links, no decorative shadows, no template anonymity).\n"
+    "decided compositional centre. The auction-editorial bans (gradient buttons, "
+    "underlined nav, decorative shadows, hairlines over boxes) apply only when Alex "
+    "has named that dialect (TASTE §1, 2026-10-25).\n"
     "A project's stated design direction is a brief executed inside these, never "
     "instead of them. Dialect rules yield to it and say so; invariants do not."
 )

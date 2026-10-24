@@ -86,10 +86,9 @@ deviation is named in the report with its reason. It does **not** override layer
 a reference with unreadable type gets a re-composed reading zone (`GI5`), not a
 waiver on `I7` or `color I6`.
 
-**`DNA4` — One page, one language.** Competing art directions inside one page is
-`U11`; a section built as its own little site is `U15`. The page is the composition
-(`C21`) and it holds its standard to the last mass (`C19`) — footer, legal line and
-contact block included.
+**`DNA4` — The page holds its standard to the last mass (`C19`)** — footer, legal
+line and contact block included. One language per page (`C21`, `U11`, `U15`) is
+advice since 2026-10-25: a deliberate change of style between sections is allowed.
 
 ---
 
@@ -136,9 +135,9 @@ legitimate dramatic frame (`C22` was retired by Alex on 2026-10-25).
 
 ## 5. Typography hierarchy
 
-**`DNA13` — Three levels visible at once, maximum.** Roles are defined and bounded
-(`I2`), and a role is not a voice (`I8`) — every additional face justifies itself
-by a job no existing face can do.
+**`DNA13` — Hierarchy reads at a glance (`I1`).** Roles are defined and bounded
+(`I2`). How many faces and voices a page runs is the concept's call (`I8` is advice
+since 2026-10-25).
 
 **`DNA14` — The floor and the proof.** Functional text never below 14px (`I7`). A
 display face is verified in the render at every size the page sets it, not at the
@@ -165,15 +164,16 @@ on the composited render, per frame (`color I6`, `DM5`). The alternative is
 deliberate: push it far below the legibility threshold, mark it `aria-hidden`, and
 say so.
 
-**`DNA19` — One scenery idea per view (`DM6`).** A wordmark behind the car, plus
-kinetic assembling lines, plus a marquee rail, is three ideas and reads as none.
+**`DNA19` — Scenery ideas are counted and reported (`DM6`, advice since 2026-10-25).**
+Several may share a view when the concept layers them on purpose.
 
 ---
 
 ## 7. Colour and contrast
 
 **`DNA20` — The palette derives from the subject's material and light**, not from a
-swatch trend. The accent is derived and the derivation is stated (`color I5`).
+swatch trend — or is chosen freely for the concept, with one line saying why
+(`color I5` is advice since 2026-10-25).
 
 **`DNA21` — AA is verified on the composited render**, at every breakpoint and over
 every moving layer (`color I1`, `I6`, `DM5`). When text over an image fails, the
@@ -188,15 +188,15 @@ it is right for this subject. Meaning is never carried by hue alone (`color I2`)
 ## 8. Image treatment
 
 **`DNA23` — One image system per page.** One grade, one logic of light direction,
-one crop language. Two grades in one page is `U11` arriving through the assets.
+one crop language — unless mixing them is the concept (`U11` is advice).
 
 **`DNA24` — The reading zone is held at capture or generation**, never patched with
 a scrim afterwards (`GI5`).
 
 **`DNA25` — Synthetic imagery is never passed off as the real item for sale, the
 real premises or a real person (`GI3`)** — atmosphere scenes, generic vehicles and
-the city are allowed and labelled, provenance travels with the file (`GI6`), and mobile frames are authored
-rather than cropped (`GI8`, `DM10`).
+the city are allowed and labelled, and provenance travels with the file (`GI6`).
+Mobile is composed, by a considered crop or a separate frame (`GI8` advice, `DM10`).
 
 **`DNA26` — Crops are intentional (`C9`).** No accidental tangency between a
 silhouette and a frame edge. A vehicle cropped at the wheel arch is a decision that
@@ -270,8 +270,9 @@ builds — if they cannot tell it apart, it is not one.
 act and for the page. Comprehension never waits on choreography (`MJ7`); the user
 keeps the transport (`MJ6`).
 
-**`DNA39` — The static build stands alone (`MJ5`, `G7`).** With scripts removed the
-page is readable, navigable and complete. Content that only exists once an animation
+**`DNA39` — Content survives without scripts (`G7`).** With scripts removed the
+page is readable, navigable and complete; it need not be designed static-first
+(`MJ5` is advice since 2026-10-25). Content that only exists once an animation
 runs does not exist.
 
 ---

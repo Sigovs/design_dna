@@ -97,6 +97,8 @@ between text and scene — never by weighting the type.
 
 ### DM6 — One depth idea per view
 
+> **Advice, not an invariant — relaxed by Alex on 2026-10-25.** Several depth ideas may share a view when the concept wants layers (same relaxation as MJ2).
+
 A view gets **one** spatial concept: one camera behaviour, one parallax logic, one
 layering model. Two competing depth systems in the same view read as an accident,
 because the viewer cannot build a single mental model of the space.

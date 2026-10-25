@@ -102,8 +102,11 @@ cannot cover.
 "Do brutalism", "something like a watch atelier", a sector the vault has not seen, a
 mood image: in each case search the inspiration galleries before deciding the
 direction. The galleries are **Awwwards** (by style, category and Site of the Day),
-**Godly**, **SiteInspire**, **Land-book**, **Lapa Ninja**, **One Page Love** and
-**Httpster**, plus the studios behind any strong find. Use WebSearch and WebFetch, or
+**Godly**, **SiteInspire**, **Land-book**, **Lapa Ninja**, **One Page Love**,
+**Httpster**, **Dark** (https://www.dark.design/ — dark-themed sites, filtered by
+category) and **Cosmos** (https://www.cosmos.so/explore — visual clusters for
+mood, imagery and art direction), both added by Alex 2026-10-25, plus the studios
+behind any strong find. Use WebSearch and WebFetch, or
 open them in the browser when motion matters.
 - Look at **3–6 real sites**, not one.
 - **Read them like vault entries.** Take the principle, never the pixels: *the

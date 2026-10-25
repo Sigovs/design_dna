@@ -1095,7 +1095,7 @@ evidence about taste, never a licence to break a quality law.
 
 #### Live browsing — the narrow exception
 
-> **This exception is about vault entries only.** Outside inspiration galleries (Awwwards, Godly, SiteInspire, Land-book and the like) and 21st.dev are standing sources since 2026-10-25, searched on my own initiative whenever a request names a style, a sector or a theme, or a block needs a ready solution (`DNA96`, `DNA97` in the build standard). The rule for reading them is the one in this section: a principle, never the pixels.
+> **This exception is about vault entries only.** Outside inspiration galleries (Awwwards, Godly, SiteInspire, Land-book, Dark at dark.design, Cosmos at cosmos.so and the like) and 21st.dev are standing sources since 2026-10-25, searched on my own initiative whenever a request names a style, a sector or a theme, or a block needs a ready solution (`DNA96`, `DNA97` in the build standard). The rule for reading them is the one in this section: a principle, never the pixels.
 
 **The archive is the source.** References go offline, get redesigned, and A/B-test
 you into a variant nobody else will ever see. A shot is dated and stable; the live

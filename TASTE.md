@@ -945,6 +945,19 @@ Adopting this file means adopting how the work gets done, not only how it looks:
   state. One and the most are where a four-up grid or a sticky card is shown to have
   been designed for three items. (Taken from `grill-me` in
   [external/ux-ui-agent-skills](external/ux-ui-agent-skills/PROVENANCE.md).)
+- **Develop Alex's example into an idea; never copy it, never drop it.** *Alex,
+  2026-10-25.* When Alex gives an example ("the car moves aside, gets smaller and
+  the info pops up beside it — just an idea"), or a moodboard to "take as ideas",
+  it is a seed, not a spec. Grow it from the project's governing idea into a named
+  device with its own logic, then hand it on as a direction others may improve:
+  what it does step by step, why it belongs to this subject, how it behaves on
+  keyboard, touch and reduced motion. *Example, Gunther Werks lineup hover:* his
+  "moves aside, info beside it" became **"Pull it out of the line-up"** — the others
+  recede into a queue, the chosen car rolls forward under its own light, a panel
+  slides in, and hairline callouts draw to the exact parts the atelier changed, so
+  the hover says the page's idea ("what changed on the same 993"). Copying the
+  example verbatim wastes it; ignoring it because a rule seemed to forbid it is
+  worse.
 - **Senior decisions, flagged afterwards.** Decide, build, then surface the close
   calls in the report under *Judgment calls*. Taste questions are answered in the
   work, reviewed in the report.

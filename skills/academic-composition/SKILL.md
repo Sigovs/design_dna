@@ -1,6 +1,6 @@
 ---
 name: academic-composition
-description: Classical academic composition translated into digital art direction, interface design, responsive design, and visual critique — in two tiers. INVARIANT (dominant/subordinate/support hierarchy, unity and subordination, tonal structure before colour, figure-ground clarity, optical over mathematical balance, directed eye movement, rhythm with variation, proportion relationships, intentional edges and crops, tension with counterweight, compositional resolution, a page that holds its standard to its last mass, responsive recomposition, the dominant being the subject rather than the device presenting it, the means of the visitor's task surviving the composition, major masses established before components, a decided compositional centre, a declared asset dependency that survives an ordinary asset, operational truth kept from outranking the buyer's motivation, the page — not the section — being the composition, a full-screen field treated as a scene rather than an enlarged object, and a first screen that identifies what it is) and DIALECT (auction-editorial's composed asymmetry and downward exhale, with yields-when). Contains the COMPOSITION READ and COMPOSITION PLAN that run after dialect selection and before any grid, component or surface styling decision, and routes to references/ for the academic method behind each stage. Use before laying out any full page or substantial section, when art-directing imagery, and when critiquing a design.
+description: Classical academic composition translated into digital art direction, interface design, responsive design, and visual critique — in two tiers. INVARIANT (dominant/subordinate/support hierarchy, unity and subordination, tonal structure before colour, figure-ground clarity, optical over mathematical balance, directed eye movement, rhythm with variation, proportion relationships, intentional edges and crops, tension with counterweight, compositional resolution, a page that holds its standard to its last mass, responsive recomposition, the dominant being the subject rather than the device presenting it, the means of the visitor's task surviving the composition, major masses established before components, a decided compositional centre, a declared asset dependency that survives an ordinary asset, operational truth kept from outranking the buyer's motivation, items compared standing on one registered base with one fact set, a home page that is a route rather than a catalogue, text that shares a declared edge with its image, the page — not the section — being the composition, a full-screen field treated as a scene rather than an enlarged object, and a first screen that identifies what it is) and DIALECT (auction-editorial's composed asymmetry and downward exhale, with yields-when). Contains the COMPOSITION READ and COMPOSITION PLAN that run after dialect selection and before any grid, component or surface styling decision, and routes to references/ for the academic method behind each stage. Use before laying out any full page or substantial section, when art-directing imagery, and when critiquing a design.
 ---
 
 # Academic Composition
@@ -791,6 +791,84 @@ supplied himself.
 *Recorded 2026-08-13 on Alex's direct instruction* `[A]`, in his words:
 **"Full-screen scene, not full-frame object."** It is not inferred from any project.
 
+### C23 — Things that are compared stand on one base
+
+**When a page asks the visitor to choose between items of one kind — models,
+editions, plans, properties — the items share one base: the same scale, the same
+viewpoint, the same floor line, the same set of facts, and one primary action. The
+selector is the navigation, and the comparison lives in one place.**
+
+- **Registration is measured on the subject's own reference points** — a car's tyre
+  contact points, a watch's bezel, a building's ground line — never on the bounding
+  box. A wing, a spoiler or a crop changes the box and not the object, so box-fitted
+  items drift in scale exactly where the difference matters.
+- **The same fact set for every item.** The same three or four categories in the
+  same order, so a difference reads as a difference. A list whose shape changes from
+  item to item is a catalogue, not a comparison.
+- **One section, not one chapter per item.** Four full-screen chapters read as a long
+  scroll — the eye cannot hold the first when the fourth arrives. A strip of small
+  previews reads as inventory, and the subjects become too small to compare.
+- **A related but different group** — special editions beside the core range — is a
+  separate group with its own treatment, never mixed into the selector.
+
+*Why it's universal:* comparison is a task (C14). A layout that stops the visitor
+holding two items against each other has deleted the task while looking complete.
+
+> **Evidence — Gunther Werks Miami (Prestige Imports child site), 2026-10-25/26.** Concept D gave each program its own full-screen
+> scene ("programs as separate scenes … not a comparison", 6.5/10); Concept E showed
+> them as a strip of small previews ("the cars may become too small for a real
+> comparison", 7/10). Concept G's single selector, the four cars registered on
+> measured tyre contact points (wheelbase spread under 0.01 px at seven viewports),
+> was approved. Registration table: `PRESTIGE_GUNTHER/prototype/concept-g2/f.js` `REG`.
+
+### C24 — A home page is a route, not a catalogue
+
+**A home page takes one visitor along one route to one action. Each job on the route
+— what this is, what is offered, why it is good, how to begin — gets one strong
+example. Every further content type, repeated row or proof screen must earn its
+place against the route, and the default is to cut it.**
+
+The signs of a catalogue:
+
+- a slogan screen that adds no information;
+- the same proof — exclusivity, awards, heritage — restated in several sections;
+- a long strip where three items would do;
+- every content type the client owns given its own band.
+
+Cut repeats and decorative screens. Never cut a fact the buyer needs to decide.
+
+*Why it's universal:* sprawl is the commonest reason a competent page scores 5–7.
+Every section is defensible on its own and the page is not — the failure lives at
+page scale, where [C21](#invariant) and [U15](../anti-patterns/SKILL.md#invariant)
+look, and no section-level review catches it.
+
+> **Evidence — Gunther Werks Miami (Prestige Imports child site), 2026-10-25/26.** Concept E scored 7/10 but was "too long, a
+> showcase of all content rather than a precise route for the collector". Concept F
+> cut it from 22,600 to 10,566 px at 1920 by keeping one example per job, and
+> became the base of the approved direction.
+
+### C25 — Text and its image share an edge
+
+**Where a text block belongs to the image beside it, the two share a declared
+alignment edge — by default the top. The first line of the text, its kicker or
+title, stands level with the image's top edge, and the details and the action follow
+directly under the title. A text column anchored to the opposite end of the section,
+with a void between the title and its details, reads as two unrelated objects.**
+
+A different shared edge — bottom alignment for a composition whose mass sits low on
+purpose — is fine when it is declared. What fails is the edge nobody chose: the
+title pinned to the top padding, the details pinned to the bottom padding, and the
+image floating between them.
+
+*Why it's universal:* a shared edge is the cheapest relationship a layout can draw,
+and its absence reads as accident ([C9](#invariant)).
+
+> **Evidence — Gunther Werks Miami (Prestige Imports child site), 2026-10-25/26.** The Provenance chapter set its kicker and title at
+> the top padding and the details with the action at the bottom, about 500 px apart.
+> Alex: "always align the text to the top of the photo" and "raise the lower text
+> block with the CTA to under the title". Applied to Provenance, Goodwood and Atelier
+> and measured: kicker top equals photo top.
+
 ## COMPOSITION READ
 
 Runs **after the dialect declaration** and **before typography, colour, effects,
@@ -1074,6 +1152,9 @@ requirement that the relationships be composed.
 
 **Invariant — every full page or substantial section**
 - [ ] The page is describable as 3–7 masses with no component named (C15).
+- [ ] Items the visitor compares share one base — scale, viewpoint, floor, fact set — in one place (C23).
+- [ ] A home page is a route to one action, one strong example per job; repeats cut (C24).
+- [ ] Every text block shares a declared edge with its image; details sit under the title (C25).
 - [ ] A dominant exists, and you can say what makes it dominant.
 - [ ] The governing centre is named — semantic, optical, geometric or action (C16).
 - [ ] Every element strengthens, frames, counterbalances, or clarifies the dominant.

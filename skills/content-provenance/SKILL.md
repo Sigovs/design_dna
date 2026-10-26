@@ -1,6 +1,6 @@
 ---
 name: content-provenance
-description: Standing discipline for every factual claim that ships — seven invariants (CP1–CP7) binding prices, counts, dates, durations, guarantees, coverage and superlatives on any page, in any dialect. Covers the ledger existing before the claim is typed, coverage rather than validity as the mechanism, what may never be a source, placeholders that are visibly placeholders, dated figures carrying their date in the render, promises the client has to honour, and the ban on inventing plausible numbers to fill a composition. Use before writing any number or promise into a layout, and when auditing content whose origin is unclear.
+description: Standing discipline for every factual claim that ships — eight invariants (CP1–CP8) binding prices, counts, dates, durations, guarantees, coverage and superlatives on any page, in any dialect. Covers the ledger existing before the claim is typed, coverage rather than validity as the mechanism, what may never be a source, placeholders that are visibly placeholders, dated figures carrying their date in the render, promises the client has to honour, the ban on inventing plausible numbers to fill a composition, and conflicting sources omitted rather than resolved by choice, with an image documentary only when its provenance is. Use before writing any number or promise into a layout, and when auditing content whose origin is unclear.
 ---
 
 # Content Provenance
@@ -156,6 +156,37 @@ of its own is a composition finding, not a sourcing problem** — the answer is 
 cards, or a treatment that does not need a picture per row. It has cost this
 system twice: a Carrera GT shipped over a photograph that was not it, and a 3×3
 marque wall was refused for the same reason and built as 3×2.
+
+---
+
+### CP8 — A conflict is omitted, not resolved by choice
+
+**When two sources disagree about a fact the visitor will act on — an address, a
+phone number, opening hours, availability — the page states neither until one is
+confirmed. A descriptive figure — power, weight, a date — may use the dated primary
+source, with the conflict recorded in the ledger. Picking the more plausible value
+silently is invention ([CP7](#invariant)).**
+
+**An image is documentary only when its provenance is.** A photograph is presented as
+a real event, a real car or a real place only when its publisher confirms where it
+was taken and that it shows what the page implies. If two versions of a frame exist
+and the difference is the very detail that makes it dramatic, the frame is withdrawn.
+
+*Why it's universal:* a wrong address or a doctored-looking photograph costs more
+trust than any layout can earn back, and the visitor finds it at the worst moment —
+on the way to the showroom.
+
+> **Evidence — Gunther Werks Miami (Prestige Imports child site), 2026-10-25/26.**
+> - **The showroom address:** the brand's dealer page, the dealer's own site and a
+>   trade article gave three different street numbers (15050, 14780, 14800). The
+>   street address stayed off the page; only the agreed city is stated.
+> - **The withdrawn frame:** a Goodwood photograph with exhaust flames exists in two
+>   published versions, and the flame could not be confirmed. A plainer start-box
+>   frame from the same gallery replaced it.
+> - **Availability:** a listing's "available" status was not confirmed for this dealer
+>   and is not claimed.
+> - **The F-26's power figure:** stated from the dated release, with the conflict
+>   kept in the ledger.
 
 ---
 

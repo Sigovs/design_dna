@@ -105,6 +105,18 @@ The invariants, by domain — full text in the linked skills:
 | **A hard edge is hidden only by the ground beneath it** — a glow box, a scrim, a capped tint: invisible while the ground under them is opaque, a drawn line the moment a composition puts something transparent underneath | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
 | **A clipping container makes a layout error invisible** — an element anchored to a box whose size is viewport-dependent, or copy inside a fixed proportion whose padding still scales: past the crossing point the parent's `overflow` eats it rather than showing it misplaced. Audit by comparing rects against the clipping ancestor at the narrow end of every band, where a 3px clearance is a failure, not a pass | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
 | **A surface designed only in the state it was drawn in** — anything that fetches, filters or accepts data designs loading, empty, error, populated and edge; error is never shown as empty, input survives a failed submit, no indicator runs without a timeout | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
+| **Things that are compared stand on one base** — the same scale, viewpoint, floor line and fact set, one primary action, registered on the subject's own reference points; one section, not a chapter per item | [composition](skills/academic-composition/SKILL.md#invariant) |
+| **A home page is a route, not a catalogue** — one strong example per job on the way to one action; slogan screens, repeated proof and owned-content bands are cut | [composition](skills/academic-composition/SKILL.md#invariant) |
+| **Text and its image share an edge** — by default the top; the details and the action sit under the title, not at the far end of the section | [composition](skills/academic-composition/SKILL.md#invariant) |
+| **A cut-out object always stands on a ground** — a floor and a contact shadow; on a dark page a light studio plate, never a glow, rim, outline or ghost | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
+| **An asset is judged at the size it renders** — at 2×, edges and lower band at 1:1; soft or compromised sources named in the report | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
+| **No copy that repeats what is already shown** — captions describing the photo, lines restating the heading, credits written for the team | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
+| **Every interactive element has a designed hover with a meaning** — none at all is a defect, not restraint; the action never covers its subject; visible without hover on touch | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
+| **A reference lends an idea, never its components** — redrawn in the project's own language, the source named in the report | [anti-patterns](skills/anti-patterns/SKILL.md#invariant) |
+| **A swap on one base shows one state at a time** — exit before enter; two subjects of the same kind visible at once is a ghost, not a transition | [motion](skills/motion-taste/SKILL.md#invariant) |
+| **Motion too fast to be seen is a cost without a benefit** — entrances of display type and images run long enough to be perceived; feedback stays fast | [motion](skills/motion-taste/SKILL.md#invariant) |
+| **The material earns the technique** — footage is watched as a plain muted loop before any scrub or pin is built on it; weak material gets a still, not effects | [motion-judgment](skills/motion-judgment/SKILL.md#invariant) |
+| **A conflict is omitted, not resolved by choice** — a fact the visitor acts on is stated only once confirmed; an image is documentary only when its provenance is | [content-provenance](skills/content-provenance/SKILL.md#invariant) |
 
 ### DIALECT
 
@@ -758,17 +770,17 @@ its own `yields when:`.
 
 | Skill | Invariant core | Dialect position |
 |---|---|---|
-| [academic-composition](skills/academic-composition/SKILL.md) | **Cross-dialect.** Major masses before components, a decided compositional centre, declared asset dependency, an identified first screen, dominant/subordinate/support, unity, tonal structure before colour, figure-ground, optical balance, directed eye path, rhythm, mass proportion, intentional edges, tension with counterweight, resolution, responsive recomposition, the dominant being the subject rather than the device, the means of the task surviving. Routes to `references/` for the academic method behind each stage. | Composed asymmetry with counterweight, detail against quiet fields, mass above centre, downward exhale, one measured disruption. |
+| [academic-composition](skills/academic-composition/SKILL.md) | **Cross-dialect.** Major masses before components, a decided compositional centre, declared asset dependency, an identified first screen, dominant/subordinate/support, unity, tonal structure before colour, figure-ground, optical balance, directed eye path, rhythm, mass proportion, intentional edges, tension with counterweight, resolution, responsive recomposition, the dominant being the subject rather than the device, the means of the task surviving, compared items on one base, a home page that is a route, text sharing an edge with its image. Routes to `references/` for the academic method behind each stage. | Composed asymmetry with counterweight, detail against quiet fields, mass above centre, downward exhale, one measured disruption. |
 | [dimensionality](skills/dimensionality/SKILL.md) | **Role-gated.** Content survives removal at SUPPORT; no scene gates the first read; declared frame/payload budget; authored reduced-motion fallback; AA per frame; one depth idea per view; input honesty; choreography has a subject; no ambient motion in reading zones; mobile authored separately. | auction-editorial defaults to ABSENT/SUPPORT — material and light over geometry, patient camera. immersive-authored-world permits MAIN. |
 | [threejs-art-direction](skills/threejs-art-direction/SKILL.md) | **Loads after dimensionality has a role.** 3D is part of the page composition, not a demo; silhouette before detail; no faceting or banding at render size; believable restrained PBR; light designed around the type; placement and crop set against the typography; scroll owns motion through scrub and pins, never wheel blocking; impact → hold → release; declared budget, lazy-loaded, no idle loop; canvas never takes input; authored reduced-motion and mobile states; verified on the render (TA1–TA12). | auction-editorial / GDBuro: dark, low-key, material over geometry, one object lit like a museum piece, large and cropped, patient long-lens camera. |
 | [spacing-taste](skills/spacing-taste/SKILL.md) | Spatial hierarchy is deliberate; spacing is tokenised; internal gaps < external gaps. | Air-first — generous space, bottom-heavy composition, whitespace as a status signal. |
 | [typography-taste](skills/typography-taste/SKILL.md) | Hierarchy is legible; roles are bounded and distinct from voices; type is optically corrected at every size; functional text never below 14px. | Editorial contrast — expressive display + quiet grotesque + mono, italic signature word, spec plates. |
 | [color-taste](skills/color-taste/SKILL.md) | AA verified every change; never meaning by hue alone; legibility fixed at the background layer. | Chromatic restraint — neutral dark base, smoky desaturated accents used as a setting. |
 | [generated-imagery](skills/generated-imagery/SKILL.md) | **Cross-dialect.** Origin declared before generation; the prompt derived from the brief, never typed from taste; nothing synthetic is passed off as the real product, place or person, while disclosed synthetic art direction stays allowed and missing photography is never a reason to fall back to diagrams or placeholders; no type, UI or logo inside the frame; the reading zone held at generation rather than patched with a scrim afterwards; provenance travelling with the file permanently; the composition surviving an ordinary photograph; mobile frames authored rather than cropped; generated motion verified in motion, static parts staying static. | **None.** Whether an image may be synthetic is not an aesthetic position, and a preferred generated look would be the AI-default arriving through the back door. |
-| [motion-judgment](skills/motion-judgment/SKILL.md) | **Cross-dialect.** Role declared before effect; one primary temporal idea per viewport; the subject decides rather than the amount; every stoppable frame is a designed frame; the static build stands alone; the user keeps the transport; comprehension never waits on choreography; mobile authored separately; reduced motion preserves meaning; a device that spends the visitor's advance returns it in understanding; motion bound to roles rather than to instances. Contains the MOTION READ and PLAN; routes to `references/` for category judgment, the audit rubric and implementation. | **None.** Whether to move is not a taste position — the house motion feel lives in `motion-taste`. |
-| [content-provenance](skills/content-provenance/SKILL.md) | **Cross-dialect.** The ledger exists before the claim is typed; coverage rather than validity is the mechanism; a prior concept, design read or agent output is never a source; a placeholder is visibly a placeholder; a dated figure carries its date in the render; a promise is a claim about the business, not a piece of copy; content shape is never invented to fill a composition. | **None.** Whether a number is true is not an aesthetic position. |
-| [motion-taste](skills/motion-taste/SKILL.md) | Reduced-motion path for everything; state changes perceivable with keyboard parity; no jank. | Calm and physical — crossfade over travel, subtle hover, motion never as identity. |
-| [anti-patterns](skills/anti-patterns/SKILL.md) | The five universal failure modes, controlled-irregularity legibility, uncounted persistent overlays, competing art directions inside one page, and task-relevant routes that cannot be found — or cannot be told apart from the route beside them. | The trope bans — AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, template anonymity. |
+| [motion-judgment](skills/motion-judgment/SKILL.md) | **Cross-dialect.** Role declared before effect; one primary temporal idea per viewport; the subject decides rather than the amount; every stoppable frame is a designed frame; the static build stands alone; the user keeps the transport; comprehension never waits on choreography; mobile authored separately; reduced motion preserves meaning; a device that spends the visitor's advance returns it in understanding; motion bound to roles rather than to instances; the material earning its technique. Contains the MOTION READ and PLAN; routes to `references/` for category judgment, the audit rubric and implementation. | **None.** Whether to move is not a taste position — the house motion feel lives in `motion-taste`. |
+| [content-provenance](skills/content-provenance/SKILL.md) | **Cross-dialect.** The ledger exists before the claim is typed; coverage rather than validity is the mechanism; a prior concept, design read or agent output is never a source; a placeholder is visibly a placeholder; a dated figure carries its date in the render; a promise is a claim about the business, not a piece of copy; content shape is never invented to fill a composition; a conflict is omitted rather than resolved by choice. | **None.** Whether a number is true is not an aesthetic position. |
+| [motion-taste](skills/motion-taste/SKILL.md) | Reduced-motion path for everything; state changes perceivable with keyboard parity; no jank; a swap on one base shows one state at a time; entrances slow enough to be seen. | Calm and physical — crossfade over travel, subtle hover, motion never as identity. |
+| [anti-patterns](skills/anti-patterns/SKILL.md) | The five universal failure modes, controlled-irregularity legibility, uncounted persistent overlays, competing art directions inside one page, and task-relevant routes that cannot be found — or cannot be told apart from the route beside them; cut-outs with no ground, assets judged at thumbnail size, copy that repeats what is shown, no designed hover, a reference's components carried over. | The trope bans — AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, template anonymity. |
 
 **`academic-composition` applies across all dialects**, including
 `brief-derived / no stored dialect`. It is not part of the house style and it does
@@ -1197,6 +1209,34 @@ drive two concrete decisions, is in
 
 ## 7. Delivery gates and report format
 
+### 7.0 The mediocrity check — before anything is shown
+
+Eight questions, asked of the rendered page before Gate 1 and before Alex sees it.
+Each "no" names, in advance, why a result would land at 5–7 out of 10. Each points at
+the invariant that owns it. Drawn from the Gunther Werks Miami build (2026-10-25/26),
+where every one of them cost a round.
+
+| | Question | Owner |
+|---|---|---|
+| 1 | Is this page a **route to one action**, or a catalogue of everything the client owns? | [C24](skills/academic-composition/SKILL.md#invariant) |
+| 2 | Is there **any line that only repeats** what an image, a heading or the interface already says? | [U25](skills/anti-patterns/SKILL.md#invariant) |
+| 3 | Do the things being compared **stand on one base**, with one fact set, in one place? | [C23](skills/academic-composition/SKILL.md#invariant) |
+| 4 | Is every motion **slow enough to be seen**, and has the material **earned** its device? | [I7](skills/motion-taste/SKILL.md#invariant), [MJ12](skills/motion-judgment/SKILL.md#invariant) |
+| 5 | Does every interactive element have a **hover with a meaning**, visible without hover on touch? | [U26](skills/anti-patterns/SKILL.md#invariant) |
+| 6 | Has every asset been seen **at its rendered size at 2×** — edges, lower band, cut-out fringes — and does every cut-out **stand on a ground**? | [U24](skills/anti-patterns/SKILL.md#invariant), [U23](skills/anti-patterns/SKILL.md#invariant) |
+| 7 | Does each text block **share an edge** with its image, with the details under the title? | [C25](skills/academic-composition/SKILL.md#invariant) |
+| 8 | Is every fact **confirmed**, every conflict omitted, and every documentary image's provenance known? | [CP8](skills/content-provenance/SKILL.md#invariant) |
+
+Three existing rules were broken on that same build even though they were already
+written. They join the check as procedure:
+
+- **Text over a moving background** is measured on every frame of the loop, not on
+  one still ([color-taste](skills/color-taste/SKILL.md#invariant)).
+- **No panel or floating card covers the photograph** a section is about. The subject
+  stays the dominant ([C13](skills/academic-composition/SKILL.md#invariant)).
+- **The whole page is shown**, top to bottom, never the hero alone
+  ([C21](skills/academic-composition/SKILL.md#invariant)).
+
 ### 7a. The delivery gates — run before the report is written
 
 > **Relaxed by Alex on 2026-10-25 (step 3).** The sealed chain no longer blocks a handoff: `npm run gate5` reports the artefacts and refuses only when Gate 1's binding checks fail or were never run. Gate 1 still binds: keyboard and visible focus, 44px targets, reduced motion with nothing hidden, no horizontal scroll, no console errors. Gate 2, the delegated artefacts, Gate 3 and Gate 4 are reports — read them, they no longer stop you. The whole-page read (§0, rule 7) and Alex's score out of 10 (Gate 5) are what stand before a handoff. The text below is kept as the description of what each check measures.
@@ -1364,7 +1404,7 @@ cleanly and is still a rejected page.
 
 **Every claim-shaped string in the rendered page must map to a ledger entry.** Prices,
 counts, dates, durations, guarantees, coverage areas, fee structures, superlatives.
-The seven invariants are in
+The eight invariants are in
 [content-provenance](skills/content-provenance/SKILL.md#invariant).
 
 **A project with no ledger fails outright, with no claims examined.** The absence is

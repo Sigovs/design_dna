@@ -1,6 +1,6 @@
 ---
 name: anti-patterns
-description: Failure modes in two tiers — INVARIANT universal failures (weak hierarchy, inaccessible contrast, gratuitous motion, arbitrary spacing, inconsistent tokens, uncounted persistent overlays, competing art directions inside one page, horizontal page scroll, content parity across viewports, controlled irregularity that stops being legible or intentional, depth cues incoherent with the spatial model they imply, task-relevant routes that cannot be discovered without hover, completed animation or guessing or told apart from the route beside them, opaque surfaces that cross live content, expansions that move the list they live in, sections designed as independent microsites, decorative layers that fail by painting nothing, hard-edged layers over a deliberately transparent ground, and elements clipped into invisibility by a container whose box changes size at another viewport, and fill-mode animations that keep owning a property so a later transition snaps instead of running, and hidden elements that keep their space so the gap they leave has nothing to point at, and data surfaces designed only in their populated state) and DIALECT trope bans (AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, underlined nav, repeated primary CTAs, imagery hidden on mobile, the default Spline aesthetic, ambient motion behind body copy, template anonymity — each with a yields-when). Use as the final gate before shipping any visual work, and whenever choosing between a container and open air.
+description: Failure modes in two tiers — INVARIANT universal failures (weak hierarchy, inaccessible contrast, gratuitous motion, arbitrary spacing, inconsistent tokens, uncounted persistent overlays, competing art directions inside one page, horizontal page scroll, content parity across viewports, controlled irregularity that stops being legible or intentional, depth cues incoherent with the spatial model they imply, task-relevant routes that cannot be discovered without hover, completed animation or guessing or told apart from the route beside them, opaque surfaces that cross live content, expansions that move the list they live in, sections designed as independent microsites, decorative layers that fail by painting nothing, hard-edged layers over a deliberately transparent ground, and elements clipped into invisibility by a container whose box changes size at another viewport, cut-out objects floating with no ground, assets judged only at thumbnail size, copy that repeats what the image, heading or interface already says, interactive elements with no designed hover, and a reference's components carried over as they are, and fill-mode animations that keep owning a property so a later transition snaps instead of running, and hidden elements that keep their space so the gap they leave has nothing to point at, and data surfaces designed only in their populated state) and DIALECT trope bans (AI-default looks, gradient buttons, decorative shadows, boxes-for-boxes, underlined nav, repeated primary CTAs, imagery hidden on mobile, the default Spline aesthetic, ambient motion behind body copy, template anonymity — each with a yields-when). Use as the final gate before shipping any visual work, and whenever choosing between a container and open air.
 ---
 
 # Anti-Patterns
@@ -781,6 +781,128 @@ moment they used it.
 > [external/anti-ui-slop](../../external/anti-ui-slop/PROVENANCE.md) on 2026-10-05,
 > and "Real states" has stood unbacked in the QA checklist of MASTER_CLAUDE.md §8.
 > Replace this note with the first measured case from a build.
+
+---
+
+### U23 — A cut-out object with no ground
+
+**A photographed object cut from its background always stands on a ground: a
+believable floor, with a contact shadow at its real contact points. A cut-out
+floating on a flat field — above all a light object on black — reads as a sticker,
+however good the photograph. On a dark page the answer is a light, neutral studio
+plate under the object. A glow, rim light, outline or halo around the object is not
+an answer.**
+
+- **Shadows baked into the source** for a different ground are removed in the alpha
+  channel only, never by touching the object. Then one contact shadow is drawn for
+  every item, so a set matches.
+- **An outline, wireframe or ghost of the object** is never a substitute for grounding.
+
+*Why it's universal:* [DNA59](../../.claude/rules/design-dna.md) requires a contact
+shadow for 3D. A photograph obeys the same physics, and the eye reads its absence
+just as fast.
+
+> **Evidence — Gunther Werks Miami (Prestige Imports child site), 2026-10-25/26.** The House Lights stage put true-alpha cutouts on a
+> dark ground. Alex: "some cars disappear into the dark backgrounds, while the white
+> car looks like a cutout floating on black — do not approve or use that treatment".
+> GW's cutouts carried floor shadows baked in for their own dark site, and one carried
+> a hard black bar under the tyres. Cleaned in alpha, then set on one light studio
+> plate with one drawn contact shadow, the set was approved.
+
+### U24 — An asset judged only at thumbnail size
+
+**Every image is checked at the size it actually renders, at device-pixel-ratio 2,
+with its edges and its lower part examined at 1:1 — wheels, tyres, sills, hairlines,
+cut-out fringes, the file's own edges. A source softer than its neighbours, clipped
+at its file edge or carrying a baked artefact is found here, or it is found by the
+client.**
+
+How: crop the rendered element from a 2× screenshot of the live page, not from the
+source file, and zoom the lower band. Name every soft or compromised source in the
+report rather than hoping it passes.
+
+*Why it's universal:* a contact sheet, a board or a thumbnail flatters every image
+equally. The defect exists only at the rendered size, so the check has to happen
+there.
+
+> **Evidence — Gunther Werks Miami (Prestige Imports child site), 2026-10-25/26.** The Brundle Edition cutout carried an opaque black
+> floor bar that was invisible on the review board and obvious on a light plate at
+> 2×. The Turbo and Thermal profiles exist only at about 1,300 px and are visibly
+> softer than the 2,400 px set at 1440 on a retina screen. Alex: "check every car at
+> its actual display size, including wheels, tires and lower body".
+
+### U25 — Copy that repeats what is already shown
+
+**A caption describing the photograph above it, a line restating the heading, a label
+repeating the control it sits on — all are filler. Text on a page carries something
+the image, the heading and the interface do not already say, or it is cut.**
+
+The same test applies to text written for the team rather than the reader: source
+credits, "pictured:" lines and internal attributions. A source line is shown when the
+reader needs it to trust a claim, such as an award or a quoted figure. Otherwise it
+lives in the ledger ([CP1](../content-provenance/SKILL.md#invariant)), not in the
+reading path.
+
+*Why it's universal:* restating is the commonest form of generated filler. It costs
+reading time and returns nothing, and it is what makes a page sound written by a
+machine.
+
+> **Evidence — Gunther Werks Miami (Prestige Imports child site), 2026-10-25/26.** Removed on Alex's instruction:
+> - "Pictured: F-26 · Limited to 26 examples" under a photograph of the F-26, twice;
+> - "Every Gunther Werks begins with the 993, the final air-cooled generation" under
+>   the heading "Four programs. One 993.";
+> - "Pictured: the F-26 at the start line";
+> - a "company background · Robb Report" credit under two figures;
+> - per-program source lines.
+>
+> His wording: "Don't add descriptive or explanatory copy that repeats what the
+> image, heading or interface already communicates."
+
+### U26 — An interactive element with no designed hover
+
+**Every link, card, tab, button and acting image has a designed hover and focus
+state, and the state says something: where the action leads, what will change, what
+lies underneath. No state at all is a defect, not restraint. A generic glow or lift
+applied to everything is the same defect in a costume.**
+
+- **Amplitude is a dialect question.** [motion-taste D2](../motion-taste/SKILL.md#dialect)
+  keeps it small in auction-editorial. Existence and meaning are not dialect questions.
+- **An action revealed on hover never covers the subject** it acts on. It appears
+  beside or under it.
+- **On touch,** whatever a hover reveals is visible without one.
+
+*Why it's universal:* hover is the interface's only way to answer "what happens if I
+click this" before the click. A page without it makes the visitor guess, which is
+[U12](#invariant)'s failure at the scale of a single element.
+
+> **Evidence — Gunther Werks Miami (Prestige Imports child site), 2026-10-25/26.**
+> - The first lineup had no hover: "oh my god, not even a hover effect … it's begging
+>   for it".
+> - The header nav's light-pool hover was "terrible — look for something else".
+> - The outline button's pointer glow was "very weak".
+> - A card's Enquire button rising over the car photograph was rejected. The same
+>   button rising under the caption was approved.
+
+### U27 — A reference's components carried over as they are
+
+**A reference site lends an idea — a structure, a rhythm, a way of revealing —
+never its components. Cards, arrows, pills, dots, tab shapes and transitions taken
+over one-to-one make the page read as that brand's site with another logo. Redraw
+every borrowed idea in the project's own language, and name in the report which idea
+came from where.**
+
+The same applies to an example the client sketches: it is developed into an idea,
+never copied and never dropped ([TASTE §5](../../TASTE.md#5-working-style--travels-with-this-dna)).
+
+*Why it's universal:* a borrowed component brings the lender's identity with it,
+and no amount of local polish removes it.
+
+> **Evidence — Gunther Werks Miami (Prestige Imports child site), 2026-10-25/26.**
+> - Concept E took racing.porsche.com's card, arrow and box language one-to-one.
+>   Alex: "I wouldn't use the design so openly … change the arrows, elements, boxes
+>   … don't drag it over one-to-one, develop the idea."
+> - A Czinger model section copied into Gunther was rejected: "we need Gunther's
+>   style and approach here, and its layout".
 
 ---
 

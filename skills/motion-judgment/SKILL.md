@@ -1,6 +1,6 @@
 ---
 name: motion-judgment
-description: How to decide whether a page should move at all, what earns movement, and what must stay still — eleven invariants (MJ1–MJ11) covering declared role before effect, one primary temporal idea per viewport, the subject deciding rather than the amount, every stoppable frame being a designed frame, the static build standing alone, the user keeping the transport, comprehension never waiting on choreography, separately authored mobile, reduced motion that preserves meaning, a device earning the advance it consumes, and motion bound to roles rather than to a page's own sections. Contains the MOTION READ and MOTION PLAN, a five-level motion hierarchy, camera vocabulary, and routes to references/ for per-category judgment, the audit rubric and framework-neutral implementation. Use before proposing any animation, scroll effect, transition, hover treatment or loading choreography, and when auditing motion that already exists.
+description: How to decide whether a page should move at all, what earns movement, and what must stay still — twelve invariants (MJ1–MJ12) covering declared role before effect, one primary temporal idea per viewport, the subject deciding rather than the amount, every stoppable frame being a designed frame, the static build standing alone, the user keeping the transport, comprehension never waiting on choreography, separately authored mobile, reduced motion that preserves meaning, a device earning the advance it consumes, motion bound to roles rather than to a page's own sections, and footage that earns its device by holding attention as a plain loop first. Contains the MOTION READ and MOTION PLAN, a five-level motion hierarchy, camera vocabulary, and routes to references/ for per-category judgment, the audit rubric and framework-neutral implementation. Use before proposing any animation, scroll effect, transition, hover treatment or loading choreography, and when auditing motion that already exists.
 ---
 
 # Motion Judgment
@@ -423,6 +423,41 @@ indistinguishable from success by every check MJ5 satisfies.
 > cost markup rather than JavaScript; the hero kept its by-name binding, because
 > it is the arrival.
 
+### MJ12 — The material earns the technique
+
+**A pinned scrub, a scroll-linked film, or any device that hands the visitor's scroll
+to a piece of footage, is chosen only after the footage has been watched as a plain
+muted loop at normal speed. If it does not hold attention there, no device will make
+it hold, and a strong still carries the chapter instead.** Footage that fails this
+test usually shows it plainly:
+
+- event coverage;
+- a small subject;
+- frequent cuts;
+- soft focus.
+
+Large figures, captions keyed to frames, and effects added to make weak material seem
+important are the symptom, not the cure.
+
+The converse holds as well. Footage that does hold as a loop needs no scrub. A muted
+loop with a pause control and an authored still for reduced motion is usually the
+whole answer.
+
+*Why it's universal:* the device multiplies whatever the material is. Strong footage
+gains; weak footage is exposed for longer, under the visitor's own hand.
+[MJ10](#invariant) asks whether a device returns what it consumes. This rule asks it
+of the material before the device is built.
+
+> **Evidence — Gunther Werks Miami (Prestige Imports child site), 2026-10-25/26.**
+> - Concept F scrubbed a 115-frame Goodwood sequence under a "1,000 HP" figure. Alex:
+>   "doesn't justify a scroll-controlled sequence and is not compelling enough …
+>   don't add effects or oversized performance claims to make weak footage seem
+>   important".
+> - Played as a loop, it showed six cuts in 21 s, with the car mostly small in frame.
+>   It was replaced by a GW still.
+> - The later interlude used GW's studio film of Project End Game, which held as a
+>   plain loop and shipped as one.
+
 ## MOTION READ
 
 Runs **after the Composition Read and Plan** — the static structure must exist
@@ -496,5 +531,6 @@ Then, and only then:
 - [ ] The reader still controls pacing `MJ6`
 - [ ] What the page is is clear before any sequence finishes `MJ7`
 - [ ] Mobile choreography decided separately, not inherited `MJ8`
+- [ ] Any footage behind a scrub or pin was watched first as a plain muted loop, and held `MJ12`
 - [ ] Reduced motion delivers the same meaning and state `MJ9`
 - [ ] The `Cut` line is not empty

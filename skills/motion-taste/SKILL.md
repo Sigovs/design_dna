@@ -1,6 +1,6 @@
 ---
 name: motion-taste
-description: Motion rules in two tiers — INVARIANT (a designed static path for prefers-reduced-motion, perceivable state changes with keyboard parity, durations from a documented scale with coherent easing, no jank, no layout-shifting loaders, placeholders that match what replaces them in picture as well as in box) and DIALECT (auction-editorial's crossfade over travel, 2px hover lift, skeletons over spinners, motion never as identity, each with a yields-when). Use before writing any transition, animation, transform, scroll effect, loading state, or page transition.
+description: Motion rules in two tiers — INVARIANT (a designed static path for prefers-reduced-motion, perceivable state changes with keyboard parity, durations from a documented scale with coherent easing, no jank, no layout-shifting loaders, placeholders that match what replaces them in picture as well as in box, a swap on one base showing one state at a time, entrances slow enough to be seen) and DIALECT (auction-editorial's crossfade over travel, 2px hover lift, skeletons over spinners, motion never as identity, each with a yields-when). Use before writing any transition, animation, transform, scroll effect, loading state, or page transition.
 ---
 
 # Motion Taste
@@ -114,6 +114,59 @@ removed — not tuned.
 *Why:* attention is the scarcest resource on any screen, and decorative movement
 spends it without returning anything. This is the universal floor; how *much*
 communicative motion is tasteful is a dialect question (D4).
+
+---
+
+### I6 — A swap on one base shows one state at a time
+
+**When one subject replaces another in the same place — a product on a registered
+stage, a figure in a spec slot, a portrait in a frame — the outgoing state leaves
+before the incoming one arrives. Two subjects of the same kind visible at once,
+half-transparent over each other, read as a double exposure or a ghost, not as a
+transition. Exit first, then enter. The direction may follow the order of the
+choice.**
+
+Scope: a crossfade between *different scenes* — hero slides, chapters — is not
+covered, and [D1](#dialect) stands. The test is
+[MJ4](../motion-judgment/SKILL.md#invariant)'s: pause at 25, 50 and 75 %. If two
+subjects of the same kind are visible, the swap fails.
+
+*Why it's universal:* a registered comparison exists so the eye can see what
+changed. A frame showing both states at once shows neither.
+
+> **Evidence — Gunther Werks Miami (Prestige Imports child site), 2026-10-25/26.**
+> - The program stage crossfaded the cars, and mid-change two were visible.
+> - A hover laid a ghost outline of the next car over the current one. Rejected: "no
+>   outlines, wireframes, silhouettes, or second car layered over the selected car".
+> - The approved swap sends the old car out first and rolls the new one in along the
+>   floor. Sampled every frame: at most one car is visible at any moment.
+
+### I7 — Motion too fast to be seen is a cost without a benefit
+
+**An entrance that completes before the eye has arrived at it has spent frames and
+delivered nothing. The visitor sees text that is simply there, a beat late.
+Entrances for display-scale type and images last long enough to be perceived as
+motion:**
+
+| What enters | Duration | Ease |
+|---|---|---|
+| Headings and image reveals | about 1–1.7 s | soft ease-out |
+| Supporting blocks | 0.9–1.2 s | — |
+
+**The stagger is slow enough to follow.**
+
+Interface feedback — a press, a toggle, focus — stays fast. This rule governs
+entrances, not responses. It never overrides
+[MJ7](../motion-judgment/SKILL.md#invariant): content is hidden no longer than its own
+reveal, and nothing the visitor needs is chained behind another animation.
+
+*Why it's universal:* the purpose of an entrance is to be seen. Below the threshold
+of perception it is pure cost — frames, delay, a flash of late content — with none
+of the return.
+
+> **Evidence — Gunther Werks Miami (Prestige Imports child site), 2026-10-25/26.** The first text-reveal pass ran titles at 0.95 s and
+> blocks at 0.7 s. Alex: "it arrives very fast and the motion isn't visible". Retimed
+> to 1.5–1.7 s titles and 1.2 s blocks, with reveals once per section, and approved.
 
 ---
 
@@ -246,6 +299,8 @@ movement that communicates nothing.
 - [ ] Reduced motion tested — nothing invisible, nothing autoplaying, page complete.
 - [ ] Every hover has focus parity; motion is never the only affordance.
 - [ ] Every duration is a token; ease-out enters, ease-in exits.
+- [ ] A swap on one base never shows two subjects of the same kind at once — paused at 25/50/75 % (I6).
+- [ ] Every entrance is long enough to be seen as motion; feedback stays fast (I7).
 - [ ] Only `opacity`/`transform` animated; interruptible; no layout shift.
 - [ ] No animation without a communicative job.
 

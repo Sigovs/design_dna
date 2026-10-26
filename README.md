@@ -676,7 +676,11 @@ while it is honest.
    ancestor — an element anchored to a box that changes size at another viewport, or
    copy inside a fixed proportion whose padding still scales, checked by measuring
    rects against the clipping box at the narrow end of every band rather than at the
-   two widths the design was authored at.
+   two widths the design was authored at; every cut-out standing on a ground with a
+   contact shadow rather than floating; every asset seen at the size it renders, at
+   2×; no copy that only repeats what the image, heading or interface already says;
+   a designed hover with a meaning on everything interactive; and a reference's idea
+   taken, never its components.
    **Composition is the cross-dialect layer inside this tier** — the page
    describable as 3–7 major masses before any component is named, a compositional
    centre that is decided rather than inherited, a dominant with subordinates and
@@ -690,7 +694,9 @@ while it is honest.
    use guarantees, a first screen that says what the thing
    is (or a Read that declares the withholding), operational truth that organises
    the supporting content without displacing what the buyer actually came for, the
-   page rather than the section treated as the composition, and a governing idea
+   page rather than the section treated as the composition, items compared on one registered
+   base with one fact set, a home page that is a route rather than a catalogue, text
+   that shares a declared edge with its image, and a governing idea
    re-established at every breakpoint. Its **Read and Plan run after the dialect declaration and
    before any grid, component or surface styling**, and they judge relationships,
    not compliance with a preferred look.
@@ -710,7 +716,11 @@ while it is honest.
    choreography, mobile choreography is authored rather than inherited, reduced
    motion delivers the same meaning rather than a disabled interface, and the
    system is bound to roles rather than to a page's own sections — one written
-   against instances silently applies to nothing on the next page.
+   against instances silently applies to nothing on the next page; a swap on one
+   base shows one state at a time, entrances last long enough to be seen, and
+   footage earns a scrub or a pin only after holding attention as a plain loop.
+   **Facts are omitted rather than chosen when sources conflict**, and a photograph
+   is presented as documentary only when its publisher confirms what it shows.
    **Synthetic imagery is governed before it exists** — the origin of every image
    position is declared before a prompt does, the prompt is derived from the brief
    rather than typed from taste, nothing generated is ever passed off as the real

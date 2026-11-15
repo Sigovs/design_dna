@@ -816,7 +816,7 @@ MOTION READ runs after the Composition Read and Plan, because time is scheduled
 against a structure that already exists.
 
 **Instrumental skills sit outside this table, and outside both tiers.**
-[gsap-implementation](skills/gsap-implementation/SKILL.md) is one of three. `G1`–`G8`
+[gsap-implementation](skills/gsap-implementation/SKILL.md) is one of four. `G1`–`G8`
 are engineering contracts on how a motion system is built and how it fails — context
 and teardown, scoped selectors, timeline membership, token governance, `matchMedia`
 branching, property ownership and overwrite, progressive enhancement over visible
@@ -859,6 +859,19 @@ Its bundled `scripts/` are boilerplate generators (`argparse` only, they write t
 path you pass them) and its `assets/starter_motion/` is a Vite template. Its
 SKILL.md advertises `references/variants_patterns.md` and `references/gesture_guide.md`;
 **upstream ships neither** — only `api_reference.md` exists.
+
+[animejs-implementation](skills/animejs-implementation/SKILL.md) is the fourth, and it
+is **authored, not vendored**: `A1`–`A8` are engineering contracts in the same shape
+as `G1`–`G8`, written against Anime.js **4.5.0** (pinned, checked against upstream
+2026-11-14). It sits on the same rung as GSAP and **never shares a page with it** — one
+timing engine per project. It earns its place only by a named capability the lighter
+levels lack: spring physics, per-character `splitText` cascades, a draggable track with
+inertia, SVG drawing, on a build-free page. Its recipes come from an A/B lab on the
+Exotic Motors Midwest sell page (`[J]`, user-approved 2026-11-14), and like the other
+three it cannot authorize motion or appear in a report as the reason for a design
+decision. One trap is recorded in the skill because it fails silently: `splitText`
+re-splits lines after fonts load, so animating its arrays outside `addEffect` animates
+nothing.
 
 ---
 

@@ -894,6 +894,16 @@ measured ([color-taste](skills/color-taste/SKILL.md#invariant)), and it is not o
 the exhausted palettes or tropes ([anti-patterns](skills/anti-patterns/SKILL.md#dialect)
 D1). Each offer is labelled as coming from it.
 
+**The 21st.dev skills** (`21st-ui-build`, `21st-ui-explore`, `21st-ui-review`, `21st-cli-use`,
+`21st-ai`, `21st-registry`, `21st-design-sync`, `21st-video`; installed 2026-11-15 by
+`npx @21st-dev/cli install-skill`, kept installed by `hooks/mcp-health.mjs`) are
+**instruments inside this order, never a replacement for it**. Their triggers ("build this
+UI", "explore directions", "review this page") overlap this system's. `design-dna` still
+loads first, a concept still follows `DNA102`, and review still runs the whole-page read and
+Gate 1. Use them for what they are good at: finding and pulling a ready block (`DNA96`),
+grounding variants in the catalogue. Everything taken is restyled, ported and stripped of
+demo content.
+
 ---
 
 ## 4. Dialect index

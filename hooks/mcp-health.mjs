@@ -77,6 +77,18 @@ try {
 } catch (e) {
   notes.push(`could not read ${cfgPath}: ${e.message}`);
 }
+// 21st.dev's official agent skills (search/install/build/explore/review/video) — installed by
+// `npx @21st-dev/cli install-skill` (Alex, 2026-11-15). Reinstalled when any is missing.
+const SKILLS_21ST = ['21st-ai', '21st-cli-use', '21st-design-sync', '21st-registry', '21st-ui-build', '21st-ui-explore', '21st-ui-review', '21st-video'];
+const skillsDir = join(homedir(), '.claude', 'skills');
+const missingSkills = () => SKILLS_21ST.filter((n) => !existsSync(join(skillsDir, n, 'SKILL.md')));
+if (missingSkills().length) {
+  const r = run('npx', ['-y', '@21st-dev/cli', 'install-skill'], 300000);
+  const still = missingSkills();
+  if (r.status === 0 && !still.length) repaired.push('reinstalled 21st skills');
+  else notes.push(`21st skills missing: ${still.join(', ')} — run: npx @21st-dev/cli install-skill`);
+}
+
 if (!has21st) {
   notes.push('21st.dev MCP is MISSING. Re-add it: claude mcp add --scope user --transport http 21st https://21st.dev/api/mcp --header "x-api-key: <21st key>"');
 }
@@ -107,8 +119,8 @@ const ver = (n) => { try { return JSON.parse(readFileSync(pkg(n), 'utf8')).versi
 const ok = !notes.length;
 const line = [
   `MCP health ${ok ? 'OK' : 'NEEDS ATTENTION'}:`,
-  `awwwards ${ver('awwwards-mcp')} (global) · playwright ${ver('playwright')} · chromium ${chromiumOk() ? 'ok' : 'missing'} · ffmpeg ${existsSync(pkg('ffmpeg-static')) ? 'ok' : 'missing'} · 21st ${has21st ? 'configured' : 'MISSING'}.`,
-  'Standing design tools: Awwwards MCP for references and motion (DNA102), 21st.dev MCP for every block (DNA96: search is free; on the free tier get_component works 2×/day).',
+  `awwwards ${ver('awwwards-mcp')} (global) · playwright ${ver('playwright')} · chromium ${chromiumOk() ? 'ok' : 'missing'} · ffmpeg ${existsSync(pkg('ffmpeg-static')) ? 'ok' : 'missing'} · 21st MCP ${has21st ? 'configured' : 'MISSING'} · 21st skills ${missingSkills().length ? 'MISSING' : SKILLS_21ST.length}.`,
+  'Standing design tools: Awwwards MCP for references and motion (DNA102), 21st.dev MCP + skills for every block (DNA96: search is free; on the free tier get_component works 2×/day). The 21st skills work INSIDE the DNA order — design-dna loads first, concepts follow DNA102 — never instead of it.',
   repaired.length ? `Repaired: ${repaired.join('; ')}.` : '',
   notes.length ? `Problems: ${notes.join(' | ')}` : '',
 ].filter(Boolean).join(' ');

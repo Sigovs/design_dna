@@ -118,6 +118,14 @@ open them in the browser when motion matters.
   `REVIEW: <url>` with Alex's own comment, since an unjudged find is not taste
   evidence.
 
+**The technique palette is the third standing source.** *Alex, 2026-11-15.*
+[`TECHNIQUES.md`](../../TECHNIQUES.md) lists motion techniques and surfaces worth
+*offering* even when nobody has used them here yet. Read it at the concept, once the
+idea has its sentence: when the shots get their devices, when the signature move is
+named, and when the page's ground is chosen. Offer up to two, each with the clause of
+the idea it serves. It is non-normative: an offer is never a choice, and the build
+plan still picks the lightest method (`DNA45`).
+
 **`DNA96` — 21st.dev is a standing source of solutions for any block.** Before
 building a block, search 21st.dev through its MCP server (`21st`) and look at several
 variants, not the first hit. That covers reviews and testimonials,
@@ -360,7 +368,7 @@ A recommendation only marks an option; the plan is built from what was answered.
 | **Бриф** · requirements | checkboxes, may be empty | real facts and prices (CP) · leads and conversion · CMS or integration · handoff to developers |
 | **Бриф** · missing | checkboxes, only while `BRIEF.md` leaves gaps | real photographs · copy · facts and prices · nothing (exclusive). Missing photography never cancels the concept (`GI3`) |
 | **Концепт** · mode | one, radio | one direction (BUILD, default) · three directions (EXPLORE, when Alex asks) |
-| **Концепт** · idea search | checkboxes | vault + galleries (DNA97) · `genjutsu:cast` for the interaction thesis · a moodboard only (exclusive) |
+| **Концепт** · idea search | checkboxes | vault + galleries (DNA97) · `genjutsu:cast` for the interaction thesis · technique palette (`TECHNIQUES.md`: up to two offers, motion or surface) · a moodboard only (exclusive) |
 | **Концепт** · moodboard | one, radio, carries the `DNA100` scan | thesis → Сборка (three or more signals and all five states) · style only · no moodboard |
 | **Концепт · одобрение** · direction | one, radio, after the board is shown | approve · revise · reject |
 | **Ассеты** · images | checkboxes | supplied assets · fal.ai generation (disclosed art direction, `GI3`) · placeholders for facts only (`CP4`) |

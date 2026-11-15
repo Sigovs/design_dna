@@ -216,7 +216,9 @@ them** (see [anti-patterns](../anti-patterns/SKILL.md#dialect)).
 | **GSAP** | Choreography and timelines. Most often justified at **SUPPORT**, where sequencing clarifies a composition that already stands; at MAIN it is doing a job the composition should be doing. |
 
 The role and the invariants decide what is appropriate. The tool follows, and is an
-implementation note in the report — never the direction.
+implementation note in the report — never the direction. The wider palette —
+techniques worth *offering* even when nobody has used them here yet — is
+[TECHNIQUES.md](../../TECHNIQUES.md).
 
 ---
 

@@ -549,6 +549,11 @@ rejected outright.
   read, and appears in the report beside the build. Tool characteristics are
   reference only:
   [dimensionality → tool notes](skills/dimensionality/SKILL.md#tool-notes-non-normative).
+  **The reverse holds too: a technique Alex has never been shown can never be
+  chosen.** Once the idea has its sentence, read [TECHNIQUES.md](TECHNIQUES.md) and
+  offer up to two techniques the idea could genuinely use, each with the clause of
+  the idea it serves and its cost, under *Technique offers* in the report. An offer
+  is not a choice — the build plan still picks the lightest method, and Alex decides.
 - `<aesthetic family>` must be nameable and specific: *editorial-technical*,
   *auction-catalog*, *quiet-luxury*, *swiss-utility*, *archival-print*,
   *expressive-poster*. "Modern", "clean", and "minimal" are not families — they

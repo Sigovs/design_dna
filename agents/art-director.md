@@ -51,7 +51,12 @@ line constrains the next:
    front of it, and the most scroll room. If you cannot name which one, there
    are three and the page has none.
 6. **The signature move** — one, bespoke to this site. A parameter change to a
-   known device is not one.
+   known device is not one. Before naming it, and before choosing the device for
+   each shot and the page's ground, read [`TECHNIQUES.md`](../TECHNIQUES.md) —
+   motion techniques and surfaces alike. Write up to two **Technique offers** into
+   the artefact, each with the clause of the concept it serves, its cost, its
+   reduced-motion still and its mobile answer. They are offers for Alex, not
+   choices: the build plan still picks the lightest method.
 7. **The budgets** — viewport-heights per act and for the page, payload, largest
    asset, LCP target. Declared now, because a budget discovered afterwards is a
    postmortem.

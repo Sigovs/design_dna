@@ -63,6 +63,7 @@ if (!root) {
 // ~/.claude.json — awwwards from the global install; 21st present.
 const cfgPath = join(homedir(), '.claude.json');
 let has21st = false;
+let hasAwardy = false;
 try {
   const cfg = JSON.parse(readFileSync(cfgPath, 'utf8'));
   cfg.mcpServers ??= {};
@@ -74,6 +75,13 @@ try {
     repaired.push(cur ? 'awwwards MCP repointed to the global install (restart to apply)' : 'awwwards MCP added (restart to apply)');
   }
   has21st = Boolean(cfg.mcpServers['21st']);
+  // Awardy (awards intelligence, OAuth — no secret stored). Added by Alex 2026-11-15.
+  if (!cfg.mcpServers.awardy) {
+    cfg.mcpServers.awardy = { type: 'http', url: 'https://mcp.awardy.ai/mcp' };
+    writeFileSync(cfgPath, JSON.stringify(cfg, null, 2));
+    repaired.push('awardy MCP re-added (restart, then /mcp → awardy → Authenticate)');
+  }
+  hasAwardy = true;
 } catch (e) {
   notes.push(`could not read ${cfgPath}: ${e.message}`);
 }
@@ -119,7 +127,7 @@ const ver = (n) => { try { return JSON.parse(readFileSync(pkg(n), 'utf8')).versi
 const ok = !notes.length;
 const line = [
   `MCP health ${ok ? 'OK' : 'NEEDS ATTENTION'}:`,
-  `awwwards ${ver('awwwards-mcp')} (global) · playwright ${ver('playwright')} · chromium ${chromiumOk() ? 'ok' : 'missing'} · ffmpeg ${existsSync(pkg('ffmpeg-static')) ? 'ok' : 'missing'} · 21st MCP ${has21st ? 'configured' : 'MISSING'} · 21st skills ${missingSkills().length ? 'MISSING' : SKILLS_21ST.length}.`,
+  `awwwards ${ver('awwwards-mcp')} (global) · playwright ${ver('playwright')} · chromium ${chromiumOk() ? 'ok' : 'missing'} · ffmpeg ${existsSync(pkg('ffmpeg-static')) ? 'ok' : 'missing'} · 21st MCP ${has21st ? 'configured' : 'MISSING'} · awardy ${hasAwardy ? 'configured' : 'MISSING'} · 21st skills ${missingSkills().length ? 'MISSING' : SKILLS_21ST.length}.`,
   'Standing design tools: Awwwards MCP for references and motion (DNA102), 21st.dev MCP + skills for every block (DNA96: search is free; on the free tier get_component works 2×/day). The 21st skills work INSIDE the DNA order — design-dna loads first, concepts follow DNA102 — never instead of it.',
   repaired.length ? `Repaired: ${repaired.join('; ')}.` : '',
   notes.length ? `Problems: ${notes.join(' | ')}` : '',

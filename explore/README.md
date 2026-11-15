@@ -24,8 +24,8 @@ and why it lost, and the next round starts from it rather than from nothing.
 
 Three practical rules:
 
-- **One key screen per direction.** Three complete websites is not exploration, it
-  is three builds nobody asked for.
+- **The whole page per direction** (Alex, 2026-11-15, `DNA102`). A concept is never a
+  hero or a key screen alone. Keep the directions few rather than partial.
 - **Structural difference or it does not count** — composition, hierarchy, rhythm,
   image behaviour, typography strategy, interaction model, density, symmetry, hero
   treatment, motion. Three palettes on one layout is one direction.

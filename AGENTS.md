@@ -14,7 +14,7 @@ palette, type scale, spacing ramp, motion or composition decision. It is the
 default visual and interaction standard for all future work here, and it outranks
 default agent taste.
 
-It carries the detail as `DNA1`–`DNA101`: visual direction and the idea · sourcing and tools (galleries, 21st.dev, genjutsu, slop scan, the moodboard motion scan, the compositing plan before generation, the build-plan pop-up) ·
+It carries the detail as `DNA1`–`DNA102`: visual direction and the idea · sourcing and tools (galleries, 21st.dev, genjutsu, slop scan, the moodboard motion scan, the compositing plan before generation, the build-plan pop-up) ·
 typography hierarchy · spacing and composition · grid and alignment · colour and
 contrast · image treatment · cinematic art direction · premium automotive and
 editorial presentation · scroll storytelling · motion choreography · GSAP and

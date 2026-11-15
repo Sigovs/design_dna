@@ -21,7 +21,7 @@ yields **out loud**, in the report.
 |---|---|---|
 | 1 | **Truth and access** — never yields to anything | `color I1` `I2` `I3` `I6` · `CP3`–`CP7` (CP1/CP2 ledger advice) · `GI3` · `DM4` `DM5` · `U6` `U7` `U12` |
 | 2 | **`TASTE.md` + the INVARIANT tier of `skills/`** | `C1`–`C21` (C17, C20 advice, C22 retired) · `I1`–`I10` (typography I4, color I4 advice) · `DM1`–`DM10` · `MJ1`–`MJ11` (MJ1, MJ2, MJ10 advice) · `U1`–`U19` · `G1`–`G8` |
-| 3 | **This file** — `DNA1`–`DNA101`, the build standard | camera language, shot list, lighting, annotation craft |
+| 3 | **This file** — `DNA1`–`DNA102`, the build standard | camera language, shot list, lighting, annotation craft |
 | 4 | **The selected dialect's DIALECT tier** | `auction-editorial` · `cinematic-industrial` · `immersive-authored-world` |
 | 5 | **Plugins and `external/`** — reference only, binds nothing | `frontend-design` · Scrollcraft · `threejs-webgl` · `gsap-scrolltrigger` · Awwwards and other galleries, 21st.dev (standing sources, `DNA96`–`DNA97`) |
 
@@ -97,6 +97,35 @@ only when asked: **inspiration galleries** for the direction (`DNA97`), and
 **21st.dev** for ready solutions to individual blocks (`DNA96`). The vault comes
 first, because it holds Alex's own judgements. Outside sources widen what the vault
 cannot cover.
+
+**`DNA102` — A concept starts from references and real imagery, and is shown as the
+whole page.** *Alex, 2026-11-15, after a placeholder study was rejected as "not even a
+concept".* Before the one-sentence idea, in this order:
+
+1. **References, on my own initiative.** The vault first (Alex's own judgements), then
+   the **Awwwards MCP**: `search_sites` by sector and style, then `get_site_details`
+   and `get_motion_dna` on 3–6 of the results. The other DNA97 galleries are for when
+   Awwwards is thin. At the concept, live browsing is allowed whenever motion or
+   interaction is the question. Take the principle, never the pixels (DNA97).
+2. **Imagery inventory, in this order.**
+   - The project folder, when Alex has already supplied images: client assets,
+     `Alex Assets/`, `assets/`.
+   - Otherwise, **our previous projects** under `C:/____WORK`: their assets, the
+     `*MEDIA*` folders and the other dealer builds. Any brand fits, the closest match
+     first. *Alex, 2026-11-15: for the concept only, until he says otherwise.*
+     Borrowed images are stand-ins. The concept's report lists each one and the
+     project it came from, and they are replaced before anything goes to a client or
+     goes live (`CP`).
+   - fal.ai generation, only after Alex approves it (`GI1`).
+
+   Vault captures and gallery screenshots are references, never content.
+3. **No imagery, no concept.** When the inventory finds nothing usable, stop and ask
+   Alex. A concept is never built on placeholders.
+4. **Then the style and the idea.** The style comes from `TECHNIQUES.md` and
+   `ui-ux-pro-max`. The idea sentence names what the buyer *wants*. A scroll mechanic
+   on its own is a device, not an idea.
+5. **The concept is the whole page,** every section from top to bottom. That includes
+   each direction in EXPLORE. A hero alone or one key screen is never a concept.
 
 **`DNA97` — Look for real sites when a request names a style, a sector or a theme.**
 "Do brutalism", "something like a watch atelier", a sector the vault has not seen, a
@@ -371,7 +400,7 @@ A recommendation only marks an option; the plan is built from what was answered.
 | **Концепт** · idea search | checkboxes | vault + galleries (DNA97) · `genjutsu:cast` for the interaction thesis · technique and style palette (`TECHNIQUES.md` + `ui-ux-pro-max`: up to two offers, motion, surface or style; a concept may start from a style, turned into the one-sentence idea before markup) · a moodboard only (exclusive) |
 | **Концепт** · moodboard | one, radio, carries the `DNA100` scan | thesis → Сборка (three or more signals and all five states) · style only · no moodboard |
 | **Концепт · одобрение** · direction | one, radio, after the board is shown | approve · revise · reject |
-| **Ассеты** · images | checkboxes | supplied assets · fal.ai generation (disclosed art direction, `GI3`) · placeholders for facts only (`CP4`) |
+| **Ассеты** · images | checkboxes | supplied assets · our previous WORK projects, concept stand-ins (`DNA102`) · fal.ai generation (disclosed art direction, `GI3`) · placeholders for facts only (`CP4`) |
 | **Ассеты** · compositing | one, radio, carries the `DNA101` plan | layers per DNA101 · flat images |
 | **Ассеты · одобрение** · asset plan | one, radio, after the plan is shown | approve · revise · reject |
 | **Ассеты · одобрение** · budget | one, radio, shows paid sources, cost, local derivatives, alpha, extraction risk | approve the list · no paid generation · revise the plan |

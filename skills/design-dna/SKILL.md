@@ -85,7 +85,7 @@ vague one.
 
 ## Step 2b — if something is being BUILT, also read the build standard
 
-`.claude/rules/design-dna.md`, beside the manifest — `DNA1`–`DNA101`. It is the
+`.claude/rules/design-dna.md`, beside the manifest — `DNA1`–`DNA102`. It is the
 execution layer: the concept gate, the compositing plan that precedes any paid
 generation (`DNA101`), the shot vocabulary, camera language, lighting
 and materials, scroll storytelling, annotation craft, the performance and

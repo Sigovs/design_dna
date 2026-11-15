@@ -26,7 +26,10 @@ decide *identically*.
 4. **Invariants are not negotiable. Dialect rules are.** Know which is which
    before you break anything.
 5. **Say the idea in one sentence before building.** One governing idea, carried
-   through every section. *Relaxed by Alex on 2026-10-25 (step 3):* the four-line
+   through every section. The sentence names what the buyer *wants* — a scroll
+   mechanic on its own is a device, not an idea (Alex, 2026-11-15). Before it, the
+   references and the imagery come first, and the concept is shown as the whole page
+   (`DNA102`). *Relaxed by Alex on 2026-10-25 (step 3):* the four-line
    Design Read, the Concept Gate (`CG1`–`CG7`), the three-direction EXPLORE, the
    Critique Panel, the section-language ledger, the sealed gate chain and the
    mandatory vault query are **advice** — tools to reach for when they help, never
@@ -705,8 +708,9 @@ The budget is the general form of the same discipline.
 content invariants; the visitor's task and the means serving it; the evidence and
 assets actually available; the practical constraints. Everything below inherits it.
 
-Then **three directions**, each with a short independent Design Read and **one key
-visual proof — the deciding screen or section, not three complete websites.**
+Then **three directions**, each with a short independent Design Read and **the whole
+page as its proof** — every section, top to bottom. *Revised by Alex, 2026-11-15: a
+concept is always the whole page (`DNA102`); a deciding screen alone is not one.*
 
 | | What it is |
 |---|---|
@@ -1150,7 +1154,7 @@ evidence about taste, never a licence to break a quality law.
 
 #### Live browsing — the narrow exception
 
-> **This exception is about vault entries only.** Outside inspiration galleries (Awwwards, Godly, SiteInspire, Land-book, Dark at dark.design, Cosmos at cosmos.so and the like) and 21st.dev are standing sources since 2026-10-25, searched on my own initiative whenever a request names a style, a sector or a theme, or a block needs a ready solution (`DNA96`, `DNA97` in the build standard). The rule for reading them is the one in this section: a principle, never the pixels.
+> **This exception is about vault entries only.** Outside inspiration galleries (Awwwards, Godly, SiteInspire, Land-book, Dark at dark.design, Cosmos at cosmos.so and the like) and 21st.dev are standing sources since 2026-10-25, searched on my own initiative whenever a request names a style, a sector or a theme, or a block needs a ready solution (`DNA96`, `DNA97` in the build standard). The rule for reading them is the one in this section: a principle, never the pixels. At the concept, live browsing of gallery sites is normal whenever motion or interaction is the question, and the Awwwards MCP is the first call (`DNA102`, Alex 2026-11-15).
 
 **The archive is the source.** References go offline, get redesigned, and A/B-test
 you into a variant nobody else will ever see. A shot is dated and stable; the live

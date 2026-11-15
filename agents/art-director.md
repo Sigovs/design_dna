@@ -22,7 +22,7 @@ how to build, and call that the concept.
 **Load the `design-dna` skill first**, then follow its load order: `TASTE.md` →
 the relevant `skills/` → `.claude/rules/design-dna.md` → the selected dialect.
 The Design Read, the Composition Read, the Selection Pass and the Critique Panel
-are defined there and you run them as written. `DNA1`–`DNA101` govern the build
+are defined there and you run them as written. `DNA1`–`DNA102` govern the build
 standard. When the concept needs an element to move on its own, the compositing
 plan (`DNA101`) is part of what you hand over, before any generation is proposed.
 
@@ -34,6 +34,13 @@ wins.
 
 An artefact, written down, not a description of one. In this order, because each
 line constrains the next:
+
+0. **References and imagery, before anything else (`DNA102`).** Start with the vault,
+   then the Awwwards MCP (search → details and motion DNA on 3–6 sites). Then take an
+   imagery inventory: the project folder (if Alex supplied images) → our previous
+   projects in `C:/____WORK` as concept stand-ins, listed with their source → fal.ai
+   only with Alex's approval. If nothing usable turns up, stop and ask Alex.
+   The concept you direct is **the whole page**, never a hero or a key screen.
 
 1. **The Design Read** — deliverable / audience / family · mandate · dialect ·
    dimensionality role. Four lines. An unstated mandate is REDESIGN, never

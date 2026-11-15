@@ -23,6 +23,12 @@ typography as a spatial layer · callouts and technical annotations · transitio
 responsive behaviour · performance · accessibility · anti-patterns · definition of
 done.
 
+**Standing tools: [`TOOLCHAIN.md`](TOOLCHAIN.md).** The Awwwards MCP (with Playwright and
+the local index of winners), 21st.dev (MCP and skills), the Awwwards skills, Awardy,
+ui-ux-pro-max and the DNA hooks are always installed. `hooks/mcp-health.mjs` checks and
+repairs them at every SessionStart, so they are never set up again by hand. Use them inside
+the DNA order. The technique palette is [`TECHNIQUES.md`](TECHNIQUES.md).
+
 ## Order of authority
 
 1. **Truth and access** — contrast, provenance, reduced motion, discoverability.

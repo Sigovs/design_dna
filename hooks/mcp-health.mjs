@@ -142,7 +142,7 @@ const ok = !notes.length;
 const line = [
   `MCP health ${ok ? 'OK' : 'NEEDS ATTENTION'}:`,
   `awwwards ${ver('awwwards-mcp')} (global) · playwright ${ver('playwright')} · chromium ${chromiumOk() ? 'ok' : 'missing'} · ffmpeg ${existsSync(pkg('ffmpeg-static')) ? 'ok' : 'missing'} · 21st MCP ${has21st ? 'configured' : 'MISSING'} · awardy ${hasAwardy ? 'configured' : 'MISSING'} · 21st skills ${missingSkills().length ? 'MISSING' : SKILLS_21ST.length} · awwwards skills ${missingAww().length ? 'MISSING' : SKILLS_AWW.length} · awwwards index ${existsSync(indexDb) ? 'ok' : 'missing (node <npm root -g>/awwwards-mcp/dist/index-cli.js)'}.`,
-  'Standing design tools: Awwwards MCP for references and motion (DNA102), 21st.dev MCP + skills for every block (DNA96: search is free; on the free tier get_component works 2×/day). The 21st skills work INSIDE the DNA order — design-dna loads first, concepts follow DNA102 — never instead of it.',
+  'Full list: design_dna/TOOLCHAIN.md. Standing design tools: Awwwards MCP for references and motion (DNA102), 21st.dev MCP + skills for every block (DNA96: search is free; on the free tier get_component works 2×/day). The 21st skills work INSIDE the DNA order — design-dna loads first, concepts follow DNA102 — never instead of it.',
   repaired.length ? `Repaired: ${repaired.join('; ')}.` : '',
   notes.length ? `Problems: ${notes.join(' | ')}` : '',
 ].filter(Boolean).join(' ');

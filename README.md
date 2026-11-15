@@ -66,6 +66,8 @@ plain copied folder is a snapshot, and the skill is told to skip it.
 ```
 design_dna/
 ├── CLAUDE.md · AGENTS.md           # working style, mirrored verbatim — and the DESIGN DNA pointer
+├── TOOLCHAIN.md                    # the standing tools (MCP, skills, hooks), kept alive by hooks/mcp-health.mjs
+├── TECHNIQUES.md                   # the technique palette offered at the concept
 ├── .claude/rules/design-dna.md     # the build standard — DNA1–DNA102, the cinematic / 3D execution layer
 ├── TASTE.md                        # the manifest — agents read this first
 ├── PROCESS.md                      # how a project runs — hero-first, and the two steps that get skipped

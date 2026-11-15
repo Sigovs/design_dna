@@ -368,7 +368,7 @@ A recommendation only marks an option; the plan is built from what was answered.
 | **Бриф** · requirements | checkboxes, may be empty | real facts and prices (CP) · leads and conversion · CMS or integration · handoff to developers |
 | **Бриф** · missing | checkboxes, only while `BRIEF.md` leaves gaps | real photographs · copy · facts and prices · nothing (exclusive). Missing photography never cancels the concept (`GI3`) |
 | **Концепт** · mode | one, radio | one direction (BUILD, default) · three directions (EXPLORE, when Alex asks) |
-| **Концепт** · idea search | checkboxes | vault + galleries (DNA97) · `genjutsu:cast` for the interaction thesis · technique palette (`TECHNIQUES.md`: up to two offers, motion or surface) · a moodboard only (exclusive) |
+| **Концепт** · idea search | checkboxes | vault + galleries (DNA97) · `genjutsu:cast` for the interaction thesis · technique and style palette (`TECHNIQUES.md` + `ui-ux-pro-max`: up to two offers, motion, surface or style; a concept may start from a style, turned into the one-sentence idea before markup) · a moodboard only (exclusive) |
 | **Концепт** · moodboard | one, radio, carries the `DNA100` scan | thesis → Сборка (three or more signals and all five states) · style only · no moodboard |
 | **Концепт · одобрение** · direction | one, radio, after the board is shown | approve · revise · reject |
 | **Ассеты** · images | checkboxes | supplied assets · fal.ai generation (disclosed art direction, `GI3`) · placeholders for facts only (`CP4`) |

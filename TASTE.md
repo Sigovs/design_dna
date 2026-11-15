@@ -378,7 +378,7 @@ Concept Gate: PASS | FAIL — <CG ids that fail, and why in one clause each>
 
 | | Fails when | The test |
 |---|---|---|
-| **CG1** | **the direction begins with a style, a technology or a layout** | Read the first clause. If it names a dialect, a library, a grid or a device — *"dark editorial"*, *"a pinned scroll"*, *"a split hero"*, *"a 3D site"* — the means arrived before the idea. The family and the tool are answers to the idea, never its opening. |
+| **CG1** | **the direction is only a style, a technology or a layout** | *Revised by Alex, 2026-11-15:* starting from a style is allowed — a style from `ui-ux-pro-max`, a dialect, a reference, a surface. What fails is stopping there. Read the sentence: if it is still just *"dark editorial"*, *"a pinned scroll"*, *"a split hero"*, *"a 3D site"*, it is a caption. It passes when it says what the style means for *this* client — *"lots set on catalogue paper, as in an auction house's printed sale"*, not *"paper texture"*. |
 | **CG2** | **the governing idea cannot be stated in one sentence** | One sentence, no list, no *"and also"*, and one that could be wrong. Two ideas that need each other are one idea not yet found; two that do not are two pages. |
 | **CG3** | **the main technique can be replaced without changing the meaning** | Swap the signature move or the main device for its nearest neighbour — pin for fade, scene for photograph, scrub for cut. If the sentence still holds untouched, the technique is decoration: remove it, or restate the idea until it depends on it. |
 | **CG4** | **visual complexity compensates for a weak idea** | Strip to the static build (`MJ5`) — one face, no motion, no scenery layer. If what is left has no point, the layers were carrying an absent idea. A device count that rises while the sentence stays vague is the symptom. |
@@ -878,18 +878,17 @@ decision. One trap is recorded in the skill because it fails silently: `splitTex
 re-splits lines after fonts load, so animating its arrays outside `addEffect` animates
 nothing.
 
-`ui-ux-pro-max` (installed plugin, not in this repo) is **a reference library to
-offer from, not a picker**. *Alex, 2026-11-15: don't forbid it.* Its styles,
-palettes, font pairings and motion presets may be offered at the concept, beside
-[TECHNIQUES.md](TECHNIQUES.md), once the idea has its sentence. Each offer is labelled
-as coming from it and passes three checks before it reaches Alex: a palette's accent
-still has to be derived from something the project measurably contains, and its
-contrast is measured ([color-taste](skills/color-taste/SKILL.md#invariant)); it is not
-one of the exhausted palettes or tropes
-([anti-patterns](skills/anti-patterns/SKILL.md#dialect) D1); and a style name never
-becomes the direction (§2, `CG1`). Its broad trigger ("use when designing, building,
-or reviewing UI") does not move it ahead of the idea: it is read after the sentence,
-never instead of it.
+`ui-ux-pro-max` (installed plugin, not in this repo) is **a reference library and an
+allowed starting point**. *Alex, 2026-11-15: don't forbid it; a concept may start
+from a style.* Its styles, palettes, font pairings and motion presets may be offered
+at the concept beside [TECHNIQUES.md](TECHNIQUES.md), or a concept may open from one
+of its styles. Either way, before any markup the style is turned into the one
+sentence of §0 rule 5 — what it means for *this* client (`CG1`). Two checks still
+apply to anything taken from it, as they do to a palette invented from scratch: the
+accent is derived from something the project measurably contains and its contrast is
+measured ([color-taste](skills/color-taste/SKILL.md#invariant)), and it is not one of
+the exhausted palettes or tropes ([anti-patterns](skills/anti-patterns/SKILL.md#dialect)
+D1). Each offer is labelled as coming from it.
 
 ---
 

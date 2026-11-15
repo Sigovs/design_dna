@@ -121,7 +121,7 @@ to two, each with the clause of the idea it serves.
 
 | Library | What it holds | How it is used here | Status |
 |---|---|---|---|
-| **ui-ux-pro-max** (installed plugin · [repo](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill), MIT) | A searchable database: ~84 styles, 192 palettes, 74 font pairings, GSAP motion presets, UX guidelines | Searched *after* the idea has its sentence for a style, palette or type pairing worth offering. A palette passes accent derivation and measured contrast (`color-taste`) and is not a D1 trope; a style name never becomes the direction (TASTE.md §3) | available |
+| **ui-ux-pro-max** (installed plugin · [repo](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill), MIT) | A searchable database: ~84 styles, 192 palettes, 74 font pairings, GSAP motion presets, UX guidelines | Searched for a style, palette or type pairing worth offering — or as the concept's starting point (Alex, 2026-11-15). Before markup the style becomes one sentence about what it means for this client (`CG1`). A palette passes accent derivation and measured contrast (`color-taste`) and is not a D1 trope (TASTE.md §3) | available |
 
 ---
 

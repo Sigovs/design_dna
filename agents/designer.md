@@ -85,3 +85,14 @@ It states no taste rules of its own, and where the two ever appear to disagree, 
 - Report tight: what changed, files touched, what you verified with numbers, preview URL, and
   anything that genuinely needs his decision. No filler, and no internal design reasoning unless
   he asks for it.
+
+## Standing tools — use them, every build
+
+- **21st.dev MCP** (`mcp__21st__search`, `get_component`): before building any block (nav, hero
+  controls, tabs, buttons, forms, dialogs, backgrounds, footer), search it and look at several
+  variants (DNA96). Search is free; on the current free tier `get_component` (the code) works
+  2×/day, so spend it where a ready solution clearly wins. Restyle, port to the project's stack,
+  and replace demo content, always.
+- **Awwwards MCP** (`search_sites`, `get_site_details`, `get_motion_dna`): references and motion
+  evidence (DNA102). It runs on Playwright, which `hooks/mcp-health.mjs` keeps installed.
+- If either tool fails, say so in the report. Never quietly work without it.

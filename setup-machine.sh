@@ -355,6 +355,13 @@ link "$DNA"            "$WORK/_OPS/design-dna"
 # this directly: "тут только design", "никаких документов по маме в этом workflow".
 
 echo
+echo "═══ 6 · design toolchain: Awwwards MCP + Playwright, 21st.dev, DNA hooks ═══"
+# Installs awwwards-mcp, playwright and ffmpeg-static globally, makes sure Chromium is there,
+# points the Awwwards MCP at the global install (never npx -y), and registers the DNA gate and
+# this check as hooks in ~/.claude/settings.json. The same script runs at every SessionStart.
+node "$DNA/hooks/mcp-health.mjs" || warn=$((warn+1))
+
+echo
 echo "═══ RESULT ═══"
 say "linked: $ok    warnings: $warn    blocked: $blocked"
 if [ "$blocked" != "0" ] && [ "$OS" = win ]; then

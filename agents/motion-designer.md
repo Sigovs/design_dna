@@ -120,3 +120,14 @@ side. Reach for one because the beat needs it.
 - Report tight: the beat sheet, the method level chosen, the signature move, the
   two other states with what you actually saw in them, and the eight stopped
   frames. Not the reasoning unless he asks.
+
+## Standing tools — use them, every build
+
+- **21st.dev MCP** (`mcp__21st__search`, `get_component`): before building any block (nav, hero
+  controls, tabs, buttons, forms, dialogs, backgrounds, footer), search it and look at several
+  variants (DNA96). Search is free; on the current free tier `get_component` (the code) works
+  2×/day, so spend it where a ready solution clearly wins. Restyle, port to the project's stack,
+  and replace demo content, always.
+- **Awwwards MCP** (`search_sites`, `get_site_details`, `get_motion_dna`): references and motion
+  evidence (DNA102). It runs on Playwright, which `hooks/mcp-health.mjs` keeps installed.
+- If either tool fails, say so in the report. Never quietly work without it.

@@ -97,6 +97,20 @@ if (missingSkills().length) {
   else notes.push(`21st skills missing: ${still.join(', ')} — run: npx @21st-dev/cli install-skill`);
 }
 
+// The Awwwards agent skills (INSANE0777/awwwards-skills, paired with awwwards-mcp 1.19) —
+// installed 2026-11-15 by `npx skills add INSANE0777/awwwards-skills -g -a claude-code --copy -y`.
+const SKILLS_AWW = ['awwwards-inspiration', 'awwwards-motion-study', 'awwwards-section-loop', 'awwwards-setup', 'awwwards-doctor', 'awwwards-design-md', 'awwwards-atlas', 'motion-authoring', 'recreate'];
+const missingAww = () => SKILLS_AWW.filter((n) => !existsSync(join(skillsDir, n, 'SKILL.md')));
+if (missingAww().length) {
+  const r = run('npx', ['-y', 'skills', 'add', 'INSANE0777/awwwards-skills', '-g', '-a', 'claude-code', '--copy', '-y'], 300000);
+  const still = missingAww();
+  if (r.status === 0 && !still.length) repaired.push('reinstalled Awwwards skills');
+  else notes.push(`Awwwards skills missing: ${still.join(', ')} — run: npx skills add INSANE0777/awwwards-skills -g -a claude-code --copy -y`);
+}
+// The local Awwwards index (~/.awwwards-mcp/cache.db) — searches draw from thousands of
+// winners instead of ~31 per live page. The server refreshes it weekly once it exists.
+const indexDb = join(homedir(), '.awwwards-mcp', 'cache.db');
+
 if (!has21st) {
   notes.push('21st.dev MCP is MISSING. Re-add it: claude mcp add --scope user --transport http 21st https://21st.dev/api/mcp --header "x-api-key: <21st key>"');
 }
@@ -127,7 +141,7 @@ const ver = (n) => { try { return JSON.parse(readFileSync(pkg(n), 'utf8')).versi
 const ok = !notes.length;
 const line = [
   `MCP health ${ok ? 'OK' : 'NEEDS ATTENTION'}:`,
-  `awwwards ${ver('awwwards-mcp')} (global) · playwright ${ver('playwright')} · chromium ${chromiumOk() ? 'ok' : 'missing'} · ffmpeg ${existsSync(pkg('ffmpeg-static')) ? 'ok' : 'missing'} · 21st MCP ${has21st ? 'configured' : 'MISSING'} · awardy ${hasAwardy ? 'configured' : 'MISSING'} · 21st skills ${missingSkills().length ? 'MISSING' : SKILLS_21ST.length}.`,
+  `awwwards ${ver('awwwards-mcp')} (global) · playwright ${ver('playwright')} · chromium ${chromiumOk() ? 'ok' : 'missing'} · ffmpeg ${existsSync(pkg('ffmpeg-static')) ? 'ok' : 'missing'} · 21st MCP ${has21st ? 'configured' : 'MISSING'} · awardy ${hasAwardy ? 'configured' : 'MISSING'} · 21st skills ${missingSkills().length ? 'MISSING' : SKILLS_21ST.length} · awwwards skills ${missingAww().length ? 'MISSING' : SKILLS_AWW.length} · awwwards index ${existsSync(indexDb) ? 'ok' : 'missing (node <npm root -g>/awwwards-mcp/dist/index-cli.js)'}.`,
   'Standing design tools: Awwwards MCP for references and motion (DNA102), 21st.dev MCP + skills for every block (DNA96: search is free; on the free tier get_component works 2×/day). The 21st skills work INSIDE the DNA order — design-dna loads first, concepts follow DNA102 — never instead of it.',
   repaired.length ? `Repaired: ${repaired.join('; ')}.` : '',
   notes.length ? `Problems: ${notes.join(' | ')}` : '',

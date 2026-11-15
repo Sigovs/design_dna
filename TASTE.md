@@ -904,6 +904,17 @@ Gate 1. Use them for what they are good at: finding and pulling a ready block (`
 grounding variants in the catalogue. Everything taken is restyled, ported and stripped of
 demo content.
 
+**The Awwwards skills** (`awwwards-inspiration`, `awwwards-motion-study`,
+`awwwards-section-loop`, `awwwards-design-md`, `awwwards-setup`, `awwwards-doctor`,
+`awwwards-atlas`, `motion-authoring`, `recreate`; installed 2026-11-15 and kept installed
+by `hooks/mcp-health.mjs`, together with the local index of winners) obey the same order.
+`awwwards-inspiration` and `awwwards-motion-study` are how `DNA102` step 1 is run: search,
+judge from the screenshots, pull the motion evidence. **`recreate`, `awwwards-section-loop`
+and `awwwards-design-md` reproduce a reference.** They are allowed only for a study build or
+for a client's *own* existing site. They are never allowed for a client direction built from
+someone else's site, because that is the pixels instead of the principle (`DNA97`). Their
+output is evidence for the concept, never the concept.
+
 ---
 
 ## 4. Dialect index

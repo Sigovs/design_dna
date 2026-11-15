@@ -155,7 +155,7 @@ named, and when the page's ground is chosen. Offer up to two, each with the clau
 the idea it serves. It is non-normative: an offer is never a choice, and the build
 plan still picks the lightest method (`DNA45`).
 
-**Standing tools stay installed.** *Alex, 2026-11-15: "this must be a rule, 100%".* The Awwwards MCP (with Playwright and ffmpeg, installed globally, never through `npx -y`), the 21st.dev MCP and its eight official skills (`npx @21st-dev/cli install-skill`; they work inside the DNA order, TASTE §3), and the DNA hooks are checked and repaired at every SessionStart by `hooks/mcp-health.mjs`. `npm run setup-machine` sets them up on a new machine. A tool that fails is reported, never silently skipped.
+**Standing tools stay installed.** *Alex, 2026-11-15: "this must be a rule, 100%".* The Awwwards MCP (with Playwright and ffmpeg, installed globally, never through `npx -y`), the 21st.dev MCP and its eight official skills (`npx @21st-dev/cli install-skill`), the Awwwards agent skills and local index of winners (all of them work inside the DNA order, TASTE §3), the Awardy MCP, and the DNA hooks are checked and repaired at every SessionStart by `hooks/mcp-health.mjs`. `npm run setup-machine` sets them up on a new machine. A tool that fails is reported, never silently skipped.
 
 **`DNA96` — 21st.dev is a standing source of solutions for any block.** Before
 building a block, search 21st.dev through its MCP server (`21st`) and look at several

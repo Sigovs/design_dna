@@ -114,6 +114,15 @@ either photographed or disclosed as generated (`generated-imagery` GI1–GI9).
 | **Paper texture** | Visible paper stock — tooth, fibre, slight tone | An auction catalogue printed on real stock: the lot description set on paper, the photograph tipped in | Scanned paper, tiled at low contrast; the strongest native fit to auction-editorial's archival side | available |
 | **Contour lines** | Topographic isolines — elevation drawn as nested curves | Elevation of a real road or circuit the car is associated with, drawn from the actual terrain data rather than invented | `d3-contour` or Paper.js over real elevation data, exported as SVG; invented terrain presented as a real place violates `content-provenance` | available |
 
+## 6. Reference libraries to offer from
+
+Larger catalogues that are not one technique each. Offer from them the same way: up
+to two, each with the clause of the idea it serves.
+
+| Library | What it holds | How it is used here | Status |
+|---|---|---|---|
+| **ui-ux-pro-max** (installed plugin · [repo](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill), MIT) | A searchable database: ~84 styles, 192 palettes, 74 font pairings, GSAP motion presets, UX guidelines | Searched *after* the idea has its sentence for a style, palette or type pairing worth offering. A palette passes accent derivation and measured contrast (`color-taste`) and is not a D1 trope; a style name never becomes the direction (TASTE.md §3) | available |
+
 ---
 
 ## Upstream check — 2026-11-15

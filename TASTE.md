@@ -878,6 +878,19 @@ decision. One trap is recorded in the skill because it fails silently: `splitTex
 re-splits lines after fonts load, so animating its arrays outside `addEffect` animates
 nothing.
 
+`ui-ux-pro-max` (installed plugin, not in this repo) is **a reference library to
+offer from, not a picker**. *Alex, 2026-11-15: don't forbid it.* Its styles,
+palettes, font pairings and motion presets may be offered at the concept, beside
+[TECHNIQUES.md](TECHNIQUES.md), once the idea has its sentence. Each offer is labelled
+as coming from it and passes three checks before it reaches Alex: a palette's accent
+still has to be derived from something the project measurably contains, and its
+contrast is measured ([color-taste](skills/color-taste/SKILL.md#invariant)); it is not
+one of the exhausted palettes or tropes
+([anti-patterns](skills/anti-patterns/SKILL.md#dialect) D1); and a style name never
+becomes the direction (§2, `CG1`). Its broad trigger ("use when designing, building,
+or reviewing UI") does not move it ahead of the idea: it is read after the sentence,
+never instead of it.
+
 ---
 
 ## 4. Dialect index

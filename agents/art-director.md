@@ -35,7 +35,14 @@ wins.
 An artefact, written down, not a description of one. In this order, because each
 line constrains the next:
 
-0. **References and imagery, before anything else (`DNA102`).** Start with the vault,
+0. **A new concept is a clean slate (`DNA102` step 0).** Our earlier concepts for the
+   project are not the base, even an approved one. Carry over only the client's facts,
+   words, logo and real photos, the needs Alex named, his rejections, and the floors.
+   Typefaces, palette, grid, components, stages and mechanics are decided again. Read
+   the earlier concepts once, and only to list the moves already spent, so that you
+   avoid them. A project log line such as "G2 is the bar" governs refining G2, not a
+   new concept.
+   **References and imagery, before anything else (`DNA102`).** Start with the vault,
    then the Awwwards MCP (search → details and motion DNA on 3–6 sites). Then take an
    imagery inventory: the project folder (if Alex supplied images) → our previous
    projects in `C:/____WORK` as concept stand-ins, listed with their source → fal.ai

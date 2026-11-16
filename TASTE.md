@@ -248,6 +248,13 @@ agent declared REDESIGN and carried its own v4 tokens (concrete paper, the green
 action colour, Zodiak + Switzer) as "brand". The page started from the design Alex
 wanted to replace, and he rated it 1/10.
 
+**A request for a new concept is never a REDESIGN of our own previous concept**
+(`DNA102` step 0). The client's brand stays fixed. Our earlier concepts, including
+approved ones, are spent moves to avoid, not carriers. `[R gunther-werks concept-h,
+2026-11-15]`: H kept G3's programme plate, typefaces and buttons because the project
+log called G2/G3 "the bar". Alex could not score it as a design: "built on what we
+already did, I expected a new approach from scratch".
+
 **Default when the brief does not say: REDESIGN.** An unstated mandate is never
 read as licence to invent. If you believe the brief actually wants a REBRAND, say
 so and name the evidence in the brief that says so; absence of a brand description

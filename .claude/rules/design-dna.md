@@ -102,6 +102,25 @@ cannot cover.
 whole page.** *Alex, 2026-11-15, after a placeholder study was rejected as "not even a
 concept".* Before the one-sentence idea, in this order:
 
+0. **A new concept starts from a clean slate.** *Alex, 2026-11-15, on Concept H: "still
+   built on what we already did. I expected a completely new approach from scratch, so
+   I can't judge the design."* When Alex asks for a new concept, our earlier concepts
+   and builds for this project are **not the base**, however well they scored. A
+   project log that says "G2 is the bar, new work refines it" governs *refining* that
+   build, never a new concept.
+   - **What carries over:** the client's facts, words, logo and real imagery
+     (`TASTE.md` §1, "A carrier is the client's, never ours"); the problems Alex named
+     (for example "the programs must be comparable"), as needs and not as their old
+     solutions; everything Alex rejected, which stays rejected; and the floors.
+   - **What does not carry over:** our typefaces, palette, grid, components, buttons,
+     section order, stage or plate, mechanics and motion devices. Each is decided
+     again from the references.
+   - **Earlier concepts are read once, to avoid them.** List the moves they already
+     spent, and do not reuse one unless Alex names it. "The same as G3" inside a new
+     concept is a failed concept.
+   - The quality bar still stands (match or beat the best approved work), but in
+     quality, not in form.
+
 1. **References, on my own initiative.** The vault first (Alex's own judgements), then
    the **Awwwards MCP**: `search_sites` by sector and style, then `get_site_details`
    and `get_motion_dna` on 3–6 of the results. The other DNA97 galleries are for when
@@ -119,6 +138,16 @@ concept".* Before the one-sentence idea, in this order:
    - fal.ai generation, only after Alex approves it (`GI1`).
 
    Vault captures and gallery screenshots are references, never content.
+
+   **Check the pixels at the size each image will be shown.** The inventory records each
+   image's native size, the largest size it will render at, and whether it holds at
+   DPR 1 and at DPR 2. An image is never shown above its native pixels at DPR 1. A
+   concept move that needs more pixels than the sources have is redesigned or capped
+   at the concept, never discovered in the build.
+   *Gunther Werks I, 2026-11-15:* the step-in to the cars was soft because the cutouts
+   were around 640 px. GW's 4,300 px masters existed in the project the whole time. In
+   v2 the F-26, GWR and GWX were re-cut from them; the Turbo has no source above
+   1,289 px, so its close-up is capped.
 3. **No imagery, no concept.** When the inventory finds nothing usable, stop and ask
    Alex. A concept is never built on placeholders.
 4. **Then the style and the idea.** The style comes from `TECHNIQUES.md` and
